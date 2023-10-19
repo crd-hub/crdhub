@@ -1,0 +1,35 @@
+{
+  "kind": "ResourceEditor",
+  "apiVersion": "ui.k8s.appscode.com/v1alpha1",
+  "metadata": {
+    "name": "storagecache.azure.upbound.io-v1beta1-hpccacheaccesspolicies",
+    "creationTimestamp": null,
+    "labels": {
+      "k8s.io/group": "storagecache.azure.upbound.io",
+      "k8s.io/kind": "HPCCacheAccessPolicy",
+      "k8s.io/resource": "hpccacheaccesspolicies",
+      "k8s.io/version": "v1beta1"
+    }
+  },
+  "spec": {
+    "resource": {
+      "group": "storagecache.azure.upbound.io",
+      "version": "v1beta1",
+      "name": "hpccacheaccesspolicies",
+      "kind": "HPCCacheAccessPolicy",
+      "scope": "Cluster"
+    },
+    "ui": {
+      "editor": {
+        "name": "storagecacheazureupboundio-hpccacheaccesspolicy-editor",
+        "version": "v0.4.18",
+        "sourceRef": {
+          "apiGroup": "source.toolkit.fluxcd.io",
+          "kind": "HelmRepository",
+          "name": "bytebuilders-ui"
+        }
+      },
+      "enforceQuota": false
+    }
+  }
+}

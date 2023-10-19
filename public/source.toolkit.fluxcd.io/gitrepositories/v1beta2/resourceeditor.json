@@ -1,0 +1,35 @@
+{
+  "kind": "ResourceEditor",
+  "apiVersion": "ui.k8s.appscode.com/v1alpha1",
+  "metadata": {
+    "name": "source.toolkit.fluxcd.io-v1beta2-gitrepositories",
+    "creationTimestamp": null,
+    "labels": {
+      "k8s.io/group": "source.toolkit.fluxcd.io",
+      "k8s.io/kind": "GitRepository",
+      "k8s.io/resource": "gitrepositories",
+      "k8s.io/version": "v1beta2"
+    }
+  },
+  "spec": {
+    "resource": {
+      "group": "source.toolkit.fluxcd.io",
+      "version": "v1beta2",
+      "name": "gitrepositories",
+      "kind": "GitRepository",
+      "scope": "Namespaced"
+    },
+    "ui": {
+      "editor": {
+        "name": "sourcetoolkitfluxcdio-gitrepository-editor",
+        "version": "v0.4.18",
+        "sourceRef": {
+          "apiGroup": "source.toolkit.fluxcd.io",
+          "kind": "HelmRepository",
+          "name": "bytebuilders-ui"
+        }
+      },
+      "enforceQuota": false
+    }
+  }
+}

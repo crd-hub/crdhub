@@ -1,0 +1,35 @@
+{
+  "kind": "ResourceEditor",
+  "apiVersion": "ui.k8s.appscode.com/v1alpha1",
+  "metadata": {
+    "name": "secrets-store.csi.x-k8s.io-v1alpha1-secretproviderclasspodstatuses",
+    "creationTimestamp": null,
+    "labels": {
+      "k8s.io/group": "secrets-store.csi.x-k8s.io",
+      "k8s.io/kind": "SecretProviderClassPodStatus",
+      "k8s.io/resource": "secretproviderclasspodstatuses",
+      "k8s.io/version": "v1alpha1"
+    }
+  },
+  "spec": {
+    "resource": {
+      "group": "secrets-store.csi.x-k8s.io",
+      "version": "v1alpha1",
+      "name": "secretproviderclasspodstatuses",
+      "kind": "SecretProviderClassPodStatus",
+      "scope": "Namespaced"
+    },
+    "ui": {
+      "editor": {
+        "name": "secretsstorecsixk8sio-secretproviderclasspodstatus-editor",
+        "version": "v0.4.18",
+        "sourceRef": {
+          "apiGroup": "source.toolkit.fluxcd.io",
+          "kind": "HelmRepository",
+          "name": "bytebuilders-ui"
+        }
+      },
+      "enforceQuota": false
+    }
+  }
+}

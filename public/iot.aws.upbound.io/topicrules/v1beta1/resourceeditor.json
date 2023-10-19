@@ -1,0 +1,35 @@
+{
+  "kind": "ResourceEditor",
+  "apiVersion": "ui.k8s.appscode.com/v1alpha1",
+  "metadata": {
+    "name": "iot.aws.upbound.io-v1beta1-topicrules",
+    "creationTimestamp": null,
+    "labels": {
+      "k8s.io/group": "iot.aws.upbound.io",
+      "k8s.io/kind": "TopicRule",
+      "k8s.io/resource": "topicrules",
+      "k8s.io/version": "v1beta1"
+    }
+  },
+  "spec": {
+    "resource": {
+      "group": "iot.aws.upbound.io",
+      "version": "v1beta1",
+      "name": "topicrules",
+      "kind": "TopicRule",
+      "scope": "Cluster"
+    },
+    "ui": {
+      "editor": {
+        "name": "iotawsupboundio-topicrule-editor",
+        "version": "v0.4.18",
+        "sourceRef": {
+          "apiGroup": "source.toolkit.fluxcd.io",
+          "kind": "HelmRepository",
+          "name": "bytebuilders-ui"
+        }
+      },
+      "enforceQuota": false
+    }
+  }
+}

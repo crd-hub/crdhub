@@ -1,0 +1,35 @@
+{
+  "kind": "ResourceEditor",
+  "apiVersion": "ui.k8s.appscode.com/v1alpha1",
+  "metadata": {
+    "name": "autoscaling.kubedb.com-v1alpha1-etcdautoscalers",
+    "creationTimestamp": null,
+    "labels": {
+      "k8s.io/group": "autoscaling.kubedb.com",
+      "k8s.io/kind": "EtcdAutoscaler",
+      "k8s.io/resource": "etcdautoscalers",
+      "k8s.io/version": "v1alpha1"
+    }
+  },
+  "spec": {
+    "resource": {
+      "group": "autoscaling.kubedb.com",
+      "version": "v1alpha1",
+      "name": "etcdautoscalers",
+      "kind": "EtcdAutoscaler",
+      "scope": "Namespaced"
+    },
+    "ui": {
+      "editor": {
+        "name": "autoscalingkubedbcom-etcdautoscaler-editor",
+        "version": "v0.4.18",
+        "sourceRef": {
+          "apiGroup": "source.toolkit.fluxcd.io",
+          "kind": "HelmRepository",
+          "name": "bytebuilders-ui"
+        }
+      },
+      "enforceQuota": false
+    }
+  }
+}

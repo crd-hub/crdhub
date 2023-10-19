@@ -1,0 +1,35 @@
+{
+  "kind": "ResourceEditor",
+  "apiVersion": "ui.k8s.appscode.com/v1alpha1",
+  "metadata": {
+    "name": "cloudwatchevents.aws.upbound.io-v1beta1-permissions",
+    "creationTimestamp": null,
+    "labels": {
+      "k8s.io/group": "cloudwatchevents.aws.upbound.io",
+      "k8s.io/kind": "Permission",
+      "k8s.io/resource": "permissions",
+      "k8s.io/version": "v1beta1"
+    }
+  },
+  "spec": {
+    "resource": {
+      "group": "cloudwatchevents.aws.upbound.io",
+      "version": "v1beta1",
+      "name": "permissions",
+      "kind": "Permission",
+      "scope": "Cluster"
+    },
+    "ui": {
+      "editor": {
+        "name": "cloudwatcheventsawsupboundio-permission-editor",
+        "version": "v0.4.18",
+        "sourceRef": {
+          "apiGroup": "source.toolkit.fluxcd.io",
+          "kind": "HelmRepository",
+          "name": "bytebuilders-ui"
+        }
+      },
+      "enforceQuota": false
+    }
+  }
+}

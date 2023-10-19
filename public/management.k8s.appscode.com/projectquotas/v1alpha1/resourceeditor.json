@@ -1,0 +1,35 @@
+{
+  "kind": "ResourceEditor",
+  "apiVersion": "ui.k8s.appscode.com/v1alpha1",
+  "metadata": {
+    "name": "management.k8s.appscode.com-v1alpha1-projectquotas",
+    "creationTimestamp": null,
+    "labels": {
+      "k8s.io/group": "management.k8s.appscode.com",
+      "k8s.io/kind": "ProjectQuota",
+      "k8s.io/resource": "projectquotas",
+      "k8s.io/version": "v1alpha1"
+    }
+  },
+  "spec": {
+    "resource": {
+      "group": "management.k8s.appscode.com",
+      "version": "v1alpha1",
+      "name": "projectquotas",
+      "kind": "ProjectQuota",
+      "scope": "Cluster"
+    },
+    "ui": {
+      "editor": {
+        "name": "managementk8sappscodecom-projectquota-editor",
+        "version": "v0.4.18",
+        "sourceRef": {
+          "apiGroup": "source.toolkit.fluxcd.io",
+          "kind": "HelmRepository",
+          "name": "bytebuilders-ui"
+        }
+      },
+      "enforceQuota": false
+    }
+  }
+}

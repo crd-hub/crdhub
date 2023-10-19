@@ -1,0 +1,35 @@
+{
+  "kind": "ResourceEditor",
+  "apiVersion": "ui.k8s.appscode.com/v1alpha1",
+  "metadata": {
+    "name": "dataplex.gcp.upbound.io-v1beta1-assets",
+    "creationTimestamp": null,
+    "labels": {
+      "k8s.io/group": "dataplex.gcp.upbound.io",
+      "k8s.io/kind": "Asset",
+      "k8s.io/resource": "assets",
+      "k8s.io/version": "v1beta1"
+    }
+  },
+  "spec": {
+    "resource": {
+      "group": "dataplex.gcp.upbound.io",
+      "version": "v1beta1",
+      "name": "assets",
+      "kind": "Asset",
+      "scope": "Cluster"
+    },
+    "ui": {
+      "editor": {
+        "name": "dataplexgcpupboundio-asset-editor",
+        "version": "v0.4.18",
+        "sourceRef": {
+          "apiGroup": "source.toolkit.fluxcd.io",
+          "kind": "HelmRepository",
+          "name": "bytebuilders-ui"
+        }
+      },
+      "enforceQuota": false
+    }
+  }
+}

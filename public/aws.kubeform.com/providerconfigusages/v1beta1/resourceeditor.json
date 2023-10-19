@@ -1,0 +1,35 @@
+{
+  "kind": "ResourceEditor",
+  "apiVersion": "ui.k8s.appscode.com/v1alpha1",
+  "metadata": {
+    "name": "aws.kubeform.com-v1beta1-providerconfigusages",
+    "creationTimestamp": null,
+    "labels": {
+      "k8s.io/group": "aws.kubeform.com",
+      "k8s.io/kind": "ProviderConfigUsage",
+      "k8s.io/resource": "providerconfigusages",
+      "k8s.io/version": "v1beta1"
+    }
+  },
+  "spec": {
+    "resource": {
+      "group": "aws.kubeform.com",
+      "version": "v1beta1",
+      "name": "providerconfigusages",
+      "kind": "ProviderConfigUsage",
+      "scope": "Cluster"
+    },
+    "ui": {
+      "editor": {
+        "name": "awskubeformcom-providerconfigusage-editor",
+        "version": "v0.4.18",
+        "sourceRef": {
+          "apiGroup": "source.toolkit.fluxcd.io",
+          "kind": "HelmRepository",
+          "name": "bytebuilders-ui"
+        }
+      },
+      "enforceQuota": false
+    }
+  }
+}

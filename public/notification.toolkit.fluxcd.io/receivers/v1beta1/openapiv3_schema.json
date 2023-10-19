@@ -1,0 +1,151 @@
+{
+  "$schema": "http://json-schema.org/schema#",
+  "description": "Receiver is the Schema for the receivers API",
+  "type": "object",
+  "properties": {
+    "apiVersion": {
+      "description": "APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources",
+      "type": "string",
+      "enum": [
+        "notification.toolkit.fluxcd.io/v1beta1"
+      ]
+    },
+    "kind": {
+      "description": "Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds",
+      "type": "string",
+      "enum": [
+        "Receiver"
+      ]
+    },
+    "metadata": {
+      "type": "object",
+      "properties": {
+        "annotations": {
+          "description": "Annotations is an unstructured key value map stored with a resource that may be set by external tools to store and retrieve arbitrary metadata. They are not queryable and should be preserved when modifying objects. More info: http://kubernetes.io/docs/user-guide/annotations",
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          }
+        },
+        "labels": {
+          "description": "Map of string keys and values that can be used to organize and categorize (scope and select) objects. May match selectors of replication controllers and services. More info: http://kubernetes.io/docs/user-guide/labels",
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          }
+        },
+        "name": {
+          "description": "Name must be unique within a namespace. Is required when creating resources, although some resources may allow a client to request the generation of an appropriate name automatically. Name is primarily intended for creation idempotence and configuration definition. Cannot be updated. More info: http://kubernetes.io/docs/user-guide/identifiers#names",
+          "type": "string"
+        },
+        "namespace": {
+          "description": "Namespace defines the space within which each name must be unique. An empty namespace is equivalent to the \"default\" namespace, but \"default\" is the canonical representation. Not all objects are required to be scoped to a namespace - the value of this field for those objects will be empty. \n Must be a DNS_LABEL. Cannot be updated. More info: http://kubernetes.io/docs/user-guide/namespaces",
+          "type": "string"
+        }
+      }
+    },
+    "spec": {
+      "description": "ReceiverSpec defines the desired state of Receiver",
+      "type": "object",
+      "required": [
+        "resources",
+        "type"
+      ],
+      "properties": {
+        "events": {
+          "description": "A list of events to handle, e.g. 'push' for GitHub or 'Push Hook' for GitLab.",
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "resources": {
+          "description": "A list of resources to be notified about changes.",
+          "type": "array",
+          "items": {
+            "description": "CrossNamespaceObjectReference contains enough information to let you locate the typed referenced object at cluster level",
+            "type": "object",
+            "required": [
+              "name"
+            ],
+            "properties": {
+              "apiVersion": {
+                "description": "API version of the referent",
+                "type": "string"
+              },
+              "kind": {
+                "description": "Kind of the referent",
+                "type": "string",
+                "enum": [
+                  "Bucket",
+                  "GitRepository",
+                  "Kustomization",
+                  "HelmRelease",
+                  "HelmChart",
+                  "HelmRepository",
+                  "ImageRepository",
+                  "ImagePolicy",
+                  "ImageUpdateAutomation",
+                  "OCIRepository"
+                ]
+              },
+              "matchLabels": {
+                "description": "MatchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is \"key\", the operator is \"In\", and the values array contains only \"value\". The requirements are ANDed.",
+                "type": "object",
+                "additionalProperties": {
+                  "type": "string"
+                }
+              },
+              "name": {
+                "description": "Name of the referent",
+                "type": "string",
+                "maxLength": 53,
+                "minLength": 1
+              },
+              "namespace": {
+                "description": "Namespace of the referent",
+                "type": "string",
+                "maxLength": 53,
+                "minLength": 1
+              }
+            }
+          }
+        },
+        "secretRef": {
+          "description": "Secret reference containing the token used to validate the payload authenticity",
+          "type": "object",
+          "required": [
+            "name"
+          ],
+          "properties": {
+            "name": {
+              "description": "Name of the referent.",
+              "type": "string"
+            }
+          }
+        },
+        "suspend": {
+          "description": "This flag tells the controller to suspend subsequent events handling. Defaults to false.",
+          "type": "boolean"
+        },
+        "type": {
+          "description": "Type of webhook sender, used to determine the validation procedure and payload deserialization.",
+          "type": "string",
+          "enum": [
+            "generic",
+            "generic-hmac",
+            "github",
+            "gitlab",
+            "bitbucket",
+            "harbor",
+            "dockerhub",
+            "quay",
+            "gcr",
+            "nexus",
+            "acr"
+          ]
+        }
+      }
+    }
+  }
+}

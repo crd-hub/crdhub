@@ -1,0 +1,33 @@
+{
+  "kind": "ResourceEditor",
+  "apiVersion": "ui.k8s.appscode.com/v1alpha1",
+  "metadata": {
+    "name": "kubevault.com-v1alpha1-vaultservers",
+    "creationTimestamp": null,
+    "labels": {
+      "k8s.io/group": "kubevault.com",
+      "k8s.io/kind": "VaultServer",
+      "k8s.io/resource": "vaultservers",
+      "k8s.io/version": "v1alpha1"
+    }
+  },
+  "spec": {
+    "resource": {
+      "group": "kubevault.com",
+      "version": "v1alpha1",
+      "name": "vaultservers",
+      "kind": "VaultServer",
+      "scope": "Namespaced"
+    },
+    "icons": [
+      {
+        "src": "https://cdn.appscode.com/k8s/icons/kubevault.com/vaultservers.svg",
+        "type": "image/svg+xml"
+      },
+      {
+        "src": "https://cdn.appscode.com/k8s/icons/kubevault.com/vaultservers.png",
+        "type": "image/png"
+      }
+    ]
+  }
+}

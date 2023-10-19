@@ -1,0 +1,35 @@
+{
+  "kind": "ResourceEditor",
+  "apiVersion": "ui.k8s.appscode.com/v1alpha1",
+  "metadata": {
+    "name": "apigateway.aws.upbound.io-v1beta1-domainnames",
+    "creationTimestamp": null,
+    "labels": {
+      "k8s.io/group": "apigateway.aws.upbound.io",
+      "k8s.io/kind": "DomainName",
+      "k8s.io/resource": "domainnames",
+      "k8s.io/version": "v1beta1"
+    }
+  },
+  "spec": {
+    "resource": {
+      "group": "apigateway.aws.upbound.io",
+      "version": "v1beta1",
+      "name": "domainnames",
+      "kind": "DomainName",
+      "scope": "Cluster"
+    },
+    "ui": {
+      "editor": {
+        "name": "apigatewayawsupboundio-domainname-editor",
+        "version": "v0.4.18",
+        "sourceRef": {
+          "apiGroup": "source.toolkit.fluxcd.io",
+          "kind": "HelmRepository",
+          "name": "bytebuilders-ui"
+        }
+      },
+      "enforceQuota": false
+    }
+  }
+}

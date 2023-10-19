@@ -1,10 +1,15 @@
+$schema: http://json-schema.org/schema#
 description: VirtualHubSecurityPartnerProvider is the Schema for the VirtualHubSecurityPartnerProviders API. Manages a Security Partner Provider which could be associated to virtual hub.
 properties:
   apiVersion:
     description: 'APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources'
+    enum:
+    - network.azure.upbound.io/v1beta1
     type: string
   kind:
     description: 'Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds'
+    enum:
+    - VirtualHubSecurityPartnerProvider
     type: string
   metadata:
     properties:

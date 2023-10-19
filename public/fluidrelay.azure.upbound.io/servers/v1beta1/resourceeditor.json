@@ -1,0 +1,35 @@
+{
+  "kind": "ResourceEditor",
+  "apiVersion": "ui.k8s.appscode.com/v1alpha1",
+  "metadata": {
+    "name": "fluidrelay.azure.upbound.io-v1beta1-servers",
+    "creationTimestamp": null,
+    "labels": {
+      "k8s.io/group": "fluidrelay.azure.upbound.io",
+      "k8s.io/kind": "Server",
+      "k8s.io/resource": "servers",
+      "k8s.io/version": "v1beta1"
+    }
+  },
+  "spec": {
+    "resource": {
+      "group": "fluidrelay.azure.upbound.io",
+      "version": "v1beta1",
+      "name": "servers",
+      "kind": "Server",
+      "scope": "Cluster"
+    },
+    "ui": {
+      "editor": {
+        "name": "fluidrelayazureupboundio-server-editor",
+        "version": "v0.4.18",
+        "sourceRef": {
+          "apiGroup": "source.toolkit.fluxcd.io",
+          "kind": "HelmRepository",
+          "name": "bytebuilders-ui"
+        }
+      },
+      "enforceQuota": false
+    }
+  }
+}

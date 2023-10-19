@@ -1,0 +1,45 @@
+{
+  "kind": "ResourceEditor",
+  "apiVersion": "ui.k8s.appscode.com/v1alpha1",
+  "metadata": {
+    "name": "coordination.k8s.io-v1-leases",
+    "creationTimestamp": null,
+    "labels": {
+      "k8s.io/group": "coordination.k8s.io",
+      "k8s.io/kind": "Lease",
+      "k8s.io/resource": "leases",
+      "k8s.io/version": "v1"
+    }
+  },
+  "spec": {
+    "resource": {
+      "group": "coordination.k8s.io",
+      "version": "v1",
+      "name": "leases",
+      "kind": "Lease",
+      "scope": "Namespaced"
+    },
+    "ui": {
+      "editor": {
+        "name": "coordinationk8sio-lease-editor",
+        "version": "v0.4.18",
+        "sourceRef": {
+          "apiGroup": "source.toolkit.fluxcd.io",
+          "kind": "HelmRepository",
+          "name": "bytebuilders-ui"
+        }
+      },
+      "enforceQuota": false
+    },
+    "icons": [
+      {
+        "src": "https://cdn.appscode.com/k8s/icons/coordination.k8s.io/leases.svg",
+        "type": "image/svg+xml"
+      },
+      {
+        "src": "https://cdn.appscode.com/k8s/icons/coordination.k8s.io/leases.png",
+        "type": "image/png"
+      }
+    ]
+  }
+}

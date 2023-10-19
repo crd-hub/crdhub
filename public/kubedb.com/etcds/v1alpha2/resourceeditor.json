@@ -1,0 +1,64 @@
+{
+  "kind": "ResourceEditor",
+  "apiVersion": "ui.k8s.appscode.com/v1alpha1",
+  "metadata": {
+    "name": "kubedb.com-v1alpha2-etcds",
+    "creationTimestamp": null,
+    "labels": {
+      "k8s.io/group": "kubedb.com",
+      "k8s.io/kind": "Etcd",
+      "k8s.io/resource": "etcds",
+      "k8s.io/version": "v1alpha2"
+    }
+  },
+  "spec": {
+    "resource": {
+      "group": "kubedb.com",
+      "version": "v1alpha2",
+      "name": "etcds",
+      "kind": "Etcd",
+      "scope": "Namespaced"
+    },
+    "ui": {
+      "options": {
+        "name": "kubedbcom-etcd-editor-options",
+        "version": "v0.4.17",
+        "sourceRef": {
+          "apiGroup": "source.toolkit.fluxcd.io",
+          "kind": "HelmRepository",
+          "name": "bytebuilders-ui"
+        }
+      },
+      "editor": {
+        "name": "kubedbcom-etcd-editor",
+        "version": "v0.4.18",
+        "sourceRef": {
+          "apiGroup": "source.toolkit.fluxcd.io",
+          "kind": "HelmRepository",
+          "name": "bytebuilders-ui"
+        }
+      },
+      "enforceQuota": false
+    },
+    "icons": [
+      {
+        "src": "https://cdn.appscode.com/k8s/icons/kubedb.com/etcds.svg",
+        "type": "image/svg+xml"
+      },
+      {
+        "src": "https://cdn.appscode.com/k8s/icons/kubedb.com/etcds.png",
+        "type": "image/png"
+      }
+    ],
+    "variants": [
+      {
+        "name": "default",
+        "selector": {
+          "matchLabels": {
+            "charts.x-helm.dev/is-default-preset": "true"
+          }
+        }
+      }
+    ]
+  }
+}

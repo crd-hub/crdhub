@@ -1,0 +1,33 @@
+{
+  "kind": "ResourceEditor",
+  "apiVersion": "ui.k8s.appscode.com/v1alpha1",
+  "metadata": {
+    "name": "scheduling.k8s.io-v1alpha1-priorityclasses",
+    "creationTimestamp": null,
+    "labels": {
+      "k8s.io/group": "scheduling.k8s.io",
+      "k8s.io/kind": "PriorityClass",
+      "k8s.io/resource": "priorityclasses",
+      "k8s.io/version": "v1alpha1"
+    }
+  },
+  "spec": {
+    "resource": {
+      "group": "scheduling.k8s.io",
+      "version": "v1alpha1",
+      "name": "priorityclasses",
+      "kind": "PriorityClass",
+      "scope": "Namespaced"
+    },
+    "icons": [
+      {
+        "src": "https://cdn.appscode.com/k8s/icons/scheduling.k8s.io/priorityclasses.svg",
+        "type": "image/svg+xml"
+      },
+      {
+        "src": "https://cdn.appscode.com/k8s/icons/scheduling.k8s.io/priorityclasses.png",
+        "type": "image/png"
+      }
+    ]
+  }
+}

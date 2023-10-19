@@ -1,0 +1,23 @@
+{
+  "kind": "ResourceEditor",
+  "apiVersion": "ui.k8s.appscode.com/v1alpha1",
+  "metadata": {
+    "name": "storage.k8s.io-v1beta1-volumeattachments",
+    "creationTimestamp": null,
+    "labels": {
+      "k8s.io/group": "storage.k8s.io",
+      "k8s.io/kind": "VolumeAttachment",
+      "k8s.io/resource": "volumeattachments",
+      "k8s.io/version": "v1beta1"
+    }
+  },
+  "spec": {
+    "resource": {
+      "group": "storage.k8s.io",
+      "version": "v1beta1",
+      "name": "volumeattachments",
+      "kind": "VolumeAttachment",
+      "scope": "Cluster"
+    }
+  }
+}

@@ -1,0 +1,35 @@
+{
+  "kind": "ResourceEditor",
+  "apiVersion": "ui.k8s.appscode.com/v1alpha1",
+  "metadata": {
+    "name": "apiextensions.crossplane.io-v1-compositeresourcedefinitions",
+    "creationTimestamp": null,
+    "labels": {
+      "k8s.io/group": "apiextensions.crossplane.io",
+      "k8s.io/kind": "CompositeResourceDefinition",
+      "k8s.io/resource": "compositeresourcedefinitions",
+      "k8s.io/version": "v1"
+    }
+  },
+  "spec": {
+    "resource": {
+      "group": "apiextensions.crossplane.io",
+      "version": "v1",
+      "name": "compositeresourcedefinitions",
+      "kind": "CompositeResourceDefinition",
+      "scope": "Cluster"
+    },
+    "ui": {
+      "editor": {
+        "name": "apiextensionscrossplaneio-compositeresourcedefinition-editor",
+        "version": "v0.4.18",
+        "sourceRef": {
+          "apiGroup": "source.toolkit.fluxcd.io",
+          "kind": "HelmRepository",
+          "name": "bytebuilders-ui"
+        }
+      },
+      "enforceQuota": false
+    }
+  }
+}

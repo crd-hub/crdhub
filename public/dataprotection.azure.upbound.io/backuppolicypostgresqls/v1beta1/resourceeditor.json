@@ -1,0 +1,35 @@
+{
+  "kind": "ResourceEditor",
+  "apiVersion": "ui.k8s.appscode.com/v1alpha1",
+  "metadata": {
+    "name": "dataprotection.azure.upbound.io-v1beta1-backuppolicypostgresqls",
+    "creationTimestamp": null,
+    "labels": {
+      "k8s.io/group": "dataprotection.azure.upbound.io",
+      "k8s.io/kind": "BackupPolicyPostgreSQL",
+      "k8s.io/resource": "backuppolicypostgresqls",
+      "k8s.io/version": "v1beta1"
+    }
+  },
+  "spec": {
+    "resource": {
+      "group": "dataprotection.azure.upbound.io",
+      "version": "v1beta1",
+      "name": "backuppolicypostgresqls",
+      "kind": "BackupPolicyPostgreSQL",
+      "scope": "Cluster"
+    },
+    "ui": {
+      "editor": {
+        "name": "dataprotectionazureupboundio-backuppolicypostgresql-editor",
+        "version": "v0.4.18",
+        "sourceRef": {
+          "apiGroup": "source.toolkit.fluxcd.io",
+          "kind": "HelmRepository",
+          "name": "bytebuilders-ui"
+        }
+      },
+      "enforceQuota": false
+    }
+  }
+}

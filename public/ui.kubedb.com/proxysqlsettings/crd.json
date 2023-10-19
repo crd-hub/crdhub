@@ -1,0 +1,89 @@
+{
+  "kind": "CustomResourceDefinition",
+  "apiVersion": "apiextensions.k8s.io/v1",
+  "metadata": {
+    "name": "proxysqlsettings.ui.kubedb.com",
+    "creationTimestamp": null,
+    "labels": {
+      "app.kubernetes.io/name": "kubedb"
+    }
+  },
+  "spec": {
+    "group": "ui.kubedb.com",
+    "names": {
+      "plural": "proxysqlsettings",
+      "singular": "proxysqlsettings",
+      "kind": "ProxySQLSettings",
+      "listKind": "ProxySQLSettingsList"
+    },
+    "scope": "Namespaced",
+    "versions": [
+      {
+        "name": "v1alpha1",
+        "served": true,
+        "storage": true,
+        "schema": {
+          "openAPIV3Schema": {
+            "type": "object",
+            "properties": {
+              "apiVersion": {
+                "type": "string"
+              },
+              "kind": {
+                "type": "string"
+              },
+              "metadata": {
+                "type": "object"
+              },
+              "spec": {
+                "type": "object",
+                "properties": {
+                  "admin_variables": {
+                    "type": "object",
+                    "x-kubernetes-preserve-unknown-fields": true
+                  },
+                  "mysql_query_rules": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "x-kubernetes-preserve-unknown-fields": true
+                    },
+                    "x-kubernetes-preserve-unknown-fields": true
+                  },
+                  "mysql_servers": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "x-kubernetes-preserve-unknown-fields": true
+                    },
+                    "x-kubernetes-preserve-unknown-fields": true
+                  },
+                  "mysql_variables": {
+                    "type": "object",
+                    "x-kubernetes-preserve-unknown-fields": true
+                  },
+                  "proxysql_servers": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "x-kubernetes-preserve-unknown-fields": true
+                    },
+                    "x-kubernetes-preserve-unknown-fields": true
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    ]
+  },
+  "status": {
+    "conditions": null,
+    "acceptedNames": {
+      "plural": "",
+      "kind": ""
+    },
+    "storedVersions": null
+  }
+}

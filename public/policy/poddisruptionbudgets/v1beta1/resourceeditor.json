@@ -1,0 +1,45 @@
+{
+  "kind": "ResourceEditor",
+  "apiVersion": "ui.k8s.appscode.com/v1alpha1",
+  "metadata": {
+    "name": "policy-v1beta1-poddisruptionbudgets",
+    "creationTimestamp": null,
+    "labels": {
+      "k8s.io/group": "policy",
+      "k8s.io/kind": "PodDisruptionBudget",
+      "k8s.io/resource": "poddisruptionbudgets",
+      "k8s.io/version": "v1beta1"
+    }
+  },
+  "spec": {
+    "resource": {
+      "group": "policy",
+      "version": "v1beta1",
+      "name": "poddisruptionbudgets",
+      "kind": "PodDisruptionBudget",
+      "scope": "Namespaced"
+    },
+    "ui": {
+      "editor": {
+        "name": "policy-poddisruptionbudget-editor",
+        "version": "v0.4.17",
+        "sourceRef": {
+          "apiGroup": "source.toolkit.fluxcd.io",
+          "kind": "HelmRepository",
+          "name": "bytebuilders-ui"
+        }
+      },
+      "enforceQuota": false
+    },
+    "icons": [
+      {
+        "src": "https://cdn.appscode.com/k8s/icons/policy/poddisruptionbudgets.svg",
+        "type": "image/svg+xml"
+      },
+      {
+        "src": "https://cdn.appscode.com/k8s/icons/policy/poddisruptionbudgets.png",
+        "type": "image/png"
+      }
+    ]
+  }
+}

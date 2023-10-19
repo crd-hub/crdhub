@@ -1,0 +1,262 @@
+{
+  "metadata": {
+    "name": "verticalpodautoscalers.autoscaling.k8s.io",
+    "creationTimestamp": null,
+    "annotations": {
+      "api-approved.kubernetes.io": "https://github.com/kubernetes/kubernetes/pull/63797"
+    }
+  },
+  "spec": {
+    "group": "autoscaling.k8s.io",
+    "names": {
+      "plural": "verticalpodautoscalers",
+      "singular": "verticalpodautoscaler",
+      "shortNames": [
+        "vpa"
+      ],
+      "kind": "VerticalPodAutoscaler"
+    },
+    "scope": "Namespaced",
+    "versions": [
+      {
+        "name": "v1beta1",
+        "served": false,
+        "storage": false,
+        "schema": {
+          "openAPIV3Schema": {
+            "type": "object",
+            "properties": {
+              "spec": {
+                "type": "object",
+                "properties": {
+                  "resourcePolicy": {
+                    "type": "object",
+                    "properties": {
+                      "containerPolicies": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "properties": {
+                            "containerName": {
+                              "type": "string"
+                            },
+                            "controlledResources": {
+                              "type": "array",
+                              "items": {
+                                "type": "string",
+                                "enum": [
+                                  "cpu",
+                                  "memory"
+                                ]
+                              }
+                            },
+                            "controlledValues": {
+                              "type": "string",
+                              "enum": [
+                                "RequestsAndLimits",
+                                "RequestsOnly"
+                              ]
+                            },
+                            "maxAllowed": {
+                              "type": "object"
+                            },
+                            "minAllowed": {
+                              "type": "object"
+                            },
+                            "mode": {
+                              "type": "string",
+                              "enum": [
+                                "Auto",
+                                "Off"
+                              ]
+                            }
+                          }
+                        }
+                      }
+                    }
+                  },
+                  "targetRef": {
+                    "type": "object"
+                  },
+                  "updatePolicy": {
+                    "type": "object",
+                    "properties": {
+                      "minReplicas": {
+                        "type": "integer"
+                      },
+                      "updateMode": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "name": "v1beta2",
+        "served": true,
+        "storage": true,
+        "schema": {
+          "openAPIV3Schema": {
+            "type": "object",
+            "properties": {
+              "spec": {
+                "type": "object",
+                "properties": {
+                  "resourcePolicy": {
+                    "type": "object",
+                    "properties": {
+                      "containerPolicies": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "properties": {
+                            "containerName": {
+                              "type": "string"
+                            },
+                            "controlledResources": {
+                              "type": "array",
+                              "items": {
+                                "type": "string",
+                                "enum": [
+                                  "cpu",
+                                  "memory"
+                                ]
+                              }
+                            },
+                            "controlledValues": {
+                              "type": "string",
+                              "enum": [
+                                "RequestsAndLimits",
+                                "RequestsOnly"
+                              ]
+                            },
+                            "maxAllowed": {
+                              "type": "object"
+                            },
+                            "minAllowed": {
+                              "type": "object"
+                            },
+                            "mode": {
+                              "type": "string",
+                              "enum": [
+                                "Auto",
+                                "Off"
+                              ]
+                            }
+                          }
+                        }
+                      }
+                    }
+                  },
+                  "targetRef": {
+                    "type": "object"
+                  },
+                  "updatePolicy": {
+                    "type": "object",
+                    "properties": {
+                      "minReplicas": {
+                        "type": "integer"
+                      },
+                      "updateMode": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "name": "v1",
+        "served": true,
+        "storage": false,
+        "schema": {
+          "openAPIV3Schema": {
+            "type": "object",
+            "properties": {
+              "spec": {
+                "type": "object",
+                "properties": {
+                  "resourcePolicy": {
+                    "type": "object",
+                    "properties": {
+                      "containerPolicies": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "properties": {
+                            "containerName": {
+                              "type": "string"
+                            },
+                            "controlledResources": {
+                              "type": "array",
+                              "items": {
+                                "type": "string",
+                                "enum": [
+                                  "cpu",
+                                  "memory"
+                                ]
+                              }
+                            },
+                            "controlledValues": {
+                              "type": "string",
+                              "enum": [
+                                "RequestsAndLimits",
+                                "RequestsOnly"
+                              ]
+                            },
+                            "maxAllowed": {
+                              "type": "object"
+                            },
+                            "minAllowed": {
+                              "type": "object"
+                            },
+                            "mode": {
+                              "type": "string",
+                              "enum": [
+                                "Auto",
+                                "Off"
+                              ]
+                            }
+                          }
+                        }
+                      }
+                    }
+                  },
+                  "targetRef": {
+                    "type": "object"
+                  },
+                  "updatePolicy": {
+                    "type": "object",
+                    "properties": {
+                      "minReplicas": {
+                        "type": "integer"
+                      },
+                      "updateMode": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    ]
+  },
+  "status": {
+    "conditions": null,
+    "acceptedNames": {
+      "plural": "",
+      "kind": ""
+    },
+    "storedVersions": null
+  }
+}

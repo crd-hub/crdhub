@@ -1,0 +1,23 @@
+{
+  "kind": "ResourceEditor",
+  "apiVersion": "ui.k8s.appscode.com/v1alpha1",
+  "metadata": {
+    "name": "infrastructure.cluster.x-k8s.io-v1beta1-awsfargateprofiles",
+    "creationTimestamp": null,
+    "labels": {
+      "k8s.io/group": "infrastructure.cluster.x-k8s.io",
+      "k8s.io/kind": "AWSFargateProfile",
+      "k8s.io/resource": "awsfargateprofiles",
+      "k8s.io/version": "v1beta1"
+    }
+  },
+  "spec": {
+    "resource": {
+      "group": "infrastructure.cluster.x-k8s.io",
+      "version": "v1beta1",
+      "name": "awsfargateprofiles",
+      "kind": "AWSFargateProfile",
+      "scope": "Namespaced"
+    }
+  }
+}

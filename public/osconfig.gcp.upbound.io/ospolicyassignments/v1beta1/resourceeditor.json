@@ -1,0 +1,35 @@
+{
+  "kind": "ResourceEditor",
+  "apiVersion": "ui.k8s.appscode.com/v1alpha1",
+  "metadata": {
+    "name": "osconfig.gcp.upbound.io-v1beta1-ospolicyassignments",
+    "creationTimestamp": null,
+    "labels": {
+      "k8s.io/group": "osconfig.gcp.upbound.io",
+      "k8s.io/kind": "OsPolicyAssignment",
+      "k8s.io/resource": "ospolicyassignments",
+      "k8s.io/version": "v1beta1"
+    }
+  },
+  "spec": {
+    "resource": {
+      "group": "osconfig.gcp.upbound.io",
+      "version": "v1beta1",
+      "name": "ospolicyassignments",
+      "kind": "OsPolicyAssignment",
+      "scope": "Cluster"
+    },
+    "ui": {
+      "editor": {
+        "name": "osconfiggcpupboundio-ospolicyassignment-editor",
+        "version": "v0.4.18",
+        "sourceRef": {
+          "apiGroup": "source.toolkit.fluxcd.io",
+          "kind": "HelmRepository",
+          "name": "bytebuilders-ui"
+        }
+      },
+      "enforceQuota": false
+    }
+  }
+}

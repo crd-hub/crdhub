@@ -1,0 +1,35 @@
+{
+  "kind": "ResourceEditor",
+  "apiVersion": "ui.k8s.appscode.com/v1alpha1",
+  "metadata": {
+    "name": "beyondcorp.gcp.upbound.io-v1beta1-appconnections",
+    "creationTimestamp": null,
+    "labels": {
+      "k8s.io/group": "beyondcorp.gcp.upbound.io",
+      "k8s.io/kind": "AppConnection",
+      "k8s.io/resource": "appconnections",
+      "k8s.io/version": "v1beta1"
+    }
+  },
+  "spec": {
+    "resource": {
+      "group": "beyondcorp.gcp.upbound.io",
+      "version": "v1beta1",
+      "name": "appconnections",
+      "kind": "AppConnection",
+      "scope": "Cluster"
+    },
+    "ui": {
+      "editor": {
+        "name": "beyondcorpgcpupboundio-appconnection-editor",
+        "version": "v0.4.18",
+        "sourceRef": {
+          "apiGroup": "source.toolkit.fluxcd.io",
+          "kind": "HelmRepository",
+          "name": "bytebuilders-ui"
+        }
+      },
+      "enforceQuota": false
+    }
+  }
+}

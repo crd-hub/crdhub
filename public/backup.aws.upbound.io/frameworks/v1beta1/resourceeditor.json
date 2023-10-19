@@ -1,0 +1,35 @@
+{
+  "kind": "ResourceEditor",
+  "apiVersion": "ui.k8s.appscode.com/v1alpha1",
+  "metadata": {
+    "name": "backup.aws.upbound.io-v1beta1-frameworks",
+    "creationTimestamp": null,
+    "labels": {
+      "k8s.io/group": "backup.aws.upbound.io",
+      "k8s.io/kind": "Framework",
+      "k8s.io/resource": "frameworks",
+      "k8s.io/version": "v1beta1"
+    }
+  },
+  "spec": {
+    "resource": {
+      "group": "backup.aws.upbound.io",
+      "version": "v1beta1",
+      "name": "frameworks",
+      "kind": "Framework",
+      "scope": "Cluster"
+    },
+    "ui": {
+      "editor": {
+        "name": "backupawsupboundio-framework-editor",
+        "version": "v0.4.18",
+        "sourceRef": {
+          "apiGroup": "source.toolkit.fluxcd.io",
+          "kind": "HelmRepository",
+          "name": "bytebuilders-ui"
+        }
+      },
+      "enforceQuota": false
+    }
+  }
+}

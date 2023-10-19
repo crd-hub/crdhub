@@ -1,0 +1,35 @@
+{
+  "kind": "ResourceEditor",
+  "apiVersion": "ui.k8s.appscode.com/v1alpha1",
+  "metadata": {
+    "name": "logz.azure.upbound.io-v1beta1-subaccounttagrules",
+    "creationTimestamp": null,
+    "labels": {
+      "k8s.io/group": "logz.azure.upbound.io",
+      "k8s.io/kind": "SubAccountTagRule",
+      "k8s.io/resource": "subaccounttagrules",
+      "k8s.io/version": "v1beta1"
+    }
+  },
+  "spec": {
+    "resource": {
+      "group": "logz.azure.upbound.io",
+      "version": "v1beta1",
+      "name": "subaccounttagrules",
+      "kind": "SubAccountTagRule",
+      "scope": "Cluster"
+    },
+    "ui": {
+      "editor": {
+        "name": "logzazureupboundio-subaccounttagrule-editor",
+        "version": "v0.4.18",
+        "sourceRef": {
+          "apiGroup": "source.toolkit.fluxcd.io",
+          "kind": "HelmRepository",
+          "name": "bytebuilders-ui"
+        }
+      },
+      "enforceQuota": false
+    }
+  }
+}

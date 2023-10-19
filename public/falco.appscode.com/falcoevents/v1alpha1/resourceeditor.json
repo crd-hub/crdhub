@@ -1,0 +1,35 @@
+{
+  "kind": "ResourceEditor",
+  "apiVersion": "ui.k8s.appscode.com/v1alpha1",
+  "metadata": {
+    "name": "falco.appscode.com-v1alpha1-falcoevents",
+    "creationTimestamp": null,
+    "labels": {
+      "k8s.io/group": "falco.appscode.com",
+      "k8s.io/kind": "FalcoEvent",
+      "k8s.io/resource": "falcoevents",
+      "k8s.io/version": "v1alpha1"
+    }
+  },
+  "spec": {
+    "resource": {
+      "group": "falco.appscode.com",
+      "version": "v1alpha1",
+      "name": "falcoevents",
+      "kind": "FalcoEvent",
+      "scope": "Namespaced"
+    },
+    "ui": {
+      "editor": {
+        "name": "falcoappscodecom-falcoevent-editor",
+        "version": "v0.4.18",
+        "sourceRef": {
+          "apiGroup": "source.toolkit.fluxcd.io",
+          "kind": "HelmRepository",
+          "name": "bytebuilders-ui"
+        }
+      },
+      "enforceQuota": false
+    }
+  }
+}

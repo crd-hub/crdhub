@@ -1,0 +1,35 @@
+{
+  "kind": "ResourceEditor",
+  "apiVersion": "ui.k8s.appscode.com/v1alpha1",
+  "metadata": {
+    "name": "policy-v1beta1-evictions",
+    "creationTimestamp": null,
+    "labels": {
+      "k8s.io/group": "policy",
+      "k8s.io/kind": "Eviction",
+      "k8s.io/resource": "evictions",
+      "k8s.io/version": "v1beta1"
+    }
+  },
+  "spec": {
+    "resource": {
+      "group": "policy",
+      "version": "v1beta1",
+      "name": "evictions",
+      "kind": "Eviction",
+      "scope": "Namespaced"
+    },
+    "ui": {
+      "editor": {
+        "name": "policy-eviction-editor",
+        "version": "v0.4.17",
+        "sourceRef": {
+          "apiGroup": "source.toolkit.fluxcd.io",
+          "kind": "HelmRepository",
+          "name": "bytebuilders-ui"
+        }
+      },
+      "enforceQuota": false
+    }
+  }
+}

@@ -1,7 +1,12 @@
+$schema: http://json-schema.org/schema#
 properties:
   apiVersion:
+    enum:
+    - postgres.kubedb.com/v1alpha1
     type: string
   kind:
+    enum:
+    - Publisher
     type: string
   metadata:
     properties:

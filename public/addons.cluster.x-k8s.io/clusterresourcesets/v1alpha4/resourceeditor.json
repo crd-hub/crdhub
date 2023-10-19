@@ -1,0 +1,23 @@
+{
+  "kind": "ResourceEditor",
+  "apiVersion": "ui.k8s.appscode.com/v1alpha1",
+  "metadata": {
+    "name": "addons.cluster.x-k8s.io-v1alpha4-clusterresourcesets",
+    "creationTimestamp": null,
+    "labels": {
+      "k8s.io/group": "addons.cluster.x-k8s.io",
+      "k8s.io/kind": "ClusterResourceSet",
+      "k8s.io/resource": "clusterresourcesets",
+      "k8s.io/version": "v1alpha4"
+    }
+  },
+  "spec": {
+    "resource": {
+      "group": "addons.cluster.x-k8s.io",
+      "version": "v1alpha4",
+      "name": "clusterresourcesets",
+      "kind": "ClusterResourceSet",
+      "scope": "Namespaced"
+    }
+  }
+}

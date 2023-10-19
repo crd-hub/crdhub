@@ -1,0 +1,33 @@
+{
+  "kind": "ResourceEditor",
+  "apiVersion": "ui.k8s.appscode.com/v1alpha1",
+  "metadata": {
+    "name": "coordination.k8s.io-v1beta1-leases",
+    "creationTimestamp": null,
+    "labels": {
+      "k8s.io/group": "coordination.k8s.io",
+      "k8s.io/kind": "Lease",
+      "k8s.io/resource": "leases",
+      "k8s.io/version": "v1beta1"
+    }
+  },
+  "spec": {
+    "resource": {
+      "group": "coordination.k8s.io",
+      "version": "v1beta1",
+      "name": "leases",
+      "kind": "Lease",
+      "scope": "Namespaced"
+    },
+    "icons": [
+      {
+        "src": "https://cdn.appscode.com/k8s/icons/coordination.k8s.io/leases.svg",
+        "type": "image/svg+xml"
+      },
+      {
+        "src": "https://cdn.appscode.com/k8s/icons/coordination.k8s.io/leases.png",
+        "type": "image/png"
+      }
+    ]
+  }
+}

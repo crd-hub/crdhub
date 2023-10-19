@@ -1,0 +1,35 @@
+{
+  "kind": "ResourceEditor",
+  "apiVersion": "ui.k8s.appscode.com/v1alpha1",
+  "metadata": {
+    "name": "ui.kubedb.com-v1alpha1-mysqlinsights",
+    "creationTimestamp": null,
+    "labels": {
+      "k8s.io/group": "ui.kubedb.com",
+      "k8s.io/kind": "MySQLInsight",
+      "k8s.io/resource": "mysqlinsights",
+      "k8s.io/version": "v1alpha1"
+    }
+  },
+  "spec": {
+    "resource": {
+      "group": "ui.kubedb.com",
+      "version": "v1alpha1",
+      "name": "mysqlinsights",
+      "kind": "MySQLInsight",
+      "scope": "Namespaced"
+    },
+    "ui": {
+      "editor": {
+        "name": "uikubedbcom-mysqlinsight-editor",
+        "version": "v0.4.18",
+        "sourceRef": {
+          "apiGroup": "source.toolkit.fluxcd.io",
+          "kind": "HelmRepository",
+          "name": "bytebuilders-ui"
+        }
+      },
+      "enforceQuota": false
+    }
+  }
+}

@@ -1,0 +1,35 @@
+{
+  "kind": "ResourceEditor",
+  "apiVersion": "ui.k8s.appscode.com/v1alpha1",
+  "metadata": {
+    "name": "management.azure.upbound.io-v1beta1-managementgroups",
+    "creationTimestamp": null,
+    "labels": {
+      "k8s.io/group": "management.azure.upbound.io",
+      "k8s.io/kind": "ManagementGroup",
+      "k8s.io/resource": "managementgroups",
+      "k8s.io/version": "v1beta1"
+    }
+  },
+  "spec": {
+    "resource": {
+      "group": "management.azure.upbound.io",
+      "version": "v1beta1",
+      "name": "managementgroups",
+      "kind": "ManagementGroup",
+      "scope": "Cluster"
+    },
+    "ui": {
+      "editor": {
+        "name": "managementazureupboundio-managementgroup-editor",
+        "version": "v0.4.18",
+        "sourceRef": {
+          "apiGroup": "source.toolkit.fluxcd.io",
+          "kind": "HelmRepository",
+          "name": "bytebuilders-ui"
+        }
+      },
+      "enforceQuota": false
+    }
+  }
+}

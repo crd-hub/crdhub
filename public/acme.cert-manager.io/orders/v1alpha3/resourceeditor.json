@@ -1,0 +1,33 @@
+{
+  "kind": "ResourceEditor",
+  "apiVersion": "ui.k8s.appscode.com/v1alpha1",
+  "metadata": {
+    "name": "acme.cert-manager.io-v1alpha3-orders",
+    "creationTimestamp": null,
+    "labels": {
+      "k8s.io/group": "acme.cert-manager.io",
+      "k8s.io/kind": "Order",
+      "k8s.io/resource": "orders",
+      "k8s.io/version": "v1alpha3"
+    }
+  },
+  "spec": {
+    "resource": {
+      "group": "acme.cert-manager.io",
+      "version": "v1alpha3",
+      "name": "orders",
+      "kind": "Order",
+      "scope": "Namespaced"
+    },
+    "icons": [
+      {
+        "src": "https://cdn.appscode.com/k8s/icons/acme.cert-manager.io/orders.svg",
+        "type": "image/svg+xml"
+      },
+      {
+        "src": "https://cdn.appscode.com/k8s/icons/acme.cert-manager.io/orders.png",
+        "type": "image/png"
+      }
+    ]
+  }
+}

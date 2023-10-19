@@ -1,0 +1,250 @@
+{
+  "$schema": "http://json-schema.org/schema#",
+  "type": "object",
+  "properties": {
+    "apiVersion": {
+      "type": "string",
+      "enum": [
+        "catalog.kubedb.com/v1alpha1"
+      ]
+    },
+    "kind": {
+      "type": "string",
+      "enum": [
+        "ElasticsearchVersion"
+      ]
+    },
+    "metadata": {
+      "type": "object",
+      "properties": {
+        "annotations": {
+          "description": "Annotations is an unstructured key value map stored with a resource that may be set by external tools to store and retrieve arbitrary metadata. They are not queryable and should be preserved when modifying objects. More info: http://kubernetes.io/docs/user-guide/annotations",
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          }
+        },
+        "labels": {
+          "description": "Map of string keys and values that can be used to organize and categorize (scope and select) objects. May match selectors of replication controllers and services. More info: http://kubernetes.io/docs/user-guide/labels",
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          }
+        },
+        "name": {
+          "description": "Name must be unique within a namespace. Is required when creating resources, although some resources may allow a client to request the generation of an appropriate name automatically. Name is primarily intended for creation idempotence and configuration definition. Cannot be updated. More info: http://kubernetes.io/docs/user-guide/identifiers#names",
+          "type": "string"
+        }
+      }
+    },
+    "spec": {
+      "type": "object",
+      "required": [
+        "authPlugin",
+        "db",
+        "exporter",
+        "initContainer",
+        "podSecurityPolicies",
+        "version"
+      ],
+      "properties": {
+        "authPlugin": {
+          "type": "string",
+          "enum": [
+            "OpenDistro",
+            "SearchGuard",
+            "X-Pack",
+            "OpenSearch"
+          ]
+        },
+        "dashboard": {
+          "type": "object",
+          "required": [
+            "image"
+          ],
+          "properties": {
+            "image": {
+              "type": "string"
+            }
+          }
+        },
+        "dashboardInitContainer": {
+          "type": "object",
+          "required": [
+            "yqImage"
+          ],
+          "properties": {
+            "yqImage": {
+              "type": "string"
+            }
+          }
+        },
+        "db": {
+          "type": "object",
+          "required": [
+            "image"
+          ],
+          "properties": {
+            "image": {
+              "type": "string"
+            }
+          }
+        },
+        "deprecated": {
+          "type": "boolean"
+        },
+        "distribution": {
+          "type": "string",
+          "enum": [
+            "ElasticStack",
+            "OpenDistro",
+            "SearchGuard",
+            "OpenSearch",
+            "KubeDB"
+          ]
+        },
+        "exporter": {
+          "type": "object",
+          "required": [
+            "image"
+          ],
+          "properties": {
+            "image": {
+              "type": "string"
+            }
+          }
+        },
+        "initContainer": {
+          "type": "object",
+          "required": [
+            "image",
+            "yqImage"
+          ],
+          "properties": {
+            "image": {
+              "type": "string"
+            },
+            "yqImage": {
+              "type": "string"
+            }
+          }
+        },
+        "podSecurityPolicies": {
+          "type": "object",
+          "required": [
+            "databasePolicyName"
+          ],
+          "properties": {
+            "databasePolicyName": {
+              "type": "string"
+            }
+          }
+        },
+        "securityContext": {
+          "type": "object",
+          "properties": {
+            "runAsAnyNonRoot": {
+              "type": "boolean"
+            },
+            "runAsUser": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        },
+        "stash": {
+          "type": "object",
+          "properties": {
+            "addon": {
+              "type": "object",
+              "required": [
+                "backupTask",
+                "restoreTask"
+              ],
+              "properties": {
+                "backupTask": {
+                  "type": "object",
+                  "required": [
+                    "name"
+                  ],
+                  "properties": {
+                    "name": {
+                      "type": "string"
+                    },
+                    "params": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "required": [
+                          "name",
+                          "value"
+                        ],
+                        "properties": {
+                          "name": {
+                            "type": "string"
+                          },
+                          "value": {
+                            "type": "string"
+                          }
+                        }
+                      }
+                    }
+                  }
+                },
+                "restoreTask": {
+                  "type": "object",
+                  "required": [
+                    "name"
+                  ],
+                  "properties": {
+                    "name": {
+                      "type": "string"
+                    },
+                    "params": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "required": [
+                          "name",
+                          "value"
+                        ],
+                        "properties": {
+                          "name": {
+                            "type": "string"
+                          },
+                          "value": {
+                            "type": "string"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "updateConstraints": {
+          "type": "object",
+          "properties": {
+            "allowlist": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "denylist": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          }
+        },
+        "version": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}

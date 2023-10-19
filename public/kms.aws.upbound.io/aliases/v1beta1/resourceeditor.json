@@ -1,0 +1,35 @@
+{
+  "kind": "ResourceEditor",
+  "apiVersion": "ui.k8s.appscode.com/v1alpha1",
+  "metadata": {
+    "name": "kms.aws.upbound.io-v1beta1-aliases",
+    "creationTimestamp": null,
+    "labels": {
+      "k8s.io/group": "kms.aws.upbound.io",
+      "k8s.io/kind": "Alias",
+      "k8s.io/resource": "aliases",
+      "k8s.io/version": "v1beta1"
+    }
+  },
+  "spec": {
+    "resource": {
+      "group": "kms.aws.upbound.io",
+      "version": "v1beta1",
+      "name": "aliases",
+      "kind": "Alias",
+      "scope": "Cluster"
+    },
+    "ui": {
+      "editor": {
+        "name": "kmsawsupboundio-alias-editor",
+        "version": "v0.4.18",
+        "sourceRef": {
+          "apiGroup": "source.toolkit.fluxcd.io",
+          "kind": "HelmRepository",
+          "name": "bytebuilders-ui"
+        }
+      },
+      "enforceQuota": false
+    }
+  }
+}

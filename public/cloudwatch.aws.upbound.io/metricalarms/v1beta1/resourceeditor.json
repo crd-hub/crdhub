@@ -1,0 +1,35 @@
+{
+  "kind": "ResourceEditor",
+  "apiVersion": "ui.k8s.appscode.com/v1alpha1",
+  "metadata": {
+    "name": "cloudwatch.aws.upbound.io-v1beta1-metricalarms",
+    "creationTimestamp": null,
+    "labels": {
+      "k8s.io/group": "cloudwatch.aws.upbound.io",
+      "k8s.io/kind": "MetricAlarm",
+      "k8s.io/resource": "metricalarms",
+      "k8s.io/version": "v1beta1"
+    }
+  },
+  "spec": {
+    "resource": {
+      "group": "cloudwatch.aws.upbound.io",
+      "version": "v1beta1",
+      "name": "metricalarms",
+      "kind": "MetricAlarm",
+      "scope": "Cluster"
+    },
+    "ui": {
+      "editor": {
+        "name": "cloudwatchawsupboundio-metricalarm-editor",
+        "version": "v0.4.18",
+        "sourceRef": {
+          "apiGroup": "source.toolkit.fluxcd.io",
+          "kind": "HelmRepository",
+          "name": "bytebuilders-ui"
+        }
+      },
+      "enforceQuota": false
+    }
+  }
+}

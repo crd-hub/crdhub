@@ -1,0 +1,35 @@
+{
+  "kind": "ResourceEditor",
+  "apiVersion": "ui.k8s.appscode.com/v1alpha1",
+  "metadata": {
+    "name": "notebooks.gcp.upbound.io-v1beta1-runtimes",
+    "creationTimestamp": null,
+    "labels": {
+      "k8s.io/group": "notebooks.gcp.upbound.io",
+      "k8s.io/kind": "Runtime",
+      "k8s.io/resource": "runtimes",
+      "k8s.io/version": "v1beta1"
+    }
+  },
+  "spec": {
+    "resource": {
+      "group": "notebooks.gcp.upbound.io",
+      "version": "v1beta1",
+      "name": "runtimes",
+      "kind": "Runtime",
+      "scope": "Cluster"
+    },
+    "ui": {
+      "editor": {
+        "name": "notebooksgcpupboundio-runtime-editor",
+        "version": "v0.4.18",
+        "sourceRef": {
+          "apiGroup": "source.toolkit.fluxcd.io",
+          "kind": "HelmRepository",
+          "name": "bytebuilders-ui"
+        }
+      },
+      "enforceQuota": false
+    }
+  }
+}

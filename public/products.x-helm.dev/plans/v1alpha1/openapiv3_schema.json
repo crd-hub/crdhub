@@ -1,0 +1,231 @@
+{
+  "$schema": "http://json-schema.org/schema#",
+  "type": "object",
+  "properties": {
+    "apiVersion": {
+      "description": "APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources",
+      "type": "string",
+      "enum": [
+        "products.x-helm.dev/v1alpha1"
+      ]
+    },
+    "kind": {
+      "description": "Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds",
+      "type": "string",
+      "enum": [
+        "Plan"
+      ]
+    },
+    "metadata": {
+      "type": "object",
+      "properties": {
+        "annotations": {
+          "description": "Annotations is an unstructured key value map stored with a resource that may be set by external tools to store and retrieve arbitrary metadata. They are not queryable and should be preserved when modifying objects. More info: http://kubernetes.io/docs/user-guide/annotations",
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          }
+        },
+        "labels": {
+          "description": "Map of string keys and values that can be used to organize and categorize (scope and select) objects. May match selectors of replication controllers and services. More info: http://kubernetes.io/docs/user-guide/labels",
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          }
+        },
+        "name": {
+          "description": "Name must be unique within a namespace. Is required when creating resources, although some resources may allow a client to request the generation of an appropriate name automatically. Name is primarily intended for creation idempotence and configuration definition. Cannot be updated. More info: http://kubernetes.io/docs/user-guide/identifiers#names",
+          "type": "string"
+        }
+      }
+    },
+    "spec": {
+      "type": "object",
+      "required": [
+        "description",
+        "displayName",
+        "id",
+        "name",
+        "phase",
+        "productID",
+        "weight"
+      ],
+      "properties": {
+        "aggregateUsage": {
+          "type": "string"
+        },
+        "amount": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "amountDecimal": {
+          "type": "number",
+          "format": "double"
+        },
+        "billingScheme": {
+          "type": "string"
+        },
+        "bundle": {
+          "type": "object",
+          "required": [
+            "name",
+            "sourceRef"
+          ],
+          "properties": {
+            "name": {
+              "type": "string"
+            },
+            "sourceRef": {
+              "description": "TypedObjectReference represents an typed namespaced object.",
+              "type": "object",
+              "required": [
+                "name"
+              ],
+              "properties": {
+                "apiGroup": {
+                  "type": "string"
+                },
+                "kind": {
+                  "type": "string"
+                },
+                "name": {
+                  "description": "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+                  "type": "string"
+                },
+                "namespace": {
+                  "description": "Namespace of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/",
+                  "type": "string"
+                }
+              }
+            }
+          }
+        },
+        "currency": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "displayName": {
+          "type": "string"
+        },
+        "id": {
+          "type": "string"
+        },
+        "includedPlans": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "interval": {
+          "type": "string"
+        },
+        "intervalCount": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "name": {
+          "type": "string"
+        },
+        "phase": {
+          "type": "string"
+        },
+        "pricingPattern": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "object",
+            "properties": {
+              "expression": {
+                "type": "string"
+              },
+              "sizedPrices": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "required": [
+                    "cpu",
+                    "memory",
+                    "price"
+                  ],
+                  "properties": {
+                    "cpu": {
+                      "type": "string"
+                    },
+                    "memory": {
+                      "type": "string"
+                    },
+                    "price": {
+                      "type": "number",
+                      "format": "double"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "productID": {
+          "type": "string"
+        },
+        "tiers": {
+          "type": "array",
+          "items": {
+            "description": "PlanTier configures tiered pricing",
+            "type": "object",
+            "properties": {
+              "flatAmount": {
+                "type": "integer",
+                "format": "int64"
+              },
+              "flatAmountDecimal": {
+                "type": "number",
+                "format": "double"
+              },
+              "unitAmount": {
+                "type": "integer",
+                "format": "int64"
+              },
+              "unitAmountDecimal": {
+                "type": "number",
+                "format": "double"
+              },
+              "upTo": {
+                "type": "integer",
+                "format": "int64"
+              }
+            }
+          }
+        },
+        "tiersMode": {
+          "type": "string"
+        },
+        "transformUsage": {
+          "description": "PlanTransformUsage represents the bucket billing configuration.",
+          "type": "object",
+          "properties": {
+            "divideBy": {
+              "type": "integer",
+              "format": "int64"
+            },
+            "round": {
+              "type": "string"
+            }
+          }
+        },
+        "trialPeriodDays": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "usageType": {
+          "type": "string"
+        },
+        "weight": {
+          "description": "Plans for sorted by weight before displaying to users",
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    }
+  }
+}

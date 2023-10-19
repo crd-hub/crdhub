@@ -1,0 +1,35 @@
+{
+  "kind": "ResourceEditor",
+  "apiVersion": "ui.k8s.appscode.com/v1alpha1",
+  "metadata": {
+    "name": "bootstrap.cluster.x-k8s.io-v1beta2-eksconfigtemplates",
+    "creationTimestamp": null,
+    "labels": {
+      "k8s.io/group": "bootstrap.cluster.x-k8s.io",
+      "k8s.io/kind": "EKSConfigTemplate",
+      "k8s.io/resource": "eksconfigtemplates",
+      "k8s.io/version": "v1beta2"
+    }
+  },
+  "spec": {
+    "resource": {
+      "group": "bootstrap.cluster.x-k8s.io",
+      "version": "v1beta2",
+      "name": "eksconfigtemplates",
+      "kind": "EKSConfigTemplate",
+      "scope": "Namespaced"
+    },
+    "ui": {
+      "editor": {
+        "name": "bootstrapclusterxk8sio-eksconfigtemplate-editor",
+        "version": "v0.4.18",
+        "sourceRef": {
+          "apiGroup": "source.toolkit.fluxcd.io",
+          "kind": "HelmRepository",
+          "name": "bytebuilders-ui"
+        }
+      },
+      "enforceQuota": false
+    }
+  }
+}

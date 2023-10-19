@@ -1,0 +1,35 @@
+{
+  "kind": "ResourceEditor",
+  "apiVersion": "ui.k8s.appscode.com/v1alpha1",
+  "metadata": {
+    "name": "opsworks.aws.upbound.io-v1beta1-rdsdbinstances",
+    "creationTimestamp": null,
+    "labels": {
+      "k8s.io/group": "opsworks.aws.upbound.io",
+      "k8s.io/kind": "RDSDBInstance",
+      "k8s.io/resource": "rdsdbinstances",
+      "k8s.io/version": "v1beta1"
+    }
+  },
+  "spec": {
+    "resource": {
+      "group": "opsworks.aws.upbound.io",
+      "version": "v1beta1",
+      "name": "rdsdbinstances",
+      "kind": "RDSDBInstance",
+      "scope": "Cluster"
+    },
+    "ui": {
+      "editor": {
+        "name": "opsworksawsupboundio-rdsdbinstance-editor",
+        "version": "v0.4.18",
+        "sourceRef": {
+          "apiGroup": "source.toolkit.fluxcd.io",
+          "kind": "HelmRepository",
+          "name": "bytebuilders-ui"
+        }
+      },
+      "enforceQuota": false
+    }
+  }
+}

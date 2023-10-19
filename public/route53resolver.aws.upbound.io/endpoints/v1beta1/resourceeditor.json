@@ -1,0 +1,35 @@
+{
+  "kind": "ResourceEditor",
+  "apiVersion": "ui.k8s.appscode.com/v1alpha1",
+  "metadata": {
+    "name": "route53resolver.aws.upbound.io-v1beta1-endpoints",
+    "creationTimestamp": null,
+    "labels": {
+      "k8s.io/group": "route53resolver.aws.upbound.io",
+      "k8s.io/kind": "Endpoint",
+      "k8s.io/resource": "endpoints",
+      "k8s.io/version": "v1beta1"
+    }
+  },
+  "spec": {
+    "resource": {
+      "group": "route53resolver.aws.upbound.io",
+      "version": "v1beta1",
+      "name": "endpoints",
+      "kind": "Endpoint",
+      "scope": "Cluster"
+    },
+    "ui": {
+      "editor": {
+        "name": "route53resolverawsupboundio-endpoint-editor",
+        "version": "v0.4.18",
+        "sourceRef": {
+          "apiGroup": "source.toolkit.fluxcd.io",
+          "kind": "HelmRepository",
+          "name": "bytebuilders-ui"
+        }
+      },
+      "enforceQuota": false
+    }
+  }
+}

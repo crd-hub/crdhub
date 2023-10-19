@@ -1,0 +1,45 @@
+{
+  "kind": "ResourceEditor",
+  "apiVersion": "ui.k8s.appscode.com/v1alpha1",
+  "metadata": {
+    "name": "rbac.authorization.k8s.io-v1-clusterrolebindings",
+    "creationTimestamp": null,
+    "labels": {
+      "k8s.io/group": "rbac.authorization.k8s.io",
+      "k8s.io/kind": "ClusterRoleBinding",
+      "k8s.io/resource": "clusterrolebindings",
+      "k8s.io/version": "v1"
+    }
+  },
+  "spec": {
+    "resource": {
+      "group": "rbac.authorization.k8s.io",
+      "version": "v1",
+      "name": "clusterrolebindings",
+      "kind": "ClusterRoleBinding",
+      "scope": "Cluster"
+    },
+    "ui": {
+      "editor": {
+        "name": "rbacauthorizationk8sio-clusterrolebinding-editor",
+        "version": "v0.4.18",
+        "sourceRef": {
+          "apiGroup": "source.toolkit.fluxcd.io",
+          "kind": "HelmRepository",
+          "name": "bytebuilders-ui"
+        }
+      },
+      "enforceQuota": false
+    },
+    "icons": [
+      {
+        "src": "https://cdn.appscode.com/k8s/icons/rbac.authorization.k8s.io/clusterrolebindings.svg",
+        "type": "image/svg+xml"
+      },
+      {
+        "src": "https://cdn.appscode.com/k8s/icons/rbac.authorization.k8s.io/clusterrolebindings.png",
+        "type": "image/png"
+      }
+    ]
+  }
+}

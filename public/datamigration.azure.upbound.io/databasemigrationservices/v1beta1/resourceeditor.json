@@ -1,0 +1,35 @@
+{
+  "kind": "ResourceEditor",
+  "apiVersion": "ui.k8s.appscode.com/v1alpha1",
+  "metadata": {
+    "name": "datamigration.azure.upbound.io-v1beta1-databasemigrationservices",
+    "creationTimestamp": null,
+    "labels": {
+      "k8s.io/group": "datamigration.azure.upbound.io",
+      "k8s.io/kind": "DatabaseMigrationService",
+      "k8s.io/resource": "databasemigrationservices",
+      "k8s.io/version": "v1beta1"
+    }
+  },
+  "spec": {
+    "resource": {
+      "group": "datamigration.azure.upbound.io",
+      "version": "v1beta1",
+      "name": "databasemigrationservices",
+      "kind": "DatabaseMigrationService",
+      "scope": "Cluster"
+    },
+    "ui": {
+      "editor": {
+        "name": "datamigrationazureupboundio-databasemigrationservice-editor",
+        "version": "v0.4.18",
+        "sourceRef": {
+          "apiGroup": "source.toolkit.fluxcd.io",
+          "kind": "HelmRepository",
+          "name": "bytebuilders-ui"
+        }
+      },
+      "enforceQuota": false
+    }
+  }
+}

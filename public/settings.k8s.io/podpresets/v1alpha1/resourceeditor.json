@@ -1,0 +1,35 @@
+{
+  "kind": "ResourceEditor",
+  "apiVersion": "ui.k8s.appscode.com/v1alpha1",
+  "metadata": {
+    "name": "settings.k8s.io-v1alpha1-podpresets",
+    "creationTimestamp": null,
+    "labels": {
+      "k8s.io/group": "settings.k8s.io",
+      "k8s.io/kind": "PodPreset",
+      "k8s.io/resource": "podpresets",
+      "k8s.io/version": "v1alpha1"
+    }
+  },
+  "spec": {
+    "resource": {
+      "group": "settings.k8s.io",
+      "version": "v1alpha1",
+      "name": "podpresets",
+      "kind": "PodPreset",
+      "scope": "Namespaced"
+    },
+    "ui": {
+      "editor": {
+        "name": "settingsk8sio-podpreset-editor",
+        "version": "v0.4.18",
+        "sourceRef": {
+          "apiGroup": "source.toolkit.fluxcd.io",
+          "kind": "HelmRepository",
+          "name": "bytebuilders-ui"
+        }
+      },
+      "enforceQuota": false
+    }
+  }
+}

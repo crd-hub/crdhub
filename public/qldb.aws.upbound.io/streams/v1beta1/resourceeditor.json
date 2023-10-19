@@ -1,0 +1,35 @@
+{
+  "kind": "ResourceEditor",
+  "apiVersion": "ui.k8s.appscode.com/v1alpha1",
+  "metadata": {
+    "name": "qldb.aws.upbound.io-v1beta1-streams",
+    "creationTimestamp": null,
+    "labels": {
+      "k8s.io/group": "qldb.aws.upbound.io",
+      "k8s.io/kind": "Stream",
+      "k8s.io/resource": "streams",
+      "k8s.io/version": "v1beta1"
+    }
+  },
+  "spec": {
+    "resource": {
+      "group": "qldb.aws.upbound.io",
+      "version": "v1beta1",
+      "name": "streams",
+      "kind": "Stream",
+      "scope": "Cluster"
+    },
+    "ui": {
+      "editor": {
+        "name": "qldbawsupboundio-stream-editor",
+        "version": "v0.4.18",
+        "sourceRef": {
+          "apiGroup": "source.toolkit.fluxcd.io",
+          "kind": "HelmRepository",
+          "name": "bytebuilders-ui"
+        }
+      },
+      "enforceQuota": false
+    }
+  }
+}

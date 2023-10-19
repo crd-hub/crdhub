@@ -1,0 +1,133 @@
+{
+  "kind": "CustomResourceDefinition",
+  "apiVersion": "apiextensions.k8s.io/v1",
+  "metadata": {
+    "name": "pgbouncerpooloverviews.ui.kubedb.com",
+    "creationTimestamp": null,
+    "labels": {
+      "app.kubernetes.io/name": "kubedb"
+    }
+  },
+  "spec": {
+    "group": "ui.kubedb.com",
+    "names": {
+      "plural": "pgbouncerpooloverviews",
+      "singular": "pgbouncerpooloverview",
+      "kind": "PgBouncerPoolOverview",
+      "listKind": "PgBouncerPoolOverviewList"
+    },
+    "scope": "Namespaced",
+    "versions": [
+      {
+        "name": "v1alpha1",
+        "served": true,
+        "storage": true,
+        "schema": {
+          "openAPIV3Schema": {
+            "type": "object",
+            "properties": {
+              "apiVersion": {
+                "type": "string"
+              },
+              "kind": {
+                "type": "string"
+              },
+              "metadata": {
+                "type": "object"
+              },
+              "spec": {
+                "type": "object",
+                "required": [
+                  "pools"
+                ],
+                "properties": {
+                  "pools": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "required": [
+                        "database",
+                        "mode",
+                        "podName",
+                        "user"
+                      ],
+                      "properties": {
+                        "activeClientConnections": {
+                          "type": "integer",
+                          "format": "int32"
+                        },
+                        "activeQueryCancellationRequest": {
+                          "type": "integer",
+                          "format": "int32"
+                        },
+                        "activeServerConnections": {
+                          "type": "integer",
+                          "format": "int32"
+                        },
+                        "activeServersCancelRequest": {
+                          "type": "integer",
+                          "format": "int32"
+                        },
+                        "database": {
+                          "type": "string"
+                        },
+                        "idleServers": {
+                          "type": "integer",
+                          "format": "int32"
+                        },
+                        "maxWaitMS": {
+                          "type": "string"
+                        },
+                        "mode": {
+                          "type": "string"
+                        },
+                        "podName": {
+                          "type": "string"
+                        },
+                        "serversBeingCanceled": {
+                          "type": "integer",
+                          "format": "int32"
+                        },
+                        "serversInLogin": {
+                          "type": "integer",
+                          "format": "int32"
+                        },
+                        "testedServers": {
+                          "type": "integer",
+                          "format": "int32"
+                        },
+                        "usedServers": {
+                          "type": "integer",
+                          "format": "int32"
+                        },
+                        "user": {
+                          "type": "string"
+                        },
+                        "waitingClientConnections": {
+                          "type": "integer",
+                          "format": "int32"
+                        },
+                        "waitingQueryCancellationRequest": {
+                          "type": "integer",
+                          "format": "int32"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    ]
+  },
+  "status": {
+    "conditions": null,
+    "acceptedNames": {
+      "plural": "",
+      "kind": ""
+    },
+    "storedVersions": null
+  }
+}

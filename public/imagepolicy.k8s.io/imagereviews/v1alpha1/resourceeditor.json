@@ -1,0 +1,35 @@
+{
+  "kind": "ResourceEditor",
+  "apiVersion": "ui.k8s.appscode.com/v1alpha1",
+  "metadata": {
+    "name": "imagepolicy.k8s.io-v1alpha1-imagereviews",
+    "creationTimestamp": null,
+    "labels": {
+      "k8s.io/group": "imagepolicy.k8s.io",
+      "k8s.io/kind": "ImageReview",
+      "k8s.io/resource": "imagereviews",
+      "k8s.io/version": "v1alpha1"
+    }
+  },
+  "spec": {
+    "resource": {
+      "group": "imagepolicy.k8s.io",
+      "version": "v1alpha1",
+      "name": "imagereviews",
+      "kind": "ImageReview",
+      "scope": "Namespaced"
+    },
+    "ui": {
+      "editor": {
+        "name": "imagepolicyk8sio-imagereview-editor",
+        "version": "v0.4.18",
+        "sourceRef": {
+          "apiGroup": "source.toolkit.fluxcd.io",
+          "kind": "HelmRepository",
+          "name": "bytebuilders-ui"
+        }
+      },
+      "enforceQuota": false
+    }
+  }
+}

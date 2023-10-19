@@ -1,0 +1,64 @@
+{
+  "kind": "ResourceEditor",
+  "apiVersion": "ui.k8s.appscode.com/v1alpha1",
+  "metadata": {
+    "name": "kubevault.com-v1alpha2-vaultservers",
+    "creationTimestamp": null,
+    "labels": {
+      "k8s.io/group": "kubevault.com",
+      "k8s.io/kind": "VaultServer",
+      "k8s.io/resource": "vaultservers",
+      "k8s.io/version": "v1alpha2"
+    }
+  },
+  "spec": {
+    "resource": {
+      "group": "kubevault.com",
+      "version": "v1alpha2",
+      "name": "vaultservers",
+      "kind": "VaultServer",
+      "scope": "Namespaced"
+    },
+    "ui": {
+      "options": {
+        "name": "kubevaultcom-vaultserver-editor-options",
+        "version": "v0.4.17",
+        "sourceRef": {
+          "apiGroup": "source.toolkit.fluxcd.io",
+          "kind": "HelmRepository",
+          "name": "bytebuilders-ui"
+        }
+      },
+      "editor": {
+        "name": "kubevaultcom-vaultserver-editor",
+        "version": "v0.4.18",
+        "sourceRef": {
+          "apiGroup": "source.toolkit.fluxcd.io",
+          "kind": "HelmRepository",
+          "name": "bytebuilders-ui"
+        }
+      },
+      "enforceQuota": false
+    },
+    "icons": [
+      {
+        "src": "https://cdn.appscode.com/k8s/icons/kubevault.com/vaultservers.svg",
+        "type": "image/svg+xml"
+      },
+      {
+        "src": "https://cdn.appscode.com/k8s/icons/kubevault.com/vaultservers.png",
+        "type": "image/png"
+      }
+    ],
+    "variants": [
+      {
+        "name": "default",
+        "selector": {
+          "matchLabels": {
+            "charts.x-helm.dev/is-default-preset": "true"
+          }
+        }
+      }
+    ]
+  }
+}

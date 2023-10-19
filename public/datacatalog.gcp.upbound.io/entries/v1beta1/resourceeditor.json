@@ -1,0 +1,35 @@
+{
+  "kind": "ResourceEditor",
+  "apiVersion": "ui.k8s.appscode.com/v1alpha1",
+  "metadata": {
+    "name": "datacatalog.gcp.upbound.io-v1beta1-entries",
+    "creationTimestamp": null,
+    "labels": {
+      "k8s.io/group": "datacatalog.gcp.upbound.io",
+      "k8s.io/kind": "Entry",
+      "k8s.io/resource": "entries",
+      "k8s.io/version": "v1beta1"
+    }
+  },
+  "spec": {
+    "resource": {
+      "group": "datacatalog.gcp.upbound.io",
+      "version": "v1beta1",
+      "name": "entries",
+      "kind": "Entry",
+      "scope": "Cluster"
+    },
+    "ui": {
+      "editor": {
+        "name": "datacataloggcpupboundio-entry-editor",
+        "version": "v0.4.18",
+        "sourceRef": {
+          "apiGroup": "source.toolkit.fluxcd.io",
+          "kind": "HelmRepository",
+          "name": "bytebuilders-ui"
+        }
+      },
+      "enforceQuota": false
+    }
+  }
+}

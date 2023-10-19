@@ -1,0 +1,91 @@
+{
+  "kind": "CustomResourceDefinition",
+  "apiVersion": "apiextensions.k8s.io/v1",
+  "metadata": {
+    "name": "redisqueries.ui.kubedb.com",
+    "creationTimestamp": null,
+    "labels": {
+      "app.kubernetes.io/name": "kubedb"
+    }
+  },
+  "spec": {
+    "group": "ui.kubedb.com",
+    "names": {
+      "plural": "redisqueries",
+      "singular": "redisqueries",
+      "kind": "RedisQueries",
+      "listKind": "RedisQueriesList"
+    },
+    "scope": "Namespaced",
+    "versions": [
+      {
+        "name": "v1alpha1",
+        "served": true,
+        "storage": true,
+        "schema": {
+          "openAPIV3Schema": {
+            "type": "object",
+            "properties": {
+              "apiVersion": {
+                "type": "string"
+              },
+              "kind": {
+                "type": "string"
+              },
+              "metadata": {
+                "type": "object"
+              },
+              "spec": {
+                "type": "object",
+                "required": [
+                  "queries"
+                ],
+                "properties": {
+                  "queries": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "required": [
+                        "args",
+                        "queryId",
+                        "queryTimestamp"
+                      ],
+                      "properties": {
+                        "args": {
+                          "type": "array",
+                          "items": {
+                            "type": "string"
+                          }
+                        },
+                        "execTimeMicroSeconds": {
+                          "type": "integer",
+                          "format": "int64"
+                        },
+                        "queryId": {
+                          "type": "integer",
+                          "format": "int64"
+                        },
+                        "queryTimestamp": {
+                          "type": "string",
+                          "format": "date-time"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    ]
+  },
+  "status": {
+    "conditions": null,
+    "acceptedNames": {
+      "plural": "",
+      "kind": ""
+    },
+    "storedVersions": null
+  }
+}

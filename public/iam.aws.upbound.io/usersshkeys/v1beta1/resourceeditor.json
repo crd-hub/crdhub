@@ -1,0 +1,35 @@
+{
+  "kind": "ResourceEditor",
+  "apiVersion": "ui.k8s.appscode.com/v1alpha1",
+  "metadata": {
+    "name": "iam.aws.upbound.io-v1beta1-usersshkeys",
+    "creationTimestamp": null,
+    "labels": {
+      "k8s.io/group": "iam.aws.upbound.io",
+      "k8s.io/kind": "UserSSHKey",
+      "k8s.io/resource": "usersshkeys",
+      "k8s.io/version": "v1beta1"
+    }
+  },
+  "spec": {
+    "resource": {
+      "group": "iam.aws.upbound.io",
+      "version": "v1beta1",
+      "name": "usersshkeys",
+      "kind": "UserSSHKey",
+      "scope": "Cluster"
+    },
+    "ui": {
+      "editor": {
+        "name": "iamawsupboundio-usersshkey-editor",
+        "version": "v0.4.18",
+        "sourceRef": {
+          "apiGroup": "source.toolkit.fluxcd.io",
+          "kind": "HelmRepository",
+          "name": "bytebuilders-ui"
+        }
+      },
+      "enforceQuota": false
+    }
+  }
+}

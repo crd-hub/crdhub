@@ -1,0 +1,35 @@
+{
+  "kind": "ResourceEditor",
+  "apiVersion": "ui.k8s.appscode.com/v1alpha1",
+  "metadata": {
+    "name": "ipam.cluster.x-k8s.io-v1alpha1-ipaddressclaims",
+    "creationTimestamp": null,
+    "labels": {
+      "k8s.io/group": "ipam.cluster.x-k8s.io",
+      "k8s.io/kind": "IPAddressClaim",
+      "k8s.io/resource": "ipaddressclaims",
+      "k8s.io/version": "v1alpha1"
+    }
+  },
+  "spec": {
+    "resource": {
+      "group": "ipam.cluster.x-k8s.io",
+      "version": "v1alpha1",
+      "name": "ipaddressclaims",
+      "kind": "IPAddressClaim",
+      "scope": "Namespaced"
+    },
+    "ui": {
+      "editor": {
+        "name": "ipamclusterxk8sio-ipaddressclaim-editor",
+        "version": "v0.4.18",
+        "sourceRef": {
+          "apiGroup": "source.toolkit.fluxcd.io",
+          "kind": "HelmRepository",
+          "name": "bytebuilders-ui"
+        }
+      },
+      "enforceQuota": false
+    }
+  }
+}

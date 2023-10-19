@@ -1,0 +1,193 @@
+{
+  "$schema": "http://json-schema.org/schema#",
+  "type": "object",
+  "properties": {
+    "apiVersion": {
+      "description": "APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources",
+      "type": "string",
+      "enum": [
+        "catalog.kubevault.com/v1alpha1"
+      ]
+    },
+    "kind": {
+      "description": "Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds",
+      "type": "string",
+      "enum": [
+        "VaultServerVersion"
+      ]
+    },
+    "metadata": {
+      "type": "object",
+      "properties": {
+        "annotations": {
+          "description": "Annotations is an unstructured key value map stored with a resource that may be set by external tools to store and retrieve arbitrary metadata. They are not queryable and should be preserved when modifying objects. More info: http://kubernetes.io/docs/user-guide/annotations",
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          }
+        },
+        "labels": {
+          "description": "Map of string keys and values that can be used to organize and categorize (scope and select) objects. May match selectors of replication controllers and services. More info: http://kubernetes.io/docs/user-guide/labels",
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          }
+        },
+        "name": {
+          "description": "Name must be unique within a namespace. Is required when creating resources, although some resources may allow a client to request the generation of an appropriate name automatically. Name is primarily intended for creation idempotence and configuration definition. Cannot be updated. More info: http://kubernetes.io/docs/user-guide/identifiers#names",
+          "type": "string"
+        }
+      }
+    },
+    "spec": {
+      "description": "VaultServerVersionSpec is the spec for postgres version",
+      "type": "object",
+      "required": [
+        "unsealer",
+        "vault",
+        "version"
+      ],
+      "properties": {
+        "deprecated": {
+          "description": "Deprecated versions usable but regarded as obsolete and best avoided, typically due to having been superseded.",
+          "type": "boolean"
+        },
+        "exporter": {
+          "description": "Exporter Image",
+          "type": "object",
+          "required": [
+            "image"
+          ],
+          "properties": {
+            "image": {
+              "description": "Image is the Docker image name",
+              "type": "string"
+            },
+            "imagePullPolicy": {
+              "description": "ImagePullPolicy one of Always, Never, IfNotPresent. It defaults to Always if :latest is used, or IfNotPresent otherwise.",
+              "type": "string"
+            }
+          }
+        },
+        "stash": {
+          "description": "Stash defines backup and restore task definitions.",
+          "type": "object",
+          "properties": {
+            "addon": {
+              "description": "StashTaskSpec is the spec for app",
+              "type": "object",
+              "required": [
+                "backupTask",
+                "restoreTask"
+              ],
+              "properties": {
+                "backupTask": {
+                  "description": "Backup task definition",
+                  "type": "object",
+                  "required": [
+                    "name"
+                  ],
+                  "properties": {
+                    "name": {
+                      "type": "string"
+                    },
+                    "params": {
+                      "description": "Params specifies a list of parameter to pass to the Task. Stash will use this parameters to resolve the task.",
+                      "type": "array",
+                      "items": {
+                        "description": "Param declares a value to use for the Param called Name.",
+                        "type": "object",
+                        "required": [
+                          "name",
+                          "value"
+                        ],
+                        "properties": {
+                          "name": {
+                            "type": "string"
+                          },
+                          "value": {
+                            "type": "string"
+                          }
+                        }
+                      }
+                    }
+                  }
+                },
+                "restoreTask": {
+                  "description": "Restore task definition",
+                  "type": "object",
+                  "required": [
+                    "name"
+                  ],
+                  "properties": {
+                    "name": {
+                      "type": "string"
+                    },
+                    "params": {
+                      "description": "Params specifies a list of parameter to pass to the Task. Stash will use this parameters to resolve the task.",
+                      "type": "array",
+                      "items": {
+                        "description": "Param declares a value to use for the Param called Name.",
+                        "type": "object",
+                        "required": [
+                          "name",
+                          "value"
+                        ],
+                        "properties": {
+                          "name": {
+                            "type": "string"
+                          },
+                          "value": {
+                            "type": "string"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "unsealer": {
+          "description": "Unsealer Image",
+          "type": "object",
+          "required": [
+            "image"
+          ],
+          "properties": {
+            "image": {
+              "description": "Image is the Docker image name",
+              "type": "string"
+            },
+            "imagePullPolicy": {
+              "description": "ImagePullPolicy one of Always, Never, IfNotPresent. It defaults to Always if :latest is used, or IfNotPresent otherwise.",
+              "type": "string"
+            }
+          }
+        },
+        "vault": {
+          "description": "Vault Image",
+          "type": "object",
+          "required": [
+            "image"
+          ],
+          "properties": {
+            "image": {
+              "description": "Image is the Docker image name",
+              "type": "string"
+            },
+            "imagePullPolicy": {
+              "description": "ImagePullPolicy one of Always, Never, IfNotPresent. It defaults to Always if :latest is used, or IfNotPresent otherwise.",
+              "type": "string"
+            }
+          }
+        },
+        "version": {
+          "description": "Version",
+          "type": "string"
+        }
+      }
+    }
+  }
+}

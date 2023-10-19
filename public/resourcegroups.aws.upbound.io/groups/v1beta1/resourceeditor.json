@@ -1,0 +1,35 @@
+{
+  "kind": "ResourceEditor",
+  "apiVersion": "ui.k8s.appscode.com/v1alpha1",
+  "metadata": {
+    "name": "resourcegroups.aws.upbound.io-v1beta1-groups",
+    "creationTimestamp": null,
+    "labels": {
+      "k8s.io/group": "resourcegroups.aws.upbound.io",
+      "k8s.io/kind": "Group",
+      "k8s.io/resource": "groups",
+      "k8s.io/version": "v1beta1"
+    }
+  },
+  "spec": {
+    "resource": {
+      "group": "resourcegroups.aws.upbound.io",
+      "version": "v1beta1",
+      "name": "groups",
+      "kind": "Group",
+      "scope": "Cluster"
+    },
+    "ui": {
+      "editor": {
+        "name": "resourcegroupsawsupboundio-group-editor",
+        "version": "v0.4.18",
+        "sourceRef": {
+          "apiGroup": "source.toolkit.fluxcd.io",
+          "kind": "HelmRepository",
+          "name": "bytebuilders-ui"
+        }
+      },
+      "enforceQuota": false
+    }
+  }
+}

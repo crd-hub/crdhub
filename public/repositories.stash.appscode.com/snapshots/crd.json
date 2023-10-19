@@ -1,0 +1,118 @@
+{
+  "kind": "CustomResourceDefinition",
+  "apiVersion": "apiextensions.k8s.io/v1",
+  "metadata": {
+    "name": "snapshots.repositories.stash.appscode.com",
+    "creationTimestamp": null,
+    "labels": {
+      "app.kubernetes.io/name": "stash"
+    }
+  },
+  "spec": {
+    "group": "repositories.stash.appscode.com",
+    "names": {
+      "plural": "snapshots",
+      "singular": "snapshot",
+      "kind": "Snapshot",
+      "listKind": "SnapshotList"
+    },
+    "scope": "Namespaced",
+    "versions": [
+      {
+        "name": "v1alpha1",
+        "served": true,
+        "storage": true,
+        "schema": {
+          "openAPIV3Schema": {
+            "type": "object",
+            "properties": {
+              "apiVersion": {
+                "description": "APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources",
+                "type": "string"
+              },
+              "kind": {
+                "description": "Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds",
+                "type": "string"
+              },
+              "metadata": {
+                "type": "object"
+              },
+              "status": {
+                "type": "object",
+                "required": [
+                  "gid",
+                  "hostname",
+                  "paths",
+                  "repository",
+                  "tree",
+                  "uid",
+                  "username"
+                ],
+                "properties": {
+                  "gid": {
+                    "type": "integer",
+                    "format": "int32"
+                  },
+                  "hostname": {
+                    "type": "string"
+                  },
+                  "paths": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  },
+                  "repository": {
+                    "type": "string"
+                  },
+                  "tags": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  },
+                  "tree": {
+                    "type": "string"
+                  },
+                  "uid": {
+                    "type": "integer",
+                    "format": "int32"
+                  },
+                  "username": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "subresources": {},
+        "additionalPrinterColumns": [
+          {
+            "name": "Repository",
+            "type": "string",
+            "jsonPath": ".status.repository"
+          },
+          {
+            "name": "Hostname",
+            "type": "string",
+            "jsonPath": ".status.hostname"
+          },
+          {
+            "name": "ID",
+            "type": "string",
+            "jsonPath": ".uid"
+          }
+        ]
+      }
+    ]
+  },
+  "status": {
+    "conditions": null,
+    "acceptedNames": {
+      "plural": "",
+      "kind": ""
+    },
+    "storedVersions": null
+  }
+}

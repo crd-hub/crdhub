@@ -1,7 +1,12 @@
+$schema: http://json-schema.org/schema#
 properties:
   apiVersion:
+    enum:
+    - autoscaling.kubedb.com/v1alpha1
     type: string
   kind:
+    enum:
+    - ElasticsearchAutoscaler
     type: string
   metadata:
     properties:

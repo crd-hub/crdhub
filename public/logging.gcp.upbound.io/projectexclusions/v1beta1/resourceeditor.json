@@ -1,0 +1,35 @@
+{
+  "kind": "ResourceEditor",
+  "apiVersion": "ui.k8s.appscode.com/v1alpha1",
+  "metadata": {
+    "name": "logging.gcp.upbound.io-v1beta1-projectexclusions",
+    "creationTimestamp": null,
+    "labels": {
+      "k8s.io/group": "logging.gcp.upbound.io",
+      "k8s.io/kind": "ProjectExclusion",
+      "k8s.io/resource": "projectexclusions",
+      "k8s.io/version": "v1beta1"
+    }
+  },
+  "spec": {
+    "resource": {
+      "group": "logging.gcp.upbound.io",
+      "version": "v1beta1",
+      "name": "projectexclusions",
+      "kind": "ProjectExclusion",
+      "scope": "Cluster"
+    },
+    "ui": {
+      "editor": {
+        "name": "logginggcpupboundio-projectexclusion-editor",
+        "version": "v0.4.18",
+        "sourceRef": {
+          "apiGroup": "source.toolkit.fluxcd.io",
+          "kind": "HelmRepository",
+          "name": "bytebuilders-ui"
+        }
+      },
+      "enforceQuota": false
+    }
+  }
+}

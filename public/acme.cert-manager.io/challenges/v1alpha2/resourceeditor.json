@@ -1,0 +1,33 @@
+{
+  "kind": "ResourceEditor",
+  "apiVersion": "ui.k8s.appscode.com/v1alpha1",
+  "metadata": {
+    "name": "acme.cert-manager.io-v1alpha2-challenges",
+    "creationTimestamp": null,
+    "labels": {
+      "k8s.io/group": "acme.cert-manager.io",
+      "k8s.io/kind": "Challenge",
+      "k8s.io/resource": "challenges",
+      "k8s.io/version": "v1alpha2"
+    }
+  },
+  "spec": {
+    "resource": {
+      "group": "acme.cert-manager.io",
+      "version": "v1alpha2",
+      "name": "challenges",
+      "kind": "Challenge",
+      "scope": "Namespaced"
+    },
+    "icons": [
+      {
+        "src": "https://cdn.appscode.com/k8s/icons/acme.cert-manager.io/challenges.svg",
+        "type": "image/svg+xml"
+      },
+      {
+        "src": "https://cdn.appscode.com/k8s/icons/acme.cert-manager.io/challenges.png",
+        "type": "image/png"
+      }
+    ]
+  }
+}

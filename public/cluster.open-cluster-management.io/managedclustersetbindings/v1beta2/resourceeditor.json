@@ -1,0 +1,35 @@
+{
+  "kind": "ResourceEditor",
+  "apiVersion": "ui.k8s.appscode.com/v1alpha1",
+  "metadata": {
+    "name": "cluster.open-cluster-management.io-v1beta2-managedclustersetbindings",
+    "creationTimestamp": null,
+    "labels": {
+      "k8s.io/group": "cluster.open-cluster-management.io",
+      "k8s.io/kind": "ManagedClusterSetBinding",
+      "k8s.io/resource": "managedclustersetbindings",
+      "k8s.io/version": "v1beta2"
+    }
+  },
+  "spec": {
+    "resource": {
+      "group": "cluster.open-cluster-management.io",
+      "version": "v1beta2",
+      "name": "managedclustersetbindings",
+      "kind": "ManagedClusterSetBinding",
+      "scope": "Namespaced"
+    },
+    "ui": {
+      "editor": {
+        "name": "clusteropenclustermanagementio-managedclustersetbinding-editor",
+        "version": "v0.4.18",
+        "sourceRef": {
+          "apiGroup": "source.toolkit.fluxcd.io",
+          "kind": "HelmRepository",
+          "name": "bytebuilders-ui"
+        }
+      },
+      "enforceQuota": false
+    }
+  }
+}

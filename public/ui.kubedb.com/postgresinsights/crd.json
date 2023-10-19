@@ -1,0 +1,196 @@
+{
+  "kind": "CustomResourceDefinition",
+  "apiVersion": "apiextensions.k8s.io/v1",
+  "metadata": {
+    "name": "postgresinsights.ui.kubedb.com",
+    "creationTimestamp": null,
+    "labels": {
+      "app.kubernetes.io/name": "kubedb"
+    }
+  },
+  "spec": {
+    "group": "ui.kubedb.com",
+    "names": {
+      "plural": "postgresinsights",
+      "singular": "postgresinsight",
+      "kind": "PostgresInsight",
+      "listKind": "PostgresInsightList"
+    },
+    "scope": "Namespaced",
+    "versions": [
+      {
+        "name": "v1alpha1",
+        "served": true,
+        "storage": true,
+        "schema": {
+          "openAPIV3Schema": {
+            "type": "object",
+            "properties": {
+              "apiVersion": {
+                "type": "string"
+              },
+              "kind": {
+                "type": "string"
+              },
+              "metadata": {
+                "type": "object"
+              },
+              "spec": {
+                "type": "object",
+                "required": [
+                  "mode",
+                  "replicationStatus",
+                  "status",
+                  "version"
+                ],
+                "properties": {
+                  "connectionInfo": {
+                    "type": "object",
+                    "properties": {
+                      "activeConnections": {
+                        "type": "integer",
+                        "format": "int64"
+                      },
+                      "maxConnections": {
+                        "type": "integer",
+                        "format": "int64"
+                      }
+                    }
+                  },
+                  "mode": {
+                    "type": "string"
+                  },
+                  "replicationStatus": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "required": [
+                        "applicationName",
+                        "state"
+                      ],
+                      "properties": {
+                        "applicationName": {
+                          "type": "string"
+                        },
+                        "flushLag": {
+                          "type": "integer",
+                          "format": "int64"
+                        },
+                        "replayLag": {
+                          "type": "integer",
+                          "format": "int64"
+                        },
+                        "state": {
+                          "type": "string"
+                        },
+                        "writeLag": {
+                          "type": "integer",
+                          "format": "int64"
+                        }
+                      }
+                    }
+                  },
+                  "status": {
+                    "type": "string"
+                  },
+                  "vacuumInfo": {
+                    "type": "object",
+                    "required": [
+                      "autoVacuum"
+                    ],
+                    "properties": {
+                      "activeVacuumProcess": {
+                        "type": "integer",
+                        "format": "int64"
+                      },
+                      "autoVacuum": {
+                        "type": "string"
+                      }
+                    }
+                  },
+                  "version": {
+                    "type": "string"
+                  }
+                }
+              },
+              "status": {
+                "type": "object",
+                "properties": {
+                  "authSecret": {
+                    "type": "object",
+                    "properties": {
+                      "lastUpdateTimestamp": {
+                        "type": "string",
+                        "format": "date-time"
+                      }
+                    }
+                  },
+                  "conditions": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "required": [
+                        "lastTransitionTime",
+                        "status",
+                        "type"
+                      ],
+                      "properties": {
+                        "lastTransitionTime": {
+                          "type": "string",
+                          "format": "date-time"
+                        },
+                        "message": {
+                          "type": "string"
+                        },
+                        "observedGeneration": {
+                          "type": "integer",
+                          "format": "int64"
+                        },
+                        "reason": {
+                          "type": "string"
+                        },
+                        "severity": {
+                          "type": "string"
+                        },
+                        "status": {
+                          "type": "string"
+                        },
+                        "type": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  },
+                  "observedGeneration": {
+                    "type": "integer",
+                    "format": "int64"
+                  },
+                  "phase": {
+                    "type": "string",
+                    "enum": [
+                      "Provisioning",
+                      "DataRestoring",
+                      "Ready",
+                      "Critical",
+                      "NotReady",
+                      "Halted",
+                      "Unknown"
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    ]
+  },
+  "status": {
+    "conditions": null,
+    "acceptedNames": {
+      "plural": "",
+      "kind": ""
+    },
+    "storedVersions": null
+  }
+}

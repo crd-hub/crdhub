@@ -1,0 +1,35 @@
+{
+  "kind": "ResourceEditor",
+  "apiVersion": "ui.k8s.appscode.com/v1alpha1",
+  "metadata": {
+    "name": "apprunner.aws.upbound.io-v1beta1-autoscalingconfigurationversions",
+    "creationTimestamp": null,
+    "labels": {
+      "k8s.io/group": "apprunner.aws.upbound.io",
+      "k8s.io/kind": "AutoScalingConfigurationVersion",
+      "k8s.io/resource": "autoscalingconfigurationversions",
+      "k8s.io/version": "v1beta1"
+    }
+  },
+  "spec": {
+    "resource": {
+      "group": "apprunner.aws.upbound.io",
+      "version": "v1beta1",
+      "name": "autoscalingconfigurationversions",
+      "kind": "AutoScalingConfigurationVersion",
+      "scope": "Cluster"
+    },
+    "ui": {
+      "editor": {
+        "name": "apprunnerawsupboundio-autoscalingconfigurationversion-editor",
+        "version": "v0.4.18",
+        "sourceRef": {
+          "apiGroup": "source.toolkit.fluxcd.io",
+          "kind": "HelmRepository",
+          "name": "bytebuilders-ui"
+        }
+      },
+      "enforceQuota": false
+    }
+  }
+}

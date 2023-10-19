@@ -1,0 +1,35 @@
+{
+  "kind": "ResourceEditor",
+  "apiVersion": "ui.k8s.appscode.com/v1alpha1",
+  "metadata": {
+    "name": "infrastructure.cluster.x-k8s.io-v1alpha3-azureserviceprincipals",
+    "creationTimestamp": null,
+    "labels": {
+      "k8s.io/group": "infrastructure.cluster.x-k8s.io",
+      "k8s.io/kind": "AzureServicePrincipal",
+      "k8s.io/resource": "azureserviceprincipals",
+      "k8s.io/version": "v1alpha3"
+    }
+  },
+  "spec": {
+    "resource": {
+      "group": "infrastructure.cluster.x-k8s.io",
+      "version": "v1alpha3",
+      "name": "azureserviceprincipals",
+      "kind": "AzureServicePrincipal",
+      "scope": "Namespaced"
+    },
+    "ui": {
+      "editor": {
+        "name": "infrastructureclusterxk8sio-azureserviceprincipal-editor",
+        "version": "v0.4.18",
+        "sourceRef": {
+          "apiGroup": "source.toolkit.fluxcd.io",
+          "kind": "HelmRepository",
+          "name": "bytebuilders-ui"
+        }
+      },
+      "enforceQuota": false
+    }
+  }
+}

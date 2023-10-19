@@ -1,0 +1,224 @@
+{
+  "kind": "CustomResourceDefinition",
+  "apiVersion": "apiextensions.k8s.io/v1",
+  "metadata": {
+    "name": "menuoutlines.meta.k8s.appscode.com",
+    "creationTimestamp": null
+  },
+  "spec": {
+    "group": "meta.k8s.appscode.com",
+    "names": {
+      "plural": "menuoutlines",
+      "singular": "menuoutline",
+      "kind": "MenuOutline",
+      "listKind": "MenuOutlineList"
+    },
+    "scope": "Cluster",
+    "versions": [
+      {
+        "name": "v1alpha1",
+        "served": true,
+        "storage": true,
+        "schema": {
+          "openAPIV3Schema": {
+            "type": "object",
+            "properties": {
+              "apiVersion": {
+                "description": "APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources",
+                "type": "string"
+              },
+              "kind": {
+                "description": "Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds",
+                "type": "string"
+              },
+              "metadata": {
+                "type": "object"
+              },
+              "spec": {
+                "type": "object",
+                "properties": {
+                  "home": {
+                    "type": "object",
+                    "properties": {
+                      "autoDiscoverAPIGroup": {
+                        "type": "string"
+                      },
+                      "icons": {
+                        "description": "Icons is an optional list of icons for an application. Icon information includes the source, size, and mime type.",
+                        "type": "array",
+                        "items": {
+                          "description": "ImageSpec contains information about an image used as an icon.",
+                          "type": "object",
+                          "required": [
+                            "src"
+                          ],
+                          "properties": {
+                            "size": {
+                              "description": "(optional) The size of the image in pixels (e.g., 25x25).",
+                              "type": "string"
+                            },
+                            "src": {
+                              "description": "The source for image represented as either an absolute URL to the image or a Data URL containing the image. Data URLs are defined in RFC 2397.",
+                              "type": "string"
+                            },
+                            "type": {
+                              "description": "(optional) The mine type of the image (e.g., \"image/png\").",
+                              "type": "string"
+                            }
+                          }
+                        }
+                      },
+                      "layoutName": {
+                        "type": "string"
+                      },
+                      "name": {
+                        "type": "string"
+                      },
+                      "path": {
+                        "type": "string"
+                      }
+                    }
+                  },
+                  "sections": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "required": [
+                        "items"
+                      ],
+                      "properties": {
+                        "autoDiscoverAPIGroup": {
+                          "type": "string"
+                        },
+                        "icons": {
+                          "description": "Icons is an optional list of icons for an application. Icon information includes the source, size, and mime type.",
+                          "type": "array",
+                          "items": {
+                            "description": "ImageSpec contains information about an image used as an icon.",
+                            "type": "object",
+                            "required": [
+                              "src"
+                            ],
+                            "properties": {
+                              "size": {
+                                "description": "(optional) The size of the image in pixels (e.g., 25x25).",
+                                "type": "string"
+                              },
+                              "src": {
+                                "description": "The source for image represented as either an absolute URL to the image or a Data URL containing the image. Data URLs are defined in RFC 2397.",
+                                "type": "string"
+                              },
+                              "type": {
+                                "description": "(optional) The mine type of the image (e.g., \"image/png\").",
+                                "type": "string"
+                              }
+                            }
+                          }
+                        },
+                        "items": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "required": [
+                              "name"
+                            ],
+                            "properties": {
+                              "icons": {
+                                "type": "array",
+                                "items": {
+                                  "description": "ImageSpec contains information about an image used as an icon.",
+                                  "type": "object",
+                                  "required": [
+                                    "src"
+                                  ],
+                                  "properties": {
+                                    "size": {
+                                      "description": "(optional) The size of the image in pixels (e.g., 25x25).",
+                                      "type": "string"
+                                    },
+                                    "src": {
+                                      "description": "The source for image represented as either an absolute URL to the image or a Data URL containing the image. Data URLs are defined in RFC 2397.",
+                                      "type": "string"
+                                    },
+                                    "type": {
+                                      "description": "(optional) The mine type of the image (e.g., \"image/png\").",
+                                      "type": "string"
+                                    }
+                                  }
+                                }
+                              },
+                              "layoutName": {
+                                "type": "string"
+                              },
+                              "name": {
+                                "type": "string"
+                              },
+                              "path": {
+                                "type": "string"
+                              },
+                              "required": {
+                                "type": "boolean"
+                              },
+                              "type": {
+                                "description": "GroupKind specifies a Group and a Kind, but does not force a version.  This is useful for identifying concepts during lookup stages without having partially valid types",
+                                "type": "object",
+                                "required": [
+                                  "group",
+                                  "kind"
+                                ],
+                                "properties": {
+                                  "group": {
+                                    "type": "string"
+                                  },
+                                  "kind": {
+                                    "type": "string"
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        },
+                        "layoutName": {
+                          "type": "string"
+                        },
+                        "name": {
+                          "type": "string"
+                        },
+                        "path": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "subresources": {
+          "status": {}
+        },
+        "additionalPrinterColumns": [
+          {
+            "name": "Status",
+            "type": "string",
+            "jsonPath": ".status.phase"
+          },
+          {
+            "name": "Age",
+            "type": "date",
+            "jsonPath": ".metadata.creationTimestamp"
+          }
+        ]
+      }
+    ]
+  },
+  "status": {
+    "conditions": null,
+    "acceptedNames": {
+      "plural": "",
+      "kind": ""
+    },
+    "storedVersions": null
+  }
+}

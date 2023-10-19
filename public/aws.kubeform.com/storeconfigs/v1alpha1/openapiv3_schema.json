@@ -1,0 +1,353 @@
+{
+  "$schema": "http://json-schema.org/schema#",
+  "description": "A StoreConfig configures how GCP controller should store connection details.",
+  "type": "object",
+  "required": [
+    "spec"
+  ],
+  "properties": {
+    "apiVersion": {
+      "description": "APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources",
+      "type": "string",
+      "enum": [
+        "aws.kubeform.com/v1alpha1"
+      ]
+    },
+    "kind": {
+      "description": "Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds",
+      "type": "string",
+      "enum": [
+        "StoreConfig"
+      ]
+    },
+    "metadata": {
+      "type": "object",
+      "properties": {
+        "annotations": {
+          "description": "Annotations is an unstructured key value map stored with a resource that may be set by external tools to store and retrieve arbitrary metadata. They are not queryable and should be preserved when modifying objects. More info: http://kubernetes.io/docs/user-guide/annotations",
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          }
+        },
+        "labels": {
+          "description": "Map of string keys and values that can be used to organize and categorize (scope and select) objects. May match selectors of replication controllers and services. More info: http://kubernetes.io/docs/user-guide/labels",
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          }
+        },
+        "name": {
+          "description": "Name must be unique within a namespace. Is required when creating resources, although some resources may allow a client to request the generation of an appropriate name automatically. Name is primarily intended for creation idempotence and configuration definition. Cannot be updated. More info: http://kubernetes.io/docs/user-guide/identifiers#names",
+          "type": "string"
+        }
+      }
+    },
+    "spec": {
+      "description": "A StoreConfigSpec defines the desired state of a ProviderConfig.",
+      "type": "object",
+      "required": [
+        "defaultScope"
+      ],
+      "properties": {
+        "defaultScope": {
+          "description": "DefaultScope used for scoping secrets for \"cluster-scoped\" resources. If store type is \"Kubernetes\", this would mean the default namespace to store connection secrets for cluster scoped resources. In case of \"Vault\", this would be used as the default parent path. Typically, should be set as Crossplane installation namespace.",
+          "type": "string"
+        },
+        "kubernetes": {
+          "description": "Kubernetes configures a Kubernetes secret store. If the \"type\" is \"Kubernetes\" but no config provided, in cluster config will be used.",
+          "type": "object",
+          "required": [
+            "auth"
+          ],
+          "properties": {
+            "auth": {
+              "description": "Credentials used to connect to the Kubernetes API.",
+              "type": "object",
+              "required": [
+                "source"
+              ],
+              "properties": {
+                "env": {
+                  "description": "Env is a reference to an environment variable that contains credentials that must be used to connect to the provider.",
+                  "type": "object",
+                  "required": [
+                    "name"
+                  ],
+                  "properties": {
+                    "name": {
+                      "description": "Name is the name of an environment variable.",
+                      "type": "string"
+                    }
+                  }
+                },
+                "fs": {
+                  "description": "Fs is a reference to a filesystem location that contains credentials that must be used to connect to the provider.",
+                  "type": "object",
+                  "required": [
+                    "path"
+                  ],
+                  "properties": {
+                    "path": {
+                      "description": "Path is a filesystem path.",
+                      "type": "string"
+                    }
+                  }
+                },
+                "secretRef": {
+                  "description": "A SecretRef is a reference to a secret key that contains the credentials that must be used to connect to the provider.",
+                  "type": "object",
+                  "required": [
+                    "key",
+                    "name",
+                    "namespace"
+                  ],
+                  "properties": {
+                    "key": {
+                      "description": "The key to select.",
+                      "type": "string"
+                    },
+                    "name": {
+                      "description": "Name of the secret.",
+                      "type": "string"
+                    },
+                    "namespace": {
+                      "description": "Namespace of the secret.",
+                      "type": "string"
+                    }
+                  }
+                },
+                "source": {
+                  "description": "Source of the credentials.",
+                  "type": "string",
+                  "enum": [
+                    "None",
+                    "Secret",
+                    "Environment",
+                    "Filesystem"
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "plugin": {
+          "description": "Plugin configures External secret store as a plugin.",
+          "type": "object",
+          "properties": {
+            "configRef": {
+              "description": "ConfigRef contains store config reference info.",
+              "type": "object",
+              "required": [
+                "apiVersion",
+                "kind",
+                "name"
+              ],
+              "properties": {
+                "apiVersion": {
+                  "description": "APIVersion of the referenced config.",
+                  "type": "string"
+                },
+                "kind": {
+                  "description": "Kind of the referenced config.",
+                  "type": "string"
+                },
+                "name": {
+                  "description": "Name of the referenced config.",
+                  "type": "string"
+                }
+              }
+            },
+            "endpoint": {
+              "description": "Endpoint is the endpoint of the gRPC server.",
+              "type": "string"
+            }
+          }
+        },
+        "type": {
+          "description": "Type configures which secret store to be used. Only the configuration block for this store will be used and others will be ignored if provided. Default is Kubernetes.",
+          "type": "string",
+          "default": "Kubernetes",
+          "enum": [
+            "Kubernetes",
+            "Vault",
+            "Plugin"
+          ]
+        },
+        "vault": {
+          "description": "Vault configures a Vault secret store. Deprecated: This API is scheduled to be removed in a future release. Vault should be used as a plugin going forward. See https://github.com/crossplane-contrib/ess-plugin-vault for more information.",
+          "type": "object",
+          "required": [
+            "auth",
+            "mountPath",
+            "server"
+          ],
+          "properties": {
+            "auth": {
+              "description": "Auth configures an authentication method for Vault.",
+              "type": "object",
+              "required": [
+                "method"
+              ],
+              "properties": {
+                "method": {
+                  "description": "Method configures which auth method will be used.",
+                  "type": "string"
+                },
+                "token": {
+                  "description": "Token configures Token Auth for Vault.",
+                  "type": "object",
+                  "required": [
+                    "source"
+                  ],
+                  "properties": {
+                    "env": {
+                      "description": "Env is a reference to an environment variable that contains credentials that must be used to connect to the provider.",
+                      "type": "object",
+                      "required": [
+                        "name"
+                      ],
+                      "properties": {
+                        "name": {
+                          "description": "Name is the name of an environment variable.",
+                          "type": "string"
+                        }
+                      }
+                    },
+                    "fs": {
+                      "description": "Fs is a reference to a filesystem location that contains credentials that must be used to connect to the provider.",
+                      "type": "object",
+                      "required": [
+                        "path"
+                      ],
+                      "properties": {
+                        "path": {
+                          "description": "Path is a filesystem path.",
+                          "type": "string"
+                        }
+                      }
+                    },
+                    "secretRef": {
+                      "description": "A SecretRef is a reference to a secret key that contains the credentials that must be used to connect to the provider.",
+                      "type": "object",
+                      "required": [
+                        "key",
+                        "name",
+                        "namespace"
+                      ],
+                      "properties": {
+                        "key": {
+                          "description": "The key to select.",
+                          "type": "string"
+                        },
+                        "name": {
+                          "description": "Name of the secret.",
+                          "type": "string"
+                        },
+                        "namespace": {
+                          "description": "Namespace of the secret.",
+                          "type": "string"
+                        }
+                      }
+                    },
+                    "source": {
+                      "description": "Source of the credentials.",
+                      "type": "string",
+                      "enum": [
+                        "None",
+                        "Secret",
+                        "Environment",
+                        "Filesystem"
+                      ]
+                    }
+                  }
+                }
+              }
+            },
+            "caBundle": {
+              "description": "CABundle configures CA bundle for Vault Server.",
+              "type": "object",
+              "required": [
+                "source"
+              ],
+              "properties": {
+                "env": {
+                  "description": "Env is a reference to an environment variable that contains credentials that must be used to connect to the provider.",
+                  "type": "object",
+                  "required": [
+                    "name"
+                  ],
+                  "properties": {
+                    "name": {
+                      "description": "Name is the name of an environment variable.",
+                      "type": "string"
+                    }
+                  }
+                },
+                "fs": {
+                  "description": "Fs is a reference to a filesystem location that contains credentials that must be used to connect to the provider.",
+                  "type": "object",
+                  "required": [
+                    "path"
+                  ],
+                  "properties": {
+                    "path": {
+                      "description": "Path is a filesystem path.",
+                      "type": "string"
+                    }
+                  }
+                },
+                "secretRef": {
+                  "description": "A SecretRef is a reference to a secret key that contains the credentials that must be used to connect to the provider.",
+                  "type": "object",
+                  "required": [
+                    "key",
+                    "name",
+                    "namespace"
+                  ],
+                  "properties": {
+                    "key": {
+                      "description": "The key to select.",
+                      "type": "string"
+                    },
+                    "name": {
+                      "description": "Name of the secret.",
+                      "type": "string"
+                    },
+                    "namespace": {
+                      "description": "Namespace of the secret.",
+                      "type": "string"
+                    }
+                  }
+                },
+                "source": {
+                  "description": "Source of the credentials.",
+                  "type": "string",
+                  "enum": [
+                    "None",
+                    "Secret",
+                    "Environment",
+                    "Filesystem"
+                  ]
+                }
+              }
+            },
+            "mountPath": {
+              "description": "MountPath is the mount path of the KV secrets engine.",
+              "type": "string"
+            },
+            "server": {
+              "description": "Server is the url of the Vault server, e.g. \"https://vault.acme.org\"",
+              "type": "string"
+            },
+            "version": {
+              "description": "Version of the KV Secrets engine of Vault. https://www.vaultproject.io/docs/secrets/kv",
+              "type": "string",
+              "default": "v2"
+            }
+          }
+        }
+      }
+    }
+  }
+}

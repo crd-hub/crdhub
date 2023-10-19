@@ -1,0 +1,35 @@
+{
+  "kind": "ResourceEditor",
+  "apiVersion": "ui.k8s.appscode.com/v1alpha1",
+  "metadata": {
+    "name": "ui.kubedb.com-v1alpha1-pgbouncerinsights",
+    "creationTimestamp": null,
+    "labels": {
+      "k8s.io/group": "ui.kubedb.com",
+      "k8s.io/kind": "PgBouncerInsight",
+      "k8s.io/resource": "pgbouncerinsights",
+      "k8s.io/version": "v1alpha1"
+    }
+  },
+  "spec": {
+    "resource": {
+      "group": "ui.kubedb.com",
+      "version": "v1alpha1",
+      "name": "pgbouncerinsights",
+      "kind": "PgBouncerInsight",
+      "scope": "Namespaced"
+    },
+    "ui": {
+      "editor": {
+        "name": "uikubedbcom-pgbouncerinsight-editor",
+        "version": "v0.4.18",
+        "sourceRef": {
+          "apiGroup": "source.toolkit.fluxcd.io",
+          "kind": "HelmRepository",
+          "name": "bytebuilders-ui"
+        }
+      },
+      "enforceQuota": false
+    }
+  }
+}

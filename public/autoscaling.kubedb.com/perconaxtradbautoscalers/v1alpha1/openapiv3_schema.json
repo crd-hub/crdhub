@@ -1,0 +1,188 @@
+{
+  "$schema": "http://json-schema.org/schema#",
+  "type": "object",
+  "required": [
+    "spec"
+  ],
+  "properties": {
+    "apiVersion": {
+      "type": "string",
+      "enum": [
+        "autoscaling.kubedb.com/v1alpha1"
+      ]
+    },
+    "kind": {
+      "type": "string",
+      "enum": [
+        "PerconaXtraDBAutoscaler"
+      ]
+    },
+    "metadata": {
+      "type": "object",
+      "properties": {
+        "annotations": {
+          "description": "Annotations is an unstructured key value map stored with a resource that may be set by external tools to store and retrieve arbitrary metadata. They are not queryable and should be preserved when modifying objects. More info: http://kubernetes.io/docs/user-guide/annotations",
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          }
+        },
+        "labels": {
+          "description": "Map of string keys and values that can be used to organize and categorize (scope and select) objects. May match selectors of replication controllers and services. More info: http://kubernetes.io/docs/user-guide/labels",
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          }
+        },
+        "name": {
+          "description": "Name must be unique within a namespace. Is required when creating resources, although some resources may allow a client to request the generation of an appropriate name automatically. Name is primarily intended for creation idempotence and configuration definition. Cannot be updated. More info: http://kubernetes.io/docs/user-guide/identifiers#names",
+          "type": "string"
+        },
+        "namespace": {
+          "description": "Namespace defines the space within which each name must be unique. An empty namespace is equivalent to the \"default\" namespace, but \"default\" is the canonical representation. Not all objects are required to be scoped to a namespace - the value of this field for those objects will be empty. \n Must be a DNS_LABEL. Cannot be updated. More info: http://kubernetes.io/docs/user-guide/namespaces",
+          "type": "string"
+        }
+      }
+    },
+    "spec": {
+      "type": "object",
+      "required": [
+        "databaseRef"
+      ],
+      "properties": {
+        "compute": {
+          "type": "object",
+          "properties": {
+            "perconaxtradb": {
+              "type": "object",
+              "properties": {
+                "containerControlledValues": {
+                  "type": "string",
+                  "enum": [
+                    "RequestsAndLimits",
+                    "RequestsOnly"
+                  ]
+                },
+                "controlledResources": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "inMemoryStorage": {
+                  "type": "object",
+                  "properties": {
+                    "scalingFactorPercentage": {
+                      "type": "integer",
+                      "format": "int32"
+                    },
+                    "usageThresholdPercentage": {
+                      "type": "integer",
+                      "format": "int32"
+                    }
+                  }
+                },
+                "maxAllowed": {
+                  "type": "object",
+                  "additionalProperties": {
+                    "pattern": "^(\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))(([KMGTPE]i)|[numkMGTPE]|([eE](\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))))?$",
+                    "anyOf": [
+                      {
+                        "type": "integer"
+                      },
+                      {
+                        "type": "string"
+                      }
+                    ],
+                    "x-kubernetes-int-or-string": true
+                  }
+                },
+                "minAllowed": {
+                  "type": "object",
+                  "additionalProperties": {
+                    "pattern": "^(\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))(([KMGTPE]i)|[numkMGTPE]|([eE](\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))))?$",
+                    "anyOf": [
+                      {
+                        "type": "integer"
+                      },
+                      {
+                        "type": "string"
+                      }
+                    ],
+                    "x-kubernetes-int-or-string": true
+                  }
+                },
+                "podLifeTimeThreshold": {
+                  "type": "string"
+                },
+                "resourceDiffPercentage": {
+                  "type": "integer",
+                  "format": "int32"
+                },
+                "trigger": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        },
+        "databaseRef": {
+          "type": "object",
+          "properties": {
+            "name": {
+              "type": "string"
+            }
+          },
+          "x-kubernetes-map-type": "atomic"
+        },
+        "opsRequestOptions": {
+          "type": "object",
+          "properties": {
+            "apply": {
+              "type": "string",
+              "default": "IfReady",
+              "enum": [
+                "IfReady",
+                "Always"
+              ]
+            },
+            "readinessCriteria": {
+              "type": "object"
+            },
+            "timeout": {
+              "type": "string"
+            }
+          }
+        },
+        "storage": {
+          "type": "object",
+          "properties": {
+            "perconaxtradb": {
+              "type": "object",
+              "properties": {
+                "expansionMode": {
+                  "type": "string",
+                  "enum": [
+                    "Offline",
+                    "Online"
+                  ]
+                },
+                "scalingThreshold": {
+                  "type": "integer",
+                  "format": "int32"
+                },
+                "trigger": {
+                  "type": "string"
+                },
+                "usageThreshold": {
+                  "type": "integer",
+                  "format": "int32"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "kind": "ResourceEditor",
+  "apiVersion": "ui.k8s.appscode.com/v1alpha1",
+  "metadata": {
+    "name": "mutations.gatekeeper.sh-v1alpha1-assign",
+    "creationTimestamp": null,
+    "labels": {
+      "k8s.io/group": "mutations.gatekeeper.sh",
+      "k8s.io/kind": "Assign",
+      "k8s.io/resource": "assign",
+      "k8s.io/version": "v1alpha1"
+    }
+  },
+  "spec": {
+    "resource": {
+      "group": "mutations.gatekeeper.sh",
+      "version": "v1alpha1",
+      "name": "assign",
+      "kind": "Assign",
+      "scope": "Cluster"
+    }
+  }
+}

@@ -1,0 +1,181 @@
+{
+  "kind": "CustomResourceDefinition",
+  "apiVersion": "apiextensions.k8s.io/v1",
+  "metadata": {
+    "name": "mariadbinsights.ui.kubedb.com",
+    "creationTimestamp": null,
+    "labels": {
+      "app.kubernetes.io/name": "kubedb"
+    }
+  },
+  "spec": {
+    "group": "ui.kubedb.com",
+    "names": {
+      "plural": "mariadbinsights",
+      "singular": "mariadbinsight",
+      "kind": "MariaDBInsight",
+      "listKind": "MariaDBInsightList"
+    },
+    "scope": "Namespaced",
+    "versions": [
+      {
+        "name": "v1alpha1",
+        "served": true,
+        "storage": true,
+        "schema": {
+          "openAPIV3Schema": {
+            "type": "object",
+            "properties": {
+              "apiVersion": {
+                "type": "string"
+              },
+              "kind": {
+                "type": "string"
+              },
+              "metadata": {
+                "type": "object"
+              },
+              "spec": {
+                "type": "object",
+                "required": [
+                  "mode",
+                  "status",
+                  "version"
+                ],
+                "properties": {
+                  "abortedClients": {
+                    "type": "integer",
+                    "format": "int32"
+                  },
+                  "abortedConnections": {
+                    "type": "integer",
+                    "format": "int32"
+                  },
+                  "longQueryTimeThresholdSeconds": {
+                    "type": "number",
+                    "format": "double"
+                  },
+                  "maxConnections": {
+                    "type": "integer",
+                    "format": "int32"
+                  },
+                  "maxUsedConnections": {
+                    "type": "integer",
+                    "format": "int32"
+                  },
+                  "mode": {
+                    "type": "string"
+                  },
+                  "numberOfSlowQueries": {
+                    "type": "integer",
+                    "format": "int32"
+                  },
+                  "questions": {
+                    "type": "integer",
+                    "format": "int32"
+                  },
+                  "status": {
+                    "type": "string"
+                  },
+                  "threadsCached": {
+                    "type": "integer",
+                    "format": "int32"
+                  },
+                  "threadsConnected": {
+                    "type": "integer",
+                    "format": "int32"
+                  },
+                  "threadsCreated": {
+                    "type": "integer",
+                    "format": "int32"
+                  },
+                  "threadsRunning": {
+                    "type": "integer",
+                    "format": "int32"
+                  },
+                  "version": {
+                    "type": "string"
+                  }
+                }
+              },
+              "status": {
+                "type": "object",
+                "properties": {
+                  "authSecret": {
+                    "type": "object",
+                    "properties": {
+                      "lastUpdateTimestamp": {
+                        "type": "string",
+                        "format": "date-time"
+                      }
+                    }
+                  },
+                  "conditions": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "required": [
+                        "lastTransitionTime",
+                        "status",
+                        "type"
+                      ],
+                      "properties": {
+                        "lastTransitionTime": {
+                          "type": "string",
+                          "format": "date-time"
+                        },
+                        "message": {
+                          "type": "string"
+                        },
+                        "observedGeneration": {
+                          "type": "integer",
+                          "format": "int64"
+                        },
+                        "reason": {
+                          "type": "string"
+                        },
+                        "severity": {
+                          "type": "string"
+                        },
+                        "status": {
+                          "type": "string"
+                        },
+                        "type": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  },
+                  "observedGeneration": {
+                    "type": "integer",
+                    "format": "int64"
+                  },
+                  "phase": {
+                    "type": "string",
+                    "enum": [
+                      "Provisioning",
+                      "DataRestoring",
+                      "Ready",
+                      "Critical",
+                      "NotReady",
+                      "Halted",
+                      "Unknown"
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    ]
+  },
+  "status": {
+    "conditions": null,
+    "acceptedNames": {
+      "plural": "",
+      "kind": ""
+    },
+    "storedVersions": null
+  }
+}

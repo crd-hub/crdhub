@@ -1,10 +1,15 @@
+$schema: http://json-schema.org/schema#
 description: CustomDataSet is the Schema for the CustomDataSets API. Manages a Dataset inside an Azure Data Factory. This is a generic resource that supports all different Dataset Types.
 properties:
   apiVersion:
     description: 'APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources'
+    enum:
+    - datafactory.azure.upbound.io/v1beta1
     type: string
   kind:
     description: 'Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds'
+    enum:
+    - CustomDataSet
     type: string
   metadata:
     properties:

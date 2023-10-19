@@ -1,0 +1,109 @@
+{
+  "kind": "CustomResourceDefinition",
+  "apiVersion": "apiextensions.k8s.io/v1",
+  "metadata": {
+    "name": "mongodbqueries.ui.kubedb.com",
+    "creationTimestamp": null,
+    "labels": {
+      "app.kubernetes.io/name": "kubedb"
+    }
+  },
+  "spec": {
+    "group": "ui.kubedb.com",
+    "names": {
+      "plural": "mongodbqueries",
+      "singular": "mongodbqueries",
+      "kind": "MongoDBQueries",
+      "listKind": "MongoDBQueriesList"
+    },
+    "scope": "Namespaced",
+    "versions": [
+      {
+        "name": "v1alpha1",
+        "served": true,
+        "storage": true,
+        "schema": {
+          "openAPIV3Schema": {
+            "type": "object",
+            "properties": {
+              "apiVersion": {
+                "type": "string"
+              },
+              "kind": {
+                "type": "string"
+              },
+              "metadata": {
+                "type": "object"
+              },
+              "spec": {
+                "type": "object",
+                "required": [
+                  "queries"
+                ],
+                "properties": {
+                  "queries": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "required": [
+                        "collectionName",
+                        "command",
+                        "databaseName",
+                        "operation"
+                      ],
+                      "properties": {
+                        "avgExecutionTimeMilliSeconds": {
+                          "type": "integer",
+                          "format": "int64"
+                        },
+                        "collectionName": {
+                          "type": "string"
+                        },
+                        "command": {
+                          "type": "string"
+                        },
+                        "count": {
+                          "type": "integer",
+                          "format": "int64"
+                        },
+                        "databaseName": {
+                          "type": "string"
+                        },
+                        "maxExecutionTimeMilliSeconds": {
+                          "type": "integer",
+                          "format": "int64"
+                        },
+                        "minExecutionTimeMilliSeconds": {
+                          "type": "integer",
+                          "format": "int64"
+                        },
+                        "operation": {
+                          "type": "string",
+                          "enum": [
+                            "QUERY",
+                            "INSERT",
+                            "UPDATE",
+                            "DELETE",
+                            "GETMORE"
+                          ]
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    ]
+  },
+  "status": {
+    "conditions": null,
+    "acceptedNames": {
+      "plural": "",
+      "kind": ""
+    },
+    "storedVersions": null
+  }
+}

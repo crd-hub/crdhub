@@ -1,0 +1,35 @@
+{
+  "kind": "ResourceEditor",
+  "apiVersion": "ui.k8s.appscode.com/v1alpha1",
+  "metadata": {
+    "name": "catalog.kubeware.dev-v1alpha1-proxysqlbindings",
+    "creationTimestamp": null,
+    "labels": {
+      "k8s.io/group": "catalog.kubeware.dev",
+      "k8s.io/kind": "ProxySQLBinding",
+      "k8s.io/resource": "proxysqlbindings",
+      "k8s.io/version": "v1alpha1"
+    }
+  },
+  "spec": {
+    "resource": {
+      "group": "catalog.kubeware.dev",
+      "version": "v1alpha1",
+      "name": "proxysqlbindings",
+      "kind": "ProxySQLBinding",
+      "scope": "Namespaced"
+    },
+    "ui": {
+      "editor": {
+        "name": "catalogkubewaredev-proxysqlbinding-editor",
+        "version": "v0.4.18",
+        "sourceRef": {
+          "apiGroup": "source.toolkit.fluxcd.io",
+          "kind": "HelmRepository",
+          "name": "bytebuilders-ui"
+        }
+      },
+      "enforceQuota": false
+    }
+  }
+}

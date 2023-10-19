@@ -1,0 +1,35 @@
+{
+  "kind": "ResourceEditor",
+  "apiVersion": "ui.k8s.appscode.com/v1alpha1",
+  "metadata": {
+    "name": "runtime.cluster.x-k8s.io-v1alpha1-extensionconfigs",
+    "creationTimestamp": null,
+    "labels": {
+      "k8s.io/group": "runtime.cluster.x-k8s.io",
+      "k8s.io/kind": "ExtensionConfig",
+      "k8s.io/resource": "extensionconfigs",
+      "k8s.io/version": "v1alpha1"
+    }
+  },
+  "spec": {
+    "resource": {
+      "group": "runtime.cluster.x-k8s.io",
+      "version": "v1alpha1",
+      "name": "extensionconfigs",
+      "kind": "ExtensionConfig",
+      "scope": "Cluster"
+    },
+    "ui": {
+      "editor": {
+        "name": "runtimeclusterxk8sio-extensionconfig-editor",
+        "version": "v0.4.18",
+        "sourceRef": {
+          "apiGroup": "source.toolkit.fluxcd.io",
+          "kind": "HelmRepository",
+          "name": "bytebuilders-ui"
+        }
+      },
+      "enforceQuota": false
+    }
+  }
+}

@@ -1,0 +1,35 @@
+{
+  "kind": "ResourceEditor",
+  "apiVersion": "ui.k8s.appscode.com/v1alpha1",
+  "metadata": {
+    "name": "gateway.envoyproxy.io-v1alpha1-ratelimitfilters",
+    "creationTimestamp": null,
+    "labels": {
+      "k8s.io/group": "gateway.envoyproxy.io",
+      "k8s.io/kind": "RateLimitFilter",
+      "k8s.io/resource": "ratelimitfilters",
+      "k8s.io/version": "v1alpha1"
+    }
+  },
+  "spec": {
+    "resource": {
+      "group": "gateway.envoyproxy.io",
+      "version": "v1alpha1",
+      "name": "ratelimitfilters",
+      "kind": "RateLimitFilter",
+      "scope": "Namespaced"
+    },
+    "ui": {
+      "editor": {
+        "name": "gatewayenvoyproxyio-ratelimitfilter-editor",
+        "version": "v0.4.18",
+        "sourceRef": {
+          "apiGroup": "source.toolkit.fluxcd.io",
+          "kind": "HelmRepository",
+          "name": "bytebuilders-ui"
+        }
+      },
+      "enforceQuota": false
+    }
+  }
+}

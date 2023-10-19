@@ -1,0 +1,145 @@
+{
+  "kind": "CustomResourceDefinition",
+  "apiVersion": "apiextensions.k8s.io/v1",
+  "metadata": {
+    "name": "pgbouncerpools.ui.kubedb.com",
+    "creationTimestamp": null,
+    "labels": {
+      "app.kubernetes.io/name": "kubedb"
+    }
+  },
+  "spec": {
+    "group": "ui.kubedb.com",
+    "names": {
+      "plural": "pgbouncerpools",
+      "singular": "pgbouncerpools",
+      "kind": "PgBouncerPools",
+      "listKind": "PgBouncerPoolsList"
+    },
+    "scope": "Namespaced",
+    "versions": [
+      {
+        "name": "v1alpha1",
+        "served": true,
+        "storage": true,
+        "schema": {
+          "openAPIV3Schema": {
+            "type": "object",
+            "properties": {
+              "apiVersion": {
+                "type": "string"
+              },
+              "kind": {
+                "type": "string"
+              },
+              "metadata": {
+                "type": "object"
+              },
+              "spec": {
+                "type": "object",
+                "required": [
+                  "pools"
+                ],
+                "properties": {
+                  "pools": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "required": [
+                        "clientConnectionsActive",
+                        "clientConnectionsWaiting",
+                        "clientsActiveCancelReq",
+                        "clientsWaitingCancelReq",
+                        "database",
+                        "maxWait",
+                        "mode",
+                        "podName",
+                        "serverConnectionsActive",
+                        "serversActiveCancel",
+                        "serversBeingCanceled",
+                        "serversIdle",
+                        "serversLogin",
+                        "serversTested",
+                        "serversUsed",
+                        "user"
+                      ],
+                      "properties": {
+                        "clientConnectionsActive": {
+                          "type": "integer",
+                          "format": "int32"
+                        },
+                        "clientConnectionsWaiting": {
+                          "type": "integer",
+                          "format": "int32"
+                        },
+                        "clientsActiveCancelReq": {
+                          "type": "integer",
+                          "format": "int32"
+                        },
+                        "clientsWaitingCancelReq": {
+                          "type": "integer",
+                          "format": "int32"
+                        },
+                        "database": {
+                          "type": "string"
+                        },
+                        "maxWait": {
+                          "type": "string"
+                        },
+                        "mode": {
+                          "type": "string"
+                        },
+                        "podName": {
+                          "type": "string"
+                        },
+                        "serverConnectionsActive": {
+                          "type": "integer",
+                          "format": "int32"
+                        },
+                        "serversActiveCancel": {
+                          "type": "integer",
+                          "format": "int32"
+                        },
+                        "serversBeingCanceled": {
+                          "type": "integer",
+                          "format": "int32"
+                        },
+                        "serversIdle": {
+                          "type": "integer",
+                          "format": "int32"
+                        },
+                        "serversLogin": {
+                          "type": "integer",
+                          "format": "int32"
+                        },
+                        "serversTested": {
+                          "type": "integer",
+                          "format": "int32"
+                        },
+                        "serversUsed": {
+                          "type": "integer",
+                          "format": "int32"
+                        },
+                        "user": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    ]
+  },
+  "status": {
+    "conditions": null,
+    "acceptedNames": {
+      "plural": "",
+      "kind": ""
+    },
+    "storedVersions": null
+  }
+}

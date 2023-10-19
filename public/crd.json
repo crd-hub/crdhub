@@ -1,0 +1,22 @@
+{
+  "metadata": {
+    "creationTimestamp": null
+  },
+  "spec": {
+    "group": "",
+    "names": {
+      "plural": "",
+      "kind": ""
+    },
+    "scope": "",
+    "versions": null
+  },
+  "status": {
+    "conditions": null,
+    "acceptedNames": {
+      "plural": "",
+      "kind": ""
+    },
+    "storedVersions": null
+  }
+}

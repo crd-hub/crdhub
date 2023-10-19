@@ -1,0 +1,35 @@
+{
+  "kind": "ResourceEditor",
+  "apiVersion": "ui.k8s.appscode.com/v1alpha1",
+  "metadata": {
+    "name": "apigatewayv2.aws.upbound.io-v1beta1-models",
+    "creationTimestamp": null,
+    "labels": {
+      "k8s.io/group": "apigatewayv2.aws.upbound.io",
+      "k8s.io/kind": "Model",
+      "k8s.io/resource": "models",
+      "k8s.io/version": "v1beta1"
+    }
+  },
+  "spec": {
+    "resource": {
+      "group": "apigatewayv2.aws.upbound.io",
+      "version": "v1beta1",
+      "name": "models",
+      "kind": "Model",
+      "scope": "Cluster"
+    },
+    "ui": {
+      "editor": {
+        "name": "apigatewayv2awsupboundio-model-editor",
+        "version": "v0.4.18",
+        "sourceRef": {
+          "apiGroup": "source.toolkit.fluxcd.io",
+          "kind": "HelmRepository",
+          "name": "bytebuilders-ui"
+        }
+      },
+      "enforceQuota": false
+    }
+  }
+}

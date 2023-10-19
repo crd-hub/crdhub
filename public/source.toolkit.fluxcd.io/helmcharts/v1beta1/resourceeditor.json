@@ -1,0 +1,23 @@
+{
+  "kind": "ResourceEditor",
+  "apiVersion": "ui.k8s.appscode.com/v1alpha1",
+  "metadata": {
+    "name": "source.toolkit.fluxcd.io-v1beta1-helmcharts",
+    "creationTimestamp": null,
+    "labels": {
+      "k8s.io/group": "source.toolkit.fluxcd.io",
+      "k8s.io/kind": "HelmChart",
+      "k8s.io/resource": "helmcharts",
+      "k8s.io/version": "v1beta1"
+    }
+  },
+  "spec": {
+    "resource": {
+      "group": "source.toolkit.fluxcd.io",
+      "version": "v1beta1",
+      "name": "helmcharts",
+      "kind": "HelmChart",
+      "scope": "Namespaced"
+    }
+  }
+}

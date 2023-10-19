@@ -1,0 +1,23 @@
+{
+  "kind": "ResourceEditor",
+  "apiVersion": "ui.k8s.appscode.com/v1alpha1",
+  "metadata": {
+    "name": "snapshot.storage.k8s.io-v1beta1-volumesnapshotcontents",
+    "creationTimestamp": null,
+    "labels": {
+      "k8s.io/group": "snapshot.storage.k8s.io",
+      "k8s.io/kind": "VolumeSnapshotContent",
+      "k8s.io/resource": "volumesnapshotcontents",
+      "k8s.io/version": "v1beta1"
+    }
+  },
+  "spec": {
+    "resource": {
+      "group": "snapshot.storage.k8s.io",
+      "version": "v1beta1",
+      "name": "volumesnapshotcontents",
+      "kind": "VolumeSnapshotContent",
+      "scope": "Cluster"
+    }
+  }
+}

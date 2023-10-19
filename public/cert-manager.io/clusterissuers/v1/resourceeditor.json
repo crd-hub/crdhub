@@ -1,0 +1,56 @@
+{
+  "kind": "ResourceEditor",
+  "apiVersion": "ui.k8s.appscode.com/v1alpha1",
+  "metadata": {
+    "name": "cert-manager.io-v1-clusterissuers",
+    "creationTimestamp": null,
+    "labels": {
+      "k8s.io/group": "cert-manager.io",
+      "k8s.io/kind": "ClusterIssuer",
+      "k8s.io/resource": "clusterissuers",
+      "k8s.io/version": "v1"
+    }
+  },
+  "spec": {
+    "resource": {
+      "group": "cert-manager.io",
+      "version": "v1",
+      "name": "clusterissuers",
+      "kind": "ClusterIssuer",
+      "scope": "Cluster"
+    },
+    "ui": {
+      "editor": {
+        "name": "certmanagerio-clusterissuer-editor",
+        "version": "v0.4.18",
+        "sourceRef": {
+          "apiGroup": "source.toolkit.fluxcd.io",
+          "kind": "HelmRepository",
+          "name": "bytebuilders-ui"
+        }
+      },
+      "enforceQuota": false
+    },
+    "icons": [
+      {
+        "src": "https://cdn.appscode.com/k8s/icons/cert-manager.io/clusterissuers.svg",
+        "type": "image/svg+xml"
+      },
+      {
+        "src": "https://cdn.appscode.com/k8s/icons/cert-manager.io/clusterissuers.png",
+        "type": "image/png"
+      }
+    ],
+    "installer": {
+      "chart": {
+        "name": "cert-manager",
+        "version": "",
+        "sourceRef": {
+          "apiGroup": "source.toolkit.fluxcd.io",
+          "kind": "HelmRepository",
+          "name": "jetstack"
+        }
+      }
+    }
+  }
+}

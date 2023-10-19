@@ -1,0 +1,152 @@
+{
+  "kind": "CustomResourceDefinition",
+  "apiVersion": "apiextensions.k8s.io/v1",
+  "metadata": {
+    "name": "authenticationfilters.gateway.envoyproxy.io",
+    "creationTimestamp": null,
+    "annotations": {
+      "controller-gen.kubebuilder.io/version": "v0.10.0"
+    }
+  },
+  "spec": {
+    "group": "gateway.envoyproxy.io",
+    "names": {
+      "plural": "authenticationfilters",
+      "singular": "authenticationfilter",
+      "kind": "AuthenticationFilter",
+      "listKind": "AuthenticationFilterList"
+    },
+    "scope": "Namespaced",
+    "versions": [
+      {
+        "name": "v1alpha1",
+        "served": true,
+        "storage": true,
+        "schema": {
+          "openAPIV3Schema": {
+            "type": "object",
+            "required": [
+              "spec"
+            ],
+            "properties": {
+              "apiVersion": {
+                "description": "APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources",
+                "type": "string"
+              },
+              "kind": {
+                "description": "Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds",
+                "type": "string"
+              },
+              "metadata": {
+                "type": "object"
+              },
+              "spec": {
+                "description": "Spec defines the desired state of the AuthenticationFilter type.",
+                "type": "object",
+                "required": [
+                  "type"
+                ],
+                "properties": {
+                  "jwtProviders": {
+                    "description": "JWT defines the JSON Web Token (JWT) authentication provider type. When multiple jwtProviders are specified, the JWT is considered valid if any of the providers successfully validate the JWT. For additional details, see https://www.envoyproxy.io/docs/envoy/latest/configuration/http/http_filters/jwt_authn_filter.html.",
+                    "type": "array",
+                    "maxItems": 4,
+                    "items": {
+                      "description": "JwtAuthenticationFilterProvider defines the JSON Web Token (JWT) authentication provider type and how JWTs should be verified:",
+                      "type": "object",
+                      "required": [
+                        "name",
+                        "remoteJWKS"
+                      ],
+                      "properties": {
+                        "audiences": {
+                          "description": "Audiences is a list of JWT audiences allowed access. For additional details, see https://tools.ietf.org/html/rfc7519#section-4.1.3. If not provided, JWT audiences are not checked.",
+                          "type": "array",
+                          "maxItems": 8,
+                          "items": {
+                            "type": "string"
+                          }
+                        },
+                        "claimToHeaders": {
+                          "description": "ClaimToHeaders is a list of JWT claims that must be extracted into HTTP request headers For examples, following config: The claim must be of type; string, int, double, bool. Array type claims are not supported",
+                          "type": "array",
+                          "items": {
+                            "description": "ClaimToHeader defines a configuration to convert JWT claims into HTTP headers",
+                            "type": "object",
+                            "required": [
+                              "claim",
+                              "header"
+                            ],
+                            "properties": {
+                              "claim": {
+                                "description": "Claim is the JWT Claim that should be saved into the header : it can be a nested claim of type (eg. \"claim.nested.key\", \"sub\"). The nested claim name must use dot \".\" to separate the JSON name path.",
+                                "type": "string"
+                              },
+                              "header": {
+                                "description": "Header defines the name of the HTTP request header that the JWT Claim will be saved into.",
+                                "type": "string"
+                              }
+                            }
+                          }
+                        },
+                        "issuer": {
+                          "description": "Issuer is the principal that issued the JWT and takes the form of a URL or email address. For additional details, see https://tools.ietf.org/html/rfc7519#section-4.1.1 for URL format and https://rfc-editor.org/rfc/rfc5322.html for email format. If not provided, the JWT issuer is not checked.",
+                          "type": "string",
+                          "maxLength": 253
+                        },
+                        "name": {
+                          "description": "Name defines a unique name for the JWT provider. A name can have a variety of forms, including RFC1123 subdomains, RFC 1123 labels, or RFC 1035 labels.",
+                          "type": "string",
+                          "maxLength": 253,
+                          "minLength": 1
+                        },
+                        "remoteJWKS": {
+                          "description": "RemoteJWKS defines how to fetch and cache JSON Web Key Sets (JWKS) from a remote HTTP/HTTPS endpoint.",
+                          "type": "object",
+                          "required": [
+                            "uri"
+                          ],
+                          "properties": {
+                            "uri": {
+                              "description": "URI is the HTTPS URI to fetch the JWKS. Envoy's system trust bundle is used to validate the server certificate.",
+                              "type": "string",
+                              "maxLength": 253,
+                              "minLength": 1
+                            }
+                          }
+                        }
+                      }
+                    }
+                  },
+                  "type": {
+                    "description": "Type defines the type of authentication provider to use. Supported provider types are \"JWT\".",
+                    "type": "string",
+                    "enum": [
+                      "JWT"
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        },
+        "subresources": {},
+        "additionalPrinterColumns": [
+          {
+            "name": "Age",
+            "type": "date",
+            "jsonPath": ".metadata.creationTimestamp"
+          }
+        ]
+      }
+    ]
+  },
+  "status": {
+    "conditions": null,
+    "acceptedNames": {
+      "plural": "",
+      "kind": ""
+    },
+    "storedVersions": null
+  }
+}

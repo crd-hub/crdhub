@@ -1,0 +1,35 @@
+{
+  "kind": "ResourceEditor",
+  "apiVersion": "ui.k8s.appscode.com/v1alpha1",
+  "metadata": {
+    "name": "devices.azure.upbound.io-v1beta1-iothubendpointstoragecontainers",
+    "creationTimestamp": null,
+    "labels": {
+      "k8s.io/group": "devices.azure.upbound.io",
+      "k8s.io/kind": "IOTHubEndpointStorageContainer",
+      "k8s.io/resource": "iothubendpointstoragecontainers",
+      "k8s.io/version": "v1beta1"
+    }
+  },
+  "spec": {
+    "resource": {
+      "group": "devices.azure.upbound.io",
+      "version": "v1beta1",
+      "name": "iothubendpointstoragecontainers",
+      "kind": "IOTHubEndpointStorageContainer",
+      "scope": "Cluster"
+    },
+    "ui": {
+      "editor": {
+        "name": "devicesazureupboundio-iothubendpointstoragecontainer-editor",
+        "version": "v0.4.18",
+        "sourceRef": {
+          "apiGroup": "source.toolkit.fluxcd.io",
+          "kind": "HelmRepository",
+          "name": "bytebuilders-ui"
+        }
+      },
+      "enforceQuota": false
+    }
+  }
+}

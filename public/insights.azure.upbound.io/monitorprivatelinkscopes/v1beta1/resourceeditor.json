@@ -1,0 +1,35 @@
+{
+  "kind": "ResourceEditor",
+  "apiVersion": "ui.k8s.appscode.com/v1alpha1",
+  "metadata": {
+    "name": "insights.azure.upbound.io-v1beta1-monitorprivatelinkscopes",
+    "creationTimestamp": null,
+    "labels": {
+      "k8s.io/group": "insights.azure.upbound.io",
+      "k8s.io/kind": "MonitorPrivateLinkScope",
+      "k8s.io/resource": "monitorprivatelinkscopes",
+      "k8s.io/version": "v1beta1"
+    }
+  },
+  "spec": {
+    "resource": {
+      "group": "insights.azure.upbound.io",
+      "version": "v1beta1",
+      "name": "monitorprivatelinkscopes",
+      "kind": "MonitorPrivateLinkScope",
+      "scope": "Cluster"
+    },
+    "ui": {
+      "editor": {
+        "name": "insightsazureupboundio-monitorprivatelinkscope-editor",
+        "version": "v0.4.18",
+        "sourceRef": {
+          "apiGroup": "source.toolkit.fluxcd.io",
+          "kind": "HelmRepository",
+          "name": "bytebuilders-ui"
+        }
+      },
+      "enforceQuota": false
+    }
+  }
+}

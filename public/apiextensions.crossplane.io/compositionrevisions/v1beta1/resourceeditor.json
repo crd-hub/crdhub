@@ -1,0 +1,23 @@
+{
+  "kind": "ResourceEditor",
+  "apiVersion": "ui.k8s.appscode.com/v1alpha1",
+  "metadata": {
+    "name": "apiextensions.crossplane.io-v1beta1-compositionrevisions",
+    "creationTimestamp": null,
+    "labels": {
+      "k8s.io/group": "apiextensions.crossplane.io",
+      "k8s.io/kind": "CompositionRevision",
+      "k8s.io/resource": "compositionrevisions",
+      "k8s.io/version": "v1beta1"
+    }
+  },
+  "spec": {
+    "resource": {
+      "group": "apiextensions.crossplane.io",
+      "version": "v1beta1",
+      "name": "compositionrevisions",
+      "kind": "CompositionRevision",
+      "scope": "Cluster"
+    }
+  }
+}

@@ -1,0 +1,181 @@
+{
+  "kind": "CustomResourceDefinition",
+  "apiVersion": "apiextensions.k8s.io/v1",
+  "metadata": {
+    "name": "redisinsights.ui.kubedb.com",
+    "creationTimestamp": null,
+    "labels": {
+      "app.kubernetes.io/name": "kubedb"
+    }
+  },
+  "spec": {
+    "group": "ui.kubedb.com",
+    "names": {
+      "plural": "redisinsights",
+      "singular": "redisinsight",
+      "kind": "RedisInsight",
+      "listKind": "RedisInsightList"
+    },
+    "scope": "Namespaced",
+    "versions": [
+      {
+        "name": "v1alpha1",
+        "served": true,
+        "storage": true,
+        "schema": {
+          "openAPIV3Schema": {
+            "type": "object",
+            "properties": {
+              "apiVersion": {
+                "type": "string"
+              },
+              "kind": {
+                "type": "string"
+              },
+              "metadata": {
+                "type": "object"
+              },
+              "spec": {
+                "type": "object",
+                "required": [
+                  "evictionPolicy",
+                  "mode",
+                  "status",
+                  "version"
+                ],
+                "properties": {
+                  "blockedClients": {
+                    "type": "integer",
+                    "format": "int64"
+                  },
+                  "connectedClients": {
+                    "type": "integer",
+                    "format": "int64"
+                  },
+                  "evictedKeys": {
+                    "type": "integer",
+                    "format": "int64"
+                  },
+                  "evictionPolicy": {
+                    "type": "string"
+                  },
+                  "expiredKeys": {
+                    "type": "integer",
+                    "format": "int64"
+                  },
+                  "maxClients": {
+                    "type": "integer",
+                    "format": "int64"
+                  },
+                  "mode": {
+                    "type": "string"
+                  },
+                  "receivedConnections": {
+                    "type": "integer",
+                    "format": "int64"
+                  },
+                  "rejectedConnections": {
+                    "type": "integer",
+                    "format": "int64"
+                  },
+                  "slowLogMaxLen": {
+                    "type": "integer",
+                    "format": "int64"
+                  },
+                  "slowLogThresholdMicroSeconds": {
+                    "type": "integer",
+                    "format": "int64"
+                  },
+                  "status": {
+                    "type": "string"
+                  },
+                  "totalKeys": {
+                    "type": "integer",
+                    "format": "int64"
+                  },
+                  "version": {
+                    "type": "string"
+                  }
+                }
+              },
+              "status": {
+                "type": "object",
+                "properties": {
+                  "authSecret": {
+                    "type": "object",
+                    "properties": {
+                      "lastUpdateTimestamp": {
+                        "type": "string",
+                        "format": "date-time"
+                      }
+                    }
+                  },
+                  "conditions": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "required": [
+                        "lastTransitionTime",
+                        "status",
+                        "type"
+                      ],
+                      "properties": {
+                        "lastTransitionTime": {
+                          "type": "string",
+                          "format": "date-time"
+                        },
+                        "message": {
+                          "type": "string"
+                        },
+                        "observedGeneration": {
+                          "type": "integer",
+                          "format": "int64"
+                        },
+                        "reason": {
+                          "type": "string"
+                        },
+                        "severity": {
+                          "type": "string"
+                        },
+                        "status": {
+                          "type": "string"
+                        },
+                        "type": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  },
+                  "observedGeneration": {
+                    "type": "integer",
+                    "format": "int64"
+                  },
+                  "phase": {
+                    "type": "string",
+                    "enum": [
+                      "Provisioning",
+                      "DataRestoring",
+                      "Ready",
+                      "Critical",
+                      "NotReady",
+                      "Halted",
+                      "Unknown"
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    ]
+  },
+  "status": {
+    "conditions": null,
+    "acceptedNames": {
+      "plural": "",
+      "kind": ""
+    },
+    "storedVersions": null
+  }
+}

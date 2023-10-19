@@ -1,0 +1,35 @@
+{
+  "kind": "ResourceEditor",
+  "apiVersion": "ui.k8s.appscode.com/v1alpha1",
+  "metadata": {
+    "name": "recoveryservices.azure.upbound.io-v1beta1-siterecoveryprotectioncontainers",
+    "creationTimestamp": null,
+    "labels": {
+      "k8s.io/group": "recoveryservices.azure.upbound.io",
+      "k8s.io/kind": "SiteRecoveryProtectionContainer",
+      "k8s.io/resource": "siterecoveryprotectioncontainers",
+      "k8s.io/version": "v1beta1"
+    }
+  },
+  "spec": {
+    "resource": {
+      "group": "recoveryservices.azure.upbound.io",
+      "version": "v1beta1",
+      "name": "siterecoveryprotectioncontainers",
+      "kind": "SiteRecoveryProtectionContainer",
+      "scope": "Cluster"
+    },
+    "ui": {
+      "editor": {
+        "name": "recoveryservicesazureupboundio-siterecoveryprotectioncontainer-editor",
+        "version": "v0.4.18",
+        "sourceRef": {
+          "apiGroup": "source.toolkit.fluxcd.io",
+          "kind": "HelmRepository",
+          "name": "bytebuilders-ui"
+        }
+      },
+      "enforceQuota": false
+    }
+  }
+}

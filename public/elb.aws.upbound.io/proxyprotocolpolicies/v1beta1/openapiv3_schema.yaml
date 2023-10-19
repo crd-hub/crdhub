@@ -1,10 +1,15 @@
+$schema: http://json-schema.org/schema#
 description: ProxyProtocolPolicy is the Schema for the ProxyProtocolPolicys API. Provides a proxy protocol policy, which allows an ELB to carry a client connection information to a backend.
 properties:
   apiVersion:
     description: 'APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources'
+    enum:
+    - elb.aws.upbound.io/v1beta1
     type: string
   kind:
     description: 'Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds'
+    enum:
+    - ProxyProtocolPolicy
     type: string
   metadata:
     properties:

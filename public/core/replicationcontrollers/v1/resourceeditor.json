@@ -1,0 +1,45 @@
+{
+  "kind": "ResourceEditor",
+  "apiVersion": "ui.k8s.appscode.com/v1alpha1",
+  "metadata": {
+    "name": "core-v1-replicationcontrollers",
+    "creationTimestamp": null,
+    "labels": {
+      "k8s.io/group": "",
+      "k8s.io/kind": "ReplicationController",
+      "k8s.io/resource": "replicationcontrollers",
+      "k8s.io/version": "v1"
+    }
+  },
+  "spec": {
+    "resource": {
+      "group": "",
+      "version": "v1",
+      "name": "replicationcontrollers",
+      "kind": "ReplicationController",
+      "scope": "Namespaced"
+    },
+    "ui": {
+      "editor": {
+        "name": "core-replicationcontroller-editor",
+        "version": "v0.4.18",
+        "sourceRef": {
+          "apiGroup": "source.toolkit.fluxcd.io",
+          "kind": "HelmRepository",
+          "name": "bytebuilders-ui"
+        }
+      },
+      "enforceQuota": false
+    },
+    "icons": [
+      {
+        "src": "https://cdn.appscode.com/k8s/icons/core/replicationcontrollers.svg",
+        "type": "image/svg+xml"
+      },
+      {
+        "src": "https://cdn.appscode.com/k8s/icons/core/replicationcontrollers.png",
+        "type": "image/png"
+      }
+    ]
+  }
+}

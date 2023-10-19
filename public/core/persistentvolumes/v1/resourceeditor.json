@@ -1,0 +1,45 @@
+{
+  "kind": "ResourceEditor",
+  "apiVersion": "ui.k8s.appscode.com/v1alpha1",
+  "metadata": {
+    "name": "core-v1-persistentvolumes",
+    "creationTimestamp": null,
+    "labels": {
+      "k8s.io/group": "",
+      "k8s.io/kind": "PersistentVolume",
+      "k8s.io/resource": "persistentvolumes",
+      "k8s.io/version": "v1"
+    }
+  },
+  "spec": {
+    "resource": {
+      "group": "",
+      "version": "v1",
+      "name": "persistentvolumes",
+      "kind": "PersistentVolume",
+      "scope": "Cluster"
+    },
+    "ui": {
+      "editor": {
+        "name": "core-persistentvolume-editor",
+        "version": "v0.4.18",
+        "sourceRef": {
+          "apiGroup": "source.toolkit.fluxcd.io",
+          "kind": "HelmRepository",
+          "name": "bytebuilders-ui"
+        }
+      },
+      "enforceQuota": false
+    },
+    "icons": [
+      {
+        "src": "https://cdn.appscode.com/k8s/icons/core/persistentvolumes.svg",
+        "type": "image/svg+xml"
+      },
+      {
+        "src": "https://cdn.appscode.com/k8s/icons/core/persistentvolumes.png",
+        "type": "image/png"
+      }
+    ]
+  }
+}

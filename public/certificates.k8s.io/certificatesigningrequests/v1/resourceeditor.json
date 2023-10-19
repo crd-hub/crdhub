@@ -1,0 +1,45 @@
+{
+  "kind": "ResourceEditor",
+  "apiVersion": "ui.k8s.appscode.com/v1alpha1",
+  "metadata": {
+    "name": "certificates.k8s.io-v1-certificatesigningrequests",
+    "creationTimestamp": null,
+    "labels": {
+      "k8s.io/group": "certificates.k8s.io",
+      "k8s.io/kind": "CertificateSigningRequest",
+      "k8s.io/resource": "certificatesigningrequests",
+      "k8s.io/version": "v1"
+    }
+  },
+  "spec": {
+    "resource": {
+      "group": "certificates.k8s.io",
+      "version": "v1",
+      "name": "certificatesigningrequests",
+      "kind": "CertificateSigningRequest",
+      "scope": "Namespaced"
+    },
+    "ui": {
+      "editor": {
+        "name": "certificatesk8sio-certificatesigningrequest-editor",
+        "version": "v0.4.18",
+        "sourceRef": {
+          "apiGroup": "source.toolkit.fluxcd.io",
+          "kind": "HelmRepository",
+          "name": "bytebuilders-ui"
+        }
+      },
+      "enforceQuota": false
+    },
+    "icons": [
+      {
+        "src": "https://cdn.appscode.com/k8s/icons/certificates.k8s.io/certificatesigningrequests.svg",
+        "type": "image/svg+xml"
+      },
+      {
+        "src": "https://cdn.appscode.com/k8s/icons/certificates.k8s.io/certificatesigningrequests.png",
+        "type": "image/png"
+      }
+    ]
+  }
+}

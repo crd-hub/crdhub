@@ -1,0 +1,146 @@
+{
+  "kind": "CustomResourceDefinition",
+  "apiVersion": "apiextensions.k8s.io/v1",
+  "metadata": {
+    "name": "proxysqlversions.catalog.kubedb.com",
+    "creationTimestamp": null,
+    "labels": {
+      "app.kubernetes.io/name": "kubedb"
+    }
+  },
+  "spec": {
+    "group": "catalog.kubedb.com",
+    "names": {
+      "plural": "proxysqlversions",
+      "singular": "proxysqlversion",
+      "kind": "ProxySQLVersion",
+      "listKind": "ProxySQLVersionList",
+      "categories": [
+        "datastore",
+        "kubedb",
+        "appscode"
+      ]
+    },
+    "scope": "Cluster",
+    "versions": [
+      {
+        "name": "v1alpha1",
+        "served": true,
+        "storage": true,
+        "schema": {
+          "openAPIV3Schema": {
+            "type": "object",
+            "properties": {
+              "apiVersion": {
+                "type": "string"
+              },
+              "kind": {
+                "type": "string"
+              },
+              "metadata": {
+                "type": "object"
+              },
+              "spec": {
+                "type": "object",
+                "required": [
+                  "podSecurityPolicies",
+                  "proxysql",
+                  "version"
+                ],
+                "properties": {
+                  "deprecated": {
+                    "type": "boolean"
+                  },
+                  "exporter": {
+                    "type": "object",
+                    "required": [
+                      "image"
+                    ],
+                    "properties": {
+                      "image": {
+                        "type": "string"
+                      }
+                    }
+                  },
+                  "podSecurityPolicies": {
+                    "type": "object",
+                    "required": [
+                      "databasePolicyName"
+                    ],
+                    "properties": {
+                      "databasePolicyName": {
+                        "type": "string"
+                      }
+                    }
+                  },
+                  "proxysql": {
+                    "type": "object",
+                    "required": [
+                      "image"
+                    ],
+                    "properties": {
+                      "image": {
+                        "type": "string"
+                      }
+                    }
+                  },
+                  "updateConstraints": {
+                    "type": "object",
+                    "properties": {
+                      "allowlist": {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        }
+                      },
+                      "denylist": {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  },
+                  "version": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "subresources": {},
+        "additionalPrinterColumns": [
+          {
+            "name": "Version",
+            "type": "string",
+            "jsonPath": ".spec.version"
+          },
+          {
+            "name": "ProxySQL_IMAGE",
+            "type": "string",
+            "jsonPath": ".spec.proxysql.image"
+          },
+          {
+            "name": "Deprecated",
+            "type": "boolean",
+            "jsonPath": ".spec.deprecated"
+          },
+          {
+            "name": "Age",
+            "type": "date",
+            "jsonPath": ".metadata.creationTimestamp"
+          }
+        ]
+      }
+    ]
+  },
+  "status": {
+    "conditions": null,
+    "acceptedNames": {
+      "plural": "",
+      "kind": ""
+    },
+    "storedVersions": null
+  }
+}

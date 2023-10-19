@@ -1,7 +1,12 @@
+$schema: http://json-schema.org/schema#
 properties:
   apiVersion:
+    enum:
+    - ui.kubedb.com/v1alpha1
     type: string
   kind:
+    enum:
+    - ElasticsearchInsight
     type: string
   metadata:
     properties:

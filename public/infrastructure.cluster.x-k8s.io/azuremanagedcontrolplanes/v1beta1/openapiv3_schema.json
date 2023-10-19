@@ -1,0 +1,559 @@
+{
+  "$schema": "http://json-schema.org/schema#",
+  "description": "AzureManagedControlPlane is the Schema for the azuremanagedcontrolplanes API.",
+  "type": "object",
+  "properties": {
+    "apiVersion": {
+      "description": "APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources",
+      "type": "string",
+      "enum": [
+        "infrastructure.cluster.x-k8s.io/v1beta1"
+      ]
+    },
+    "kind": {
+      "description": "Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds",
+      "type": "string",
+      "enum": [
+        "AzureManagedControlPlane"
+      ]
+    },
+    "metadata": {
+      "type": "object",
+      "properties": {
+        "annotations": {
+          "description": "Annotations is an unstructured key value map stored with a resource that may be set by external tools to store and retrieve arbitrary metadata. They are not queryable and should be preserved when modifying objects. More info: http://kubernetes.io/docs/user-guide/annotations",
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          }
+        },
+        "labels": {
+          "description": "Map of string keys and values that can be used to organize and categorize (scope and select) objects. May match selectors of replication controllers and services. More info: http://kubernetes.io/docs/user-guide/labels",
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          }
+        },
+        "name": {
+          "description": "Name must be unique within a namespace. Is required when creating resources, although some resources may allow a client to request the generation of an appropriate name automatically. Name is primarily intended for creation idempotence and configuration definition. Cannot be updated. More info: http://kubernetes.io/docs/user-guide/identifiers#names",
+          "type": "string"
+        },
+        "namespace": {
+          "description": "Namespace defines the space within which each name must be unique. An empty namespace is equivalent to the \"default\" namespace, but \"default\" is the canonical representation. Not all objects are required to be scoped to a namespace - the value of this field for those objects will be empty. \n Must be a DNS_LABEL. Cannot be updated. More info: http://kubernetes.io/docs/user-guide/namespaces",
+          "type": "string"
+        }
+      }
+    },
+    "spec": {
+      "description": "AzureManagedControlPlaneSpec defines the desired state of AzureManagedControlPlane.",
+      "type": "object",
+      "required": [
+        "location",
+        "resourceGroupName",
+        "sshPublicKey",
+        "version"
+      ],
+      "properties": {
+        "aadProfile": {
+          "description": "AadProfile is Azure Active Directory configuration to integrate with AKS for aad authentication.",
+          "type": "object",
+          "required": [
+            "adminGroupObjectIDs",
+            "managed"
+          ],
+          "properties": {
+            "adminGroupObjectIDs": {
+              "description": "AdminGroupObjectIDs - AAD group object IDs that will have admin role of the cluster.",
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "managed": {
+              "description": "Managed - Whether to enable managed AAD.",
+              "type": "boolean"
+            }
+          }
+        },
+        "additionalTags": {
+          "description": "AdditionalTags is an optional set of tags to add to Azure resources managed by the Azure provider, in addition to the ones added by default.",
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          }
+        },
+        "addonProfiles": {
+          "description": "AddonProfiles are the profiles of managed cluster add-on.",
+          "type": "array",
+          "items": {
+            "description": "AddonProfile represents a managed cluster add-on.",
+            "type": "object",
+            "required": [
+              "enabled",
+              "name"
+            ],
+            "properties": {
+              "config": {
+                "description": "Config - Key-value pairs for configuring the add-on.",
+                "type": "object",
+                "additionalProperties": {
+                  "type": "string"
+                }
+              },
+              "enabled": {
+                "description": "Enabled - Whether the add-on is enabled or not.",
+                "type": "boolean"
+              },
+              "name": {
+                "description": "Name - The name of the managed cluster add-on.",
+                "type": "string"
+              }
+            }
+          }
+        },
+        "apiServerAccessProfile": {
+          "description": "APIServerAccessProfile is the access profile for AKS API server.",
+          "type": "object",
+          "properties": {
+            "authorizedIPRanges": {
+              "description": "AuthorizedIPRanges - Authorized IP Ranges to kubernetes API server.",
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "enablePrivateCluster": {
+              "description": "EnablePrivateCluster - Whether to create the cluster as a private cluster or not.",
+              "type": "boolean"
+            },
+            "enablePrivateClusterPublicFQDN": {
+              "description": "EnablePrivateClusterPublicFQDN - Whether to create additional public FQDN for private cluster or not.",
+              "type": "boolean"
+            },
+            "privateDNSZone": {
+              "description": "PrivateDNSZone - Private dns zone mode for private cluster.",
+              "type": "string",
+              "enum": [
+                "System",
+                "None"
+              ]
+            }
+          }
+        },
+        "autoscalerProfile": {
+          "description": "AutoscalerProfile is the parameters to be applied to the cluster-autoscaler when enabled",
+          "type": "object",
+          "properties": {
+            "balanceSimilarNodeGroups": {
+              "description": "BalanceSimilarNodeGroups - Valid values are 'true' and 'false'. The default is false.",
+              "type": "string",
+              "enum": [
+                "true",
+                "false"
+              ]
+            },
+            "expander": {
+              "description": "Expander - If not specified, the default is 'random'. See [expanders](https://github.com/kubernetes/autoscaler/blob/master/cluster-autoscaler/FAQ.md#what-are-expanders) for more information.",
+              "type": "string",
+              "enum": [
+                "least-waste",
+                "most-pods",
+                "priority",
+                "random"
+              ]
+            },
+            "maxEmptyBulkDelete": {
+              "description": "MaxEmptyBulkDelete - The default is 10.",
+              "type": "string"
+            },
+            "maxGracefulTerminationSec": {
+              "description": "MaxGracefulTerminationSec - The default is 600.",
+              "type": "string",
+              "pattern": "^(\\d+)$"
+            },
+            "maxNodeProvisionTime": {
+              "description": "MaxNodeProvisionTime - The default is '15m'. Values must be an integer followed by an 'm'. No unit of time other than minutes (m) is supported.",
+              "type": "string",
+              "pattern": "^(\\d+)m$"
+            },
+            "maxTotalUnreadyPercentage": {
+              "description": "MaxTotalUnreadyPercentage - The default is 45. The maximum is 100 and the minimum is 0.",
+              "type": "string",
+              "maxLength": 3,
+              "minLength": 1,
+              "pattern": "^(\\d+)$"
+            },
+            "newPodScaleUpDelay": {
+              "description": "NewPodScaleUpDelay - For scenarios like burst/batch scale where you don't want CA to act before the kubernetes scheduler could schedule all the pods, you can tell CA to ignore unscheduled pods before they're a certain age. The default is '0s'. Values must be an integer followed by a unit ('s' for seconds, 'm' for minutes, 'h' for hours, etc).",
+              "type": "string"
+            },
+            "okTotalUnreadyCount": {
+              "description": "OkTotalUnreadyCount - This must be an integer. The default is 3.",
+              "type": "string",
+              "pattern": "^(\\d+)$"
+            },
+            "scaleDownDelayAfterAdd": {
+              "description": "ScaleDownDelayAfterAdd - The default is '10m'. Values must be an integer followed by an 'm'. No unit of time other than minutes (m) is supported.",
+              "type": "string",
+              "pattern": "^(\\d+)m$"
+            },
+            "scaleDownDelayAfterDelete": {
+              "description": "ScaleDownDelayAfterDelete - The default is the scan-interval. Values must be an integer followed by an 's'. No unit of time other than seconds (s) is supported.",
+              "type": "string",
+              "pattern": "^(\\d+)s$"
+            },
+            "scaleDownDelayAfterFailure": {
+              "description": "ScaleDownDelayAfterFailure - The default is '3m'. Values must be an integer followed by an 'm'. No unit of time other than minutes (m) is supported.",
+              "type": "string",
+              "pattern": "^(\\d+)m$"
+            },
+            "scaleDownUnneededTime": {
+              "description": "ScaleDownUnneededTime - The default is '10m'. Values must be an integer followed by an 'm'. No unit of time other than minutes (m) is supported.",
+              "type": "string",
+              "pattern": "^(\\d+)m$"
+            },
+            "scaleDownUnreadyTime": {
+              "description": "ScaleDownUnreadyTime - The default is '20m'. Values must be an integer followed by an 'm'. No unit of time other than minutes (m) is supported.",
+              "type": "string",
+              "pattern": "^(\\d+)m$"
+            },
+            "scaleDownUtilizationThreshold": {
+              "description": "ScaleDownUtilizationThreshold - The default is '0.5'.",
+              "type": "string"
+            },
+            "scanInterval": {
+              "description": "ScanInterval - How often cluster is reevaluated for scale up or down. The default is '10s'.",
+              "type": "string",
+              "pattern": "^(\\d+)s$"
+            },
+            "skipNodesWithLocalStorage": {
+              "description": "SkipNodesWithLocalStorage - The default is false.",
+              "type": "string",
+              "enum": [
+                "true",
+                "false"
+              ]
+            },
+            "skipNodesWithSystemPods": {
+              "description": "SkipNodesWithSystemPods - The default is true.",
+              "type": "string",
+              "enum": [
+                "true",
+                "false"
+              ]
+            }
+          }
+        },
+        "controlPlaneEndpoint": {
+          "description": "ControlPlaneEndpoint represents the endpoint used to communicate with the control plane.",
+          "type": "object",
+          "required": [
+            "host",
+            "port"
+          ],
+          "properties": {
+            "host": {
+              "description": "The hostname on which the API server is serving.",
+              "type": "string"
+            },
+            "port": {
+              "description": "The port on which the API server is serving.",
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        },
+        "dnsServiceIP": {
+          "description": "DNSServiceIP is an IP address assigned to the Kubernetes DNS service. It must be within the Kubernetes service address range specified in serviceCidr.",
+          "type": "string"
+        },
+        "identityRef": {
+          "description": "IdentityRef is a reference to a AzureClusterIdentity to be used when reconciling this cluster",
+          "type": "object",
+          "properties": {
+            "apiVersion": {
+              "description": "API version of the referent.",
+              "type": "string"
+            },
+            "fieldPath": {
+              "description": "If referring to a piece of an object instead of an entire object, this string should contain a valid JSON/Go field access statement, such as desiredState.manifest.containers[2]. For example, if the object reference is to a container within a pod, this would take on a value like: \"spec.containers{name}\" (where \"name\" refers to the name of the container that triggered the event) or if no container name is specified \"spec.containers[2]\" (container with index 2 in this pod). This syntax is chosen only to have some well-defined way of referencing a part of an object. TODO: this design is not final and this field is subject to change in the future.",
+              "type": "string"
+            },
+            "kind": {
+              "description": "Kind of the referent. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds",
+              "type": "string"
+            },
+            "name": {
+              "description": "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+              "type": "string"
+            },
+            "namespace": {
+              "description": "Namespace of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/",
+              "type": "string"
+            },
+            "resourceVersion": {
+              "description": "Specific resourceVersion to which this reference is made, if any. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#concurrency-control-and-consistency",
+              "type": "string"
+            },
+            "uid": {
+              "description": "UID of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#uids",
+              "type": "string"
+            }
+          },
+          "x-kubernetes-map-type": "atomic"
+        },
+        "loadBalancerProfile": {
+          "description": "LoadBalancerProfile is the profile of the cluster load balancer.",
+          "type": "object",
+          "properties": {
+            "allocatedOutboundPorts": {
+              "description": "AllocatedOutboundPorts - Desired number of allocated SNAT ports per VM. Allowed values must be in the range of 0 to 64000 (inclusive). The default value is 0 which results in Azure dynamically allocating ports.",
+              "type": "integer",
+              "format": "int32"
+            },
+            "idleTimeoutInMinutes": {
+              "description": "IdleTimeoutInMinutes - Desired outbound flow idle timeout in minutes. Allowed values must be in the range of 4 to 120 (inclusive). The default value is 30 minutes.",
+              "type": "integer",
+              "format": "int32"
+            },
+            "managedOutboundIPs": {
+              "description": "ManagedOutboundIPs - Desired managed outbound IPs for the cluster load balancer.",
+              "type": "integer",
+              "format": "int32"
+            },
+            "outboundIPPrefixes": {
+              "description": "OutboundIPPrefixes - Desired outbound IP Prefix resources for the cluster load balancer.",
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "outboundIPs": {
+              "description": "OutboundIPs - Desired outbound IP resources for the cluster load balancer.",
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          }
+        },
+        "loadBalancerSKU": {
+          "description": "LoadBalancerSKU is the SKU of the loadBalancer to be provisioned.",
+          "type": "string",
+          "enum": [
+            "Basic",
+            "Standard"
+          ]
+        },
+        "location": {
+          "description": "Location is a string matching one of the canonical Azure region names. Examples: \"westus2\", \"eastus\".",
+          "type": "string"
+        },
+        "networkPlugin": {
+          "description": "NetworkPlugin used for building Kubernetes network.",
+          "type": "string",
+          "enum": [
+            "azure",
+            "kubenet"
+          ]
+        },
+        "networkPolicy": {
+          "description": "NetworkPolicy used for building Kubernetes network.",
+          "type": "string",
+          "enum": [
+            "azure",
+            "calico"
+          ]
+        },
+        "nodeResourceGroupName": {
+          "description": "NodeResourceGroupName is the name of the resource group containing cluster IaaS resources. Will be populated to default in webhook.",
+          "type": "string"
+        },
+        "outboundType": {
+          "description": "Outbound configuration used by Nodes.",
+          "type": "string",
+          "enum": [
+            "loadBalancer",
+            "managedNATGateway",
+            "userAssignedNATGateway",
+            "userDefinedRouting"
+          ]
+        },
+        "resourceGroupName": {
+          "description": "ResourceGroupName is the name of the Azure resource group for this AKS Cluster.",
+          "type": "string"
+        },
+        "sku": {
+          "description": "SKU is the SKU of the AKS to be provisioned.",
+          "type": "object",
+          "required": [
+            "tier"
+          ],
+          "properties": {
+            "tier": {
+              "description": "Tier - Tier of an AKS cluster.",
+              "type": "string",
+              "enum": [
+                "Free",
+                "Paid"
+              ]
+            }
+          }
+        },
+        "sshPublicKey": {
+          "description": "SSHPublicKey is a string literal containing an ssh public key base64 encoded.",
+          "type": "string"
+        },
+        "subscriptionID": {
+          "description": "SubscriptionID is the GUID of the Azure subscription to hold this cluster.",
+          "type": "string"
+        },
+        "version": {
+          "description": "Version defines the desired Kubernetes version.",
+          "type": "string",
+          "minLength": 2
+        },
+        "virtualNetwork": {
+          "description": "VirtualNetwork describes the vnet for the AKS cluster. Will be created if it does not exist.",
+          "type": "object",
+          "required": [
+            "cidrBlock",
+            "name"
+          ],
+          "properties": {
+            "cidrBlock": {
+              "type": "string"
+            },
+            "name": {
+              "type": "string"
+            },
+            "resourceGroup": {
+              "description": "ResourceGroup is the name of the Azure resource group for the VNet and Subnet.",
+              "type": "string"
+            },
+            "subnet": {
+              "description": "ManagedControlPlaneSubnet describes a subnet for an AKS cluster.",
+              "type": "object",
+              "required": [
+                "cidrBlock",
+                "name"
+              ],
+              "properties": {
+                "cidrBlock": {
+                  "type": "string"
+                },
+                "name": {
+                  "type": "string"
+                },
+                "privateEndpoints": {
+                  "description": "PrivateEndpoints is a slice of Virtual Network private endpoints to create for the subnets.",
+                  "type": "array",
+                  "items": {
+                    "description": "PrivateEndpointSpec configures an Azure Private Endpoint.",
+                    "type": "object",
+                    "required": [
+                      "name"
+                    ],
+                    "properties": {
+                      "applicationSecurityGroups": {
+                        "description": "ApplicationSecurityGroups specifies the Application security group in which the private endpoint IP configuration is included.",
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        }
+                      },
+                      "customNetworkInterfaceName": {
+                        "description": "CustomNetworkInterfaceName specifies the network interface name associated with the private endpoint.",
+                        "type": "string"
+                      },
+                      "location": {
+                        "description": "Location specifies the region to create the private endpoint.",
+                        "type": "string"
+                      },
+                      "manualApproval": {
+                        "description": "ManualApproval specifies if the connection approval needs to be done manually or not. Set it true when the network admin does not have access to approve connections to the remote resource. Defaults to false.",
+                        "type": "boolean"
+                      },
+                      "name": {
+                        "description": "Name specifies the name of the private endpoint.",
+                        "type": "string"
+                      },
+                      "privateIPAddresses": {
+                        "description": "PrivateIPAddresses specifies the IP addresses for the network interface associated with the private endpoint. They have to be part of the subnet where the private endpoint is linked.",
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        }
+                      },
+                      "privateLinkServiceConnections": {
+                        "description": "PrivateLinkServiceConnections specifies Private Link Service Connections of the private endpoint.",
+                        "type": "array",
+                        "items": {
+                          "description": "PrivateLinkServiceConnection defines the specification for a private link service connection associated with a private endpoint.",
+                          "type": "object",
+                          "properties": {
+                            "groupIDs": {
+                              "description": "GroupIDs specifies the ID(s) of the group(s) obtained from the remote resource that this private endpoint should connect to.",
+                              "type": "array",
+                              "items": {
+                                "type": "string"
+                              }
+                            },
+                            "name": {
+                              "description": "Name specifies the name of the private link service.",
+                              "type": "string"
+                            },
+                            "privateLinkServiceID": {
+                              "description": "PrivateLinkServiceID specifies the resource ID of the private link service.",
+                              "type": "string"
+                            },
+                            "requestMessage": {
+                              "description": "RequestMessage specifies a message passed to the owner of the remote resource with the private endpoint connection request.",
+                              "type": "string",
+                              "maxLength": 140
+                            }
+                          }
+                        }
+                      }
+                    }
+                  },
+                  "x-kubernetes-list-map-keys": [
+                    "name"
+                  ],
+                  "x-kubernetes-list-type": "map"
+                },
+                "serviceEndpoints": {
+                  "description": "ServiceEndpoints is a slice of Virtual Network service endpoints to enable for the subnets.",
+                  "type": "array",
+                  "items": {
+                    "description": "ServiceEndpointSpec configures an Azure Service Endpoint.",
+                    "type": "object",
+                    "required": [
+                      "locations",
+                      "service"
+                    ],
+                    "properties": {
+                      "locations": {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        }
+                      },
+                      "service": {
+                        "type": "string"
+                      }
+                    }
+                  },
+                  "x-kubernetes-list-map-keys": [
+                    "service"
+                  ],
+                  "x-kubernetes-list-type": "map"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

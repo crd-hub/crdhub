@@ -1,0 +1,35 @@
+{
+  "kind": "ResourceEditor",
+  "apiVersion": "ui.k8s.appscode.com/v1alpha1",
+  "metadata": {
+    "name": "databricks.azure.upbound.io-v1beta1-workspacecustomermanagedkeys",
+    "creationTimestamp": null,
+    "labels": {
+      "k8s.io/group": "databricks.azure.upbound.io",
+      "k8s.io/kind": "WorkspaceCustomerManagedKey",
+      "k8s.io/resource": "workspacecustomermanagedkeys",
+      "k8s.io/version": "v1beta1"
+    }
+  },
+  "spec": {
+    "resource": {
+      "group": "databricks.azure.upbound.io",
+      "version": "v1beta1",
+      "name": "workspacecustomermanagedkeys",
+      "kind": "WorkspaceCustomerManagedKey",
+      "scope": "Cluster"
+    },
+    "ui": {
+      "editor": {
+        "name": "databricksazureupboundio-workspacecustomermanagedkey-editor",
+        "version": "v0.4.18",
+        "sourceRef": {
+          "apiGroup": "source.toolkit.fluxcd.io",
+          "kind": "HelmRepository",
+          "name": "bytebuilders-ui"
+        }
+      },
+      "enforceQuota": false
+    }
+  }
+}

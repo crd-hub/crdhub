@@ -1,0 +1,35 @@
+{
+  "kind": "ResourceEditor",
+  "apiVersion": "ui.k8s.appscode.com/v1alpha1",
+  "metadata": {
+    "name": "core.k8s.appscode.com-v1alpha1-projects",
+    "creationTimestamp": null,
+    "labels": {
+      "k8s.io/group": "core.k8s.appscode.com",
+      "k8s.io/kind": "Project",
+      "k8s.io/resource": "projects",
+      "k8s.io/version": "v1alpha1"
+    }
+  },
+  "spec": {
+    "resource": {
+      "group": "core.k8s.appscode.com",
+      "version": "v1alpha1",
+      "name": "projects",
+      "kind": "Project",
+      "scope": "Cluster"
+    },
+    "ui": {
+      "editor": {
+        "name": "corek8sappscodecom-project-editor",
+        "version": "v0.4.18",
+        "sourceRef": {
+          "apiGroup": "source.toolkit.fluxcd.io",
+          "kind": "HelmRepository",
+          "name": "bytebuilders-ui"
+        }
+      },
+      "enforceQuota": false
+    }
+  }
+}

@@ -1,0 +1,35 @@
+{
+  "kind": "ResourceEditor",
+  "apiVersion": "ui.k8s.appscode.com/v1alpha1",
+  "metadata": {
+    "name": "ui.kubedb.com-v1alpha1-redisschemaoverviews",
+    "creationTimestamp": null,
+    "labels": {
+      "k8s.io/group": "ui.kubedb.com",
+      "k8s.io/kind": "RedisSchemaOverview",
+      "k8s.io/resource": "redisschemaoverviews",
+      "k8s.io/version": "v1alpha1"
+    }
+  },
+  "spec": {
+    "resource": {
+      "group": "ui.kubedb.com",
+      "version": "v1alpha1",
+      "name": "redisschemaoverviews",
+      "kind": "RedisSchemaOverview",
+      "scope": "Namespaced"
+    },
+    "ui": {
+      "editor": {
+        "name": "uikubedbcom-redisschemaoverview-editor",
+        "version": "v0.4.18",
+        "sourceRef": {
+          "apiGroup": "source.toolkit.fluxcd.io",
+          "kind": "HelmRepository",
+          "name": "bytebuilders-ui"
+        }
+      },
+      "enforceQuota": false
+    }
+  }
+}

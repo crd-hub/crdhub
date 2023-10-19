@@ -1,0 +1,125 @@
+{
+  "$schema": "http://json-schema.org/schema#",
+  "description": "A ProviderConfig configures a Azure provider.",
+  "type": "object",
+  "required": [
+    "spec"
+  ],
+  "properties": {
+    "apiVersion": {
+      "description": "APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources",
+      "type": "string",
+      "enum": [
+        "azure.kubeform.com/v1beta1"
+      ]
+    },
+    "kind": {
+      "description": "Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds",
+      "type": "string",
+      "enum": [
+        "ProviderConfig"
+      ]
+    },
+    "metadata": {
+      "type": "object",
+      "properties": {
+        "annotations": {
+          "description": "Annotations is an unstructured key value map stored with a resource that may be set by external tools to store and retrieve arbitrary metadata. They are not queryable and should be preserved when modifying objects. More info: http://kubernetes.io/docs/user-guide/annotations",
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          }
+        },
+        "labels": {
+          "description": "Map of string keys and values that can be used to organize and categorize (scope and select) objects. May match selectors of replication controllers and services. More info: http://kubernetes.io/docs/user-guide/labels",
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          }
+        },
+        "name": {
+          "description": "Name must be unique within a namespace. Is required when creating resources, although some resources may allow a client to request the generation of an appropriate name automatically. Name is primarily intended for creation idempotence and configuration definition. Cannot be updated. More info: http://kubernetes.io/docs/user-guide/identifiers#names",
+          "type": "string"
+        }
+      }
+    },
+    "spec": {
+      "description": "A ProviderConfigSpec defines the desired state of a ProviderConfig.",
+      "type": "object",
+      "required": [
+        "credentials"
+      ],
+      "properties": {
+        "credentials": {
+          "description": "Credentials required to authenticate to this provider.",
+          "type": "object",
+          "required": [
+            "source"
+          ],
+          "properties": {
+            "env": {
+              "description": "Env is a reference to an environment variable that contains credentials that must be used to connect to the provider.",
+              "type": "object",
+              "required": [
+                "name"
+              ],
+              "properties": {
+                "name": {
+                  "description": "Name is the name of an environment variable.",
+                  "type": "string"
+                }
+              }
+            },
+            "fs": {
+              "description": "Fs is a reference to a filesystem location that contains credentials that must be used to connect to the provider.",
+              "type": "object",
+              "required": [
+                "path"
+              ],
+              "properties": {
+                "path": {
+                  "description": "Path is a filesystem path.",
+                  "type": "string"
+                }
+              }
+            },
+            "secretRef": {
+              "description": "A SecretRef is a reference to a secret key that contains the credentials that must be used to connect to the provider.",
+              "type": "object",
+              "required": [
+                "key",
+                "name",
+                "namespace"
+              ],
+              "properties": {
+                "key": {
+                  "description": "The key to select.",
+                  "type": "string"
+                },
+                "name": {
+                  "description": "Name of the secret.",
+                  "type": "string"
+                },
+                "namespace": {
+                  "description": "Namespace of the secret.",
+                  "type": "string"
+                }
+              }
+            },
+            "source": {
+              "description": "Source of the provider credentials.",
+              "type": "string",
+              "enum": [
+                "None",
+                "Secret",
+                "InjectedIdentity",
+                "Environment",
+                "Filesystem"
+              ]
+            }
+          }
+        }
+      }
+    }
+  }
+}

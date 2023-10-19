@@ -1,0 +1,227 @@
+{
+  "kind": "CustomResourceDefinition",
+  "apiVersion": "apiextensions.k8s.io/v1",
+  "metadata": {
+    "name": "products.products.x-helm.dev",
+    "creationTimestamp": null
+  },
+  "spec": {
+    "group": "products.x-helm.dev",
+    "names": {
+      "plural": "products",
+      "singular": "product",
+      "kind": "Product",
+      "listKind": "ProductList"
+    },
+    "scope": "Cluster",
+    "versions": [
+      {
+        "name": "v1alpha1",
+        "served": true,
+        "storage": true,
+        "schema": {
+          "openAPIV3Schema": {
+            "type": "object",
+            "properties": {
+              "apiVersion": {
+                "description": "APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources",
+                "type": "string"
+              },
+              "kind": {
+                "description": "Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds",
+                "type": "string"
+              },
+              "metadata": {
+                "type": "object"
+              },
+              "spec": {
+                "type": "object",
+                "required": [
+                  "id",
+                  "key",
+                  "name",
+                  "owner",
+                  "phase",
+                  "shortName",
+                  "tagline"
+                ],
+                "properties": {
+                  "badges": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "required": [
+                        "alt",
+                        "logo",
+                        "url"
+                      ],
+                      "properties": {
+                        "alt": {
+                          "type": "string"
+                        },
+                        "logo": {
+                          "type": "string"
+                        },
+                        "url": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  },
+                  "description": {
+                    "type": "string"
+                  },
+                  "icons": {
+                    "type": "array",
+                    "items": {
+                      "description": "MediaSpec contains information about an image/video.",
+                      "type": "object",
+                      "required": [
+                        "src"
+                      ],
+                      "properties": {
+                        "description": {
+                          "description": "Description is human readable content explaining the purpose of the link.",
+                          "type": "string"
+                        },
+                        "size": {
+                          "description": "(optional) The size of the image in pixels (e.g., 25x25).",
+                          "type": "string"
+                        },
+                        "src": {
+                          "description": "The source for image represented as either an absolute URL to the image or a Data URL containing the image. Data URLs are defined in RFC 2397.",
+                          "type": "string"
+                        },
+                        "type": {
+                          "description": "(optional) The mine type of the image (e.g., \"image/png\").",
+                          "type": "string"
+                        }
+                      }
+                    }
+                  },
+                  "id": {
+                    "type": "string"
+                  },
+                  "key": {
+                    "type": "string"
+                  },
+                  "keywords": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  },
+                  "latestVersion": {
+                    "type": "string"
+                  },
+                  "links": {
+                    "type": "array",
+                    "items": {
+                      "description": "Link contains information about an URL to surface documentation, dashboards, etc.",
+                      "type": "object",
+                      "properties": {
+                        "description": {
+                          "description": "Description is human readable content explaining the purpose of the link.",
+                          "type": "string"
+                        },
+                        "url": {
+                          "description": "Url typically points at a website address.",
+                          "type": "string"
+                        }
+                      }
+                    }
+                  },
+                  "maintainers": {
+                    "type": "array",
+                    "items": {
+                      "description": "ContactData contains information about an individual or organization.",
+                      "type": "object",
+                      "properties": {
+                        "email": {
+                          "description": "Email is the email address.",
+                          "type": "string"
+                        },
+                        "name": {
+                          "description": "Name is the descriptive name.",
+                          "type": "string"
+                        },
+                        "url": {
+                          "description": "Url could typically be a website address.",
+                          "type": "string"
+                        }
+                      }
+                    }
+                  },
+                  "name": {
+                    "type": "string"
+                  },
+                  "owner": {
+                    "type": "integer",
+                    "format": "int64"
+                  },
+                  "ownerName": {
+                    "type": "string"
+                  },
+                  "phase": {
+                    "type": "string"
+                  },
+                  "shortName": {
+                    "type": "string"
+                  },
+                  "summary": {
+                    "type": "string"
+                  },
+                  "tagline": {
+                    "type": "string"
+                  },
+                  "unitLabel": {
+                    "type": "string"
+                  },
+                  "versions": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "required": [
+                        "version"
+                      ],
+                      "properties": {
+                        "releaseDate": {
+                          "type": "string",
+                          "format": "date-time"
+                        },
+                        "version": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  }
+                }
+              },
+              "status": {
+                "type": "object",
+                "properties": {
+                  "observedGeneration": {
+                    "description": "ObservedGeneration is the most recent generation observed for this resource. It corresponds to the resource's generation, which is updated on mutation by the API Server.",
+                    "type": "integer",
+                    "format": "int64"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "subresources": {
+          "status": {}
+        }
+      }
+    ]
+  },
+  "status": {
+    "conditions": null,
+    "acceptedNames": {
+      "plural": "",
+      "kind": ""
+    },
+    "storedVersions": null
+  }
+}

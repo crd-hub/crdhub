@@ -1,0 +1,45 @@
+{
+  "kind": "ResourceEditor",
+  "apiVersion": "ui.k8s.appscode.com/v1alpha1",
+  "metadata": {
+    "name": "monitoring.coreos.com-v1-prometheuses",
+    "creationTimestamp": null,
+    "labels": {
+      "k8s.io/group": "monitoring.coreos.com",
+      "k8s.io/kind": "Prometheus",
+      "k8s.io/resource": "prometheuses",
+      "k8s.io/version": "v1"
+    }
+  },
+  "spec": {
+    "resource": {
+      "group": "monitoring.coreos.com",
+      "version": "v1",
+      "name": "prometheuses",
+      "kind": "Prometheus",
+      "scope": "Namespaced"
+    },
+    "ui": {
+      "editor": {
+        "name": "monitoringcoreoscom-prometheus-editor",
+        "version": "v0.4.18",
+        "sourceRef": {
+          "apiGroup": "source.toolkit.fluxcd.io",
+          "kind": "HelmRepository",
+          "name": "bytebuilders-ui"
+        }
+      },
+      "enforceQuota": false
+    },
+    "icons": [
+      {
+        "src": "https://cdn.appscode.com/k8s/icons/monitoring.coreos.com/prometheuses.svg",
+        "type": "image/svg+xml"
+      },
+      {
+        "src": "https://cdn.appscode.com/k8s/icons/monitoring.coreos.com/prometheuses.png",
+        "type": "image/png"
+      }
+    ]
+  }
+}

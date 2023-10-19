@@ -1,7 +1,12 @@
+$schema: http://json-schema.org/schema#
 properties:
   apiVersion:
+    enum:
+    - kubedb.com/v1alpha2
     type: string
   kind:
+    enum:
+    - RedisSentinel
     type: string
   metadata:
     properties:

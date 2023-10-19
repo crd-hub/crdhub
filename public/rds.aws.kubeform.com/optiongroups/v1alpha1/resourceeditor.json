@@ -1,0 +1,35 @@
+{
+  "kind": "ResourceEditor",
+  "apiVersion": "ui.k8s.appscode.com/v1alpha1",
+  "metadata": {
+    "name": "rds.aws.kubeform.com-v1alpha1-optiongroups",
+    "creationTimestamp": null,
+    "labels": {
+      "k8s.io/group": "rds.aws.kubeform.com",
+      "k8s.io/kind": "OptionGroup",
+      "k8s.io/resource": "optiongroups",
+      "k8s.io/version": "v1alpha1"
+    }
+  },
+  "spec": {
+    "resource": {
+      "group": "rds.aws.kubeform.com",
+      "version": "v1alpha1",
+      "name": "optiongroups",
+      "kind": "OptionGroup",
+      "scope": "Cluster"
+    },
+    "ui": {
+      "editor": {
+        "name": "rdsawskubeformcom-optiongroup-editor",
+        "version": "v0.4.18",
+        "sourceRef": {
+          "apiGroup": "source.toolkit.fluxcd.io",
+          "kind": "HelmRepository",
+          "name": "bytebuilders-ui"
+        }
+      },
+      "enforceQuota": false
+    }
+  }
+}

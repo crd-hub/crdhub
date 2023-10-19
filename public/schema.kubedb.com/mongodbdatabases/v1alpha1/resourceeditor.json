@@ -1,0 +1,35 @@
+{
+  "kind": "ResourceEditor",
+  "apiVersion": "ui.k8s.appscode.com/v1alpha1",
+  "metadata": {
+    "name": "schema.kubedb.com-v1alpha1-mongodbdatabases",
+    "creationTimestamp": null,
+    "labels": {
+      "k8s.io/group": "schema.kubedb.com",
+      "k8s.io/kind": "MongoDBDatabase",
+      "k8s.io/resource": "mongodbdatabases",
+      "k8s.io/version": "v1alpha1"
+    }
+  },
+  "spec": {
+    "resource": {
+      "group": "schema.kubedb.com",
+      "version": "v1alpha1",
+      "name": "mongodbdatabases",
+      "kind": "MongoDBDatabase",
+      "scope": "Namespaced"
+    },
+    "ui": {
+      "editor": {
+        "name": "schemakubedbcom-mongodbdatabase-editor",
+        "version": "v0.4.18",
+        "sourceRef": {
+          "apiGroup": "source.toolkit.fluxcd.io",
+          "kind": "HelmRepository",
+          "name": "bytebuilders-ui"
+        }
+      },
+      "enforceQuota": false
+    }
+  }
+}

@@ -1,0 +1,35 @@
+{
+  "kind": "ResourceEditor",
+  "apiVersion": "ui.k8s.appscode.com/v1alpha1",
+  "metadata": {
+    "name": "wafregional.aws.upbound.io-v1beta1-sizeconstraintsets",
+    "creationTimestamp": null,
+    "labels": {
+      "k8s.io/group": "wafregional.aws.upbound.io",
+      "k8s.io/kind": "SizeConstraintSet",
+      "k8s.io/resource": "sizeconstraintsets",
+      "k8s.io/version": "v1beta1"
+    }
+  },
+  "spec": {
+    "resource": {
+      "group": "wafregional.aws.upbound.io",
+      "version": "v1beta1",
+      "name": "sizeconstraintsets",
+      "kind": "SizeConstraintSet",
+      "scope": "Cluster"
+    },
+    "ui": {
+      "editor": {
+        "name": "wafregionalawsupboundio-sizeconstraintset-editor",
+        "version": "v0.4.18",
+        "sourceRef": {
+          "apiGroup": "source.toolkit.fluxcd.io",
+          "kind": "HelmRepository",
+          "name": "bytebuilders-ui"
+        }
+      },
+      "enforceQuota": false
+    }
+  }
+}

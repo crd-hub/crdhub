@@ -1,0 +1,35 @@
+{
+  "kind": "ResourceEditor",
+  "apiVersion": "ui.k8s.appscode.com/v1alpha1",
+  "metadata": {
+    "name": "charts.x-helm.dev-v1alpha1-clusterchartpresets",
+    "creationTimestamp": null,
+    "labels": {
+      "k8s.io/group": "charts.x-helm.dev",
+      "k8s.io/kind": "ClusterChartPreset",
+      "k8s.io/resource": "clusterchartpresets",
+      "k8s.io/version": "v1alpha1"
+    }
+  },
+  "spec": {
+    "resource": {
+      "group": "charts.x-helm.dev",
+      "version": "v1alpha1",
+      "name": "clusterchartpresets",
+      "kind": "ClusterChartPreset",
+      "scope": "Cluster"
+    },
+    "ui": {
+      "editor": {
+        "name": "chartsxhelmdev-clusterchartpreset-editor",
+        "version": "v0.4.18",
+        "sourceRef": {
+          "apiGroup": "source.toolkit.fluxcd.io",
+          "kind": "HelmRepository",
+          "name": "bytebuilders-ui"
+        }
+      },
+      "enforceQuota": false
+    }
+  }
+}

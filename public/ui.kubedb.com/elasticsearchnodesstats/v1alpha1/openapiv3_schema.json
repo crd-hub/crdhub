@@ -1,0 +1,210 @@
+{
+  "$schema": "http://json-schema.org/schema#",
+  "type": "object",
+  "properties": {
+    "apiVersion": {
+      "type": "string",
+      "enum": [
+        "ui.kubedb.com/v1alpha1"
+      ]
+    },
+    "kind": {
+      "type": "string",
+      "enum": [
+        "ElasticsearchNodesStats"
+      ]
+    },
+    "metadata": {
+      "type": "object",
+      "properties": {
+        "annotations": {
+          "description": "Annotations is an unstructured key value map stored with a resource that may be set by external tools to store and retrieve arbitrary metadata. They are not queryable and should be preserved when modifying objects. More info: http://kubernetes.io/docs/user-guide/annotations",
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          }
+        },
+        "labels": {
+          "description": "Map of string keys and values that can be used to organize and categorize (scope and select) objects. May match selectors of replication controllers and services. More info: http://kubernetes.io/docs/user-guide/labels",
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          }
+        },
+        "name": {
+          "description": "Name must be unique within a namespace. Is required when creating resources, although some resources may allow a client to request the generation of an appropriate name automatically. Name is primarily intended for creation idempotence and configuration definition. Cannot be updated. More info: http://kubernetes.io/docs/user-guide/identifiers#names",
+          "type": "string"
+        },
+        "namespace": {
+          "description": "Namespace defines the space within which each name must be unique. An empty namespace is equivalent to the \"default\" namespace, but \"default\" is the canonical representation. Not all objects are required to be scoped to a namespace - the value of this field for those objects will be empty. \n Must be a DNS_LABEL. Cannot be updated. More info: http://kubernetes.io/docs/user-guide/namespaces",
+          "type": "string"
+        }
+      }
+    },
+    "spec": {
+      "type": "object",
+      "required": [
+        "nodes"
+      ],
+      "properties": {
+        "nodes": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": [
+              "host",
+              "indices",
+              "ip",
+              "name",
+              "os",
+              "roles",
+              "timestamp",
+              "transportAddr"
+            ],
+            "properties": {
+              "host": {
+                "type": "string"
+              },
+              "indices": {
+                "type": "object",
+                "additionalProperties": true
+              },
+              "ip": {
+                "type": "string"
+              },
+              "name": {
+                "type": "string"
+              },
+              "os": {
+                "type": "object",
+                "required": [
+                  "cpu",
+                  "mem",
+                  "swap",
+                  "timestamp"
+                ],
+                "properties": {
+                  "cpu": {
+                    "type": "object",
+                    "required": [
+                      "load_average",
+                      "percent"
+                    ],
+                    "properties": {
+                      "load_average": {
+                        "type": "object",
+                        "additionalProperties": {
+                          "type": "number",
+                          "format": "double"
+                        }
+                      },
+                      "percent": {
+                        "type": "integer",
+                        "format": "int64"
+                      }
+                    }
+                  },
+                  "mem": {
+                    "type": "object",
+                    "required": [
+                      "free",
+                      "free_in_bytes",
+                      "free_percent",
+                      "total",
+                      "total_in_bytes",
+                      "used",
+                      "used_in_bytes",
+                      "used_percent"
+                    ],
+                    "properties": {
+                      "free": {
+                        "type": "string"
+                      },
+                      "free_in_bytes": {
+                        "type": "integer",
+                        "format": "int64"
+                      },
+                      "free_percent": {
+                        "type": "integer",
+                        "format": "int64"
+                      },
+                      "total": {
+                        "type": "string"
+                      },
+                      "total_in_bytes": {
+                        "type": "integer",
+                        "format": "int64"
+                      },
+                      "used": {
+                        "type": "string"
+                      },
+                      "used_in_bytes": {
+                        "type": "integer",
+                        "format": "int64"
+                      },
+                      "used_percent": {
+                        "type": "integer",
+                        "format": "int64"
+                      }
+                    }
+                  },
+                  "swap": {
+                    "type": "object",
+                    "required": [
+                      "free",
+                      "free_in_bytes",
+                      "total",
+                      "total_in_bytes",
+                      "used",
+                      "used_in_bytes"
+                    ],
+                    "properties": {
+                      "free": {
+                        "type": "string"
+                      },
+                      "free_in_bytes": {
+                        "type": "integer",
+                        "format": "int64"
+                      },
+                      "total": {
+                        "type": "string"
+                      },
+                      "total_in_bytes": {
+                        "type": "integer",
+                        "format": "int64"
+                      },
+                      "used": {
+                        "type": "string"
+                      },
+                      "used_in_bytes": {
+                        "type": "integer",
+                        "format": "int64"
+                      }
+                    }
+                  },
+                  "timestamp": {
+                    "type": "integer",
+                    "format": "int64"
+                  }
+                }
+              },
+              "roles": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "timestamp": {
+                "type": "string",
+                "format": "date-time"
+              },
+              "transportAddr": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

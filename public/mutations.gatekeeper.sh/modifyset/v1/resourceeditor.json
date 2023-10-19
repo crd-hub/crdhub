@@ -1,0 +1,35 @@
+{
+  "kind": "ResourceEditor",
+  "apiVersion": "ui.k8s.appscode.com/v1alpha1",
+  "metadata": {
+    "name": "mutations.gatekeeper.sh-v1-modifyset",
+    "creationTimestamp": null,
+    "labels": {
+      "k8s.io/group": "mutations.gatekeeper.sh",
+      "k8s.io/kind": "ModifySet",
+      "k8s.io/resource": "modifyset",
+      "k8s.io/version": "v1"
+    }
+  },
+  "spec": {
+    "resource": {
+      "group": "mutations.gatekeeper.sh",
+      "version": "v1",
+      "name": "modifyset",
+      "kind": "ModifySet",
+      "scope": "Cluster"
+    },
+    "ui": {
+      "editor": {
+        "name": "mutationsgatekeepersh-modifyset-editor",
+        "version": "v0.4.18",
+        "sourceRef": {
+          "apiGroup": "source.toolkit.fluxcd.io",
+          "kind": "HelmRepository",
+          "name": "bytebuilders-ui"
+        }
+      },
+      "enforceQuota": false
+    }
+  }
+}

@@ -1,0 +1,234 @@
+{
+  "kind": "CustomResourceDefinition",
+  "apiVersion": "apiextensions.k8s.io/v1",
+  "metadata": {
+    "name": "vaultserverversions.catalog.kubevault.com",
+    "creationTimestamp": null,
+    "labels": {
+      "app.kubernetes.io/name": "kubevault"
+    }
+  },
+  "spec": {
+    "group": "catalog.kubevault.com",
+    "names": {
+      "plural": "vaultserverversions",
+      "singular": "vaultserverversion",
+      "shortNames": [
+        "vsv"
+      ],
+      "kind": "VaultServerVersion",
+      "listKind": "VaultServerVersionList",
+      "categories": [
+        "vault",
+        "appscode"
+      ]
+    },
+    "scope": "Cluster",
+    "versions": [
+      {
+        "name": "v1alpha1",
+        "served": true,
+        "storage": true,
+        "schema": {
+          "openAPIV3Schema": {
+            "type": "object",
+            "properties": {
+              "apiVersion": {
+                "description": "APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources",
+                "type": "string"
+              },
+              "kind": {
+                "description": "Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds",
+                "type": "string"
+              },
+              "metadata": {
+                "type": "object"
+              },
+              "spec": {
+                "description": "VaultServerVersionSpec is the spec for postgres version",
+                "type": "object",
+                "required": [
+                  "unsealer",
+                  "vault",
+                  "version"
+                ],
+                "properties": {
+                  "deprecated": {
+                    "description": "Deprecated versions usable but regarded as obsolete and best avoided, typically due to having been superseded.",
+                    "type": "boolean"
+                  },
+                  "exporter": {
+                    "description": "Exporter Image",
+                    "type": "object",
+                    "required": [
+                      "image"
+                    ],
+                    "properties": {
+                      "image": {
+                        "description": "Image is the Docker image name",
+                        "type": "string"
+                      },
+                      "imagePullPolicy": {
+                        "description": "ImagePullPolicy one of Always, Never, IfNotPresent. It defaults to Always if :latest is used, or IfNotPresent otherwise.",
+                        "type": "string"
+                      }
+                    }
+                  },
+                  "stash": {
+                    "description": "Stash defines backup and restore task definitions.",
+                    "type": "object",
+                    "properties": {
+                      "addon": {
+                        "description": "StashTaskSpec is the spec for app",
+                        "type": "object",
+                        "required": [
+                          "backupTask",
+                          "restoreTask"
+                        ],
+                        "properties": {
+                          "backupTask": {
+                            "description": "Backup task definition",
+                            "type": "object",
+                            "required": [
+                              "name"
+                            ],
+                            "properties": {
+                              "name": {
+                                "type": "string"
+                              },
+                              "params": {
+                                "description": "Params specifies a list of parameter to pass to the Task. Stash will use this parameters to resolve the task.",
+                                "type": "array",
+                                "items": {
+                                  "description": "Param declares a value to use for the Param called Name.",
+                                  "type": "object",
+                                  "required": [
+                                    "name",
+                                    "value"
+                                  ],
+                                  "properties": {
+                                    "name": {
+                                      "type": "string"
+                                    },
+                                    "value": {
+                                      "type": "string"
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          },
+                          "restoreTask": {
+                            "description": "Restore task definition",
+                            "type": "object",
+                            "required": [
+                              "name"
+                            ],
+                            "properties": {
+                              "name": {
+                                "type": "string"
+                              },
+                              "params": {
+                                "description": "Params specifies a list of parameter to pass to the Task. Stash will use this parameters to resolve the task.",
+                                "type": "array",
+                                "items": {
+                                  "description": "Param declares a value to use for the Param called Name.",
+                                  "type": "object",
+                                  "required": [
+                                    "name",
+                                    "value"
+                                  ],
+                                  "properties": {
+                                    "name": {
+                                      "type": "string"
+                                    },
+                                    "value": {
+                                      "type": "string"
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  },
+                  "unsealer": {
+                    "description": "Unsealer Image",
+                    "type": "object",
+                    "required": [
+                      "image"
+                    ],
+                    "properties": {
+                      "image": {
+                        "description": "Image is the Docker image name",
+                        "type": "string"
+                      },
+                      "imagePullPolicy": {
+                        "description": "ImagePullPolicy one of Always, Never, IfNotPresent. It defaults to Always if :latest is used, or IfNotPresent otherwise.",
+                        "type": "string"
+                      }
+                    }
+                  },
+                  "vault": {
+                    "description": "Vault Image",
+                    "type": "object",
+                    "required": [
+                      "image"
+                    ],
+                    "properties": {
+                      "image": {
+                        "description": "Image is the Docker image name",
+                        "type": "string"
+                      },
+                      "imagePullPolicy": {
+                        "description": "ImagePullPolicy one of Always, Never, IfNotPresent. It defaults to Always if :latest is used, or IfNotPresent otherwise.",
+                        "type": "string"
+                      }
+                    }
+                  },
+                  "version": {
+                    "description": "Version",
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "subresources": {},
+        "additionalPrinterColumns": [
+          {
+            "name": "Version",
+            "type": "string",
+            "jsonPath": ".spec.version"
+          },
+          {
+            "name": "VAULT_IMAGE",
+            "type": "string",
+            "jsonPath": ".spec.vault.image"
+          },
+          {
+            "name": "Deprecated",
+            "type": "boolean",
+            "jsonPath": ".spec.deprecated"
+          },
+          {
+            "name": "Age",
+            "type": "date",
+            "jsonPath": ".metadata.creationTimestamp"
+          }
+        ]
+      }
+    ]
+  },
+  "status": {
+    "conditions": null,
+    "acceptedNames": {
+      "plural": "",
+      "kind": ""
+    },
+    "storedVersions": null
+  }
+}

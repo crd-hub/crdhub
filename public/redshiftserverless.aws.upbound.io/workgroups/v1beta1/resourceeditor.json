@@ -1,0 +1,35 @@
+{
+  "kind": "ResourceEditor",
+  "apiVersion": "ui.k8s.appscode.com/v1alpha1",
+  "metadata": {
+    "name": "redshiftserverless.aws.upbound.io-v1beta1-workgroups",
+    "creationTimestamp": null,
+    "labels": {
+      "k8s.io/group": "redshiftserverless.aws.upbound.io",
+      "k8s.io/kind": "Workgroup",
+      "k8s.io/resource": "workgroups",
+      "k8s.io/version": "v1beta1"
+    }
+  },
+  "spec": {
+    "resource": {
+      "group": "redshiftserverless.aws.upbound.io",
+      "version": "v1beta1",
+      "name": "workgroups",
+      "kind": "Workgroup",
+      "scope": "Cluster"
+    },
+    "ui": {
+      "editor": {
+        "name": "redshiftserverlessawsupboundio-workgroup-editor",
+        "version": "v0.4.18",
+        "sourceRef": {
+          "apiGroup": "source.toolkit.fluxcd.io",
+          "kind": "HelmRepository",
+          "name": "bytebuilders-ui"
+        }
+      },
+      "enforceQuota": false
+    }
+  }
+}

@@ -1,0 +1,35 @@
+{
+  "kind": "ResourceEditor",
+  "apiVersion": "ui.k8s.appscode.com/v1alpha1",
+  "metadata": {
+    "name": "datafactory.azure.upbound.io-v1beta1-managedprivateendpoints",
+    "creationTimestamp": null,
+    "labels": {
+      "k8s.io/group": "datafactory.azure.upbound.io",
+      "k8s.io/kind": "ManagedPrivateEndpoint",
+      "k8s.io/resource": "managedprivateendpoints",
+      "k8s.io/version": "v1beta1"
+    }
+  },
+  "spec": {
+    "resource": {
+      "group": "datafactory.azure.upbound.io",
+      "version": "v1beta1",
+      "name": "managedprivateendpoints",
+      "kind": "ManagedPrivateEndpoint",
+      "scope": "Cluster"
+    },
+    "ui": {
+      "editor": {
+        "name": "datafactoryazureupboundio-managedprivateendpoint-editor",
+        "version": "v0.4.18",
+        "sourceRef": {
+          "apiGroup": "source.toolkit.fluxcd.io",
+          "kind": "HelmRepository",
+          "name": "bytebuilders-ui"
+        }
+      },
+      "enforceQuota": false
+    }
+  }
+}

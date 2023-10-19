@@ -1,0 +1,23 @@
+{
+  "kind": "ResourceEditor",
+  "apiVersion": "ui.k8s.appscode.com/v1alpha1",
+  "metadata": {
+    "name": "source.toolkit.fluxcd.io-v1beta1-gitrepositories",
+    "creationTimestamp": null,
+    "labels": {
+      "k8s.io/group": "source.toolkit.fluxcd.io",
+      "k8s.io/kind": "GitRepository",
+      "k8s.io/resource": "gitrepositories",
+      "k8s.io/version": "v1beta1"
+    }
+  },
+  "spec": {
+    "resource": {
+      "group": "source.toolkit.fluxcd.io",
+      "version": "v1beta1",
+      "name": "gitrepositories",
+      "kind": "GitRepository",
+      "scope": "Namespaced"
+    }
+  }
+}

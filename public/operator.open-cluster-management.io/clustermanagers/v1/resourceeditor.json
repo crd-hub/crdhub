@@ -1,0 +1,35 @@
+{
+  "kind": "ResourceEditor",
+  "apiVersion": "ui.k8s.appscode.com/v1alpha1",
+  "metadata": {
+    "name": "operator.open-cluster-management.io-v1-clustermanagers",
+    "creationTimestamp": null,
+    "labels": {
+      "k8s.io/group": "operator.open-cluster-management.io",
+      "k8s.io/kind": "ClusterManager",
+      "k8s.io/resource": "clustermanagers",
+      "k8s.io/version": "v1"
+    }
+  },
+  "spec": {
+    "resource": {
+      "group": "operator.open-cluster-management.io",
+      "version": "v1",
+      "name": "clustermanagers",
+      "kind": "ClusterManager",
+      "scope": "Cluster"
+    },
+    "ui": {
+      "editor": {
+        "name": "operatoropenclustermanagementio-clustermanager-editor",
+        "version": "v0.4.18",
+        "sourceRef": {
+          "apiGroup": "source.toolkit.fluxcd.io",
+          "kind": "HelmRepository",
+          "name": "bytebuilders-ui"
+        }
+      },
+      "enforceQuota": false
+    }
+  }
+}

@@ -1,0 +1,35 @@
+{
+  "kind": "ResourceEditor",
+  "apiVersion": "ui.k8s.appscode.com/v1alpha1",
+  "metadata": {
+    "name": "route53recoverycontrolconfig.aws.upbound.io-v1beta1-controlpanels",
+    "creationTimestamp": null,
+    "labels": {
+      "k8s.io/group": "route53recoverycontrolconfig.aws.upbound.io",
+      "k8s.io/kind": "ControlPanel",
+      "k8s.io/resource": "controlpanels",
+      "k8s.io/version": "v1beta1"
+    }
+  },
+  "spec": {
+    "resource": {
+      "group": "route53recoverycontrolconfig.aws.upbound.io",
+      "version": "v1beta1",
+      "name": "controlpanels",
+      "kind": "ControlPanel",
+      "scope": "Cluster"
+    },
+    "ui": {
+      "editor": {
+        "name": "route53recoverycontrolconfigawsupboundio-controlpanel-editor",
+        "version": "v0.4.18",
+        "sourceRef": {
+          "apiGroup": "source.toolkit.fluxcd.io",
+          "kind": "HelmRepository",
+          "name": "bytebuilders-ui"
+        }
+      },
+      "enforceQuota": false
+    }
+  }
+}

@@ -1,0 +1,105 @@
+{
+  "$schema": "http://json-schema.org/schema#",
+  "description": "AWSFargateProfile is the Schema for the awsfargateprofiles API.",
+  "type": "object",
+  "properties": {
+    "apiVersion": {
+      "description": "APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources",
+      "type": "string",
+      "enum": [
+        "infrastructure.cluster.x-k8s.io/v1beta1"
+      ]
+    },
+    "kind": {
+      "description": "Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds",
+      "type": "string",
+      "enum": [
+        "AWSFargateProfile"
+      ]
+    },
+    "metadata": {
+      "type": "object",
+      "properties": {
+        "annotations": {
+          "description": "Annotations is an unstructured key value map stored with a resource that may be set by external tools to store and retrieve arbitrary metadata. They are not queryable and should be preserved when modifying objects. More info: http://kubernetes.io/docs/user-guide/annotations",
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          }
+        },
+        "labels": {
+          "description": "Map of string keys and values that can be used to organize and categorize (scope and select) objects. May match selectors of replication controllers and services. More info: http://kubernetes.io/docs/user-guide/labels",
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          }
+        },
+        "name": {
+          "description": "Name must be unique within a namespace. Is required when creating resources, although some resources may allow a client to request the generation of an appropriate name automatically. Name is primarily intended for creation idempotence and configuration definition. Cannot be updated. More info: http://kubernetes.io/docs/user-guide/identifiers#names",
+          "type": "string"
+        },
+        "namespace": {
+          "description": "Namespace defines the space within which each name must be unique. An empty namespace is equivalent to the \"default\" namespace, but \"default\" is the canonical representation. Not all objects are required to be scoped to a namespace - the value of this field for those objects will be empty. \n Must be a DNS_LABEL. Cannot be updated. More info: http://kubernetes.io/docs/user-guide/namespaces",
+          "type": "string"
+        }
+      }
+    },
+    "spec": {
+      "description": "FargateProfileSpec defines the desired state of FargateProfile.",
+      "type": "object",
+      "required": [
+        "clusterName"
+      ],
+      "properties": {
+        "additionalTags": {
+          "description": "AdditionalTags is an optional set of tags to add to AWS resources managed by the AWS provider, in addition to the ones added by default.",
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          }
+        },
+        "clusterName": {
+          "description": "ClusterName is the name of the Cluster this object belongs to.",
+          "type": "string",
+          "minLength": 1
+        },
+        "profileName": {
+          "description": "ProfileName specifies the profile name.",
+          "type": "string"
+        },
+        "roleName": {
+          "description": "RoleName specifies the name of IAM role for this fargate pool If the role is pre-existing we will treat it as unmanaged and not delete it on deletion. If the EKSEnableIAM feature flag is true and no name is supplied then a role is created.",
+          "type": "string"
+        },
+        "selectors": {
+          "description": "Selectors specify fargate pod selectors.",
+          "type": "array",
+          "items": {
+            "description": "FargateSelector specifies a selector for pods that should run on this fargate pool.",
+            "type": "object",
+            "properties": {
+              "labels": {
+                "description": "Labels specifies which pod labels this selector should match.",
+                "type": "object",
+                "additionalProperties": {
+                  "type": "string"
+                }
+              },
+              "namespace": {
+                "description": "Namespace specifies which namespace this selector should match.",
+                "type": "string"
+              }
+            }
+          }
+        },
+        "subnetIDs": {
+          "description": "SubnetIDs specifies which subnets are used for the auto scaling group of this nodegroup.",
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  }
+}

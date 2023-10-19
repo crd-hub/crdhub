@@ -1,0 +1,35 @@
+{
+  "kind": "ResourceEditor",
+  "apiVersion": "ui.k8s.appscode.com/v1alpha1",
+  "metadata": {
+    "name": "streamanalytics.azure.upbound.io-v1beta1-streaminputblobs",
+    "creationTimestamp": null,
+    "labels": {
+      "k8s.io/group": "streamanalytics.azure.upbound.io",
+      "k8s.io/kind": "StreamInputBlob",
+      "k8s.io/resource": "streaminputblobs",
+      "k8s.io/version": "v1beta1"
+    }
+  },
+  "spec": {
+    "resource": {
+      "group": "streamanalytics.azure.upbound.io",
+      "version": "v1beta1",
+      "name": "streaminputblobs",
+      "kind": "StreamInputBlob",
+      "scope": "Cluster"
+    },
+    "ui": {
+      "editor": {
+        "name": "streamanalyticsazureupboundio-streaminputblob-editor",
+        "version": "v0.4.18",
+        "sourceRef": {
+          "apiGroup": "source.toolkit.fluxcd.io",
+          "kind": "HelmRepository",
+          "name": "bytebuilders-ui"
+        }
+      },
+      "enforceQuota": false
+    }
+  }
+}

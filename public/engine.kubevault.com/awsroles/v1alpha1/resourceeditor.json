@@ -1,0 +1,45 @@
+{
+  "kind": "ResourceEditor",
+  "apiVersion": "ui.k8s.appscode.com/v1alpha1",
+  "metadata": {
+    "name": "engine.kubevault.com-v1alpha1-awsroles",
+    "creationTimestamp": null,
+    "labels": {
+      "k8s.io/group": "engine.kubevault.com",
+      "k8s.io/kind": "AWSRole",
+      "k8s.io/resource": "awsroles",
+      "k8s.io/version": "v1alpha1"
+    }
+  },
+  "spec": {
+    "resource": {
+      "group": "engine.kubevault.com",
+      "version": "v1alpha1",
+      "name": "awsroles",
+      "kind": "AWSRole",
+      "scope": "Namespaced"
+    },
+    "ui": {
+      "editor": {
+        "name": "enginekubevaultcom-awsrole-editor",
+        "version": "v0.4.18",
+        "sourceRef": {
+          "apiGroup": "source.toolkit.fluxcd.io",
+          "kind": "HelmRepository",
+          "name": "bytebuilders-ui"
+        }
+      },
+      "enforceQuota": false
+    },
+    "icons": [
+      {
+        "src": "https://cdn.appscode.com/k8s/icons/engine.kubevault.com/awsroles.svg",
+        "type": "image/svg+xml"
+      },
+      {
+        "src": "https://cdn.appscode.com/k8s/icons/engine.kubevault.com/awsroles.png",
+        "type": "image/png"
+      }
+    ]
+  }
+}

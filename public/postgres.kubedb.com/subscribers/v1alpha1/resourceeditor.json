@@ -1,0 +1,35 @@
+{
+  "kind": "ResourceEditor",
+  "apiVersion": "ui.k8s.appscode.com/v1alpha1",
+  "metadata": {
+    "name": "postgres.kubedb.com-v1alpha1-subscribers",
+    "creationTimestamp": null,
+    "labels": {
+      "k8s.io/group": "postgres.kubedb.com",
+      "k8s.io/kind": "Subscriber",
+      "k8s.io/resource": "subscribers",
+      "k8s.io/version": "v1alpha1"
+    }
+  },
+  "spec": {
+    "resource": {
+      "group": "postgres.kubedb.com",
+      "version": "v1alpha1",
+      "name": "subscribers",
+      "kind": "Subscriber",
+      "scope": "Namespaced"
+    },
+    "ui": {
+      "editor": {
+        "name": "postgreskubedbcom-subscriber-editor",
+        "version": "v0.4.18",
+        "sourceRef": {
+          "apiGroup": "source.toolkit.fluxcd.io",
+          "kind": "HelmRepository",
+          "name": "bytebuilders-ui"
+        }
+      },
+      "enforceQuota": false
+    }
+  }
+}

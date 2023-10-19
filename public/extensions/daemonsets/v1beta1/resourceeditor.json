@@ -1,0 +1,35 @@
+{
+  "kind": "ResourceEditor",
+  "apiVersion": "ui.k8s.appscode.com/v1alpha1",
+  "metadata": {
+    "name": "extensions-v1beta1-daemonsets",
+    "creationTimestamp": null,
+    "labels": {
+      "k8s.io/group": "extensions",
+      "k8s.io/kind": "DaemonSet",
+      "k8s.io/resource": "daemonsets",
+      "k8s.io/version": "v1beta1"
+    }
+  },
+  "spec": {
+    "resource": {
+      "group": "extensions",
+      "version": "v1beta1",
+      "name": "daemonsets",
+      "kind": "DaemonSet",
+      "scope": "Namespaced"
+    },
+    "ui": {
+      "editor": {
+        "name": "extensions-daemonset-editor",
+        "version": "v0.4.18",
+        "sourceRef": {
+          "apiGroup": "source.toolkit.fluxcd.io",
+          "kind": "HelmRepository",
+          "name": "bytebuilders-ui"
+        }
+      },
+      "enforceQuota": false
+    }
+  }
+}

@@ -1,0 +1,35 @@
+{
+  "kind": "ResourceEditor",
+  "apiVersion": "ui.k8s.appscode.com/v1alpha1",
+  "metadata": {
+    "name": "expansion.gatekeeper.sh-v1alpha1-expansiontemplate",
+    "creationTimestamp": null,
+    "labels": {
+      "k8s.io/group": "expansion.gatekeeper.sh",
+      "k8s.io/kind": "ExpansionTemplate",
+      "k8s.io/resource": "expansiontemplate",
+      "k8s.io/version": "v1alpha1"
+    }
+  },
+  "spec": {
+    "resource": {
+      "group": "expansion.gatekeeper.sh",
+      "version": "v1alpha1",
+      "name": "expansiontemplate",
+      "kind": "ExpansionTemplate",
+      "scope": "Cluster"
+    },
+    "ui": {
+      "editor": {
+        "name": "expansiongatekeepersh-expansiontemplate-editor",
+        "version": "v0.4.18",
+        "sourceRef": {
+          "apiGroup": "source.toolkit.fluxcd.io",
+          "kind": "HelmRepository",
+          "name": "bytebuilders-ui"
+        }
+      },
+      "enforceQuota": false
+    }
+  }
+}

@@ -1,0 +1,35 @@
+{
+  "kind": "ResourceEditor",
+  "apiVersion": "ui.k8s.appscode.com/v1alpha1",
+  "metadata": {
+    "name": "budgets.aws.upbound.io-v1beta1-budgetactions",
+    "creationTimestamp": null,
+    "labels": {
+      "k8s.io/group": "budgets.aws.upbound.io",
+      "k8s.io/kind": "BudgetAction",
+      "k8s.io/resource": "budgetactions",
+      "k8s.io/version": "v1beta1"
+    }
+  },
+  "spec": {
+    "resource": {
+      "group": "budgets.aws.upbound.io",
+      "version": "v1beta1",
+      "name": "budgetactions",
+      "kind": "BudgetAction",
+      "scope": "Cluster"
+    },
+    "ui": {
+      "editor": {
+        "name": "budgetsawsupboundio-budgetaction-editor",
+        "version": "v0.4.18",
+        "sourceRef": {
+          "apiGroup": "source.toolkit.fluxcd.io",
+          "kind": "HelmRepository",
+          "name": "bytebuilders-ui"
+        }
+      },
+      "enforceQuota": false
+    }
+  }
+}

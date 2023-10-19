@@ -1,0 +1,35 @@
+{
+  "kind": "ResourceEditor",
+  "apiVersion": "ui.k8s.appscode.com/v1alpha1",
+  "metadata": {
+    "name": "spanner.gcp.kubeform.com-v1alpha1-databases",
+    "creationTimestamp": null,
+    "labels": {
+      "k8s.io/group": "spanner.gcp.kubeform.com",
+      "k8s.io/kind": "Database",
+      "k8s.io/resource": "databases",
+      "k8s.io/version": "v1alpha1"
+    }
+  },
+  "spec": {
+    "resource": {
+      "group": "spanner.gcp.kubeform.com",
+      "version": "v1alpha1",
+      "name": "databases",
+      "kind": "Database",
+      "scope": "Cluster"
+    },
+    "ui": {
+      "editor": {
+        "name": "spannergcpkubeformcom-database-editor",
+        "version": "v0.4.18",
+        "sourceRef": {
+          "apiGroup": "source.toolkit.fluxcd.io",
+          "kind": "HelmRepository",
+          "name": "bytebuilders-ui"
+        }
+      },
+      "enforceQuota": false
+    }
+  }
+}

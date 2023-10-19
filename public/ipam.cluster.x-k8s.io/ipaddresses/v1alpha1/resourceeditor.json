@@ -1,0 +1,35 @@
+{
+  "kind": "ResourceEditor",
+  "apiVersion": "ui.k8s.appscode.com/v1alpha1",
+  "metadata": {
+    "name": "ipam.cluster.x-k8s.io-v1alpha1-ipaddresses",
+    "creationTimestamp": null,
+    "labels": {
+      "k8s.io/group": "ipam.cluster.x-k8s.io",
+      "k8s.io/kind": "IPAddress",
+      "k8s.io/resource": "ipaddresses",
+      "k8s.io/version": "v1alpha1"
+    }
+  },
+  "spec": {
+    "resource": {
+      "group": "ipam.cluster.x-k8s.io",
+      "version": "v1alpha1",
+      "name": "ipaddresses",
+      "kind": "IPAddress",
+      "scope": "Namespaced"
+    },
+    "ui": {
+      "editor": {
+        "name": "ipamclusterxk8sio-ipaddress-editor",
+        "version": "v0.4.18",
+        "sourceRef": {
+          "apiGroup": "source.toolkit.fluxcd.io",
+          "kind": "HelmRepository",
+          "name": "bytebuilders-ui"
+        }
+      },
+      "enforceQuota": false
+    }
+  }
+}

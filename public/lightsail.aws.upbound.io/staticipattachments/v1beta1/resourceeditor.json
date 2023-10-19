@@ -1,0 +1,35 @@
+{
+  "kind": "ResourceEditor",
+  "apiVersion": "ui.k8s.appscode.com/v1alpha1",
+  "metadata": {
+    "name": "lightsail.aws.upbound.io-v1beta1-staticipattachments",
+    "creationTimestamp": null,
+    "labels": {
+      "k8s.io/group": "lightsail.aws.upbound.io",
+      "k8s.io/kind": "StaticIPAttachment",
+      "k8s.io/resource": "staticipattachments",
+      "k8s.io/version": "v1beta1"
+    }
+  },
+  "spec": {
+    "resource": {
+      "group": "lightsail.aws.upbound.io",
+      "version": "v1beta1",
+      "name": "staticipattachments",
+      "kind": "StaticIPAttachment",
+      "scope": "Cluster"
+    },
+    "ui": {
+      "editor": {
+        "name": "lightsailawsupboundio-staticipattachment-editor",
+        "version": "v0.4.18",
+        "sourceRef": {
+          "apiGroup": "source.toolkit.fluxcd.io",
+          "kind": "HelmRepository",
+          "name": "bytebuilders-ui"
+        }
+      },
+      "enforceQuota": false
+    }
+  }
+}

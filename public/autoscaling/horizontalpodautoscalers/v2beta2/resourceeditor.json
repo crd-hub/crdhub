@@ -1,0 +1,45 @@
+{
+  "kind": "ResourceEditor",
+  "apiVersion": "ui.k8s.appscode.com/v1alpha1",
+  "metadata": {
+    "name": "autoscaling-v2beta2-horizontalpodautoscalers",
+    "creationTimestamp": null,
+    "labels": {
+      "k8s.io/group": "autoscaling",
+      "k8s.io/kind": "HorizontalPodAutoscaler",
+      "k8s.io/resource": "horizontalpodautoscalers",
+      "k8s.io/version": "v2beta2"
+    }
+  },
+  "spec": {
+    "resource": {
+      "group": "autoscaling",
+      "version": "v2beta2",
+      "name": "horizontalpodautoscalers",
+      "kind": "HorizontalPodAutoscaler",
+      "scope": "Namespaced"
+    },
+    "ui": {
+      "editor": {
+        "name": "autoscaling-horizontalpodautoscaler-editor",
+        "version": "v0.4.18",
+        "sourceRef": {
+          "apiGroup": "source.toolkit.fluxcd.io",
+          "kind": "HelmRepository",
+          "name": "bytebuilders-ui"
+        }
+      },
+      "enforceQuota": false
+    },
+    "icons": [
+      {
+        "src": "https://cdn.appscode.com/k8s/icons/autoscaling/horizontalpodautoscalers.svg",
+        "type": "image/svg+xml"
+      },
+      {
+        "src": "https://cdn.appscode.com/k8s/icons/autoscaling/horizontalpodautoscalers.png",
+        "type": "image/png"
+      }
+    ]
+  }
+}

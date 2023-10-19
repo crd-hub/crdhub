@@ -1,0 +1,35 @@
+{
+  "kind": "ResourceEditor",
+  "apiVersion": "ui.k8s.appscode.com/v1alpha1",
+  "metadata": {
+    "name": "servicebus.azure.upbound.io-v1beta1-subscriptions",
+    "creationTimestamp": null,
+    "labels": {
+      "k8s.io/group": "servicebus.azure.upbound.io",
+      "k8s.io/kind": "Subscription",
+      "k8s.io/resource": "subscriptions",
+      "k8s.io/version": "v1beta1"
+    }
+  },
+  "spec": {
+    "resource": {
+      "group": "servicebus.azure.upbound.io",
+      "version": "v1beta1",
+      "name": "subscriptions",
+      "kind": "Subscription",
+      "scope": "Cluster"
+    },
+    "ui": {
+      "editor": {
+        "name": "servicebusazureupboundio-subscription-editor",
+        "version": "v0.4.18",
+        "sourceRef": {
+          "apiGroup": "source.toolkit.fluxcd.io",
+          "kind": "HelmRepository",
+          "name": "bytebuilders-ui"
+        }
+      },
+      "enforceQuota": false
+    }
+  }
+}

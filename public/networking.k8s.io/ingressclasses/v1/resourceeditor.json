@@ -1,0 +1,35 @@
+{
+  "kind": "ResourceEditor",
+  "apiVersion": "ui.k8s.appscode.com/v1alpha1",
+  "metadata": {
+    "name": "networking.k8s.io-v1-ingressclasses",
+    "creationTimestamp": null,
+    "labels": {
+      "k8s.io/group": "networking.k8s.io",
+      "k8s.io/kind": "IngressClass",
+      "k8s.io/resource": "ingressclasses",
+      "k8s.io/version": "v1"
+    }
+  },
+  "spec": {
+    "resource": {
+      "group": "networking.k8s.io",
+      "version": "v1",
+      "name": "ingressclasses",
+      "kind": "IngressClass",
+      "scope": "Namespaced"
+    },
+    "ui": {
+      "editor": {
+        "name": "networkingk8sio-ingressclass-editor",
+        "version": "v0.4.18",
+        "sourceRef": {
+          "apiGroup": "source.toolkit.fluxcd.io",
+          "kind": "HelmRepository",
+          "name": "bytebuilders-ui"
+        }
+      },
+      "enforceQuota": false
+    }
+  }
+}

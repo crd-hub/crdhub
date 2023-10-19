@@ -1,0 +1,23 @@
+{
+  "kind": "ResourceEditor",
+  "apiVersion": "ui.k8s.appscode.com/v1alpha1",
+  "metadata": {
+    "name": "infrastructure.cluster.x-k8s.io-v1alpha4-azureclusters",
+    "creationTimestamp": null,
+    "labels": {
+      "k8s.io/group": "infrastructure.cluster.x-k8s.io",
+      "k8s.io/kind": "AzureCluster",
+      "k8s.io/resource": "azureclusters",
+      "k8s.io/version": "v1alpha4"
+    }
+  },
+  "spec": {
+    "resource": {
+      "group": "infrastructure.cluster.x-k8s.io",
+      "version": "v1alpha4",
+      "name": "azureclusters",
+      "kind": "AzureCluster",
+      "scope": "Namespaced"
+    }
+  }
+}

@@ -1,0 +1,35 @@
+{
+  "kind": "ResourceEditor",
+  "apiVersion": "ui.k8s.appscode.com/v1alpha1",
+  "metadata": {
+    "name": "dialogflowcx.gcp.upbound.io-v1beta1-entitytypes",
+    "creationTimestamp": null,
+    "labels": {
+      "k8s.io/group": "dialogflowcx.gcp.upbound.io",
+      "k8s.io/kind": "EntityType",
+      "k8s.io/resource": "entitytypes",
+      "k8s.io/version": "v1beta1"
+    }
+  },
+  "spec": {
+    "resource": {
+      "group": "dialogflowcx.gcp.upbound.io",
+      "version": "v1beta1",
+      "name": "entitytypes",
+      "kind": "EntityType",
+      "scope": "Cluster"
+    },
+    "ui": {
+      "editor": {
+        "name": "dialogflowcxgcpupboundio-entitytype-editor",
+        "version": "v0.4.18",
+        "sourceRef": {
+          "apiGroup": "source.toolkit.fluxcd.io",
+          "kind": "HelmRepository",
+          "name": "bytebuilders-ui"
+        }
+      },
+      "enforceQuota": false
+    }
+  }
+}
