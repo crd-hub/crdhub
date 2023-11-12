@@ -18,6 +18,18 @@
       "name": "featuresets",
       "kind": "FeatureSet",
       "scope": "Cluster"
+    },
+    "ui": {
+      "editor": {
+        "name": "uik8sappscodecom-featureset-{.metadata.release.name}-editor",
+        "version": "v0.4.18",
+        "sourceRef": {
+          "apiGroup": "source.toolkit.fluxcd.io",
+          "kind": "HelmRepository",
+          "name": "appscode-charts-oci"
+        }
+      },
+      "enforceQuota": false
     }
   }
 }

@@ -1,0 +1,35 @@
+{
+  "kind": "ResourceEditor",
+  "apiVersion": "ui.k8s.appscode.com/v1alpha1",
+  "metadata": {
+    "name": "dbformysql.azure.kubedb.com-v1alpha1-flexibledatabases",
+    "creationTimestamp": null,
+    "labels": {
+      "k8s.io/group": "dbformysql.azure.kubedb.com",
+      "k8s.io/kind": "FlexibleDatabase",
+      "k8s.io/resource": "flexibledatabases",
+      "k8s.io/version": "v1alpha1"
+    }
+  },
+  "spec": {
+    "resource": {
+      "group": "dbformysql.azure.kubedb.com",
+      "version": "v1alpha1",
+      "name": "flexibledatabases",
+      "kind": "FlexibleDatabase",
+      "scope": "Cluster"
+    },
+    "ui": {
+      "editor": {
+        "name": "dbformysqlazurekubedbcom-flexibledatabase-editor",
+        "version": "v0.4.18",
+        "sourceRef": {
+          "apiGroup": "source.toolkit.fluxcd.io",
+          "kind": "HelmRepository",
+          "name": "appscode-charts-oci"
+        }
+      },
+      "enforceQuota": false
+    }
+  }
+}

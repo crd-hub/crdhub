@@ -1,0 +1,35 @@
+{
+  "kind": "ResourceEditor",
+  "apiVersion": "ui.k8s.appscode.com/v1alpha1",
+  "metadata": {
+    "name": "dbformariadb.azure.kubedb.com-v1alpha1-configurations",
+    "creationTimestamp": null,
+    "labels": {
+      "k8s.io/group": "dbformariadb.azure.kubedb.com",
+      "k8s.io/kind": "Configuration",
+      "k8s.io/resource": "configurations",
+      "k8s.io/version": "v1alpha1"
+    }
+  },
+  "spec": {
+    "resource": {
+      "group": "dbformariadb.azure.kubedb.com",
+      "version": "v1alpha1",
+      "name": "configurations",
+      "kind": "Configuration",
+      "scope": "Cluster"
+    },
+    "ui": {
+      "editor": {
+        "name": "dbformariadbazurekubedbcom-configuration-editor",
+        "version": "v0.4.18",
+        "sourceRef": {
+          "apiGroup": "source.toolkit.fluxcd.io",
+          "kind": "HelmRepository",
+          "name": "appscode-charts-oci"
+        }
+      },
+      "enforceQuota": false
+    }
+  }
+}

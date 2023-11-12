@@ -22,11 +22,11 @@
     "ui": {
       "options": {
         "name": "kubedbcom-perconaxtradb-editor-options",
-        "version": "v0.4.17",
+        "version": "v0.4.18",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",
-          "name": "bytebuilders-ui"
+          "name": "appscode-charts-oci"
         }
       },
       "editor": {
@@ -35,7 +35,7 @@
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",
-          "name": "bytebuilders-ui"
+          "name": "appscode-charts-oci"
         }
       },
       "enforceQuota": true

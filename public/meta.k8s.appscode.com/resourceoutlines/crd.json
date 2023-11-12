@@ -229,7 +229,7 @@
                         ],
                         "properties": {
                           "byLabel": {
-                            "description": "ENUM(authn,authz,auth_secret,backup_via,catalog,cert_issuer,config,connect_via,exposed_by,event,located_on,monitored_by,ocm_bind,offshoot,ops,placed_into,policy,recommended_for,restore_into,scaled_by,storage,view)",
+                            "description": "ENUM(authn,authz,auth_secret,backup_via,catalog,cert_issuer,config,connect_via,exposed_by,event,located_on,monitored_by,ocm_bind,offshoot,ops,placed_into,policy,recommended_for,restore_into,scaled_by,source,storage,view)",
                             "type": "string",
                             "enum": [
                               "authn",
@@ -252,6 +252,7 @@
                               "recommended_for",
                               "restore_into",
                               "scaled_by",
+                              "source",
                               "storage",
                               "view"
                             ]
@@ -280,6 +281,15 @@
                             "type": "string"
                           },
                           "kind": {
+                            "type": "string"
+                          }
+                        }
+                      },
+                      "requiredFeatureSets": {
+                        "type": "object",
+                        "additionalProperties": {
+                          "type": "array",
+                          "items": {
                             "type": "string"
                           }
                         }
@@ -523,7 +533,7 @@
                                       ],
                                       "properties": {
                                         "byLabel": {
-                                          "description": "ENUM(authn,authz,auth_secret,backup_via,catalog,cert_issuer,config,connect_via,exposed_by,event,located_on,monitored_by,ocm_bind,offshoot,ops,placed_into,policy,recommended_for,restore_into,scaled_by,storage,view)",
+                                          "description": "ENUM(authn,authz,auth_secret,backup_via,catalog,cert_issuer,config,connect_via,exposed_by,event,located_on,monitored_by,ocm_bind,offshoot,ops,placed_into,policy,recommended_for,restore_into,scaled_by,source,storage,view)",
                                           "type": "string",
                                           "enum": [
                                             "authn",
@@ -546,6 +556,7 @@
                                             "recommended_for",
                                             "restore_into",
                                             "scaled_by",
+                                            "source",
                                             "storage",
                                             "view"
                                           ]
@@ -574,6 +585,15 @@
                                           "type": "string"
                                         },
                                         "kind": {
+                                          "type": "string"
+                                        }
+                                      }
+                                    },
+                                    "requiredFeatureSets": {
+                                      "type": "object",
+                                      "additionalProperties": {
+                                        "type": "array",
+                                        "items": {
                                           "type": "string"
                                         }
                                       }
@@ -824,7 +844,7 @@
                                     ],
                                     "properties": {
                                       "byLabel": {
-                                        "description": "ENUM(authn,authz,auth_secret,backup_via,catalog,cert_issuer,config,connect_via,exposed_by,event,located_on,monitored_by,ocm_bind,offshoot,ops,placed_into,policy,recommended_for,restore_into,scaled_by,storage,view)",
+                                        "description": "ENUM(authn,authz,auth_secret,backup_via,catalog,cert_issuer,config,connect_via,exposed_by,event,located_on,monitored_by,ocm_bind,offshoot,ops,placed_into,policy,recommended_for,restore_into,scaled_by,source,storage,view)",
                                         "type": "string",
                                         "enum": [
                                           "authn",
@@ -847,6 +867,7 @@
                                           "recommended_for",
                                           "restore_into",
                                           "scaled_by",
+                                          "source",
                                           "storage",
                                           "view"
                                         ]
@@ -875,6 +896,15 @@
                                         "type": "string"
                                       },
                                       "kind": {
+                                        "type": "string"
+                                      }
+                                    }
+                                  },
+                                  "requiredFeatureSets": {
+                                    "type": "object",
+                                    "additionalProperties": {
+                                      "type": "array",
+                                      "items": {
                                         "type": "string"
                                       }
                                     }
@@ -1100,7 +1130,7 @@
                                     ],
                                     "properties": {
                                       "byLabel": {
-                                        "description": "ENUM(authn,authz,auth_secret,backup_via,catalog,cert_issuer,config,connect_via,exposed_by,event,located_on,monitored_by,ocm_bind,offshoot,ops,placed_into,policy,recommended_for,restore_into,scaled_by,storage,view)",
+                                        "description": "ENUM(authn,authz,auth_secret,backup_via,catalog,cert_issuer,config,connect_via,exposed_by,event,located_on,monitored_by,ocm_bind,offshoot,ops,placed_into,policy,recommended_for,restore_into,scaled_by,source,storage,view)",
                                         "type": "string",
                                         "enum": [
                                           "authn",
@@ -1123,6 +1153,7 @@
                                           "recommended_for",
                                           "restore_into",
                                           "scaled_by",
+                                          "source",
                                           "storage",
                                           "view"
                                         ]
@@ -1151,6 +1182,15 @@
                                         "type": "string"
                                       },
                                       "kind": {
+                                        "type": "string"
+                                      }
+                                    }
+                                  },
+                                  "requiredFeatureSets": {
+                                    "type": "object",
+                                    "additionalProperties": {
+                                      "type": "array",
+                                      "items": {
                                         "type": "string"
                                       }
                                     }
@@ -1412,7 +1452,7 @@
                         ],
                         "properties": {
                           "byLabel": {
-                            "description": "ENUM(authn,authz,auth_secret,backup_via,catalog,cert_issuer,config,connect_via,exposed_by,event,located_on,monitored_by,ocm_bind,offshoot,ops,placed_into,policy,recommended_for,restore_into,scaled_by,storage,view)",
+                            "description": "ENUM(authn,authz,auth_secret,backup_via,catalog,cert_issuer,config,connect_via,exposed_by,event,located_on,monitored_by,ocm_bind,offshoot,ops,placed_into,policy,recommended_for,restore_into,scaled_by,source,storage,view)",
                             "type": "string",
                             "enum": [
                               "authn",
@@ -1435,6 +1475,7 @@
                               "recommended_for",
                               "restore_into",
                               "scaled_by",
+                              "source",
                               "storage",
                               "view"
                             ]
@@ -1463,6 +1504,15 @@
                             "type": "string"
                           },
                           "kind": {
+                            "type": "string"
+                          }
+                        }
+                      },
+                      "requiredFeatureSets": {
+                        "type": "object",
+                        "additionalProperties": {
+                          "type": "array",
+                          "items": {
                             "type": "string"
                           }
                         }

@@ -294,14 +294,6 @@
                       }
                     }
                   },
-                  "upgrade": {
-                    "type": "object",
-                    "properties": {
-                      "targetVersion": {
-                        "type": "string"
-                      }
-                    }
-                  },
                   "verticalScaling": {
                     "type": "object",
                     "properties": {

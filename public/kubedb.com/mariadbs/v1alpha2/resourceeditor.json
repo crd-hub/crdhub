@@ -22,11 +22,11 @@
     "ui": {
       "options": {
         "name": "kubedbcom-mariadb-editor-options",
-        "version": "v0.4.17",
+        "version": "v0.4.18",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",
-          "name": "bytebuilders-ui"
+          "name": "appscode-charts-oci"
         }
       },
       "editor": {
@@ -35,7 +35,7 @@
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",
-          "name": "bytebuilders-ui"
+          "name": "appscode-charts-oci"
         }
       },
       "enforceQuota": true,
@@ -55,11 +55,11 @@
               "flow": "standalone-edit",
               "editor": {
                 "name": "kubedbcom-mariadb-editor",
-                "version": "v0.4.17",
+                "version": "v0.4.18",
                 "sourceRef": {
                   "apiGroup": "source.toolkit.fluxcd.io",
                   "kind": "HelmRepository",
-                  "name": "bytebuilders-ui"
+                  "name": "appscode-charts-oci"
                 }
               },
               "enforceQuota": false
@@ -76,11 +76,11 @@
               "flow": "standalone-create",
               "editor": {
                 "name": "stashappscodecom-restoresession-editor-options",
-                "version": "v0.4.17",
+                "version": "v0.4.18",
                 "sourceRef": {
                   "apiGroup": "source.toolkit.fluxcd.io",
                   "kind": "HelmRepository",
-                  "name": "bytebuilders-ui"
+                  "name": "appscode-charts-oci"
                 }
               },
               "enforceQuota": false
@@ -102,11 +102,11 @@
               "flow": "standalone-create",
               "editor": {
                 "name": "opskubedbcom-mariadbopsrequest-editor",
-                "version": "v0.4.17",
+                "version": "v0.4.18",
                 "sourceRef": {
                   "apiGroup": "source.toolkit.fluxcd.io",
                   "kind": "HelmRepository",
-                  "name": "bytebuilders-ui"
+                  "name": "appscode-charts-oci"
                 }
               },
               "enforceQuota": false
@@ -123,11 +123,11 @@
               "flow": "standalone-create",
               "editor": {
                 "name": "opskubedbcom-mariadbopsrequest-editor",
-                "version": "v0.4.17",
+                "version": "v0.4.18",
                 "sourceRef": {
                   "apiGroup": "source.toolkit.fluxcd.io",
                   "kind": "HelmRepository",
-                  "name": "bytebuilders-ui"
+                  "name": "appscode-charts-oci"
                 }
               },
               "enforceQuota": false
@@ -144,11 +144,11 @@
               "flow": "standalone-create",
               "editor": {
                 "name": "opskubedbcom-mariadbopsrequest-editor",
-                "version": "v0.4.17",
+                "version": "v0.4.18",
                 "sourceRef": {
                   "apiGroup": "source.toolkit.fluxcd.io",
                   "kind": "HelmRepository",
-                  "name": "bytebuilders-ui"
+                  "name": "appscode-charts-oci"
                 }
               },
               "enforceQuota": false
@@ -171,11 +171,11 @@
               "disabledTemplate": "{{ not (gt .spec.replicas 1) }}\n",
               "editor": {
                 "name": "opskubedbcom-mariadbopsrequest-editor",
-                "version": "v0.4.17",
+                "version": "v0.4.18",
                 "sourceRef": {
                   "apiGroup": "source.toolkit.fluxcd.io",
                   "kind": "HelmRepository",
-                  "name": "bytebuilders-ui"
+                  "name": "appscode-charts-oci"
                 }
               },
               "enforceQuota": true
@@ -192,11 +192,11 @@
               "flow": "standalone-create",
               "editor": {
                 "name": "opskubedbcom-mariadbopsrequest-editor",
-                "version": "v0.4.17",
+                "version": "v0.4.18",
                 "sourceRef": {
                   "apiGroup": "source.toolkit.fluxcd.io",
                   "kind": "HelmRepository",
-                  "name": "bytebuilders-ui"
+                  "name": "appscode-charts-oci"
                 }
               },
               "enforceQuota": true
@@ -213,11 +213,11 @@
               "flow": "standalone-create",
               "editor": {
                 "name": "opskubedbcom-mariadbopsrequest-editor",
-                "version": "v0.4.17",
+                "version": "v0.4.18",
                 "sourceRef": {
                   "apiGroup": "source.toolkit.fluxcd.io",
                   "kind": "HelmRepository",
-                  "name": "bytebuilders-ui"
+                  "name": "appscode-charts-oci"
                 }
               },
               "enforceQuota": true
@@ -239,11 +239,11 @@
               "flow": "standalone-create",
               "editor": {
                 "name": "opskubedbcom-mariadbopsrequest-editor",
-                "version": "v0.4.17",
+                "version": "v0.4.18",
                 "sourceRef": {
                   "apiGroup": "source.toolkit.fluxcd.io",
                   "kind": "HelmRepository",
-                  "name": "bytebuilders-ui"
+                  "name": "appscode-charts-oci"
                 }
               },
               "enforceQuota": false
@@ -260,11 +260,11 @@
               "flow": "standalone-edit",
               "editor": {
                 "name": "kubedbcom-mariadb-editor",
-                "version": "v0.4.17",
+                "version": "v0.4.18",
                 "sourceRef": {
                   "apiGroup": "source.toolkit.fluxcd.io",
                   "kind": "HelmRepository",
-                  "name": "bytebuilders-ui"
+                  "name": "appscode-charts-oci"
                 }
               },
               "enforceQuota": false

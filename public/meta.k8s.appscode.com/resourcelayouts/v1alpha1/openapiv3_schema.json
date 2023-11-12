@@ -1499,6 +1499,9 @@
         },
         "ui": {
           "type": "object",
+          "required": [
+            "enforceQuota"
+          ],
           "properties": {
             "actions": {
               "type": "array",
@@ -1516,6 +1519,7 @@
                     "items": {
                       "type": "object",
                       "required": [
+                        "enforceQuota",
                         "flow",
                         "operationId"
                       ],
@@ -1565,6 +1569,9 @@
                               "type": "string"
                             }
                           }
+                        },
+                        "enforceQuota": {
+                          "type": "boolean"
                         },
                         "flow": {
                           "type": "string"
@@ -1647,6 +1654,9 @@
                   "type": "string"
                 }
               }
+            },
+            "enforceQuota": {
+              "type": "boolean"
             },
             "instanceLabelPaths": {
               "description": "app.kubernetes.io/instance label must be updated at these paths when refilling metadata",

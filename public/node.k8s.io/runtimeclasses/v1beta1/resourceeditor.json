@@ -22,11 +22,11 @@
     "ui": {
       "editor": {
         "name": "nodek8sio-runtimeclass-editor",
-        "version": "v0.4.17",
+        "version": "v0.4.18",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",
-          "name": "bytebuilders-ui"
+          "name": "appscode-charts-oci"
         }
       },
       "enforceQuota": false

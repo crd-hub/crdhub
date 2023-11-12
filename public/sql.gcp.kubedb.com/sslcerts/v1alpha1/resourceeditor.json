@@ -1,0 +1,35 @@
+{
+  "kind": "ResourceEditor",
+  "apiVersion": "ui.k8s.appscode.com/v1alpha1",
+  "metadata": {
+    "name": "sql.gcp.kubedb.com-v1alpha1-sslcerts",
+    "creationTimestamp": null,
+    "labels": {
+      "k8s.io/group": "sql.gcp.kubedb.com",
+      "k8s.io/kind": "SSLCert",
+      "k8s.io/resource": "sslcerts",
+      "k8s.io/version": "v1alpha1"
+    }
+  },
+  "spec": {
+    "resource": {
+      "group": "sql.gcp.kubedb.com",
+      "version": "v1alpha1",
+      "name": "sslcerts",
+      "kind": "SSLCert",
+      "scope": "Cluster"
+    },
+    "ui": {
+      "editor": {
+        "name": "sqlgcpkubedbcom-sslcert-editor",
+        "version": "v0.4.18",
+        "sourceRef": {
+          "apiGroup": "source.toolkit.fluxcd.io",
+          "kind": "HelmRepository",
+          "name": "appscode-charts-oci"
+        }
+      },
+      "enforceQuota": false
+    }
+  }
+}

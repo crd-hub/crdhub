@@ -5,8 +5,8 @@
     "name": "gatewayclasses.gateway.networking.k8s.io",
     "creationTimestamp": null,
     "annotations": {
-      "api-approved.kubernetes.io": "https://github.com/kubernetes-sigs/gateway-api/pull/1923",
-      "gateway.networking.k8s.io/bundle-version": "v0.7.1",
+      "api-approved.kubernetes.io": "https://github.com/kubernetes-sigs/gateway-api/pull/2466",
+      "gateway.networking.k8s.io/bundle-version": "v1.0.0",
       "gateway.networking.k8s.io/channel": "experimental"
     }
   },
@@ -27,11 +27,9 @@
     "scope": "Cluster",
     "versions": [
       {
-        "name": "v1alpha2",
+        "name": "v1",
         "served": true,
         "storage": false,
-        "deprecated": true,
-        "deprecationWarning": "The v1alpha2 version of GatewayClass has been deprecated and will be removed in a future release of the API. Please upgrade to v1beta1.",
         "schema": {
           "openAPIV3Schema": {
             "description": "GatewayClass describes a class of Gateways available to the user for creating Gateway resources. \n It is recommended that this resource be used as a template for Gateways. This means that a Gateway is based on the state of the GatewayClass at the time it was created and changes to the GatewayClass or associated parameters are not propagated down to existing Gateways. This recommendation is intended to limit the blast radius of changes to GatewayClass or associated parameters. If implementations choose to propagate GatewayClass changes to existing Gateways, that MUST be clearly documented by the implementation. \n Whenever one or more Gateways are using a GatewayClass, implementations SHOULD add the `gateway-exists-finalizer.gateway.networking.k8s.io` finalizer on the associated GatewayClass. This ensures that a GatewayClass associated with a Gateway is not deleted while in use. \n GatewayClass is a Cluster level resource.",
@@ -63,7 +61,13 @@
                     "type": "string",
                     "maxLength": 253,
                     "minLength": 1,
-                    "pattern": "^[a-z0-9]([-a-z0-9]*[a-z0-9])?(\\.[a-z0-9]([-a-z0-9]*[a-z0-9])?)*\\/[A-Za-z0-9\\/\\-._~%!$\u0026'()*+,;=:]+$"
+                    "pattern": "^[a-z0-9]([-a-z0-9]*[a-z0-9])?(\\.[a-z0-9]([-a-z0-9]*[a-z0-9])?)*\\/[A-Za-z0-9\\/\\-._~%!$\u0026'()*+,;=:]+$",
+                    "x-kubernetes-validations": [
+                      {
+                        "rule": "self == oldSelf",
+                        "message": "Value is immutable"
+                      }
+                    ]
                   },
                   "description": {
                     "description": "Description helps describe a GatewayClass with more details.",
@@ -110,7 +114,7 @@
                 }
               },
               "status": {
-                "description": "Status defines the current state of GatewayClass.",
+                "description": "Status defines the current state of GatewayClass. \n Implementations MUST populate status on all GatewayClass resources which specify their controller name.",
                 "type": "object",
                 "default": {
                   "conditions": [
@@ -192,6 +196,36 @@
                       "type"
                     ],
                     "x-kubernetes-list-type": "map"
+                  },
+                  "supportedFeatures": {
+                    "description": "SupportedFeatures is the set of features the GatewayClass support. It MUST be sorted in ascending alphabetical order. ",
+                    "type": "array",
+                    "maxItems": 64,
+                    "items": {
+                      "description": "SupportedFeature is used to describe distinct features that are covered by conformance tests.",
+                      "type": "string",
+                      "enum": [
+                        "Gateway",
+                        "GatewayPort8080",
+                        "GatewayStaticAddresses",
+                        "HTTPRoute",
+                        "HTTPRouteDestinationPortMatching",
+                        "HTTPRouteHostRewrite",
+                        "HTTPRouteMethodMatching",
+                        "HTTPRoutePathRedirect",
+                        "HTTPRoutePathRewrite",
+                        "HTTPRoutePortRedirect",
+                        "HTTPRouteQueryParamMatching",
+                        "HTTPRouteRequestMirror",
+                        "HTTPRouteRequestMultipleMirrors",
+                        "HTTPRouteResponseHeaderModification",
+                        "HTTPRouteSchemeRedirect",
+                        "Mesh",
+                        "ReferenceGrant",
+                        "TLSRoute"
+                      ]
+                    },
+                    "x-kubernetes-list-type": "set"
                   }
                 }
               }
@@ -260,7 +294,13 @@
                     "type": "string",
                     "maxLength": 253,
                     "minLength": 1,
-                    "pattern": "^[a-z0-9]([-a-z0-9]*[a-z0-9])?(\\.[a-z0-9]([-a-z0-9]*[a-z0-9])?)*\\/[A-Za-z0-9\\/\\-._~%!$\u0026'()*+,;=:]+$"
+                    "pattern": "^[a-z0-9]([-a-z0-9]*[a-z0-9])?(\\.[a-z0-9]([-a-z0-9]*[a-z0-9])?)*\\/[A-Za-z0-9\\/\\-._~%!$\u0026'()*+,;=:]+$",
+                    "x-kubernetes-validations": [
+                      {
+                        "rule": "self == oldSelf",
+                        "message": "Value is immutable"
+                      }
+                    ]
                   },
                   "description": {
                     "description": "Description helps describe a GatewayClass with more details.",
@@ -307,7 +347,7 @@
                 }
               },
               "status": {
-                "description": "Status defines the current state of GatewayClass.",
+                "description": "Status defines the current state of GatewayClass. \n Implementations MUST populate status on all GatewayClass resources which specify their controller name.",
                 "type": "object",
                 "default": {
                   "conditions": [
@@ -389,6 +429,36 @@
                       "type"
                     ],
                     "x-kubernetes-list-type": "map"
+                  },
+                  "supportedFeatures": {
+                    "description": "SupportedFeatures is the set of features the GatewayClass support. It MUST be sorted in ascending alphabetical order. ",
+                    "type": "array",
+                    "maxItems": 64,
+                    "items": {
+                      "description": "SupportedFeature is used to describe distinct features that are covered by conformance tests.",
+                      "type": "string",
+                      "enum": [
+                        "Gateway",
+                        "GatewayPort8080",
+                        "GatewayStaticAddresses",
+                        "HTTPRoute",
+                        "HTTPRouteDestinationPortMatching",
+                        "HTTPRouteHostRewrite",
+                        "HTTPRouteMethodMatching",
+                        "HTTPRoutePathRedirect",
+                        "HTTPRoutePathRewrite",
+                        "HTTPRoutePortRedirect",
+                        "HTTPRouteQueryParamMatching",
+                        "HTTPRouteRequestMirror",
+                        "HTTPRouteRequestMultipleMirrors",
+                        "HTTPRouteResponseHeaderModification",
+                        "HTTPRouteSchemeRedirect",
+                        "Mesh",
+                        "ReferenceGrant",
+                        "TLSRoute"
+                      ]
+                    },
+                    "x-kubernetes-list-type": "set"
                   }
                 }
               }

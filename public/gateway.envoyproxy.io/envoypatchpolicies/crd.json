@@ -5,7 +5,7 @@
     "name": "envoypatchpolicies.gateway.envoyproxy.io",
     "creationTimestamp": null,
     "annotations": {
-      "controller-gen.kubebuilder.io/version": "v0.10.0"
+      "controller-gen.kubebuilder.io/version": "v0.13.0"
     }
   },
   "spec": {
@@ -13,6 +13,9 @@
     "names": {
       "plural": "envoypatchpolicies",
       "singular": "envoypatchpolicy",
+      "shortNames": [
+        "epp"
+      ],
       "kind": "EnvoyPatchPolicy",
       "listKind": "EnvoyPatchPolicyList"
     },

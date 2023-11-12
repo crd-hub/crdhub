@@ -151,7 +151,7 @@ spec:
                   query:
                     properties:
                       byLabel:
-                        description: ENUM(authn,authz,auth_secret,backup_via,catalog,cert_issuer,config,connect_via,exposed_by,event,located_on,monitored_by,ocm_bind,offshoot,ops,placed_into,policy,recommended_for,restore_into,scaled_by,storage,view)
+                        description: ENUM(authn,authz,auth_secret,backup_via,catalog,cert_issuer,config,connect_via,exposed_by,event,located_on,monitored_by,ocm_bind,offshoot,ops,placed_into,policy,recommended_for,restore_into,scaled_by,source,storage,view)
                         enum:
                         - authn
                         - authz
@@ -173,6 +173,7 @@ spec:
                         - recommended_for
                         - restore_into
                         - scaled_by
+                        - source
                         - storage
                         - view
                         type: string
@@ -196,6 +197,12 @@ spec:
                     required:
                     - group
                     - kind
+                    type: object
+                  requiredFeatureSets:
+                    additionalProperties:
+                      items:
+                        type: string
+                      type: array
                     type: object
                   view:
                     properties:
@@ -356,7 +363,7 @@ spec:
                                 query:
                                   properties:
                                     byLabel:
-                                      description: ENUM(authn,authz,auth_secret,backup_via,catalog,cert_issuer,config,connect_via,exposed_by,event,located_on,monitored_by,ocm_bind,offshoot,ops,placed_into,policy,recommended_for,restore_into,scaled_by,storage,view)
+                                      description: ENUM(authn,authz,auth_secret,backup_via,catalog,cert_issuer,config,connect_via,exposed_by,event,located_on,monitored_by,ocm_bind,offshoot,ops,placed_into,policy,recommended_for,restore_into,scaled_by,source,storage,view)
                                       enum:
                                       - authn
                                       - authz
@@ -378,6 +385,7 @@ spec:
                                       - recommended_for
                                       - restore_into
                                       - scaled_by
+                                      - source
                                       - storage
                                       - view
                                       type: string
@@ -401,6 +409,12 @@ spec:
                                   required:
                                   - group
                                   - kind
+                                  type: object
+                                requiredFeatureSets:
+                                  additionalProperties:
+                                    items:
+                                      type: string
+                                    type: array
                                   type: object
                                 view:
                                   properties:
@@ -570,7 +584,7 @@ spec:
                               query:
                                 properties:
                                   byLabel:
-                                    description: ENUM(authn,authz,auth_secret,backup_via,catalog,cert_issuer,config,connect_via,exposed_by,event,located_on,monitored_by,ocm_bind,offshoot,ops,placed_into,policy,recommended_for,restore_into,scaled_by,storage,view)
+                                    description: ENUM(authn,authz,auth_secret,backup_via,catalog,cert_issuer,config,connect_via,exposed_by,event,located_on,monitored_by,ocm_bind,offshoot,ops,placed_into,policy,recommended_for,restore_into,scaled_by,source,storage,view)
                                     enum:
                                     - authn
                                     - authz
@@ -592,6 +606,7 @@ spec:
                                     - recommended_for
                                     - restore_into
                                     - scaled_by
+                                    - source
                                     - storage
                                     - view
                                     type: string
@@ -615,6 +630,12 @@ spec:
                                 required:
                                 - group
                                 - kind
+                                type: object
+                              requiredFeatureSets:
+                                additionalProperties:
+                                  items:
+                                    type: string
+                                  type: array
                                 type: object
                               view:
                                 properties:
@@ -766,7 +787,7 @@ spec:
                               query:
                                 properties:
                                   byLabel:
-                                    description: ENUM(authn,authz,auth_secret,backup_via,catalog,cert_issuer,config,connect_via,exposed_by,event,located_on,monitored_by,ocm_bind,offshoot,ops,placed_into,policy,recommended_for,restore_into,scaled_by,storage,view)
+                                    description: ENUM(authn,authz,auth_secret,backup_via,catalog,cert_issuer,config,connect_via,exposed_by,event,located_on,monitored_by,ocm_bind,offshoot,ops,placed_into,policy,recommended_for,restore_into,scaled_by,source,storage,view)
                                     enum:
                                     - authn
                                     - authz
@@ -788,6 +809,7 @@ spec:
                                     - recommended_for
                                     - restore_into
                                     - scaled_by
+                                    - source
                                     - storage
                                     - view
                                     type: string
@@ -811,6 +833,12 @@ spec:
                                 required:
                                 - group
                                 - kind
+                                type: object
+                              requiredFeatureSets:
+                                additionalProperties:
+                                  items:
+                                    type: string
+                                  type: array
                                 type: object
                               view:
                                 properties:
@@ -989,7 +1017,7 @@ spec:
                   query:
                     properties:
                       byLabel:
-                        description: ENUM(authn,authz,auth_secret,backup_via,catalog,cert_issuer,config,connect_via,exposed_by,event,located_on,monitored_by,ocm_bind,offshoot,ops,placed_into,policy,recommended_for,restore_into,scaled_by,storage,view)
+                        description: ENUM(authn,authz,auth_secret,backup_via,catalog,cert_issuer,config,connect_via,exposed_by,event,located_on,monitored_by,ocm_bind,offshoot,ops,placed_into,policy,recommended_for,restore_into,scaled_by,source,storage,view)
                         enum:
                         - authn
                         - authz
@@ -1011,6 +1039,7 @@ spec:
                         - recommended_for
                         - restore_into
                         - scaled_by
+                        - source
                         - storage
                         - view
                         type: string
@@ -1034,6 +1063,12 @@ spec:
                     required:
                     - group
                     - kind
+                    type: object
+                  requiredFeatureSets:
+                    additionalProperties:
+                      items:
+                        type: string
+                      type: array
                     type: object
                   view:
                     properties:

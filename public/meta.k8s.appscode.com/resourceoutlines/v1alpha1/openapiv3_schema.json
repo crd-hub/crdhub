@@ -66,6 +66,7 @@
                 "items": {
                   "type": "object",
                   "required": [
+                    "enforceQuota",
                     "flow",
                     "operationId"
                   ],
@@ -115,6 +116,9 @@
                           "type": "string"
                         }
                       }
+                    },
+                    "enforceQuota": {
+                      "type": "boolean"
                     },
                     "flow": {
                       "type": "string"

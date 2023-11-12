@@ -1,0 +1,82 @@
+{
+  "kind": "CustomResourceDefinition",
+  "apiVersion": "apiextensions.k8s.io/v1",
+  "metadata": {
+    "name": "componentstatuses.core",
+    "creationTimestamp": null
+  },
+  "spec": {
+    "group": "core",
+    "names": {
+      "plural": "componentstatuses",
+      "singular": "componentstatus",
+      "kind": "ComponentStatus",
+      "listKind": "ComponentStatusList"
+    },
+    "scope": "Namespaced",
+    "versions": [
+      {
+        "name": "v1",
+        "served": true,
+        "storage": true,
+        "schema": {
+          "openAPIV3Schema": {
+            "description": "ComponentStatus (and ComponentStatusList) holds the cluster validation info. Deprecated: This API is deprecated in v1.19+",
+            "type": "object",
+            "properties": {
+              "apiVersion": {
+                "description": "APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources",
+                "type": "string"
+              },
+              "conditions": {
+                "description": "List of component conditions observed",
+                "type": "array",
+                "items": {
+                  "description": "Information about the condition of a component.",
+                  "type": "object",
+                  "required": [
+                    "status",
+                    "type"
+                  ],
+                  "properties": {
+                    "error": {
+                      "description": "Condition error code for a component. For example, a health check error code.",
+                      "type": "string"
+                    },
+                    "message": {
+                      "description": "Message about the condition for a component. For example, information about a health check.",
+                      "type": "string"
+                    },
+                    "status": {
+                      "description": "Status of the condition for a component. Valid values for \"Healthy\": \"True\", \"False\", or \"Unknown\".",
+                      "type": "string"
+                    },
+                    "type": {
+                      "description": "Type of condition for a component. Valid value: \"Healthy\"",
+                      "type": "string"
+                    }
+                  }
+                }
+              },
+              "kind": {
+                "description": "Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds",
+                "type": "string"
+              },
+              "metadata": {
+                "type": "object"
+              }
+            }
+          }
+        }
+      }
+    ]
+  },
+  "status": {
+    "conditions": null,
+    "acceptedNames": {
+      "plural": "",
+      "kind": ""
+    },
+    "storedVersions": null
+  }
+}

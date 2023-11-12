@@ -1,0 +1,35 @@
+{
+  "kind": "ResourceEditor",
+  "apiVersion": "ui.k8s.appscode.com/v1alpha1",
+  "metadata": {
+    "name": "kinesis.aws.kubedb.com-v1alpha1-streams",
+    "creationTimestamp": null,
+    "labels": {
+      "k8s.io/group": "kinesis.aws.kubedb.com",
+      "k8s.io/kind": "Stream",
+      "k8s.io/resource": "streams",
+      "k8s.io/version": "v1alpha1"
+    }
+  },
+  "spec": {
+    "resource": {
+      "group": "kinesis.aws.kubedb.com",
+      "version": "v1alpha1",
+      "name": "streams",
+      "kind": "Stream",
+      "scope": "Cluster"
+    },
+    "ui": {
+      "editor": {
+        "name": "kinesisawskubedbcom-stream-editor",
+        "version": "v0.4.18",
+        "sourceRef": {
+          "apiGroup": "source.toolkit.fluxcd.io",
+          "kind": "HelmRepository",
+          "name": "appscode-charts-oci"
+        }
+      },
+      "enforceQuota": false
+    }
+  }
+}
