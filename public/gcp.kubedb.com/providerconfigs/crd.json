@@ -5,7 +5,7 @@
     "name": "providerconfigs.gcp.kubedb.com",
     "creationTimestamp": null,
     "annotations": {
-      "controller-gen.kubebuilder.io/version": "v0.11.3"
+      "controller-gen.kubebuilder.io/version": "v0.13.0"
     }
   },
   "spec": {
@@ -168,7 +168,11 @@
                           "type": "string"
                         }
                       }
-                    }
+                    },
+                    "x-kubernetes-list-map-keys": [
+                      "type"
+                    ],
+                    "x-kubernetes-list-type": "map"
                   },
                   "users": {
                     "description": "Users of this provider configuration.",

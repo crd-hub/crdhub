@@ -441,6 +441,60 @@
         "init": {
           "type": "object",
           "properties": {
+            "archiver": {
+              "type": "object",
+              "required": [
+                "recoveryTimestamp"
+              ],
+              "properties": {
+                "encryptionSecret": {
+                  "type": "object",
+                  "required": [
+                    "name"
+                  ],
+                  "properties": {
+                    "name": {
+                      "type": "string"
+                    },
+                    "namespace": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "fullDBRepository": {
+                  "type": "object",
+                  "required": [
+                    "name"
+                  ],
+                  "properties": {
+                    "name": {
+                      "type": "string"
+                    },
+                    "namespace": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "manifestRepository": {
+                  "type": "object",
+                  "required": [
+                    "name"
+                  ],
+                  "properties": {
+                    "name": {
+                      "type": "string"
+                    },
+                    "namespace": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "recoveryTimestamp": {
+                  "type": "string",
+                  "format": "date-time"
+                }
+              }
+            },
             "initialized": {
               "type": "boolean"
             },
@@ -1791,7 +1845,12 @@
           "type": "object",
           "properties": {
             "agent": {
-              "type": "string"
+              "type": "string",
+              "enum": [
+                "prometheus.io/operator",
+                "prometheus.io",
+                "prometheus.io/builtin"
+              ]
             },
             "prometheus": {
               "type": "object",
@@ -9731,11 +9790,11 @@
               "enum": [
                 "GroupReplication",
                 "InnoDBCluster",
-                "ReadReplica",
+                "RemoteReplica",
                 "SemiSync"
               ]
             },
-            "readReplica": {
+            "remoteReplica": {
               "type": "object",
               "required": [
                 "sourceRef"

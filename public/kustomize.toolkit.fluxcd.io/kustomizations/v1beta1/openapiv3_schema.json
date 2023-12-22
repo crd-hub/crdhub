@@ -196,6 +196,9 @@
           "items": {
             "description": "Patch contains an inline StrategicMerge or JSON6902 patch, and the target the patch should be applied to.",
             "type": "object",
+            "required": [
+              "patch"
+            ],
             "properties": {
               "patch": {
                 "description": "Patch contains an inline StrategicMerge patch or an inline JSON6902 patch with an array of operation objects.",

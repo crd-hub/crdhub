@@ -48,6 +48,72 @@
         "version"
       ],
       "properties": {
+        "archiver": {
+          "type": "object",
+          "properties": {
+            "addon": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string",
+                  "enum": [
+                    "mongodb-addon",
+                    "postgres-addon"
+                  ]
+                },
+                "tasks": {
+                  "type": "object",
+                  "properties": {
+                    "manifestBackup": {
+                      "type": "object",
+                      "required": [
+                        "name"
+                      ],
+                      "properties": {
+                        "name": {
+                          "type": "string"
+                        }
+                      }
+                    },
+                    "manifestRestore": {
+                      "type": "object",
+                      "required": [
+                        "name"
+                      ],
+                      "properties": {
+                        "name": {
+                          "type": "string"
+                        }
+                      }
+                    },
+                    "volumeSnapshot": {
+                      "type": "object",
+                      "required": [
+                        "name"
+                      ],
+                      "properties": {
+                        "name": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "walg": {
+              "type": "object",
+              "required": [
+                "image"
+              ],
+              "properties": {
+                "image": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        },
         "db": {
           "type": "object",
           "required": [
@@ -72,6 +138,17 @@
           ]
         },
         "exporter": {
+          "type": "object",
+          "required": [
+            "image"
+          ],
+          "properties": {
+            "image": {
+              "type": "string"
+            }
+          }
+        },
+        "gitSyncer": {
           "type": "object",
           "required": [
             "image"
@@ -112,6 +189,15 @@
           "properties": {
             "image": {
               "type": "string"
+            }
+          }
+        },
+        "securityContext": {
+          "type": "object",
+          "properties": {
+            "runAsUser": {
+              "type": "integer",
+              "format": "int64"
             }
           }
         },

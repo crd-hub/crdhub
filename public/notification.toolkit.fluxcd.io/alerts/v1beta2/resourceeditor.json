@@ -1,0 +1,23 @@
+{
+  "kind": "ResourceEditor",
+  "apiVersion": "ui.k8s.appscode.com/v1alpha1",
+  "metadata": {
+    "name": "notification.toolkit.fluxcd.io-v1beta2-alerts",
+    "creationTimestamp": null,
+    "labels": {
+      "k8s.io/group": "notification.toolkit.fluxcd.io",
+      "k8s.io/kind": "Alert",
+      "k8s.io/resource": "alerts",
+      "k8s.io/version": "v1beta2"
+    }
+  },
+  "spec": {
+    "resource": {
+      "group": "notification.toolkit.fluxcd.io",
+      "version": "v1beta2",
+      "name": "alerts",
+      "kind": "Alert",
+      "scope": "Namespaced"
+    }
+  }
+}

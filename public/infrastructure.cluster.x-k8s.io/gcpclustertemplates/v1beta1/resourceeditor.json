@@ -1,0 +1,35 @@
+{
+  "kind": "ResourceEditor",
+  "apiVersion": "ui.k8s.appscode.com/v1alpha1",
+  "metadata": {
+    "name": "infrastructure.cluster.x-k8s.io-v1beta1-gcpclustertemplates",
+    "creationTimestamp": null,
+    "labels": {
+      "k8s.io/group": "infrastructure.cluster.x-k8s.io",
+      "k8s.io/kind": "GCPClusterTemplate",
+      "k8s.io/resource": "gcpclustertemplates",
+      "k8s.io/version": "v1beta1"
+    }
+  },
+  "spec": {
+    "resource": {
+      "group": "infrastructure.cluster.x-k8s.io",
+      "version": "v1beta1",
+      "name": "gcpclustertemplates",
+      "kind": "GCPClusterTemplate",
+      "scope": "Namespaced"
+    },
+    "ui": {
+      "editor": {
+        "name": "infrastructureclusterxk8sio-gcpclustertemplate-editor",
+        "version": "v0.4.18",
+        "sourceRef": {
+          "apiGroup": "source.toolkit.fluxcd.io",
+          "kind": "HelmRepository",
+          "name": "appscode-charts-oci"
+        }
+      },
+      "enforceQuota": false
+    }
+  }
+}

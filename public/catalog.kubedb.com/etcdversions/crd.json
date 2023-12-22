@@ -76,6 +76,26 @@
                       }
                     }
                   },
+                  "gitSyncer": {
+                    "type": "object",
+                    "required": [
+                      "image"
+                    ],
+                    "properties": {
+                      "image": {
+                        "type": "string"
+                      }
+                    }
+                  },
+                  "securityContext": {
+                    "type": "object",
+                    "properties": {
+                      "runAsUser": {
+                        "type": "integer",
+                        "format": "int64"
+                      }
+                    }
+                  },
                   "stash": {
                     "type": "object",
                     "properties": {

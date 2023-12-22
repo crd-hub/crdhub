@@ -299,45 +299,17 @@
                   "verticalScaling": {
                     "type": "object",
                     "properties": {
-                      "node": {
+                      "broker": {
                         "type": "object",
                         "properties": {
-                          "limits": {
-                            "type": "object",
-                            "additionalProperties": {
-                              "pattern": "^(\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))(([KMGTPE]i)|[numkMGTPE]|([eE](\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))))?$",
-                              "anyOf": [
-                                {
-                                  "type": "integer"
-                                },
-                                {
-                                  "type": "string"
-                                }
-                              ],
-                              "x-kubernetes-int-or-string": true
-                            }
+                          "nodeSelectionPolicy": {
+                            "type": "string",
+                            "enum": [
+                              "LabelSelector",
+                              "Taint"
+                            ]
                           },
-                          "requests": {
-                            "type": "object",
-                            "additionalProperties": {
-                              "pattern": "^(\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))(([KMGTPE]i)|[numkMGTPE]|([eE](\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))))?$",
-                              "anyOf": [
-                                {
-                                  "type": "integer"
-                                },
-                                {
-                                  "type": "string"
-                                }
-                              ],
-                              "x-kubernetes-int-or-string": true
-                            }
-                          }
-                        }
-                      },
-                      "topology": {
-                        "type": "object",
-                        "properties": {
-                          "broker": {
+                          "resources": {
                             "type": "object",
                             "properties": {
                               "limits": {
@@ -372,7 +344,34 @@
                               }
                             }
                           },
-                          "controller": {
+                          "topology": {
+                            "type": "object",
+                            "required": [
+                              "key",
+                              "value"
+                            ],
+                            "properties": {
+                              "key": {
+                                "type": "string"
+                              },
+                              "value": {
+                                "type": "string"
+                              }
+                            }
+                          }
+                        }
+                      },
+                      "controller": {
+                        "type": "object",
+                        "properties": {
+                          "nodeSelectionPolicy": {
+                            "type": "string",
+                            "enum": [
+                              "LabelSelector",
+                              "Taint"
+                            ]
+                          },
+                          "resources": {
                             "type": "object",
                             "properties": {
                               "limits": {
@@ -404,6 +403,83 @@
                                   ],
                                   "x-kubernetes-int-or-string": true
                                 }
+                              }
+                            }
+                          },
+                          "topology": {
+                            "type": "object",
+                            "required": [
+                              "key",
+                              "value"
+                            ],
+                            "properties": {
+                              "key": {
+                                "type": "string"
+                              },
+                              "value": {
+                                "type": "string"
+                              }
+                            }
+                          }
+                        }
+                      },
+                      "node": {
+                        "type": "object",
+                        "properties": {
+                          "nodeSelectionPolicy": {
+                            "type": "string",
+                            "enum": [
+                              "LabelSelector",
+                              "Taint"
+                            ]
+                          },
+                          "resources": {
+                            "type": "object",
+                            "properties": {
+                              "limits": {
+                                "type": "object",
+                                "additionalProperties": {
+                                  "pattern": "^(\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))(([KMGTPE]i)|[numkMGTPE]|([eE](\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))))?$",
+                                  "anyOf": [
+                                    {
+                                      "type": "integer"
+                                    },
+                                    {
+                                      "type": "string"
+                                    }
+                                  ],
+                                  "x-kubernetes-int-or-string": true
+                                }
+                              },
+                              "requests": {
+                                "type": "object",
+                                "additionalProperties": {
+                                  "pattern": "^(\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))(([KMGTPE]i)|[numkMGTPE]|([eE](\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))))?$",
+                                  "anyOf": [
+                                    {
+                                      "type": "integer"
+                                    },
+                                    {
+                                      "type": "string"
+                                    }
+                                  ],
+                                  "x-kubernetes-int-or-string": true
+                                }
+                              }
+                            }
+                          },
+                          "topology": {
+                            "type": "object",
+                            "required": [
+                              "key",
+                              "value"
+                            ],
+                            "properties": {
+                              "key": {
+                                "type": "string"
+                              },
+                              "value": {
+                                "type": "string"
                               }
                             }
                           }
@@ -414,6 +490,30 @@
                   "volumeExpansion": {
                     "type": "object",
                     "properties": {
+                      "broker": {
+                        "pattern": "^(\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))(([KMGTPE]i)|[numkMGTPE]|([eE](\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))))?$",
+                        "anyOf": [
+                          {
+                            "type": "integer"
+                          },
+                          {
+                            "type": "string"
+                          }
+                        ],
+                        "x-kubernetes-int-or-string": true
+                      },
+                      "controller": {
+                        "pattern": "^(\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))(([KMGTPE]i)|[numkMGTPE]|([eE](\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))))?$",
+                        "anyOf": [
+                          {
+                            "type": "integer"
+                          },
+                          {
+                            "type": "string"
+                          }
+                        ],
+                        "x-kubernetes-int-or-string": true
+                      },
                       "mode": {
                         "type": "string",
                         "default": "Online",
@@ -433,35 +533,6 @@
                           }
                         ],
                         "x-kubernetes-int-or-string": true
-                      },
-                      "topology": {
-                        "type": "object",
-                        "properties": {
-                          "broker": {
-                            "pattern": "^(\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))(([KMGTPE]i)|[numkMGTPE]|([eE](\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))))?$",
-                            "anyOf": [
-                              {
-                                "type": "integer"
-                              },
-                              {
-                                "type": "string"
-                              }
-                            ],
-                            "x-kubernetes-int-or-string": true
-                          },
-                          "controller": {
-                            "pattern": "^(\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))(([KMGTPE]i)|[numkMGTPE]|([eE](\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))))?$",
-                            "anyOf": [
-                              {
-                                "type": "integer"
-                              },
-                              {
-                                "type": "string"
-                              }
-                            ],
-                            "x-kubernetes-int-or-string": true
-                          }
-                        }
                       }
                     }
                   }

@@ -165,6 +165,15 @@
                       }
                     }
                   },
+                  "securityContext": {
+                    "type": "object",
+                    "properties": {
+                      "runAsUser": {
+                        "type": "integer",
+                        "format": "int64"
+                      }
+                    }
+                  },
                   "stash": {
                     "type": "object",
                     "properties": {

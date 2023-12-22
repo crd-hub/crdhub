@@ -96,7 +96,7 @@
           ],
           "properties": {
             "hosted": {
-              "description": "Hosted includes configurations we needs for clustermanager in the Hosted mode.",
+              "description": "Hosted includes configurations we need for clustermanager in the Hosted mode.",
               "type": "object",
               "properties": {
                 "registrationWebhookConfiguration": {
@@ -166,7 +166,7 @@
               }
             },
             "tolerations": {
-              "description": "Tolerations is attached by pods to tolerate any taint that matches the triple \u003ckey,value,effect\u003e using the matching operator \u003coperator\u003e. The default is an empty list.",
+              "description": "Tolerations are attached by pods to tolerate any taint that matches the triple \u003ckey,value,effect\u003e using the matching operator \u003coperator\u003e. The default is an empty list.",
               "type": "array",
               "items": {
                 "description": "The pod this Toleration is attached to tolerates any taint that matches the triple \u003ckey,value,effect\u003e using the matching operator \u003coperator\u003e.",

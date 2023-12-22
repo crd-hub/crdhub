@@ -1,0 +1,138 @@
+{
+  "$schema": "http://json-schema.org/schema#",
+  "description": "ImagePolicy is the Schema for the imagepolicies API",
+  "type": "object",
+  "properties": {
+    "apiVersion": {
+      "description": "APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources",
+      "type": "string",
+      "enum": [
+        "image.toolkit.fluxcd.io/v1beta2"
+      ]
+    },
+    "kind": {
+      "description": "Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds",
+      "type": "string",
+      "enum": [
+        "ImagePolicy"
+      ]
+    },
+    "metadata": {
+      "type": "object",
+      "properties": {
+        "annotations": {
+          "description": "Annotations is an unstructured key value map stored with a resource that may be set by external tools to store and retrieve arbitrary metadata. They are not queryable and should be preserved when modifying objects. More info: http://kubernetes.io/docs/user-guide/annotations",
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          }
+        },
+        "labels": {
+          "description": "Map of string keys and values that can be used to organize and categorize (scope and select) objects. May match selectors of replication controllers and services. More info: http://kubernetes.io/docs/user-guide/labels",
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          }
+        },
+        "name": {
+          "description": "Name must be unique within a namespace. Is required when creating resources, although some resources may allow a client to request the generation of an appropriate name automatically. Name is primarily intended for creation idempotence and configuration definition. Cannot be updated. More info: http://kubernetes.io/docs/user-guide/identifiers#names",
+          "type": "string"
+        },
+        "namespace": {
+          "description": "Namespace defines the space within which each name must be unique. An empty namespace is equivalent to the \"default\" namespace, but \"default\" is the canonical representation. Not all objects are required to be scoped to a namespace - the value of this field for those objects will be empty. \n Must be a DNS_LABEL. Cannot be updated. More info: http://kubernetes.io/docs/user-guide/namespaces",
+          "type": "string"
+        }
+      }
+    },
+    "spec": {
+      "description": "ImagePolicySpec defines the parameters for calculating the ImagePolicy.",
+      "type": "object",
+      "required": [
+        "imageRepositoryRef",
+        "policy"
+      ],
+      "properties": {
+        "filterTags": {
+          "description": "FilterTags enables filtering for only a subset of tags based on a set of rules. If no rules are provided, all the tags from the repository will be ordered and compared.",
+          "type": "object",
+          "properties": {
+            "extract": {
+              "description": "Extract allows a capture group to be extracted from the specified regular expression pattern, useful before tag evaluation.",
+              "type": "string"
+            },
+            "pattern": {
+              "description": "Pattern specifies a regular expression pattern used to filter for image tags.",
+              "type": "string"
+            }
+          }
+        },
+        "imageRepositoryRef": {
+          "description": "ImageRepositoryRef points at the object specifying the image being scanned",
+          "type": "object",
+          "required": [
+            "name"
+          ],
+          "properties": {
+            "name": {
+              "description": "Name of the referent.",
+              "type": "string"
+            },
+            "namespace": {
+              "description": "Namespace of the referent, when not specified it acts as LocalObjectReference.",
+              "type": "string"
+            }
+          }
+        },
+        "policy": {
+          "description": "Policy gives the particulars of the policy to be followed in selecting the most recent image",
+          "type": "object",
+          "properties": {
+            "alphabetical": {
+              "description": "Alphabetical set of rules to use for alphabetical ordering of the tags.",
+              "type": "object",
+              "properties": {
+                "order": {
+                  "description": "Order specifies the sorting order of the tags. Given the letters of the alphabet as tags, ascending order would select Z, and descending order would select A.",
+                  "type": "string",
+                  "default": "asc",
+                  "enum": [
+                    "asc",
+                    "desc"
+                  ]
+                }
+              }
+            },
+            "numerical": {
+              "description": "Numerical set of rules to use for numerical ordering of the tags.",
+              "type": "object",
+              "properties": {
+                "order": {
+                  "description": "Order specifies the sorting order of the tags. Given the integer values from 0 to 9 as tags, ascending order would select 9, and descending order would select 0.",
+                  "type": "string",
+                  "default": "asc",
+                  "enum": [
+                    "asc",
+                    "desc"
+                  ]
+                }
+              }
+            },
+            "semver": {
+              "description": "SemVer gives a semantic version range to check against the tags available.",
+              "type": "object",
+              "required": [
+                "range"
+              ],
+              "properties": {
+                "range": {
+                  "description": "Range gives a semver range for the image tag; the highest version within the range that's a tag yields the latest image.",
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

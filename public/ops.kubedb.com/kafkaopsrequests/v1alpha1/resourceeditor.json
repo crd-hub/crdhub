@@ -1,0 +1,35 @@
+{
+  "kind": "ResourceEditor",
+  "apiVersion": "ui.k8s.appscode.com/v1alpha1",
+  "metadata": {
+    "name": "ops.kubedb.com-v1alpha1-kafkaopsrequests",
+    "creationTimestamp": null,
+    "labels": {
+      "k8s.io/group": "ops.kubedb.com",
+      "k8s.io/kind": "KafkaOpsRequest",
+      "k8s.io/resource": "kafkaopsrequests",
+      "k8s.io/version": "v1alpha1"
+    }
+  },
+  "spec": {
+    "resource": {
+      "group": "ops.kubedb.com",
+      "version": "v1alpha1",
+      "name": "kafkaopsrequests",
+      "kind": "KafkaOpsRequest",
+      "scope": "Namespaced"
+    },
+    "ui": {
+      "editor": {
+        "name": "opskubedbcom-kafkaopsrequest-editor",
+        "version": "v0.4.18",
+        "sourceRef": {
+          "apiGroup": "source.toolkit.fluxcd.io",
+          "kind": "HelmRepository",
+          "name": "appscode-charts-oci"
+        }
+      },
+      "enforceQuota": false
+    }
+  }
+}

@@ -367,43 +367,57 @@
                       "description": "HubPermissionConfig configures the permission of the addon agent to access the hub cluster. Will create a RoleBinding in the same namespace as the managedClusterAddon to bind the user provided ClusterRole/Role to the \"system:open-cluster-management:cluster:\u003ccluster-name\u003e:addon:\u003caddon-name\u003e\" Group.",
                       "type": "object",
                       "required": [
-                        "roleRef",
                         "type"
                       ],
                       "properties": {
-                        "roleRef": {
-                          "description": "RoleRef is an reference to the permission resource. it could be a role or a cluster role, the user must make sure it exist on the hub cluster.",
+                        "currentCluster": {
+                          "description": "CurrentCluster contains the configuration of CurrentCluster type binding. It is required when the type is CurrentCluster.",
                           "type": "object",
                           "required": [
-                            "apiGroup",
-                            "kind",
-                            "name"
+                            "clusterRoleName"
                           ],
                           "properties": {
-                            "apiGroup": {
-                              "description": "APIGroup is the group for the resource being referenced",
-                              "type": "string"
-                            },
-                            "kind": {
-                              "description": "Kind is the type of resource being referenced",
-                              "type": "string"
-                            },
-                            "name": {
-                              "description": "Name is the name of resource being referenced",
+                            "clusterRoleName": {
+                              "description": "ClusterRoleName is the name of the clusterrole the addon agent is bound. A rolebinding will be created referring to this cluster role in each cluster namespace. The user must make sure the clusterrole exists on the hub cluster.",
                               "type": "string"
                             }
-                          },
-                          "x-kubernetes-map-type": "atomic"
+                          }
                         },
                         "singleNamespace": {
                           "description": "SingleNamespace contains the configuration of SingleNamespace type binding. It is required when the type is SingleNamespace",
                           "type": "object",
                           "required": [
-                            "namespace"
+                            "namespace",
+                            "roleRef"
                           ],
                           "properties": {
                             "namespace": {
+                              "description": "Namespace is the namespace the addon agent has permissions to bind to. A rolebinding will be created in this namespace referring to the RoleRef.",
                               "type": "string"
+                            },
+                            "roleRef": {
+                              "description": "RoleRef is an reference to the permission resource. it could be a role or a cluster role, the user must make sure it exist on the hub cluster.",
+                              "type": "object",
+                              "required": [
+                                "apiGroup",
+                                "kind",
+                                "name"
+                              ],
+                              "properties": {
+                                "apiGroup": {
+                                  "description": "APIGroup is the group for the resource being referenced",
+                                  "type": "string"
+                                },
+                                "kind": {
+                                  "description": "Kind is the type of resource being referenced",
+                                  "type": "string"
+                                },
+                                "name": {
+                                  "description": "Name is the name of resource being referenced",
+                                  "type": "string"
+                                }
+                              },
+                              "x-kubernetes-map-type": "atomic"
                             }
                           }
                         },

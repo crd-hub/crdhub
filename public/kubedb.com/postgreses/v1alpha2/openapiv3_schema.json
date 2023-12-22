@@ -146,6 +146,102 @@
             }
           }
         },
+        "arbiter": {
+          "type": "object",
+          "properties": {
+            "nodeSelector": {
+              "type": "object",
+              "additionalProperties": {
+                "type": "string"
+              },
+              "x-kubernetes-map-type": "atomic"
+            },
+            "resources": {
+              "type": "object",
+              "properties": {
+                "limits": {
+                  "type": "object",
+                  "additionalProperties": {
+                    "pattern": "^(\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))(([KMGTPE]i)|[numkMGTPE]|([eE](\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))))?$",
+                    "anyOf": [
+                      {
+                        "type": "integer"
+                      },
+                      {
+                        "type": "string"
+                      }
+                    ],
+                    "x-kubernetes-int-or-string": true
+                  }
+                },
+                "requests": {
+                  "type": "object",
+                  "additionalProperties": {
+                    "pattern": "^(\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))(([KMGTPE]i)|[numkMGTPE]|([eE](\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))))?$",
+                    "anyOf": [
+                      {
+                        "type": "integer"
+                      },
+                      {
+                        "type": "string"
+                      }
+                    ],
+                    "x-kubernetes-int-or-string": true
+                  }
+                }
+              }
+            },
+            "tolerations": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "effect": {
+                    "type": "string"
+                  },
+                  "key": {
+                    "type": "string"
+                  },
+                  "operator": {
+                    "type": "string"
+                  },
+                  "tolerationSeconds": {
+                    "type": "integer",
+                    "format": "int64"
+                  },
+                  "value": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "archiver": {
+          "type": "object",
+          "required": [
+            "ref"
+          ],
+          "properties": {
+            "pause": {
+              "type": "boolean"
+            },
+            "ref": {
+              "type": "object",
+              "required": [
+                "name"
+              ],
+              "properties": {
+                "name": {
+                  "type": "string"
+                },
+                "namespace": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        },
         "authSecret": {
           "type": "object",
           "properties": {
@@ -353,6 +449,60 @@
         "init": {
           "type": "object",
           "properties": {
+            "archiver": {
+              "type": "object",
+              "required": [
+                "recoveryTimestamp"
+              ],
+              "properties": {
+                "encryptionSecret": {
+                  "type": "object",
+                  "required": [
+                    "name"
+                  ],
+                  "properties": {
+                    "name": {
+                      "type": "string"
+                    },
+                    "namespace": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "fullDBRepository": {
+                  "type": "object",
+                  "required": [
+                    "name"
+                  ],
+                  "properties": {
+                    "name": {
+                      "type": "string"
+                    },
+                    "namespace": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "manifestRepository": {
+                  "type": "object",
+                  "required": [
+                    "name"
+                  ],
+                  "properties": {
+                    "name": {
+                      "type": "string"
+                    },
+                    "namespace": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "recoveryTimestamp": {
+                  "type": "string",
+                  "format": "date-time"
+                }
+              }
+            },
             "initialized": {
               "type": "boolean"
             },
@@ -1743,11 +1893,19 @@
             }
           }
         },
+        "mode": {
+          "type": "string"
+        },
         "monitor": {
           "type": "object",
           "properties": {
             "agent": {
-              "type": "string"
+              "type": "string",
+              "enum": [
+                "prometheus.io/operator",
+                "prometheus.io",
+                "prometheus.io/builtin"
+              ]
             },
             "prometheus": {
               "type": "object",
@@ -5620,6 +5778,41 @@
                   }
                 }
               }
+            }
+          }
+        },
+        "remoteReplica": {
+          "type": "object",
+          "required": [
+            "sourceRef"
+          ],
+          "properties": {
+            "sourceRef": {
+              "type": "object",
+              "properties": {
+                "apiVersion": {
+                  "type": "string"
+                },
+                "fieldPath": {
+                  "type": "string"
+                },
+                "kind": {
+                  "type": "string"
+                },
+                "name": {
+                  "type": "string"
+                },
+                "namespace": {
+                  "type": "string"
+                },
+                "resourceVersion": {
+                  "type": "string"
+                },
+                "uid": {
+                  "type": "string"
+                }
+              },
+              "x-kubernetes-map-type": "atomic"
             }
           }
         },

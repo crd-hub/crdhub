@@ -65,9 +65,6 @@
             "groupStrategy": {
               "description": "GroupStrategy define strategies to divide selected clusters to decision groups.",
               "type": "object",
-              "required": [
-                "clustersPerDecisionGroup"
-              ],
               "properties": {
                 "clustersPerDecisionGroup": {
                   "description": "ClustersPerDecisionGroup is a specific number or percentage of the total selected clusters. The specific number will divide the placementDecisions to decisionGroups each group has max number of clusters equal to that specific number. The percentage will divide the placementDecisions to decisionGroups each group has max number of clusters based on the total num of selected clusters and percentage. ex; for a total 100 clusters selected, ClustersPerDecisionGroup equal to 20% will divide the placement decision to 5 groups each group should have 20 clusters. Default is having all clusters in a single group. \n The predefined decisionGroups is expected to be a subset of the selected clusters and the number of items in each group SHOULD be less than ClustersPerDecisionGroup. Once the number of items exceeds the ClustersPerDecisionGroup, the decisionGroups will also be be divided into multiple decisionGroups with same GroupName but different GroupIndex.",

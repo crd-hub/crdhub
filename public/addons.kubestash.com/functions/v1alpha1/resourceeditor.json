@@ -1,0 +1,35 @@
+{
+  "kind": "ResourceEditor",
+  "apiVersion": "ui.k8s.appscode.com/v1alpha1",
+  "metadata": {
+    "name": "addons.kubestash.com-v1alpha1-functions",
+    "creationTimestamp": null,
+    "labels": {
+      "k8s.io/group": "addons.kubestash.com",
+      "k8s.io/kind": "Function",
+      "k8s.io/resource": "functions",
+      "k8s.io/version": "v1alpha1"
+    }
+  },
+  "spec": {
+    "resource": {
+      "group": "addons.kubestash.com",
+      "version": "v1alpha1",
+      "name": "functions",
+      "kind": "Function",
+      "scope": "Cluster"
+    },
+    "ui": {
+      "editor": {
+        "name": "addonskubestashcom-function-editor",
+        "version": "v0.4.18",
+        "sourceRef": {
+          "apiGroup": "source.toolkit.fluxcd.io",
+          "kind": "HelmRepository",
+          "name": "appscode-charts-oci"
+        }
+      },
+      "enforceQuota": false
+    }
+  }
+}

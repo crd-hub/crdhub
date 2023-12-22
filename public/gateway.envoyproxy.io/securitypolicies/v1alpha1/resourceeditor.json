@@ -1,0 +1,35 @@
+{
+  "kind": "ResourceEditor",
+  "apiVersion": "ui.k8s.appscode.com/v1alpha1",
+  "metadata": {
+    "name": "gateway.envoyproxy.io-v1alpha1-securitypolicies",
+    "creationTimestamp": null,
+    "labels": {
+      "k8s.io/group": "gateway.envoyproxy.io",
+      "k8s.io/kind": "SecurityPolicy",
+      "k8s.io/resource": "securitypolicies",
+      "k8s.io/version": "v1alpha1"
+    }
+  },
+  "spec": {
+    "resource": {
+      "group": "gateway.envoyproxy.io",
+      "version": "v1alpha1",
+      "name": "securitypolicies",
+      "kind": "SecurityPolicy",
+      "scope": "Namespaced"
+    },
+    "ui": {
+      "editor": {
+        "name": "gatewayenvoyproxyio-securitypolicy-editor",
+        "version": "v0.4.18",
+        "sourceRef": {
+          "apiGroup": "source.toolkit.fluxcd.io",
+          "kind": "HelmRepository",
+          "name": "appscode-charts-oci"
+        }
+      },
+      "enforceQuota": false
+    }
+  }
+}

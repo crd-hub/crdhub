@@ -84,6 +84,15 @@
                       }
                     }
                   },
+                  "securityContext": {
+                    "type": "object",
+                    "properties": {
+                      "runAsUser": {
+                        "type": "integer",
+                        "format": "int64"
+                      }
+                    }
+                  },
                   "updateConstraints": {
                     "type": "object",
                     "properties": {

@@ -1,0 +1,35 @@
+{
+  "kind": "ResourceEditor",
+  "apiVersion": "ui.k8s.appscode.com/v1alpha1",
+  "metadata": {
+    "name": "storage.kubestash.com-v1alpha1-snapshots",
+    "creationTimestamp": null,
+    "labels": {
+      "k8s.io/group": "storage.kubestash.com",
+      "k8s.io/kind": "Snapshot",
+      "k8s.io/resource": "snapshots",
+      "k8s.io/version": "v1alpha1"
+    }
+  },
+  "spec": {
+    "resource": {
+      "group": "storage.kubestash.com",
+      "version": "v1alpha1",
+      "name": "snapshots",
+      "kind": "Snapshot",
+      "scope": "Namespaced"
+    },
+    "ui": {
+      "editor": {
+        "name": "storagekubestashcom-snapshot-editor",
+        "version": "v0.4.18",
+        "sourceRef": {
+          "apiGroup": "source.toolkit.fluxcd.io",
+          "kind": "HelmRepository",
+          "name": "appscode-charts-oci"
+        }
+      },
+      "enforceQuota": false
+    }
+  }
+}

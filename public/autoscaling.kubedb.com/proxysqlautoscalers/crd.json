@@ -52,6 +52,15 @@
                   "compute": {
                     "type": "object",
                     "properties": {
+                      "nodeTopologyRef": {
+                        "type": "object",
+                        "properties": {
+                          "name": {
+                            "type": "string"
+                          }
+                        },
+                        "x-kubernetes-map-type": "atomic"
+                      },
                       "proxysql": {
                         "type": "object",
                         "properties": {

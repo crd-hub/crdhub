@@ -52,6 +52,716 @@
                   "compute": {
                     "type": "object",
                     "properties": {
+                      "coordinating": {
+                        "type": "object",
+                        "properties": {
+                          "containerControlledValues": {
+                            "type": "string",
+                            "enum": [
+                              "RequestsAndLimits",
+                              "RequestsOnly"
+                            ]
+                          },
+                          "controlledResources": {
+                            "type": "array",
+                            "items": {
+                              "type": "string"
+                            }
+                          },
+                          "inMemoryStorage": {
+                            "type": "object",
+                            "properties": {
+                              "scalingFactorPercentage": {
+                                "type": "integer",
+                                "format": "int32"
+                              },
+                              "usageThresholdPercentage": {
+                                "type": "integer",
+                                "format": "int32"
+                              }
+                            }
+                          },
+                          "maxAllowed": {
+                            "type": "object",
+                            "additionalProperties": {
+                              "pattern": "^(\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))(([KMGTPE]i)|[numkMGTPE]|([eE](\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))))?$",
+                              "anyOf": [
+                                {
+                                  "type": "integer"
+                                },
+                                {
+                                  "type": "string"
+                                }
+                              ],
+                              "x-kubernetes-int-or-string": true
+                            }
+                          },
+                          "minAllowed": {
+                            "type": "object",
+                            "additionalProperties": {
+                              "pattern": "^(\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))(([KMGTPE]i)|[numkMGTPE]|([eE](\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))))?$",
+                              "anyOf": [
+                                {
+                                  "type": "integer"
+                                },
+                                {
+                                  "type": "string"
+                                }
+                              ],
+                              "x-kubernetes-int-or-string": true
+                            }
+                          },
+                          "podLifeTimeThreshold": {
+                            "type": "string"
+                          },
+                          "resourceDiffPercentage": {
+                            "type": "integer",
+                            "format": "int32"
+                          },
+                          "trigger": {
+                            "type": "string"
+                          }
+                        }
+                      },
+                      "data": {
+                        "type": "object",
+                        "properties": {
+                          "containerControlledValues": {
+                            "type": "string",
+                            "enum": [
+                              "RequestsAndLimits",
+                              "RequestsOnly"
+                            ]
+                          },
+                          "controlledResources": {
+                            "type": "array",
+                            "items": {
+                              "type": "string"
+                            }
+                          },
+                          "inMemoryStorage": {
+                            "type": "object",
+                            "properties": {
+                              "scalingFactorPercentage": {
+                                "type": "integer",
+                                "format": "int32"
+                              },
+                              "usageThresholdPercentage": {
+                                "type": "integer",
+                                "format": "int32"
+                              }
+                            }
+                          },
+                          "maxAllowed": {
+                            "type": "object",
+                            "additionalProperties": {
+                              "pattern": "^(\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))(([KMGTPE]i)|[numkMGTPE]|([eE](\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))))?$",
+                              "anyOf": [
+                                {
+                                  "type": "integer"
+                                },
+                                {
+                                  "type": "string"
+                                }
+                              ],
+                              "x-kubernetes-int-or-string": true
+                            }
+                          },
+                          "minAllowed": {
+                            "type": "object",
+                            "additionalProperties": {
+                              "pattern": "^(\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))(([KMGTPE]i)|[numkMGTPE]|([eE](\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))))?$",
+                              "anyOf": [
+                                {
+                                  "type": "integer"
+                                },
+                                {
+                                  "type": "string"
+                                }
+                              ],
+                              "x-kubernetes-int-or-string": true
+                            }
+                          },
+                          "podLifeTimeThreshold": {
+                            "type": "string"
+                          },
+                          "resourceDiffPercentage": {
+                            "type": "integer",
+                            "format": "int32"
+                          },
+                          "trigger": {
+                            "type": "string"
+                          }
+                        }
+                      },
+                      "dataCold": {
+                        "type": "object",
+                        "properties": {
+                          "containerControlledValues": {
+                            "type": "string",
+                            "enum": [
+                              "RequestsAndLimits",
+                              "RequestsOnly"
+                            ]
+                          },
+                          "controlledResources": {
+                            "type": "array",
+                            "items": {
+                              "type": "string"
+                            }
+                          },
+                          "inMemoryStorage": {
+                            "type": "object",
+                            "properties": {
+                              "scalingFactorPercentage": {
+                                "type": "integer",
+                                "format": "int32"
+                              },
+                              "usageThresholdPercentage": {
+                                "type": "integer",
+                                "format": "int32"
+                              }
+                            }
+                          },
+                          "maxAllowed": {
+                            "type": "object",
+                            "additionalProperties": {
+                              "pattern": "^(\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))(([KMGTPE]i)|[numkMGTPE]|([eE](\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))))?$",
+                              "anyOf": [
+                                {
+                                  "type": "integer"
+                                },
+                                {
+                                  "type": "string"
+                                }
+                              ],
+                              "x-kubernetes-int-or-string": true
+                            }
+                          },
+                          "minAllowed": {
+                            "type": "object",
+                            "additionalProperties": {
+                              "pattern": "^(\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))(([KMGTPE]i)|[numkMGTPE]|([eE](\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))))?$",
+                              "anyOf": [
+                                {
+                                  "type": "integer"
+                                },
+                                {
+                                  "type": "string"
+                                }
+                              ],
+                              "x-kubernetes-int-or-string": true
+                            }
+                          },
+                          "podLifeTimeThreshold": {
+                            "type": "string"
+                          },
+                          "resourceDiffPercentage": {
+                            "type": "integer",
+                            "format": "int32"
+                          },
+                          "trigger": {
+                            "type": "string"
+                          }
+                        }
+                      },
+                      "dataContent": {
+                        "type": "object",
+                        "properties": {
+                          "containerControlledValues": {
+                            "type": "string",
+                            "enum": [
+                              "RequestsAndLimits",
+                              "RequestsOnly"
+                            ]
+                          },
+                          "controlledResources": {
+                            "type": "array",
+                            "items": {
+                              "type": "string"
+                            }
+                          },
+                          "inMemoryStorage": {
+                            "type": "object",
+                            "properties": {
+                              "scalingFactorPercentage": {
+                                "type": "integer",
+                                "format": "int32"
+                              },
+                              "usageThresholdPercentage": {
+                                "type": "integer",
+                                "format": "int32"
+                              }
+                            }
+                          },
+                          "maxAllowed": {
+                            "type": "object",
+                            "additionalProperties": {
+                              "pattern": "^(\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))(([KMGTPE]i)|[numkMGTPE]|([eE](\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))))?$",
+                              "anyOf": [
+                                {
+                                  "type": "integer"
+                                },
+                                {
+                                  "type": "string"
+                                }
+                              ],
+                              "x-kubernetes-int-or-string": true
+                            }
+                          },
+                          "minAllowed": {
+                            "type": "object",
+                            "additionalProperties": {
+                              "pattern": "^(\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))(([KMGTPE]i)|[numkMGTPE]|([eE](\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))))?$",
+                              "anyOf": [
+                                {
+                                  "type": "integer"
+                                },
+                                {
+                                  "type": "string"
+                                }
+                              ],
+                              "x-kubernetes-int-or-string": true
+                            }
+                          },
+                          "podLifeTimeThreshold": {
+                            "type": "string"
+                          },
+                          "resourceDiffPercentage": {
+                            "type": "integer",
+                            "format": "int32"
+                          },
+                          "trigger": {
+                            "type": "string"
+                          }
+                        }
+                      },
+                      "dataFrozen": {
+                        "type": "object",
+                        "properties": {
+                          "containerControlledValues": {
+                            "type": "string",
+                            "enum": [
+                              "RequestsAndLimits",
+                              "RequestsOnly"
+                            ]
+                          },
+                          "controlledResources": {
+                            "type": "array",
+                            "items": {
+                              "type": "string"
+                            }
+                          },
+                          "inMemoryStorage": {
+                            "type": "object",
+                            "properties": {
+                              "scalingFactorPercentage": {
+                                "type": "integer",
+                                "format": "int32"
+                              },
+                              "usageThresholdPercentage": {
+                                "type": "integer",
+                                "format": "int32"
+                              }
+                            }
+                          },
+                          "maxAllowed": {
+                            "type": "object",
+                            "additionalProperties": {
+                              "pattern": "^(\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))(([KMGTPE]i)|[numkMGTPE]|([eE](\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))))?$",
+                              "anyOf": [
+                                {
+                                  "type": "integer"
+                                },
+                                {
+                                  "type": "string"
+                                }
+                              ],
+                              "x-kubernetes-int-or-string": true
+                            }
+                          },
+                          "minAllowed": {
+                            "type": "object",
+                            "additionalProperties": {
+                              "pattern": "^(\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))(([KMGTPE]i)|[numkMGTPE]|([eE](\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))))?$",
+                              "anyOf": [
+                                {
+                                  "type": "integer"
+                                },
+                                {
+                                  "type": "string"
+                                }
+                              ],
+                              "x-kubernetes-int-or-string": true
+                            }
+                          },
+                          "podLifeTimeThreshold": {
+                            "type": "string"
+                          },
+                          "resourceDiffPercentage": {
+                            "type": "integer",
+                            "format": "int32"
+                          },
+                          "trigger": {
+                            "type": "string"
+                          }
+                        }
+                      },
+                      "dataHot": {
+                        "type": "object",
+                        "properties": {
+                          "containerControlledValues": {
+                            "type": "string",
+                            "enum": [
+                              "RequestsAndLimits",
+                              "RequestsOnly"
+                            ]
+                          },
+                          "controlledResources": {
+                            "type": "array",
+                            "items": {
+                              "type": "string"
+                            }
+                          },
+                          "inMemoryStorage": {
+                            "type": "object",
+                            "properties": {
+                              "scalingFactorPercentage": {
+                                "type": "integer",
+                                "format": "int32"
+                              },
+                              "usageThresholdPercentage": {
+                                "type": "integer",
+                                "format": "int32"
+                              }
+                            }
+                          },
+                          "maxAllowed": {
+                            "type": "object",
+                            "additionalProperties": {
+                              "pattern": "^(\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))(([KMGTPE]i)|[numkMGTPE]|([eE](\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))))?$",
+                              "anyOf": [
+                                {
+                                  "type": "integer"
+                                },
+                                {
+                                  "type": "string"
+                                }
+                              ],
+                              "x-kubernetes-int-or-string": true
+                            }
+                          },
+                          "minAllowed": {
+                            "type": "object",
+                            "additionalProperties": {
+                              "pattern": "^(\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))(([KMGTPE]i)|[numkMGTPE]|([eE](\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))))?$",
+                              "anyOf": [
+                                {
+                                  "type": "integer"
+                                },
+                                {
+                                  "type": "string"
+                                }
+                              ],
+                              "x-kubernetes-int-or-string": true
+                            }
+                          },
+                          "podLifeTimeThreshold": {
+                            "type": "string"
+                          },
+                          "resourceDiffPercentage": {
+                            "type": "integer",
+                            "format": "int32"
+                          },
+                          "trigger": {
+                            "type": "string"
+                          }
+                        }
+                      },
+                      "dataWarm": {
+                        "type": "object",
+                        "properties": {
+                          "containerControlledValues": {
+                            "type": "string",
+                            "enum": [
+                              "RequestsAndLimits",
+                              "RequestsOnly"
+                            ]
+                          },
+                          "controlledResources": {
+                            "type": "array",
+                            "items": {
+                              "type": "string"
+                            }
+                          },
+                          "inMemoryStorage": {
+                            "type": "object",
+                            "properties": {
+                              "scalingFactorPercentage": {
+                                "type": "integer",
+                                "format": "int32"
+                              },
+                              "usageThresholdPercentage": {
+                                "type": "integer",
+                                "format": "int32"
+                              }
+                            }
+                          },
+                          "maxAllowed": {
+                            "type": "object",
+                            "additionalProperties": {
+                              "pattern": "^(\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))(([KMGTPE]i)|[numkMGTPE]|([eE](\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))))?$",
+                              "anyOf": [
+                                {
+                                  "type": "integer"
+                                },
+                                {
+                                  "type": "string"
+                                }
+                              ],
+                              "x-kubernetes-int-or-string": true
+                            }
+                          },
+                          "minAllowed": {
+                            "type": "object",
+                            "additionalProperties": {
+                              "pattern": "^(\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))(([KMGTPE]i)|[numkMGTPE]|([eE](\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))))?$",
+                              "anyOf": [
+                                {
+                                  "type": "integer"
+                                },
+                                {
+                                  "type": "string"
+                                }
+                              ],
+                              "x-kubernetes-int-or-string": true
+                            }
+                          },
+                          "podLifeTimeThreshold": {
+                            "type": "string"
+                          },
+                          "resourceDiffPercentage": {
+                            "type": "integer",
+                            "format": "int32"
+                          },
+                          "trigger": {
+                            "type": "string"
+                          }
+                        }
+                      },
+                      "ingest": {
+                        "type": "object",
+                        "properties": {
+                          "containerControlledValues": {
+                            "type": "string",
+                            "enum": [
+                              "RequestsAndLimits",
+                              "RequestsOnly"
+                            ]
+                          },
+                          "controlledResources": {
+                            "type": "array",
+                            "items": {
+                              "type": "string"
+                            }
+                          },
+                          "inMemoryStorage": {
+                            "type": "object",
+                            "properties": {
+                              "scalingFactorPercentage": {
+                                "type": "integer",
+                                "format": "int32"
+                              },
+                              "usageThresholdPercentage": {
+                                "type": "integer",
+                                "format": "int32"
+                              }
+                            }
+                          },
+                          "maxAllowed": {
+                            "type": "object",
+                            "additionalProperties": {
+                              "pattern": "^(\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))(([KMGTPE]i)|[numkMGTPE]|([eE](\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))))?$",
+                              "anyOf": [
+                                {
+                                  "type": "integer"
+                                },
+                                {
+                                  "type": "string"
+                                }
+                              ],
+                              "x-kubernetes-int-or-string": true
+                            }
+                          },
+                          "minAllowed": {
+                            "type": "object",
+                            "additionalProperties": {
+                              "pattern": "^(\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))(([KMGTPE]i)|[numkMGTPE]|([eE](\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))))?$",
+                              "anyOf": [
+                                {
+                                  "type": "integer"
+                                },
+                                {
+                                  "type": "string"
+                                }
+                              ],
+                              "x-kubernetes-int-or-string": true
+                            }
+                          },
+                          "podLifeTimeThreshold": {
+                            "type": "string"
+                          },
+                          "resourceDiffPercentage": {
+                            "type": "integer",
+                            "format": "int32"
+                          },
+                          "trigger": {
+                            "type": "string"
+                          }
+                        }
+                      },
+                      "master": {
+                        "type": "object",
+                        "properties": {
+                          "containerControlledValues": {
+                            "type": "string",
+                            "enum": [
+                              "RequestsAndLimits",
+                              "RequestsOnly"
+                            ]
+                          },
+                          "controlledResources": {
+                            "type": "array",
+                            "items": {
+                              "type": "string"
+                            }
+                          },
+                          "inMemoryStorage": {
+                            "type": "object",
+                            "properties": {
+                              "scalingFactorPercentage": {
+                                "type": "integer",
+                                "format": "int32"
+                              },
+                              "usageThresholdPercentage": {
+                                "type": "integer",
+                                "format": "int32"
+                              }
+                            }
+                          },
+                          "maxAllowed": {
+                            "type": "object",
+                            "additionalProperties": {
+                              "pattern": "^(\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))(([KMGTPE]i)|[numkMGTPE]|([eE](\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))))?$",
+                              "anyOf": [
+                                {
+                                  "type": "integer"
+                                },
+                                {
+                                  "type": "string"
+                                }
+                              ],
+                              "x-kubernetes-int-or-string": true
+                            }
+                          },
+                          "minAllowed": {
+                            "type": "object",
+                            "additionalProperties": {
+                              "pattern": "^(\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))(([KMGTPE]i)|[numkMGTPE]|([eE](\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))))?$",
+                              "anyOf": [
+                                {
+                                  "type": "integer"
+                                },
+                                {
+                                  "type": "string"
+                                }
+                              ],
+                              "x-kubernetes-int-or-string": true
+                            }
+                          },
+                          "podLifeTimeThreshold": {
+                            "type": "string"
+                          },
+                          "resourceDiffPercentage": {
+                            "type": "integer",
+                            "format": "int32"
+                          },
+                          "trigger": {
+                            "type": "string"
+                          }
+                        }
+                      },
+                      "ml": {
+                        "type": "object",
+                        "properties": {
+                          "containerControlledValues": {
+                            "type": "string",
+                            "enum": [
+                              "RequestsAndLimits",
+                              "RequestsOnly"
+                            ]
+                          },
+                          "controlledResources": {
+                            "type": "array",
+                            "items": {
+                              "type": "string"
+                            }
+                          },
+                          "inMemoryStorage": {
+                            "type": "object",
+                            "properties": {
+                              "scalingFactorPercentage": {
+                                "type": "integer",
+                                "format": "int32"
+                              },
+                              "usageThresholdPercentage": {
+                                "type": "integer",
+                                "format": "int32"
+                              }
+                            }
+                          },
+                          "maxAllowed": {
+                            "type": "object",
+                            "additionalProperties": {
+                              "pattern": "^(\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))(([KMGTPE]i)|[numkMGTPE]|([eE](\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))))?$",
+                              "anyOf": [
+                                {
+                                  "type": "integer"
+                                },
+                                {
+                                  "type": "string"
+                                }
+                              ],
+                              "x-kubernetes-int-or-string": true
+                            }
+                          },
+                          "minAllowed": {
+                            "type": "object",
+                            "additionalProperties": {
+                              "pattern": "^(\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))(([KMGTPE]i)|[numkMGTPE]|([eE](\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))))?$",
+                              "anyOf": [
+                                {
+                                  "type": "integer"
+                                },
+                                {
+                                  "type": "string"
+                                }
+                              ],
+                              "x-kubernetes-int-or-string": true
+                            }
+                          },
+                          "podLifeTimeThreshold": {
+                            "type": "string"
+                          },
+                          "resourceDiffPercentage": {
+                            "type": "integer",
+                            "format": "int32"
+                          },
+                          "trigger": {
+                            "type": "string"
+                          }
+                        }
+                      },
                       "node": {
                         "type": "object",
                         "properties": {
@@ -123,221 +833,83 @@
                           }
                         }
                       },
-                      "topology": {
+                      "nodeTopologyRef": {
                         "type": "object",
                         "properties": {
-                          "data": {
+                          "name": {
+                            "type": "string"
+                          }
+                        },
+                        "x-kubernetes-map-type": "atomic"
+                      },
+                      "transform": {
+                        "type": "object",
+                        "properties": {
+                          "containerControlledValues": {
+                            "type": "string",
+                            "enum": [
+                              "RequestsAndLimits",
+                              "RequestsOnly"
+                            ]
+                          },
+                          "controlledResources": {
+                            "type": "array",
+                            "items": {
+                              "type": "string"
+                            }
+                          },
+                          "inMemoryStorage": {
                             "type": "object",
                             "properties": {
-                              "containerControlledValues": {
-                                "type": "string",
-                                "enum": [
-                                  "RequestsAndLimits",
-                                  "RequestsOnly"
-                                ]
-                              },
-                              "controlledResources": {
-                                "type": "array",
-                                "items": {
-                                  "type": "string"
-                                }
-                              },
-                              "inMemoryStorage": {
-                                "type": "object",
-                                "properties": {
-                                  "scalingFactorPercentage": {
-                                    "type": "integer",
-                                    "format": "int32"
-                                  },
-                                  "usageThresholdPercentage": {
-                                    "type": "integer",
-                                    "format": "int32"
-                                  }
-                                }
-                              },
-                              "maxAllowed": {
-                                "type": "object",
-                                "additionalProperties": {
-                                  "pattern": "^(\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))(([KMGTPE]i)|[numkMGTPE]|([eE](\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))))?$",
-                                  "anyOf": [
-                                    {
-                                      "type": "integer"
-                                    },
-                                    {
-                                      "type": "string"
-                                    }
-                                  ],
-                                  "x-kubernetes-int-or-string": true
-                                }
-                              },
-                              "minAllowed": {
-                                "type": "object",
-                                "additionalProperties": {
-                                  "pattern": "^(\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))(([KMGTPE]i)|[numkMGTPE]|([eE](\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))))?$",
-                                  "anyOf": [
-                                    {
-                                      "type": "integer"
-                                    },
-                                    {
-                                      "type": "string"
-                                    }
-                                  ],
-                                  "x-kubernetes-int-or-string": true
-                                }
-                              },
-                              "podLifeTimeThreshold": {
-                                "type": "string"
-                              },
-                              "resourceDiffPercentage": {
+                              "scalingFactorPercentage": {
                                 "type": "integer",
                                 "format": "int32"
                               },
-                              "trigger": {
-                                "type": "string"
+                              "usageThresholdPercentage": {
+                                "type": "integer",
+                                "format": "int32"
                               }
                             }
                           },
-                          "ingest": {
+                          "maxAllowed": {
                             "type": "object",
-                            "properties": {
-                              "containerControlledValues": {
-                                "type": "string",
-                                "enum": [
-                                  "RequestsAndLimits",
-                                  "RequestsOnly"
-                                ]
-                              },
-                              "controlledResources": {
-                                "type": "array",
-                                "items": {
+                            "additionalProperties": {
+                              "pattern": "^(\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))(([KMGTPE]i)|[numkMGTPE]|([eE](\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))))?$",
+                              "anyOf": [
+                                {
+                                  "type": "integer"
+                                },
+                                {
                                   "type": "string"
                                 }
-                              },
-                              "inMemoryStorage": {
-                                "type": "object",
-                                "properties": {
-                                  "scalingFactorPercentage": {
-                                    "type": "integer",
-                                    "format": "int32"
-                                  },
-                                  "usageThresholdPercentage": {
-                                    "type": "integer",
-                                    "format": "int32"
-                                  }
-                                }
-                              },
-                              "maxAllowed": {
-                                "type": "object",
-                                "additionalProperties": {
-                                  "pattern": "^(\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))(([KMGTPE]i)|[numkMGTPE]|([eE](\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))))?$",
-                                  "anyOf": [
-                                    {
-                                      "type": "integer"
-                                    },
-                                    {
-                                      "type": "string"
-                                    }
-                                  ],
-                                  "x-kubernetes-int-or-string": true
-                                }
-                              },
-                              "minAllowed": {
-                                "type": "object",
-                                "additionalProperties": {
-                                  "pattern": "^(\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))(([KMGTPE]i)|[numkMGTPE]|([eE](\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))))?$",
-                                  "anyOf": [
-                                    {
-                                      "type": "integer"
-                                    },
-                                    {
-                                      "type": "string"
-                                    }
-                                  ],
-                                  "x-kubernetes-int-or-string": true
-                                }
-                              },
-                              "podLifeTimeThreshold": {
-                                "type": "string"
-                              },
-                              "resourceDiffPercentage": {
-                                "type": "integer",
-                                "format": "int32"
-                              },
-                              "trigger": {
-                                "type": "string"
-                              }
+                              ],
+                              "x-kubernetes-int-or-string": true
                             }
                           },
-                          "master": {
+                          "minAllowed": {
                             "type": "object",
-                            "properties": {
-                              "containerControlledValues": {
-                                "type": "string",
-                                "enum": [
-                                  "RequestsAndLimits",
-                                  "RequestsOnly"
-                                ]
-                              },
-                              "controlledResources": {
-                                "type": "array",
-                                "items": {
+                            "additionalProperties": {
+                              "pattern": "^(\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))(([KMGTPE]i)|[numkMGTPE]|([eE](\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))))?$",
+                              "anyOf": [
+                                {
+                                  "type": "integer"
+                                },
+                                {
                                   "type": "string"
                                 }
-                              },
-                              "inMemoryStorage": {
-                                "type": "object",
-                                "properties": {
-                                  "scalingFactorPercentage": {
-                                    "type": "integer",
-                                    "format": "int32"
-                                  },
-                                  "usageThresholdPercentage": {
-                                    "type": "integer",
-                                    "format": "int32"
-                                  }
-                                }
-                              },
-                              "maxAllowed": {
-                                "type": "object",
-                                "additionalProperties": {
-                                  "pattern": "^(\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))(([KMGTPE]i)|[numkMGTPE]|([eE](\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))))?$",
-                                  "anyOf": [
-                                    {
-                                      "type": "integer"
-                                    },
-                                    {
-                                      "type": "string"
-                                    }
-                                  ],
-                                  "x-kubernetes-int-or-string": true
-                                }
-                              },
-                              "minAllowed": {
-                                "type": "object",
-                                "additionalProperties": {
-                                  "pattern": "^(\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))(([KMGTPE]i)|[numkMGTPE]|([eE](\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))))?$",
-                                  "anyOf": [
-                                    {
-                                      "type": "integer"
-                                    },
-                                    {
-                                      "type": "string"
-                                    }
-                                  ],
-                                  "x-kubernetes-int-or-string": true
-                                }
-                              },
-                              "podLifeTimeThreshold": {
-                                "type": "string"
-                              },
-                              "resourceDiffPercentage": {
-                                "type": "integer",
-                                "format": "int32"
-                              },
-                              "trigger": {
-                                "type": "string"
-                              }
+                              ],
+                              "x-kubernetes-int-or-string": true
                             }
+                          },
+                          "podLifeTimeThreshold": {
+                            "type": "string"
+                          },
+                          "resourceDiffPercentage": {
+                            "type": "integer",
+                            "format": "int32"
+                          },
+                          "trigger": {
+                            "type": "string"
                           }
                         }
                       }
@@ -374,6 +946,236 @@
                   "storage": {
                     "type": "object",
                     "properties": {
+                      "coordinating": {
+                        "type": "object",
+                        "properties": {
+                          "expansionMode": {
+                            "type": "string",
+                            "enum": [
+                              "Offline",
+                              "Online"
+                            ]
+                          },
+                          "scalingThreshold": {
+                            "type": "integer",
+                            "format": "int32"
+                          },
+                          "trigger": {
+                            "type": "string"
+                          },
+                          "usageThreshold": {
+                            "type": "integer",
+                            "format": "int32"
+                          }
+                        }
+                      },
+                      "data": {
+                        "type": "object",
+                        "properties": {
+                          "expansionMode": {
+                            "type": "string",
+                            "enum": [
+                              "Offline",
+                              "Online"
+                            ]
+                          },
+                          "scalingThreshold": {
+                            "type": "integer",
+                            "format": "int32"
+                          },
+                          "trigger": {
+                            "type": "string"
+                          },
+                          "usageThreshold": {
+                            "type": "integer",
+                            "format": "int32"
+                          }
+                        }
+                      },
+                      "dataCold": {
+                        "type": "object",
+                        "properties": {
+                          "expansionMode": {
+                            "type": "string",
+                            "enum": [
+                              "Offline",
+                              "Online"
+                            ]
+                          },
+                          "scalingThreshold": {
+                            "type": "integer",
+                            "format": "int32"
+                          },
+                          "trigger": {
+                            "type": "string"
+                          },
+                          "usageThreshold": {
+                            "type": "integer",
+                            "format": "int32"
+                          }
+                        }
+                      },
+                      "dataContent": {
+                        "type": "object",
+                        "properties": {
+                          "expansionMode": {
+                            "type": "string",
+                            "enum": [
+                              "Offline",
+                              "Online"
+                            ]
+                          },
+                          "scalingThreshold": {
+                            "type": "integer",
+                            "format": "int32"
+                          },
+                          "trigger": {
+                            "type": "string"
+                          },
+                          "usageThreshold": {
+                            "type": "integer",
+                            "format": "int32"
+                          }
+                        }
+                      },
+                      "dataFrozen": {
+                        "type": "object",
+                        "properties": {
+                          "expansionMode": {
+                            "type": "string",
+                            "enum": [
+                              "Offline",
+                              "Online"
+                            ]
+                          },
+                          "scalingThreshold": {
+                            "type": "integer",
+                            "format": "int32"
+                          },
+                          "trigger": {
+                            "type": "string"
+                          },
+                          "usageThreshold": {
+                            "type": "integer",
+                            "format": "int32"
+                          }
+                        }
+                      },
+                      "dataHot": {
+                        "type": "object",
+                        "properties": {
+                          "expansionMode": {
+                            "type": "string",
+                            "enum": [
+                              "Offline",
+                              "Online"
+                            ]
+                          },
+                          "scalingThreshold": {
+                            "type": "integer",
+                            "format": "int32"
+                          },
+                          "trigger": {
+                            "type": "string"
+                          },
+                          "usageThreshold": {
+                            "type": "integer",
+                            "format": "int32"
+                          }
+                        }
+                      },
+                      "dataWarm": {
+                        "type": "object",
+                        "properties": {
+                          "expansionMode": {
+                            "type": "string",
+                            "enum": [
+                              "Offline",
+                              "Online"
+                            ]
+                          },
+                          "scalingThreshold": {
+                            "type": "integer",
+                            "format": "int32"
+                          },
+                          "trigger": {
+                            "type": "string"
+                          },
+                          "usageThreshold": {
+                            "type": "integer",
+                            "format": "int32"
+                          }
+                        }
+                      },
+                      "ingest": {
+                        "type": "object",
+                        "properties": {
+                          "expansionMode": {
+                            "type": "string",
+                            "enum": [
+                              "Offline",
+                              "Online"
+                            ]
+                          },
+                          "scalingThreshold": {
+                            "type": "integer",
+                            "format": "int32"
+                          },
+                          "trigger": {
+                            "type": "string"
+                          },
+                          "usageThreshold": {
+                            "type": "integer",
+                            "format": "int32"
+                          }
+                        }
+                      },
+                      "master": {
+                        "type": "object",
+                        "properties": {
+                          "expansionMode": {
+                            "type": "string",
+                            "enum": [
+                              "Offline",
+                              "Online"
+                            ]
+                          },
+                          "scalingThreshold": {
+                            "type": "integer",
+                            "format": "int32"
+                          },
+                          "trigger": {
+                            "type": "string"
+                          },
+                          "usageThreshold": {
+                            "type": "integer",
+                            "format": "int32"
+                          }
+                        }
+                      },
+                      "ml": {
+                        "type": "object",
+                        "properties": {
+                          "expansionMode": {
+                            "type": "string",
+                            "enum": [
+                              "Offline",
+                              "Online"
+                            ]
+                          },
+                          "scalingThreshold": {
+                            "type": "integer",
+                            "format": "int32"
+                          },
+                          "trigger": {
+                            "type": "string"
+                          },
+                          "usageThreshold": {
+                            "type": "integer",
+                            "format": "int32"
+                          }
+                        }
+                      },
                       "node": {
                         "type": "object",
                         "properties": {
@@ -397,77 +1199,26 @@
                           }
                         }
                       },
-                      "topology": {
+                      "transform": {
                         "type": "object",
                         "properties": {
-                          "data": {
-                            "type": "object",
-                            "properties": {
-                              "expansionMode": {
-                                "type": "string",
-                                "enum": [
-                                  "Offline",
-                                  "Online"
-                                ]
-                              },
-                              "scalingThreshold": {
-                                "type": "integer",
-                                "format": "int32"
-                              },
-                              "trigger": {
-                                "type": "string"
-                              },
-                              "usageThreshold": {
-                                "type": "integer",
-                                "format": "int32"
-                              }
-                            }
+                          "expansionMode": {
+                            "type": "string",
+                            "enum": [
+                              "Offline",
+                              "Online"
+                            ]
                           },
-                          "ingest": {
-                            "type": "object",
-                            "properties": {
-                              "expansionMode": {
-                                "type": "string",
-                                "enum": [
-                                  "Offline",
-                                  "Online"
-                                ]
-                              },
-                              "scalingThreshold": {
-                                "type": "integer",
-                                "format": "int32"
-                              },
-                              "trigger": {
-                                "type": "string"
-                              },
-                              "usageThreshold": {
-                                "type": "integer",
-                                "format": "int32"
-                              }
-                            }
+                          "scalingThreshold": {
+                            "type": "integer",
+                            "format": "int32"
                           },
-                          "master": {
-                            "type": "object",
-                            "properties": {
-                              "expansionMode": {
-                                "type": "string",
-                                "enum": [
-                                  "Offline",
-                                  "Online"
-                                ]
-                              },
-                              "scalingThreshold": {
-                                "type": "integer",
-                                "format": "int32"
-                              },
-                              "trigger": {
-                                "type": "string"
-                              },
-                              "usageThreshold": {
-                                "type": "integer",
-                                "format": "int32"
-                              }
-                            }
+                          "trigger": {
+                            "type": "string"
+                          },
+                          "usageThreshold": {
+                            "type": "integer",
+                            "format": "int32"
                           }
                         }
                       }

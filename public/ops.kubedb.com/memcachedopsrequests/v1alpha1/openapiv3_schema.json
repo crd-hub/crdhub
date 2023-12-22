@@ -256,17 +256,6 @@
             }
           }
         },
-        "upgrade": {
-          "type": "object",
-          "properties": {
-            "readinessCriteria": {
-              "type": "object"
-            },
-            "targetVersion": {
-              "type": "string"
-            }
-          }
-        },
         "verticalScaling": {
           "type": "object",
           "properties": {

@@ -125,6 +125,15 @@
                             "type": "string"
                           }
                         }
+                      },
+                      "nodeTopologyRef": {
+                        "type": "object",
+                        "properties": {
+                          "name": {
+                            "type": "string"
+                          }
+                        },
+                        "x-kubernetes-map-type": "atomic"
                       }
                     }
                   },

@@ -1,0 +1,170 @@
+{
+  "$schema": "http://json-schema.org/schema#",
+  "description": "EnvoyPatchPolicy allows the user to modify the generated Envoy xDS resources by Envoy Gateway using this patch API",
+  "type": "object",
+  "required": [
+    "spec"
+  ],
+  "properties": {
+    "apiVersion": {
+      "description": "APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources",
+      "type": "string",
+      "enum": [
+        "gateway.envoyproxy.io/v1alpha1"
+      ]
+    },
+    "kind": {
+      "description": "Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds",
+      "type": "string",
+      "enum": [
+        "EnvoyPatchPolicy"
+      ]
+    },
+    "metadata": {
+      "type": "object",
+      "properties": {
+        "annotations": {
+          "description": "Annotations is an unstructured key value map stored with a resource that may be set by external tools to store and retrieve arbitrary metadata. They are not queryable and should be preserved when modifying objects. More info: http://kubernetes.io/docs/user-guide/annotations",
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          }
+        },
+        "labels": {
+          "description": "Map of string keys and values that can be used to organize and categorize (scope and select) objects. May match selectors of replication controllers and services. More info: http://kubernetes.io/docs/user-guide/labels",
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          }
+        },
+        "name": {
+          "description": "Name must be unique within a namespace. Is required when creating resources, although some resources may allow a client to request the generation of an appropriate name automatically. Name is primarily intended for creation idempotence and configuration definition. Cannot be updated. More info: http://kubernetes.io/docs/user-guide/identifiers#names",
+          "type": "string"
+        },
+        "namespace": {
+          "description": "Namespace defines the space within which each name must be unique. An empty namespace is equivalent to the \"default\" namespace, but \"default\" is the canonical representation. Not all objects are required to be scoped to a namespace - the value of this field for those objects will be empty. \n Must be a DNS_LABEL. Cannot be updated. More info: http://kubernetes.io/docs/user-guide/namespaces",
+          "type": "string"
+        }
+      }
+    },
+    "spec": {
+      "description": "Spec defines the desired state of EnvoyPatchPolicy.",
+      "type": "object",
+      "required": [
+        "targetRef",
+        "type"
+      ],
+      "properties": {
+        "jsonPatches": {
+          "description": "JSONPatch defines the JSONPatch configuration.",
+          "type": "array",
+          "items": {
+            "description": "EnvoyJSONPatchConfig defines the configuration for patching a Envoy xDS Resource using JSONPatch semantic",
+            "type": "object",
+            "required": [
+              "name",
+              "operation",
+              "type"
+            ],
+            "properties": {
+              "name": {
+                "description": "Name is the name of the resource",
+                "type": "string"
+              },
+              "operation": {
+                "description": "Patch defines the JSON Patch Operation",
+                "type": "object",
+                "required": [
+                  "op",
+                  "path",
+                  "value"
+                ],
+                "properties": {
+                  "op": {
+                    "description": "Op is the type of operation to perform",
+                    "type": "string",
+                    "enum": [
+                      "add",
+                      "remove",
+                      "replace",
+                      "move",
+                      "copy",
+                      "test"
+                    ]
+                  },
+                  "path": {
+                    "description": "Path is the location of the target document/field where the operation will be performed Refer to https://datatracker.ietf.org/doc/html/rfc6901 for more details.",
+                    "type": "string"
+                  },
+                  "value": {
+                    "description": "Value is the new value of the path location.",
+                    "x-kubernetes-preserve-unknown-fields": true
+                  }
+                }
+              },
+              "type": {
+                "description": "Type is the typed URL of the Envoy xDS Resource",
+                "type": "string",
+                "enum": [
+                  "type.googleapis.com/envoy.config.listener.v3.Listener",
+                  "type.googleapis.com/envoy.config.route.v3.RouteConfiguration",
+                  "type.googleapis.com/envoy.config.cluster.v3.Cluster",
+                  "type.googleapis.com/envoy.config.endpoint.v3.ClusterLoadAssignment"
+                ]
+              }
+            }
+          }
+        },
+        "priority": {
+          "description": "Priority of the EnvoyPatchPolicy. If multiple EnvoyPatchPolicies are applied to the same TargetRef, they will be applied in the ascending order of the priority i.e. int32.min has the highest priority and int32.max has the lowest priority. Defaults to 0.",
+          "type": "integer",
+          "format": "int32"
+        },
+        "targetRef": {
+          "description": "TargetRef is the name of the Gateway API resource this policy is being attached to. Currently only attaching to Gateway is supported This Policy and the TargetRef MUST be in the same namespace for this Policy to have effect and be applied to the Gateway TargetRef",
+          "type": "object",
+          "required": [
+            "group",
+            "kind",
+            "name"
+          ],
+          "properties": {
+            "group": {
+              "description": "Group is the group of the target resource.",
+              "type": "string",
+              "maxLength": 253,
+              "pattern": "^$|^[a-z0-9]([-a-z0-9]*[a-z0-9])?(\\.[a-z0-9]([-a-z0-9]*[a-z0-9])?)*$"
+            },
+            "kind": {
+              "description": "Kind is kind of the target resource.",
+              "type": "string",
+              "maxLength": 63,
+              "minLength": 1,
+              "pattern": "^[a-zA-Z]([-a-zA-Z0-9]*[a-zA-Z0-9])?$"
+            },
+            "name": {
+              "description": "Name is the name of the target resource.",
+              "type": "string",
+              "maxLength": 253,
+              "minLength": 1
+            },
+            "namespace": {
+              "description": "Namespace is the namespace of the referent. When unspecified, the local namespace is inferred. Even when policy targets a resource in a different namespace, it MUST only apply to traffic originating from the same namespace as the policy.",
+              "type": "string",
+              "maxLength": 63,
+              "minLength": 1,
+              "pattern": "^[a-z0-9]([-a-z0-9]*[a-z0-9])?$"
+            }
+          }
+        },
+        "type": {
+          "description": "Type decides the type of patch. Valid EnvoyPatchType values are \"JSONPatch\".",
+          "type": "string",
+          "enum": [
+            "JSONPatch"
+          ]
+        }
+      }
+    }
+  }
+}

@@ -5,7 +5,7 @@
     "name": "providerconfigusages.azure.kubedb.com",
     "creationTimestamp": null,
     "annotations": {
-      "controller-gen.kubebuilder.io/version": "v0.11.3"
+      "controller-gen.kubebuilder.io/version": "v0.13.0"
     }
   },
   "spec": {

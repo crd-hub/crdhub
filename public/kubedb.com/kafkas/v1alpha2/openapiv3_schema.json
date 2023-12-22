@@ -3797,7 +3797,12 @@
           "type": "object",
           "properties": {
             "agent": {
-              "type": "string"
+              "type": "string",
+              "enum": [
+                "prometheus.io/operator",
+                "prometheus.io",
+                "prometheus.io/builtin"
+              ]
             },
             "prometheus": {
               "type": "object",
@@ -8085,6 +8090,13 @@
             "broker": {
               "type": "object",
               "properties": {
+                "nodeSelector": {
+                  "type": "object",
+                  "additionalProperties": {
+                    "type": "string"
+                  },
+                  "x-kubernetes-map-type": "atomic"
+                },
                 "replicas": {
                   "type": "integer",
                   "format": "int32"
@@ -8255,12 +8267,43 @@
                 },
                 "suffix": {
                   "type": "string"
+                },
+                "tolerations": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "effect": {
+                        "type": "string"
+                      },
+                      "key": {
+                        "type": "string"
+                      },
+                      "operator": {
+                        "type": "string"
+                      },
+                      "tolerationSeconds": {
+                        "type": "integer",
+                        "format": "int64"
+                      },
+                      "value": {
+                        "type": "string"
+                      }
+                    }
+                  }
                 }
               }
             },
             "controller": {
               "type": "object",
               "properties": {
+                "nodeSelector": {
+                  "type": "object",
+                  "additionalProperties": {
+                    "type": "string"
+                  },
+                  "x-kubernetes-map-type": "atomic"
+                },
                 "replicas": {
                   "type": "integer",
                   "format": "int32"
@@ -8431,6 +8474,30 @@
                 },
                 "suffix": {
                   "type": "string"
+                },
+                "tolerations": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "effect": {
+                        "type": "string"
+                      },
+                      "key": {
+                        "type": "string"
+                      },
+                      "operator": {
+                        "type": "string"
+                      },
+                      "tolerationSeconds": {
+                        "type": "integer",
+                        "format": "int64"
+                      },
+                      "value": {
+                        "type": "string"
+                      }
+                    }
+                  }
                 }
               }
             }

@@ -368,6 +368,60 @@
                   "init": {
                     "type": "object",
                     "properties": {
+                      "archiver": {
+                        "type": "object",
+                        "required": [
+                          "recoveryTimestamp"
+                        ],
+                        "properties": {
+                          "encryptionSecret": {
+                            "type": "object",
+                            "required": [
+                              "name"
+                            ],
+                            "properties": {
+                              "name": {
+                                "type": "string"
+                              },
+                              "namespace": {
+                                "type": "string"
+                              }
+                            }
+                          },
+                          "fullDBRepository": {
+                            "type": "object",
+                            "required": [
+                              "name"
+                            ],
+                            "properties": {
+                              "name": {
+                                "type": "string"
+                              },
+                              "namespace": {
+                                "type": "string"
+                              }
+                            }
+                          },
+                          "manifestRepository": {
+                            "type": "object",
+                            "required": [
+                              "name"
+                            ],
+                            "properties": {
+                              "name": {
+                                "type": "string"
+                              },
+                              "namespace": {
+                                "type": "string"
+                              }
+                            }
+                          },
+                          "recoveryTimestamp": {
+                            "type": "string",
+                            "format": "date-time"
+                          }
+                        }
+                      },
                       "initialized": {
                         "type": "boolean"
                       },

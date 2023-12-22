@@ -48,6 +48,13 @@
       "description": "spec represents a desired configuration for an add-on.",
       "type": "object",
       "properties": {
+        "agentInstallNamespace": {
+          "description": "AgentInstallNamespace is the namespace where the add-on agent should be installed on the managed cluster.",
+          "type": "string",
+          "default": "open-cluster-management-agent-addon",
+          "maxLength": 63,
+          "pattern": "^[a-z0-9]([-a-z0-9]*[a-z0-9])?$"
+        },
         "customizedVariables": {
           "description": "CustomizedVariables is a list of name-value variables for the current add-on deployment. The add-on implementation can use these variables to render its add-on deployment. The default is an empty list.",
           "type": "array",

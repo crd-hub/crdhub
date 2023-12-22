@@ -83,6 +83,17 @@
             }
           }
         },
+        "gitSyncer": {
+          "type": "object",
+          "required": [
+            "image"
+          ],
+          "properties": {
+            "image": {
+              "type": "string"
+            }
+          }
+        },
         "initContainer": {
           "type": "object",
           "required": [
@@ -102,6 +113,15 @@
           "properties": {
             "databasePolicyName": {
               "type": "string"
+            }
+          }
+        },
+        "securityContext": {
+          "type": "object",
+          "properties": {
+            "runAsUser": {
+              "type": "integer",
+              "format": "int64"
             }
           }
         },

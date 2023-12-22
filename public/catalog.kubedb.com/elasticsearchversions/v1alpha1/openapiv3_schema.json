@@ -114,6 +114,17 @@
             }
           }
         },
+        "gitSyncer": {
+          "type": "object",
+          "required": [
+            "image"
+          ],
+          "properties": {
+            "image": {
+              "type": "string"
+            }
+          }
+        },
         "initContainer": {
           "type": "object",
           "required": [
