@@ -9,6 +9,14 @@ metadata:
     k8s.io/version: v1alpha1
   name: core.kubestash.com-v1alpha1-backupsessions
 spec:
+  connections:
+  - labels:
+    - source
+    level: Controller
+    target:
+      apiVersion: core.kubestash.com/v1alpha1
+      kind: BackupConfiguration
+    type: OwnedBy
   resource:
     group: core.kubestash.com
     kind: BackupSession
@@ -65,7 +73,7 @@ spec:
               type: object
               x-kubernetes-map-type: atomic
             retryLeft:
-              description: RetryLeft specifies number of retry attempts left for the session. If this set to non-zero, Stash will create a new BackupSession if the current one fails.
+              description: RetryLeft specifies number of retry attempts left for the session. If this set to non-zero, KubeStash will create a new BackupSession if the current one fails.
               format: int32
               type: integer
             session:

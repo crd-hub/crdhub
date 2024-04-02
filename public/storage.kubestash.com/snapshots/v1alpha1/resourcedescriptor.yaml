@@ -9,6 +9,24 @@ metadata:
     k8s.io/version: v1alpha1
   name: storage.kubestash.com-v1alpha1-snapshots
 spec:
+  connections:
+  - labels:
+    - storage
+    level: Controller
+    target:
+      apiVersion: storage.kubestash.com/v1alpha1
+      kind: Repository
+    type: OwnedBy
+  - labels:
+    - offshoot
+    namespace:
+      path: metadata.namespace
+    references:
+    - '{.spec.backupSession}'
+    target:
+      apiVersion: core.kubestash.com/v1alpha1
+      kind: BackupSession
+    type: MatchRef
   resource:
     group: storage.kubestash.com
     kind: Snapshot
@@ -17,7 +35,7 @@ spec:
     version: v1alpha1
   validation:
     openAPIV3Schema:
-      description: Snapshot represents the state of a backup run to a particular Repository. Multiple components of the same target may be backed up in the same Snapshot. This is a namespaced CRD. It should be in the same namespace as the respective Repository. Stash operator is responsible for creating Snapshot CR. Snapshot is not supposed to be created/edited by the end user.
+      description: Snapshot represents the state of a backup run to a particular Repository. Multiple components of the same target may be backed up in the same Snapshot. This is a namespaced CRD. It should be in the same namespace as the respective Repository. KubeStash operator is responsible for creating Snapshot CR. Snapshot is not supposed to be created/edited by the end user.
       properties:
         apiVersion:
           description: 'APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources'
@@ -74,7 +92,7 @@ spec:
               - WipeOut
               type: string
             paused:
-              description: Paused specifies whether the Snapshot is paused or not. If the Snapshot is paused, Stash will not process any further event for the Snapshot.
+              description: Paused specifies whether the Snapshot is paused or not. If the Snapshot is paused, KubeStash will not process any further event for the Snapshot.
               type: boolean
             repository:
               description: Repository specifies the name of the Repository where this Snapshot is being stored.

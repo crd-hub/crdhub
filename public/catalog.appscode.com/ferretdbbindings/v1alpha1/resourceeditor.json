@@ -1,0 +1,35 @@
+{
+  "kind": "ResourceEditor",
+  "apiVersion": "ui.k8s.appscode.com/v1alpha1",
+  "metadata": {
+    "name": "catalog.appscode.com-v1alpha1-ferretdbbindings",
+    "creationTimestamp": null,
+    "labels": {
+      "k8s.io/group": "catalog.appscode.com",
+      "k8s.io/kind": "FerretDBBinding",
+      "k8s.io/resource": "ferretdbbindings",
+      "k8s.io/version": "v1alpha1"
+    }
+  },
+  "spec": {
+    "resource": {
+      "group": "catalog.appscode.com",
+      "version": "v1alpha1",
+      "name": "ferretdbbindings",
+      "kind": "FerretDBBinding",
+      "scope": "Namespaced"
+    },
+    "ui": {
+      "editor": {
+        "name": "catalogappscodecom-ferretdbbinding-editor",
+        "version": "v0.4.18",
+        "sourceRef": {
+          "apiGroup": "source.toolkit.fluxcd.io",
+          "kind": "HelmRepository",
+          "name": "appscode-charts-oci"
+        }
+      },
+      "enforceQuota": false
+    }
+  }
+}

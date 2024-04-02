@@ -75,12 +75,19 @@ properties:
               trigger:
                 type: string
             type: object
-          nodeTopologyRef:
+          nodeTopology:
             properties:
               name:
                 type: string
+              scaleDownDiffPercentage:
+                default: 25
+                format: int32
+                type: integer
+              scaleUpDiffPercentage:
+                default: 15
+                format: int32
+                type: integer
             type: object
-            x-kubernetes-map-type: atomic
           sentinel:
             properties:
               containerControlledValues:
@@ -204,6 +211,8 @@ properties:
               usageThreshold:
                 format: int32
                 type: integer
+            required:
+            - expansionMode
             type: object
           sentinel:
             properties:
@@ -220,6 +229,8 @@ properties:
               usageThreshold:
                 format: int32
                 type: integer
+            required:
+            - expansionMode
             type: object
           standalone:
             properties:
@@ -236,6 +247,8 @@ properties:
               usageThreshold:
                 format: int32
                 type: integer
+            required:
+            - expansionMode
             type: object
         type: object
     required:

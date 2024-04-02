@@ -52,6 +52,22 @@ properties:
             description: 'Specifies the private key type to generate. Defaults to JSON credentials file Accepted values: TYPE_UNSPECIFIED, TYPE_PKCS12_FILE, TYPE_GOOGLE_CREDENTIALS_FILE'
             type: string
         type: object
+      pki:
+        description: https://developer.hashicorp.com/vault/api-docs/secret/pki#generate-certificate-and-key
+        properties:
+          additionalPayload:
+            additionalProperties:
+              type: string
+            type: object
+          altNames:
+            type: string
+          commonName:
+            type: string
+          issuerRef:
+            type: string
+          ttl:
+            type: string
+        type: object
       roleRef:
         description: Contains vault database role info
         properties:

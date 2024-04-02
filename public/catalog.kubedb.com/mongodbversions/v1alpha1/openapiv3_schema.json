@@ -58,7 +58,9 @@
                   "type": "string",
                   "enum": [
                     "mongodb-addon",
-                    "postgres-addon"
+                    "postgres-addon",
+                    "mysql-addon",
+                    "mariadb-addon"
                   ]
                 },
                 "tasks": {
@@ -195,6 +197,10 @@
         "securityContext": {
           "type": "object",
           "properties": {
+            "runAsGroup": {
+              "type": "integer",
+              "format": "int64"
+            },
             "runAsUser": {
               "type": "integer",
               "format": "int64"

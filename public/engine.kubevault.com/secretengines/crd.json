@@ -114,6 +114,9 @@
                       }
                     }
                   },
+                  "defaultLeaseTTL": {
+                    "type": "string"
+                  },
                   "elasticsearch": {
                     "description": "ElasticsearchConfiguration defines a Elasticsearch app configuration. https://www.vaultproject.io/api-docs/secret/databases/elasticdb TODO: Fill in the fields",
                     "type": "object",
@@ -298,6 +301,9 @@
                       }
                     }
                   },
+                  "maxLeaseTTL": {
+                    "type": "string"
+                  },
                   "mongodb": {
                     "description": "MongoDBConfiguration defines a MongoDB app configuration. https://www.vaultproject.io/api/secret/databases/index.html https://www.vaultproject.io/api/secret/databases/mongodb.html#configure-connection",
                     "type": "object",
@@ -401,6 +407,94 @@
                       "pluginName": {
                         "description": "Specifies the name of the plugin to use for this connection. Default plugin: - for mysql: mysql-database-plugin",
                         "type": "string"
+                      }
+                    }
+                  },
+                  "pki": {
+                    "description": "https://developer.hashicorp.com/vault/api-docs/secret/pki#generate-root PKIConfiguration contains information about PKI Secret Engine",
+                    "type": "object",
+                    "required": [
+                      "isRootCA"
+                    ],
+                    "properties": {
+                      "additionalPayload": {
+                        "type": "object",
+                        "additionalProperties": {
+                          "type": "string"
+                        }
+                      },
+                      "altNames": {
+                        "type": "string"
+                      },
+                      "commonName": {
+                        "type": "string"
+                      },
+                      "country": {
+                        "type": "string"
+                      },
+                      "isRootCA": {
+                        "type": "boolean"
+                      },
+                      "issuerName": {
+                        "type": "string"
+                      },
+                      "maxPathLength": {
+                        "type": "integer"
+                      },
+                      "organization": {
+                        "type": "string"
+                      },
+                      "ou": {
+                        "type": "string"
+                      },
+                      "parentCARef": {
+                        "description": "ObjectReference contains enough information to let you inspect or modify the referred object.",
+                        "type": "object",
+                        "required": [
+                          "name"
+                        ],
+                        "properties": {
+                          "name": {
+                            "description": "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+                            "type": "string"
+                          },
+                          "namespace": {
+                            "description": "Namespace of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/",
+                            "type": "string"
+                          }
+                        }
+                      },
+                      "ttl": {
+                        "type": "string"
+                      },
+                      "type": {
+                        "type": "string"
+                      },
+                      "urls": {
+                        "type": "object",
+                        "properties": {
+                          "crlDistributionPoints": {
+                            "type": "array",
+                            "items": {
+                              "type": "string"
+                            }
+                          },
+                          "enableTemplating": {
+                            "type": "boolean"
+                          },
+                          "issuingCertificates": {
+                            "type": "array",
+                            "items": {
+                              "type": "string"
+                            }
+                          },
+                          "ocspServers": {
+                            "type": "array",
+                            "items": {
+                              "type": "string"
+                            }
+                          }
+                        }
                       }
                     }
                   },

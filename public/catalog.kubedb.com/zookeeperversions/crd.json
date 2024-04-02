@@ -1,0 +1,262 @@
+{
+  "kind": "CustomResourceDefinition",
+  "apiVersion": "apiextensions.k8s.io/v1",
+  "metadata": {
+    "name": "zookeeperversions.catalog.kubedb.com",
+    "creationTimestamp": null,
+    "labels": {
+      "app.kubernetes.io/name": "kubedb"
+    }
+  },
+  "spec": {
+    "group": "catalog.kubedb.com",
+    "names": {
+      "plural": "zookeeperversions",
+      "singular": "zookeeperversion",
+      "shortNames": [
+        "zkversion"
+      ],
+      "kind": "ZooKeeperVersion",
+      "listKind": "ZooKeeperVersionList",
+      "categories": [
+        "datastore",
+        "kubedb",
+        "appscode"
+      ]
+    },
+    "scope": "Cluster",
+    "versions": [
+      {
+        "name": "v1alpha1",
+        "served": true,
+        "storage": true,
+        "schema": {
+          "openAPIV3Schema": {
+            "type": "object",
+            "properties": {
+              "apiVersion": {
+                "type": "string"
+              },
+              "kind": {
+                "type": "string"
+              },
+              "metadata": {
+                "type": "object"
+              },
+              "spec": {
+                "type": "object",
+                "required": [
+                  "db",
+                  "version"
+                ],
+                "properties": {
+                  "coordinator": {
+                    "type": "object",
+                    "required": [
+                      "image"
+                    ],
+                    "properties": {
+                      "image": {
+                        "type": "string"
+                      }
+                    }
+                  },
+                  "db": {
+                    "type": "object",
+                    "required": [
+                      "image"
+                    ],
+                    "properties": {
+                      "image": {
+                        "type": "string"
+                      }
+                    }
+                  },
+                  "deprecated": {
+                    "type": "boolean"
+                  },
+                  "exporter": {
+                    "type": "object",
+                    "required": [
+                      "image"
+                    ],
+                    "properties": {
+                      "image": {
+                        "type": "string"
+                      }
+                    }
+                  },
+                  "gitSyncer": {
+                    "type": "object",
+                    "required": [
+                      "image"
+                    ],
+                    "properties": {
+                      "image": {
+                        "type": "string"
+                      }
+                    }
+                  },
+                  "initContainer": {
+                    "type": "object",
+                    "required": [
+                      "image"
+                    ],
+                    "properties": {
+                      "image": {
+                        "type": "string"
+                      }
+                    }
+                  },
+                  "podSecurityPolicies": {
+                    "type": "object",
+                    "required": [
+                      "databasePolicyName"
+                    ],
+                    "properties": {
+                      "databasePolicyName": {
+                        "type": "string"
+                      }
+                    }
+                  },
+                  "securityContext": {
+                    "type": "object",
+                    "properties": {
+                      "runAsUser": {
+                        "type": "integer",
+                        "format": "int64"
+                      }
+                    }
+                  },
+                  "stash": {
+                    "type": "object",
+                    "properties": {
+                      "addon": {
+                        "type": "object",
+                        "required": [
+                          "backupTask",
+                          "restoreTask"
+                        ],
+                        "properties": {
+                          "backupTask": {
+                            "type": "object",
+                            "required": [
+                              "name"
+                            ],
+                            "properties": {
+                              "name": {
+                                "type": "string"
+                              },
+                              "params": {
+                                "type": "array",
+                                "items": {
+                                  "type": "object",
+                                  "required": [
+                                    "name",
+                                    "value"
+                                  ],
+                                  "properties": {
+                                    "name": {
+                                      "type": "string"
+                                    },
+                                    "value": {
+                                      "type": "string"
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          },
+                          "restoreTask": {
+                            "type": "object",
+                            "required": [
+                              "name"
+                            ],
+                            "properties": {
+                              "name": {
+                                "type": "string"
+                              },
+                              "params": {
+                                "type": "array",
+                                "items": {
+                                  "type": "object",
+                                  "required": [
+                                    "name",
+                                    "value"
+                                  ],
+                                  "properties": {
+                                    "name": {
+                                      "type": "string"
+                                    },
+                                    "value": {
+                                      "type": "string"
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  },
+                  "updateConstraints": {
+                    "type": "object",
+                    "properties": {
+                      "allowlist": {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        }
+                      },
+                      "denylist": {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  },
+                  "version": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "subresources": {},
+        "additionalPrinterColumns": [
+          {
+            "name": "Version",
+            "type": "string",
+            "jsonPath": ".spec.version"
+          },
+          {
+            "name": "DB_IMAGE",
+            "type": "string",
+            "jsonPath": ".spec.db.image"
+          },
+          {
+            "name": "Deprecated",
+            "type": "boolean",
+            "jsonPath": ".spec.deprecated"
+          },
+          {
+            "name": "Age",
+            "type": "date",
+            "jsonPath": ".metadata.creationTimestamp"
+          }
+        ]
+      }
+    ]
+  },
+  "status": {
+    "conditions": null,
+    "acceptedNames": {
+      "plural": "",
+      "kind": ""
+    },
+    "storedVersions": null
+  }
+}

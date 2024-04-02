@@ -1,0 +1,45 @@
+{
+  "kind": "ResourceEditor",
+  "apiVersion": "ui.k8s.appscode.com/v1alpha1",
+  "metadata": {
+    "name": "catalog.appscode.com-v1alpha1-mysqlbindings",
+    "creationTimestamp": null,
+    "labels": {
+      "k8s.io/group": "catalog.appscode.com",
+      "k8s.io/kind": "MySQLBinding",
+      "k8s.io/resource": "mysqlbindings",
+      "k8s.io/version": "v1alpha1"
+    }
+  },
+  "spec": {
+    "resource": {
+      "group": "catalog.appscode.com",
+      "version": "v1alpha1",
+      "name": "mysqlbindings",
+      "kind": "MySQLBinding",
+      "scope": "Namespaced"
+    },
+    "ui": {
+      "editor": {
+        "name": "catalogappscodecom-mysqlbinding-editor",
+        "version": "v0.4.18",
+        "sourceRef": {
+          "apiGroup": "source.toolkit.fluxcd.io",
+          "kind": "HelmRepository",
+          "name": "appscode-charts-oci"
+        }
+      },
+      "enforceQuota": false
+    },
+    "icons": [
+      {
+        "src": "https://cdn.appscode.com/k8s/icons/catalog.appscode.com/mysqlbindings.svg",
+        "type": "image/svg+xml"
+      },
+      {
+        "src": "https://cdn.appscode.com/k8s/icons/catalog.appscode.com/mysqlbindings.png",
+        "type": "image/png"
+      }
+    ]
+  }
+}

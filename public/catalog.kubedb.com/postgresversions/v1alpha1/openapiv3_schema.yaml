@@ -34,6 +34,8 @@ properties:
                 enum:
                 - mongodb-addon
                 - postgres-addon
+                - mysql-addon
+                - mariadb-addon
                 type: string
               tasks:
                 properties:

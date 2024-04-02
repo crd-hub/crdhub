@@ -50,14 +50,23 @@
         "compute": {
           "type": "object",
           "properties": {
-            "nodeTopologyRef": {
+            "nodeTopology": {
               "type": "object",
               "properties": {
                 "name": {
                   "type": "string"
+                },
+                "scaleDownDiffPercentage": {
+                  "type": "integer",
+                  "format": "int32",
+                  "default": 25
+                },
+                "scaleUpDiffPercentage": {
+                  "type": "integer",
+                  "format": "int32",
+                  "default": 15
                 }
-              },
-              "x-kubernetes-map-type": "atomic"
+              }
             },
             "sentinel": {
               "type": "object",

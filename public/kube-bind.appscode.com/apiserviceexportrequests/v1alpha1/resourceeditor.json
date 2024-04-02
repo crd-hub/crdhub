@@ -1,0 +1,35 @@
+{
+  "kind": "ResourceEditor",
+  "apiVersion": "ui.k8s.appscode.com/v1alpha1",
+  "metadata": {
+    "name": "kube-bind.appscode.com-v1alpha1-apiserviceexportrequests",
+    "creationTimestamp": null,
+    "labels": {
+      "k8s.io/group": "kube-bind.appscode.com",
+      "k8s.io/kind": "APIServiceExportRequest",
+      "k8s.io/resource": "apiserviceexportrequests",
+      "k8s.io/version": "v1alpha1"
+    }
+  },
+  "spec": {
+    "resource": {
+      "group": "kube-bind.appscode.com",
+      "version": "v1alpha1",
+      "name": "apiserviceexportrequests",
+      "kind": "APIServiceExportRequest",
+      "scope": "Namespaced"
+    },
+    "ui": {
+      "editor": {
+        "name": "kubebindappscodecom-apiserviceexportrequest-editor",
+        "version": "v0.4.18",
+        "sourceRef": {
+          "apiGroup": "source.toolkit.fluxcd.io",
+          "kind": "HelmRepository",
+          "name": "appscode-charts-oci"
+        }
+      },
+      "enforceQuota": false
+    }
+  }
+}

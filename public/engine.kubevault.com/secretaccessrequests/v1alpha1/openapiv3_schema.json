@@ -79,6 +79,30 @@
             }
           }
         },
+        "pki": {
+          "description": "https://developer.hashicorp.com/vault/api-docs/secret/pki#generate-certificate-and-key",
+          "type": "object",
+          "properties": {
+            "additionalPayload": {
+              "type": "object",
+              "additionalProperties": {
+                "type": "string"
+              }
+            },
+            "altNames": {
+              "type": "string"
+            },
+            "commonName": {
+              "type": "string"
+            },
+            "issuerRef": {
+              "type": "string"
+            },
+            "ttl": {
+              "type": "string"
+            }
+          }
+        },
         "roleRef": {
           "description": "Contains vault database role info",
           "type": "object",

@@ -1,0 +1,84 @@
+{
+  "kind": "CustomResourceDefinition",
+  "apiVersion": "apiextensions.k8s.io/v1",
+  "metadata": {
+    "name": "apiservicenamespaces.kube-bind.appscode.com",
+    "creationTimestamp": null
+  },
+  "spec": {
+    "group": "kube-bind.appscode.com",
+    "names": {
+      "plural": "apiservicenamespaces",
+      "singular": "apiservicenamespace",
+      "kind": "APIServiceNamespace",
+      "listKind": "APIServiceNamespaceList",
+      "categories": [
+        "kube-bindings"
+      ]
+    },
+    "scope": "Namespaced",
+    "versions": [
+      {
+        "name": "v1alpha1",
+        "served": true,
+        "storage": true,
+        "schema": {
+          "openAPIV3Schema": {
+            "description": "APIServiceNamespace defines how consumer namespaces map to service namespaces. These objects are created by the konnector, and a service namespace is then created by the service provider. \n The name of the APIServiceNamespace equals the namespace name in the consumer cluster.",
+            "type": "object",
+            "properties": {
+              "apiVersion": {
+                "description": "APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources",
+                "type": "string"
+              },
+              "kind": {
+                "description": "Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds",
+                "type": "string"
+              },
+              "metadata": {
+                "type": "object"
+              },
+              "spec": {
+                "description": "spec specifies a service namespace.",
+                "type": "object"
+              },
+              "status": {
+                "description": "status contains reconciliation information for a service namespace",
+                "type": "object",
+                "properties": {
+                  "namespace": {
+                    "description": "namespace is the service provider namespace name that will be bound to the consumer namespace named like this object.",
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "subresources": {
+          "status": {}
+        },
+        "additionalPrinterColumns": [
+          {
+            "name": "Namespace",
+            "type": "string",
+            "jsonPath": ".status.namespace"
+          },
+          {
+            "name": "Age",
+            "type": "date",
+            "jsonPath": ".metadata.creationTimestamp"
+          }
+        ]
+      }
+    ]
+  },
+  "status": {
+    "conditions": null,
+    "acceptedNames": {
+      "plural": "",
+      "kind": ""
+    },
+    "storedVersions": null
+  }
+}

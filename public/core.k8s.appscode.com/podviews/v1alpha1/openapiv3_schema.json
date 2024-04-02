@@ -290,7 +290,7 @@
                               ],
                               "properties": {
                                 "name": {
-                                  "description": "The header field name",
+                                  "description": "The header field name. This will be canonicalized upon output, so case-variant names will be understood as the same header.",
                                   "type": "string"
                                 },
                                 "value": {
@@ -319,6 +319,20 @@
                           "scheme": {
                             "description": "Scheme to use for connecting to the host. Defaults to HTTP.",
                             "type": "string"
+                          }
+                        }
+                      },
+                      "sleep": {
+                        "description": "Sleep represents the duration that the container should sleep before being terminated.",
+                        "type": "object",
+                        "required": [
+                          "seconds"
+                        ],
+                        "properties": {
+                          "seconds": {
+                            "description": "Seconds is the number of seconds to sleep.",
+                            "type": "integer",
+                            "format": "int64"
                           }
                         }
                       },
@@ -389,7 +403,7 @@
                               ],
                               "properties": {
                                 "name": {
-                                  "description": "The header field name",
+                                  "description": "The header field name. This will be canonicalized upon output, so case-variant names will be understood as the same header.",
                                   "type": "string"
                                 },
                                 "value": {
@@ -418,6 +432,20 @@
                           "scheme": {
                             "description": "Scheme to use for connecting to the host. Defaults to HTTP.",
                             "type": "string"
+                          }
+                        }
+                      },
+                      "sleep": {
+                        "description": "Sleep represents the duration that the container should sleep before being terminated.",
+                        "type": "object",
+                        "required": [
+                          "seconds"
+                        ],
+                        "properties": {
+                          "seconds": {
+                            "description": "Seconds is the number of seconds to sleep.",
+                            "type": "integer",
+                            "format": "int64"
                           }
                         }
                       },
@@ -473,7 +501,7 @@
                     "format": "int32"
                   },
                   "grpc": {
-                    "description": "GRPC specifies an action involving a GRPC port. This is a beta field and requires enabling GRPCContainerProbe feature gate.",
+                    "description": "GRPC specifies an action involving a GRPC port.",
                     "type": "object",
                     "required": [
                       "port"
@@ -513,7 +541,7 @@
                           ],
                           "properties": {
                             "name": {
-                              "description": "The header field name",
+                              "description": "The header field name. This will be canonicalized upon output, so case-variant names will be understood as the same header.",
                               "type": "string"
                             },
                             "value": {
@@ -665,7 +693,7 @@
                     "format": "int32"
                   },
                   "grpc": {
-                    "description": "GRPC specifies an action involving a GRPC port. This is a beta field and requires enabling GRPCContainerProbe feature gate.",
+                    "description": "GRPC specifies an action involving a GRPC port.",
                     "type": "object",
                     "required": [
                       "port"
@@ -705,7 +733,7 @@
                           ],
                           "properties": {
                             "name": {
-                              "description": "The header field name",
+                              "description": "The header field name. This will be canonicalized upon output, so case-variant names will be understood as the same header.",
                               "type": "string"
                             },
                             "value": {
@@ -929,7 +957,7 @@
                     ],
                     "properties": {
                       "localhostProfile": {
-                        "description": "localhostProfile indicates a profile defined in a file on the node should be used. The profile must be preconfigured on the node to work. Must be a descending path, relative to the kubelet's configured seccomp profile location. Must only be set if type is \"Localhost\".",
+                        "description": "localhostProfile indicates a profile defined in a file on the node should be used. The profile must be preconfigured on the node to work. Must be a descending path, relative to the kubelet's configured seccomp profile location. Must be set if type is \"Localhost\". Must NOT be set for any other type.",
                         "type": "string"
                       },
                       "type": {
@@ -951,7 +979,7 @@
                         "type": "string"
                       },
                       "hostProcess": {
-                        "description": "HostProcess determines if a container should be run as a 'Host Process' container. This field is alpha-level and will only be honored by components that enable the WindowsHostProcessContainers feature flag. Setting this field without the feature flag will result in errors when validating the Pod. All of a Pod's containers must have the same effective HostProcess value (it is not allowed to have a mix of HostProcess containers and non-HostProcess containers).  In addition, if HostProcess is true then HostNetwork must also be set to true.",
+                        "description": "HostProcess determines if a container should be run as a 'Host Process' container. All of a Pod's containers must have the same effective HostProcess value (it is not allowed to have a mix of HostProcess containers and non-HostProcess containers). In addition, if HostProcess is true then HostNetwork must also be set to true.",
                         "type": "boolean"
                       },
                       "runAsUserName": {
@@ -985,7 +1013,7 @@
                     "format": "int32"
                   },
                   "grpc": {
-                    "description": "GRPC specifies an action involving a GRPC port. This is a beta field and requires enabling GRPCContainerProbe feature gate.",
+                    "description": "GRPC specifies an action involving a GRPC port.",
                     "type": "object",
                     "required": [
                       "port"
@@ -1025,7 +1053,7 @@
                           ],
                           "properties": {
                             "name": {
-                              "description": "The header field name",
+                              "description": "The header field name. This will be canonicalized upon output, so case-variant names will be understood as the same header.",
                               "type": "string"
                             },
                             "value": {

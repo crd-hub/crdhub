@@ -515,12 +515,19 @@ properties:
               trigger:
                 type: string
             type: object
-          nodeTopologyRef:
+          nodeTopology:
             properties:
               name:
                 type: string
+              scaleDownDiffPercentage:
+                default: 25
+                format: int32
+                type: integer
+              scaleUpDiffPercentage:
+                default: 15
+                format: int32
+                type: integer
             type: object
-            x-kubernetes-map-type: atomic
           transform:
             properties:
               containerControlledValues:
@@ -602,6 +609,8 @@ properties:
               usageThreshold:
                 format: int32
                 type: integer
+            required:
+            - expansionMode
             type: object
           data:
             properties:
@@ -618,6 +627,8 @@ properties:
               usageThreshold:
                 format: int32
                 type: integer
+            required:
+            - expansionMode
             type: object
           dataCold:
             properties:
@@ -634,6 +645,8 @@ properties:
               usageThreshold:
                 format: int32
                 type: integer
+            required:
+            - expansionMode
             type: object
           dataContent:
             properties:
@@ -650,6 +663,8 @@ properties:
               usageThreshold:
                 format: int32
                 type: integer
+            required:
+            - expansionMode
             type: object
           dataFrozen:
             properties:
@@ -666,6 +681,8 @@ properties:
               usageThreshold:
                 format: int32
                 type: integer
+            required:
+            - expansionMode
             type: object
           dataHot:
             properties:
@@ -682,6 +699,8 @@ properties:
               usageThreshold:
                 format: int32
                 type: integer
+            required:
+            - expansionMode
             type: object
           dataWarm:
             properties:
@@ -698,6 +717,8 @@ properties:
               usageThreshold:
                 format: int32
                 type: integer
+            required:
+            - expansionMode
             type: object
           ingest:
             properties:
@@ -714,6 +735,8 @@ properties:
               usageThreshold:
                 format: int32
                 type: integer
+            required:
+            - expansionMode
             type: object
           master:
             properties:
@@ -730,6 +753,8 @@ properties:
               usageThreshold:
                 format: int32
                 type: integer
+            required:
+            - expansionMode
             type: object
           ml:
             properties:
@@ -746,6 +771,8 @@ properties:
               usageThreshold:
                 format: int32
                 type: integer
+            required:
+            - expansionMode
             type: object
           node:
             properties:
@@ -762,6 +789,8 @@ properties:
               usageThreshold:
                 format: int32
                 type: integer
+            required:
+            - expansionMode
             type: object
           transform:
             properties:
@@ -778,6 +807,8 @@ properties:
               usageThreshold:
                 format: int32
                 type: integer
+            required:
+            - expansionMode
             type: object
         type: object
     required:

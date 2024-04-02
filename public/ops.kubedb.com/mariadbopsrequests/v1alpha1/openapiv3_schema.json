@@ -301,6 +301,24 @@
                 "resources": {
                   "type": "object",
                   "properties": {
+                    "claims": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "required": [
+                          "name"
+                        ],
+                        "properties": {
+                          "name": {
+                            "type": "string"
+                          }
+                        }
+                      },
+                      "x-kubernetes-list-map-keys": [
+                        "name"
+                      ],
+                      "x-kubernetes-list-type": "map"
+                    },
                     "limits": {
                       "type": "object",
                       "additionalProperties": {
@@ -341,6 +359,24 @@
                 "resources": {
                   "type": "object",
                   "properties": {
+                    "claims": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "required": [
+                          "name"
+                        ],
+                        "properties": {
+                          "name": {
+                            "type": "string"
+                          }
+                        }
+                      },
+                      "x-kubernetes-list-map-keys": [
+                        "name"
+                      ],
+                      "x-kubernetes-list-type": "map"
+                    },
                     "limits": {
                       "type": "object",
                       "additionalProperties": {
@@ -388,6 +424,24 @@
                 "resources": {
                   "type": "object",
                   "properties": {
+                    "claims": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "required": [
+                          "name"
+                        ],
+                        "properties": {
+                          "name": {
+                            "type": "string"
+                          }
+                        }
+                      },
+                      "x-kubernetes-list-map-keys": [
+                        "name"
+                      ],
+                      "x-kubernetes-list-type": "map"
+                    },
                     "limits": {
                       "type": "object",
                       "additionalProperties": {
@@ -441,6 +495,9 @@
         },
         "volumeExpansion": {
           "type": "object",
+          "required": [
+            "mode"
+          ],
           "properties": {
             "mariadb": {
               "pattern": "^(\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))(([KMGTPE]i)|[numkMGTPE]|([eE](\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))))?$",

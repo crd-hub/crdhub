@@ -296,6 +296,24 @@
                           "resources": {
                             "type": "object",
                             "properties": {
+                              "claims": {
+                                "type": "array",
+                                "items": {
+                                  "type": "object",
+                                  "required": [
+                                    "name"
+                                  ],
+                                  "properties": {
+                                    "name": {
+                                      "type": "string"
+                                    }
+                                  }
+                                },
+                                "x-kubernetes-list-map-keys": [
+                                  "name"
+                                ],
+                                "x-kubernetes-list-type": "map"
+                              },
                               "limits": {
                                 "type": "object",
                                 "additionalProperties": {
@@ -336,6 +354,24 @@
                           "resources": {
                             "type": "object",
                             "properties": {
+                              "claims": {
+                                "type": "array",
+                                "items": {
+                                  "type": "object",
+                                  "required": [
+                                    "name"
+                                  ],
+                                  "properties": {
+                                    "name": {
+                                      "type": "string"
+                                    }
+                                  }
+                                },
+                                "x-kubernetes-list-map-keys": [
+                                  "name"
+                                ],
+                                "x-kubernetes-list-type": "map"
+                              },
                               "limits": {
                                 "type": "object",
                                 "additionalProperties": {
@@ -383,6 +419,24 @@
                           "resources": {
                             "type": "object",
                             "properties": {
+                              "claims": {
+                                "type": "array",
+                                "items": {
+                                  "type": "object",
+                                  "required": [
+                                    "name"
+                                  ],
+                                  "properties": {
+                                    "name": {
+                                      "type": "string"
+                                    }
+                                  }
+                                },
+                                "x-kubernetes-list-map-keys": [
+                                  "name"
+                                ],
+                                "x-kubernetes-list-type": "map"
+                              },
                               "limits": {
                                 "type": "object",
                                 "additionalProperties": {
@@ -436,10 +490,12 @@
                   },
                   "volumeExpansion": {
                     "type": "object",
+                    "required": [
+                      "mode"
+                    ],
                     "properties": {
                       "mode": {
                         "type": "string",
-                        "default": "Online",
                         "enum": [
                           "Offline",
                           "Online"
@@ -503,6 +559,29 @@
                   "observedGeneration": {
                     "type": "integer",
                     "format": "int64"
+                  },
+                  "pausedBackups": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "required": [
+                        "name"
+                      ],
+                      "properties": {
+                        "apiGroup": {
+                          "type": "string"
+                        },
+                        "kind": {
+                          "type": "string"
+                        },
+                        "name": {
+                          "type": "string"
+                        },
+                        "namespace": {
+                          "type": "string"
+                        }
+                      }
+                    }
                   },
                   "phase": {
                     "type": "string",

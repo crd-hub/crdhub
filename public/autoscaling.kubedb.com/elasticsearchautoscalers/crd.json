@@ -833,14 +833,23 @@
                           }
                         }
                       },
-                      "nodeTopologyRef": {
+                      "nodeTopology": {
                         "type": "object",
                         "properties": {
                           "name": {
                             "type": "string"
+                          },
+                          "scaleDownDiffPercentage": {
+                            "type": "integer",
+                            "format": "int32",
+                            "default": 25
+                          },
+                          "scaleUpDiffPercentage": {
+                            "type": "integer",
+                            "format": "int32",
+                            "default": 15
                           }
-                        },
-                        "x-kubernetes-map-type": "atomic"
+                        }
                       },
                       "transform": {
                         "type": "object",
@@ -948,6 +957,9 @@
                     "properties": {
                       "coordinating": {
                         "type": "object",
+                        "required": [
+                          "expansionMode"
+                        ],
                         "properties": {
                           "expansionMode": {
                             "type": "string",
@@ -971,6 +983,9 @@
                       },
                       "data": {
                         "type": "object",
+                        "required": [
+                          "expansionMode"
+                        ],
                         "properties": {
                           "expansionMode": {
                             "type": "string",
@@ -994,6 +1009,9 @@
                       },
                       "dataCold": {
                         "type": "object",
+                        "required": [
+                          "expansionMode"
+                        ],
                         "properties": {
                           "expansionMode": {
                             "type": "string",
@@ -1017,6 +1035,9 @@
                       },
                       "dataContent": {
                         "type": "object",
+                        "required": [
+                          "expansionMode"
+                        ],
                         "properties": {
                           "expansionMode": {
                             "type": "string",
@@ -1040,6 +1061,9 @@
                       },
                       "dataFrozen": {
                         "type": "object",
+                        "required": [
+                          "expansionMode"
+                        ],
                         "properties": {
                           "expansionMode": {
                             "type": "string",
@@ -1063,6 +1087,9 @@
                       },
                       "dataHot": {
                         "type": "object",
+                        "required": [
+                          "expansionMode"
+                        ],
                         "properties": {
                           "expansionMode": {
                             "type": "string",
@@ -1086,6 +1113,9 @@
                       },
                       "dataWarm": {
                         "type": "object",
+                        "required": [
+                          "expansionMode"
+                        ],
                         "properties": {
                           "expansionMode": {
                             "type": "string",
@@ -1109,6 +1139,9 @@
                       },
                       "ingest": {
                         "type": "object",
+                        "required": [
+                          "expansionMode"
+                        ],
                         "properties": {
                           "expansionMode": {
                             "type": "string",
@@ -1132,6 +1165,9 @@
                       },
                       "master": {
                         "type": "object",
+                        "required": [
+                          "expansionMode"
+                        ],
                         "properties": {
                           "expansionMode": {
                             "type": "string",
@@ -1155,6 +1191,9 @@
                       },
                       "ml": {
                         "type": "object",
+                        "required": [
+                          "expansionMode"
+                        ],
                         "properties": {
                           "expansionMode": {
                             "type": "string",
@@ -1178,6 +1217,9 @@
                       },
                       "node": {
                         "type": "object",
+                        "required": [
+                          "expansionMode"
+                        ],
                         "properties": {
                           "expansionMode": {
                             "type": "string",
@@ -1201,6 +1243,9 @@
                       },
                       "transform": {
                         "type": "object",
+                        "required": [
+                          "expansionMode"
+                        ],
                         "properties": {
                           "expansionMode": {
                             "type": "string",

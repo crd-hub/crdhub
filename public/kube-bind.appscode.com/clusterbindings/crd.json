@@ -1,0 +1,213 @@
+{
+  "kind": "CustomResourceDefinition",
+  "apiVersion": "apiextensions.k8s.io/v1",
+  "metadata": {
+    "name": "clusterbindings.kube-bind.appscode.com",
+    "creationTimestamp": null
+  },
+  "spec": {
+    "group": "kube-bind.appscode.com",
+    "names": {
+      "plural": "clusterbindings",
+      "singular": "clusterbinding",
+      "kind": "ClusterBinding",
+      "listKind": "ClusterBindingList",
+      "categories": [
+        "kube-bindings"
+      ]
+    },
+    "scope": "Namespaced",
+    "versions": [
+      {
+        "name": "v1alpha1",
+        "served": true,
+        "storage": true,
+        "schema": {
+          "openAPIV3Schema": {
+            "description": "ClusterBinding represents a bound consumer class. It lives in a service provider cluster and is a singleton named \"cluster\".",
+            "type": "object",
+            "required": [
+              "spec"
+            ],
+            "properties": {
+              "apiVersion": {
+                "description": "APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources",
+                "type": "string"
+              },
+              "kind": {
+                "description": "Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds",
+                "type": "string"
+              },
+              "metadata": {
+                "type": "object"
+              },
+              "spec": {
+                "description": "spec represents the data in the newly created ClusterBinding.",
+                "type": "object",
+                "required": [
+                  "kubeconfigSecretRef",
+                  "providerClusterName"
+                ],
+                "properties": {
+                  "kubeconfigSecretRef": {
+                    "description": "kubeconfigSecretName is the secret ref that contains the kubeconfig of the service cluster.",
+                    "type": "object",
+                    "required": [
+                      "key",
+                      "name"
+                    ],
+                    "properties": {
+                      "key": {
+                        "description": "The key of the secret to select from.  Must be \"kubeconfig\".",
+                        "type": "string",
+                        "enum": [
+                          "kubeconfig"
+                        ]
+                      },
+                      "name": {
+                        "description": "Name of the referent.",
+                        "type": "string",
+                        "minLength": 1
+                      }
+                    },
+                    "x-kubernetes-validations": [
+                      {
+                        "rule": "self == oldSelf",
+                        "message": "kubeconfigSecretRef is immutable"
+                      }
+                    ]
+                  },
+                  "providerClusterName": {
+                    "description": "providerClusterName is the cluster name of the service provider cluster. This can be shared among different ServiceBindings.",
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "serviceProviderSpec": {
+                    "description": "serviceProviderSpec contains all the data and information about the service which has been bound to the service binding request. The service providers decide what they need and what to configure based on what then include in this field, such as service region, type, tiers, etc...",
+                    "type": "object",
+                    "x-kubernetes-preserve-unknown-fields": true
+                  }
+                }
+              },
+              "status": {
+                "description": "status contains reconciliation information for the service binding.",
+                "type": "object",
+                "properties": {
+                  "conditions": {
+                    "description": "conditions is a list of conditions that apply to the ClusterBinding. It is updated by the konnector and the service provider.",
+                    "type": "array",
+                    "items": {
+                      "description": "Condition defines an observation of a object operational state.",
+                      "type": "object",
+                      "required": [
+                        "lastTransitionTime",
+                        "status",
+                        "type"
+                      ],
+                      "properties": {
+                        "lastTransitionTime": {
+                          "description": "Last time the condition transitioned from one status to another. This should be when the underlying condition changed. If that is not known, then using the time when the API field changed is acceptable.",
+                          "type": "string",
+                          "format": "date-time"
+                        },
+                        "message": {
+                          "description": "A human-readable message indicating details about the transition. This field may be empty.",
+                          "type": "string"
+                        },
+                        "observedGeneration": {
+                          "description": "If set, this represents the .metadata.generation that the condition was set based upon. For instance, if .metadata.generation is currently 12, but the .status.condition[x].observedGeneration is 9, the condition is out of date with respect to the current state of the instance.",
+                          "type": "integer",
+                          "format": "int64"
+                        },
+                        "reason": {
+                          "description": "The reason for the condition's last transition in CamelCase. The specific API may choose whether this field is considered a guaranteed API. This field may not be empty.",
+                          "type": "string"
+                        },
+                        "severity": {
+                          "description": "Severity provides an explicit classification of Reason code, so the users or machines can immediately understand the current situation and act accordingly. The Severity field MUST be set only when Status=False.",
+                          "type": "string"
+                        },
+                        "status": {
+                          "description": "Status of the condition, one of True, False, Unknown.",
+                          "type": "string"
+                        },
+                        "type": {
+                          "description": "Type of condition in CamelCase or in foo.example.com/CamelCase. Many .condition.type values are consistent across resources like Available, but because arbitrary util can be useful (see .node.status.util), the ability to deconflict is important.",
+                          "type": "string"
+                        }
+                      }
+                    }
+                  },
+                  "heartbeatInterval": {
+                    "description": "heartbeatInterval is the maximal interval between heartbeats that the konnector promises to send. The service provider can assume that the konnector is not unhealthy if it does not receive a heartbeat within this time.",
+                    "type": "string"
+                  },
+                  "konnectorVersion": {
+                    "description": "konnectorVersion is the version of the konnector that is running on the consumer cluster.",
+                    "type": "string"
+                  },
+                  "lastHeartbeatTime": {
+                    "description": "lastHeartbeatTime is the last time the konnector updated the status.",
+                    "type": "string",
+                    "format": "date-time"
+                  },
+                  "provider": {
+                    "description": "Provider is the cluster id and name of the service provider cluster.",
+                    "type": "object",
+                    "properties": {
+                      "clusterName": {
+                        "type": "string"
+                      },
+                      "clusterUID": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "x-kubernetes-validations": [
+              {
+                "rule": "self.metadata.name == \"cluster\"",
+                "message": "cluster binding name should be cluster"
+              }
+            ]
+          }
+        },
+        "subresources": {
+          "status": {}
+        },
+        "additionalPrinterColumns": [
+          {
+            "name": "Konnector Version",
+            "type": "string",
+            "jsonPath": ".status.konnectorVersion"
+          },
+          {
+            "name": "Last Heartbeat",
+            "type": "date",
+            "jsonPath": ".status.lastHeartbeatTime"
+          },
+          {
+            "name": "Ready",
+            "type": "string",
+            "jsonPath": ".status.conditions[?(@.type==\"Ready\")].status"
+          },
+          {
+            "name": "Age",
+            "type": "date",
+            "jsonPath": ".metadata.creationTimestamp"
+          }
+        ]
+      }
+    ]
+  },
+  "status": {
+    "conditions": null,
+    "acceptedNames": {
+      "plural": "",
+      "kind": ""
+    },
+    "storedVersions": null
+  }
+}

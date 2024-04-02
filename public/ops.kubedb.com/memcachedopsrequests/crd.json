@@ -314,6 +314,29 @@
                     "type": "integer",
                     "format": "int64"
                   },
+                  "pausedBackups": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "required": [
+                        "name"
+                      ],
+                      "properties": {
+                        "apiGroup": {
+                          "type": "string"
+                        },
+                        "kind": {
+                          "type": "string"
+                        },
+                        "name": {
+                          "type": "string"
+                        },
+                        "namespace": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  },
                   "phase": {
                     "type": "string",
                     "enum": [

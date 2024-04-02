@@ -1,0 +1,98 @@
+{
+  "$schema": "http://json-schema.org/schema#",
+  "description": "APIServiceBinding binds an API service represented by a APIServiceExport in a service provider cluster into a consumer cluster. This object lives in the consumer cluster.",
+  "type": "object",
+  "properties": {
+    "apiVersion": {
+      "description": "APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources",
+      "type": "string",
+      "enum": [
+        "kube-bind.appscode.com/v1alpha1"
+      ]
+    },
+    "kind": {
+      "description": "Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds",
+      "type": "string",
+      "enum": [
+        "APIServiceBinding"
+      ]
+    },
+    "metadata": {
+      "type": "object",
+      "properties": {
+        "annotations": {
+          "description": "Annotations is an unstructured key value map stored with a resource that may be set by external tools to store and retrieve arbitrary metadata. They are not queryable and should be preserved when modifying objects. More info: http://kubernetes.io/docs/user-guide/annotations",
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          }
+        },
+        "labels": {
+          "description": "Map of string keys and values that can be used to organize and categorize (scope and select) objects. May match selectors of replication controllers and services. More info: http://kubernetes.io/docs/user-guide/labels",
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          }
+        },
+        "name": {
+          "description": "Name must be unique within a namespace. Is required when creating resources, although some resources may allow a client to request the generation of an appropriate name automatically. Name is primarily intended for creation idempotence and configuration definition. Cannot be updated. More info: http://kubernetes.io/docs/user-guide/identifiers#names",
+          "type": "string"
+        }
+      }
+    },
+    "spec": {
+      "description": "spec specifies how an API service from a service provider should be bound in the local consumer cluster.",
+      "type": "object",
+      "required": [
+        "providers"
+      ],
+      "properties": {
+        "providers": {
+          "description": "Providers contains the provider ClusterIdentity and KubeconfigSecretRef of the provider cluster",
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "clusterName": {
+                "type": "string"
+              },
+              "clusterUID": {
+                "type": "string"
+              },
+              "kubeconfig": {
+                "type": "object",
+                "required": [
+                  "key",
+                  "name",
+                  "namespace"
+                ],
+                "properties": {
+                  "key": {
+                    "description": "The key of the secret to select from.  Must be \"kubeconfig\".",
+                    "type": "string",
+                    "enum": [
+                      "kubeconfig"
+                    ]
+                  },
+                  "name": {
+                    "description": "Name of the referent.",
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "namespace": {
+                    "description": "Namespace of the referent.",
+                    "type": "string",
+                    "minLength": 1
+                  }
+                }
+              },
+              "remoteNamespace": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

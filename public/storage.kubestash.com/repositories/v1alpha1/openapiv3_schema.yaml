@@ -57,7 +57,7 @@ properties:
         - WipeOut
         type: string
       encryptionSecret:
-        description: EncryptionSecret refers to the Secret containing the encryption key which will be used to encode/decode the backed up data. You can refer to a Secret of a different namespace. If you don't provide the namespace field, Stash will look for the Secret in the same namespace as the BackupConfiguration / BackupBatch.
+        description: EncryptionSecret refers to the Secret containing the encryption key which will be used to encode/decode the backed up data. You can refer to a Secret of a different namespace. If you don't provide the namespace field, KubeStash will look for the Secret in the same namespace as the BackupConfiguration / BackupBatch.
         properties:
           name:
             description: 'Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names'
@@ -72,7 +72,7 @@ properties:
         description: Path represents the directory inside the BackupStorage where this Repository is storing its data This path is relative to the path of BackupStorage.
         type: string
       paused:
-        description: Paused specifies whether the Repository is paused or not. If the Repository is paused, Stash will not process any further event for the Repository.
+        description: Paused specifies whether the Repository is paused or not. If the Repository is paused, KubeStash will not process any further event for the Repository.
         type: boolean
       storageRef:
         description: StorageRef refers to the BackupStorage CR which contain the backend information where the backed up data will be stored. The BackupStorage could be in a different namespace. However, the Repository namespace must be allowed to use the BackupStorage.

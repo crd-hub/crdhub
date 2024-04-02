@@ -9,6 +9,95 @@ metadata:
     k8s.io/version: v1alpha1
   name: storage.kubestash.com-v1alpha1-repositories
 spec:
+  connections:
+  - labels:
+    - storage
+    references:
+    - '{.spec.storageRef.name},{.spec.storageRef.namespace}'
+    target:
+      apiVersion: storage.kubestash.com/v1alpha1
+      kind: BackupStorage
+    type: MatchRef
+  - labels:
+    - auth_secret
+    references:
+    - '{.spec.encryptionSecret.name},{.spec.encryptionSecret.namespace}'
+    target:
+      apiVersion: v1
+      kind: Secret
+    type: MatchRef
+  - labels:
+    - backup_via
+    references:
+    - '{.spec.appRef.name},{.spec.appRef.namespace},{.spec.appRef.kind},{.spec.appRef.apiGroup}'
+    target:
+      apiVersion: kubedb.com/v1alpha2
+      kind: Postgres
+    type: MatchRef
+  - labels:
+    - backup_via
+    references:
+    - '{.spec.appRef.name},{.spec.appRef.namespace},{.spec.appRef.kind},{.spec.appRef.apiGroup}'
+    target:
+      apiVersion: kubedb.com/v1alpha2
+      kind: Redis
+    type: MatchRef
+  - labels:
+    - backup_via
+    references:
+    - '{.spec.appRef.name},{.spec.appRef.namespace},{.spec.appRef.kind},{.spec.appRef.apiGroup}'
+    target:
+      apiVersion: kubedb.com/v1alpha2
+      kind: Elasticsearch
+    type: MatchRef
+  - labels:
+    - backup_via
+    references:
+    - '{.spec.appRef.name},{.spec.appRef.namespace},{.spec.appRef.kind},{.spec.appRef.apiGroup}'
+    target:
+      apiVersion: kubedb.com/v1alpha2
+      kind: Kafka
+    type: MatchRef
+  - labels:
+    - backup_via
+    references:
+    - '{.spec.appRef.name},{.spec.appRef.namespace},{.spec.appRef.kind},{.spec.appRef.apiGroup}'
+    target:
+      apiVersion: kubedb.com/v1alpha2
+      kind: MariaDB
+    type: MatchRef
+  - labels:
+    - backup_via
+    references:
+    - '{.spec.appRef.name},{.spec.appRef.namespace},{.spec.appRef.kind},{.spec.appRef.apiGroup}'
+    target:
+      apiVersion: kubedb.com/v1alpha2
+      kind: MongoDB
+    type: MatchRef
+  - labels:
+    - backup_via
+    references:
+    - '{.spec.appRef.name},{.spec.appRef.namespace},{.spec.appRef.kind},{.spec.appRef.apiGroup}'
+    target:
+      apiVersion: kubedb.com/v1alpha2
+      kind: MySQL
+    type: MatchRef
+  - labels:
+    - backup_via
+    references:
+    - '{.spec.appRef.name},{.spec.appRef.namespace},{.spec.appRef.kind},{.spec.appRef.apiGroup}'
+    target:
+      apiVersion: kubedb.com/v1alpha2
+      kind: PerconaXtraDB
+    type: MatchRef
+  - labels:
+    - backup_via
+    references:
+    - '{.spec.appRef.name},{.spec.appRef.namespace},{.spec.appRef.kind},{.spec.appRef.apiGroup}'
+    target:
+      apiVersion: kubedb.com/v1alpha2
+      kind: RedisSentinel
+    type: MatchRef
   resource:
     group: storage.kubestash.com
     kind: Repository
@@ -71,7 +160,7 @@ spec:
               - WipeOut
               type: string
             encryptionSecret:
-              description: EncryptionSecret refers to the Secret containing the encryption key which will be used to encode/decode the backed up data. You can refer to a Secret of a different namespace. If you don't provide the namespace field, Stash will look for the Secret in the same namespace as the BackupConfiguration / BackupBatch.
+              description: EncryptionSecret refers to the Secret containing the encryption key which will be used to encode/decode the backed up data. You can refer to a Secret of a different namespace. If you don't provide the namespace field, KubeStash will look for the Secret in the same namespace as the BackupConfiguration / BackupBatch.
               properties:
                 name:
                   description: 'Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names'
@@ -86,7 +175,7 @@ spec:
               description: Path represents the directory inside the BackupStorage where this Repository is storing its data This path is relative to the path of BackupStorage.
               type: string
             paused:
-              description: Paused specifies whether the Repository is paused or not. If the Repository is paused, Stash will not process any further event for the Repository.
+              description: Paused specifies whether the Repository is paused or not. If the Repository is paused, KubeStash will not process any further event for the Repository.
               type: boolean
             storageRef:
               description: StorageRef refers to the BackupStorage CR which contain the backend information where the backed up data will be stored. The BackupStorage could be in a different namespace. However, the Repository namespace must be allowed to use the BackupStorage.

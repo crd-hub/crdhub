@@ -337,14 +337,23 @@
                 }
               }
             },
-            "nodeTopologyRef": {
+            "nodeTopology": {
               "type": "object",
               "properties": {
                 "name": {
                   "type": "string"
+                },
+                "scaleDownDiffPercentage": {
+                  "type": "integer",
+                  "format": "int32",
+                  "default": 25
+                },
+                "scaleUpDiffPercentage": {
+                  "type": "integer",
+                  "format": "int32",
+                  "default": 15
                 }
-              },
-              "x-kubernetes-map-type": "atomic"
+              }
             },
             "replicaSet": {
               "type": "object",
@@ -607,6 +616,9 @@
           "properties": {
             "configServer": {
               "type": "object",
+              "required": [
+                "expansionMode"
+              ],
               "properties": {
                 "expansionMode": {
                   "type": "string",
@@ -630,6 +642,9 @@
             },
             "hidden": {
               "type": "object",
+              "required": [
+                "expansionMode"
+              ],
               "properties": {
                 "expansionMode": {
                   "type": "string",
@@ -653,6 +668,9 @@
             },
             "replicaSet": {
               "type": "object",
+              "required": [
+                "expansionMode"
+              ],
               "properties": {
                 "expansionMode": {
                   "type": "string",
@@ -676,6 +694,9 @@
             },
             "shard": {
               "type": "object",
+              "required": [
+                "expansionMode"
+              ],
               "properties": {
                 "expansionMode": {
                   "type": "string",
@@ -699,6 +720,9 @@
             },
             "standalone": {
               "type": "object",
+              "required": [
+                "expansionMode"
+              ],
               "properties": {
                 "expansionMode": {
                   "type": "string",

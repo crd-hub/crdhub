@@ -46,11 +46,23 @@
               "spec": {
                 "type": "object",
                 "required": [
+                  "connectCluster",
                   "cruiseControl",
                   "db",
                   "version"
                 ],
                 "properties": {
+                  "connectCluster": {
+                    "type": "object",
+                    "required": [
+                      "image"
+                    ],
+                    "properties": {
+                      "image": {
+                        "type": "string"
+                      }
+                    }
+                  },
                   "cruiseControl": {
                     "type": "object",
                     "required": [

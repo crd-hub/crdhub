@@ -289,6 +289,10 @@
                 "serviceAccountNamespaces"
               ],
               "properties": {
+                "audience": {
+                  "description": "Optional Audience claim to verify in the JWT.",
+                  "type": "string"
+                },
                 "maxTTL": {
                   "description": "Specifies the maximum allowed lifetime of tokens issued in seconds using this role.",
                   "type": "string"

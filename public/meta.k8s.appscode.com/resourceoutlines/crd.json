@@ -453,6 +453,15 @@
                         "name": {
                           "type": "string"
                         },
+                        "requiredFeatureSets": {
+                          "type": "object",
+                          "additionalProperties": {
+                            "type": "array",
+                            "items": {
+                              "type": "string"
+                            }
+                          }
+                        },
                         "sections": {
                           "type": "array",
                           "items": {
@@ -1345,6 +1354,15 @@
                               },
                               "name": {
                                 "type": "string"
+                              },
+                              "requiredFeatureSets": {
+                                "type": "object",
+                                "additionalProperties": {
+                                  "type": "array",
+                                  "items": {
+                                    "type": "string"
+                                  }
+                                }
                               }
                             }
                           }
