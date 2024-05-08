@@ -50,6 +50,9 @@
                       "sourceRef"
                     ],
                     "properties": {
+                      "createNamespace": {
+                        "type": "boolean"
+                      },
                       "name": {
                         "description": "Name specifies the name of the chart",
                         "type": "string"

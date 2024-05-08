@@ -74,9 +74,6 @@
               },
               "x-kubernetes-map-type": "atomic"
             },
-            "inlineConfig": {
-              "type": "string"
-            },
             "removeCustomConfig": {
               "type": "boolean"
             }

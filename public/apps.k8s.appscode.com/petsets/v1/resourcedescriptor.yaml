@@ -1,0 +1,17 @@
+apiVersion: meta.k8s.appscode.com/v1alpha1
+kind: ResourceDescriptor
+metadata:
+  creationTimestamp: null
+  labels:
+    k8s.io/group: apps.k8s.appscode.com
+    k8s.io/kind: PetSet
+    k8s.io/resource: petsets
+    k8s.io/version: v1
+  name: apps.k8s.appscode.com-v1-petsets
+spec:
+  resource:
+    group: apps.k8s.appscode.com
+    kind: PetSet
+    name: petsets
+    scope: Namespaced
+    version: v1

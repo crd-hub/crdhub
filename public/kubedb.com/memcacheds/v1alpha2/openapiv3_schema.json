@@ -1204,6 +1204,34 @@
         "halted": {
           "type": "boolean"
         },
+        "healthChecker": {
+          "type": "object",
+          "default": {
+            "failureThreshold": 1,
+            "periodSeconds": 10,
+            "timeoutSeconds": 10
+          },
+          "properties": {
+            "disableWriteCheck": {
+              "type": "boolean"
+            },
+            "failureThreshold": {
+              "type": "integer",
+              "format": "int32",
+              "default": 1
+            },
+            "periodSeconds": {
+              "type": "integer",
+              "format": "int32",
+              "default": 10
+            },
+            "timeoutSeconds": {
+              "type": "integer",
+              "format": "int32",
+              "default": 10
+            }
+          }
+        },
         "monitor": {
           "type": "object",
           "properties": {

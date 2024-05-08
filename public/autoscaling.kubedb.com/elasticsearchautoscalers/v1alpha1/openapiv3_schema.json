@@ -966,12 +966,42 @@
                     "Online"
                   ]
                 },
+                "scalingRules": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "required": [
+                      "appliesUpto",
+                      "threshold"
+                    ],
+                    "properties": {
+                      "appliesUpto": {
+                        "type": "string"
+                      },
+                      "threshold": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                },
                 "scalingThreshold": {
                   "type": "integer",
                   "format": "int32"
                 },
                 "trigger": {
                   "type": "string"
+                },
+                "upperBound": {
+                  "pattern": "^(\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))(([KMGTPE]i)|[numkMGTPE]|([eE](\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))))?$",
+                  "anyOf": [
+                    {
+                      "type": "integer"
+                    },
+                    {
+                      "type": "string"
+                    }
+                  ],
+                  "x-kubernetes-int-or-string": true
                 },
                 "usageThreshold": {
                   "type": "integer",
@@ -992,12 +1022,42 @@
                     "Online"
                   ]
                 },
+                "scalingRules": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "required": [
+                      "appliesUpto",
+                      "threshold"
+                    ],
+                    "properties": {
+                      "appliesUpto": {
+                        "type": "string"
+                      },
+                      "threshold": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                },
                 "scalingThreshold": {
                   "type": "integer",
                   "format": "int32"
                 },
                 "trigger": {
                   "type": "string"
+                },
+                "upperBound": {
+                  "pattern": "^(\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))(([KMGTPE]i)|[numkMGTPE]|([eE](\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))))?$",
+                  "anyOf": [
+                    {
+                      "type": "integer"
+                    },
+                    {
+                      "type": "string"
+                    }
+                  ],
+                  "x-kubernetes-int-or-string": true
                 },
                 "usageThreshold": {
                   "type": "integer",
@@ -1018,12 +1078,42 @@
                     "Online"
                   ]
                 },
+                "scalingRules": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "required": [
+                      "appliesUpto",
+                      "threshold"
+                    ],
+                    "properties": {
+                      "appliesUpto": {
+                        "type": "string"
+                      },
+                      "threshold": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                },
                 "scalingThreshold": {
                   "type": "integer",
                   "format": "int32"
                 },
                 "trigger": {
                   "type": "string"
+                },
+                "upperBound": {
+                  "pattern": "^(\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))(([KMGTPE]i)|[numkMGTPE]|([eE](\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))))?$",
+                  "anyOf": [
+                    {
+                      "type": "integer"
+                    },
+                    {
+                      "type": "string"
+                    }
+                  ],
+                  "x-kubernetes-int-or-string": true
                 },
                 "usageThreshold": {
                   "type": "integer",
@@ -1044,12 +1134,42 @@
                     "Online"
                   ]
                 },
+                "scalingRules": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "required": [
+                      "appliesUpto",
+                      "threshold"
+                    ],
+                    "properties": {
+                      "appliesUpto": {
+                        "type": "string"
+                      },
+                      "threshold": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                },
                 "scalingThreshold": {
                   "type": "integer",
                   "format": "int32"
                 },
                 "trigger": {
                   "type": "string"
+                },
+                "upperBound": {
+                  "pattern": "^(\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))(([KMGTPE]i)|[numkMGTPE]|([eE](\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))))?$",
+                  "anyOf": [
+                    {
+                      "type": "integer"
+                    },
+                    {
+                      "type": "string"
+                    }
+                  ],
+                  "x-kubernetes-int-or-string": true
                 },
                 "usageThreshold": {
                   "type": "integer",
@@ -1070,12 +1190,42 @@
                     "Online"
                   ]
                 },
+                "scalingRules": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "required": [
+                      "appliesUpto",
+                      "threshold"
+                    ],
+                    "properties": {
+                      "appliesUpto": {
+                        "type": "string"
+                      },
+                      "threshold": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                },
                 "scalingThreshold": {
                   "type": "integer",
                   "format": "int32"
                 },
                 "trigger": {
                   "type": "string"
+                },
+                "upperBound": {
+                  "pattern": "^(\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))(([KMGTPE]i)|[numkMGTPE]|([eE](\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))))?$",
+                  "anyOf": [
+                    {
+                      "type": "integer"
+                    },
+                    {
+                      "type": "string"
+                    }
+                  ],
+                  "x-kubernetes-int-or-string": true
                 },
                 "usageThreshold": {
                   "type": "integer",
@@ -1096,12 +1246,42 @@
                     "Online"
                   ]
                 },
+                "scalingRules": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "required": [
+                      "appliesUpto",
+                      "threshold"
+                    ],
+                    "properties": {
+                      "appliesUpto": {
+                        "type": "string"
+                      },
+                      "threshold": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                },
                 "scalingThreshold": {
                   "type": "integer",
                   "format": "int32"
                 },
                 "trigger": {
                   "type": "string"
+                },
+                "upperBound": {
+                  "pattern": "^(\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))(([KMGTPE]i)|[numkMGTPE]|([eE](\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))))?$",
+                  "anyOf": [
+                    {
+                      "type": "integer"
+                    },
+                    {
+                      "type": "string"
+                    }
+                  ],
+                  "x-kubernetes-int-or-string": true
                 },
                 "usageThreshold": {
                   "type": "integer",
@@ -1122,12 +1302,42 @@
                     "Online"
                   ]
                 },
+                "scalingRules": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "required": [
+                      "appliesUpto",
+                      "threshold"
+                    ],
+                    "properties": {
+                      "appliesUpto": {
+                        "type": "string"
+                      },
+                      "threshold": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                },
                 "scalingThreshold": {
                   "type": "integer",
                   "format": "int32"
                 },
                 "trigger": {
                   "type": "string"
+                },
+                "upperBound": {
+                  "pattern": "^(\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))(([KMGTPE]i)|[numkMGTPE]|([eE](\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))))?$",
+                  "anyOf": [
+                    {
+                      "type": "integer"
+                    },
+                    {
+                      "type": "string"
+                    }
+                  ],
+                  "x-kubernetes-int-or-string": true
                 },
                 "usageThreshold": {
                   "type": "integer",
@@ -1148,12 +1358,42 @@
                     "Online"
                   ]
                 },
+                "scalingRules": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "required": [
+                      "appliesUpto",
+                      "threshold"
+                    ],
+                    "properties": {
+                      "appliesUpto": {
+                        "type": "string"
+                      },
+                      "threshold": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                },
                 "scalingThreshold": {
                   "type": "integer",
                   "format": "int32"
                 },
                 "trigger": {
                   "type": "string"
+                },
+                "upperBound": {
+                  "pattern": "^(\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))(([KMGTPE]i)|[numkMGTPE]|([eE](\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))))?$",
+                  "anyOf": [
+                    {
+                      "type": "integer"
+                    },
+                    {
+                      "type": "string"
+                    }
+                  ],
+                  "x-kubernetes-int-or-string": true
                 },
                 "usageThreshold": {
                   "type": "integer",
@@ -1174,12 +1414,42 @@
                     "Online"
                   ]
                 },
+                "scalingRules": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "required": [
+                      "appliesUpto",
+                      "threshold"
+                    ],
+                    "properties": {
+                      "appliesUpto": {
+                        "type": "string"
+                      },
+                      "threshold": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                },
                 "scalingThreshold": {
                   "type": "integer",
                   "format": "int32"
                 },
                 "trigger": {
                   "type": "string"
+                },
+                "upperBound": {
+                  "pattern": "^(\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))(([KMGTPE]i)|[numkMGTPE]|([eE](\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))))?$",
+                  "anyOf": [
+                    {
+                      "type": "integer"
+                    },
+                    {
+                      "type": "string"
+                    }
+                  ],
+                  "x-kubernetes-int-or-string": true
                 },
                 "usageThreshold": {
                   "type": "integer",
@@ -1200,12 +1470,42 @@
                     "Online"
                   ]
                 },
+                "scalingRules": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "required": [
+                      "appliesUpto",
+                      "threshold"
+                    ],
+                    "properties": {
+                      "appliesUpto": {
+                        "type": "string"
+                      },
+                      "threshold": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                },
                 "scalingThreshold": {
                   "type": "integer",
                   "format": "int32"
                 },
                 "trigger": {
                   "type": "string"
+                },
+                "upperBound": {
+                  "pattern": "^(\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))(([KMGTPE]i)|[numkMGTPE]|([eE](\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))))?$",
+                  "anyOf": [
+                    {
+                      "type": "integer"
+                    },
+                    {
+                      "type": "string"
+                    }
+                  ],
+                  "x-kubernetes-int-or-string": true
                 },
                 "usageThreshold": {
                   "type": "integer",
@@ -1226,12 +1526,42 @@
                     "Online"
                   ]
                 },
+                "scalingRules": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "required": [
+                      "appliesUpto",
+                      "threshold"
+                    ],
+                    "properties": {
+                      "appliesUpto": {
+                        "type": "string"
+                      },
+                      "threshold": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                },
                 "scalingThreshold": {
                   "type": "integer",
                   "format": "int32"
                 },
                 "trigger": {
                   "type": "string"
+                },
+                "upperBound": {
+                  "pattern": "^(\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))(([KMGTPE]i)|[numkMGTPE]|([eE](\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))))?$",
+                  "anyOf": [
+                    {
+                      "type": "integer"
+                    },
+                    {
+                      "type": "string"
+                    }
+                  ],
+                  "x-kubernetes-int-or-string": true
                 },
                 "usageThreshold": {
                   "type": "integer",
@@ -1252,12 +1582,42 @@
                     "Online"
                   ]
                 },
+                "scalingRules": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "required": [
+                      "appliesUpto",
+                      "threshold"
+                    ],
+                    "properties": {
+                      "appliesUpto": {
+                        "type": "string"
+                      },
+                      "threshold": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                },
                 "scalingThreshold": {
                   "type": "integer",
                   "format": "int32"
                 },
                 "trigger": {
                   "type": "string"
+                },
+                "upperBound": {
+                  "pattern": "^(\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))(([KMGTPE]i)|[numkMGTPE]|([eE](\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))))?$",
+                  "anyOf": [
+                    {
+                      "type": "integer"
+                    },
+                    {
+                      "type": "string"
+                    }
+                  ],
+                  "x-kubernetes-int-or-string": true
                 },
                 "usageThreshold": {
                   "type": "integer",

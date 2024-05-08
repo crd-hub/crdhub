@@ -20,6 +20,15 @@
       "scope": "Namespaced"
     },
     "ui": {
+      "options": {
+        "name": "kubedbcom-druid-editor-options",
+        "version": "v0.4.18",
+        "sourceRef": {
+          "apiGroup": "source.toolkit.fluxcd.io",
+          "kind": "HelmRepository",
+          "name": "appscode-charts-oci"
+        }
+      },
       "editor": {
         "name": "kubedbcom-druid-editor",
         "version": "v0.4.18",
@@ -29,7 +38,17 @@
           "name": "appscode-charts-oci"
         }
       },
-      "enforceQuota": false
-    }
+      "enforceQuota": true
+    },
+    "variants": [
+      {
+        "name": "default",
+        "selector": {
+          "matchLabels": {
+            "charts.x-helm.dev/is-default-preset": "true"
+          }
+        }
+      }
+    ]
   }
 }

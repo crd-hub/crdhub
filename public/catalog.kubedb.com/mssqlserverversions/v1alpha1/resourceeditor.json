@@ -1,0 +1,35 @@
+{
+  "kind": "ResourceEditor",
+  "apiVersion": "ui.k8s.appscode.com/v1alpha1",
+  "metadata": {
+    "name": "catalog.kubedb.com-v1alpha1-mssqlserverversions",
+    "creationTimestamp": null,
+    "labels": {
+      "k8s.io/group": "catalog.kubedb.com",
+      "k8s.io/kind": "MSSQLServerVersion",
+      "k8s.io/resource": "mssqlserverversions",
+      "k8s.io/version": "v1alpha1"
+    }
+  },
+  "spec": {
+    "resource": {
+      "group": "catalog.kubedb.com",
+      "version": "v1alpha1",
+      "name": "mssqlserverversions",
+      "kind": "MSSQLServerVersion",
+      "scope": "Cluster"
+    },
+    "ui": {
+      "editor": {
+        "name": "catalogkubedbcom-mssqlserverversion-editor",
+        "version": "v0.4.18",
+        "sourceRef": {
+          "apiGroup": "source.toolkit.fluxcd.io",
+          "kind": "HelmRepository",
+          "name": "appscode-charts-oci"
+        }
+      },
+      "enforceQuota": false
+    }
+  }
+}

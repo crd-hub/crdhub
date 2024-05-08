@@ -1,0 +1,17 @@
+apiVersion: meta.k8s.appscode.com/v1alpha1
+kind: ResourceDescriptor
+metadata:
+  creationTimestamp: null
+  labels:
+    k8s.io/group: mutators.kubedb.com
+    k8s.io/kind: AdmissionReview
+    k8s.io/resource: ferretdbwebhooks
+    k8s.io/version: v1alpha1
+  name: mutators.kubedb.com-v1alpha1-ferretdbwebhooks
+spec:
+  resource:
+    group: mutators.kubedb.com
+    kind: AdmissionReview
+    name: ferretdbwebhooks
+    scope: Cluster
+    version: v1alpha1
