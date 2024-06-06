@@ -59,17 +59,21 @@
         "configuration": {
           "type": "object",
           "properties": {
+            "applyConfig": {
+              "type": "object",
+              "additionalProperties": {
+                "type": "string"
+              }
+            },
             "configSecret": {
               "type": "object",
               "properties": {
                 "name": {
-                  "type": "string"
+                  "type": "string",
+                  "default": ""
                 }
               },
               "x-kubernetes-map-type": "atomic"
-            },
-            "inlineConfig": {
-              "type": "string"
             },
             "removeCustomConfig": {
               "type": "boolean"
@@ -80,7 +84,8 @@
           "type": "object",
           "properties": {
             "name": {
-              "type": "string"
+              "type": "string",
+              "default": ""
             }
           },
           "x-kubernetes-map-type": "atomic"

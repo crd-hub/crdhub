@@ -123,6 +123,14 @@
                               "name"
                             ],
                             "properties": {
+                              "featureMode": {
+                                "type": "string",
+                                "enum": [
+                                  "ALPHA",
+                                  "BETA",
+                                  "GA"
+                                ]
+                              },
                               "icons": {
                                 "type": "array",
                                 "items": {

@@ -4,14 +4,14 @@
   "type": "object",
   "properties": {
     "apiVersion": {
-      "description": "APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources",
+      "description": "APIVersion defines the versioned schema of this representation of an object.\nServers should convert recognized schemas to the latest internal value, and\nmay reject unrecognized values.\nMore info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources",
       "type": "string",
       "enum": [
         "source.toolkit.fluxcd.io/v1beta2"
       ]
     },
     "kind": {
-      "description": "Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds",
+      "description": "Kind is a string value representing the REST resource this object represents.\nServers may infer this from the endpoint the client submits requests to.\nCannot be updated.\nIn CamelCase.\nMore info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds",
       "type": "string",
       "enum": [
         "OCIRepository"
@@ -53,7 +53,7 @@
       ],
       "properties": {
         "certSecretRef": {
-          "description": "CertSecretRef can be given the name of a Secret containing either or both of \n - a PEM-encoded client certificate (`tls.crt`) and private key (`tls.key`); - a PEM-encoded CA certificate (`ca.crt`) \n and whichever are supplied, will be used for connecting to the registry. The client cert and key are useful if you are authenticating with a certificate; the CA cert is useful if you are using a self-signed server certificate. The Secret must be of type `Opaque` or `kubernetes.io/tls`. \n Note: Support for the `caFile`, `certFile` and `keyFile` keys have been deprecated.",
+          "description": "CertSecretRef can be given the name of a Secret containing\neither or both of\n\n\n- a PEM-encoded client certificate (`tls.crt`) and private\nkey (`tls.key`);\n- a PEM-encoded CA certificate (`ca.crt`)\n\n\nand whichever are supplied, will be used for connecting to the\nregistry. The client cert and key are useful if you are\nauthenticating with a certificate; the CA cert is useful if\nyou are using a self-signed server certificate. The Secret must\nbe of type `Opaque` or `kubernetes.io/tls`.\n\n\nNote: Support for the `caFile`, `certFile` and `keyFile` keys have\nbeen deprecated.",
           "type": "object",
           "required": [
             "name"
@@ -66,7 +66,7 @@
           }
         },
         "ignore": {
-          "description": "Ignore overrides the set of excluded patterns in the .sourceignore format (which is the same as .gitignore). If not provided, a default will be used, consult the documentation for your version to find out what those are.",
+          "description": "Ignore overrides the set of excluded patterns in the .sourceignore format\n(which is the same as .gitignore). If not provided, a default will be used,\nconsult the documentation for your version to find out what those are.",
           "type": "string"
         },
         "insecure": {
@@ -74,20 +74,20 @@
           "type": "boolean"
         },
         "interval": {
-          "description": "Interval at which the OCIRepository URL is checked for updates. This interval is approximate and may be subject to jitter to ensure efficient use of resources.",
+          "description": "Interval at which the OCIRepository URL is checked for updates.\nThis interval is approximate and may be subject to jitter to ensure\nefficient use of resources.",
           "type": "string",
           "pattern": "^([0-9]+(\\.[0-9]+)?(ms|s|m|h))+$"
         },
         "layerSelector": {
-          "description": "LayerSelector specifies which layer should be extracted from the OCI artifact. When not specified, the first layer found in the artifact is selected.",
+          "description": "LayerSelector specifies which layer should be extracted from the OCI artifact.\nWhen not specified, the first layer found in the artifact is selected.",
           "type": "object",
           "properties": {
             "mediaType": {
-              "description": "MediaType specifies the OCI media type of the layer which should be extracted from the OCI Artifact. The first layer matching this type is selected.",
+              "description": "MediaType specifies the OCI media type of the layer\nwhich should be extracted from the OCI Artifact. The\nfirst layer matching this type is selected.",
               "type": "string"
             },
             "operation": {
-              "description": "Operation specifies how the selected layer should be processed. By default, the layer compressed content is extracted to storage. When the operation is set to 'copy', the layer compressed content is persisted to storage as it is.",
+              "description": "Operation specifies how the selected layer should be processed.\nBy default, the layer compressed content is extracted to storage.\nWhen the operation is set to 'copy', the layer compressed content\nis persisted to storage as it is.",
               "type": "string",
               "enum": [
                 "extract",
@@ -97,7 +97,7 @@
           }
         },
         "provider": {
-          "description": "The provider used for authentication, can be 'aws', 'azure', 'gcp' or 'generic'. When not specified, defaults to 'generic'.",
+          "description": "The provider used for authentication, can be 'aws', 'azure', 'gcp' or 'generic'.\nWhen not specified, defaults to 'generic'.",
           "type": "string",
           "default": "generic",
           "enum": [
@@ -108,15 +108,19 @@
           ]
         },
         "ref": {
-          "description": "The OCI reference to pull and monitor for changes, defaults to the latest tag.",
+          "description": "The OCI reference to pull and monitor for changes,\ndefaults to the latest tag.",
           "type": "object",
           "properties": {
             "digest": {
-              "description": "Digest is the image digest to pull, takes precedence over SemVer. The value should be in the format 'sha256:\u003cHASH\u003e'.",
+              "description": "Digest is the image digest to pull, takes precedence over SemVer.\nThe value should be in the format 'sha256:\u003cHASH\u003e'.",
               "type": "string"
             },
             "semver": {
-              "description": "SemVer is the range of tags to pull selecting the latest within the range, takes precedence over Tag.",
+              "description": "SemVer is the range of tags to pull selecting the latest within\nthe range, takes precedence over Tag.",
+              "type": "string"
+            },
+            "semverFilter": {
+              "description": "SemverFilter is a regex pattern to filter the tags within the SemVer range.",
               "type": "string"
             },
             "tag": {
@@ -126,7 +130,7 @@
           }
         },
         "secretRef": {
-          "description": "SecretRef contains the secret name containing the registry login credentials to resolve image metadata. The secret must be of type kubernetes.io/dockerconfigjson.",
+          "description": "SecretRef contains the secret name containing the registry login\ncredentials to resolve image metadata.\nThe secret must be of type kubernetes.io/dockerconfigjson.",
           "type": "object",
           "required": [
             "name"
@@ -139,7 +143,7 @@
           }
         },
         "serviceAccountName": {
-          "description": "ServiceAccountName is the name of the Kubernetes ServiceAccount used to authenticate the image pull if the service account has attached pull secrets. For more information: https://kubernetes.io/docs/tasks/configure-pod-container/configure-service-account/#add-imagepullsecrets-to-a-service-account",
+          "description": "ServiceAccountName is the name of the Kubernetes ServiceAccount used to authenticate\nthe image pull if the service account has attached pull secrets. For more information:\nhttps://kubernetes.io/docs/tasks/configure-pod-container/configure-service-account/#add-imagepullsecrets-to-a-service-account",
           "type": "string"
         },
         "suspend": {
@@ -153,22 +157,22 @@
           "pattern": "^([0-9]+(\\.[0-9]+)?(ms|s|m))+$"
         },
         "url": {
-          "description": "URL is a reference to an OCI artifact repository hosted on a remote container registry.",
+          "description": "URL is a reference to an OCI artifact repository hosted\non a remote container registry.",
           "type": "string",
           "pattern": "^oci://.*$"
         },
         "verify": {
-          "description": "Verify contains the secret name containing the trusted public keys used to verify the signature and specifies which provider to use to check whether OCI image is authentic.",
+          "description": "Verify contains the secret name containing the trusted public keys\nused to verify the signature and specifies which provider to use to check\nwhether OCI image is authentic.",
           "type": "object",
           "required": [
             "provider"
           ],
           "properties": {
             "matchOIDCIdentity": {
-              "description": "MatchOIDCIdentity specifies the identity matching criteria to use while verifying an OCI artifact which was signed using Cosign keyless signing. The artifact's identity is deemed to be verified if any of the specified matchers match against the identity.",
+              "description": "MatchOIDCIdentity specifies the identity matching criteria to use\nwhile verifying an OCI artifact which was signed using Cosign keyless\nsigning. The artifact's identity is deemed to be verified if any of the\nspecified matchers match against the identity.",
               "type": "array",
               "items": {
-                "description": "OIDCIdentityMatch specifies options for verifying the certificate identity, i.e. the issuer and the subject of the certificate.",
+                "description": "OIDCIdentityMatch specifies options for verifying the certificate identity,\ni.e. the issuer and the subject of the certificate.",
                 "type": "object",
                 "required": [
                   "issuer",
@@ -176,11 +180,11 @@
                 ],
                 "properties": {
                   "issuer": {
-                    "description": "Issuer specifies the regex pattern to match against to verify the OIDC issuer in the Fulcio certificate. The pattern must be a valid Go regular expression.",
+                    "description": "Issuer specifies the regex pattern to match against to verify\nthe OIDC issuer in the Fulcio certificate. The pattern must be a\nvalid Go regular expression.",
                     "type": "string"
                   },
                   "subject": {
-                    "description": "Subject specifies the regex pattern to match against to verify the identity subject in the Fulcio certificate. The pattern must be a valid Go regular expression.",
+                    "description": "Subject specifies the regex pattern to match against to verify\nthe identity subject in the Fulcio certificate. The pattern must\nbe a valid Go regular expression.",
                     "type": "string"
                   }
                 }
@@ -191,11 +195,12 @@
               "type": "string",
               "default": "cosign",
               "enum": [
-                "cosign"
+                "cosign",
+                "notation"
               ]
             },
             "secretRef": {
-              "description": "SecretRef specifies the Kubernetes Secret containing the trusted public keys.",
+              "description": "SecretRef specifies the Kubernetes Secret containing the\ntrusted public keys.",
               "type": "object",
               "required": [
                 "name"

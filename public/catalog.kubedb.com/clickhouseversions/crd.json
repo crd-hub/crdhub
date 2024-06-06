@@ -1,0 +1,130 @@
+{
+  "kind": "CustomResourceDefinition",
+  "apiVersion": "apiextensions.k8s.io/v1",
+  "metadata": {
+    "name": "clickhouseversions.catalog.kubedb.com",
+    "creationTimestamp": null,
+    "labels": {
+      "app.kubernetes.io/name": "kubedb"
+    }
+  },
+  "spec": {
+    "group": "catalog.kubedb.com",
+    "names": {
+      "plural": "clickhouseversions",
+      "singular": "clickhouseversion",
+      "shortNames": [
+        "chversion"
+      ],
+      "kind": "ClickHouseVersion",
+      "listKind": "ClickHouseVersionList",
+      "categories": [
+        "datastore",
+        "kubedb",
+        "appscode"
+      ]
+    },
+    "scope": "Cluster",
+    "versions": [
+      {
+        "name": "v1alpha1",
+        "served": true,
+        "storage": true,
+        "schema": {
+          "openAPIV3Schema": {
+            "type": "object",
+            "properties": {
+              "apiVersion": {
+                "type": "string"
+              },
+              "kind": {
+                "type": "string"
+              },
+              "metadata": {
+                "type": "object"
+              },
+              "spec": {
+                "type": "object",
+                "required": [
+                  "db",
+                  "initContainer",
+                  "version"
+                ],
+                "properties": {
+                  "db": {
+                    "type": "object",
+                    "required": [
+                      "image"
+                    ],
+                    "properties": {
+                      "image": {
+                        "type": "string"
+                      }
+                    }
+                  },
+                  "initContainer": {
+                    "type": "object",
+                    "required": [
+                      "image"
+                    ],
+                    "properties": {
+                      "image": {
+                        "type": "string"
+                      }
+                    }
+                  },
+                  "securityContext": {
+                    "type": "object",
+                    "properties": {
+                      "runAsUser": {
+                        "type": "integer",
+                        "format": "int64"
+                      }
+                    }
+                  },
+                  "version": {
+                    "type": "string"
+                  }
+                }
+              },
+              "status": {
+                "type": "object"
+              }
+            }
+          }
+        },
+        "subresources": {},
+        "additionalPrinterColumns": [
+          {
+            "name": "Version",
+            "type": "string",
+            "jsonPath": ".spec.version"
+          },
+          {
+            "name": "DB_IMAGE",
+            "type": "string",
+            "jsonPath": ".spec.db.image"
+          },
+          {
+            "name": "Deprecated",
+            "type": "boolean",
+            "jsonPath": ".spec.deprecated"
+          },
+          {
+            "name": "Age",
+            "type": "date",
+            "jsonPath": ".metadata.creationTimestamp"
+          }
+        ]
+      }
+    ]
+  },
+  "status": {
+    "conditions": null,
+    "acceptedNames": {
+      "plural": "",
+      "kind": ""
+    },
+    "storedVersions": null
+  }
+}

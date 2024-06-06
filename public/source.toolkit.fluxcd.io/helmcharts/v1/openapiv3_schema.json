@@ -1,0 +1,177 @@
+{
+  "$schema": "http://json-schema.org/schema#",
+  "description": "HelmChart is the Schema for the helmcharts API.",
+  "type": "object",
+  "properties": {
+    "apiVersion": {
+      "description": "APIVersion defines the versioned schema of this representation of an object.\nServers should convert recognized schemas to the latest internal value, and\nmay reject unrecognized values.\nMore info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources",
+      "type": "string",
+      "enum": [
+        "source.toolkit.fluxcd.io/v1"
+      ]
+    },
+    "kind": {
+      "description": "Kind is a string value representing the REST resource this object represents.\nServers may infer this from the endpoint the client submits requests to.\nCannot be updated.\nIn CamelCase.\nMore info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds",
+      "type": "string",
+      "enum": [
+        "HelmChart"
+      ]
+    },
+    "metadata": {
+      "type": "object",
+      "properties": {
+        "annotations": {
+          "description": "Annotations is an unstructured key value map stored with a resource that may be set by external tools to store and retrieve arbitrary metadata. They are not queryable and should be preserved when modifying objects. More info: http://kubernetes.io/docs/user-guide/annotations",
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          }
+        },
+        "labels": {
+          "description": "Map of string keys and values that can be used to organize and categorize (scope and select) objects. May match selectors of replication controllers and services. More info: http://kubernetes.io/docs/user-guide/labels",
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          }
+        },
+        "name": {
+          "description": "Name must be unique within a namespace. Is required when creating resources, although some resources may allow a client to request the generation of an appropriate name automatically. Name is primarily intended for creation idempotence and configuration definition. Cannot be updated. More info: http://kubernetes.io/docs/user-guide/identifiers#names",
+          "type": "string"
+        },
+        "namespace": {
+          "description": "Namespace defines the space within which each name must be unique. An empty namespace is equivalent to the \"default\" namespace, but \"default\" is the canonical representation. Not all objects are required to be scoped to a namespace - the value of this field for those objects will be empty. \n Must be a DNS_LABEL. Cannot be updated. More info: http://kubernetes.io/docs/user-guide/namespaces",
+          "type": "string"
+        }
+      }
+    },
+    "spec": {
+      "description": "HelmChartSpec specifies the desired state of a Helm chart.",
+      "type": "object",
+      "required": [
+        "chart",
+        "interval",
+        "sourceRef"
+      ],
+      "properties": {
+        "chart": {
+          "description": "Chart is the name or path the Helm chart is available at in the\nSourceRef.",
+          "type": "string"
+        },
+        "ignoreMissingValuesFiles": {
+          "description": "IgnoreMissingValuesFiles controls whether to silently ignore missing values\nfiles rather than failing.",
+          "type": "boolean"
+        },
+        "interval": {
+          "description": "Interval at which the HelmChart SourceRef is checked for updates.\nThis interval is approximate and may be subject to jitter to ensure\nefficient use of resources.",
+          "type": "string",
+          "pattern": "^([0-9]+(\\.[0-9]+)?(ms|s|m|h))+$"
+        },
+        "reconcileStrategy": {
+          "description": "ReconcileStrategy determines what enables the creation of a new artifact.\nValid values are ('ChartVersion', 'Revision').\nSee the documentation of the values for an explanation on their behavior.\nDefaults to ChartVersion when omitted.",
+          "type": "string",
+          "default": "ChartVersion",
+          "enum": [
+            "ChartVersion",
+            "Revision"
+          ]
+        },
+        "sourceRef": {
+          "description": "SourceRef is the reference to the Source the chart is available at.",
+          "type": "object",
+          "required": [
+            "kind",
+            "name"
+          ],
+          "properties": {
+            "apiVersion": {
+              "description": "APIVersion of the referent.",
+              "type": "string"
+            },
+            "kind": {
+              "description": "Kind of the referent, valid values are ('HelmRepository', 'GitRepository',\n'Bucket').",
+              "type": "string",
+              "enum": [
+                "HelmRepository",
+                "GitRepository",
+                "Bucket"
+              ]
+            },
+            "name": {
+              "description": "Name of the referent.",
+              "type": "string"
+            }
+          }
+        },
+        "suspend": {
+          "description": "Suspend tells the controller to suspend the reconciliation of this\nsource.",
+          "type": "boolean"
+        },
+        "valuesFiles": {
+          "description": "ValuesFiles is an alternative list of values files to use as the chart\nvalues (values.yaml is not included by default), expected to be a\nrelative path in the SourceRef.\nValues files are merged in the order of this list with the last file\noverriding the first. Ignored when omitted.",
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "verify": {
+          "description": "Verify contains the secret name containing the trusted public keys\nused to verify the signature and specifies which provider to use to check\nwhether OCI image is authentic.\nThis field is only supported when using HelmRepository source with spec.type 'oci'.\nChart dependencies, which are not bundled in the umbrella chart artifact, are not verified.",
+          "type": "object",
+          "required": [
+            "provider"
+          ],
+          "properties": {
+            "matchOIDCIdentity": {
+              "description": "MatchOIDCIdentity specifies the identity matching criteria to use\nwhile verifying an OCI artifact which was signed using Cosign keyless\nsigning. The artifact's identity is deemed to be verified if any of the\nspecified matchers match against the identity.",
+              "type": "array",
+              "items": {
+                "description": "OIDCIdentityMatch specifies options for verifying the certificate identity,\ni.e. the issuer and the subject of the certificate.",
+                "type": "object",
+                "required": [
+                  "issuer",
+                  "subject"
+                ],
+                "properties": {
+                  "issuer": {
+                    "description": "Issuer specifies the regex pattern to match against to verify\nthe OIDC issuer in the Fulcio certificate. The pattern must be a\nvalid Go regular expression.",
+                    "type": "string"
+                  },
+                  "subject": {
+                    "description": "Subject specifies the regex pattern to match against to verify\nthe identity subject in the Fulcio certificate. The pattern must\nbe a valid Go regular expression.",
+                    "type": "string"
+                  }
+                }
+              }
+            },
+            "provider": {
+              "description": "Provider specifies the technology used to sign the OCI Artifact.",
+              "type": "string",
+              "default": "cosign",
+              "enum": [
+                "cosign",
+                "notation"
+              ]
+            },
+            "secretRef": {
+              "description": "SecretRef specifies the Kubernetes Secret containing the\ntrusted public keys.",
+              "type": "object",
+              "required": [
+                "name"
+              ],
+              "properties": {
+                "name": {
+                  "description": "Name of the referent.",
+                  "type": "string"
+                }
+              }
+            }
+          }
+        },
+        "version": {
+          "description": "Version is the chart version semver expression, ignored for charts from\nGitRepository and Bucket sources. Defaults to latest when omitted.",
+          "type": "string",
+          "default": "*"
+        }
+      }
+    }
+  }
+}

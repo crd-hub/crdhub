@@ -67,6 +67,7 @@ spec:
                 configSecret:
                   properties:
                     name:
+                      default: ""
                       type: string
                   type: object
                   x-kubernetes-map-type: atomic
@@ -77,6 +78,7 @@ spec:
                 secureConfigSecret:
                   properties:
                     name:
+                      default: ""
                       type: string
                   type: object
                   x-kubernetes-map-type: atomic
@@ -84,6 +86,7 @@ spec:
             databaseRef:
               properties:
                 name:
+                  default: ""
                   type: string
               type: object
               x-kubernetes-map-type: atomic

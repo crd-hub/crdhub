@@ -71,7 +71,8 @@
                         "type": "object",
                         "properties": {
                           "name": {
-                            "type": "string"
+                            "type": "string",
+                            "default": ""
                           }
                         },
                         "x-kubernetes-map-type": "atomic"
@@ -86,7 +87,8 @@
                         "type": "object",
                         "properties": {
                           "name": {
-                            "type": "string"
+                            "type": "string",
+                            "default": ""
                           }
                         },
                         "x-kubernetes-map-type": "atomic"
@@ -97,7 +99,8 @@
                     "type": "object",
                     "properties": {
                       "name": {
-                        "type": "string"
+                        "type": "string",
+                        "default": ""
                       }
                     },
                     "x-kubernetes-map-type": "atomic"

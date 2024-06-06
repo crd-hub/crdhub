@@ -4,14 +4,14 @@
   "type": "object",
   "properties": {
     "apiVersion": {
-      "description": "APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources",
+      "description": "APIVersion defines the versioned schema of this representation of an object.\nServers should convert recognized schemas to the latest internal value, and\nmay reject unrecognized values.\nMore info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources",
       "type": "string",
       "enum": [
         "image.toolkit.fluxcd.io/v1beta1"
       ]
     },
     "kind": {
-      "description": "Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds",
+      "description": "Kind is a string value representing the REST resource this object represents.\nServers may infer this from the endpoint the client submits requests to.\nCannot be updated.\nIn CamelCase.\nMore info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds",
       "type": "string",
       "enum": [
         "ImagePolicy"
@@ -45,7 +45,7 @@
       }
     },
     "spec": {
-      "description": "ImagePolicySpec defines the parameters for calculating the ImagePolicy",
+      "description": "ImagePolicySpec defines the parameters for calculating the\nImagePolicy",
       "type": "object",
       "required": [
         "imageRepositoryRef",
@@ -53,21 +53,21 @@
       ],
       "properties": {
         "filterTags": {
-          "description": "FilterTags enables filtering for only a subset of tags based on a set of rules. If no rules are provided, all the tags from the repository will be ordered and compared.",
+          "description": "FilterTags enables filtering for only a subset of tags based on a set of\nrules. If no rules are provided, all the tags from the repository will be\nordered and compared.",
           "type": "object",
           "properties": {
             "extract": {
-              "description": "Extract allows a capture group to be extracted from the specified regular expression pattern, useful before tag evaluation.",
+              "description": "Extract allows a capture group to be extracted from the specified regular\nexpression pattern, useful before tag evaluation.",
               "type": "string"
             },
             "pattern": {
-              "description": "Pattern specifies a regular expression pattern used to filter for image tags.",
+              "description": "Pattern specifies a regular expression pattern used to filter for image\ntags.",
               "type": "string"
             }
           }
         },
         "imageRepositoryRef": {
-          "description": "ImageRepositoryRef points at the object specifying the image being scanned",
+          "description": "ImageRepositoryRef points at the object specifying the image\nbeing scanned",
           "type": "object",
           "required": [
             "name"
@@ -84,7 +84,7 @@
           }
         },
         "policy": {
-          "description": "Policy gives the particulars of the policy to be followed in selecting the most recent image",
+          "description": "Policy gives the particulars of the policy to be followed in\nselecting the most recent image",
           "type": "object",
           "properties": {
             "alphabetical": {
@@ -92,7 +92,7 @@
               "type": "object",
               "properties": {
                 "order": {
-                  "description": "Order specifies the sorting order of the tags. Given the letters of the alphabet as tags, ascending order would select Z, and descending order would select A.",
+                  "description": "Order specifies the sorting order of the tags. Given the letters of the\nalphabet as tags, ascending order would select Z, and descending order\nwould select A.",
                   "type": "string",
                   "default": "asc",
                   "enum": [
@@ -107,7 +107,7 @@
               "type": "object",
               "properties": {
                 "order": {
-                  "description": "Order specifies the sorting order of the tags. Given the integer values from 0 to 9 as tags, ascending order would select 9, and descending order would select 0.",
+                  "description": "Order specifies the sorting order of the tags. Given the integer values\nfrom 0 to 9 as tags, ascending order would select 9, and descending order\nwould select 0.",
                   "type": "string",
                   "default": "asc",
                   "enum": [
@@ -118,14 +118,14 @@
               }
             },
             "semver": {
-              "description": "SemVer gives a semantic version range to check against the tags available.",
+              "description": "SemVer gives a semantic version range to check against the tags\navailable.",
               "type": "object",
               "required": [
                 "range"
               ],
               "properties": {
                 "range": {
-                  "description": "Range gives a semver range for the image tag; the highest version within the range that's a tag yields the latest image.",
+                  "description": "Range gives a semver range for the image tag; the highest\nversion within the range that's a tag yields the latest image.",
                   "type": "string"
                 }
               }

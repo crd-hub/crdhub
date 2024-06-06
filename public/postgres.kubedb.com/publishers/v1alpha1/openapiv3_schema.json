@@ -94,10 +94,12 @@
                             "type": "array",
                             "items": {
                               "type": "string"
-                            }
+                            },
+                            "x-kubernetes-list-type": "atomic"
                           }
                         }
-                      }
+                      },
+                      "x-kubernetes-list-type": "atomic"
                     },
                     "matchLabels": {
                       "type": "object",
@@ -132,10 +134,12 @@
                         "type": "array",
                         "items": {
                           "type": "string"
-                        }
+                        },
+                        "x-kubernetes-list-type": "atomic"
                       }
                     }
-                  }
+                  },
+                  "x-kubernetes-list-type": "atomic"
                 },
                 "matchLabels": {
                   "type": "object",
@@ -192,7 +196,8 @@
           "type": "object",
           "properties": {
             "name": {
-              "type": "string"
+              "type": "string",
+              "default": ""
             }
           },
           "x-kubernetes-map-type": "atomic"

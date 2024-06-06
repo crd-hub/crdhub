@@ -1,0 +1,35 @@
+{
+  "kind": "ResourceEditor",
+  "apiVersion": "ui.k8s.appscode.com/v1alpha1",
+  "metadata": {
+    "name": "autoscaling.kubedb.com-v1alpha1-singlestoreautoscalers",
+    "creationTimestamp": null,
+    "labels": {
+      "k8s.io/group": "autoscaling.kubedb.com",
+      "k8s.io/kind": "SinglestoreAutoscaler",
+      "k8s.io/resource": "singlestoreautoscalers",
+      "k8s.io/version": "v1alpha1"
+    }
+  },
+  "spec": {
+    "resource": {
+      "group": "autoscaling.kubedb.com",
+      "version": "v1alpha1",
+      "name": "singlestoreautoscalers",
+      "kind": "SinglestoreAutoscaler",
+      "scope": "Namespaced"
+    },
+    "ui": {
+      "editor": {
+        "name": "autoscalingkubedbcom-singlestoreautoscaler-editor",
+        "version": "v0.4.20",
+        "sourceRef": {
+          "apiGroup": "source.toolkit.fluxcd.io",
+          "kind": "HelmRepository",
+          "name": "appscode-charts-oci"
+        }
+      },
+      "enforceQuota": false
+    }
+  }
+}

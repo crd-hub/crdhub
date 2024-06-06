@@ -46,6 +46,7 @@ spec:
             configSecret:
               properties:
                 name:
+                  default: ""
                   type: string
               type: object
               x-kubernetes-map-type: atomic
@@ -58,7 +59,7 @@ spec:
               required:
               - name
               type: object
-            terminationPolicy:
+            deletionPolicy:
               enum:
               - Halt
               - Delete

@@ -1,0 +1,35 @@
+{
+  "kind": "ResourceEditor",
+  "apiVersion": "ui.k8s.appscode.com/v1alpha1",
+  "metadata": {
+    "name": "kubedb.com-v1alpha2-clickhouses",
+    "creationTimestamp": null,
+    "labels": {
+      "k8s.io/group": "kubedb.com",
+      "k8s.io/kind": "ClickHouse",
+      "k8s.io/resource": "clickhouses",
+      "k8s.io/version": "v1alpha2"
+    }
+  },
+  "spec": {
+    "resource": {
+      "group": "kubedb.com",
+      "version": "v1alpha2",
+      "name": "clickhouses",
+      "kind": "ClickHouse",
+      "scope": "Namespaced"
+    },
+    "ui": {
+      "editor": {
+        "name": "kubedbcom-clickhouse-editor",
+        "version": "v0.4.20",
+        "sourceRef": {
+          "apiGroup": "source.toolkit.fluxcd.io",
+          "kind": "HelmRepository",
+          "name": "appscode-charts-oci"
+        }
+      },
+      "enforceQuota": false
+    }
+  }
+}

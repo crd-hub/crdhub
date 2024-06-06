@@ -140,11 +140,13 @@ properties:
                                 items:
                                   type: string
                                 type: array
+                                x-kubernetes-list-type: atomic
                             required:
                             - key
                             - operator
                             type: object
                           type: array
+                          x-kubernetes-list-type: atomic
                         matchLabels:
                           additionalProperties:
                             type: string
@@ -211,11 +213,13 @@ properties:
                                 items:
                                   type: string
                                 type: array
+                                x-kubernetes-list-type: atomic
                             required:
                             - key
                             - operator
                             type: object
                           type: array
+                          x-kubernetes-list-type: atomic
                         matchLabels:
                           additionalProperties:
                             type: string
@@ -271,11 +275,13 @@ properties:
                                 items:
                                   type: string
                                 type: array
+                                x-kubernetes-list-type: atomic
                             required:
                             - key
                             - operator
                             type: object
                           type: array
+                          x-kubernetes-list-type: atomic
                         matchLabels:
                           additionalProperties:
                             type: string
@@ -353,6 +359,7 @@ properties:
       serverRef:
         properties:
           name:
+            default: ""
             type: string
         type: object
         x-kubernetes-map-type: atomic

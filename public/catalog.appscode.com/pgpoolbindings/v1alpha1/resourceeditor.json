@@ -22,7 +22,7 @@
     "ui": {
       "editor": {
         "name": "catalogappscodecom-pgpoolbinding-editor",
-        "version": "v0.4.18",
+        "version": "v0.4.20",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",
@@ -30,6 +30,16 @@
         }
       },
       "enforceQuota": false
-    }
+    },
+    "icons": [
+      {
+        "src": "https://cdn.appscode.com/k8s/icons/catalog.appscode.com/pgpoolbindings.svg",
+        "type": "image/svg+xml"
+      },
+      {
+        "src": "https://cdn.appscode.com/k8s/icons/catalog.appscode.com/pgpoolbindings.png",
+        "type": "image/png"
+      }
+    ]
   }
 }

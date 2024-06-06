@@ -4,14 +4,14 @@
   "type": "object",
   "properties": {
     "apiVersion": {
-      "description": "APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources",
+      "description": "APIVersion defines the versioned schema of this representation of an object.\nServers should convert recognized schemas to the latest internal value, and\nmay reject unrecognized values.\nMore info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources",
       "type": "string",
       "enum": [
         "notification.toolkit.fluxcd.io/v1beta1"
       ]
     },
     "kind": {
-      "description": "Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds",
+      "description": "Kind is a string value representing the REST resource this object represents.\nServers may infer this from the endpoint the client submits requests to.\nCannot be updated.\nIn CamelCase.\nMore info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds",
       "type": "string",
       "enum": [
         "Provider"
@@ -57,7 +57,7 @@
           "pattern": "^(http|https)://"
         },
         "certSecretRef": {
-          "description": "CertSecretRef can be given the name of a secret containing a PEM-encoded CA certificate (`caFile`)",
+          "description": "CertSecretRef can be given the name of a secret containing\na PEM-encoded CA certificate (`caFile`)",
           "type": "object",
           "required": [
             "name"
@@ -79,7 +79,7 @@
           "pattern": "^(http|https)://"
         },
         "secretRef": {
-          "description": "Secret reference containing the provider webhook URL using \"address\" as data key",
+          "description": "Secret reference containing the provider webhook URL\nusing \"address\" as data key",
           "type": "object",
           "required": [
             "name"
@@ -92,7 +92,7 @@
           }
         },
         "suspend": {
-          "description": "This flag tells the controller to suspend subsequent events handling. Defaults to false.",
+          "description": "This flag tells the controller to suspend subsequent events handling.\nDefaults to false.",
           "type": "boolean"
         },
         "timeout": {

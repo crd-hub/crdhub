@@ -4,14 +4,14 @@
   "type": "object",
   "properties": {
     "apiVersion": {
-      "description": "APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources",
+      "description": "APIVersion defines the versioned schema of this representation of an object.\nServers should convert recognized schemas to the latest internal value, and\nmay reject unrecognized values.\nMore info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources",
       "type": "string",
       "enum": [
         "notification.toolkit.fluxcd.io/v1beta1"
       ]
     },
     "kind": {
-      "description": "Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds",
+      "description": "Kind is a string value representing the REST resource this object represents.\nServers may infer this from the endpoint the client submits requests to.\nCannot be updated.\nIn CamelCase.\nMore info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds",
       "type": "string",
       "enum": [
         "Alert"
@@ -53,7 +53,7 @@
       ],
       "properties": {
         "eventSeverity": {
-          "description": "Filter events based on severity, defaults to ('info'). If set to 'info' no events will be filtered.",
+          "description": "Filter events based on severity, defaults to ('info').\nIf set to 'info' no events will be filtered.",
           "type": "string",
           "default": "info",
           "enum": [
@@ -65,7 +65,7 @@
           "description": "Filter events based on the involved objects.",
           "type": "array",
           "items": {
-            "description": "CrossNamespaceObjectReference contains enough information to let you locate the typed referenced object at cluster level",
+            "description": "CrossNamespaceObjectReference contains enough information to let you locate the\ntyped referenced object at cluster level",
             "type": "object",
             "required": [
               "name"
@@ -92,7 +92,7 @@
                 ]
               },
               "matchLabels": {
-                "description": "MatchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is \"key\", the operator is \"In\", and the values array contains only \"value\". The requirements are ANDed.",
+                "description": "MatchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels\nmap is equivalent to an element of matchExpressions, whose key field is \"key\", the\noperator is \"In\", and the values array contains only \"value\". The requirements are ANDed.",
                 "type": "object",
                 "additionalProperties": {
                   "type": "string"
@@ -138,7 +138,7 @@
           "type": "string"
         },
         "suspend": {
-          "description": "This flag tells the controller to suspend subsequent events dispatching. Defaults to false.",
+          "description": "This flag tells the controller to suspend subsequent events dispatching.\nDefaults to false.",
           "type": "boolean"
         }
       }

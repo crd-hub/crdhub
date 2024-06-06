@@ -22,7 +22,7 @@
     "ui": {
       "options": {
         "name": "kubevaultcom-vaultserver-editor-options",
-        "version": "v0.4.18",
+        "version": "v0.4.20",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",
@@ -31,7 +31,7 @@
       },
       "editor": {
         "name": "kubevaultcom-vaultserver-editor",
-        "version": "v0.4.18",
+        "version": "v0.4.20",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",

@@ -22,7 +22,7 @@
     "ui": {
       "options": {
         "name": "kubedbcom-ferretdb-editor-options",
-        "version": "v0.4.18",
+        "version": "v0.4.20",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",
@@ -31,7 +31,7 @@
       },
       "editor": {
         "name": "kubedbcom-ferretdb-editor",
-        "version": "v0.4.18",
+        "version": "v0.4.20",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",
@@ -40,6 +40,16 @@
       },
       "enforceQuota": true
     },
+    "icons": [
+      {
+        "src": "https://cdn.appscode.com/k8s/icons/kubedb.com/ferretdbs.svg",
+        "type": "image/svg+xml"
+      },
+      {
+        "src": "https://cdn.appscode.com/k8s/icons/kubedb.com/ferretdbs.png",
+        "type": "image/png"
+      }
+    ],
     "variants": [
       {
         "name": "default",

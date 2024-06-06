@@ -4,14 +4,14 @@
   "type": "object",
   "properties": {
     "apiVersion": {
-      "description": "APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources",
+      "description": "APIVersion defines the versioned schema of this representation of an object.\nServers should convert recognized schemas to the latest internal value, and\nmay reject unrecognized values.\nMore info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources",
       "type": "string",
       "enum": [
         "notification.toolkit.fluxcd.io/v1beta2"
       ]
     },
     "kind": {
-      "description": "Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds",
+      "description": "Kind is a string value representing the REST resource this object represents.\nServers may infer this from the endpoint the client submits requests to.\nCannot be updated.\nIn CamelCase.\nMore info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds",
       "type": "string",
       "enum": [
         "Receiver"
@@ -53,7 +53,7 @@
       ],
       "properties": {
         "events": {
-          "description": "Events specifies the list of event types to handle, e.g. 'push' for GitHub or 'Push Hook' for GitLab.",
+          "description": "Events specifies the list of event types to handle,\ne.g. 'push' for GitHub or 'Push Hook' for GitLab.",
           "type": "array",
           "items": {
             "type": "string"
@@ -68,7 +68,7 @@
           "description": "A list of resources to be notified about changes.",
           "type": "array",
           "items": {
-            "description": "CrossNamespaceObjectReference contains enough information to let you locate the typed referenced object at cluster level",
+            "description": "CrossNamespaceObjectReference contains enough information to let you locate the\ntyped referenced object at cluster level",
             "type": "object",
             "required": [
               "kind",
@@ -96,14 +96,14 @@
                 ]
               },
               "matchLabels": {
-                "description": "MatchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is \"key\", the operator is \"In\", and the values array contains only \"value\". The requirements are ANDed. MatchLabels requires the name to be set to `*`.",
+                "description": "MatchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels\nmap is equivalent to an element of matchExpressions, whose key field is \"key\", the\noperator is \"In\", and the values array contains only \"value\". The requirements are ANDed.\nMatchLabels requires the name to be set to `*`.",
                 "type": "object",
                 "additionalProperties": {
                   "type": "string"
                 }
               },
               "name": {
-                "description": "Name of the referent If multiple resources are targeted `*` may be set.",
+                "description": "Name of the referent\nIf multiple resources are targeted `*` may be set.",
                 "type": "string",
                 "maxLength": 53,
                 "minLength": 1
@@ -118,7 +118,7 @@
           }
         },
         "secretRef": {
-          "description": "SecretRef specifies the Secret containing the token used to validate the payload authenticity.",
+          "description": "SecretRef specifies the Secret containing the token used\nto validate the payload authenticity.",
           "type": "object",
           "required": [
             "name"
@@ -131,11 +131,11 @@
           }
         },
         "suspend": {
-          "description": "Suspend tells the controller to suspend subsequent events handling for this receiver.",
+          "description": "Suspend tells the controller to suspend subsequent\nevents handling for this receiver.",
           "type": "boolean"
         },
         "type": {
-          "description": "Type of webhook sender, used to determine the validation procedure and payload deserialization.",
+          "description": "Type of webhook sender, used to determine\nthe validation procedure and payload deserialization.",
           "type": "string",
           "enum": [
             "generic",

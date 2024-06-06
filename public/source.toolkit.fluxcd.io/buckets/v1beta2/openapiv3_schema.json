@@ -4,14 +4,14 @@
   "type": "object",
   "properties": {
     "apiVersion": {
-      "description": "APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources",
+      "description": "APIVersion defines the versioned schema of this representation of an object.\nServers should convert recognized schemas to the latest internal value, and\nmay reject unrecognized values.\nMore info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources",
       "type": "string",
       "enum": [
         "source.toolkit.fluxcd.io/v1beta2"
       ]
     },
     "kind": {
-      "description": "Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds",
+      "description": "Kind is a string value representing the REST resource this object represents.\nServers may infer this from the endpoint the client submits requests to.\nCannot be updated.\nIn CamelCase.\nMore info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds",
       "type": "string",
       "enum": [
         "Bucket"
@@ -45,7 +45,7 @@
       }
     },
     "spec": {
-      "description": "BucketSpec specifies the required configuration to produce an Artifact for an object storage bucket.",
+      "description": "BucketSpec specifies the required configuration to produce an Artifact for\nan object storage bucket.",
       "type": "object",
       "required": [
         "bucketName",
@@ -54,21 +54,21 @@
       ],
       "properties": {
         "accessFrom": {
-          "description": "AccessFrom specifies an Access Control List for allowing cross-namespace references to this object. NOTE: Not implemented, provisional as of https://github.com/fluxcd/flux2/pull/2092",
+          "description": "AccessFrom specifies an Access Control List for allowing cross-namespace\nreferences to this object.\nNOTE: Not implemented, provisional as of https://github.com/fluxcd/flux2/pull/2092",
           "type": "object",
           "required": [
             "namespaceSelectors"
           ],
           "properties": {
             "namespaceSelectors": {
-              "description": "NamespaceSelectors is the list of namespace selectors to which this ACL applies. Items in this list are evaluated using a logical OR operation.",
+              "description": "NamespaceSelectors is the list of namespace selectors to which this ACL applies.\nItems in this list are evaluated using a logical OR operation.",
               "type": "array",
               "items": {
-                "description": "NamespaceSelector selects the namespaces to which this ACL applies. An empty map of MatchLabels matches all namespaces in a cluster.",
+                "description": "NamespaceSelector selects the namespaces to which this ACL applies.\nAn empty map of MatchLabels matches all namespaces in a cluster.",
                 "type": "object",
                 "properties": {
                   "matchLabels": {
-                    "description": "MatchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is \"key\", the operator is \"In\", and the values array contains only \"value\". The requirements are ANDed.",
+                    "description": "MatchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels\nmap is equivalent to an element of matchExpressions, whose key field is \"key\", the\noperator is \"In\", and the values array contains only \"value\". The requirements are ANDed.",
                     "type": "object",
                     "additionalProperties": {
                       "type": "string"
@@ -88,7 +88,7 @@
           "type": "string"
         },
         "ignore": {
-          "description": "Ignore overrides the set of excluded patterns in the .sourceignore format (which is the same as .gitignore). If not provided, a default will be used, consult the documentation for your version to find out what those are.",
+          "description": "Ignore overrides the set of excluded patterns in the .sourceignore format\n(which is the same as .gitignore). If not provided, a default will be used,\nconsult the documentation for your version to find out what those are.",
           "type": "string"
         },
         "insecure": {
@@ -96,7 +96,7 @@
           "type": "boolean"
         },
         "interval": {
-          "description": "Interval at which the Bucket Endpoint is checked for updates. This interval is approximate and may be subject to jitter to ensure efficient use of resources.",
+          "description": "Interval at which the Bucket Endpoint is checked for updates.\nThis interval is approximate and may be subject to jitter to ensure\nefficient use of resources.",
           "type": "string",
           "pattern": "^([0-9]+(\\.[0-9]+)?(ms|s|m|h))+$"
         },
@@ -105,7 +105,7 @@
           "type": "string"
         },
         "provider": {
-          "description": "Provider of the object storage bucket. Defaults to 'generic', which expects an S3 (API) compatible object storage.",
+          "description": "Provider of the object storage bucket.\nDefaults to 'generic', which expects an S3 (API) compatible object\nstorage.",
           "type": "string",
           "default": "generic",
           "enum": [
@@ -120,7 +120,7 @@
           "type": "string"
         },
         "secretRef": {
-          "description": "SecretRef specifies the Secret containing authentication credentials for the Bucket.",
+          "description": "SecretRef specifies the Secret containing authentication credentials\nfor the Bucket.",
           "type": "object",
           "required": [
             "name"
@@ -133,7 +133,7 @@
           }
         },
         "suspend": {
-          "description": "Suspend tells the controller to suspend the reconciliation of this Bucket.",
+          "description": "Suspend tells the controller to suspend the reconciliation of this\nBucket.",
           "type": "boolean"
         },
         "timeout": {
