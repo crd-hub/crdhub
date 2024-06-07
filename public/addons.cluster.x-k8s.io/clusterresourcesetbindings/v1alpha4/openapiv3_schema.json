@@ -1,17 +1,17 @@
 {
   "$schema": "http://json-schema.org/schema#",
-  "description": "ClusterResourceSetBinding lists all matching ClusterResourceSets with the cluster it belongs to. \n Deprecated: This type will be removed in one of the next releases.",
+  "description": "ClusterResourceSetBinding lists all matching ClusterResourceSets with the cluster it belongs to.\n\n\nDeprecated: This type will be removed in one of the next releases.",
   "type": "object",
   "properties": {
     "apiVersion": {
-      "description": "APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources",
+      "description": "APIVersion defines the versioned schema of this representation of an object.\nServers should convert recognized schemas to the latest internal value, and\nmay reject unrecognized values.\nMore info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources",
       "type": "string",
       "enum": [
         "addons.cluster.x-k8s.io/v1alpha4"
       ]
     },
     "kind": {
-      "description": "Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds",
+      "description": "Kind is a string value representing the REST resource this object represents.\nServers may infer this from the endpoint the client submits requests to.\nCannot be updated.\nIn CamelCase.\nMore info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds",
       "type": "string",
       "enum": [
         "ClusterResourceSetBinding"
@@ -79,7 +79,7 @@
                       "type": "boolean"
                     },
                     "hash": {
-                      "description": "Hash is the hash of a resource's data. This can be used to decide if a resource is changed. For \"ApplyOnce\" ClusterResourceSet.spec.strategy, this is no-op as that strategy does not act on change.",
+                      "description": "Hash is the hash of a resource's data. This can be used to decide if a resource is changed.\nFor \"ApplyOnce\" ClusterResourceSet.spec.strategy, this is no-op as that strategy does not act on change.",
                       "type": "string"
                     },
                     "kind": {

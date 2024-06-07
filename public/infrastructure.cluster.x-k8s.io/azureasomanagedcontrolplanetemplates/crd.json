@@ -1,0 +1,88 @@
+{
+  "kind": "CustomResourceDefinition",
+  "apiVersion": "apiextensions.k8s.io/v1",
+  "metadata": {
+    "name": "azureasomanagedcontrolplanetemplates.infrastructure.cluster.x-k8s.io",
+    "creationTimestamp": null,
+    "annotations": {
+      "controller-gen.kubebuilder.io/version": "v0.14.0"
+    }
+  },
+  "spec": {
+    "group": "infrastructure.cluster.x-k8s.io",
+    "names": {
+      "plural": "azureasomanagedcontrolplanetemplates",
+      "singular": "azureasomanagedcontrolplanetemplate",
+      "kind": "AzureASOManagedControlPlaneTemplate",
+      "listKind": "AzureASOManagedControlPlaneTemplateList"
+    },
+    "scope": "Namespaced",
+    "versions": [
+      {
+        "name": "v1alpha1",
+        "served": true,
+        "storage": true,
+        "schema": {
+          "openAPIV3Schema": {
+            "description": "AzureASOManagedControlPlaneTemplate is the Schema for the azureasomanagedcontrolplanetemplates API.",
+            "type": "object",
+            "properties": {
+              "apiVersion": {
+                "description": "APIVersion defines the versioned schema of this representation of an object.\nServers should convert recognized schemas to the latest internal value, and\nmay reject unrecognized values.\nMore info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources",
+                "type": "string"
+              },
+              "kind": {
+                "description": "Kind is a string value representing the REST resource this object represents.\nServers may infer this from the endpoint the client submits requests to.\nCannot be updated.\nIn CamelCase.\nMore info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds",
+                "type": "string"
+              },
+              "metadata": {
+                "type": "object"
+              },
+              "spec": {
+                "description": "AzureASOManagedControlPlaneTemplateSpec defines the desired state of AzureASOManagedControlPlane.",
+                "type": "object",
+                "required": [
+                  "template"
+                ],
+                "properties": {
+                  "template": {
+                    "description": "AzureASOManagedControlPlaneResource defines the templated resource.",
+                    "type": "object",
+                    "properties": {
+                      "spec": {
+                        "description": "AzureASOManagedControlPlaneTemplateResourceSpec defines the desired state of the templated resource.",
+                        "type": "object",
+                        "properties": {
+                          "resources": {
+                            "description": "Resources are embedded ASO resources to be managed by this resource.",
+                            "type": "array",
+                            "items": {
+                              "type": "object",
+                              "x-kubernetes-preserve-unknown-fields": true
+                            }
+                          },
+                          "version": {
+                            "description": "Version is the Kubernetes version of the control plane. It fulfills Cluster API's control plane\nprovider contract.",
+                            "type": "string"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    ]
+  },
+  "status": {
+    "conditions": null,
+    "acceptedNames": {
+      "plural": "",
+      "kind": ""
+    },
+    "storedVersions": null
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "kind": "ResourceEditor",
+  "apiVersion": "ui.k8s.appscode.com/v1alpha1",
+  "metadata": {
+    "name": "karpenter.azure.com-v1alpha2-aksnodeclasses",
+    "creationTimestamp": null,
+    "labels": {
+      "k8s.io/group": "karpenter.azure.com",
+      "k8s.io/kind": "AKSNodeClass",
+      "k8s.io/resource": "aksnodeclasses",
+      "k8s.io/version": "v1alpha2"
+    }
+  },
+  "spec": {
+    "resource": {
+      "group": "karpenter.azure.com",
+      "version": "v1alpha2",
+      "name": "aksnodeclasses",
+      "kind": "AKSNodeClass",
+      "scope": "Cluster"
+    }
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "kind": "ResourceEditor",
+  "apiVersion": "ui.k8s.appscode.com/v1alpha1",
+  "metadata": {
+    "name": "infrastructure.cluster.x-k8s.io-v1alpha1-azureasomanagedmachinepooltemplates",
+    "creationTimestamp": null,
+    "labels": {
+      "k8s.io/group": "infrastructure.cluster.x-k8s.io",
+      "k8s.io/kind": "AzureASOManagedMachinePoolTemplate",
+      "k8s.io/resource": "azureasomanagedmachinepooltemplates",
+      "k8s.io/version": "v1alpha1"
+    }
+  },
+  "spec": {
+    "resource": {
+      "group": "infrastructure.cluster.x-k8s.io",
+      "version": "v1alpha1",
+      "name": "azureasomanagedmachinepooltemplates",
+      "kind": "AzureASOManagedMachinePoolTemplate",
+      "scope": "Namespaced"
+    }
+  }
+}

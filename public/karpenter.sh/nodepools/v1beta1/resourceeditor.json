@@ -1,0 +1,23 @@
+{
+  "kind": "ResourceEditor",
+  "apiVersion": "ui.k8s.appscode.com/v1alpha1",
+  "metadata": {
+    "name": "karpenter.sh-v1beta1-nodepools",
+    "creationTimestamp": null,
+    "labels": {
+      "k8s.io/group": "karpenter.sh",
+      "k8s.io/kind": "NodePool",
+      "k8s.io/resource": "nodepools",
+      "k8s.io/version": "v1beta1"
+    }
+  },
+  "spec": {
+    "resource": {
+      "group": "karpenter.sh",
+      "version": "v1beta1",
+      "name": "nodepools",
+      "kind": "NodePool",
+      "scope": "Cluster"
+    }
+  }
+}

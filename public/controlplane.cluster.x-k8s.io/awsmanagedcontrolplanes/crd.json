@@ -5,7 +5,7 @@
     "name": "awsmanagedcontrolplanes.controlplane.cluster.x-k8s.io",
     "creationTimestamp": null,
     "annotations": {
-      "controller-gen.kubebuilder.io/version": "v0.11.3"
+      "controller-gen.kubebuilder.io/version": "v0.14.0"
     }
   },
   "spec": {
@@ -26,7 +26,7 @@
     "versions": [
       {
         "name": "v1beta1",
-        "served": true,
+        "served": false,
         "storage": false,
         "schema": {
           "openAPIV3Schema": {
@@ -34,11 +34,11 @@
             "type": "object",
             "properties": {
               "apiVersion": {
-                "description": "APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources",
+                "description": "APIVersion defines the versioned schema of this representation of an object.\nServers should convert recognized schemas to the latest internal value, and\nmay reject unrecognized values.\nMore info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources",
                 "type": "string"
               },
               "kind": {
-                "description": "Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds",
+                "description": "Kind is a string value representing the REST resource this object represents.\nServers may infer this from the endpoint the client submits requests to.\nCannot be updated.\nIn CamelCase.\nMore info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds",
                 "type": "string"
               },
               "metadata": {
@@ -49,7 +49,7 @@
                 "type": "object",
                 "properties": {
                   "additionalTags": {
-                    "description": "AdditionalTags is an optional set of tags to add to AWS resources managed by the AWS provider, in addition to the ones added by default.",
+                    "description": "AdditionalTags is an optional set of tags to add to AWS resources managed by the AWS provider, in addition to the\nones added by default.",
                     "type": "object",
                     "additionalProperties": {
                       "type": "string"
@@ -66,8 +66,12 @@
                         "version"
                       ],
                       "properties": {
+                        "configuration": {
+                          "description": "Configuration of the EKS addon",
+                          "type": "string"
+                        },
                         "conflictResolution": {
-                          "description": "ConflictResolution is used to declare what should happen if there are parameter conflicts. Defaults to none",
+                          "description": "ConflictResolution is used to declare what should happen if there\nare parameter conflicts. Defaults to none",
                           "type": "string",
                           "default": "none",
                           "enum": [
@@ -92,7 +96,7 @@
                     }
                   },
                   "associateOIDCProvider": {
-                    "description": "AssociateOIDCProvider can be enabled to automatically create an identity provider for the controller for use with IAM roles for service accounts",
+                    "description": "AssociateOIDCProvider can be enabled to automatically create an identity\nprovider for the controller for use with IAM roles for service accounts",
                     "type": "boolean",
                     "default": false
                   },
@@ -101,26 +105,26 @@
                     "type": "object",
                     "properties": {
                       "allowedCIDRBlocks": {
-                        "description": "AllowedCIDRBlocks is a list of CIDR blocks allowed to access the bastion host. They are set as ingress rules for the Bastion host's Security Group (defaults to 0.0.0.0/0).",
+                        "description": "AllowedCIDRBlocks is a list of CIDR blocks allowed to access the bastion host.\nThey are set as ingress rules for the Bastion host's Security Group (defaults to 0.0.0.0/0).",
                         "type": "array",
                         "items": {
                           "type": "string"
                         }
                       },
                       "ami": {
-                        "description": "AMI will use the specified AMI to boot the bastion. If not specified, the AMI will default to one picked out in public space.",
+                        "description": "AMI will use the specified AMI to boot the bastion. If not specified,\nthe AMI will default to one picked out in public space.",
                         "type": "string"
                       },
                       "disableIngressRules": {
-                        "description": "DisableIngressRules will ensure there are no Ingress rules in the bastion host's security group. Requires AllowedCIDRBlocks to be empty.",
+                        "description": "DisableIngressRules will ensure there are no Ingress rules in the bastion host's security group.\nRequires AllowedCIDRBlocks to be empty.",
                         "type": "boolean"
                       },
                       "enabled": {
-                        "description": "Enabled allows this provider to create a bastion host instance with a public ip to access the VPC private network.",
+                        "description": "Enabled allows this provider to create a bastion host instance\nwith a public ip to access the VPC private network.",
                         "type": "boolean"
                       },
                       "instanceType": {
-                        "description": "InstanceType will use the specified instance type for the bastion. If not specified, Cluster API Provider AWS will use t3.micro for all regions except us-east-1, where t2.micro will be the default.",
+                        "description": "InstanceType will use the specified instance type for the bastion. If not specified,\nCluster API Provider AWS will use t3.micro for all regions except us-east-1, where t2.micro\nwill be the default.",
                         "type": "string"
                       }
                     }
@@ -145,12 +149,12 @@
                     }
                   },
                   "disableVPCCNI": {
-                    "description": "DisableVPCCNI indicates that the Amazon VPC CNI should be disabled. With EKS clusters the Amazon VPC CNI is automatically installed into the cluster. For clusters where you want to use an alternate CNI this option provides a way to specify that the Amazon VPC CNI should be deleted. You cannot set this to true if you are using the Amazon VPC CNI addon.",
+                    "description": "DisableVPCCNI indicates that the Amazon VPC CNI should be disabled. With EKS clusters the\nAmazon VPC CNI is automatically installed into the cluster. For clusters where you want\nto use an alternate CNI this option provides a way to specify that the Amazon VPC CNI\nshould be deleted. You cannot set this to true if you are using the\nAmazon VPC CNI addon.",
                     "type": "boolean",
                     "default": false
                   },
                   "eksClusterName": {
-                    "description": "EKSClusterName allows you to specify the name of the EKS cluster in AWS. If you don't specify a name then a default name will be created based on the namespace and name of the managed control plane.",
+                    "description": "EKSClusterName allows you to specify the name of the EKS cluster in\nAWS. If you don't specify a name then a default name will be created\nbased on the namespace and name of the managed control plane.",
                     "type": "string"
                   },
                   "encryptionConfig": {
@@ -192,7 +196,7 @@
                     }
                   },
                   "iamAuthenticatorConfig": {
-                    "description": "IAMAuthenticatorConfig allows the specification of any additional user or role mappings for use when generating the aws-iam-authenticator configuration. If this is nil the default configuration is still generated for the cluster.",
+                    "description": "IAMAuthenticatorConfig allows the specification of any additional user or role mappings\nfor use when generating the aws-iam-authenticator configuration. If this is nil the\ndefault configuration is still generated for the cluster.",
                     "type": "object",
                     "properties": {
                       "mapRoles": {
@@ -260,7 +264,7 @@
                     }
                   },
                   "identityRef": {
-                    "description": "IdentityRef is a reference to a identity to be used when reconciling the managed control plane.",
+                    "description": "IdentityRef is a reference to an identity to be used when reconciling the managed control plane.\nIf no identity is specified, the default identity for this controller will be used.",
                     "type": "object",
                     "required": [
                       "kind",
@@ -284,15 +288,15 @@
                     }
                   },
                   "imageLookupBaseOS": {
-                    "description": "ImageLookupBaseOS is the name of the base operating system used to look up machine images when a machine does not specify an AMI. When set, this will be used for all cluster machines unless a machine specifies a different ImageLookupBaseOS.",
+                    "description": "ImageLookupBaseOS is the name of the base operating system used to look\nup machine images when a machine does not specify an AMI. When set, this\nwill be used for all cluster machines unless a machine specifies a\ndifferent ImageLookupBaseOS.",
                     "type": "string"
                   },
                   "imageLookupFormat": {
-                    "description": "ImageLookupFormat is the AMI naming format to look up machine images when a machine does not specify an AMI. When set, this will be used for all cluster machines unless a machine specifies a different ImageLookupOrg. Supports substitutions for {{.BaseOS}} and {{.K8sVersion}} with the base OS and kubernetes version, respectively. The BaseOS will be the value in ImageLookupBaseOS or ubuntu (the default), and the kubernetes version as defined by the packages produced by kubernetes/release without v as a prefix: 1.13.0, 1.12.5-mybuild.1, or 1.17.3. For example, the default image format of capa-ami-{{.BaseOS}}-?{{.K8sVersion}}-* will end up searching for AMIs that match the pattern capa-ami-ubuntu-?1.18.0-* for a Machine that is targeting kubernetes v1.18.0 and the ubuntu base OS. See also: https://golang.org/pkg/text/template/",
+                    "description": "ImageLookupFormat is the AMI naming format to look up machine images when\na machine does not specify an AMI. When set, this will be used for all\ncluster machines unless a machine specifies a different ImageLookupOrg.\nSupports substitutions for {{.BaseOS}} and {{.K8sVersion}} with the base\nOS and kubernetes version, respectively. The BaseOS will be the value in\nImageLookupBaseOS or ubuntu (the default), and the kubernetes version as\ndefined by the packages produced by kubernetes/release without v as a\nprefix: 1.13.0, 1.12.5-mybuild.1, or 1.17.3. For example, the default\nimage format of capa-ami-{{.BaseOS}}-?{{.K8sVersion}}-* will end up\nsearching for AMIs that match the pattern capa-ami-ubuntu-?1.18.0-* for a\nMachine that is targeting kubernetes v1.18.0 and the ubuntu base OS. See\nalso: https://golang.org/pkg/text/template/",
                     "type": "string"
                   },
                   "imageLookupOrg": {
-                    "description": "ImageLookupOrg is the AWS Organization ID to look up machine images when a machine does not specify an AMI. When set, this will be used for all cluster machines unless a machine specifies a different ImageLookupOrg.",
+                    "description": "ImageLookupOrg is the AWS Organization ID to look up machine images when a\nmachine does not specify an AMI. When set, this will be used for all\ncluster machines unless a machine specifies a different ImageLookupOrg.",
                     "type": "string"
                   },
                   "kubeProxy": {
@@ -300,14 +304,14 @@
                     "type": "object",
                     "properties": {
                       "disable": {
-                        "description": "Disable set to true indicates that kube-proxy should be disabled. With EKS clusters kube-proxy is automatically installed into the cluster. For clusters where you want to use kube-proxy functionality that is provided with an alternate CNI, this option provides a way to specify that the kube-proxy daemonset should be deleted. You cannot set this to true if you are using the Amazon kube-proxy addon.",
+                        "description": "Disable set to true indicates that kube-proxy should be disabled. With EKS clusters\nkube-proxy is automatically installed into the cluster. For clusters where you want\nto use kube-proxy functionality that is provided with an alternate CNI, this option\nprovides a way to specify that the kube-proxy daemonset should be deleted. You cannot\nset this to true if you are using the Amazon kube-proxy addon.",
                         "type": "boolean",
                         "default": false
                       }
                     }
                   },
                   "logging": {
-                    "description": "Logging specifies which EKS Cluster logs should be enabled. Entries for each of the enabled logs will be sent to CloudWatch",
+                    "description": "Logging specifies which EKS Cluster logs should be enabled. Entries for\neach of the enabled logs will be sent to CloudWatch",
                     "type": "object",
                     "required": [
                       "apiServer",
@@ -348,12 +352,92 @@
                     "description": "NetworkSpec encapsulates all things related to AWS network.",
                     "type": "object",
                     "properties": {
+                      "additionalControlPlaneIngressRules": {
+                        "description": "AdditionalControlPlaneIngressRules is an optional set of ingress rules to add to the control plane",
+                        "type": "array",
+                        "items": {
+                          "description": "IngressRule defines an AWS ingress rule for security groups.",
+                          "type": "object",
+                          "required": [
+                            "description",
+                            "fromPort",
+                            "protocol",
+                            "toPort"
+                          ],
+                          "properties": {
+                            "cidrBlocks": {
+                              "description": "List of CIDR blocks to allow access from. Cannot be specified with SourceSecurityGroupID.",
+                              "type": "array",
+                              "items": {
+                                "type": "string"
+                              }
+                            },
+                            "description": {
+                              "description": "Description provides extended information about the ingress rule.",
+                              "type": "string"
+                            },
+                            "fromPort": {
+                              "description": "FromPort is the start of port range.",
+                              "type": "integer",
+                              "format": "int64"
+                            },
+                            "ipv6CidrBlocks": {
+                              "description": "List of IPv6 CIDR blocks to allow access from. Cannot be specified with SourceSecurityGroupID.",
+                              "type": "array",
+                              "items": {
+                                "type": "string"
+                              }
+                            },
+                            "protocol": {
+                              "description": "Protocol is the protocol for the ingress rule. Accepted values are \"-1\" (all), \"4\" (IP in IP),\"tcp\", \"udp\", \"icmp\", and \"58\" (ICMPv6), \"50\" (ESP).",
+                              "type": "string",
+                              "enum": [
+                                "-1",
+                                "4",
+                                "tcp",
+                                "udp",
+                                "icmp",
+                                "58",
+                                "50"
+                              ]
+                            },
+                            "sourceSecurityGroupIds": {
+                              "description": "The security group id to allow access from. Cannot be specified with CidrBlocks.",
+                              "type": "array",
+                              "items": {
+                                "type": "string"
+                              }
+                            },
+                            "sourceSecurityGroupRoles": {
+                              "description": "The security group role to allow access from. Cannot be specified with CidrBlocks.\nThe field will be combined with source security group IDs if specified.",
+                              "type": "array",
+                              "items": {
+                                "description": "SecurityGroupRole defines the unique role of a security group.",
+                                "type": "string",
+                                "enum": [
+                                  "bastion",
+                                  "node",
+                                  "controlplane",
+                                  "apiserver-lb",
+                                  "lb",
+                                  "node-eks-additional"
+                                ]
+                              }
+                            },
+                            "toPort": {
+                              "description": "ToPort is the end of port range.",
+                              "type": "integer",
+                              "format": "int64"
+                            }
+                          }
+                        }
+                      },
                       "cni": {
                         "description": "CNI configuration",
                         "type": "object",
                         "properties": {
                           "cniIngressRules": {
-                            "description": "CNIIngressRules specify rules to apply to control plane and worker node security groups. The source for the rule will be set to control plane and worker security group IDs.",
+                            "description": "CNIIngressRules specify rules to apply to control plane and worker node security groups.\nThe source for the rule will be set to control plane and worker security group IDs.",
                             "type": "array",
                             "items": {
                               "description": "CNIIngressRule defines an AWS ingress rule for CNI requirements.",
@@ -386,7 +470,7 @@
                         }
                       },
                       "securityGroupOverrides": {
-                        "description": "SecurityGroupOverrides is an optional set of security groups to use for cluster instances This is optional - if not provided new security groups will be created for the cluster",
+                        "description": "SecurityGroupOverrides is an optional set of security groups to use for cluster instances\nThis is optional - if not provided new security groups will be created for the cluster",
                         "type": "object",
                         "additionalProperties": {
                           "type": "string"
@@ -411,15 +495,15 @@
                               "type": "string"
                             },
                             "id": {
-                              "description": "ID defines a unique identifier to reference this resource.",
+                              "description": "ID defines a unique identifier to reference this resource.\nIf you're bringing your subnet, set the AWS subnet-id here, it must start with `subnet-`.\n\n\nWhen the VPC is managed by CAPA, and you'd like the provider to create a subnet for you,\nthe id can be set to any placeholder value that does not start with `subnet-`;\nupon creation, the subnet AWS identifier will be populated in the `ResourceID` field and\nthe `id` field is going to be used as the subnet name. If you specify a tag\ncalled `Name`, it takes precedence.",
                               "type": "string"
                             },
                             "ipv6CidrBlock": {
-                              "description": "IPv6CidrBlock is the IPv6 CIDR block to be used when the provider creates a managed VPC. A subnet can have an IPv4 and an IPv6 address. IPv6 is only supported in managed clusters, this field cannot be set on AWSCluster object.",
+                              "description": "IPv6CidrBlock is the IPv6 CIDR block to be used when the provider creates a managed VPC.\nA subnet can have an IPv4 and an IPv6 address.\nIPv6 is only supported in managed clusters, this field cannot be set on AWSCluster object.",
                               "type": "string"
                             },
                             "isIpv6": {
-                              "description": "IsIPv6 defines the subnet as an IPv6 subnet. A subnet is IPv6 when it is associated with a VPC that has IPv6 enabled. IPv6 is only supported in managed clusters, this field cannot be set on AWSCluster object.",
+                              "description": "IsIPv6 defines the subnet as an IPv6 subnet. A subnet is IPv6 when it is associated with a VPC that has IPv6 enabled.\nIPv6 is only supported in managed clusters, this field cannot be set on AWSCluster object.",
                               "type": "boolean"
                             },
                             "isPublic": {
@@ -427,7 +511,15 @@
                               "type": "boolean"
                             },
                             "natGatewayId": {
-                              "description": "NatGatewayID is the NAT gateway id associated with the subnet. Ignored unless the subnet is managed by the provider, in which case this is set on the public subnet where the NAT gateway resides. It is then used to determine routes for private subnets in the same AZ as the public subnet.",
+                              "description": "NatGatewayID is the NAT gateway id associated with the subnet.\nIgnored unless the subnet is managed by the provider, in which case this is set on the public subnet where the NAT gateway resides. It is then used to determine routes for private subnets in the same AZ as the public subnet.",
+                              "type": "string"
+                            },
+                            "parentZoneName": {
+                              "description": "ParentZoneName is the zone name where the current subnet's zone is tied when\nthe zone is a Local Zone.\n\n\nThe subnets in Local Zone or Wavelength Zone locations consume the ParentZoneName\nto select the correct private route table to egress traffic to the internet.",
+                              "type": "string"
+                            },
+                            "resourceID": {
+                              "description": "ResourceID is the subnet identifier from AWS, READ ONLY.\nThis field is populated when the provider manages the subnet.",
                               "type": "string"
                             },
                             "routeTableId": {
@@ -440,6 +532,15 @@
                               "additionalProperties": {
                                 "type": "string"
                               }
+                            },
+                            "zoneType": {
+                              "description": "ZoneType defines the type of the zone where the subnet is created.\n\n\nThe valid values are availability-zone, local-zone, and wavelength-zone.\n\n\nSubnet with zone type availability-zone (regular) is always selected to create cluster\nresources, like Load Balancers, NAT Gateways, Contol Plane nodes, etc.\n\n\nSubnet with zone type local-zone or wavelength-zone is not eligible to automatically create\nregular cluster resources.\n\n\nThe public subnet in availability-zone or local-zone is associated with regular public\nroute table with default route entry to a Internet Gateway.\n\n\nThe public subnet in wavelength-zone is associated with a carrier public\nroute table with default route entry to a Carrier Gateway.\n\n\nThe private subnet in the availability-zone is associated with a private route table with\nthe default route entry to a NAT Gateway created in that zone.\n\n\nThe private subnet in the local-zone or wavelength-zone is associated with a private route table with\nthe default route entry re-using the NAT Gateway in the Region (preferred from the\nparent zone, the zone type availability-zone in the region, or first table available).",
+                              "type": "string",
+                              "enum": [
+                                "availability-zone",
+                                "local-zone",
+                                "wavelength-zone"
+                              ]
                             }
                           }
                         },
@@ -453,7 +554,7 @@
                         "type": "object",
                         "properties": {
                           "availabilityZoneSelection": {
-                            "description": "AvailabilityZoneSelection specifies how AZs should be selected if there are more AZs in a region than specified by AvailabilityZoneUsageLimit. There are 2 selection schemes: Ordered - selects based on alphabetical order Random - selects AZs randomly in a region Defaults to Ordered",
+                            "description": "AvailabilityZoneSelection specifies how AZs should be selected if there are more AZs\nin a region than specified by AvailabilityZoneUsageLimit. There are 2 selection schemes:\nOrdered - selects based on alphabetical order\nRandom - selects AZs randomly in a region\nDefaults to Ordered",
                             "type": "string",
                             "default": "Ordered",
                             "enum": [
@@ -462,14 +563,28 @@
                             ]
                           },
                           "availabilityZoneUsageLimit": {
-                            "description": "AvailabilityZoneUsageLimit specifies the maximum number of availability zones (AZ) that should be used in a region when automatically creating subnets. If a region has more than this number of AZs then this number of AZs will be picked randomly when creating default subnets. Defaults to 3",
+                            "description": "AvailabilityZoneUsageLimit specifies the maximum number of availability zones (AZ) that\nshould be used in a region when automatically creating subnets. If a region has more\nthan this number of AZs then this number of AZs will be picked randomly when creating\ndefault subnets. Defaults to 3",
                             "type": "integer",
                             "default": 3,
                             "minimum": 1
                           },
+                          "carrierGatewayId": {
+                            "description": "CarrierGatewayID is the id of the internet gateway associated with the VPC,\nfor carrier network (Wavelength Zones).",
+                            "type": "string",
+                            "x-kubernetes-validations": [
+                              {
+                                "rule": "self.startsWith('cagw-')",
+                                "message": "Carrier Gateway ID must start with 'cagw-'"
+                              }
+                            ]
+                          },
                           "cidrBlock": {
-                            "description": "CidrBlock is the CIDR block to be used when the provider creates a managed VPC. Defaults to 10.0.0.0/16.",
+                            "description": "CidrBlock is the CIDR block to be used when the provider creates a managed VPC.\nDefaults to 10.0.0.0/16.\nMutually exclusive with IPAMPool.",
                             "type": "string"
+                          },
+                          "emptyRoutesDefaultVPCSecurityGroup": {
+                            "description": "EmptyRoutesDefaultVPCSecurityGroup specifies whether the default VPC security group ingress\nand egress rules should be removed.\n\n\nBy default, when creating a VPC, AWS creates a security group called `default` with ingress and egress\nrules that allow traffic from anywhere. The group could be used as a potential surface attack and\nit's generally suggested that the group rules are removed or modified appropriately.\n\n\nNOTE: This only applies when the VPC is managed by the Cluster API AWS controller.",
+                            "type": "boolean"
                           },
                           "id": {
                             "description": "ID is the vpc-id of the VPC this provider should use to create resources.",
@@ -479,23 +594,69 @@
                             "description": "InternetGatewayID is the id of the internet gateway associated with the VPC.",
                             "type": "string"
                           },
+                          "ipamPool": {
+                            "description": "IPAMPool defines the IPAMv4 pool to be used for VPC.\nMutually exclusive with CidrBlock.",
+                            "type": "object",
+                            "properties": {
+                              "id": {
+                                "description": "ID is the ID of the IPAM pool this provider should use to create VPC.",
+                                "type": "string"
+                              },
+                              "name": {
+                                "description": "Name is the name of the IPAM pool this provider should use to create VPC.",
+                                "type": "string"
+                              },
+                              "netmaskLength": {
+                                "description": "The netmask length of the IPv4 CIDR you want to allocate to VPC from\nan Amazon VPC IP Address Manager (IPAM) pool.\nDefaults to /16 for IPv4 if not specified.",
+                                "type": "integer",
+                                "format": "int64"
+                              }
+                            }
+                          },
                           "ipv6": {
-                            "description": "IPv6 contains ipv6 specific settings for the network. Supported only in managed clusters. This field cannot be set on AWSCluster object.",
+                            "description": "IPv6 contains ipv6 specific settings for the network. Supported only in managed clusters.\nThis field cannot be set on AWSCluster object.",
                             "type": "object",
                             "properties": {
                               "cidrBlock": {
-                                "description": "CidrBlock is the CIDR block provided by Amazon when VPC has enabled IPv6.",
+                                "description": "CidrBlock is the CIDR block provided by Amazon when VPC has enabled IPv6.\nMutually exclusive with IPAMPool.",
                                 "type": "string"
                               },
                               "egressOnlyInternetGatewayId": {
                                 "description": "EgressOnlyInternetGatewayID is the id of the egress only internet gateway associated with an IPv6 enabled VPC.",
                                 "type": "string"
                               },
+                              "ipamPool": {
+                                "description": "IPAMPool defines the IPAMv6 pool to be used for VPC.\nMutually exclusive with CidrBlock.",
+                                "type": "object",
+                                "properties": {
+                                  "id": {
+                                    "description": "ID is the ID of the IPAM pool this provider should use to create VPC.",
+                                    "type": "string"
+                                  },
+                                  "name": {
+                                    "description": "Name is the name of the IPAM pool this provider should use to create VPC.",
+                                    "type": "string"
+                                  },
+                                  "netmaskLength": {
+                                    "description": "The netmask length of the IPv4 CIDR you want to allocate to VPC from\nan Amazon VPC IP Address Manager (IPAM) pool.\nDefaults to /16 for IPv4 if not specified.",
+                                    "type": "integer",
+                                    "format": "int64"
+                                  }
+                                }
+                              },
                               "poolId": {
-                                "description": "PoolID is the IP pool which must be defined in case of BYO IP is defined.",
+                                "description": "PoolID is the IP pool which must be defined in case of BYO IP is defined.\nMust be specified if CidrBlock is set.\nMutually exclusive with IPAMPool.",
                                 "type": "string"
                               }
                             }
+                          },
+                          "privateDnsHostnameTypeOnLaunch": {
+                            "description": "PrivateDNSHostnameTypeOnLaunch is the type of hostname to assign to instances in the subnet at launch.\nFor IPv4-only and dual-stack (IPv4 and IPv6) subnets, an instance DNS name can be based on the instance IPv4 address (ip-name)\nor the instance ID (resource-name). For IPv6 only subnets, an instance DNS name must be based on the instance ID (resource-name).",
+                            "type": "string",
+                            "enum": [
+                              "ip-name",
+                              "resource-name"
+                            ]
                           },
                           "tags": {
                             "description": "Tags is a collection of tags describing the resource.",
@@ -509,11 +670,11 @@
                     }
                   },
                   "oidcIdentityProviderConfig": {
-                    "description": "IdentityProviderconfig is used to specify the oidc provider config to be attached with this eks cluster",
+                    "description": "IdentityProviderconfig is used to specify the oidc provider config\nto be attached with this eks cluster",
                     "type": "object",
                     "properties": {
                       "clientId": {
-                        "description": "This is also known as audience. The ID for the client application that makes authentication requests to the OpenID identity provider.",
+                        "description": "This is also known as audience. The ID for the client application that makes\nauthentication requests to the OpenID identity provider.",
                         "type": "string"
                       },
                       "groupsClaim": {
@@ -521,19 +682,19 @@
                         "type": "string"
                       },
                       "groupsPrefix": {
-                        "description": "The prefix that is prepended to group claims to prevent clashes with existing names (such as system: groups). For example, the valueoidc: will create group names like oidc:engineering and oidc:infra.",
+                        "description": "The prefix that is prepended to group claims to prevent clashes with existing\nnames (such as system: groups). For example, the valueoidc: will create group\nnames like oidc:engineering and oidc:infra.",
                         "type": "string"
                       },
                       "identityProviderConfigName": {
-                        "description": "The name of the OIDC provider configuration. \n IdentityProviderConfigName is a required field",
+                        "description": "The name of the OIDC provider configuration.\n\n\nIdentityProviderConfigName is a required field",
                         "type": "string"
                       },
                       "issuerUrl": {
-                        "description": "The URL of the OpenID identity provider that allows the API server to discover public signing keys for verifying tokens. The URL must begin with https:// and should correspond to the iss claim in the provider's OIDC ID tokens. Per the OIDC standard, path components are allowed but query parameters are not. Typically the URL consists of only a hostname, like https://server.example.org or https://example.com. This URL should point to the level below .well-known/openid-configuration and must be publicly accessible over the internet.",
+                        "description": "The URL of the OpenID identity provider that allows the API server to discover\npublic signing keys for verifying tokens. The URL must begin with https://\nand should correspond to the iss claim in the provider's OIDC ID tokens.\nPer the OIDC standard, path components are allowed but query parameters are\nnot. Typically the URL consists of only a hostname, like https://server.example.org\nor https://example.com. This URL should point to the level below .well-known/openid-configuration\nand must be publicly accessible over the internet.",
                         "type": "string"
                       },
                       "requiredClaims": {
-                        "description": "The key value pairs that describe required claims in the identity token. If set, each claim is verified to be present in the token with a matching value. For the maximum number of claims that you can require, see Amazon EKS service quotas (https://docs.aws.amazon.com/eks/latest/userguide/service-quotas.html) in the Amazon EKS User Guide.",
+                        "description": "The key value pairs that describe required claims in the identity token.\nIf set, each claim is verified to be present in the token with a matching\nvalue. For the maximum number of claims that you can require, see Amazon\nEKS service quotas (https://docs.aws.amazon.com/eks/latest/userguide/service-quotas.html)\nin the Amazon EKS User Guide.",
                         "type": "object",
                         "additionalProperties": {
                           "type": "string"
@@ -547,11 +708,11 @@
                         }
                       },
                       "usernameClaim": {
-                        "description": "The JSON Web Token (JWT) claim to use as the username. The default is sub, which is expected to be a unique identifier of the end user. You can choose other claims, such as email or name, depending on the OpenID identity provider. Claims other than email are prefixed with the issuer URL to prevent naming clashes with other plug-ins.",
+                        "description": "The JSON Web Token (JWT) claim to use as the username. The default is sub,\nwhich is expected to be a unique identifier of the end user. You can choose\nother claims, such as email or name, depending on the OpenID identity provider.\nClaims other than email are prefixed with the issuer URL to prevent naming\nclashes with other plug-ins.",
                         "type": "string"
                       },
                       "usernamePrefix": {
-                        "description": "The prefix that is prepended to username claims to prevent clashes with existing names. If you do not provide this field, and username is a value other than email, the prefix defaults to issuerurl#. You can use the value - to disable all prefixing.",
+                        "description": "The prefix that is prepended to username claims to prevent clashes with existing\nnames. If you do not provide this field, and username is a value other than\nemail, the prefix defaults to issuerurl#. You can use the value - to disable\nall prefixing.",
                         "type": "string"
                       }
                     }
@@ -561,19 +722,19 @@
                     "type": "string"
                   },
                   "roleAdditionalPolicies": {
-                    "description": "RoleAdditionalPolicies allows you to attach additional polices to the control plane role. You must enable the EKSAllowAddRoles feature flag to incorporate these into the created role.",
+                    "description": "RoleAdditionalPolicies allows you to attach additional polices to\nthe control plane role. You must enable the EKSAllowAddRoles\nfeature flag to incorporate these into the created role.",
                     "type": "array",
                     "items": {
                       "type": "string"
                     }
                   },
                   "roleName": {
-                    "description": "RoleName specifies the name of IAM role that gives EKS permission to make API calls. If the role is pre-existing we will treat it as unmanaged and not delete it on deletion. If the EKSEnableIAM feature flag is true and no name is supplied then a role is created.",
+                    "description": "RoleName specifies the name of IAM role that gives EKS\npermission to make API calls. If the role is pre-existing\nwe will treat it as unmanaged and not delete it on\ndeletion. If the EKSEnableIAM feature flag is true\nand no name is supplied then a role is created.",
                     "type": "string",
                     "minLength": 2
                   },
                   "secondaryCidrBlock": {
-                    "description": "SecondaryCidrBlock is the additional CIDR range to use for pod IPs. Must be within the 100.64.0.0/10 or 198.19.0.0/16 range.",
+                    "description": "SecondaryCidrBlock is the additional CIDR range to use for pod IPs.\nMust be within the 100.64.0.0/10 or 198.19.0.0/16 range.",
                     "type": "string"
                   },
                   "sshKeyName": {
@@ -581,7 +742,7 @@
                     "type": "string"
                   },
                   "tokenMethod": {
-                    "description": "TokenMethod is used to specify the method for obtaining a client token for communicating with EKS iam-authenticator - obtains a client token using iam-authentictor aws-cli - obtains a client token using the AWS CLI Defaults to iam-authenticator",
+                    "description": "TokenMethod is used to specify the method for obtaining a client token for communicating with EKS\niam-authenticator - obtains a client token using iam-authentictor\naws-cli - obtains a client token using the AWS CLI\nDefaults to iam-authenticator",
                     "type": "string",
                     "default": "iam-authenticator",
                     "enum": [
@@ -590,7 +751,7 @@
                     ]
                   },
                   "version": {
-                    "description": "Version defines the desired Kubernetes version. If no version number is supplied then the latest version of Kubernetes that EKS supports will be used.",
+                    "description": "Version defines the desired Kubernetes version. If no version number\nis supplied then the latest version of Kubernetes that EKS supports\nwill be used.",
                     "type": "string",
                     "minLength": 2,
                     "pattern": "^v?(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)\\.?(\\.0|[1-9][0-9]*)?$"
@@ -614,7 +775,7 @@
                               "type": "string"
                             },
                             "value": {
-                              "description": "Variable references $(VAR_NAME) are expanded using the previously defined environment variables in the container and any service environment variables. If a variable cannot be resolved, the reference in the input string will be unchanged. Double $$ are reduced to a single $, which allows for escaping the $(VAR_NAME) syntax: i.e. \"$$(VAR_NAME)\" will produce the string literal \"$(VAR_NAME)\". Escaped references will never be expanded, regardless of whether the variable exists or not. Defaults to \"\".",
+                              "description": "Variable references $(VAR_NAME) are expanded\nusing the previously defined environment variables in the container and\nany service environment variables. If a variable cannot be resolved,\nthe reference in the input string will be unchanged. Double $$ are reduced\nto a single $, which allows for escaping the $(VAR_NAME) syntax: i.e.\n\"$$(VAR_NAME)\" will produce the string literal \"$(VAR_NAME)\".\nEscaped references will never be expanded, regardless of whether the variable\nexists or not.\nDefaults to \"\".",
                               "type": "string"
                             },
                             "valueFrom": {
@@ -633,17 +794,18 @@
                                       "type": "string"
                                     },
                                     "name": {
-                                      "description": "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+                                      "description": "Name of the referent.\nMore info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names\nTODO: Add other useful fields. apiVersion, kind, uid?",
                                       "type": "string"
                                     },
                                     "optional": {
                                       "description": "Specify whether the ConfigMap or its key must be defined",
                                       "type": "boolean"
                                     }
-                                  }
+                                  },
+                                  "x-kubernetes-map-type": "atomic"
                                 },
                                 "fieldRef": {
-                                  "description": "Selects a field of the pod: supports metadata.name, metadata.namespace, `metadata.labels['\u003cKEY\u003e']`, `metadata.annotations['\u003cKEY\u003e']`, spec.nodeName, spec.serviceAccountName, status.hostIP, status.podIP, status.podIPs.",
+                                  "description": "Selects a field of the pod: supports metadata.name, metadata.namespace, `metadata.labels['\u003cKEY\u003e']`, `metadata.annotations['\u003cKEY\u003e']`,\nspec.nodeName, spec.serviceAccountName, status.hostIP, status.podIP, status.podIPs.",
                                   "type": "object",
                                   "required": [
                                     "fieldPath"
@@ -657,10 +819,11 @@
                                       "description": "Path of the field to select in the specified API version.",
                                       "type": "string"
                                     }
-                                  }
+                                  },
+                                  "x-kubernetes-map-type": "atomic"
                                 },
                                 "resourceFieldRef": {
-                                  "description": "Selects a resource of the container: only resources limits and requests (limits.cpu, limits.memory, limits.ephemeral-storage, requests.cpu, requests.memory and requests.ephemeral-storage) are currently supported.",
+                                  "description": "Selects a resource of the container: only resources limits and requests\n(limits.cpu, limits.memory, limits.ephemeral-storage, requests.cpu, requests.memory and requests.ephemeral-storage) are currently supported.",
                                   "type": "object",
                                   "required": [
                                     "resource"
@@ -687,7 +850,8 @@
                                       "description": "Required: resource to select",
                                       "type": "string"
                                     }
-                                  }
+                                  },
+                                  "x-kubernetes-map-type": "atomic"
                                 },
                                 "secretKeyRef": {
                                   "description": "Selects a key of a secret in the pod's namespace",
@@ -701,14 +865,15 @@
                                       "type": "string"
                                     },
                                     "name": {
-                                      "description": "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+                                      "description": "Name of the referent.\nMore info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names\nTODO: Add other useful fields. apiVersion, kind, uid?",
                                       "type": "string"
                                     },
                                     "optional": {
                                       "description": "Specify whether the Secret or its key must be defined",
                                       "type": "boolean"
                                     }
-                                  }
+                                  },
+                                  "x-kubernetes-map-type": "atomic"
                                 }
                               }
                             }
@@ -819,7 +984,7 @@
                               "type": "string"
                             },
                             "type": {
-                              "description": "Machine address type, one of Hostname, ExternalIP or InternalIP.",
+                              "description": "Machine address type, one of Hostname, ExternalIP, InternalIP, ExternalDNS or InternalDNS.",
                               "type": "string"
                             }
                           }
@@ -853,7 +1018,7 @@
                         "type": "object",
                         "properties": {
                           "httpEndpoint": {
-                            "description": "Enables or disables the HTTP metadata endpoint on your instances. \n If you specify a value of disabled, you cannot access your instance metadata. \n Default: enabled",
+                            "description": "Enables or disables the HTTP metadata endpoint on your instances.\n\n\nIf you specify a value of disabled, you cannot access your instance metadata.\n\n\nDefault: enabled",
                             "type": "string",
                             "default": "enabled",
                             "enum": [
@@ -862,7 +1027,7 @@
                             ]
                           },
                           "httpPutResponseHopLimit": {
-                            "description": "The desired HTTP PUT response hop limit for instance metadata requests. The larger the number, the further instance metadata requests can travel. \n Default: 1",
+                            "description": "The desired HTTP PUT response hop limit for instance metadata requests. The\nlarger the number, the further instance metadata requests can travel.\n\n\nDefault: 1",
                             "type": "integer",
                             "format": "int64",
                             "default": 1,
@@ -870,16 +1035,16 @@
                             "minimum": 1
                           },
                           "httpTokens": {
-                            "description": "The state of token usage for your instance metadata requests. \n If the state is optional, you can choose to retrieve instance metadata with or without a session token on your request. If you retrieve the IAM role credentials without a token, the version 1.0 role credentials are returned. If you retrieve the IAM role credentials using a valid session token, the version 2.0 role credentials are returned. \n If the state is required, you must send a session token with any instance metadata retrieval requests. In this state, retrieving the IAM role credentials always returns the version 2.0 credentials; the version 1.0 credentials are not available. \n Default: required",
+                            "description": "The state of token usage for your instance metadata requests.\n\n\nIf the state is optional, you can choose to retrieve instance metadata with\nor without a session token on your request. If you retrieve the IAM role\ncredentials without a token, the version 1.0 role credentials are returned.\nIf you retrieve the IAM role credentials using a valid session token, the\nversion 2.0 role credentials are returned.\n\n\nIf the state is required, you must send a session token with any instance\nmetadata retrieval requests. In this state, retrieving the IAM role credentials\nalways returns the version 2.0 credentials; the version 1.0 credentials are\nnot available.\n\n\nDefault: optional",
                             "type": "string",
-                            "default": "required",
+                            "default": "optional",
                             "enum": [
                               "optional",
                               "required"
                             ]
                           },
                           "instanceMetadataTags": {
-                            "description": "Set to enabled to allow access to instance tags from the instance metadata. Set to disabled to turn off access to instance tags from the instance metadata. For more information, see Work with instance tags using the instance metadata (https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/Using_Tags.html#work-with-tags-in-IMDS). \n Default: disabled",
+                            "description": "Set to enabled to allow access to instance tags from the instance metadata.\nSet to disabled to turn off access to instance tags from the instance metadata.\nFor more information, see Work with instance tags using the instance metadata\n(https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/Using_Tags.html#work-with-tags-in-IMDS).\n\n\nDefault: disabled",
                             "type": "string",
                             "default": "disabled",
                             "enum": [
@@ -919,7 +1084,7 @@
                               "type": "boolean"
                             },
                             "encryptionKey": {
-                              "description": "EncryptionKey is the KMS key to use to encrypt the volume. Can be either a KMS key ID or ARN. If Encrypted is set and this is omitted, the default AWS key will be used. The key must already exist and be accessible by the controller.",
+                              "description": "EncryptionKey is the KMS key to use to encrypt the volume. Can be either a KMS key ID or ARN.\nIf Encrypted is set and this is omitted, the default AWS key will be used.\nThe key must already exist and be accessible by the controller.",
                               "type": "string"
                             },
                             "iops": {
@@ -928,7 +1093,7 @@
                               "format": "int64"
                             },
                             "size": {
-                              "description": "Size specifies size (in Gi) of the storage device. Must be greater than the image snapshot size or 8 (whichever is greater).",
+                              "description": "Size specifies size (in Gi) of the storage device.\nMust be greater than the image snapshot size or 8 (whichever is greater).",
                               "type": "integer",
                               "format": "int64",
                               "minimum": 8
@@ -945,9 +1110,46 @@
                           }
                         }
                       },
+                      "placementGroupName": {
+                        "description": "PlacementGroupName specifies the name of the placement group in which to launch the instance.",
+                        "type": "string"
+                      },
+                      "placementGroupPartition": {
+                        "description": "PlacementGroupPartition is the partition number within the placement group in which to launch the instance.\nThis value is only valid if the placement group, referred in `PlacementGroupName`, was created with\nstrategy set to partition.",
+                        "type": "integer",
+                        "format": "int64",
+                        "maximum": 7,
+                        "minimum": 1
+                      },
+                      "privateDnsName": {
+                        "description": "PrivateDNSName is the options for the instance hostname.",
+                        "type": "object",
+                        "properties": {
+                          "enableResourceNameDnsAAAARecord": {
+                            "description": "EnableResourceNameDNSAAAARecord indicates whether to respond to DNS queries for instance hostnames with DNS AAAA records.",
+                            "type": "boolean"
+                          },
+                          "enableResourceNameDnsARecord": {
+                            "description": "EnableResourceNameDNSARecord indicates whether to respond to DNS queries for instance hostnames with DNS A records.",
+                            "type": "boolean"
+                          },
+                          "hostnameType": {
+                            "description": "The type of hostname to assign to an instance.",
+                            "type": "string",
+                            "enum": [
+                              "ip-name",
+                              "resource-name"
+                            ]
+                          }
+                        }
+                      },
                       "privateIp": {
                         "description": "The private IPv4 address assigned to the instance.",
                         "type": "string"
+                      },
+                      "publicIPOnLaunch": {
+                        "description": "PublicIPOnLaunch is the option to associate a public IP on instance launch",
+                        "type": "boolean"
                       },
                       "publicIp": {
                         "description": "The public IPv4 address assigned to the instance, if applicable.",
@@ -969,7 +1171,7 @@
                             "type": "boolean"
                           },
                           "encryptionKey": {
-                            "description": "EncryptionKey is the KMS key to use to encrypt the volume. Can be either a KMS key ID or ARN. If Encrypted is set and this is omitted, the default AWS key will be used. The key must already exist and be accessible by the controller.",
+                            "description": "EncryptionKey is the KMS key to use to encrypt the volume. Can be either a KMS key ID or ARN.\nIf Encrypted is set and this is omitted, the default AWS key will be used.\nThe key must already exist and be accessible by the controller.",
                             "type": "string"
                           },
                           "iops": {
@@ -978,7 +1180,7 @@
                             "format": "int64"
                           },
                           "size": {
-                            "description": "Size specifies size (in Gi) of the storage device. Must be greater than the image snapshot size or 8 (whichever is greater).",
+                            "description": "Size specifies size (in Gi) of the storage device.\nMust be greater than the image snapshot size or 8 (whichever is greater).",
                             "type": "integer",
                             "format": "int64",
                             "minimum": 8
@@ -1035,7 +1237,7 @@
                         "type": "string"
                       },
                       "userData": {
-                        "description": "UserData is the raw data script passed to the instance which is run upon bootstrap. This field must not be base64 encoded and should only be used when running a new instance.",
+                        "description": "UserData is the raw data script passed to the instance which is run upon bootstrap.\nThis field must not be base64 encoded and should only be used when running a new instance.",
                         "type": "string"
                       },
                       "volumeIDs": {
@@ -1060,20 +1262,20 @@
                       ],
                       "properties": {
                         "lastTransitionTime": {
-                          "description": "Last time the condition transitioned from one status to another. This should be when the underlying condition changed. If that is not known, then using the time when the API field changed is acceptable.",
+                          "description": "Last time the condition transitioned from one status to another.\nThis should be when the underlying condition changed. If that is not known, then using the time when\nthe API field changed is acceptable.",
                           "type": "string",
                           "format": "date-time"
                         },
                         "message": {
-                          "description": "A human readable message indicating details about the transition. This field may be empty.",
+                          "description": "A human readable message indicating details about the transition.\nThis field may be empty.",
                           "type": "string"
                         },
                         "reason": {
-                          "description": "The reason for the condition's last transition in CamelCase. The specific API may choose whether or not this field is considered a guaranteed API. This field may not be empty.",
+                          "description": "The reason for the condition's last transition in CamelCase.\nThe specific API may choose whether or not this field is considered a guaranteed API.\nThis field may not be empty.",
                           "type": "string"
                         },
                         "severity": {
-                          "description": "Severity provides an explicit classification of Reason code, so the users or machines can immediately understand the current situation and act accordingly. The Severity field MUST be set only when Status=False.",
+                          "description": "Severity provides an explicit classification of Reason code, so the users or machines can immediately\nunderstand the current situation and act accordingly.\nThe Severity field MUST be set only when Status=False.",
                           "type": "string"
                         },
                         "status": {
@@ -1081,14 +1283,14 @@
                           "type": "string"
                         },
                         "type": {
-                          "description": "Type of condition in CamelCase or in foo.example.com/CamelCase. Many .condition.type values are consistent across resources like Available, but because arbitrary conditions can be useful (see .node.status.conditions), the ability to deconflict is important.",
+                          "description": "Type of condition in CamelCase or in foo.example.com/CamelCase.\nMany .condition.type values are consistent across resources like Available, but because arbitrary conditions\ncan be useful (see .node.status.conditions), the ability to deconflict is important.",
                           "type": "string"
                         }
                       }
                     }
                   },
                   "externalManagedControlPlane": {
-                    "description": "ExternalManagedControlPlane indicates to cluster-api that the control plane is managed by an external service such as AKS, EKS, GKE, etc.",
+                    "description": "ExternalManagedControlPlane indicates to cluster-api that the control plane\nis managed by an external service such as AKS, EKS, GKE, etc.",
                     "type": "boolean",
                     "default": true
                   },
@@ -1096,7 +1298,7 @@
                     "description": "FailureDomains specifies a list fo available availability zones that can be used",
                     "type": "object",
                     "additionalProperties": {
-                      "description": "FailureDomainSpec is the Schema for Cluster API failure domains. It allows controllers to understand how many failure domains a cluster can optionally span across.",
+                      "description": "FailureDomainSpec is the Schema for Cluster API failure domains.\nIt allows controllers to understand how many failure domains a cluster can optionally span across.",
                       "type": "object",
                       "properties": {
                         "attributes": {
@@ -1114,11 +1316,11 @@
                     }
                   },
                   "failureMessage": {
-                    "description": "ErrorMessage indicates that there is a terminal problem reconciling the state, and will be set to a descriptive error message.",
+                    "description": "ErrorMessage indicates that there is a terminal problem reconciling the\nstate, and will be set to a descriptive error message.",
                     "type": "string"
                   },
                   "identityProviderStatus": {
-                    "description": "IdentityProviderStatus holds the status for associated identity provider",
+                    "description": "IdentityProviderStatus holds the status for\nassociated identity provider",
                     "type": "object",
                     "properties": {
                       "arn": {
@@ -1132,7 +1334,7 @@
                     }
                   },
                   "initialized": {
-                    "description": "Initialized denotes whether or not the control plane has the uploaded kubernetes config-map.",
+                    "description": "Initialized denotes whether or not the control plane has the\nuploaded kubernetes config-map.",
                     "type": "boolean"
                   },
                   "networkStatus": {
@@ -1144,7 +1346,7 @@
                         "type": "object",
                         "properties": {
                           "arn": {
-                            "description": "ARN of the load balancer. Unlike the ClassicLB, ARN is used mostly to define and get it.",
+                            "description": "ARN of the load balancer. Unlike the ClassicLB, ARN is used mostly\nto define and get it.",
                             "type": "string"
                           },
                           "attributes": {
@@ -1156,7 +1358,7 @@
                                 "type": "boolean"
                               },
                               "idleTimeout": {
-                                "description": "IdleTimeout is time that the connection is allowed to be idle (no data has been sent over the connection) before it is closed by the load balancer.",
+                                "description": "IdleTimeout is time that the connection is allowed to be idle (no data\nhas been sent over the connection) before it is closed by the load balancer.",
                                 "type": "integer",
                                 "format": "int64"
                               }
@@ -1201,7 +1403,7 @@
                                   "type": "string"
                                 },
                                 "targetGroup": {
-                                  "description": "TargetGroupSpec specifies target group settings for a given listener. This is created first, and the ARN is then passed to the listener.",
+                                  "description": "TargetGroupSpec specifies target group settings for a given listener.\nThis is created first, and the ARN is then passed to the listener.",
                                   "type": "object",
                                   "required": [
                                     "name",
@@ -1212,7 +1414,8 @@
                                   "properties": {
                                     "name": {
                                       "description": "Name of the TargetGroup. Must be unique over the same group of listeners.",
-                                      "type": "string"
+                                      "type": "string",
+                                      "maxLength": 32
                                     },
                                     "port": {
                                       "description": "Port is the exposed port",
@@ -1225,7 +1428,10 @@
                                       "enum": [
                                         "tcp",
                                         "tls",
-                                        "upd"
+                                        "udp",
+                                        "TCP",
+                                        "TLS",
+                                        "UDP"
                                       ]
                                     },
                                     "targetGroupHealthCheck": {
@@ -1250,6 +1456,10 @@
                                           "format": "int64"
                                         },
                                         "timeoutSeconds": {
+                                          "type": "integer",
+                                          "format": "int64"
+                                        },
+                                        "unhealthyThresholdCount": {
                                           "type": "integer",
                                           "format": "int64"
                                         }
@@ -1279,7 +1489,7 @@
                                 "format": "int64"
                               },
                               "interval": {
-                                "description": "A Duration represents the elapsed time between two instants as an int64 nanosecond count. The representation limits the largest representable duration to approximately 290 years.",
+                                "description": "A Duration represents the elapsed time between two instants\nas an int64 nanosecond count. The representation limits the\nlargest representable duration to approximately 290 years.",
                                 "type": "integer",
                                 "format": "int64"
                               },
@@ -1287,7 +1497,7 @@
                                 "type": "string"
                               },
                               "timeout": {
-                                "description": "A Duration represents the elapsed time between two instants as an int64 nanosecond count. The representation limits the largest representable duration to approximately 290 years.",
+                                "description": "A Duration represents the elapsed time between two instants\nas an int64 nanosecond count. The representation limits the\nlargest representable duration to approximately 290 years.",
                                 "type": "integer",
                                 "format": "int64"
                               },
@@ -1340,7 +1550,253 @@
                             ]
                           },
                           "name": {
-                            "description": "The name of the load balancer. It must be unique within the set of load balancers defined in the region. It also serves as identifier.",
+                            "description": "The name of the load balancer. It must be unique within the set of load balancers\ndefined in the region. It also serves as identifier.",
+                            "type": "string"
+                          },
+                          "scheme": {
+                            "description": "Scheme is the load balancer scheme, either internet-facing or private.",
+                            "type": "string"
+                          },
+                          "securityGroupIds": {
+                            "description": "SecurityGroupIDs is an array of security groups assigned to the load balancer.",
+                            "type": "array",
+                            "items": {
+                              "type": "string"
+                            }
+                          },
+                          "subnetIds": {
+                            "description": "SubnetIDs is an array of subnets in the VPC attached to the load balancer.",
+                            "type": "array",
+                            "items": {
+                              "type": "string"
+                            }
+                          },
+                          "tags": {
+                            "description": "Tags is a map of tags associated with the load balancer.",
+                            "type": "object",
+                            "additionalProperties": {
+                              "type": "string"
+                            }
+                          }
+                        }
+                      },
+                      "natGatewaysIPs": {
+                        "description": "NatGatewaysIPs contains the public IPs of the NAT Gateways",
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        }
+                      },
+                      "secondaryAPIServerELB": {
+                        "description": "SecondaryAPIServerELB is the secondary Kubernetes api server load balancer.",
+                        "type": "object",
+                        "properties": {
+                          "arn": {
+                            "description": "ARN of the load balancer. Unlike the ClassicLB, ARN is used mostly\nto define and get it.",
+                            "type": "string"
+                          },
+                          "attributes": {
+                            "description": "ClassicElbAttributes defines extra attributes associated with the load balancer.",
+                            "type": "object",
+                            "properties": {
+                              "crossZoneLoadBalancing": {
+                                "description": "CrossZoneLoadBalancing enables the classic load balancer load balancing.",
+                                "type": "boolean"
+                              },
+                              "idleTimeout": {
+                                "description": "IdleTimeout is time that the connection is allowed to be idle (no data\nhas been sent over the connection) before it is closed by the load balancer.",
+                                "type": "integer",
+                                "format": "int64"
+                              }
+                            }
+                          },
+                          "availabilityZones": {
+                            "description": "AvailabilityZones is an array of availability zones in the VPC attached to the load balancer.",
+                            "type": "array",
+                            "items": {
+                              "type": "string"
+                            }
+                          },
+                          "dnsName": {
+                            "description": "DNSName is the dns name of the load balancer.",
+                            "type": "string"
+                          },
+                          "elbAttributes": {
+                            "description": "ELBAttributes defines extra attributes associated with v2 load balancers.",
+                            "type": "object",
+                            "additionalProperties": {
+                              "type": "string"
+                            }
+                          },
+                          "elbListeners": {
+                            "description": "ELBListeners is an array of listeners associated with the load balancer. There must be at least one.",
+                            "type": "array",
+                            "items": {
+                              "description": "Listener defines an AWS network load balancer listener.",
+                              "type": "object",
+                              "required": [
+                                "port",
+                                "protocol",
+                                "targetGroup"
+                              ],
+                              "properties": {
+                                "port": {
+                                  "type": "integer",
+                                  "format": "int64"
+                                },
+                                "protocol": {
+                                  "description": "ELBProtocol defines listener protocols for a load balancer.",
+                                  "type": "string"
+                                },
+                                "targetGroup": {
+                                  "description": "TargetGroupSpec specifies target group settings for a given listener.\nThis is created first, and the ARN is then passed to the listener.",
+                                  "type": "object",
+                                  "required": [
+                                    "name",
+                                    "port",
+                                    "protocol",
+                                    "vpcId"
+                                  ],
+                                  "properties": {
+                                    "name": {
+                                      "description": "Name of the TargetGroup. Must be unique over the same group of listeners.",
+                                      "type": "string",
+                                      "maxLength": 32
+                                    },
+                                    "port": {
+                                      "description": "Port is the exposed port",
+                                      "type": "integer",
+                                      "format": "int64"
+                                    },
+                                    "protocol": {
+                                      "description": "ELBProtocol defines listener protocols for a load balancer.",
+                                      "type": "string",
+                                      "enum": [
+                                        "tcp",
+                                        "tls",
+                                        "udp",
+                                        "TCP",
+                                        "TLS",
+                                        "UDP"
+                                      ]
+                                    },
+                                    "targetGroupHealthCheck": {
+                                      "description": "HealthCheck is the elb health check associated with the load balancer.",
+                                      "type": "object",
+                                      "properties": {
+                                        "intervalSeconds": {
+                                          "type": "integer",
+                                          "format": "int64"
+                                        },
+                                        "path": {
+                                          "type": "string"
+                                        },
+                                        "port": {
+                                          "type": "string"
+                                        },
+                                        "protocol": {
+                                          "type": "string"
+                                        },
+                                        "thresholdCount": {
+                                          "type": "integer",
+                                          "format": "int64"
+                                        },
+                                        "timeoutSeconds": {
+                                          "type": "integer",
+                                          "format": "int64"
+                                        },
+                                        "unhealthyThresholdCount": {
+                                          "type": "integer",
+                                          "format": "int64"
+                                        }
+                                      }
+                                    },
+                                    "vpcId": {
+                                      "type": "string"
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          },
+                          "healthChecks": {
+                            "description": "HealthCheck is the classic elb health check associated with the load balancer.",
+                            "type": "object",
+                            "required": [
+                              "healthyThreshold",
+                              "interval",
+                              "target",
+                              "timeout",
+                              "unhealthyThreshold"
+                            ],
+                            "properties": {
+                              "healthyThreshold": {
+                                "type": "integer",
+                                "format": "int64"
+                              },
+                              "interval": {
+                                "description": "A Duration represents the elapsed time between two instants\nas an int64 nanosecond count. The representation limits the\nlargest representable duration to approximately 290 years.",
+                                "type": "integer",
+                                "format": "int64"
+                              },
+                              "target": {
+                                "type": "string"
+                              },
+                              "timeout": {
+                                "description": "A Duration represents the elapsed time between two instants\nas an int64 nanosecond count. The representation limits the\nlargest representable duration to approximately 290 years.",
+                                "type": "integer",
+                                "format": "int64"
+                              },
+                              "unhealthyThreshold": {
+                                "type": "integer",
+                                "format": "int64"
+                              }
+                            }
+                          },
+                          "listeners": {
+                            "description": "ClassicELBListeners is an array of classic elb listeners associated with the load balancer. There must be at least one.",
+                            "type": "array",
+                            "items": {
+                              "description": "ClassicELBListener defines an AWS classic load balancer listener.",
+                              "type": "object",
+                              "required": [
+                                "instancePort",
+                                "instanceProtocol",
+                                "port",
+                                "protocol"
+                              ],
+                              "properties": {
+                                "instancePort": {
+                                  "type": "integer",
+                                  "format": "int64"
+                                },
+                                "instanceProtocol": {
+                                  "description": "ELBProtocol defines listener protocols for a load balancer.",
+                                  "type": "string"
+                                },
+                                "port": {
+                                  "type": "integer",
+                                  "format": "int64"
+                                },
+                                "protocol": {
+                                  "description": "ELBProtocol defines listener protocols for a load balancer.",
+                                  "type": "string"
+                                }
+                              }
+                            }
+                          },
+                          "loadBalancerType": {
+                            "description": "LoadBalancerType sets the type for a load balancer. The default type is classic.",
+                            "type": "string",
+                            "enum": [
+                              "classic",
+                              "elb",
+                              "alb",
+                              "nlb"
+                            ]
+                          },
+                          "name": {
+                            "description": "The name of the load balancer. It must be unique within the set of load balancers\ndefined in the region. It also serves as identifier.",
                             "type": "string"
                           },
                           "scheme": {
@@ -1406,9 +1862,11 @@
                                     }
                                   },
                                   "description": {
+                                    "description": "Description provides extended information about the ingress rule.",
                                     "type": "string"
                                   },
                                   "fromPort": {
+                                    "description": "FromPort is the start of port range.",
                                     "type": "integer",
                                     "format": "int64"
                                   },
@@ -1420,8 +1878,17 @@
                                     }
                                   },
                                   "protocol": {
-                                    "description": "SecurityGroupProtocol defines the protocol type for a security group rule.",
-                                    "type": "string"
+                                    "description": "Protocol is the protocol for the ingress rule. Accepted values are \"-1\" (all), \"4\" (IP in IP),\"tcp\", \"udp\", \"icmp\", and \"58\" (ICMPv6), \"50\" (ESP).",
+                                    "type": "string",
+                                    "enum": [
+                                      "-1",
+                                      "4",
+                                      "tcp",
+                                      "udp",
+                                      "icmp",
+                                      "58",
+                                      "50"
+                                    ]
                                   },
                                   "sourceSecurityGroupIds": {
                                     "description": "The security group id to allow access from. Cannot be specified with CidrBlocks.",
@@ -1430,7 +1897,24 @@
                                       "type": "string"
                                     }
                                   },
+                                  "sourceSecurityGroupRoles": {
+                                    "description": "The security group role to allow access from. Cannot be specified with CidrBlocks.\nThe field will be combined with source security group IDs if specified.",
+                                    "type": "array",
+                                    "items": {
+                                      "description": "SecurityGroupRole defines the unique role of a security group.",
+                                      "type": "string",
+                                      "enum": [
+                                        "bastion",
+                                        "node",
+                                        "controlplane",
+                                        "apiserver-lb",
+                                        "lb",
+                                        "node-eks-additional"
+                                      ]
+                                    }
+                                  },
                                   "toPort": {
+                                    "description": "ToPort is the end of port range.",
                                     "type": "integer",
                                     "format": "int64"
                                   }
@@ -1468,7 +1952,7 @@
                     }
                   },
                   "ready": {
-                    "description": "Ready denotes that the AWSManagedControlPlane API Server is ready to receive requests and that the VPC infra is ready.",
+                    "description": "Ready denotes that the AWSManagedControlPlane API Server is ready to\nreceive requests and that the VPC infra is ready.",
                     "type": "boolean",
                     "default": false
                   }
@@ -1524,11 +2008,11 @@
             "type": "object",
             "properties": {
               "apiVersion": {
-                "description": "APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources",
+                "description": "APIVersion defines the versioned schema of this representation of an object.\nServers should convert recognized schemas to the latest internal value, and\nmay reject unrecognized values.\nMore info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources",
                 "type": "string"
               },
               "kind": {
-                "description": "Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds",
+                "description": "Kind is a string value representing the REST resource this object represents.\nServers may infer this from the endpoint the client submits requests to.\nCannot be updated.\nIn CamelCase.\nMore info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds",
                 "type": "string"
               },
               "metadata": {
@@ -1539,7 +2023,7 @@
                 "type": "object",
                 "properties": {
                   "additionalTags": {
-                    "description": "AdditionalTags is an optional set of tags to add to AWS resources managed by the AWS provider, in addition to the ones added by default.",
+                    "description": "AdditionalTags is an optional set of tags to add to AWS resources managed by the AWS provider, in addition to the\nones added by default.",
                     "type": "object",
                     "additionalProperties": {
                       "type": "string"
@@ -1556,8 +2040,12 @@
                         "version"
                       ],
                       "properties": {
+                        "configuration": {
+                          "description": "Configuration of the EKS addon",
+                          "type": "string"
+                        },
                         "conflictResolution": {
-                          "description": "ConflictResolution is used to declare what should happen if there are parameter conflicts. Defaults to none",
+                          "description": "ConflictResolution is used to declare what should happen if there\nare parameter conflicts. Defaults to none",
                           "type": "string",
                           "default": "overwrite",
                           "enum": [
@@ -1582,7 +2070,7 @@
                     }
                   },
                   "associateOIDCProvider": {
-                    "description": "AssociateOIDCProvider can be enabled to automatically create an identity provider for the controller for use with IAM roles for service accounts",
+                    "description": "AssociateOIDCProvider can be enabled to automatically create an identity\nprovider for the controller for use with IAM roles for service accounts",
                     "type": "boolean",
                     "default": false
                   },
@@ -1591,26 +2079,26 @@
                     "type": "object",
                     "properties": {
                       "allowedCIDRBlocks": {
-                        "description": "AllowedCIDRBlocks is a list of CIDR blocks allowed to access the bastion host. They are set as ingress rules for the Bastion host's Security Group (defaults to 0.0.0.0/0).",
+                        "description": "AllowedCIDRBlocks is a list of CIDR blocks allowed to access the bastion host.\nThey are set as ingress rules for the Bastion host's Security Group (defaults to 0.0.0.0/0).",
                         "type": "array",
                         "items": {
                           "type": "string"
                         }
                       },
                       "ami": {
-                        "description": "AMI will use the specified AMI to boot the bastion. If not specified, the AMI will default to one picked out in public space.",
+                        "description": "AMI will use the specified AMI to boot the bastion. If not specified,\nthe AMI will default to one picked out in public space.",
                         "type": "string"
                       },
                       "disableIngressRules": {
-                        "description": "DisableIngressRules will ensure there are no Ingress rules in the bastion host's security group. Requires AllowedCIDRBlocks to be empty.",
+                        "description": "DisableIngressRules will ensure there are no Ingress rules in the bastion host's security group.\nRequires AllowedCIDRBlocks to be empty.",
                         "type": "boolean"
                       },
                       "enabled": {
-                        "description": "Enabled allows this provider to create a bastion host instance with a public ip to access the VPC private network.",
+                        "description": "Enabled allows this provider to create a bastion host instance\nwith a public ip to access the VPC private network.",
                         "type": "boolean"
                       },
                       "instanceType": {
-                        "description": "InstanceType will use the specified instance type for the bastion. If not specified, Cluster API Provider AWS will use t3.micro for all regions except us-east-1, where t2.micro will be the default.",
+                        "description": "InstanceType will use the specified instance type for the bastion. If not specified,\nCluster API Provider AWS will use t3.micro for all regions except us-east-1, where t2.micro\nwill be the default.",
                         "type": "string"
                       }
                     }
@@ -1635,7 +2123,7 @@
                     }
                   },
                   "eksClusterName": {
-                    "description": "EKSClusterName allows you to specify the name of the EKS cluster in AWS. If you don't specify a name then a default name will be created based on the namespace and name of the managed control plane.",
+                    "description": "EKSClusterName allows you to specify the name of the EKS cluster in\nAWS. If you don't specify a name then a default name will be created\nbased on the namespace and name of the managed control plane.",
                     "type": "string"
                   },
                   "encryptionConfig": {
@@ -1677,7 +2165,7 @@
                     }
                   },
                   "iamAuthenticatorConfig": {
-                    "description": "IAMAuthenticatorConfig allows the specification of any additional user or role mappings for use when generating the aws-iam-authenticator configuration. If this is nil the default configuration is still generated for the cluster.",
+                    "description": "IAMAuthenticatorConfig allows the specification of any additional user or role mappings\nfor use when generating the aws-iam-authenticator configuration. If this is nil the\ndefault configuration is still generated for the cluster.",
                     "type": "object",
                     "properties": {
                       "mapRoles": {
@@ -1745,7 +2233,7 @@
                     }
                   },
                   "identityRef": {
-                    "description": "IdentityRef is a reference to a identity to be used when reconciling the managed control plane.",
+                    "description": "IdentityRef is a reference to an identity to be used when reconciling the managed control plane.\nIf no identity is specified, the default identity for this controller will be used.",
                     "type": "object",
                     "required": [
                       "kind",
@@ -1769,15 +2257,15 @@
                     }
                   },
                   "imageLookupBaseOS": {
-                    "description": "ImageLookupBaseOS is the name of the base operating system used to look up machine images when a machine does not specify an AMI. When set, this will be used for all cluster machines unless a machine specifies a different ImageLookupBaseOS.",
+                    "description": "ImageLookupBaseOS is the name of the base operating system used to look\nup machine images when a machine does not specify an AMI. When set, this\nwill be used for all cluster machines unless a machine specifies a\ndifferent ImageLookupBaseOS.",
                     "type": "string"
                   },
                   "imageLookupFormat": {
-                    "description": "ImageLookupFormat is the AMI naming format to look up machine images when a machine does not specify an AMI. When set, this will be used for all cluster machines unless a machine specifies a different ImageLookupOrg. Supports substitutions for {{.BaseOS}} and {{.K8sVersion}} with the base OS and kubernetes version, respectively. The BaseOS will be the value in ImageLookupBaseOS or ubuntu (the default), and the kubernetes version as defined by the packages produced by kubernetes/release without v as a prefix: 1.13.0, 1.12.5-mybuild.1, or 1.17.3. For example, the default image format of capa-ami-{{.BaseOS}}-?{{.K8sVersion}}-* will end up searching for AMIs that match the pattern capa-ami-ubuntu-?1.18.0-* for a Machine that is targeting kubernetes v1.18.0 and the ubuntu base OS. See also: https://golang.org/pkg/text/template/",
+                    "description": "ImageLookupFormat is the AMI naming format to look up machine images when\na machine does not specify an AMI. When set, this will be used for all\ncluster machines unless a machine specifies a different ImageLookupOrg.\nSupports substitutions for {{.BaseOS}} and {{.K8sVersion}} with the base\nOS and kubernetes version, respectively. The BaseOS will be the value in\nImageLookupBaseOS or ubuntu (the default), and the kubernetes version as\ndefined by the packages produced by kubernetes/release without v as a\nprefix: 1.13.0, 1.12.5-mybuild.1, or 1.17.3. For example, the default\nimage format of capa-ami-{{.BaseOS}}-?{{.K8sVersion}}-* will end up\nsearching for AMIs that match the pattern capa-ami-ubuntu-?1.18.0-* for a\nMachine that is targeting kubernetes v1.18.0 and the ubuntu base OS. See\nalso: https://golang.org/pkg/text/template/",
                     "type": "string"
                   },
                   "imageLookupOrg": {
-                    "description": "ImageLookupOrg is the AWS Organization ID to look up machine images when a machine does not specify an AMI. When set, this will be used for all cluster machines unless a machine specifies a different ImageLookupOrg.",
+                    "description": "ImageLookupOrg is the AWS Organization ID to look up machine images when a\nmachine does not specify an AMI. When set, this will be used for all\ncluster machines unless a machine specifies a different ImageLookupOrg.",
                     "type": "string"
                   },
                   "kubeProxy": {
@@ -1785,14 +2273,14 @@
                     "type": "object",
                     "properties": {
                       "disable": {
-                        "description": "Disable set to true indicates that kube-proxy should be disabled. With EKS clusters kube-proxy is automatically installed into the cluster. For clusters where you want to use kube-proxy functionality that is provided with an alternate CNI, this option provides a way to specify that the kube-proxy daemonset should be deleted. You cannot set this to true if you are using the Amazon kube-proxy addon.",
+                        "description": "Disable set to true indicates that kube-proxy should be disabled. With EKS clusters\nkube-proxy is automatically installed into the cluster. For clusters where you want\nto use kube-proxy functionality that is provided with an alternate CNI, this option\nprovides a way to specify that the kube-proxy daemonset should be deleted. You cannot\nset this to true if you are using the Amazon kube-proxy addon.",
                         "type": "boolean",
                         "default": false
                       }
                     }
                   },
                   "logging": {
-                    "description": "Logging specifies which EKS Cluster logs should be enabled. Entries for each of the enabled logs will be sent to CloudWatch",
+                    "description": "Logging specifies which EKS Cluster logs should be enabled. Entries for\neach of the enabled logs will be sent to CloudWatch",
                     "type": "object",
                     "required": [
                       "apiServer",
@@ -1833,12 +2321,92 @@
                     "description": "NetworkSpec encapsulates all things related to AWS network.",
                     "type": "object",
                     "properties": {
+                      "additionalControlPlaneIngressRules": {
+                        "description": "AdditionalControlPlaneIngressRules is an optional set of ingress rules to add to the control plane",
+                        "type": "array",
+                        "items": {
+                          "description": "IngressRule defines an AWS ingress rule for security groups.",
+                          "type": "object",
+                          "required": [
+                            "description",
+                            "fromPort",
+                            "protocol",
+                            "toPort"
+                          ],
+                          "properties": {
+                            "cidrBlocks": {
+                              "description": "List of CIDR blocks to allow access from. Cannot be specified with SourceSecurityGroupID.",
+                              "type": "array",
+                              "items": {
+                                "type": "string"
+                              }
+                            },
+                            "description": {
+                              "description": "Description provides extended information about the ingress rule.",
+                              "type": "string"
+                            },
+                            "fromPort": {
+                              "description": "FromPort is the start of port range.",
+                              "type": "integer",
+                              "format": "int64"
+                            },
+                            "ipv6CidrBlocks": {
+                              "description": "List of IPv6 CIDR blocks to allow access from. Cannot be specified with SourceSecurityGroupID.",
+                              "type": "array",
+                              "items": {
+                                "type": "string"
+                              }
+                            },
+                            "protocol": {
+                              "description": "Protocol is the protocol for the ingress rule. Accepted values are \"-1\" (all), \"4\" (IP in IP),\"tcp\", \"udp\", \"icmp\", and \"58\" (ICMPv6), \"50\" (ESP).",
+                              "type": "string",
+                              "enum": [
+                                "-1",
+                                "4",
+                                "tcp",
+                                "udp",
+                                "icmp",
+                                "58",
+                                "50"
+                              ]
+                            },
+                            "sourceSecurityGroupIds": {
+                              "description": "The security group id to allow access from. Cannot be specified with CidrBlocks.",
+                              "type": "array",
+                              "items": {
+                                "type": "string"
+                              }
+                            },
+                            "sourceSecurityGroupRoles": {
+                              "description": "The security group role to allow access from. Cannot be specified with CidrBlocks.\nThe field will be combined with source security group IDs if specified.",
+                              "type": "array",
+                              "items": {
+                                "description": "SecurityGroupRole defines the unique role of a security group.",
+                                "type": "string",
+                                "enum": [
+                                  "bastion",
+                                  "node",
+                                  "controlplane",
+                                  "apiserver-lb",
+                                  "lb",
+                                  "node-eks-additional"
+                                ]
+                              }
+                            },
+                            "toPort": {
+                              "description": "ToPort is the end of port range.",
+                              "type": "integer",
+                              "format": "int64"
+                            }
+                          }
+                        }
+                      },
                       "cni": {
                         "description": "CNI configuration",
                         "type": "object",
                         "properties": {
                           "cniIngressRules": {
-                            "description": "CNIIngressRules specify rules to apply to control plane and worker node security groups. The source for the rule will be set to control plane and worker security group IDs.",
+                            "description": "CNIIngressRules specify rules to apply to control plane and worker node security groups.\nThe source for the rule will be set to control plane and worker security group IDs.",
                             "type": "array",
                             "items": {
                               "description": "CNIIngressRule defines an AWS ingress rule for CNI requirements.",
@@ -1871,7 +2439,7 @@
                         }
                       },
                       "securityGroupOverrides": {
-                        "description": "SecurityGroupOverrides is an optional set of security groups to use for cluster instances This is optional - if not provided new security groups will be created for the cluster",
+                        "description": "SecurityGroupOverrides is an optional set of security groups to use for cluster instances\nThis is optional - if not provided new security groups will be created for the cluster",
                         "type": "object",
                         "additionalProperties": {
                           "type": "string"
@@ -1896,15 +2464,15 @@
                               "type": "string"
                             },
                             "id": {
-                              "description": "ID defines a unique identifier to reference this resource.",
+                              "description": "ID defines a unique identifier to reference this resource.\nIf you're bringing your subnet, set the AWS subnet-id here, it must start with `subnet-`.\n\n\nWhen the VPC is managed by CAPA, and you'd like the provider to create a subnet for you,\nthe id can be set to any placeholder value that does not start with `subnet-`;\nupon creation, the subnet AWS identifier will be populated in the `ResourceID` field and\nthe `id` field is going to be used as the subnet name. If you specify a tag\ncalled `Name`, it takes precedence.",
                               "type": "string"
                             },
                             "ipv6CidrBlock": {
-                              "description": "IPv6CidrBlock is the IPv6 CIDR block to be used when the provider creates a managed VPC. A subnet can have an IPv4 and an IPv6 address. IPv6 is only supported in managed clusters, this field cannot be set on AWSCluster object.",
+                              "description": "IPv6CidrBlock is the IPv6 CIDR block to be used when the provider creates a managed VPC.\nA subnet can have an IPv4 and an IPv6 address.\nIPv6 is only supported in managed clusters, this field cannot be set on AWSCluster object.",
                               "type": "string"
                             },
                             "isIpv6": {
-                              "description": "IsIPv6 defines the subnet as an IPv6 subnet. A subnet is IPv6 when it is associated with a VPC that has IPv6 enabled. IPv6 is only supported in managed clusters, this field cannot be set on AWSCluster object.",
+                              "description": "IsIPv6 defines the subnet as an IPv6 subnet. A subnet is IPv6 when it is associated with a VPC that has IPv6 enabled.\nIPv6 is only supported in managed clusters, this field cannot be set on AWSCluster object.",
                               "type": "boolean"
                             },
                             "isPublic": {
@@ -1912,7 +2480,15 @@
                               "type": "boolean"
                             },
                             "natGatewayId": {
-                              "description": "NatGatewayID is the NAT gateway id associated with the subnet. Ignored unless the subnet is managed by the provider, in which case this is set on the public subnet where the NAT gateway resides. It is then used to determine routes for private subnets in the same AZ as the public subnet.",
+                              "description": "NatGatewayID is the NAT gateway id associated with the subnet.\nIgnored unless the subnet is managed by the provider, in which case this is set on the public subnet where the NAT gateway resides. It is then used to determine routes for private subnets in the same AZ as the public subnet.",
+                              "type": "string"
+                            },
+                            "parentZoneName": {
+                              "description": "ParentZoneName is the zone name where the current subnet's zone is tied when\nthe zone is a Local Zone.\n\n\nThe subnets in Local Zone or Wavelength Zone locations consume the ParentZoneName\nto select the correct private route table to egress traffic to the internet.",
+                              "type": "string"
+                            },
+                            "resourceID": {
+                              "description": "ResourceID is the subnet identifier from AWS, READ ONLY.\nThis field is populated when the provider manages the subnet.",
                               "type": "string"
                             },
                             "routeTableId": {
@@ -1925,6 +2501,15 @@
                               "additionalProperties": {
                                 "type": "string"
                               }
+                            },
+                            "zoneType": {
+                              "description": "ZoneType defines the type of the zone where the subnet is created.\n\n\nThe valid values are availability-zone, local-zone, and wavelength-zone.\n\n\nSubnet with zone type availability-zone (regular) is always selected to create cluster\nresources, like Load Balancers, NAT Gateways, Contol Plane nodes, etc.\n\n\nSubnet with zone type local-zone or wavelength-zone is not eligible to automatically create\nregular cluster resources.\n\n\nThe public subnet in availability-zone or local-zone is associated with regular public\nroute table with default route entry to a Internet Gateway.\n\n\nThe public subnet in wavelength-zone is associated with a carrier public\nroute table with default route entry to a Carrier Gateway.\n\n\nThe private subnet in the availability-zone is associated with a private route table with\nthe default route entry to a NAT Gateway created in that zone.\n\n\nThe private subnet in the local-zone or wavelength-zone is associated with a private route table with\nthe default route entry re-using the NAT Gateway in the Region (preferred from the\nparent zone, the zone type availability-zone in the region, or first table available).",
+                              "type": "string",
+                              "enum": [
+                                "availability-zone",
+                                "local-zone",
+                                "wavelength-zone"
+                              ]
                             }
                           }
                         },
@@ -1938,7 +2523,7 @@
                         "type": "object",
                         "properties": {
                           "availabilityZoneSelection": {
-                            "description": "AvailabilityZoneSelection specifies how AZs should be selected if there are more AZs in a region than specified by AvailabilityZoneUsageLimit. There are 2 selection schemes: Ordered - selects based on alphabetical order Random - selects AZs randomly in a region Defaults to Ordered",
+                            "description": "AvailabilityZoneSelection specifies how AZs should be selected if there are more AZs\nin a region than specified by AvailabilityZoneUsageLimit. There are 2 selection schemes:\nOrdered - selects based on alphabetical order\nRandom - selects AZs randomly in a region\nDefaults to Ordered",
                             "type": "string",
                             "default": "Ordered",
                             "enum": [
@@ -1947,14 +2532,28 @@
                             ]
                           },
                           "availabilityZoneUsageLimit": {
-                            "description": "AvailabilityZoneUsageLimit specifies the maximum number of availability zones (AZ) that should be used in a region when automatically creating subnets. If a region has more than this number of AZs then this number of AZs will be picked randomly when creating default subnets. Defaults to 3",
+                            "description": "AvailabilityZoneUsageLimit specifies the maximum number of availability zones (AZ) that\nshould be used in a region when automatically creating subnets. If a region has more\nthan this number of AZs then this number of AZs will be picked randomly when creating\ndefault subnets. Defaults to 3",
                             "type": "integer",
                             "default": 3,
                             "minimum": 1
                           },
+                          "carrierGatewayId": {
+                            "description": "CarrierGatewayID is the id of the internet gateway associated with the VPC,\nfor carrier network (Wavelength Zones).",
+                            "type": "string",
+                            "x-kubernetes-validations": [
+                              {
+                                "rule": "self.startsWith('cagw-')",
+                                "message": "Carrier Gateway ID must start with 'cagw-'"
+                              }
+                            ]
+                          },
                           "cidrBlock": {
-                            "description": "CidrBlock is the CIDR block to be used when the provider creates a managed VPC. Defaults to 10.0.0.0/16.",
+                            "description": "CidrBlock is the CIDR block to be used when the provider creates a managed VPC.\nDefaults to 10.0.0.0/16.\nMutually exclusive with IPAMPool.",
                             "type": "string"
+                          },
+                          "emptyRoutesDefaultVPCSecurityGroup": {
+                            "description": "EmptyRoutesDefaultVPCSecurityGroup specifies whether the default VPC security group ingress\nand egress rules should be removed.\n\n\nBy default, when creating a VPC, AWS creates a security group called `default` with ingress and egress\nrules that allow traffic from anywhere. The group could be used as a potential surface attack and\nit's generally suggested that the group rules are removed or modified appropriately.\n\n\nNOTE: This only applies when the VPC is managed by the Cluster API AWS controller.",
+                            "type": "boolean"
                           },
                           "id": {
                             "description": "ID is the vpc-id of the VPC this provider should use to create resources.",
@@ -1964,23 +2563,69 @@
                             "description": "InternetGatewayID is the id of the internet gateway associated with the VPC.",
                             "type": "string"
                           },
+                          "ipamPool": {
+                            "description": "IPAMPool defines the IPAMv4 pool to be used for VPC.\nMutually exclusive with CidrBlock.",
+                            "type": "object",
+                            "properties": {
+                              "id": {
+                                "description": "ID is the ID of the IPAM pool this provider should use to create VPC.",
+                                "type": "string"
+                              },
+                              "name": {
+                                "description": "Name is the name of the IPAM pool this provider should use to create VPC.",
+                                "type": "string"
+                              },
+                              "netmaskLength": {
+                                "description": "The netmask length of the IPv4 CIDR you want to allocate to VPC from\nan Amazon VPC IP Address Manager (IPAM) pool.\nDefaults to /16 for IPv4 if not specified.",
+                                "type": "integer",
+                                "format": "int64"
+                              }
+                            }
+                          },
                           "ipv6": {
-                            "description": "IPv6 contains ipv6 specific settings for the network. Supported only in managed clusters. This field cannot be set on AWSCluster object.",
+                            "description": "IPv6 contains ipv6 specific settings for the network. Supported only in managed clusters.\nThis field cannot be set on AWSCluster object.",
                             "type": "object",
                             "properties": {
                               "cidrBlock": {
-                                "description": "CidrBlock is the CIDR block provided by Amazon when VPC has enabled IPv6.",
+                                "description": "CidrBlock is the CIDR block provided by Amazon when VPC has enabled IPv6.\nMutually exclusive with IPAMPool.",
                                 "type": "string"
                               },
                               "egressOnlyInternetGatewayId": {
                                 "description": "EgressOnlyInternetGatewayID is the id of the egress only internet gateway associated with an IPv6 enabled VPC.",
                                 "type": "string"
                               },
+                              "ipamPool": {
+                                "description": "IPAMPool defines the IPAMv6 pool to be used for VPC.\nMutually exclusive with CidrBlock.",
+                                "type": "object",
+                                "properties": {
+                                  "id": {
+                                    "description": "ID is the ID of the IPAM pool this provider should use to create VPC.",
+                                    "type": "string"
+                                  },
+                                  "name": {
+                                    "description": "Name is the name of the IPAM pool this provider should use to create VPC.",
+                                    "type": "string"
+                                  },
+                                  "netmaskLength": {
+                                    "description": "The netmask length of the IPv4 CIDR you want to allocate to VPC from\nan Amazon VPC IP Address Manager (IPAM) pool.\nDefaults to /16 for IPv4 if not specified.",
+                                    "type": "integer",
+                                    "format": "int64"
+                                  }
+                                }
+                              },
                               "poolId": {
-                                "description": "PoolID is the IP pool which must be defined in case of BYO IP is defined.",
+                                "description": "PoolID is the IP pool which must be defined in case of BYO IP is defined.\nMust be specified if CidrBlock is set.\nMutually exclusive with IPAMPool.",
                                 "type": "string"
                               }
                             }
+                          },
+                          "privateDnsHostnameTypeOnLaunch": {
+                            "description": "PrivateDNSHostnameTypeOnLaunch is the type of hostname to assign to instances in the subnet at launch.\nFor IPv4-only and dual-stack (IPv4 and IPv6) subnets, an instance DNS name can be based on the instance IPv4 address (ip-name)\nor the instance ID (resource-name). For IPv6 only subnets, an instance DNS name must be based on the instance ID (resource-name).",
+                            "type": "string",
+                            "enum": [
+                              "ip-name",
+                              "resource-name"
+                            ]
                           },
                           "tags": {
                             "description": "Tags is a collection of tags describing the resource.",
@@ -1994,11 +2639,11 @@
                     }
                   },
                   "oidcIdentityProviderConfig": {
-                    "description": "IdentityProviderconfig is used to specify the oidc provider config to be attached with this eks cluster",
+                    "description": "IdentityProviderconfig is used to specify the oidc provider config\nto be attached with this eks cluster",
                     "type": "object",
                     "properties": {
                       "clientId": {
-                        "description": "This is also known as audience. The ID for the client application that makes authentication requests to the OpenID identity provider.",
+                        "description": "This is also known as audience. The ID for the client application that makes\nauthentication requests to the OpenID identity provider.",
                         "type": "string"
                       },
                       "groupsClaim": {
@@ -2006,19 +2651,19 @@
                         "type": "string"
                       },
                       "groupsPrefix": {
-                        "description": "The prefix that is prepended to group claims to prevent clashes with existing names (such as system: groups). For example, the valueoidc: will create group names like oidc:engineering and oidc:infra.",
+                        "description": "The prefix that is prepended to group claims to prevent clashes with existing\nnames (such as system: groups). For example, the valueoidc: will create group\nnames like oidc:engineering and oidc:infra.",
                         "type": "string"
                       },
                       "identityProviderConfigName": {
-                        "description": "The name of the OIDC provider configuration. \n IdentityProviderConfigName is a required field",
+                        "description": "The name of the OIDC provider configuration.\n\n\nIdentityProviderConfigName is a required field",
                         "type": "string"
                       },
                       "issuerUrl": {
-                        "description": "The URL of the OpenID identity provider that allows the API server to discover public signing keys for verifying tokens. The URL must begin with https:// and should correspond to the iss claim in the provider's OIDC ID tokens. Per the OIDC standard, path components are allowed but query parameters are not. Typically the URL consists of only a hostname, like https://server.example.org or https://example.com. This URL should point to the level below .well-known/openid-configuration and must be publicly accessible over the internet.",
+                        "description": "The URL of the OpenID identity provider that allows the API server to discover\npublic signing keys for verifying tokens. The URL must begin with https://\nand should correspond to the iss claim in the provider's OIDC ID tokens.\nPer the OIDC standard, path components are allowed but query parameters are\nnot. Typically the URL consists of only a hostname, like https://server.example.org\nor https://example.com. This URL should point to the level below .well-known/openid-configuration\nand must be publicly accessible over the internet.",
                         "type": "string"
                       },
                       "requiredClaims": {
-                        "description": "The key value pairs that describe required claims in the identity token. If set, each claim is verified to be present in the token with a matching value. For the maximum number of claims that you can require, see Amazon EKS service quotas (https://docs.aws.amazon.com/eks/latest/userguide/service-quotas.html) in the Amazon EKS User Guide.",
+                        "description": "The key value pairs that describe required claims in the identity token.\nIf set, each claim is verified to be present in the token with a matching\nvalue. For the maximum number of claims that you can require, see Amazon\nEKS service quotas (https://docs.aws.amazon.com/eks/latest/userguide/service-quotas.html)\nin the Amazon EKS User Guide.",
                         "type": "object",
                         "additionalProperties": {
                           "type": "string"
@@ -2032,33 +2677,37 @@
                         }
                       },
                       "usernameClaim": {
-                        "description": "The JSON Web Token (JWT) claim to use as the username. The default is sub, which is expected to be a unique identifier of the end user. You can choose other claims, such as email or name, depending on the OpenID identity provider. Claims other than email are prefixed with the issuer URL to prevent naming clashes with other plug-ins.",
+                        "description": "The JSON Web Token (JWT) claim to use as the username. The default is sub,\nwhich is expected to be a unique identifier of the end user. You can choose\nother claims, such as email or name, depending on the OpenID identity provider.\nClaims other than email are prefixed with the issuer URL to prevent naming\nclashes with other plug-ins.",
                         "type": "string"
                       },
                       "usernamePrefix": {
-                        "description": "The prefix that is prepended to username claims to prevent clashes with existing names. If you do not provide this field, and username is a value other than email, the prefix defaults to issuerurl#. You can use the value - to disable all prefixing.",
+                        "description": "The prefix that is prepended to username claims to prevent clashes with existing\nnames. If you do not provide this field, and username is a value other than\nemail, the prefix defaults to issuerurl#. You can use the value - to disable\nall prefixing.",
                         "type": "string"
                       }
                     }
+                  },
+                  "partition": {
+                    "description": "Partition is the AWS security partition being used. Defaults to \"aws\"",
+                    "type": "string"
                   },
                   "region": {
                     "description": "The AWS Region the cluster lives in.",
                     "type": "string"
                   },
                   "roleAdditionalPolicies": {
-                    "description": "RoleAdditionalPolicies allows you to attach additional polices to the control plane role. You must enable the EKSAllowAddRoles feature flag to incorporate these into the created role.",
+                    "description": "RoleAdditionalPolicies allows you to attach additional polices to\nthe control plane role. You must enable the EKSAllowAddRoles\nfeature flag to incorporate these into the created role.",
                     "type": "array",
                     "items": {
                       "type": "string"
                     }
                   },
                   "roleName": {
-                    "description": "RoleName specifies the name of IAM role that gives EKS permission to make API calls. If the role is pre-existing we will treat it as unmanaged and not delete it on deletion. If the EKSEnableIAM feature flag is true and no name is supplied then a role is created.",
+                    "description": "RoleName specifies the name of IAM role that gives EKS\npermission to make API calls. If the role is pre-existing\nwe will treat it as unmanaged and not delete it on\ndeletion. If the EKSEnableIAM feature flag is true\nand no name is supplied then a role is created.",
                     "type": "string",
                     "minLength": 2
                   },
                   "secondaryCidrBlock": {
-                    "description": "SecondaryCidrBlock is the additional CIDR range to use for pod IPs. Must be within the 100.64.0.0/10 or 198.19.0.0/16 range.",
+                    "description": "SecondaryCidrBlock is the additional CIDR range to use for pod IPs.\nMust be within the 100.64.0.0/10 or 198.19.0.0/16 range.",
                     "type": "string"
                   },
                   "sshKeyName": {
@@ -2066,7 +2715,7 @@
                     "type": "string"
                   },
                   "tokenMethod": {
-                    "description": "TokenMethod is used to specify the method for obtaining a client token for communicating with EKS iam-authenticator - obtains a client token using iam-authentictor aws-cli - obtains a client token using the AWS CLI Defaults to iam-authenticator",
+                    "description": "TokenMethod is used to specify the method for obtaining a client token for communicating with EKS\niam-authenticator - obtains a client token using iam-authentictor\naws-cli - obtains a client token using the AWS CLI\nDefaults to iam-authenticator",
                     "type": "string",
                     "default": "iam-authenticator",
                     "enum": [
@@ -2075,7 +2724,7 @@
                     ]
                   },
                   "version": {
-                    "description": "Version defines the desired Kubernetes version. If no version number is supplied then the latest version of Kubernetes that EKS supports will be used.",
+                    "description": "Version defines the desired Kubernetes version. If no version number\nis supplied then the latest version of Kubernetes that EKS supports\nwill be used.",
                     "type": "string",
                     "minLength": 2,
                     "pattern": "^v?(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)\\.?(\\.0|[1-9][0-9]*)?$"
@@ -2085,7 +2734,7 @@
                     "type": "object",
                     "properties": {
                       "disable": {
-                        "description": "Disable indicates that the Amazon VPC CNI should be disabled. With EKS clusters the Amazon VPC CNI is automatically installed into the cluster. For clusters where you want to use an alternate CNI this option provides a way to specify that the Amazon VPC CNI should be deleted. You cannot set this to true if you are using the Amazon VPC CNI addon.",
+                        "description": "Disable indicates that the Amazon VPC CNI should be disabled. With EKS clusters the\nAmazon VPC CNI is automatically installed into the cluster. For clusters where you want\nto use an alternate CNI this option provides a way to specify that the Amazon VPC CNI\nshould be deleted. You cannot set this to true if you are using the\nAmazon VPC CNI addon.",
                         "type": "boolean",
                         "default": false
                       },
@@ -2104,7 +2753,7 @@
                               "type": "string"
                             },
                             "value": {
-                              "description": "Variable references $(VAR_NAME) are expanded using the previously defined environment variables in the container and any service environment variables. If a variable cannot be resolved, the reference in the input string will be unchanged. Double $$ are reduced to a single $, which allows for escaping the $(VAR_NAME) syntax: i.e. \"$$(VAR_NAME)\" will produce the string literal \"$(VAR_NAME)\". Escaped references will never be expanded, regardless of whether the variable exists or not. Defaults to \"\".",
+                              "description": "Variable references $(VAR_NAME) are expanded\nusing the previously defined environment variables in the container and\nany service environment variables. If a variable cannot be resolved,\nthe reference in the input string will be unchanged. Double $$ are reduced\nto a single $, which allows for escaping the $(VAR_NAME) syntax: i.e.\n\"$$(VAR_NAME)\" will produce the string literal \"$(VAR_NAME)\".\nEscaped references will never be expanded, regardless of whether the variable\nexists or not.\nDefaults to \"\".",
                               "type": "string"
                             },
                             "valueFrom": {
@@ -2123,17 +2772,18 @@
                                       "type": "string"
                                     },
                                     "name": {
-                                      "description": "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+                                      "description": "Name of the referent.\nMore info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names\nTODO: Add other useful fields. apiVersion, kind, uid?",
                                       "type": "string"
                                     },
                                     "optional": {
                                       "description": "Specify whether the ConfigMap or its key must be defined",
                                       "type": "boolean"
                                     }
-                                  }
+                                  },
+                                  "x-kubernetes-map-type": "atomic"
                                 },
                                 "fieldRef": {
-                                  "description": "Selects a field of the pod: supports metadata.name, metadata.namespace, `metadata.labels['\u003cKEY\u003e']`, `metadata.annotations['\u003cKEY\u003e']`, spec.nodeName, spec.serviceAccountName, status.hostIP, status.podIP, status.podIPs.",
+                                  "description": "Selects a field of the pod: supports metadata.name, metadata.namespace, `metadata.labels['\u003cKEY\u003e']`, `metadata.annotations['\u003cKEY\u003e']`,\nspec.nodeName, spec.serviceAccountName, status.hostIP, status.podIP, status.podIPs.",
                                   "type": "object",
                                   "required": [
                                     "fieldPath"
@@ -2147,10 +2797,11 @@
                                       "description": "Path of the field to select in the specified API version.",
                                       "type": "string"
                                     }
-                                  }
+                                  },
+                                  "x-kubernetes-map-type": "atomic"
                                 },
                                 "resourceFieldRef": {
-                                  "description": "Selects a resource of the container: only resources limits and requests (limits.cpu, limits.memory, limits.ephemeral-storage, requests.cpu, requests.memory and requests.ephemeral-storage) are currently supported.",
+                                  "description": "Selects a resource of the container: only resources limits and requests\n(limits.cpu, limits.memory, limits.ephemeral-storage, requests.cpu, requests.memory and requests.ephemeral-storage) are currently supported.",
                                   "type": "object",
                                   "required": [
                                     "resource"
@@ -2177,7 +2828,8 @@
                                       "description": "Required: resource to select",
                                       "type": "string"
                                     }
-                                  }
+                                  },
+                                  "x-kubernetes-map-type": "atomic"
                                 },
                                 "secretKeyRef": {
                                   "description": "Selects a key of a secret in the pod's namespace",
@@ -2191,14 +2843,15 @@
                                       "type": "string"
                                     },
                                     "name": {
-                                      "description": "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+                                      "description": "Name of the referent.\nMore info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names\nTODO: Add other useful fields. apiVersion, kind, uid?",
                                       "type": "string"
                                     },
                                     "optional": {
                                       "description": "Specify whether the Secret or its key must be defined",
                                       "type": "boolean"
                                     }
-                                  }
+                                  },
+                                  "x-kubernetes-map-type": "atomic"
                                 }
                               }
                             }
@@ -2309,7 +2962,7 @@
                               "type": "string"
                             },
                             "type": {
-                              "description": "Machine address type, one of Hostname, ExternalIP or InternalIP.",
+                              "description": "Machine address type, one of Hostname, ExternalIP, InternalIP, ExternalDNS or InternalDNS.",
                               "type": "string"
                             }
                           }
@@ -2343,7 +2996,7 @@
                         "type": "object",
                         "properties": {
                           "httpEndpoint": {
-                            "description": "Enables or disables the HTTP metadata endpoint on your instances. \n If you specify a value of disabled, you cannot access your instance metadata. \n Default: enabled",
+                            "description": "Enables or disables the HTTP metadata endpoint on your instances.\n\n\nIf you specify a value of disabled, you cannot access your instance metadata.\n\n\nDefault: enabled",
                             "type": "string",
                             "default": "enabled",
                             "enum": [
@@ -2352,7 +3005,7 @@
                             ]
                           },
                           "httpPutResponseHopLimit": {
-                            "description": "The desired HTTP PUT response hop limit for instance metadata requests. The larger the number, the further instance metadata requests can travel. \n Default: 1",
+                            "description": "The desired HTTP PUT response hop limit for instance metadata requests. The\nlarger the number, the further instance metadata requests can travel.\n\n\nDefault: 1",
                             "type": "integer",
                             "format": "int64",
                             "default": 1,
@@ -2360,16 +3013,16 @@
                             "minimum": 1
                           },
                           "httpTokens": {
-                            "description": "The state of token usage for your instance metadata requests. \n If the state is optional, you can choose to retrieve instance metadata with or without a session token on your request. If you retrieve the IAM role credentials without a token, the version 1.0 role credentials are returned. If you retrieve the IAM role credentials using a valid session token, the version 2.0 role credentials are returned. \n If the state is required, you must send a session token with any instance metadata retrieval requests. In this state, retrieving the IAM role credentials always returns the version 2.0 credentials; the version 1.0 credentials are not available. \n Default: required",
+                            "description": "The state of token usage for your instance metadata requests.\n\n\nIf the state is optional, you can choose to retrieve instance metadata with\nor without a session token on your request. If you retrieve the IAM role\ncredentials without a token, the version 1.0 role credentials are returned.\nIf you retrieve the IAM role credentials using a valid session token, the\nversion 2.0 role credentials are returned.\n\n\nIf the state is required, you must send a session token with any instance\nmetadata retrieval requests. In this state, retrieving the IAM role credentials\nalways returns the version 2.0 credentials; the version 1.0 credentials are\nnot available.\n\n\nDefault: optional",
                             "type": "string",
-                            "default": "required",
+                            "default": "optional",
                             "enum": [
                               "optional",
                               "required"
                             ]
                           },
                           "instanceMetadataTags": {
-                            "description": "Set to enabled to allow access to instance tags from the instance metadata. Set to disabled to turn off access to instance tags from the instance metadata. For more information, see Work with instance tags using the instance metadata (https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/Using_Tags.html#work-with-tags-in-IMDS). \n Default: disabled",
+                            "description": "Set to enabled to allow access to instance tags from the instance metadata.\nSet to disabled to turn off access to instance tags from the instance metadata.\nFor more information, see Work with instance tags using the instance metadata\n(https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/Using_Tags.html#work-with-tags-in-IMDS).\n\n\nDefault: disabled",
                             "type": "string",
                             "default": "disabled",
                             "enum": [
@@ -2409,7 +3062,7 @@
                               "type": "boolean"
                             },
                             "encryptionKey": {
-                              "description": "EncryptionKey is the KMS key to use to encrypt the volume. Can be either a KMS key ID or ARN. If Encrypted is set and this is omitted, the default AWS key will be used. The key must already exist and be accessible by the controller.",
+                              "description": "EncryptionKey is the KMS key to use to encrypt the volume. Can be either a KMS key ID or ARN.\nIf Encrypted is set and this is omitted, the default AWS key will be used.\nThe key must already exist and be accessible by the controller.",
                               "type": "string"
                             },
                             "iops": {
@@ -2418,7 +3071,7 @@
                               "format": "int64"
                             },
                             "size": {
-                              "description": "Size specifies size (in Gi) of the storage device. Must be greater than the image snapshot size or 8 (whichever is greater).",
+                              "description": "Size specifies size (in Gi) of the storage device.\nMust be greater than the image snapshot size or 8 (whichever is greater).",
                               "type": "integer",
                               "format": "int64",
                               "minimum": 8
@@ -2435,9 +3088,46 @@
                           }
                         }
                       },
+                      "placementGroupName": {
+                        "description": "PlacementGroupName specifies the name of the placement group in which to launch the instance.",
+                        "type": "string"
+                      },
+                      "placementGroupPartition": {
+                        "description": "PlacementGroupPartition is the partition number within the placement group in which to launch the instance.\nThis value is only valid if the placement group, referred in `PlacementGroupName`, was created with\nstrategy set to partition.",
+                        "type": "integer",
+                        "format": "int64",
+                        "maximum": 7,
+                        "minimum": 1
+                      },
+                      "privateDnsName": {
+                        "description": "PrivateDNSName is the options for the instance hostname.",
+                        "type": "object",
+                        "properties": {
+                          "enableResourceNameDnsAAAARecord": {
+                            "description": "EnableResourceNameDNSAAAARecord indicates whether to respond to DNS queries for instance hostnames with DNS AAAA records.",
+                            "type": "boolean"
+                          },
+                          "enableResourceNameDnsARecord": {
+                            "description": "EnableResourceNameDNSARecord indicates whether to respond to DNS queries for instance hostnames with DNS A records.",
+                            "type": "boolean"
+                          },
+                          "hostnameType": {
+                            "description": "The type of hostname to assign to an instance.",
+                            "type": "string",
+                            "enum": [
+                              "ip-name",
+                              "resource-name"
+                            ]
+                          }
+                        }
+                      },
                       "privateIp": {
                         "description": "The private IPv4 address assigned to the instance.",
                         "type": "string"
+                      },
+                      "publicIPOnLaunch": {
+                        "description": "PublicIPOnLaunch is the option to associate a public IP on instance launch",
+                        "type": "boolean"
                       },
                       "publicIp": {
                         "description": "The public IPv4 address assigned to the instance, if applicable.",
@@ -2459,7 +3149,7 @@
                             "type": "boolean"
                           },
                           "encryptionKey": {
-                            "description": "EncryptionKey is the KMS key to use to encrypt the volume. Can be either a KMS key ID or ARN. If Encrypted is set and this is omitted, the default AWS key will be used. The key must already exist and be accessible by the controller.",
+                            "description": "EncryptionKey is the KMS key to use to encrypt the volume. Can be either a KMS key ID or ARN.\nIf Encrypted is set and this is omitted, the default AWS key will be used.\nThe key must already exist and be accessible by the controller.",
                             "type": "string"
                           },
                           "iops": {
@@ -2468,7 +3158,7 @@
                             "format": "int64"
                           },
                           "size": {
-                            "description": "Size specifies size (in Gi) of the storage device. Must be greater than the image snapshot size or 8 (whichever is greater).",
+                            "description": "Size specifies size (in Gi) of the storage device.\nMust be greater than the image snapshot size or 8 (whichever is greater).",
                             "type": "integer",
                             "format": "int64",
                             "minimum": 8
@@ -2525,7 +3215,7 @@
                         "type": "string"
                       },
                       "userData": {
-                        "description": "UserData is the raw data script passed to the instance which is run upon bootstrap. This field must not be base64 encoded and should only be used when running a new instance.",
+                        "description": "UserData is the raw data script passed to the instance which is run upon bootstrap.\nThis field must not be base64 encoded and should only be used when running a new instance.",
                         "type": "string"
                       },
                       "volumeIDs": {
@@ -2550,20 +3240,20 @@
                       ],
                       "properties": {
                         "lastTransitionTime": {
-                          "description": "Last time the condition transitioned from one status to another. This should be when the underlying condition changed. If that is not known, then using the time when the API field changed is acceptable.",
+                          "description": "Last time the condition transitioned from one status to another.\nThis should be when the underlying condition changed. If that is not known, then using the time when\nthe API field changed is acceptable.",
                           "type": "string",
                           "format": "date-time"
                         },
                         "message": {
-                          "description": "A human readable message indicating details about the transition. This field may be empty.",
+                          "description": "A human readable message indicating details about the transition.\nThis field may be empty.",
                           "type": "string"
                         },
                         "reason": {
-                          "description": "The reason for the condition's last transition in CamelCase. The specific API may choose whether or not this field is considered a guaranteed API. This field may not be empty.",
+                          "description": "The reason for the condition's last transition in CamelCase.\nThe specific API may choose whether or not this field is considered a guaranteed API.\nThis field may not be empty.",
                           "type": "string"
                         },
                         "severity": {
-                          "description": "Severity provides an explicit classification of Reason code, so the users or machines can immediately understand the current situation and act accordingly. The Severity field MUST be set only when Status=False.",
+                          "description": "Severity provides an explicit classification of Reason code, so the users or machines can immediately\nunderstand the current situation and act accordingly.\nThe Severity field MUST be set only when Status=False.",
                           "type": "string"
                         },
                         "status": {
@@ -2571,14 +3261,14 @@
                           "type": "string"
                         },
                         "type": {
-                          "description": "Type of condition in CamelCase or in foo.example.com/CamelCase. Many .condition.type values are consistent across resources like Available, but because arbitrary conditions can be useful (see .node.status.conditions), the ability to deconflict is important.",
+                          "description": "Type of condition in CamelCase or in foo.example.com/CamelCase.\nMany .condition.type values are consistent across resources like Available, but because arbitrary conditions\ncan be useful (see .node.status.conditions), the ability to deconflict is important.",
                           "type": "string"
                         }
                       }
                     }
                   },
                   "externalManagedControlPlane": {
-                    "description": "ExternalManagedControlPlane indicates to cluster-api that the control plane is managed by an external service such as AKS, EKS, GKE, etc.",
+                    "description": "ExternalManagedControlPlane indicates to cluster-api that the control plane\nis managed by an external service such as AKS, EKS, GKE, etc.",
                     "type": "boolean",
                     "default": true
                   },
@@ -2586,7 +3276,7 @@
                     "description": "FailureDomains specifies a list fo available availability zones that can be used",
                     "type": "object",
                     "additionalProperties": {
-                      "description": "FailureDomainSpec is the Schema for Cluster API failure domains. It allows controllers to understand how many failure domains a cluster can optionally span across.",
+                      "description": "FailureDomainSpec is the Schema for Cluster API failure domains.\nIt allows controllers to understand how many failure domains a cluster can optionally span across.",
                       "type": "object",
                       "properties": {
                         "attributes": {
@@ -2604,11 +3294,11 @@
                     }
                   },
                   "failureMessage": {
-                    "description": "ErrorMessage indicates that there is a terminal problem reconciling the state, and will be set to a descriptive error message.",
+                    "description": "ErrorMessage indicates that there is a terminal problem reconciling the\nstate, and will be set to a descriptive error message.",
                     "type": "string"
                   },
                   "identityProviderStatus": {
-                    "description": "IdentityProviderStatus holds the status for associated identity provider",
+                    "description": "IdentityProviderStatus holds the status for\nassociated identity provider",
                     "type": "object",
                     "properties": {
                       "arn": {
@@ -2622,7 +3312,7 @@
                     }
                   },
                   "initialized": {
-                    "description": "Initialized denotes whether or not the control plane has the uploaded kubernetes config-map.",
+                    "description": "Initialized denotes whether or not the control plane has the\nuploaded kubernetes config-map.",
                     "type": "boolean"
                   },
                   "networkStatus": {
@@ -2634,7 +3324,7 @@
                         "type": "object",
                         "properties": {
                           "arn": {
-                            "description": "ARN of the load balancer. Unlike the ClassicLB, ARN is used mostly to define and get it.",
+                            "description": "ARN of the load balancer. Unlike the ClassicLB, ARN is used mostly\nto define and get it.",
                             "type": "string"
                           },
                           "attributes": {
@@ -2646,7 +3336,7 @@
                                 "type": "boolean"
                               },
                               "idleTimeout": {
-                                "description": "IdleTimeout is time that the connection is allowed to be idle (no data has been sent over the connection) before it is closed by the load balancer.",
+                                "description": "IdleTimeout is time that the connection is allowed to be idle (no data\nhas been sent over the connection) before it is closed by the load balancer.",
                                 "type": "integer",
                                 "format": "int64"
                               }
@@ -2691,7 +3381,7 @@
                                   "type": "string"
                                 },
                                 "targetGroup": {
-                                  "description": "TargetGroupSpec specifies target group settings for a given listener. This is created first, and the ARN is then passed to the listener.",
+                                  "description": "TargetGroupSpec specifies target group settings for a given listener.\nThis is created first, and the ARN is then passed to the listener.",
                                   "type": "object",
                                   "required": [
                                     "name",
@@ -2702,7 +3392,8 @@
                                   "properties": {
                                     "name": {
                                       "description": "Name of the TargetGroup. Must be unique over the same group of listeners.",
-                                      "type": "string"
+                                      "type": "string",
+                                      "maxLength": 32
                                     },
                                     "port": {
                                       "description": "Port is the exposed port",
@@ -2715,7 +3406,10 @@
                                       "enum": [
                                         "tcp",
                                         "tls",
-                                        "upd"
+                                        "udp",
+                                        "TCP",
+                                        "TLS",
+                                        "UDP"
                                       ]
                                     },
                                     "targetGroupHealthCheck": {
@@ -2740,6 +3434,10 @@
                                           "format": "int64"
                                         },
                                         "timeoutSeconds": {
+                                          "type": "integer",
+                                          "format": "int64"
+                                        },
+                                        "unhealthyThresholdCount": {
                                           "type": "integer",
                                           "format": "int64"
                                         }
@@ -2769,7 +3467,7 @@
                                 "format": "int64"
                               },
                               "interval": {
-                                "description": "A Duration represents the elapsed time between two instants as an int64 nanosecond count. The representation limits the largest representable duration to approximately 290 years.",
+                                "description": "A Duration represents the elapsed time between two instants\nas an int64 nanosecond count. The representation limits the\nlargest representable duration to approximately 290 years.",
                                 "type": "integer",
                                 "format": "int64"
                               },
@@ -2777,7 +3475,7 @@
                                 "type": "string"
                               },
                               "timeout": {
-                                "description": "A Duration represents the elapsed time between two instants as an int64 nanosecond count. The representation limits the largest representable duration to approximately 290 years.",
+                                "description": "A Duration represents the elapsed time between two instants\nas an int64 nanosecond count. The representation limits the\nlargest representable duration to approximately 290 years.",
                                 "type": "integer",
                                 "format": "int64"
                               },
@@ -2830,7 +3528,253 @@
                             ]
                           },
                           "name": {
-                            "description": "The name of the load balancer. It must be unique within the set of load balancers defined in the region. It also serves as identifier.",
+                            "description": "The name of the load balancer. It must be unique within the set of load balancers\ndefined in the region. It also serves as identifier.",
+                            "type": "string"
+                          },
+                          "scheme": {
+                            "description": "Scheme is the load balancer scheme, either internet-facing or private.",
+                            "type": "string"
+                          },
+                          "securityGroupIds": {
+                            "description": "SecurityGroupIDs is an array of security groups assigned to the load balancer.",
+                            "type": "array",
+                            "items": {
+                              "type": "string"
+                            }
+                          },
+                          "subnetIds": {
+                            "description": "SubnetIDs is an array of subnets in the VPC attached to the load balancer.",
+                            "type": "array",
+                            "items": {
+                              "type": "string"
+                            }
+                          },
+                          "tags": {
+                            "description": "Tags is a map of tags associated with the load balancer.",
+                            "type": "object",
+                            "additionalProperties": {
+                              "type": "string"
+                            }
+                          }
+                        }
+                      },
+                      "natGatewaysIPs": {
+                        "description": "NatGatewaysIPs contains the public IPs of the NAT Gateways",
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        }
+                      },
+                      "secondaryAPIServerELB": {
+                        "description": "SecondaryAPIServerELB is the secondary Kubernetes api server load balancer.",
+                        "type": "object",
+                        "properties": {
+                          "arn": {
+                            "description": "ARN of the load balancer. Unlike the ClassicLB, ARN is used mostly\nto define and get it.",
+                            "type": "string"
+                          },
+                          "attributes": {
+                            "description": "ClassicElbAttributes defines extra attributes associated with the load balancer.",
+                            "type": "object",
+                            "properties": {
+                              "crossZoneLoadBalancing": {
+                                "description": "CrossZoneLoadBalancing enables the classic load balancer load balancing.",
+                                "type": "boolean"
+                              },
+                              "idleTimeout": {
+                                "description": "IdleTimeout is time that the connection is allowed to be idle (no data\nhas been sent over the connection) before it is closed by the load balancer.",
+                                "type": "integer",
+                                "format": "int64"
+                              }
+                            }
+                          },
+                          "availabilityZones": {
+                            "description": "AvailabilityZones is an array of availability zones in the VPC attached to the load balancer.",
+                            "type": "array",
+                            "items": {
+                              "type": "string"
+                            }
+                          },
+                          "dnsName": {
+                            "description": "DNSName is the dns name of the load balancer.",
+                            "type": "string"
+                          },
+                          "elbAttributes": {
+                            "description": "ELBAttributes defines extra attributes associated with v2 load balancers.",
+                            "type": "object",
+                            "additionalProperties": {
+                              "type": "string"
+                            }
+                          },
+                          "elbListeners": {
+                            "description": "ELBListeners is an array of listeners associated with the load balancer. There must be at least one.",
+                            "type": "array",
+                            "items": {
+                              "description": "Listener defines an AWS network load balancer listener.",
+                              "type": "object",
+                              "required": [
+                                "port",
+                                "protocol",
+                                "targetGroup"
+                              ],
+                              "properties": {
+                                "port": {
+                                  "type": "integer",
+                                  "format": "int64"
+                                },
+                                "protocol": {
+                                  "description": "ELBProtocol defines listener protocols for a load balancer.",
+                                  "type": "string"
+                                },
+                                "targetGroup": {
+                                  "description": "TargetGroupSpec specifies target group settings for a given listener.\nThis is created first, and the ARN is then passed to the listener.",
+                                  "type": "object",
+                                  "required": [
+                                    "name",
+                                    "port",
+                                    "protocol",
+                                    "vpcId"
+                                  ],
+                                  "properties": {
+                                    "name": {
+                                      "description": "Name of the TargetGroup. Must be unique over the same group of listeners.",
+                                      "type": "string",
+                                      "maxLength": 32
+                                    },
+                                    "port": {
+                                      "description": "Port is the exposed port",
+                                      "type": "integer",
+                                      "format": "int64"
+                                    },
+                                    "protocol": {
+                                      "description": "ELBProtocol defines listener protocols for a load balancer.",
+                                      "type": "string",
+                                      "enum": [
+                                        "tcp",
+                                        "tls",
+                                        "udp",
+                                        "TCP",
+                                        "TLS",
+                                        "UDP"
+                                      ]
+                                    },
+                                    "targetGroupHealthCheck": {
+                                      "description": "HealthCheck is the elb health check associated with the load balancer.",
+                                      "type": "object",
+                                      "properties": {
+                                        "intervalSeconds": {
+                                          "type": "integer",
+                                          "format": "int64"
+                                        },
+                                        "path": {
+                                          "type": "string"
+                                        },
+                                        "port": {
+                                          "type": "string"
+                                        },
+                                        "protocol": {
+                                          "type": "string"
+                                        },
+                                        "thresholdCount": {
+                                          "type": "integer",
+                                          "format": "int64"
+                                        },
+                                        "timeoutSeconds": {
+                                          "type": "integer",
+                                          "format": "int64"
+                                        },
+                                        "unhealthyThresholdCount": {
+                                          "type": "integer",
+                                          "format": "int64"
+                                        }
+                                      }
+                                    },
+                                    "vpcId": {
+                                      "type": "string"
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          },
+                          "healthChecks": {
+                            "description": "HealthCheck is the classic elb health check associated with the load balancer.",
+                            "type": "object",
+                            "required": [
+                              "healthyThreshold",
+                              "interval",
+                              "target",
+                              "timeout",
+                              "unhealthyThreshold"
+                            ],
+                            "properties": {
+                              "healthyThreshold": {
+                                "type": "integer",
+                                "format": "int64"
+                              },
+                              "interval": {
+                                "description": "A Duration represents the elapsed time between two instants\nas an int64 nanosecond count. The representation limits the\nlargest representable duration to approximately 290 years.",
+                                "type": "integer",
+                                "format": "int64"
+                              },
+                              "target": {
+                                "type": "string"
+                              },
+                              "timeout": {
+                                "description": "A Duration represents the elapsed time between two instants\nas an int64 nanosecond count. The representation limits the\nlargest representable duration to approximately 290 years.",
+                                "type": "integer",
+                                "format": "int64"
+                              },
+                              "unhealthyThreshold": {
+                                "type": "integer",
+                                "format": "int64"
+                              }
+                            }
+                          },
+                          "listeners": {
+                            "description": "ClassicELBListeners is an array of classic elb listeners associated with the load balancer. There must be at least one.",
+                            "type": "array",
+                            "items": {
+                              "description": "ClassicELBListener defines an AWS classic load balancer listener.",
+                              "type": "object",
+                              "required": [
+                                "instancePort",
+                                "instanceProtocol",
+                                "port",
+                                "protocol"
+                              ],
+                              "properties": {
+                                "instancePort": {
+                                  "type": "integer",
+                                  "format": "int64"
+                                },
+                                "instanceProtocol": {
+                                  "description": "ELBProtocol defines listener protocols for a load balancer.",
+                                  "type": "string"
+                                },
+                                "port": {
+                                  "type": "integer",
+                                  "format": "int64"
+                                },
+                                "protocol": {
+                                  "description": "ELBProtocol defines listener protocols for a load balancer.",
+                                  "type": "string"
+                                }
+                              }
+                            }
+                          },
+                          "loadBalancerType": {
+                            "description": "LoadBalancerType sets the type for a load balancer. The default type is classic.",
+                            "type": "string",
+                            "enum": [
+                              "classic",
+                              "elb",
+                              "alb",
+                              "nlb"
+                            ]
+                          },
+                          "name": {
+                            "description": "The name of the load balancer. It must be unique within the set of load balancers\ndefined in the region. It also serves as identifier.",
                             "type": "string"
                           },
                           "scheme": {
@@ -2896,9 +3840,11 @@
                                     }
                                   },
                                   "description": {
+                                    "description": "Description provides extended information about the ingress rule.",
                                     "type": "string"
                                   },
                                   "fromPort": {
+                                    "description": "FromPort is the start of port range.",
                                     "type": "integer",
                                     "format": "int64"
                                   },
@@ -2910,8 +3856,17 @@
                                     }
                                   },
                                   "protocol": {
-                                    "description": "SecurityGroupProtocol defines the protocol type for a security group rule.",
-                                    "type": "string"
+                                    "description": "Protocol is the protocol for the ingress rule. Accepted values are \"-1\" (all), \"4\" (IP in IP),\"tcp\", \"udp\", \"icmp\", and \"58\" (ICMPv6), \"50\" (ESP).",
+                                    "type": "string",
+                                    "enum": [
+                                      "-1",
+                                      "4",
+                                      "tcp",
+                                      "udp",
+                                      "icmp",
+                                      "58",
+                                      "50"
+                                    ]
                                   },
                                   "sourceSecurityGroupIds": {
                                     "description": "The security group id to allow access from. Cannot be specified with CidrBlocks.",
@@ -2920,7 +3875,24 @@
                                       "type": "string"
                                     }
                                   },
+                                  "sourceSecurityGroupRoles": {
+                                    "description": "The security group role to allow access from. Cannot be specified with CidrBlocks.\nThe field will be combined with source security group IDs if specified.",
+                                    "type": "array",
+                                    "items": {
+                                      "description": "SecurityGroupRole defines the unique role of a security group.",
+                                      "type": "string",
+                                      "enum": [
+                                        "bastion",
+                                        "node",
+                                        "controlplane",
+                                        "apiserver-lb",
+                                        "lb",
+                                        "node-eks-additional"
+                                      ]
+                                    }
+                                  },
                                   "toPort": {
+                                    "description": "ToPort is the end of port range.",
                                     "type": "integer",
                                     "format": "int64"
                                   }
@@ -2958,7 +3930,7 @@
                     }
                   },
                   "ready": {
-                    "description": "Ready denotes that the AWSManagedControlPlane API Server is ready to receive requests and that the VPC infra is ready.",
+                    "description": "Ready denotes that the AWSManagedControlPlane API Server is ready to\nreceive requests and that the VPC infra is ready.",
                     "type": "boolean",
                     "default": false
                   }

@@ -86,6 +86,12 @@ properties:
             items:
               items:
                 properties:
+                  featureMode:
+                    enum:
+                    - ALPHA
+                    - BETA
+                    - GA
+                    type: string
                   icons:
                     items:
                       description: ImageSpec contains information about an image used as an icon.

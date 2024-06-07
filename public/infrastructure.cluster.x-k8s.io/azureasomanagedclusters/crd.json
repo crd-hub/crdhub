@@ -1,0 +1,141 @@
+{
+  "kind": "CustomResourceDefinition",
+  "apiVersion": "apiextensions.k8s.io/v1",
+  "metadata": {
+    "name": "azureasomanagedclusters.infrastructure.cluster.x-k8s.io",
+    "creationTimestamp": null,
+    "annotations": {
+      "controller-gen.kubebuilder.io/version": "v0.14.0"
+    }
+  },
+  "spec": {
+    "group": "infrastructure.cluster.x-k8s.io",
+    "names": {
+      "plural": "azureasomanagedclusters",
+      "singular": "azureasomanagedcluster",
+      "kind": "AzureASOManagedCluster",
+      "listKind": "AzureASOManagedClusterList"
+    },
+    "scope": "Namespaced",
+    "versions": [
+      {
+        "name": "v1alpha1",
+        "served": true,
+        "storage": true,
+        "schema": {
+          "openAPIV3Schema": {
+            "description": "AzureASOManagedCluster is the Schema for the azureasomanagedclusters API.",
+            "type": "object",
+            "properties": {
+              "apiVersion": {
+                "description": "APIVersion defines the versioned schema of this representation of an object.\nServers should convert recognized schemas to the latest internal value, and\nmay reject unrecognized values.\nMore info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources",
+                "type": "string"
+              },
+              "kind": {
+                "description": "Kind is a string value representing the REST resource this object represents.\nServers may infer this from the endpoint the client submits requests to.\nCannot be updated.\nIn CamelCase.\nMore info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds",
+                "type": "string"
+              },
+              "metadata": {
+                "type": "object"
+              },
+              "spec": {
+                "description": "AzureASOManagedClusterSpec defines the desired state of AzureASOManagedCluster.",
+                "type": "object",
+                "properties": {
+                  "controlPlaneEndpoint": {
+                    "description": "ControlPlaneEndpoint is the location of the API server within the control plane. CAPZ manages this field\nand it should not be set by the user. It fulfills Cluster API's cluster infrastructure provider contract.\nBecause this field is programmatically set by CAPZ after resource creation, we define it as +optional\nin the API schema to permit resource admission.",
+                    "type": "object",
+                    "required": [
+                      "host",
+                      "port"
+                    ],
+                    "properties": {
+                      "host": {
+                        "description": "The hostname on which the API server is serving.",
+                        "type": "string"
+                      },
+                      "port": {
+                        "description": "The port on which the API server is serving.",
+                        "type": "integer",
+                        "format": "int32"
+                      }
+                    }
+                  },
+                  "resources": {
+                    "description": "Resources are embedded ASO resources to be managed by this resource.",
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "x-kubernetes-preserve-unknown-fields": true
+                    }
+                  }
+                }
+              },
+              "status": {
+                "description": "AzureASOManagedClusterStatus defines the observed state of AzureASOManagedCluster.",
+                "type": "object",
+                "properties": {
+                  "ready": {
+                    "description": "Ready represents whether or not the cluster has been provisioned and is ready. It fulfills Cluster\nAPI's cluster infrastructure provider contract.",
+                    "type": "boolean"
+                  },
+                  "resources": {
+                    "type": "array",
+                    "items": {
+                      "description": "ResourceStatus represents the status of a resource.",
+                      "type": "object",
+                      "required": [
+                        "ready",
+                        "resource"
+                      ],
+                      "properties": {
+                        "ready": {
+                          "type": "boolean"
+                        },
+                        "resource": {
+                          "description": "StatusResource is a handle to a resource.",
+                          "type": "object",
+                          "required": [
+                            "group",
+                            "kind",
+                            "name",
+                            "version"
+                          ],
+                          "properties": {
+                            "group": {
+                              "type": "string"
+                            },
+                            "kind": {
+                              "type": "string"
+                            },
+                            "name": {
+                              "type": "string"
+                            },
+                            "version": {
+                              "type": "string"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "subresources": {
+          "status": {}
+        }
+      }
+    ]
+  },
+  "status": {
+    "conditions": null,
+    "acceptedNames": {
+      "plural": "",
+      "kind": ""
+    },
+    "storedVersions": null
+  }
+}

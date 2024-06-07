@@ -5,7 +5,7 @@
     "name": "azuremachinetemplates.infrastructure.cluster.x-k8s.io",
     "creationTimestamp": null,
     "annotations": {
-      "controller-gen.kubebuilder.io/version": "v0.9.2"
+      "controller-gen.kubebuilder.io/version": "v0.14.0"
     }
   },
   "spec": {
@@ -22,730 +22,6 @@
     "scope": "Namespaced",
     "versions": [
       {
-        "name": "v1alpha3",
-        "served": true,
-        "storage": false,
-        "schema": {
-          "openAPIV3Schema": {
-            "description": "AzureMachineTemplate is the Schema for the azuremachinetemplates API.",
-            "type": "object",
-            "properties": {
-              "apiVersion": {
-                "description": "APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources",
-                "type": "string"
-              },
-              "kind": {
-                "description": "Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds",
-                "type": "string"
-              },
-              "metadata": {
-                "type": "object"
-              },
-              "spec": {
-                "description": "AzureMachineTemplateSpec defines the desired state of AzureMachineTemplate.",
-                "type": "object",
-                "required": [
-                  "template"
-                ],
-                "properties": {
-                  "template": {
-                    "description": "AzureMachineTemplateResource describes the data needed to create an AzureMachine from a template.",
-                    "type": "object",
-                    "required": [
-                      "spec"
-                    ],
-                    "properties": {
-                      "spec": {
-                        "description": "Spec is the specification of the desired behavior of the machine.",
-                        "type": "object",
-                        "required": [
-                          "location",
-                          "osDisk",
-                          "sshPublicKey",
-                          "vmSize"
-                        ],
-                        "properties": {
-                          "acceleratedNetworking": {
-                            "description": "AcceleratedNetworking enables or disables Azure accelerated networking. If omitted, it will be set based on whether the requested VMSize supports accelerated networking. If AcceleratedNetworking is set to true with a VMSize that does not support it, Azure will return an error.",
-                            "type": "boolean"
-                          },
-                          "additionalTags": {
-                            "description": "AdditionalTags is an optional set of tags to add to an instance, in addition to the ones added by default by the Azure provider. If both the AzureCluster and the AzureMachine specify the same tag name with different values, the AzureMachine's value takes precedence.",
-                            "type": "object",
-                            "additionalProperties": {
-                              "type": "string"
-                            }
-                          },
-                          "allocatePublicIP": {
-                            "description": "AllocatePublicIP allows the ability to create dynamic public ips for machines where this value is true.",
-                            "type": "boolean"
-                          },
-                          "availabilityZone": {
-                            "description": "Deprecated: use FailureDomain instead",
-                            "type": "object",
-                            "properties": {
-                              "enabled": {
-                                "type": "boolean"
-                              },
-                              "id": {
-                                "type": "string"
-                              }
-                            }
-                          },
-                          "dataDisks": {
-                            "description": "DataDisk specifies the parameters that are used to add one or more data disks to the machine",
-                            "type": "array",
-                            "items": {
-                              "description": "DataDisk specifies the parameters that are used to add one or more data disks to the machine.",
-                              "type": "object",
-                              "required": [
-                                "diskSizeGB",
-                                "nameSuffix"
-                              ],
-                              "properties": {
-                                "cachingType": {
-                                  "type": "string"
-                                },
-                                "diskSizeGB": {
-                                  "description": "DiskSizeGB is the size in GB to assign to the data disk.",
-                                  "type": "integer",
-                                  "format": "int32"
-                                },
-                                "lun": {
-                                  "description": "Lun Specifies the logical unit number of the data disk. This value is used to identify data disks within the VM and therefore must be unique for each data disk attached to a VM. The value must be between 0 and 63.",
-                                  "type": "integer",
-                                  "format": "int32"
-                                },
-                                "managedDisk": {
-                                  "description": "ManagedDisk defines the managed disk options for a VM.",
-                                  "type": "object",
-                                  "required": [
-                                    "storageAccountType"
-                                  ],
-                                  "properties": {
-                                    "diskEncryptionSet": {
-                                      "description": "DiskEncryptionSetParameters defines disk encryption options.",
-                                      "type": "object",
-                                      "properties": {
-                                        "id": {
-                                          "description": "ID defines resourceID for diskEncryptionSet resource. It must be in the same subscription",
-                                          "type": "string"
-                                        }
-                                      }
-                                    },
-                                    "storageAccountType": {
-                                      "type": "string"
-                                    }
-                                  }
-                                },
-                                "nameSuffix": {
-                                  "description": "NameSuffix is the suffix to be appended to the machine name to generate the disk name. Each disk name will be in format \u003cmachineName\u003e_\u003cnameSuffix\u003e.",
-                                  "type": "string"
-                                }
-                              }
-                            }
-                          },
-                          "enableIPForwarding": {
-                            "description": "EnableIPForwarding enables IP Forwarding in Azure which is required for some CNI's to send traffic from a pods on one machine to another. This is required for IpV6 with Calico in combination with User Defined Routes (set by the Azure Cloud Controller manager). Default is false for disabled.",
-                            "type": "boolean"
-                          },
-                          "failureDomain": {
-                            "description": "FailureDomain is the failure domain unique identifier this Machine should be attached to, as defined in Cluster API. This relates to an Azure Availability Zone",
-                            "type": "string"
-                          },
-                          "identity": {
-                            "description": "Identity is the type of identity used for the virtual machine. The type 'SystemAssigned' is an implicitly created identity. The generated identity will be assigned a Subscription contributor role. The type 'UserAssigned' is a standalone Azure resource provided by the user and assigned to the VM",
-                            "type": "string",
-                            "default": "None",
-                            "enum": [
-                              "None",
-                              "SystemAssigned",
-                              "UserAssigned"
-                            ]
-                          },
-                          "image": {
-                            "description": "Image is used to provide details of an image to use during VM creation. If image details are omitted the image will default the Azure Marketplace \"capi\" offer, which is based on Ubuntu.",
-                            "type": "object",
-                            "properties": {
-                              "id": {
-                                "description": "ID specifies an image to use by ID",
-                                "type": "string"
-                              },
-                              "marketplace": {
-                                "description": "Marketplace specifies an image to use from the Azure Marketplace",
-                                "type": "object",
-                                "required": [
-                                  "offer",
-                                  "publisher",
-                                  "sku",
-                                  "version"
-                                ],
-                                "properties": {
-                                  "offer": {
-                                    "description": "Offer specifies the name of a group of related images created by the publisher. For example, UbuntuServer, WindowsServer",
-                                    "type": "string",
-                                    "minLength": 1
-                                  },
-                                  "publisher": {
-                                    "description": "Publisher is the name of the organization that created the image",
-                                    "type": "string",
-                                    "minLength": 1
-                                  },
-                                  "sku": {
-                                    "description": "SKU specifies an instance of an offer, such as a major release of a distribution. For example, 18.04-LTS, 2019-Datacenter",
-                                    "type": "string",
-                                    "minLength": 1
-                                  },
-                                  "thirdPartyImage": {
-                                    "description": "ThirdPartyImage indicates the image is published by a third party publisher and a Plan will be generated for it.",
-                                    "type": "boolean",
-                                    "default": false
-                                  },
-                                  "version": {
-                                    "description": "Version specifies the version of an image sku. The allowed formats are Major.Minor.Build or 'latest'. Major, Minor, and Build are decimal numbers. Specify 'latest' to use the latest version of an image available at deploy time. Even if you use 'latest', the VM image will not automatically update after deploy time even if a new version becomes available.",
-                                    "type": "string",
-                                    "minLength": 1
-                                  }
-                                }
-                              },
-                              "sharedGallery": {
-                                "description": "SharedGallery specifies an image to use from an Azure Shared Image Gallery",
-                                "type": "object",
-                                "required": [
-                                  "gallery",
-                                  "name",
-                                  "resourceGroup",
-                                  "subscriptionID",
-                                  "version"
-                                ],
-                                "properties": {
-                                  "gallery": {
-                                    "description": "Gallery specifies the name of the shared image gallery that contains the image",
-                                    "type": "string",
-                                    "minLength": 1
-                                  },
-                                  "name": {
-                                    "description": "Name is the name of the image",
-                                    "type": "string",
-                                    "minLength": 1
-                                  },
-                                  "resourceGroup": {
-                                    "description": "ResourceGroup specifies the resource group containing the shared image gallery",
-                                    "type": "string",
-                                    "minLength": 1
-                                  },
-                                  "subscriptionID": {
-                                    "description": "SubscriptionID is the identifier of the subscription that contains the shared image gallery",
-                                    "type": "string",
-                                    "minLength": 1
-                                  },
-                                  "version": {
-                                    "description": "Version specifies the version of the marketplace image. The allowed formats are Major.Minor.Build or 'latest'. Major, Minor, and Build are decimal numbers. Specify 'latest' to use the latest version of an image available at deploy time. Even if you use 'latest', the VM image will not automatically update after deploy time even if a new version becomes available.",
-                                    "type": "string",
-                                    "minLength": 1
-                                  }
-                                }
-                              }
-                            }
-                          },
-                          "location": {
-                            "description": "Deprecated: to support old clients, will be removed in v1alpha4/v1beta1",
-                            "type": "string"
-                          },
-                          "osDisk": {
-                            "description": "OSDisk specifies the parameters for the operating system disk of the machine",
-                            "type": "object",
-                            "required": [
-                              "diskSizeGB",
-                              "managedDisk",
-                              "osType"
-                            ],
-                            "properties": {
-                              "cachingType": {
-                                "type": "string"
-                              },
-                              "diffDiskSettings": {
-                                "description": "DiffDiskSettings describe ephemeral disk settings for the os disk.",
-                                "type": "object",
-                                "required": [
-                                  "option"
-                                ],
-                                "properties": {
-                                  "option": {
-                                    "description": "Option enables ephemeral OS when set to \"Local\" See https://docs.microsoft.com/en-us/azure/virtual-machines/ephemeral-os-disks for full details",
-                                    "type": "string",
-                                    "enum": [
-                                      "Local"
-                                    ]
-                                  }
-                                }
-                              },
-                              "diskSizeGB": {
-                                "type": "integer",
-                                "format": "int32"
-                              },
-                              "managedDisk": {
-                                "description": "ManagedDisk defines the managed disk options for a VM.",
-                                "type": "object",
-                                "required": [
-                                  "storageAccountType"
-                                ],
-                                "properties": {
-                                  "diskEncryptionSet": {
-                                    "description": "DiskEncryptionSetParameters defines disk encryption options.",
-                                    "type": "object",
-                                    "properties": {
-                                      "id": {
-                                        "description": "ID defines resourceID for diskEncryptionSet resource. It must be in the same subscription",
-                                        "type": "string"
-                                      }
-                                    }
-                                  },
-                                  "storageAccountType": {
-                                    "type": "string"
-                                  }
-                                }
-                              },
-                              "osType": {
-                                "type": "string"
-                              }
-                            }
-                          },
-                          "providerID": {
-                            "description": "ProviderID is the unique identifier as specified by the cloud provider.",
-                            "type": "string"
-                          },
-                          "roleAssignmentName": {
-                            "description": "RoleAssignmentName is the name of the role assignment to create for a system assigned identity. It can be any valid GUID. If not specified, a random GUID will be generated.",
-                            "type": "string"
-                          },
-                          "securityProfile": {
-                            "description": "SecurityProfile specifies the Security profile settings for a virtual machine.",
-                            "type": "object",
-                            "properties": {
-                              "encryptionAtHost": {
-                                "description": "This field indicates whether Host Encryption should be enabled or disabled for a virtual machine or virtual machine scale set. Default is disabled.",
-                                "type": "boolean"
-                              }
-                            }
-                          },
-                          "spotVMOptions": {
-                            "description": "SpotVMOptions allows the ability to specify the Machine should use a Spot VM.",
-                            "type": "object",
-                            "properties": {
-                              "maxPrice": {
-                                "description": "MaxPrice defines the maximum price the user is willing to pay for Spot VM instances",
-                                "pattern": "^(\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))(([KMGTPE]i)|[numkMGTPE]|([eE](\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))))?$",
-                                "anyOf": [
-                                  {
-                                    "type": "integer"
-                                  },
-                                  {
-                                    "type": "string"
-                                  }
-                                ],
-                                "x-kubernetes-int-or-string": true
-                              }
-                            }
-                          },
-                          "sshPublicKey": {
-                            "type": "string"
-                          },
-                          "userAssignedIdentities": {
-                            "description": "UserAssignedIdentities is a list of standalone Azure identities provided by the user The lifecycle of a user-assigned identity is managed separately from the lifecycle of the AzureMachine. See https://docs.microsoft.com/en-us/azure/active-directory/managed-identities-azure-resources/how-to-manage-ua-identity-cli",
-                            "type": "array",
-                            "items": {
-                              "description": "UserAssignedIdentity defines the user-assigned identities provided by the user to be assigned to Azure resources.",
-                              "type": "object",
-                              "required": [
-                                "providerID"
-                              ],
-                              "properties": {
-                                "providerID": {
-                                  "description": "ProviderID is the identification ID of the user-assigned Identity, the format of an identity is: 'azure:///subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}'",
-                                  "type": "string"
-                                }
-                              }
-                            }
-                          },
-                          "vmSize": {
-                            "type": "string"
-                          }
-                        }
-                      }
-                    }
-                  }
-                }
-              }
-            }
-          }
-        }
-      },
-      {
-        "name": "v1alpha4",
-        "served": true,
-        "storage": false,
-        "schema": {
-          "openAPIV3Schema": {
-            "description": "AzureMachineTemplate is the Schema for the azuremachinetemplates API.",
-            "type": "object",
-            "properties": {
-              "apiVersion": {
-                "description": "APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources",
-                "type": "string"
-              },
-              "kind": {
-                "description": "Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds",
-                "type": "string"
-              },
-              "metadata": {
-                "type": "object"
-              },
-              "spec": {
-                "description": "AzureMachineTemplateSpec defines the desired state of AzureMachineTemplate.",
-                "type": "object",
-                "required": [
-                  "template"
-                ],
-                "properties": {
-                  "template": {
-                    "description": "AzureMachineTemplateResource describes the data needed to create an AzureMachine from a template.",
-                    "type": "object",
-                    "required": [
-                      "spec"
-                    ],
-                    "properties": {
-                      "spec": {
-                        "description": "Spec is the specification of the desired behavior of the machine.",
-                        "type": "object",
-                        "required": [
-                          "osDisk",
-                          "sshPublicKey",
-                          "vmSize"
-                        ],
-                        "properties": {
-                          "acceleratedNetworking": {
-                            "description": "AcceleratedNetworking enables or disables Azure accelerated networking. If omitted, it will be set based on whether the requested VMSize supports accelerated networking. If AcceleratedNetworking is set to true with a VMSize that does not support it, Azure will return an error.",
-                            "type": "boolean"
-                          },
-                          "additionalTags": {
-                            "description": "AdditionalTags is an optional set of tags to add to an instance, in addition to the ones added by default by the Azure provider. If both the AzureCluster and the AzureMachine specify the same tag name with different values, the AzureMachine's value takes precedence.",
-                            "type": "object",
-                            "additionalProperties": {
-                              "type": "string"
-                            }
-                          },
-                          "allocatePublicIP": {
-                            "description": "AllocatePublicIP allows the ability to create dynamic public ips for machines where this value is true.",
-                            "type": "boolean"
-                          },
-                          "dataDisks": {
-                            "description": "DataDisk specifies the parameters that are used to add one or more data disks to the machine",
-                            "type": "array",
-                            "items": {
-                              "description": "DataDisk specifies the parameters that are used to add one or more data disks to the machine.",
-                              "type": "object",
-                              "required": [
-                                "diskSizeGB",
-                                "nameSuffix"
-                              ],
-                              "properties": {
-                                "cachingType": {
-                                  "description": "CachingType specifies the caching requirements.",
-                                  "type": "string",
-                                  "enum": [
-                                    "None",
-                                    "ReadOnly",
-                                    "ReadWrite"
-                                  ]
-                                },
-                                "diskSizeGB": {
-                                  "description": "DiskSizeGB is the size in GB to assign to the data disk.",
-                                  "type": "integer",
-                                  "format": "int32"
-                                },
-                                "lun": {
-                                  "description": "Lun Specifies the logical unit number of the data disk. This value is used to identify data disks within the VM and therefore must be unique for each data disk attached to a VM. The value must be between 0 and 63.",
-                                  "type": "integer",
-                                  "format": "int32"
-                                },
-                                "managedDisk": {
-                                  "description": "ManagedDisk specifies the Managed Disk parameters for the data disk.",
-                                  "type": "object",
-                                  "properties": {
-                                    "diskEncryptionSet": {
-                                      "description": "DiskEncryptionSetParameters defines disk encryption options.",
-                                      "type": "object",
-                                      "properties": {
-                                        "id": {
-                                          "description": "ID defines resourceID for diskEncryptionSet resource. It must be in the same subscription",
-                                          "type": "string"
-                                        }
-                                      }
-                                    },
-                                    "storageAccountType": {
-                                      "type": "string"
-                                    }
-                                  }
-                                },
-                                "nameSuffix": {
-                                  "description": "NameSuffix is the suffix to be appended to the machine name to generate the disk name. Each disk name will be in format \u003cmachineName\u003e_\u003cnameSuffix\u003e.",
-                                  "type": "string"
-                                }
-                              }
-                            }
-                          },
-                          "enableIPForwarding": {
-                            "description": "EnableIPForwarding enables IP Forwarding in Azure which is required for some CNI's to send traffic from a pods on one machine to another. This is required for IpV6 with Calico in combination with User Defined Routes (set by the Azure Cloud Controller manager). Default is false for disabled.",
-                            "type": "boolean"
-                          },
-                          "failureDomain": {
-                            "description": "FailureDomain is the failure domain unique identifier this Machine should be attached to, as defined in Cluster API. This relates to an Azure Availability Zone",
-                            "type": "string"
-                          },
-                          "identity": {
-                            "description": "Identity is the type of identity used for the virtual machine. The type 'SystemAssigned' is an implicitly created identity. The generated identity will be assigned a Subscription contributor role. The type 'UserAssigned' is a standalone Azure resource provided by the user and assigned to the VM",
-                            "type": "string",
-                            "default": "None",
-                            "enum": [
-                              "None",
-                              "SystemAssigned",
-                              "UserAssigned"
-                            ]
-                          },
-                          "image": {
-                            "description": "Image is used to provide details of an image to use during VM creation. If image details are omitted the image will default the Azure Marketplace \"capi\" offer, which is based on Ubuntu.",
-                            "type": "object",
-                            "properties": {
-                              "id": {
-                                "description": "ID specifies an image to use by ID",
-                                "type": "string"
-                              },
-                              "marketplace": {
-                                "description": "Marketplace specifies an image to use from the Azure Marketplace",
-                                "type": "object",
-                                "required": [
-                                  "offer",
-                                  "publisher",
-                                  "sku",
-                                  "version"
-                                ],
-                                "properties": {
-                                  "offer": {
-                                    "description": "Offer specifies the name of a group of related images created by the publisher. For example, UbuntuServer, WindowsServer",
-                                    "type": "string",
-                                    "minLength": 1
-                                  },
-                                  "publisher": {
-                                    "description": "Publisher is the name of the organization that created the image",
-                                    "type": "string",
-                                    "minLength": 1
-                                  },
-                                  "sku": {
-                                    "description": "SKU specifies an instance of an offer, such as a major release of a distribution. For example, 18.04-LTS, 2019-Datacenter",
-                                    "type": "string",
-                                    "minLength": 1
-                                  },
-                                  "thirdPartyImage": {
-                                    "description": "ThirdPartyImage indicates the image is published by a third party publisher and a Plan will be generated for it.",
-                                    "type": "boolean",
-                                    "default": false
-                                  },
-                                  "version": {
-                                    "description": "Version specifies the version of an image sku. The allowed formats are Major.Minor.Build or 'latest'. Major, Minor, and Build are decimal numbers. Specify 'latest' to use the latest version of an image available at deploy time. Even if you use 'latest', the VM image will not automatically update after deploy time even if a new version becomes available.",
-                                    "type": "string",
-                                    "minLength": 1
-                                  }
-                                }
-                              },
-                              "sharedGallery": {
-                                "description": "SharedGallery specifies an image to use from an Azure Shared Image Gallery",
-                                "type": "object",
-                                "required": [
-                                  "gallery",
-                                  "name",
-                                  "resourceGroup",
-                                  "subscriptionID",
-                                  "version"
-                                ],
-                                "properties": {
-                                  "gallery": {
-                                    "description": "Gallery specifies the name of the shared image gallery that contains the image",
-                                    "type": "string",
-                                    "minLength": 1
-                                  },
-                                  "name": {
-                                    "description": "Name is the name of the image",
-                                    "type": "string",
-                                    "minLength": 1
-                                  },
-                                  "offer": {
-                                    "description": "Offer specifies the name of a group of related images created by the publisher. For example, UbuntuServer, WindowsServer This value will be used to add a `Plan` in the API request when creating the VM/VMSS resource. This is needed when the source image from which this SIG image was built requires the `Plan` to be used.",
-                                    "type": "string"
-                                  },
-                                  "publisher": {
-                                    "description": "Publisher is the name of the organization that created the image. This value will be used to add a `Plan` in the API request when creating the VM/VMSS resource. This is needed when the source image from which this SIG image was built requires the `Plan` to be used.",
-                                    "type": "string"
-                                  },
-                                  "resourceGroup": {
-                                    "description": "ResourceGroup specifies the resource group containing the shared image gallery",
-                                    "type": "string",
-                                    "minLength": 1
-                                  },
-                                  "sku": {
-                                    "description": "SKU specifies an instance of an offer, such as a major release of a distribution. For example, 18.04-LTS, 2019-Datacenter This value will be used to add a `Plan` in the API request when creating the VM/VMSS resource. This is needed when the source image from which this SIG image was built requires the `Plan` to be used.",
-                                    "type": "string"
-                                  },
-                                  "subscriptionID": {
-                                    "description": "SubscriptionID is the identifier of the subscription that contains the shared image gallery",
-                                    "type": "string",
-                                    "minLength": 1
-                                  },
-                                  "version": {
-                                    "description": "Version specifies the version of the marketplace image. The allowed formats are Major.Minor.Build or 'latest'. Major, Minor, and Build are decimal numbers. Specify 'latest' to use the latest version of an image available at deploy time. Even if you use 'latest', the VM image will not automatically update after deploy time even if a new version becomes available.",
-                                    "type": "string",
-                                    "minLength": 1
-                                  }
-                                }
-                              }
-                            }
-                          },
-                          "osDisk": {
-                            "description": "OSDisk specifies the parameters for the operating system disk of the machine",
-                            "type": "object",
-                            "required": [
-                              "osType"
-                            ],
-                            "properties": {
-                              "cachingType": {
-                                "description": "CachingType specifies the caching requirements.",
-                                "type": "string",
-                                "enum": [
-                                  "None",
-                                  "ReadOnly",
-                                  "ReadWrite"
-                                ]
-                              },
-                              "diffDiskSettings": {
-                                "description": "DiffDiskSettings describe ephemeral disk settings for the os disk.",
-                                "type": "object",
-                                "required": [
-                                  "option"
-                                ],
-                                "properties": {
-                                  "option": {
-                                    "description": "Option enables ephemeral OS when set to \"Local\" See https://docs.microsoft.com/en-us/azure/virtual-machines/ephemeral-os-disks for full details",
-                                    "type": "string",
-                                    "enum": [
-                                      "Local"
-                                    ]
-                                  }
-                                }
-                              },
-                              "diskSizeGB": {
-                                "description": "DiskSizeGB is the size in GB to assign to the OS disk. Will have a default of 30GB if not provided",
-                                "type": "integer",
-                                "format": "int32"
-                              },
-                              "managedDisk": {
-                                "description": "ManagedDisk specifies the Managed Disk parameters for the OS disk.",
-                                "type": "object",
-                                "properties": {
-                                  "diskEncryptionSet": {
-                                    "description": "DiskEncryptionSetParameters defines disk encryption options.",
-                                    "type": "object",
-                                    "properties": {
-                                      "id": {
-                                        "description": "ID defines resourceID for diskEncryptionSet resource. It must be in the same subscription",
-                                        "type": "string"
-                                      }
-                                    }
-                                  },
-                                  "storageAccountType": {
-                                    "type": "string"
-                                  }
-                                }
-                              },
-                              "osType": {
-                                "type": "string"
-                              }
-                            }
-                          },
-                          "providerID": {
-                            "description": "ProviderID is the unique identifier as specified by the cloud provider.",
-                            "type": "string"
-                          },
-                          "roleAssignmentName": {
-                            "description": "RoleAssignmentName is the name of the role assignment to create for a system assigned identity. It can be any valid GUID. If not specified, a random GUID will be generated.",
-                            "type": "string"
-                          },
-                          "securityProfile": {
-                            "description": "SecurityProfile specifies the Security profile settings for a virtual machine.",
-                            "type": "object",
-                            "properties": {
-                              "encryptionAtHost": {
-                                "description": "This field indicates whether Host Encryption should be enabled or disabled for a virtual machine or virtual machine scale set. Default is disabled.",
-                                "type": "boolean"
-                              }
-                            }
-                          },
-                          "spotVMOptions": {
-                            "description": "SpotVMOptions allows the ability to specify the Machine should use a Spot VM",
-                            "type": "object",
-                            "properties": {
-                              "maxPrice": {
-                                "description": "MaxPrice defines the maximum price the user is willing to pay for Spot VM instances",
-                                "pattern": "^(\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))(([KMGTPE]i)|[numkMGTPE]|([eE](\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))))?$",
-                                "anyOf": [
-                                  {
-                                    "type": "integer"
-                                  },
-                                  {
-                                    "type": "string"
-                                  }
-                                ],
-                                "x-kubernetes-int-or-string": true
-                              }
-                            }
-                          },
-                          "sshPublicKey": {
-                            "type": "string"
-                          },
-                          "subnetName": {
-                            "description": "SubnetName selects the Subnet where the VM will be placed",
-                            "type": "string"
-                          },
-                          "userAssignedIdentities": {
-                            "description": "UserAssignedIdentities is a list of standalone Azure identities provided by the user The lifecycle of a user-assigned identity is managed separately from the lifecycle of the AzureMachine. See https://docs.microsoft.com/en-us/azure/active-directory/managed-identities-azure-resources/how-to-manage-ua-identity-cli",
-                            "type": "array",
-                            "items": {
-                              "description": "UserAssignedIdentity defines the user-assigned identities provided by the user to be assigned to Azure resources.",
-                              "type": "object",
-                              "required": [
-                                "providerID"
-                              ],
-                              "properties": {
-                                "providerID": {
-                                  "description": "ProviderID is the identification ID of the user-assigned Identity, the format of an identity is: 'azure:///subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}'",
-                                  "type": "string"
-                                }
-                              }
-                            }
-                          },
-                          "vmSize": {
-                            "type": "string"
-                          }
-                        }
-                      }
-                    }
-                  }
-                }
-              }
-            }
-          }
-        }
-      },
-      {
         "name": "v1beta1",
         "served": true,
         "storage": true,
@@ -755,11 +31,11 @@
             "type": "object",
             "properties": {
               "apiVersion": {
-                "description": "APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources",
+                "description": "APIVersion defines the versioned schema of this representation of an object.\nServers should convert recognized schemas to the latest internal value, and\nmay reject unrecognized values.\nMore info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources",
                 "type": "string"
               },
               "kind": {
-                "description": "Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds",
+                "description": "Kind is a string value representing the REST resource this object represents.\nServers may infer this from the endpoint the client submits requests to.\nCannot be updated.\nIn CamelCase.\nMore info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds",
                 "type": "string"
               },
               "metadata": {
@@ -780,18 +56,18 @@
                     ],
                     "properties": {
                       "metadata": {
-                        "description": "ObjectMeta is metadata that all persisted resources must have, which includes all objects users must create. This is a copy of customizable fields from metav1.ObjectMeta. \n ObjectMeta is embedded in `Machine.Spec`, `MachineDeployment.Template` and `MachineSet.Template`, which are not top-level Kubernetes objects. Given that metav1.ObjectMeta has lots of special cases and read-only fields which end up in the generated CRD validation, having it as a subset simplifies the API and some issues that can impact user experience. \n During the [upgrade to controller-tools@v2](https://github.com/kubernetes-sigs/cluster-api/pull/1054) for v1alpha2, we noticed a failure would occur running Cluster API test suite against the new CRDs, specifically `spec.metadata.creationTimestamp in body must be of type string: \"null\"`. The investigation showed that `controller-tools@v2` behaves differently than its previous version when handling types from [metav1](k8s.io/apimachinery/pkg/apis/meta/v1) package. \n In more details, we found that embedded (non-top level) types that embedded `metav1.ObjectMeta` had validation properties, including for `creationTimestamp` (metav1.Time). The `metav1.Time` type specifies a custom json marshaller that, when IsZero() is true, returns `null` which breaks validation because the field isn't marked as nullable. \n In future versions, controller-tools@v2 might allow overriding the type and validation for embedded types. When that happens, this hack should be revisited.",
+                        "description": "ObjectMeta is metadata that all persisted resources must have, which includes all objects\nusers must create. This is a copy of customizable fields from metav1.ObjectMeta.\n\n\nObjectMeta is embedded in `Machine.Spec`, `MachineDeployment.Template` and `MachineSet.Template`,\nwhich are not top-level Kubernetes objects. Given that metav1.ObjectMeta has lots of special cases\nand read-only fields which end up in the generated CRD validation, having it as a subset simplifies\nthe API and some issues that can impact user experience.\n\n\nDuring the [upgrade to controller-tools@v2](https://github.com/kubernetes-sigs/cluster-api/pull/1054)\nfor v1alpha2, we noticed a failure would occur running Cluster API test suite against the new CRDs,\nspecifically `spec.metadata.creationTimestamp in body must be of type string: \"null\"`.\nThe investigation showed that `controller-tools@v2` behaves differently than its previous version\nwhen handling types from [metav1](k8s.io/apimachinery/pkg/apis/meta/v1) package.\n\n\nIn more details, we found that embedded (non-top level) types that embedded `metav1.ObjectMeta`\nhad validation properties, including for `creationTimestamp` (metav1.Time).\nThe `metav1.Time` type specifies a custom json marshaller that, when IsZero() is true, returns `null`\nwhich breaks validation because the field isn't marked as nullable.\n\n\nIn future versions, controller-tools@v2 might allow overriding the type and validation for embedded\ntypes. When that happens, this hack should be revisited.",
                         "type": "object",
                         "properties": {
                           "annotations": {
-                            "description": "Annotations is an unstructured key value map stored with a resource that may be set by external tools to store and retrieve arbitrary metadata. They are not queryable and should be preserved when modifying objects. More info: http://kubernetes.io/docs/user-guide/annotations",
+                            "description": "Annotations is an unstructured key value map stored with a resource that may be\nset by external tools to store and retrieve arbitrary metadata. They are not\nqueryable and should be preserved when modifying objects.\nMore info: http://kubernetes.io/docs/user-guide/annotations",
                             "type": "object",
                             "additionalProperties": {
                               "type": "string"
                             }
                           },
                           "labels": {
-                            "description": "Map of string keys and values that can be used to organize and categorize (scope and select) objects. May match selectors of replication controllers and services. More info: http://kubernetes.io/docs/user-guide/labels",
+                            "description": "Map of string keys and values that can be used to organize and categorize\n(scope and select) objects. May match selectors of replication controllers\nand services.\nMore info: http://kubernetes.io/docs/user-guide/labels",
                             "type": "object",
                             "additionalProperties": {
                               "type": "string"
@@ -816,13 +92,13 @@
                             "type": "object",
                             "properties": {
                               "ultraSSDEnabled": {
-                                "description": "UltraSSDEnabled enables or disables Azure UltraSSD capability for the virtual machine. Defaults to true if Ultra SSD data disks are specified, otherwise it doesn't set the capability on the VM.",
+                                "description": "UltraSSDEnabled enables or disables Azure UltraSSD capability for the virtual machine.\nDefaults to true if Ultra SSD data disks are specified,\notherwise it doesn't set the capability on the VM.",
                                 "type": "boolean"
                               }
                             }
                           },
                           "additionalTags": {
-                            "description": "AdditionalTags is an optional set of tags to add to an instance, in addition to the ones added by default by the Azure provider. If both the AzureCluster and the AzureMachine specify the same tag name with different values, the AzureMachine's value takes precedence.",
+                            "description": "AdditionalTags is an optional set of tags to add to an instance, in addition to the ones added by default by the\nAzure provider. If both the AzureCluster and the AzureMachine specify the same tag name with different values, the\nAzureMachine's value takes precedence.",
                             "type": "object",
                             "additionalProperties": {
                               "type": "string"
@@ -831,6 +107,10 @@
                           "allocatePublicIP": {
                             "description": "AllocatePublicIP allows the ability to create dynamic public ips for machines where this value is true.",
                             "type": "boolean"
+                          },
+                          "capacityReservationGroupID": {
+                            "description": "CapacityReservationGroupID specifies the capacity reservation group resource id that should be\nused for allocating the virtual machine.\nThe field size should be greater than 0 and the field input must start with '/'.\nThe input for capacityReservationGroupID must be similar to '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/capacityReservationGroups/{capacityReservationGroupName}'.\nThe keys which are used should be among 'subscriptions', 'providers' and 'resourcegroups' followed by valid ID or names respectively.\nIt is optional but may not be changed once set.",
+                            "type": "string"
                           },
                           "dataDisks": {
                             "description": "DataDisk specifies the parameters that are used to add one or more data disks to the machine",
@@ -858,7 +138,7 @@
                                   "format": "int32"
                                 },
                                 "lun": {
-                                  "description": "Lun Specifies the logical unit number of the data disk. This value is used to identify data disks within the VM and therefore must be unique for each data disk attached to a VM. The value must be between 0 and 63.",
+                                  "description": "Lun Specifies the logical unit number of the data disk. This value is used to identify data disks within the VM and therefore must be unique for each data disk attached to a VM.\nThe value must be between 0 and 63.",
                                   "type": "integer",
                                   "format": "int32"
                                 },
@@ -867,12 +147,36 @@
                                   "type": "object",
                                   "properties": {
                                     "diskEncryptionSet": {
-                                      "description": "DiskEncryptionSetParameters defines disk encryption options.",
+                                      "description": "DiskEncryptionSet specifies the customer-managed disk encryption set resource id for the managed disk.",
                                       "type": "object",
                                       "properties": {
                                         "id": {
                                           "description": "ID defines resourceID for diskEncryptionSet resource. It must be in the same subscription",
                                           "type": "string"
+                                        }
+                                      }
+                                    },
+                                    "securityProfile": {
+                                      "description": "SecurityProfile specifies the security profile for the managed disk.",
+                                      "type": "object",
+                                      "properties": {
+                                        "diskEncryptionSet": {
+                                          "description": "DiskEncryptionSet specifies the customer-managed disk encryption set resource id for the\nmanaged disk that is used for Customer Managed Key encrypted ConfidentialVM OS Disk and\nVMGuest blob.",
+                                          "type": "object",
+                                          "properties": {
+                                            "id": {
+                                              "description": "ID defines resourceID for diskEncryptionSet resource. It must be in the same subscription",
+                                              "type": "string"
+                                            }
+                                          }
+                                        },
+                                        "securityEncryptionType": {
+                                          "description": "SecurityEncryptionType specifies the encryption type of the managed disk.\nIt is set to DiskWithVMGuestState to encrypt the managed disk along with the VMGuestState\nblob, and to VMGuestStateOnly to encrypt the VMGuestState blob only.\nWhen set to VMGuestStateOnly, VirtualizedTrustedPlatformModule should be set to Enabled.\nWhen set to DiskWithVMGuestState, EncryptionAtHost should be disabled, SecureBoot and\nVirtualizedTrustedPlatformModule should be set to Enabled.\nIt can be set only for Confidential VMs.",
+                                          "type": "string",
+                                          "enum": [
+                                            "VMGuestStateOnly",
+                                            "DiskWithVMGuestState"
+                                          ]
                                         }
                                       }
                                     },
@@ -882,25 +186,25 @@
                                   }
                                 },
                                 "nameSuffix": {
-                                  "description": "NameSuffix is the suffix to be appended to the machine name to generate the disk name. Each disk name will be in format \u003cmachineName\u003e_\u003cnameSuffix\u003e.",
+                                  "description": "NameSuffix is the suffix to be appended to the machine name to generate the disk name.\nEach disk name will be in format \u003cmachineName\u003e_\u003cnameSuffix\u003e.",
                                   "type": "string"
                                 }
                               }
                             }
                           },
                           "diagnostics": {
-                            "description": "Diagnostics specifies the diagnostics settings for a virtual machine. If not specified then Boot diagnostics (Managed) will be enabled.",
+                            "description": "Diagnostics specifies the diagnostics settings for a virtual machine.\nIf not specified then Boot diagnostics (Managed) will be enabled.",
                             "type": "object",
                             "properties": {
                               "boot": {
-                                "description": "Boot configures the boot diagnostics settings for the virtual machine. This allows to configure capturing serial output from the virtual machine on boot. This is useful for debugging software based launch issues. If not specified then Boot diagnostics (Managed) will be enabled.",
+                                "description": "Boot configures the boot diagnostics settings for the virtual machine.\nThis allows to configure capturing serial output from the virtual machine on boot.\nThis is useful for debugging software based launch issues.\nIf not specified then Boot diagnostics (Managed) will be enabled.",
                                 "type": "object",
                                 "required": [
                                   "storageAccountType"
                                 ],
                                 "properties": {
                                   "storageAccountType": {
-                                    "description": "StorageAccountType determines if the storage account for storing the diagnostics data should be disabled (Disabled), provisioned by Azure (Managed) or by the user (UserManaged).",
+                                    "description": "StorageAccountType determines if the storage account for storing the diagnostics data\nshould be disabled (Disabled), provisioned by Azure (Managed) or by the user (UserManaged).",
                                     "type": "string",
                                     "enum": [
                                       "Managed",
@@ -916,7 +220,7 @@
                                     ],
                                     "properties": {
                                       "storageAccountURI": {
-                                        "description": "StorageAccountURI is the URI of the user-managed storage account. The URI typically will be `https://\u003cmystorageaccountname\u003e.blob.core.windows.net/` but may differ if you are using Azure DNS zone endpoints. You can find the correct endpoint by looking for the Blob Primary Endpoint in the endpoints tab in the Azure console or with the CLI by issuing `az storage account list --query='[].{name: name, \"resource group\": resourceGroup, \"blob endpoint\": primaryEndpoints.blob}'`.",
+                                        "description": "StorageAccountURI is the URI of the user-managed storage account.\nThe URI typically will be `https://\u003cmystorageaccountname\u003e.blob.core.windows.net/`\nbut may differ if you are using Azure DNS zone endpoints.\nYou can find the correct endpoint by looking for the Blob Primary Endpoint in the\nendpoints tab in the Azure console or with the CLI by issuing\n`az storage account list --query='[].{name: name, \"resource group\": resourceGroup, \"blob endpoint\": primaryEndpoints.blob}'`.",
                                         "type": "string",
                                         "maxLength": 1024,
                                         "pattern": "^https://"
@@ -927,6 +231,10 @@
                               }
                             }
                           },
+                          "disableExtensionOperations": {
+                            "description": "DisableExtensionOperations specifies whether extension operations should be disabled on the virtual machine.\nUse this setting only if VMExtensions are not supported by your image, as it disables CAPZ bootstrapping extension used for detecting Kubernetes bootstrap failure.\nThis may only be set to True when no extensions are configured on the virtual machine.",
+                            "type": "boolean"
+                          },
                           "dnsServers": {
                             "description": "DNSServers adds a list of DNS Server IP addresses to the VM NICs.",
                             "type": "array",
@@ -935,15 +243,15 @@
                             }
                           },
                           "enableIPForwarding": {
-                            "description": "EnableIPForwarding enables IP Forwarding in Azure which is required for some CNI's to send traffic from a pods on one machine to another. This is required for IpV6 with Calico in combination with User Defined Routes (set by the Azure Cloud Controller manager). Default is false for disabled.",
+                            "description": "EnableIPForwarding enables IP Forwarding in Azure which is required for some CNI's to send traffic from a pods on one machine\nto another. This is required for IpV6 with Calico in combination with User Defined Routes (set by the Azure Cloud Controller\nmanager). Default is false for disabled.",
                             "type": "boolean"
                           },
                           "failureDomain": {
-                            "description": "FailureDomain is the failure domain unique identifier this Machine should be attached to, as defined in Cluster API. This relates to an Azure Availability Zone",
+                            "description": "FailureDomain is the failure domain unique identifier this Machine should be attached to,\nas defined in Cluster API. This relates to an Azure Availability Zone",
                             "type": "string"
                           },
                           "identity": {
-                            "description": "Identity is the type of identity used for the virtual machine. The type 'SystemAssigned' is an implicitly created identity. The generated identity will be assigned a Subscription contributor role. The type 'UserAssigned' is a standalone Azure resource provided by the user and assigned to the VM",
+                            "description": "Identity is the type of identity used for the virtual machine.\nThe type 'SystemAssigned' is an implicitly created identity.\nThe generated identity will be assigned a Subscription contributor role.\nThe type 'UserAssigned' is a standalone Azure resource provided by the user\nand assigned to the VM",
                             "type": "string",
                             "default": "None",
                             "enum": [
@@ -953,7 +261,7 @@
                             ]
                           },
                           "image": {
-                            "description": "Image is used to provide details of an image to use during VM creation. If image details are omitted the image will default the Azure Marketplace \"capi\" offer, which is based on Ubuntu.",
+                            "description": "Image is used to provide details of an image to use during VM creation.\nIf image details are omitted the image will default the Azure Marketplace \"capi\" offer,\nwhich is based on Ubuntu.",
                             "type": "object",
                             "properties": {
                               "computeGallery": {
@@ -985,7 +293,7 @@
                                     ],
                                     "properties": {
                                       "offer": {
-                                        "description": "Offer specifies the name of a group of related images created by the publisher. For example, UbuntuServer, WindowsServer",
+                                        "description": "Offer specifies the name of a group of related images created by the publisher.\nFor example, UbuntuServer, WindowsServer",
                                         "type": "string",
                                         "minLength": 1
                                       },
@@ -995,7 +303,7 @@
                                         "minLength": 1
                                       },
                                       "sku": {
-                                        "description": "SKU specifies an instance of an offer, such as a major release of a distribution. For example, 18.04-LTS, 2019-Datacenter",
+                                        "description": "SKU specifies an instance of an offer, such as a major release of a distribution.\nFor example, 18.04-LTS, 2019-Datacenter",
                                         "type": "string",
                                         "minLength": 1
                                       }
@@ -1010,7 +318,7 @@
                                     "type": "string"
                                   },
                                   "version": {
-                                    "description": "Version specifies the version of the marketplace image. The allowed formats are Major.Minor.Build or 'latest'. Major, Minor, and Build are decimal numbers. Specify 'latest' to use the latest version of an image available at deploy time. Even if you use 'latest', the VM image will not automatically update after deploy time even if a new version becomes available.",
+                                    "description": "Version specifies the version of the marketplace image. The allowed formats\nare Major.Minor.Build or 'latest'. Major, Minor, and Build are decimal numbers.\nSpecify 'latest' to use the latest version of an image available at deploy time.\nEven if you use 'latest', the VM image will not automatically update after deploy\ntime even if a new version becomes available.",
                                     "type": "string",
                                     "minLength": 1
                                   }
@@ -1031,7 +339,7 @@
                                 ],
                                 "properties": {
                                   "offer": {
-                                    "description": "Offer specifies the name of a group of related images created by the publisher. For example, UbuntuServer, WindowsServer",
+                                    "description": "Offer specifies the name of a group of related images created by the publisher.\nFor example, UbuntuServer, WindowsServer",
                                     "type": "string",
                                     "minLength": 1
                                   },
@@ -1041,24 +349,24 @@
                                     "minLength": 1
                                   },
                                   "sku": {
-                                    "description": "SKU specifies an instance of an offer, such as a major release of a distribution. For example, 18.04-LTS, 2019-Datacenter",
+                                    "description": "SKU specifies an instance of an offer, such as a major release of a distribution.\nFor example, 18.04-LTS, 2019-Datacenter",
                                     "type": "string",
                                     "minLength": 1
                                   },
                                   "thirdPartyImage": {
-                                    "description": "ThirdPartyImage indicates the image is published by a third party publisher and a Plan will be generated for it.",
+                                    "description": "ThirdPartyImage indicates the image is published by a third party publisher and a Plan\nwill be generated for it.",
                                     "type": "boolean",
                                     "default": false
                                   },
                                   "version": {
-                                    "description": "Version specifies the version of an image sku. The allowed formats are Major.Minor.Build or 'latest'. Major, Minor, and Build are decimal numbers. Specify 'latest' to use the latest version of an image available at deploy time. Even if you use 'latest', the VM image will not automatically update after deploy time even if a new version becomes available.",
+                                    "description": "Version specifies the version of an image sku. The allowed formats\nare Major.Minor.Build or 'latest'. Major, Minor, and Build are decimal numbers.\nSpecify 'latest' to use the latest version of an image available at deploy time.\nEven if you use 'latest', the VM image will not automatically update after deploy\ntime even if a new version becomes available.",
                                     "type": "string",
                                     "minLength": 1
                                   }
                                 }
                               },
                               "sharedGallery": {
-                                "description": "SharedGallery specifies an image to use from an Azure Shared Image Gallery Deprecated: use ComputeGallery instead.",
+                                "description": "SharedGallery specifies an image to use from an Azure Shared Image Gallery\nDeprecated: use ComputeGallery instead.",
                                 "type": "object",
                                 "required": [
                                   "gallery",
@@ -1079,11 +387,11 @@
                                     "minLength": 1
                                   },
                                   "offer": {
-                                    "description": "Offer specifies the name of a group of related images created by the publisher. For example, UbuntuServer, WindowsServer This value will be used to add a `Plan` in the API request when creating the VM/VMSS resource. This is needed when the source image from which this SIG image was built requires the `Plan` to be used.",
+                                    "description": "Offer specifies the name of a group of related images created by the publisher.\nFor example, UbuntuServer, WindowsServer\nThis value will be used to add a `Plan` in the API request when creating the VM/VMSS resource.\nThis is needed when the source image from which this SIG image was built requires the `Plan` to be used.",
                                     "type": "string"
                                   },
                                   "publisher": {
-                                    "description": "Publisher is the name of the organization that created the image. This value will be used to add a `Plan` in the API request when creating the VM/VMSS resource. This is needed when the source image from which this SIG image was built requires the `Plan` to be used.",
+                                    "description": "Publisher is the name of the organization that created the image.\nThis value will be used to add a `Plan` in the API request when creating the VM/VMSS resource.\nThis is needed when the source image from which this SIG image was built requires the `Plan` to be used.",
                                     "type": "string"
                                   },
                                   "resourceGroup": {
@@ -1092,7 +400,7 @@
                                     "minLength": 1
                                   },
                                   "sku": {
-                                    "description": "SKU specifies an instance of an offer, such as a major release of a distribution. For example, 18.04-LTS, 2019-Datacenter This value will be used to add a `Plan` in the API request when creating the VM/VMSS resource. This is needed when the source image from which this SIG image was built requires the `Plan` to be used.",
+                                    "description": "SKU specifies an instance of an offer, such as a major release of a distribution.\nFor example, 18.04-LTS, 2019-Datacenter\nThis value will be used to add a `Plan` in the API request when creating the VM/VMSS resource.\nThis is needed when the source image from which this SIG image was built requires the `Plan` to be used.",
                                     "type": "string"
                                   },
                                   "subscriptionID": {
@@ -1101,7 +409,7 @@
                                     "minLength": 1
                                   },
                                   "version": {
-                                    "description": "Version specifies the version of the marketplace image. The allowed formats are Major.Minor.Build or 'latest'. Major, Minor, and Build are decimal numbers. Specify 'latest' to use the latest version of an image available at deploy time. Even if you use 'latest', the VM image will not automatically update after deploy time even if a new version becomes available.",
+                                    "description": "Version specifies the version of the marketplace image. The allowed formats\nare Major.Minor.Build or 'latest'. Major, Minor, and Build are decimal numbers.\nSpecify 'latest' to use the latest version of an image available at deploy time.\nEven if you use 'latest', the VM image will not automatically update after deploy\ntime even if a new version becomes available.",
                                     "type": "string",
                                     "minLength": 1
                                   }
@@ -1110,18 +418,18 @@
                             }
                           },
                           "networkInterfaces": {
-                            "description": "NetworkInterfaces specifies a list of network interface configurations. If left unspecified, the VM will get a single network interface with a single IPConfig in the subnet specified in the cluster's node subnet field. The primary interface will be the first networkInterface specified (index 0) in the list.",
+                            "description": "NetworkInterfaces specifies a list of network interface configurations.\nIf left unspecified, the VM will get a single network interface with a\nsingle IPConfig in the subnet specified in the cluster's node subnet field.\nThe primary interface will be the first networkInterface specified (index 0) in the list.",
                             "type": "array",
                             "items": {
                               "description": "NetworkInterface defines a network interface.",
                               "type": "object",
                               "properties": {
                                 "acceleratedNetworking": {
-                                  "description": "AcceleratedNetworking enables or disables Azure accelerated networking. If omitted, it will be set based on whether the requested VMSize supports accelerated networking. If AcceleratedNetworking is set to true with a VMSize that does not support it, Azure will return an error.",
+                                  "description": "AcceleratedNetworking enables or disables Azure accelerated networking. If omitted, it will be set based on\nwhether the requested VMSize supports accelerated networking.\nIf AcceleratedNetworking is set to true with a VMSize that does not support it, Azure will return an error.",
                                   "type": "boolean"
                                 },
                                 "privateIPConfigs": {
-                                  "description": "PrivateIPConfigs specifies the number of private IP addresses to attach to the interface. Defaults to 1 if not specified.",
+                                  "description": "PrivateIPConfigs specifies the number of private IP addresses to attach to the interface.\nDefaults to 1 if not specified.",
                                   "type": "integer"
                                 },
                                 "subnetName": {
@@ -1155,7 +463,7 @@
                                 ],
                                 "properties": {
                                   "option": {
-                                    "description": "Option enables ephemeral OS when set to \"Local\" See https://docs.microsoft.com/en-us/azure/virtual-machines/ephemeral-os-disks for full details",
+                                    "description": "Option enables ephemeral OS when set to \"Local\"\nSee https://learn.microsoft.com/azure/virtual-machines/ephemeral-os-disks for full details",
                                     "type": "string",
                                     "enum": [
                                       "Local"
@@ -1164,7 +472,7 @@
                                 }
                               },
                               "diskSizeGB": {
-                                "description": "DiskSizeGB is the size in GB to assign to the OS disk. Will have a default of 30GB if not provided",
+                                "description": "DiskSizeGB is the size in GB to assign to the OS disk.\nWill have a default of 30GB if not provided",
                                 "type": "integer",
                                 "format": "int32"
                               },
@@ -1173,12 +481,36 @@
                                 "type": "object",
                                 "properties": {
                                   "diskEncryptionSet": {
-                                    "description": "DiskEncryptionSetParameters defines disk encryption options.",
+                                    "description": "DiskEncryptionSet specifies the customer-managed disk encryption set resource id for the managed disk.",
                                     "type": "object",
                                     "properties": {
                                       "id": {
                                         "description": "ID defines resourceID for diskEncryptionSet resource. It must be in the same subscription",
                                         "type": "string"
+                                      }
+                                    }
+                                  },
+                                  "securityProfile": {
+                                    "description": "SecurityProfile specifies the security profile for the managed disk.",
+                                    "type": "object",
+                                    "properties": {
+                                      "diskEncryptionSet": {
+                                        "description": "DiskEncryptionSet specifies the customer-managed disk encryption set resource id for the\nmanaged disk that is used for Customer Managed Key encrypted ConfidentialVM OS Disk and\nVMGuest blob.",
+                                        "type": "object",
+                                        "properties": {
+                                          "id": {
+                                            "description": "ID defines resourceID for diskEncryptionSet resource. It must be in the same subscription",
+                                            "type": "string"
+                                          }
+                                        }
+                                      },
+                                      "securityEncryptionType": {
+                                        "description": "SecurityEncryptionType specifies the encryption type of the managed disk.\nIt is set to DiskWithVMGuestState to encrypt the managed disk along with the VMGuestState\nblob, and to VMGuestStateOnly to encrypt the VMGuestState blob only.\nWhen set to VMGuestStateOnly, VirtualizedTrustedPlatformModule should be set to Enabled.\nWhen set to DiskWithVMGuestState, EncryptionAtHost should be disabled, SecureBoot and\nVirtualizedTrustedPlatformModule should be set to Enabled.\nIt can be set only for Confidential VMs.",
+                                        "type": "string",
+                                        "enum": [
+                                          "VMGuestStateOnly",
+                                          "DiskWithVMGuestState"
+                                        ]
                                       }
                                     }
                                   },
@@ -1205,8 +537,30 @@
                             "type": "object",
                             "properties": {
                               "encryptionAtHost": {
-                                "description": "This field indicates whether Host Encryption should be enabled or disabled for a virtual machine or virtual machine scale set. Default is disabled.",
+                                "description": "This field indicates whether Host Encryption should be enabled\nor disabled for a virtual machine or virtual machine scale set.\nThis should be disabled when SecurityEncryptionType is set to DiskWithVMGuestState.\nDefault is disabled.",
                                 "type": "boolean"
+                              },
+                              "securityType": {
+                                "description": "SecurityType specifies the SecurityType of the virtual machine. It has to be set to any specified value to\nenable UefiSettings. The default behavior is: UefiSettings will not be enabled unless this property is set.",
+                                "type": "string",
+                                "enum": [
+                                  "ConfidentialVM",
+                                  "TrustedLaunch"
+                                ]
+                              },
+                              "uefiSettings": {
+                                "description": "UefiSettings specifies the security settings like secure boot and vTPM used while creating the virtual machine.",
+                                "type": "object",
+                                "properties": {
+                                  "secureBootEnabled": {
+                                    "description": "SecureBootEnabled specifies whether secure boot should be enabled on the virtual machine.\nSecure Boot verifies the digital signature of all boot components and halts the boot process if signature verification fails.\nIf omitted, the platform chooses a default, which is subject to change over time, currently that default is false.",
+                                    "type": "boolean"
+                                  },
+                                  "vTpmEnabled": {
+                                    "description": "VTpmEnabled specifies whether vTPM should be enabled on the virtual machine.\nWhen true it enables the virtualized trusted platform module measurements to create a known good boot integrity policy baseline.\nThe integrity policy baseline is used for comparison with measurements from subsequent VM boots to determine if anything has changed.\nThis is required to be set to Enabled if SecurityEncryptionType is defined.\nIf omitted, the platform chooses a default, which is subject to change over time, currently that default is false.",
+                                    "type": "boolean"
+                                  }
+                                }
                               }
                             }
                           },
@@ -1238,7 +592,7 @@
                             }
                           },
                           "sshPublicKey": {
-                            "description": "SSHPublicKey is the SSH public key string, base64-encoded to add to a Virtual Machine. Linux only. Refer to documentation on how to set up SSH access on Windows instances.",
+                            "description": "SSHPublicKey is the SSH public key string, base64-encoded to add to a Virtual Machine. Linux only.\nRefer to documentation on how to set up SSH access on Windows instances.",
                             "type": "string"
                           },
                           "subnetName": {
@@ -1250,31 +604,31 @@
                             "type": "object",
                             "properties": {
                               "definitionID": {
-                                "description": "DefinitionID is the ID of the role definition to create for a system assigned identity. It can be an Azure built-in role or a custom role. Refer to built-in roles: https://learn.microsoft.com/en-us/azure/role-based-access-control/built-in-roles",
+                                "description": "DefinitionID is the ID of the role definition to create for a system assigned identity. It can be an Azure built-in role or a custom role.\nRefer to built-in roles: https://learn.microsoft.com/en-us/azure/role-based-access-control/built-in-roles",
                                 "type": "string"
                               },
                               "name": {
-                                "description": "Name is the name of the role assignment to create for a system assigned identity. It can be any valid UUID. If not specified, a random UUID will be generated.",
+                                "description": "Name is the name of the role assignment to create for a system assigned identity. It can be any valid UUID.\nIf not specified, a random UUID will be generated.",
                                 "type": "string"
                               },
                               "scope": {
-                                "description": "Scope is the scope that the role assignment or definition applies to. The scope can be any REST resource instance. If not specified, the scope will be the subscription.",
+                                "description": "Scope is the scope that the role assignment or definition applies to. The scope can be any REST resource instance.\nIf not specified, the scope will be the subscription.",
                                 "type": "string"
                               }
                             }
                           },
                           "userAssignedIdentities": {
-                            "description": "UserAssignedIdentities is a list of standalone Azure identities provided by the user The lifecycle of a user-assigned identity is managed separately from the lifecycle of the AzureMachine. See https://docs.microsoft.com/en-us/azure/active-directory/managed-identities-azure-resources/how-to-manage-ua-identity-cli",
+                            "description": "UserAssignedIdentities is a list of standalone Azure identities provided by the user\nThe lifecycle of a user-assigned identity is managed separately from the lifecycle of\nthe AzureMachine.\nSee https://learn.microsoft.com/azure/active-directory/managed-identities-azure-resources/how-to-manage-ua-identity-cli",
                             "type": "array",
                             "items": {
-                              "description": "UserAssignedIdentity defines the user-assigned identities provided by the user to be assigned to Azure resources.",
+                              "description": "UserAssignedIdentity defines the user-assigned identities provided\nby the user to be assigned to Azure resources.",
                               "type": "object",
                               "required": [
                                 "providerID"
                               ],
                               "properties": {
                                 "providerID": {
-                                  "description": "ProviderID is the identification ID of the user-assigned Identity, the format of an identity is: 'azure:///subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}'",
+                                  "description": "ProviderID is the identification ID of the user-assigned Identity, the format of an identity is:\n'azure:///subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}'",
                                   "type": "string"
                                 }
                               }

@@ -1,0 +1,23 @@
+{
+  "kind": "ResourceEditor",
+  "apiVersion": "ui.k8s.appscode.com/v1alpha1",
+  "metadata": {
+    "name": "karpenter.sh-v1beta1-nodeclaims",
+    "creationTimestamp": null,
+    "labels": {
+      "k8s.io/group": "karpenter.sh",
+      "k8s.io/kind": "NodeClaim",
+      "k8s.io/resource": "nodeclaims",
+      "k8s.io/version": "v1beta1"
+    }
+  },
+  "spec": {
+    "resource": {
+      "group": "karpenter.sh",
+      "version": "v1beta1",
+      "name": "nodeclaims",
+      "kind": "NodeClaim",
+      "scope": "Cluster"
+    }
+  }
+}

@@ -1,17 +1,17 @@
 {
   "$schema": "http://json-schema.org/schema#",
-  "description": "AWSClusterRoleIdentity is the Schema for the awsclusterroleidentities API It is used to assume a role using the provided sourceRef.",
+  "description": "AWSClusterRoleIdentity is the Schema for the awsclusterroleidentities API\nIt is used to assume a role using the provided sourceRef.",
   "type": "object",
   "properties": {
     "apiVersion": {
-      "description": "APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources",
+      "description": "APIVersion defines the versioned schema of this representation of an object.\nServers should convert recognized schemas to the latest internal value, and\nmay reject unrecognized values.\nMore info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources",
       "type": "string",
       "enum": [
         "infrastructure.cluster.x-k8s.io/v1beta2"
       ]
     },
     "kind": {
-      "description": "Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds",
+      "description": "Kind is a string value representing the REST resource this object represents.\nServers may infer this from the endpoint the client submits requests to.\nCannot be updated.\nIn CamelCase.\nMore info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds",
       "type": "string",
       "enum": [
         "AWSClusterRoleIdentity"
@@ -48,7 +48,7 @@
       ],
       "properties": {
         "allowedNamespaces": {
-          "description": "AllowedNamespaces is used to identify which namespaces are allowed to use the identity from. Namespaces can be selected either using an array of namespaces or with label selector. An empty allowedNamespaces object indicates that AWSClusters can use this identity from any namespace. If this object is nil, no namespaces will be allowed (default behaviour, if this field is not provided) A namespace should be either in the NamespaceList or match with Selector to use the identity.",
+          "description": "AllowedNamespaces is used to identify which namespaces are allowed to use the identity from.\nNamespaces can be selected either using an array of namespaces or with label selector.\nAn empty allowedNamespaces object indicates that AWSClusters can use this identity from any namespace.\nIf this object is nil, no namespaces will be allowed (default behaviour, if this field is not provided)\nA namespace should be either in the NamespaceList or match with Selector to use the identity.",
           "type": "object",
           "properties": {
             "list": {
@@ -60,14 +60,14 @@
               "nullable": true
             },
             "selector": {
-              "description": "An empty selector indicates that AWSClusters cannot use this AWSClusterIdentity from any namespace.",
+              "description": "An empty selector indicates that AWSClusters cannot use this\nAWSClusterIdentity from any namespace.",
               "type": "object",
               "properties": {
                 "matchExpressions": {
                   "description": "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
                   "type": "array",
                   "items": {
-                    "description": "A label selector requirement is a selector that contains values, a key, and an operator that relates the key and values.",
+                    "description": "A label selector requirement is a selector that contains values, a key, and an operator that\nrelates the key and values.",
                     "type": "object",
                     "required": [
                       "key",
@@ -79,11 +79,11 @@
                         "type": "string"
                       },
                       "operator": {
-                        "description": "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+                        "description": "operator represents a key's relationship to a set of values.\nValid operators are In, NotIn, Exists and DoesNotExist.",
                         "type": "string"
                       },
                       "values": {
-                        "description": "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+                        "description": "values is an array of string values. If the operator is In or NotIn,\nthe values array must be non-empty. If the operator is Exists or DoesNotExist,\nthe values array must be empty. This array is replaced during a strategic\nmerge patch.",
                         "type": "array",
                         "items": {
                           "type": "string"
@@ -93,7 +93,7 @@
                   }
                 },
                 "matchLabels": {
-                  "description": "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is \"key\", the operator is \"In\", and the values array contains only \"value\". The requirements are ANDed.",
+                  "description": "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels\nmap is equivalent to an element of matchExpressions, whose key field is \"key\", the\noperator is \"In\", and the values array contains only \"value\". The requirements are ANDed.",
                   "type": "object",
                   "additionalProperties": {
                     "type": "string"
@@ -113,7 +113,7 @@
           "minimum": 900
         },
         "externalID": {
-          "description": "A unique identifier that might be required when you assume a role in another account. If the administrator of the account to which the role belongs provided you with an external ID, then provide that value in the ExternalId parameter. This value can be any string, such as a passphrase or account number. A cross-account role is usually set up to trust everyone in an account. Therefore, the administrator of the trusting account might send an external ID to the administrator of the trusted account. That way, only someone with the ID can assume the role, rather than everyone in the account. For more information about the external ID, see How to Use an External ID When Granting Access to Your AWS Resources to a Third Party in the IAM User Guide.",
+          "description": "A unique identifier that might be required when you assume a role in another account.\nIf the administrator of the account to which the role belongs provided you with an\nexternal ID, then provide that value in the ExternalId parameter. This value can be\nany string, such as a passphrase or account number. A cross-account role is usually\nset up to trust everyone in an account. Therefore, the administrator of the trusting\naccount might send an external ID to the administrator of the trusted account. That\nway, only someone with the ID can assume the role, rather than everyone in the\naccount. For more information about the external ID, see How to Use an External ID\nWhen Granting Access to Your AWS Resources to a Third Party in the IAM User Guide.",
           "type": "string"
         },
         "inlinePolicy": {
@@ -121,7 +121,7 @@
           "type": "string"
         },
         "policyARNs": {
-          "description": "The Amazon Resource Names (ARNs) of the IAM managed policies that you want to use as managed session policies. The policies must exist in the same account as the role.",
+          "description": "The Amazon Resource Names (ARNs) of the IAM managed policies that you want\nto use as managed session policies.\nThe policies must exist in the same account as the role.",
           "type": "array",
           "items": {
             "type": "string"
@@ -136,7 +136,7 @@
           "type": "string"
         },
         "sourceIdentityRef": {
-          "description": "SourceIdentityRef is a reference to another identity which will be chained to do role assumption. All identity types are accepted.",
+          "description": "SourceIdentityRef is a reference to another identity which will be chained to do\nrole assumption. All identity types are accepted.",
           "type": "object",
           "required": [
             "kind",

@@ -1,0 +1,77 @@
+{
+  "$schema": "http://json-schema.org/schema#",
+  "description": "AKSNodeClass is the Schema for the AKSNodeClass API",
+  "type": "object",
+  "properties": {
+    "apiVersion": {
+      "description": "APIVersion defines the versioned schema of this representation of an object.\nServers should convert recognized schemas to the latest internal value, and\nmay reject unrecognized values.\nMore info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources",
+      "type": "string",
+      "enum": [
+        "karpenter.azure.com/v1alpha2"
+      ]
+    },
+    "kind": {
+      "description": "Kind is a string value representing the REST resource this object represents.\nServers may infer this from the endpoint the client submits requests to.\nCannot be updated.\nIn CamelCase.\nMore info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds",
+      "type": "string",
+      "enum": [
+        "AKSNodeClass"
+      ]
+    },
+    "metadata": {
+      "type": "object",
+      "properties": {
+        "annotations": {
+          "description": "Annotations is an unstructured key value map stored with a resource that may be set by external tools to store and retrieve arbitrary metadata. They are not queryable and should be preserved when modifying objects. More info: http://kubernetes.io/docs/user-guide/annotations",
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          }
+        },
+        "labels": {
+          "description": "Map of string keys and values that can be used to organize and categorize (scope and select) objects. May match selectors of replication controllers and services. More info: http://kubernetes.io/docs/user-guide/labels",
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          }
+        },
+        "name": {
+          "description": "Name must be unique within a namespace. Is required when creating resources, although some resources may allow a client to request the generation of an appropriate name automatically. Name is primarily intended for creation idempotence and configuration definition. Cannot be updated. More info: http://kubernetes.io/docs/user-guide/identifiers#names",
+          "type": "string"
+        }
+      }
+    },
+    "spec": {
+      "description": "AKSNodeClassSpec is the top level specification for the AKS Karpenter Provider.\nThis will contain configuration necessary to launch instances in AKS.",
+      "type": "object",
+      "properties": {
+        "imageFamily": {
+          "description": "ImageFamily is the image family that instances use.",
+          "type": "string",
+          "default": "Ubuntu2204",
+          "enum": [
+            "Ubuntu2204",
+            "AzureLinux"
+          ]
+        },
+        "imageVersion": {
+          "description": "ImageVersion is the image version that instances use.",
+          "type": "string"
+        },
+        "osDiskSizeGB": {
+          "description": "osDiskSizeGB is the size of the OS disk in GB.",
+          "type": "integer",
+          "format": "int32",
+          "default": 128,
+          "minimum": 100
+        },
+        "tags": {
+          "description": "Tags to be applied on Azure resources like instances.",
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  }
+}

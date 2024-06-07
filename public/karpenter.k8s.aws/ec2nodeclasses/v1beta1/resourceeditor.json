@@ -1,0 +1,23 @@
+{
+  "kind": "ResourceEditor",
+  "apiVersion": "ui.k8s.appscode.com/v1alpha1",
+  "metadata": {
+    "name": "karpenter.k8s.aws-v1beta1-ec2nodeclasses",
+    "creationTimestamp": null,
+    "labels": {
+      "k8s.io/group": "karpenter.k8s.aws",
+      "k8s.io/kind": "EC2NodeClass",
+      "k8s.io/resource": "ec2nodeclasses",
+      "k8s.io/version": "v1beta1"
+    }
+  },
+  "spec": {
+    "resource": {
+      "group": "karpenter.k8s.aws",
+      "version": "v1beta1",
+      "name": "ec2nodeclasses",
+      "kind": "EC2NodeClass",
+      "scope": "Cluster"
+    }
+  }
+}
