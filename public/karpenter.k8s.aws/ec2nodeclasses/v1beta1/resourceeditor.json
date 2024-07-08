@@ -18,6 +18,18 @@
       "name": "ec2nodeclasses",
       "kind": "EC2NodeClass",
       "scope": "Cluster"
+    },
+    "ui": {
+      "editor": {
+        "name": "karpenterk8saws-ec2nodeclass-editor",
+        "version": "v0.4.21",
+        "sourceRef": {
+          "apiGroup": "source.toolkit.fluxcd.io",
+          "kind": "HelmRepository",
+          "name": "appscode-charts-oci"
+        }
+      },
+      "enforceQuota": false
     }
   }
 }

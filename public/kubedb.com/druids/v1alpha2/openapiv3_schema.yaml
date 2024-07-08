@@ -98,6 +98,10 @@ properties:
         properties:
           createTables:
             type: boolean
+          externallyManaged:
+            type: boolean
+          linkedDB:
+            type: string
           name:
             type: string
           namespace:
@@ -106,6 +110,8 @@ properties:
             enum:
             - MySQL
             - PostgreSQL
+            type: string
+          version:
             type: string
         required:
         - name
@@ -19034,18 +19040,21 @@ properties:
         type: string
       zookeeperRef:
         properties:
+          externallyManaged:
+            type: boolean
           name:
             type: string
           namespace:
             type: string
           pathsBase:
             type: string
+          version:
+            type: string
         required:
         - name
         type: object
     required:
     - deepStorage
-    - metadataStorage
     - version
     type: object
 type: object

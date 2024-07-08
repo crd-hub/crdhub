@@ -42,7 +42,6 @@
                 "type": "object",
                 "required": [
                   "deepStorage",
-                  "metadataStorage",
                   "version"
                 ],
                 "properties": {
@@ -145,6 +144,12 @@
                       "createTables": {
                         "type": "boolean"
                       },
+                      "externallyManaged": {
+                        "type": "boolean"
+                      },
+                      "linkedDB": {
+                        "type": "string"
+                      },
                       "name": {
                         "type": "string"
                       },
@@ -157,6 +162,9 @@
                           "MySQL",
                           "PostgreSQL"
                         ]
+                      },
+                      "version": {
+                        "type": "string"
                       }
                     }
                   },
@@ -29275,6 +29283,9 @@
                       "name"
                     ],
                     "properties": {
+                      "externallyManaged": {
+                        "type": "boolean"
+                      },
                       "name": {
                         "type": "string"
                       },
@@ -29282,6 +29293,9 @@
                         "type": "string"
                       },
                       "pathsBase": {
+                        "type": "string"
+                      },
+                      "version": {
                         "type": "string"
                       }
                     }

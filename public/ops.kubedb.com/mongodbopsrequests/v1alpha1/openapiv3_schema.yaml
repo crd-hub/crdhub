@@ -355,9 +355,6 @@ properties:
           arbiter:
             properties:
               nodeSelectionPolicy:
-                enum:
-                - LabelSelector
-                - Taint
                 type: string
               resources:
                 properties:
@@ -404,9 +401,6 @@ properties:
           configServer:
             properties:
               nodeSelectionPolicy:
-                enum:
-                - LabelSelector
-                - Taint
                 type: string
               resources:
                 properties:
@@ -521,9 +515,6 @@ properties:
           hidden:
             properties:
               nodeSelectionPolicy:
-                enum:
-                - LabelSelector
-                - Taint
                 type: string
               resources:
                 properties:
@@ -570,9 +561,6 @@ properties:
           mongos:
             properties:
               nodeSelectionPolicy:
-                enum:
-                - LabelSelector
-                - Taint
                 type: string
               resources:
                 properties:
@@ -619,9 +607,6 @@ properties:
           replicaSet:
             properties:
               nodeSelectionPolicy:
-                enum:
-                - LabelSelector
-                - Taint
                 type: string
               resources:
                 properties:
@@ -668,9 +653,6 @@ properties:
           shard:
             properties:
               nodeSelectionPolicy:
-                enum:
-                - LabelSelector
-                - Taint
                 type: string
               resources:
                 properties:
@@ -717,9 +699,6 @@ properties:
           standalone:
             properties:
               nodeSelectionPolicy:
-                enum:
-                - LabelSelector
-                - Taint
                 type: string
               resources:
                 properties:

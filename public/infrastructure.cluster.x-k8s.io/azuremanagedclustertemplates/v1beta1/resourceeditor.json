@@ -18,6 +18,18 @@
       "name": "azuremanagedclustertemplates",
       "kind": "AzureManagedClusterTemplate",
       "scope": "Namespaced"
+    },
+    "ui": {
+      "editor": {
+        "name": "infrastructureclusterxk8sio-azuremanagedclustertemplate-editor",
+        "version": "v0.4.21",
+        "sourceRef": {
+          "apiGroup": "source.toolkit.fluxcd.io",
+          "kind": "HelmRepository",
+          "name": "appscode-charts-oci"
+        }
+      },
+      "enforceQuota": false
     }
   }
 }

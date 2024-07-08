@@ -18,6 +18,18 @@
       "name": "nodepools",
       "kind": "NodePool",
       "scope": "Cluster"
+    },
+    "ui": {
+      "editor": {
+        "name": "karpentersh-nodepool-editor",
+        "version": "v0.4.21",
+        "sourceRef": {
+          "apiGroup": "source.toolkit.fluxcd.io",
+          "kind": "HelmRepository",
+          "name": "appscode-charts-oci"
+        }
+      },
+      "enforceQuota": false
     }
   }
 }

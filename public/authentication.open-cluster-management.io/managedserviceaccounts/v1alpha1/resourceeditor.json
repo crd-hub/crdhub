@@ -1,0 +1,23 @@
+{
+  "kind": "ResourceEditor",
+  "apiVersion": "ui.k8s.appscode.com/v1alpha1",
+  "metadata": {
+    "name": "authentication.open-cluster-management.io-v1alpha1-managedserviceaccounts",
+    "creationTimestamp": null,
+    "labels": {
+      "k8s.io/group": "authentication.open-cluster-management.io",
+      "k8s.io/kind": "ManagedServiceAccount",
+      "k8s.io/resource": "managedserviceaccounts",
+      "k8s.io/version": "v1alpha1"
+    }
+  },
+  "spec": {
+    "resource": {
+      "group": "authentication.open-cluster-management.io",
+      "version": "v1alpha1",
+      "name": "managedserviceaccounts",
+      "kind": "ManagedServiceAccount",
+      "scope": "Namespaced"
+    }
+  }
+}

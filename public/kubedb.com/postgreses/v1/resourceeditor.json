@@ -1,0 +1,23 @@
+{
+  "kind": "ResourceEditor",
+  "apiVersion": "ui.k8s.appscode.com/v1alpha1",
+  "metadata": {
+    "name": "kubedb.com-v1-postgreses",
+    "creationTimestamp": null,
+    "labels": {
+      "k8s.io/group": "kubedb.com",
+      "k8s.io/kind": "Postgres",
+      "k8s.io/resource": "postgreses",
+      "k8s.io/version": "v1"
+    }
+  },
+  "spec": {
+    "resource": {
+      "group": "kubedb.com",
+      "version": "v1",
+      "name": "postgreses",
+      "kind": "Postgres",
+      "scope": "Namespaced"
+    }
+  }
+}

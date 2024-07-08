@@ -1,0 +1,380 @@
+{
+  "kind": "CustomResourceDefinition",
+  "apiVersion": "apiextensions.k8s.io/v1",
+  "metadata": {
+    "name": "siteinfos.identity.k8s.appscode.com",
+    "creationTimestamp": null
+  },
+  "spec": {
+    "group": "identity.k8s.appscode.com",
+    "names": {
+      "plural": "siteinfos",
+      "singular": "siteinfo",
+      "kind": "SiteInfo",
+      "listKind": "SiteInfoList",
+      "categories": [
+        "auditor",
+        "appscode",
+        "all"
+      ]
+    },
+    "scope": "Cluster",
+    "versions": [
+      {
+        "name": "v1alpha1",
+        "served": true,
+        "storage": true,
+        "schema": {
+          "openAPIV3Schema": {
+            "type": "object",
+            "properties": {
+              "apiVersion": {
+                "description": "APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources",
+                "type": "string"
+              },
+              "kind": {
+                "description": "Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds",
+                "type": "string"
+              },
+              "kubernetes": {
+                "type": "object",
+                "required": [
+                  "nodeStats"
+                ],
+                "properties": {
+                  "cluster": {
+                    "type": "object",
+                    "required": [
+                      "uid"
+                    ],
+                    "properties": {
+                      "apiEndpoint": {
+                        "type": "string"
+                      },
+                      "caBundle": {
+                        "type": "string"
+                      },
+                      "displayName": {
+                        "type": "string"
+                      },
+                      "name": {
+                        "type": "string"
+                      },
+                      "ownerID": {
+                        "type": "string"
+                      },
+                      "ownerType": {
+                        "type": "string"
+                      },
+                      "provider": {
+                        "type": "string",
+                        "enum": [
+                          "Aws",
+                          "Azure",
+                          "DigitalOcean",
+                          "GoogleCloud",
+                          "Linode",
+                          "Packet",
+                          "Scaleway",
+                          "Vultr",
+                          "BareMetal",
+                          "KIND",
+                          "Generic",
+                          "Private"
+                        ]
+                      },
+                      "uid": {
+                        "type": "string"
+                      }
+                    }
+                  },
+                  "clusterName": {
+                    "description": "Deprecated",
+                    "type": "string"
+                  },
+                  "clusterUID": {
+                    "description": "Deprecated",
+                    "type": "string"
+                  },
+                  "controlPlane": {
+                    "description": "https://github.com/kmodules/client-go/blob/kubernetes-1.16.3/tools/analytics/analytics.go#L66",
+                    "type": "object",
+                    "required": [
+                      "notAfter",
+                      "notBefore"
+                    ],
+                    "properties": {
+                      "dnsNames": {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        }
+                      },
+                      "emailAddresses": {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        }
+                      },
+                      "ipAddresses": {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        }
+                      },
+                      "notAfter": {
+                        "type": "string",
+                        "format": "date-time"
+                      },
+                      "notBefore": {
+                        "type": "string",
+                        "format": "date-time"
+                      },
+                      "uris": {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  },
+                  "nodeStats": {
+                    "type": "object",
+                    "properties": {
+                      "allocatable": {
+                        "description": "Allocatable represents the resources of a node that are available for scheduling. Defaults to Capacity.",
+                        "type": "object",
+                        "additionalProperties": {
+                          "pattern": "^(\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))(([KMGTPE]i)|[numkMGTPE]|([eE](\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))))?$",
+                          "anyOf": [
+                            {
+                              "type": "integer"
+                            },
+                            {
+                              "type": "string"
+                            }
+                          ],
+                          "x-kubernetes-int-or-string": true
+                        }
+                      },
+                      "capacity": {
+                        "description": "Capacity represents the total resources of a node. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#capacity",
+                        "type": "object",
+                        "additionalProperties": {
+                          "pattern": "^(\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))(([KMGTPE]i)|[numkMGTPE]|([eE](\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))))?$",
+                          "anyOf": [
+                            {
+                              "type": "integer"
+                            },
+                            {
+                              "type": "string"
+                            }
+                          ],
+                          "x-kubernetes-int-or-string": true
+                        }
+                      },
+                      "controlPlane": {
+                        "type": "object",
+                        "properties": {
+                          "allocatable": {
+                            "description": "Allocatable represents the resources of a node that are available for scheduling. Defaults to Capacity.",
+                            "type": "object",
+                            "additionalProperties": {
+                              "pattern": "^(\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))(([KMGTPE]i)|[numkMGTPE]|([eE](\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))))?$",
+                              "anyOf": [
+                                {
+                                  "type": "integer"
+                                },
+                                {
+                                  "type": "string"
+                                }
+                              ],
+                              "x-kubernetes-int-or-string": true
+                            }
+                          },
+                          "capacity": {
+                            "description": "Capacity represents the total resources of a node. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#capacity",
+                            "type": "object",
+                            "additionalProperties": {
+                              "pattern": "^(\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))(([KMGTPE]i)|[numkMGTPE]|([eE](\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))))?$",
+                              "anyOf": [
+                                {
+                                  "type": "integer"
+                                },
+                                {
+                                  "type": "string"
+                                }
+                              ],
+                              "x-kubernetes-int-or-string": true
+                            }
+                          },
+                          "count": {
+                            "type": "integer"
+                          }
+                        }
+                      },
+                      "count": {
+                        "type": "integer"
+                      },
+                      "workers": {
+                        "type": "object",
+                        "properties": {
+                          "allocatable": {
+                            "description": "Allocatable represents the resources of a node that are available for scheduling. Defaults to Capacity.",
+                            "type": "object",
+                            "additionalProperties": {
+                              "pattern": "^(\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))(([KMGTPE]i)|[numkMGTPE]|([eE](\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))))?$",
+                              "anyOf": [
+                                {
+                                  "type": "integer"
+                                },
+                                {
+                                  "type": "string"
+                                }
+                              ],
+                              "x-kubernetes-int-or-string": true
+                            }
+                          },
+                          "capacity": {
+                            "description": "Capacity represents the total resources of a node. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#capacity",
+                            "type": "object",
+                            "additionalProperties": {
+                              "pattern": "^(\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))(([KMGTPE]i)|[numkMGTPE]|([eE](\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))))?$",
+                              "anyOf": [
+                                {
+                                  "type": "integer"
+                                },
+                                {
+                                  "type": "string"
+                                }
+                              ],
+                              "x-kubernetes-int-or-string": true
+                            }
+                          },
+                          "count": {
+                            "type": "integer"
+                          }
+                        }
+                      }
+                    }
+                  },
+                  "version": {
+                    "description": "Info contains versioning information. TODO: Add []string of api versions supported? It's still unclear how we'll want to distribute that information.",
+                    "type": "object",
+                    "required": [
+                      "buildDate",
+                      "compiler",
+                      "gitCommit",
+                      "gitTreeState",
+                      "gitVersion",
+                      "goVersion",
+                      "major",
+                      "minor",
+                      "platform"
+                    ],
+                    "properties": {
+                      "buildDate": {
+                        "type": "string"
+                      },
+                      "compiler": {
+                        "type": "string"
+                      },
+                      "gitCommit": {
+                        "type": "string"
+                      },
+                      "gitTreeState": {
+                        "type": "string"
+                      },
+                      "gitVersion": {
+                        "type": "string"
+                      },
+                      "goVersion": {
+                        "type": "string"
+                      },
+                      "major": {
+                        "type": "string"
+                      },
+                      "minor": {
+                        "type": "string"
+                      },
+                      "platform": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                }
+              },
+              "metadata": {
+                "type": "object"
+              },
+              "product": {
+                "type": "object",
+                "required": [
+                  "version"
+                ],
+                "properties": {
+                  "licenseID": {
+                    "type": "string"
+                  },
+                  "productName": {
+                    "description": "This has been renamed to Features",
+                    "type": "string"
+                  },
+                  "productOwnerName": {
+                    "type": "string"
+                  },
+                  "productOwnerUID": {
+                    "type": "string"
+                  },
+                  "productUID": {
+                    "type": "string"
+                  },
+                  "version": {
+                    "type": "object",
+                    "properties": {
+                      "commitHash": {
+                        "type": "string"
+                      },
+                      "commitTimestamp": {
+                        "type": "string"
+                      },
+                      "compiler": {
+                        "type": "string"
+                      },
+                      "gitBranch": {
+                        "type": "string"
+                      },
+                      "gitTag": {
+                        "type": "string"
+                      },
+                      "goVersion": {
+                        "type": "string"
+                      },
+                      "platform": {
+                        "type": "string"
+                      },
+                      "version": {
+                        "type": "string"
+                      },
+                      "versionStrategy": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    ]
+  },
+  "status": {
+    "conditions": null,
+    "acceptedNames": {
+      "plural": "",
+      "kind": ""
+    },
+    "storedVersions": null
+  }
+}

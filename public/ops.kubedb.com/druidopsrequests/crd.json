@@ -89,11 +89,7 @@
                         "type": "object",
                         "properties": {
                           "nodeSelectionPolicy": {
-                            "type": "string",
-                            "enum": [
-                              "LabelSelector",
-                              "Taint"
-                            ]
+                            "type": "string"
                           },
                           "resources": {
                             "type": "object",
@@ -169,11 +165,7 @@
                         "type": "object",
                         "properties": {
                           "nodeSelectionPolicy": {
-                            "type": "string",
-                            "enum": [
-                              "LabelSelector",
-                              "Taint"
-                            ]
+                            "type": "string"
                           },
                           "resources": {
                             "type": "object",
@@ -249,11 +241,7 @@
                         "type": "object",
                         "properties": {
                           "nodeSelectionPolicy": {
-                            "type": "string",
-                            "enum": [
-                              "LabelSelector",
-                              "Taint"
-                            ]
+                            "type": "string"
                           },
                           "resources": {
                             "type": "object",
@@ -329,11 +317,7 @@
                         "type": "object",
                         "properties": {
                           "nodeSelectionPolicy": {
-                            "type": "string",
-                            "enum": [
-                              "LabelSelector",
-                              "Taint"
-                            ]
+                            "type": "string"
                           },
                           "resources": {
                             "type": "object",
@@ -409,11 +393,7 @@
                         "type": "object",
                         "properties": {
                           "nodeSelectionPolicy": {
-                            "type": "string",
-                            "enum": [
-                              "LabelSelector",
-                              "Taint"
-                            ]
+                            "type": "string"
                           },
                           "resources": {
                             "type": "object",
@@ -489,11 +469,7 @@
                         "type": "object",
                         "properties": {
                           "nodeSelectionPolicy": {
-                            "type": "string",
-                            "enum": [
-                              "LabelSelector",
-                              "Taint"
-                            ]
+                            "type": "string"
                           },
                           "resources": {
                             "type": "object",

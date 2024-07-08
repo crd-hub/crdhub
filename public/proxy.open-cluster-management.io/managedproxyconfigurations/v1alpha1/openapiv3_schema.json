@@ -1,0 +1,338 @@
+{
+  "$schema": "http://json-schema.org/schema#",
+  "description": "ManagedProxyConfiguration is the Schema for the managedproxyconfigurations API",
+  "type": "object",
+  "properties": {
+    "apiVersion": {
+      "description": "APIVersion defines the versioned schema of this representation of an object.\nServers should convert recognized schemas to the latest internal value, and\nmay reject unrecognized values.\nMore info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources",
+      "type": "string",
+      "enum": [
+        "proxy.open-cluster-management.io/v1alpha1"
+      ]
+    },
+    "kind": {
+      "description": "Kind is a string value representing the REST resource this object represents.\nServers may infer this from the endpoint the client submits requests to.\nCannot be updated.\nIn CamelCase.\nMore info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds",
+      "type": "string",
+      "enum": [
+        "ManagedProxyConfiguration"
+      ]
+    },
+    "metadata": {
+      "type": "object",
+      "properties": {
+        "annotations": {
+          "description": "Annotations is an unstructured key value map stored with a resource that may be set by external tools to store and retrieve arbitrary metadata. They are not queryable and should be preserved when modifying objects. More info: http://kubernetes.io/docs/user-guide/annotations",
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          }
+        },
+        "labels": {
+          "description": "Map of string keys and values that can be used to organize and categorize (scope and select) objects. May match selectors of replication controllers and services. More info: http://kubernetes.io/docs/user-guide/labels",
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          }
+        },
+        "name": {
+          "description": "Name must be unique within a namespace. Is required when creating resources, although some resources may allow a client to request the generation of an appropriate name automatically. Name is primarily intended for creation idempotence and configuration definition. Cannot be updated. More info: http://kubernetes.io/docs/user-guide/identifiers#names",
+          "type": "string"
+        }
+      }
+    },
+    "spec": {
+      "description": "ManagedProxyConfigurationSpec is the prescription of ManagedProxyConfiguration",
+      "type": "object",
+      "required": [
+        "authentication",
+        "proxyAgent",
+        "proxyServer"
+      ],
+      "properties": {
+        "authentication": {
+          "description": "`authentication` defines how the credentials for the authentication\nbetween proxy servers and proxy agents are signed and mounted.",
+          "type": "object",
+          "properties": {
+            "dump": {
+              "description": "`dump` is where we store the signed certificates from signers.",
+              "type": "object",
+              "properties": {
+                "secrets": {
+                  "description": "`secrets` is the names of the secrets for saving the signed certificates.",
+                  "type": "object",
+                  "properties": {
+                    "signingAgentServerSecretName": {
+                      "description": "`signingAgentServerSecretName` is the secret name of the proxy servers to receive\ntunneling handshakes from proxy agents.",
+                      "type": "string",
+                      "default": "agent-server"
+                    },
+                    "signingProxyClientSecretName": {
+                      "description": "`signingProxyClientSecretName` is the secret name for requesting/streaming over\nthe proxy server.",
+                      "type": "string",
+                      "default": "proxy-client"
+                    },
+                    "signingProxyServerSecretName": {
+                      "description": "`signingProxyServerSecretName` the secret name of the proxy server's listening\ncertificates for serving proxy requests.",
+                      "type": "string",
+                      "default": "proxy-server"
+                    }
+                  }
+                }
+              }
+            },
+            "signer": {
+              "description": "`signer` defines how we sign server and client certificates for the proxy servers\nand agents.",
+              "type": "object",
+              "properties": {
+                "selfSigned": {
+                  "description": "`selfSigned` prescribes the detail of how we self-sign the certificates.",
+                  "type": "object",
+                  "properties": {
+                    "additionalSANs": {
+                      "description": "`additionalSANs` adds a few custom hostnames or IPs to the signing certificates.",
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                },
+                "type": {
+                  "description": "`type` is the supported type of signer. Currently only \"SelfSign\" supported.",
+                  "type": "string",
+                  "default": "SelfSigned",
+                  "enum": [
+                    "SelfSigned",
+                    "Provided",
+                    "CertManager"
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "deploy": {
+          "description": "`deploy` is where we override miscellaneous details for deploying either\nproxy servers or agents.",
+          "type": "object",
+          "required": [
+            "ports"
+          ],
+          "properties": {
+            "ports": {
+              "description": "`ports` is the ports for proxying and tunneling.",
+              "type": "object",
+              "properties": {
+                "adminServer": {
+                  "description": "`adminServer` is the port for debugging and operating.",
+                  "type": "integer",
+                  "format": "int32",
+                  "default": 8095
+                },
+                "agentServer": {
+                  "description": "`agentServer` is the listening port of proxy server for serving tunneling handshakes.",
+                  "type": "integer",
+                  "format": "int32",
+                  "default": 8091
+                },
+                "healthServer": {
+                  "description": "`healthServer` is for probing the healthiness.",
+                  "type": "integer",
+                  "format": "int32",
+                  "default": 8092
+                },
+                "proxyServer": {
+                  "description": "`proxyServer` is the listening port of proxy server for serving proxy requests.",
+                  "type": "integer",
+                  "format": "int32",
+                  "default": 8090
+                }
+              }
+            }
+          }
+        },
+        "proxyAgent": {
+          "description": "`proxyServer` structurelized the arguments for running proxy agents.",
+          "type": "object",
+          "required": [
+            "image"
+          ],
+          "properties": {
+            "additionalArgs": {
+              "description": "`additionalArgs` defines args used in proxy-agent.",
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "image": {
+              "description": "`image` is the container image of the proxy agent.",
+              "type": "string"
+            },
+            "imagePullSecrets": {
+              "description": "`imagePullSecrets` defines the imagePullSecrets used by proxy-agent",
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "replicas": {
+              "description": "`replicas` is the replicas of the agents.",
+              "type": "integer",
+              "format": "int32",
+              "default": 3
+            }
+          }
+        },
+        "proxyServer": {
+          "description": "`proxyServer` structurelized the arguments for running proxy servers.",
+          "type": "object",
+          "required": [
+            "image"
+          ],
+          "properties": {
+            "additionalArgs": {
+              "description": "`additionalArgs` adds arbitrary additional command line args to the proxy-server.",
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "entrypoint": {
+              "description": "`entrypoint` defines how will the proxy agents connecting the servers.",
+              "type": "object",
+              "required": [
+                "type"
+              ],
+              "properties": {
+                "hostname": {
+                  "description": "`hostname` points to a fixed hostname for serving agents' handshakes.",
+                  "type": "object",
+                  "required": [
+                    "value"
+                  ],
+                  "properties": {
+                    "value": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "loadBalancerService": {
+                  "description": "`loadBalancerService` points to a load-balancer typed service in the hub cluster.",
+                  "type": "object",
+                  "properties": {
+                    "annotations": {
+                      "description": "Annotations is the annoations of the load-balancer service.\nThis is for allowing customizing service using vendor-specific extended annotations such as:\n- service.beta.kubernetes.io/alibaba-cloud-loadbalancer-address-type: \"intranet\"\n- service.beta.kubernetes.io/azure-load-balancer-internal: true",
+                      "type": "array",
+                      "items": {
+                        "description": "AnnotationVar list of annotation variables to set in the LB Service.",
+                        "type": "object",
+                        "required": [
+                          "key"
+                        ],
+                        "properties": {
+                          "key": {
+                            "description": "Key is the key of annotation",
+                            "type": "string"
+                          },
+                          "value": {
+                            "description": "Value is the value of annotation",
+                            "type": "string"
+                          }
+                        }
+                      }
+                    },
+                    "name": {
+                      "description": "`name` is the name of the load-balancer service. And the namespace will align\nto where the proxy-servers are deployed.",
+                      "type": "string",
+                      "default": "proxy-agent-entrypoint"
+                    }
+                  }
+                },
+                "port": {
+                  "description": "`port` is the target port to access proxy servers",
+                  "type": "integer",
+                  "format": "int32",
+                  "default": 8091,
+                  "minimum": 1
+                },
+                "type": {
+                  "description": "`type` is the type of the entrypoint of the proxy servers.\nCurrently supports \"Hostname\", \"LoadBalancerService\"",
+                  "type": "string",
+                  "enum": [
+                    "Hostname",
+                    "LoadBalancerService",
+                    "PortForward"
+                  ]
+                }
+              }
+            },
+            "image": {
+              "description": "`image` is the container image of the proxy servers.",
+              "type": "string"
+            },
+            "inClusterServiceName": {
+              "description": "`inClusterServiceName` is the name of the in-cluster service for proxying\nrequests inside the hub cluster to the proxy servers.",
+              "type": "string",
+              "default": "proxy-entrypoint"
+            },
+            "namespace": {
+              "description": "`namespace` is the namespace where we will deploy the proxy servers and related\nresources.",
+              "type": "string",
+              "default": "open-cluster-management-cluster-proxy"
+            },
+            "nodePlacement": {
+              "description": "NodePlacement defines which Nodes the proxy server are scheduled on. The default is an empty list.",
+              "type": "object",
+              "properties": {
+                "nodeSelector": {
+                  "description": "NodeSelector defines which Nodes the Pods are scheduled on. The default is an empty list.",
+                  "type": "object",
+                  "additionalProperties": {
+                    "type": "string"
+                  }
+                },
+                "tolerations": {
+                  "description": "Tolerations is attached by pods to tolerate any taint that matches\nthe triple \u003ckey,value,effect\u003e using the matching operator \u003coperator\u003e.\nThe default is an empty list.",
+                  "type": "array",
+                  "items": {
+                    "description": "The pod this Toleration is attached to tolerates any taint that matches\nthe triple \u003ckey,value,effect\u003e using the matching operator \u003coperator\u003e.",
+                    "type": "object",
+                    "properties": {
+                      "effect": {
+                        "description": "Effect indicates the taint effect to match. Empty means match all taint effects.\nWhen specified, allowed values are NoSchedule, PreferNoSchedule and NoExecute.",
+                        "type": "string"
+                      },
+                      "key": {
+                        "description": "Key is the taint key that the toleration applies to. Empty means match all taint keys.\nIf the key is empty, operator must be Exists; this combination means to match all values and all keys.",
+                        "type": "string"
+                      },
+                      "operator": {
+                        "description": "Operator represents a key's relationship to the value.\nValid operators are Exists and Equal. Defaults to Equal.\nExists is equivalent to wildcard for value, so that a pod can\ntolerate all taints of a particular category.",
+                        "type": "string"
+                      },
+                      "tolerationSeconds": {
+                        "description": "TolerationSeconds represents the period of time the toleration (which must be\nof effect NoExecute, otherwise this field is ignored) tolerates the taint. By default,\nit is not set, which means tolerate the taint forever (do not evict). Zero and\nnegative values will be treated as 0 (evict immediately) by the system.",
+                        "type": "integer",
+                        "format": "int64"
+                      },
+                      "value": {
+                        "description": "Value is the taint value the toleration matches to.\nIf the operator is Exists, the value should be empty, otherwise just a regular string.",
+                        "type": "string"
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "replicas": {
+              "description": "`replicas` is the expected replicas of the proxy servers.\nNote that the replicas will also be reflected in the flag `--server-count`\nso that agents can discover all the server instances.",
+              "type": "integer",
+              "format": "int32",
+              "default": 3
+            }
+          }
+        }
+      }
+    }
+  }
+}

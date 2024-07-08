@@ -57,9 +57,6 @@ properties:
           brokers:
             properties:
               nodeSelectionPolicy:
-                enum:
-                - LabelSelector
-                - Taint
                 type: string
               resources:
                 properties:
@@ -106,9 +103,6 @@ properties:
           coordinators:
             properties:
               nodeSelectionPolicy:
-                enum:
-                - LabelSelector
-                - Taint
                 type: string
               resources:
                 properties:
@@ -155,9 +149,6 @@ properties:
           historicals:
             properties:
               nodeSelectionPolicy:
-                enum:
-                - LabelSelector
-                - Taint
                 type: string
               resources:
                 properties:
@@ -204,9 +195,6 @@ properties:
           middleManagers:
             properties:
               nodeSelectionPolicy:
-                enum:
-                - LabelSelector
-                - Taint
                 type: string
               resources:
                 properties:
@@ -253,9 +241,6 @@ properties:
           overlords:
             properties:
               nodeSelectionPolicy:
-                enum:
-                - LabelSelector
-                - Taint
                 type: string
               resources:
                 properties:
@@ -302,9 +287,6 @@ properties:
           routers:
             properties:
               nodeSelectionPolicy:
-                enum:
-                - LabelSelector
-                - Taint
                 type: string
               resources:
                 properties:

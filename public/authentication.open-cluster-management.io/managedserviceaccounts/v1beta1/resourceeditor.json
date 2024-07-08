@@ -1,0 +1,35 @@
+{
+  "kind": "ResourceEditor",
+  "apiVersion": "ui.k8s.appscode.com/v1alpha1",
+  "metadata": {
+    "name": "authentication.open-cluster-management.io-v1beta1-managedserviceaccounts",
+    "creationTimestamp": null,
+    "labels": {
+      "k8s.io/group": "authentication.open-cluster-management.io",
+      "k8s.io/kind": "ManagedServiceAccount",
+      "k8s.io/resource": "managedserviceaccounts",
+      "k8s.io/version": "v1beta1"
+    }
+  },
+  "spec": {
+    "resource": {
+      "group": "authentication.open-cluster-management.io",
+      "version": "v1beta1",
+      "name": "managedserviceaccounts",
+      "kind": "ManagedServiceAccount",
+      "scope": "Namespaced"
+    },
+    "ui": {
+      "editor": {
+        "name": "authenticationopenclustermanagementio-managedserviceaccount-editor",
+        "version": "v0.4.21",
+        "sourceRef": {
+          "apiGroup": "source.toolkit.fluxcd.io",
+          "kind": "HelmRepository",
+          "name": "appscode-charts-oci"
+        }
+      },
+      "enforceQuota": false
+    }
+  }
+}

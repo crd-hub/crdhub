@@ -1,0 +1,35 @@
+{
+  "kind": "ResourceEditor",
+  "apiVersion": "ui.k8s.appscode.com/v1alpha1",
+  "metadata": {
+    "name": "identity.k8s.appscode.com-v1alpha1-clusteridentitys",
+    "creationTimestamp": null,
+    "labels": {
+      "k8s.io/group": "identity.k8s.appscode.com",
+      "k8s.io/kind": "ClusterIdentity",
+      "k8s.io/resource": "clusteridentitys",
+      "k8s.io/version": "v1alpha1"
+    }
+  },
+  "spec": {
+    "resource": {
+      "group": "identity.k8s.appscode.com",
+      "version": "v1alpha1",
+      "name": "clusteridentitys",
+      "kind": "ClusterIdentity",
+      "scope": "Namespaced"
+    },
+    "ui": {
+      "editor": {
+        "name": "identityk8sappscodecom-clusteridentity-editor",
+        "version": "v0.4.21",
+        "sourceRef": {
+          "apiGroup": "source.toolkit.fluxcd.io",
+          "kind": "HelmRepository",
+          "name": "appscode-charts-oci"
+        }
+      },
+      "enforceQuota": false
+    }
+  }
+}

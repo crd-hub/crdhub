@@ -73,31 +73,22 @@
             "linkedDB": {
               "type": "string"
             },
-            "postgres": {
+            "postgresRef": {
               "type": "object",
+              "required": [
+                "name"
+              ],
               "properties": {
-                "service": {
-                  "type": "object",
-                  "properties": {
-                    "name": {
-                      "type": "string"
-                    },
-                    "namespace": {
-                      "type": "string"
-                    },
-                    "pgPort": {
-                      "type": "integer",
-                      "format": "int32"
-                    }
-                  }
-                },
-                "url": {
+                "name": {
                   "type": "string"
                 },
-                "version": {
+                "namespace": {
                   "type": "string"
                 }
               }
+            },
+            "version": {
+              "type": "string"
             }
           }
         },

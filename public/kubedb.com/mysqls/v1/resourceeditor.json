@@ -1,0 +1,23 @@
+{
+  "kind": "ResourceEditor",
+  "apiVersion": "ui.k8s.appscode.com/v1alpha1",
+  "metadata": {
+    "name": "kubedb.com-v1-mysqls",
+    "creationTimestamp": null,
+    "labels": {
+      "k8s.io/group": "kubedb.com",
+      "k8s.io/kind": "MySQL",
+      "k8s.io/resource": "mysqls",
+      "k8s.io/version": "v1"
+    }
+  },
+  "spec": {
+    "resource": {
+      "group": "kubedb.com",
+      "version": "v1",
+      "name": "mysqls",
+      "kind": "MySQL",
+      "scope": "Namespaced"
+    }
+  }
+}

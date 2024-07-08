@@ -37,21 +37,22 @@
               "spec": {
                 "type": "object",
                 "required": [
-                  "nodeSelectionPolicy",
                   "topologyKey"
                 ],
                 "properties": {
+                  "description": {
+                    "type": "string"
+                  },
                   "nodeGroups": {
                     "type": "array",
                     "items": {
                       "type": "object",
                       "required": [
-                        "allocatable",
                         "topologyValue"
                       ],
                       "properties": {
                         "allocatable": {
-                          "description": "Allocatable represents the total resources of a node. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#capacity",
+                          "description": "Allocatable represents the total resources of a node. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#capacity Deprecated: Use resources instead.",
                           "type": "object",
                           "additionalProperties": {
                             "pattern": "^(\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))(([KMGTPE]i)|[numkMGTPE]|([eE](\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))))?$",
@@ -66,6 +67,81 @@
                             "x-kubernetes-int-or-string": true
                           }
                         },
+                        "cost": {
+                          "description": "Cost is the cost of the running an ondeamd machine for a month",
+                          "type": "object",
+                          "required": [
+                            "price",
+                            "unit"
+                          ],
+                          "properties": {
+                            "price": {
+                              "type": "string"
+                            },
+                            "unit": {
+                              "type": "string"
+                            }
+                          }
+                        },
+                        "resources": {
+                          "description": "Resources represents the requested and limited resources of a machine type.",
+                          "type": "object",
+                          "properties": {
+                            "claims": {
+                              "description": "Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container. \n This is an alpha field and requires enabling the DynamicResourceAllocation feature gate. \n This field is immutable. It can only be set for containers.",
+                              "type": "array",
+                              "items": {
+                                "description": "ResourceClaim references one entry in PodSpec.ResourceClaims.",
+                                "type": "object",
+                                "required": [
+                                  "name"
+                                ],
+                                "properties": {
+                                  "name": {
+                                    "description": "Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.",
+                                    "type": "string"
+                                  }
+                                }
+                              },
+                              "x-kubernetes-list-map-keys": [
+                                "name"
+                              ],
+                              "x-kubernetes-list-type": "map"
+                            },
+                            "limits": {
+                              "description": "Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+                              "type": "object",
+                              "additionalProperties": {
+                                "pattern": "^(\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))(([KMGTPE]i)|[numkMGTPE]|([eE](\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))))?$",
+                                "anyOf": [
+                                  {
+                                    "type": "integer"
+                                  },
+                                  {
+                                    "type": "string"
+                                  }
+                                ],
+                                "x-kubernetes-int-or-string": true
+                              }
+                            },
+                            "requests": {
+                              "description": "Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+                              "type": "object",
+                              "additionalProperties": {
+                                "pattern": "^(\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))(([KMGTPE]i)|[numkMGTPE]|([eE](\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))))?$",
+                                "anyOf": [
+                                  {
+                                    "type": "integer"
+                                  },
+                                  {
+                                    "type": "string"
+                                  }
+                                ],
+                                "x-kubernetes-int-or-string": true
+                              }
+                            }
+                          }
+                        },
                         "topologyValue": {
                           "type": "string"
                         }
@@ -73,10 +149,47 @@
                     }
                   },
                   "nodeSelectionPolicy": {
-                    "type": "string",
-                    "enum": [
-                      "LabelSelector",
-                      "Taint"
+                    "type": "string"
+                  },
+                  "requirements": {
+                    "description": "Requirements are layered with GetLabels and applied to every node.",
+                    "type": "array",
+                    "maxItems": 30,
+                    "items": {
+                      "description": "A node selector requirement is a selector that contains values, a key, and an operator that relates the key and values.",
+                      "type": "object",
+                      "required": [
+                        "key",
+                        "operator"
+                      ],
+                      "properties": {
+                        "key": {
+                          "description": "The label key that the selector applies to.",
+                          "type": "string"
+                        },
+                        "operator": {
+                          "description": "Represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.",
+                          "type": "string"
+                        },
+                        "values": {
+                          "description": "An array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. If the operator is Gt or Lt, the values array must have a single element, which will be interpreted as an integer. This array is replaced during a strategic merge patch.",
+                          "type": "array",
+                          "items": {
+                            "type": "string"
+                          },
+                          "x-kubernetes-list-type": "atomic"
+                        }
+                      }
+                    },
+                    "x-kubernetes-validations": [
+                      {
+                        "rule": "self.all(x, x.operator == 'In' ? x.values.size() != 0 : true)",
+                        "message": "requirements with operator 'In' must have a value defined"
+                      },
+                      {
+                        "rule": "self.all(x, (x.operator == 'Gt' || x.operator == 'Lt') ? (x.values.size() == 1 \u0026\u0026 int(x.values[0]) \u003e= 0) : true)",
+                        "message": "requirements operator 'Gt' or 'Lt' must have a single positive integer value"
+                      }
                     ]
                   },
                   "topologyKey": {

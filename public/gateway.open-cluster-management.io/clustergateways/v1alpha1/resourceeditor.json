@@ -1,0 +1,35 @@
+{
+  "kind": "ResourceEditor",
+  "apiVersion": "ui.k8s.appscode.com/v1alpha1",
+  "metadata": {
+    "name": "gateway.open-cluster-management.io-v1alpha1-clustergateways",
+    "creationTimestamp": null,
+    "labels": {
+      "k8s.io/group": "gateway.open-cluster-management.io",
+      "k8s.io/kind": "ClusterGateway",
+      "k8s.io/resource": "clustergateways",
+      "k8s.io/version": "v1alpha1"
+    }
+  },
+  "spec": {
+    "resource": {
+      "group": "gateway.open-cluster-management.io",
+      "version": "v1alpha1",
+      "name": "clustergateways",
+      "kind": "ClusterGateway",
+      "scope": "Namespaced"
+    },
+    "ui": {
+      "editor": {
+        "name": "gatewayopenclustermanagementio-clustergateway-editor",
+        "version": "v0.4.21",
+        "sourceRef": {
+          "apiGroup": "source.toolkit.fluxcd.io",
+          "kind": "HelmRepository",
+          "name": "appscode-charts-oci"
+        }
+      },
+      "enforceQuota": false
+    }
+  }
+}

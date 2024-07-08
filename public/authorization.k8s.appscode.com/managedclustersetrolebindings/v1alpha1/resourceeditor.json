@@ -1,0 +1,35 @@
+{
+  "kind": "ResourceEditor",
+  "apiVersion": "ui.k8s.appscode.com/v1alpha1",
+  "metadata": {
+    "name": "authorization.k8s.appscode.com-v1alpha1-managedclustersetrolebindings",
+    "creationTimestamp": null,
+    "labels": {
+      "k8s.io/group": "authorization.k8s.appscode.com",
+      "k8s.io/kind": "ManagedClusterSetRoleBinding",
+      "k8s.io/resource": "managedclustersetrolebindings",
+      "k8s.io/version": "v1alpha1"
+    }
+  },
+  "spec": {
+    "resource": {
+      "group": "authorization.k8s.appscode.com",
+      "version": "v1alpha1",
+      "name": "managedclustersetrolebindings",
+      "kind": "ManagedClusterSetRoleBinding",
+      "scope": "Cluster"
+    },
+    "ui": {
+      "editor": {
+        "name": "authorizationk8sappscodecom-managedclustersetrolebinding-editor",
+        "version": "v0.4.21",
+        "sourceRef": {
+          "apiGroup": "source.toolkit.fluxcd.io",
+          "kind": "HelmRepository",
+          "name": "appscode-charts-oci"
+        }
+      },
+      "enforceQuota": false
+    }
+  }
+}

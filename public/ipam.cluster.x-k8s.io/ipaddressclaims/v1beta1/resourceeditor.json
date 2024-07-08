@@ -18,6 +18,18 @@
       "name": "ipaddressclaims",
       "kind": "IPAddressClaim",
       "scope": "Namespaced"
+    },
+    "ui": {
+      "editor": {
+        "name": "ipamclusterxk8sio-ipaddressclaim-editor",
+        "version": "v0.4.21",
+        "sourceRef": {
+          "apiGroup": "source.toolkit.fluxcd.io",
+          "kind": "HelmRepository",
+          "name": "appscode-charts-oci"
+        }
+      },
+      "enforceQuota": false
     }
   }
 }

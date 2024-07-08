@@ -1,0 +1,35 @@
+{
+  "kind": "ResourceEditor",
+  "apiVersion": "ui.k8s.appscode.com/v1alpha1",
+  "metadata": {
+    "name": "proxy.open-cluster-management.io-v1alpha1-managedproxyserviceresolvers",
+    "creationTimestamp": null,
+    "labels": {
+      "k8s.io/group": "proxy.open-cluster-management.io",
+      "k8s.io/kind": "ManagedProxyServiceResolver",
+      "k8s.io/resource": "managedproxyserviceresolvers",
+      "k8s.io/version": "v1alpha1"
+    }
+  },
+  "spec": {
+    "resource": {
+      "group": "proxy.open-cluster-management.io",
+      "version": "v1alpha1",
+      "name": "managedproxyserviceresolvers",
+      "kind": "ManagedProxyServiceResolver",
+      "scope": "Cluster"
+    },
+    "ui": {
+      "editor": {
+        "name": "proxyopenclustermanagementio-managedproxyserviceresolver-editor",
+        "version": "v0.4.21",
+        "sourceRef": {
+          "apiGroup": "source.toolkit.fluxcd.io",
+          "kind": "HelmRepository",
+          "name": "appscode-charts-oci"
+        }
+      },
+      "enforceQuota": false
+    }
+  }
+}

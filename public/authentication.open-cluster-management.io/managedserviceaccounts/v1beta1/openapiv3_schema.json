@@ -1,0 +1,80 @@
+{
+  "$schema": "http://json-schema.org/schema#",
+  "description": "ManagedServiceAccount is the Schema for the managedserviceaccounts API",
+  "type": "object",
+  "properties": {
+    "apiVersion": {
+      "description": "APIVersion defines the versioned schema of this representation of an object.\nServers should convert recognized schemas to the latest internal value, and\nmay reject unrecognized values.\nMore info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources",
+      "type": "string",
+      "enum": [
+        "authentication.open-cluster-management.io/v1beta1"
+      ]
+    },
+    "kind": {
+      "description": "Kind is a string value representing the REST resource this object represents.\nServers may infer this from the endpoint the client submits requests to.\nCannot be updated.\nIn CamelCase.\nMore info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds",
+      "type": "string",
+      "enum": [
+        "ManagedServiceAccount"
+      ]
+    },
+    "metadata": {
+      "type": "object",
+      "properties": {
+        "annotations": {
+          "description": "Annotations is an unstructured key value map stored with a resource that may be set by external tools to store and retrieve arbitrary metadata. They are not queryable and should be preserved when modifying objects. More info: http://kubernetes.io/docs/user-guide/annotations",
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          }
+        },
+        "labels": {
+          "description": "Map of string keys and values that can be used to organize and categorize (scope and select) objects. May match selectors of replication controllers and services. More info: http://kubernetes.io/docs/user-guide/labels",
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          }
+        },
+        "name": {
+          "description": "Name must be unique within a namespace. Is required when creating resources, although some resources may allow a client to request the generation of an appropriate name automatically. Name is primarily intended for creation idempotence and configuration definition. Cannot be updated. More info: http://kubernetes.io/docs/user-guide/identifiers#names",
+          "type": "string"
+        },
+        "namespace": {
+          "description": "Namespace defines the space within which each name must be unique. An empty namespace is equivalent to the \"default\" namespace, but \"default\" is the canonical representation. Not all objects are required to be scoped to a namespace - the value of this field for those objects will be empty. \n Must be a DNS_LABEL. Cannot be updated. More info: http://kubernetes.io/docs/user-guide/namespaces",
+          "type": "string"
+        }
+      }
+    },
+    "spec": {
+      "description": "ManagedServiceAccountSpec defines the desired state of ManagedServiceAccount",
+      "type": "object",
+      "required": [
+        "rotation"
+      ],
+      "properties": {
+        "rotation": {
+          "description": "Rotation is the policy for rotation the credentials.",
+          "type": "object",
+          "properties": {
+            "enabled": {
+              "description": "Enabled prescribes whether the ServiceAccount token will\nbe rotated from the upstream",
+              "type": "boolean",
+              "default": true
+            },
+            "validity": {
+              "description": "Validity is the duration for which the signed ServiceAccount token is valid.",
+              "type": "string",
+              "default": "8640h0m0s"
+            }
+          }
+        },
+        "ttlSecondsAfterCreation": {
+          "description": "ttlSecondsAfterCreation limits the lifetime of a ManagedServiceAccount.\nIf the ttlSecondsAfterCreation field is set, the ManagedServiceAccount will be\nautomatically deleted regardless of the ManagedServiceAccount's status.\nWhen the ManagedServiceAccount is deleted, its lifecycle guarantees\n(e.g. finalizers) will be honored. If this field is unset, the ManagedServiceAccount\nwon't be automatically deleted. If this field is set to zero, the\nManagedServiceAccount becomes eligible for deletion immediately after its creation.\nIn order to use ttlSecondsAfterCreation, the EphemeralIdentity feature gate must be enabled.",
+          "type": "integer",
+          "format": "int32",
+          "minimum": 0,
+          "exclusiveMinimum": true
+        }
+      }
+    }
+  }
+}

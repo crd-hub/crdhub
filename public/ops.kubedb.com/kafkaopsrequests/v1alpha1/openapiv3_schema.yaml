@@ -202,9 +202,6 @@ properties:
           broker:
             properties:
               nodeSelectionPolicy:
-                enum:
-                - LabelSelector
-                - Taint
                 type: string
               resources:
                 properties:
@@ -251,9 +248,6 @@ properties:
           controller:
             properties:
               nodeSelectionPolicy:
-                enum:
-                - LabelSelector
-                - Taint
                 type: string
               resources:
                 properties:
@@ -300,9 +294,6 @@ properties:
           node:
             properties:
               nodeSelectionPolicy:
-                enum:
-                - LabelSelector
-                - Taint
                 type: string
               resources:
                 properties:
