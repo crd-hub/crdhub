@@ -95,11 +95,11 @@
                   "horizontalScaling": {
                     "type": "object",
                     "properties": {
-                      "master": {
+                      "replicas": {
                         "type": "integer",
                         "format": "int32"
                       },
-                      "replicas": {
+                      "shards": {
                         "type": "integer",
                         "format": "int32"
                       }

@@ -87,6 +87,29 @@
                       }
                     }
                   },
+                  "ui": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "required": [
+                        "name"
+                      ],
+                      "properties": {
+                        "disable": {
+                          "type": "boolean"
+                        },
+                        "name": {
+                          "type": "string"
+                        },
+                        "values": {
+                          "x-kubernetes-preserve-unknown-fields": true
+                        },
+                        "version": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  },
                   "version": {
                     "type": "string"
                   }

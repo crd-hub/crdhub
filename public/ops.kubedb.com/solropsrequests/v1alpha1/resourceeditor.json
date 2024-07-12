@@ -1,0 +1,23 @@
+{
+  "kind": "ResourceEditor",
+  "apiVersion": "ui.k8s.appscode.com/v1alpha1",
+  "metadata": {
+    "name": "ops.kubedb.com-v1alpha1-solropsrequests",
+    "creationTimestamp": null,
+    "labels": {
+      "k8s.io/group": "ops.kubedb.com",
+      "k8s.io/kind": "SolrOpsRequest",
+      "k8s.io/resource": "solropsrequests",
+      "k8s.io/version": "v1alpha1"
+    }
+  },
+  "spec": {
+    "resource": {
+      "group": "ops.kubedb.com",
+      "version": "v1alpha1",
+      "name": "solropsrequests",
+      "kind": "SolrOpsRequest",
+      "scope": "Namespaced"
+    }
+  }
+}
