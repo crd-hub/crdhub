@@ -19,7 +19,7 @@
       "kind": "ProxySQLAutoscaler",
       "listKind": "ProxySQLAutoscalerList",
       "categories": [
-        "datastore",
+        "autoscaler",
         "kubedb",
         "appscode"
       ]
@@ -46,7 +46,7 @@
               "spec": {
                 "type": "object",
                 "required": [
-                  "proxyRef"
+                  "databaseRef"
                 ],
                 "properties": {
                   "compute": {
@@ -143,6 +143,16 @@
                       }
                     }
                   },
+                  "databaseRef": {
+                    "type": "object",
+                    "properties": {
+                      "name": {
+                        "type": "string",
+                        "default": ""
+                      }
+                    },
+                    "x-kubernetes-map-type": "atomic"
+                  },
                   "opsRequestOptions": {
                     "type": "object",
                     "properties": {
@@ -158,16 +168,6 @@
                         "type": "string"
                       }
                     }
-                  },
-                  "proxyRef": {
-                    "type": "object",
-                    "properties": {
-                      "name": {
-                        "type": "string",
-                        "default": ""
-                      }
-                    },
-                    "x-kubernetes-map-type": "atomic"
                   }
                 }
               },

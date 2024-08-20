@@ -19,7 +19,7 @@
       "kind": "PerconaXtraDBOpsRequest",
       "listKind": "PerconaXtraDBOpsRequestList",
       "categories": [
-        "datastore",
+        "ops",
         "kubedb",
         "appscode"
       ]

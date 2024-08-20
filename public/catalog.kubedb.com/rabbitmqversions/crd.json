@@ -19,7 +19,7 @@
       "kind": "RabbitMQVersion",
       "listKind": "RabbitMQVersionList",
       "categories": [
-        "datastore",
+        "catalog",
         "kubedb",
         "appscode"
       ]

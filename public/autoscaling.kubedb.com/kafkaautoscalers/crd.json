@@ -19,7 +19,7 @@
       "kind": "KafkaAutoscaler",
       "listKind": "KafkaAutoscalerList",
       "categories": [
-        "datastore",
+        "autoscaler",
         "kubedb",
         "appscode"
       ]

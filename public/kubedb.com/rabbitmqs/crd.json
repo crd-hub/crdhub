@@ -17,7 +17,13 @@
         "rm"
       ],
       "kind": "RabbitMQ",
-      "listKind": "RabbitMQList"
+      "listKind": "RabbitMQList",
+      "categories": [
+        "datastore",
+        "kubedb",
+        "appscode",
+        "all"
+      ]
     },
     "scope": "Namespaced",
     "versions": [
@@ -78,6 +84,20 @@
                   },
                   "disableSecurity": {
                     "type": "boolean"
+                  },
+                  "disabledProtocols": {
+                    "type": "array",
+                    "items": {
+                      "type": "string",
+                      "enum": [
+                        "http",
+                        "amqp",
+                        "mqtt",
+                        "stomp",
+                        "web_mqtt",
+                        "web_stomp"
+                      ]
+                    }
                   },
                   "enableSSL": {
                     "type": "boolean"
@@ -5155,7 +5175,8 @@
                           "enum": [
                             "primary",
                             "standby",
-                            "stats"
+                            "stats",
+                            "dashboard"
                           ]
                         },
                         "metadata": {

@@ -17,7 +17,12 @@
         "ksr"
       ],
       "kind": "SchemaRegistry",
-      "listKind": "SchemaRegistryList"
+      "listKind": "SchemaRegistryList",
+      "categories": [
+        "kfstore",
+        "kubedb",
+        "appscode"
+      ]
     },
     "scope": "Namespaced",
     "versions": [

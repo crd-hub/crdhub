@@ -5,7 +5,7 @@
     "name": "clienttrafficpolicies.gateway.envoyproxy.io",
     "creationTimestamp": null,
     "annotations": {
-      "controller-gen.kubebuilder.io/version": "v0.13.0"
+      "controller-gen.kubebuilder.io/version": "v0.15.0"
     }
   },
   "spec": {
@@ -17,7 +17,10 @@
         "ctp"
       ],
       "kind": "ClientTrafficPolicy",
-      "listKind": "ClientTrafficPolicyList"
+      "listKind": "ClientTrafficPolicyList",
+      "categories": [
+        "envoy-gateway"
+      ]
     },
     "scope": "Namespaced",
     "versions": [
@@ -27,18 +30,18 @@
         "storage": true,
         "schema": {
           "openAPIV3Schema": {
-            "description": "ClientTrafficPolicy allows the user to configure the behavior of the connection between the downstream client and Envoy Proxy listener.",
+            "description": "ClientTrafficPolicy allows the user to configure the behavior of the connection\nbetween the downstream client and Envoy Proxy listener.",
             "type": "object",
             "required": [
               "spec"
             ],
             "properties": {
               "apiVersion": {
-                "description": "APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources",
+                "description": "APIVersion defines the versioned schema of this representation of an object.\nServers should convert recognized schemas to the latest internal value, and\nmay reject unrecognized values.\nMore info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources",
                 "type": "string"
               },
               "kind": {
-                "description": "Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds",
+                "description": "Kind is a string value representing the REST resource this object represents.\nServers may infer this from the endpoint the client submits requests to.\nCannot be updated.\nIn CamelCase.\nMore info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds",
                 "type": "string"
               },
               "metadata": {
@@ -47,12 +50,278 @@
               "spec": {
                 "description": "Spec defines the desired state of ClientTrafficPolicy.",
                 "type": "object",
-                "required": [
-                  "targetRef"
-                ],
                 "properties": {
+                  "clientIPDetection": {
+                    "description": "ClientIPDetectionSettings provides configuration for determining the original client IP address for requests.",
+                    "type": "object",
+                    "properties": {
+                      "customHeader": {
+                        "description": "CustomHeader provides configuration for determining the client IP address for a request based on\na trusted custom HTTP header. This uses the custom_header original IP detection extension.\nRefer to https://www.envoyproxy.io/docs/envoy/latest/api-v3/extensions/http/original_ip_detection/custom_header/v3/custom_header.proto\nfor more details.",
+                        "type": "object",
+                        "required": [
+                          "name"
+                        ],
+                        "properties": {
+                          "failClosed": {
+                            "description": "FailClosed is a switch used to control the flow of traffic when client IP detection\nfails. If set to true, the listener will respond with 403 Forbidden when the client\nIP address cannot be determined.",
+                            "type": "boolean"
+                          },
+                          "name": {
+                            "description": "Name of the header containing the original downstream remote address, if present.",
+                            "type": "string",
+                            "maxLength": 255,
+                            "minLength": 1,
+                            "pattern": "^[A-Za-z0-9-]+$"
+                          }
+                        }
+                      },
+                      "xForwardedFor": {
+                        "description": "XForwardedForSettings provides configuration for using X-Forwarded-For headers for determining the client IP address.",
+                        "type": "object",
+                        "properties": {
+                          "numTrustedHops": {
+                            "description": "NumTrustedHops controls the number of additional ingress proxy hops from the right side of XFF HTTP\nheaders to trust when determining the origin client's IP address.\nRefer to https://www.envoyproxy.io/docs/envoy/latest/configuration/http/http_conn_man/headers#x-forwarded-for\nfor more details.",
+                            "type": "integer",
+                            "format": "int32"
+                          }
+                        }
+                      }
+                    },
+                    "x-kubernetes-validations": [
+                      {
+                        "rule": "!(has(self.xForwardedFor) \u0026\u0026 has(self.customHeader))",
+                        "message": "customHeader cannot be used in conjunction with xForwardedFor"
+                      }
+                    ]
+                  },
+                  "connection": {
+                    "description": "Connection includes client connection settings.",
+                    "type": "object",
+                    "properties": {
+                      "bufferLimit": {
+                        "description": "BufferLimit provides configuration for the maximum buffer size in bytes for each incoming connection.\nFor example, 20Mi, 1Gi, 256Ki etc.\nNote that when the suffix is not provided, the value is interpreted as bytes.\nDefault: 32768 bytes.",
+                        "pattern": "^(\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))(([KMGTPE]i)|[numkMGTPE]|([eE](\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))))?$",
+                        "anyOf": [
+                          {
+                            "type": "integer"
+                          },
+                          {
+                            "type": "string"
+                          }
+                        ],
+                        "x-kubernetes-int-or-string": true,
+                        "x-kubernetes-validations": [
+                          {
+                            "rule": "type(self) == string ? self.matches(r\"^[1-9]+[0-9]*([EPTGMK]i|[EPTGMk])?$\") : type(self) == int",
+                            "message": "bufferLimit must be of the format \"^[1-9]+[0-9]*([EPTGMK]i|[EPTGMk])?$\""
+                          }
+                        ]
+                      },
+                      "connectionLimit": {
+                        "description": "ConnectionLimit defines limits related to connections",
+                        "type": "object",
+                        "properties": {
+                          "closeDelay": {
+                            "description": "CloseDelay defines the delay to use before closing connections that are rejected\nonce the limit value is reached.\nDefault: none.",
+                            "type": "string",
+                            "pattern": "^([0-9]{1,5}(h|m|s|ms)){1,4}$"
+                          },
+                          "value": {
+                            "description": "Value of the maximum concurrent connections limit.\nWhen the limit is reached, incoming connections will be closed after the CloseDelay duration.\nDefault: unlimited.",
+                            "type": "integer",
+                            "format": "int64",
+                            "minimum": 0
+                          }
+                        }
+                      }
+                    }
+                  },
+                  "enableProxyProtocol": {
+                    "description": "EnableProxyProtocol interprets the ProxyProtocol header and adds the\nClient Address into the X-Forwarded-For header.\nNote Proxy Protocol must be present when this field is set, else the connection\nis closed.",
+                    "type": "boolean"
+                  },
+                  "headers": {
+                    "description": "HeaderSettings provides configuration for header management.",
+                    "type": "object",
+                    "properties": {
+                      "disableRateLimitHeaders": {
+                        "description": "DisableRateLimitHeaders configures Envoy Proxy to omit the \"X-RateLimit-\" response headers\nwhen rate limiting is enabled.",
+                        "type": "boolean"
+                      },
+                      "enableEnvoyHeaders": {
+                        "description": "EnableEnvoyHeaders configures Envoy Proxy to add the \"X-Envoy-\" headers to requests\nand responses.",
+                        "type": "boolean"
+                      },
+                      "preserveXRequestID": {
+                        "description": "PreserveXRequestID configures Envoy to keep the X-Request-ID header if passed for a request that is edge\n(Edge request is the request from external clients to front Envoy) and not reset it, which is the current Envoy behaviour.\nIt defaults to false.",
+                        "type": "boolean"
+                      },
+                      "withUnderscoresAction": {
+                        "description": "WithUnderscoresAction configures the action to take when an HTTP header with underscores\nis encountered. The default action is to reject the request.",
+                        "type": "string",
+                        "enum": [
+                          "Allow",
+                          "RejectRequest",
+                          "DropHeader"
+                        ]
+                      },
+                      "xForwardedClientCert": {
+                        "description": "XForwardedClientCert configures how Envoy Proxy handle the x-forwarded-client-cert (XFCC) HTTP header.\n\n\nx-forwarded-client-cert (XFCC) is an HTTP header used to forward the certificate\ninformation of part or all of the clients or proxies that a request has flowed through,\non its way from the client to the server.\n\n\nEnvoy proxy may choose to sanitize/append/forward the XFCC header before proxying the request.\n\n\nIf not set, the default behavior is sanitizing the XFCC header.",
+                        "type": "object",
+                        "properties": {
+                          "certDetailsToAdd": {
+                            "description": "CertDetailsToAdd specifies the fields in the client certificate to be forwarded in the XFCC header.\n\n\nHash(the SHA 256 digest of the current client certificate) and By(the Subject Alternative Name)\nare always included if the client certificate is forwarded.\n\n\nThis field is only applicable when the mode is set to `AppendForward` or\n`SanitizeSet` and the client connection is mTLS.",
+                            "type": "array",
+                            "maxItems": 5,
+                            "items": {
+                              "description": "XFCCCertData specifies the fields in the client certificate to be forwarded in the XFCC header.",
+                              "type": "string",
+                              "enum": [
+                                "Subject",
+                                "Cert",
+                                "Chain",
+                                "DNS",
+                                "URI"
+                              ]
+                            }
+                          },
+                          "mode": {
+                            "description": "Mode defines how XFCC header is handled by Envoy Proxy.\nIf not set, the default mode is `Sanitize`.",
+                            "type": "string",
+                            "enum": [
+                              "Sanitize",
+                              "ForwardOnly",
+                              "AppendForward",
+                              "SanitizeSet",
+                              "AlwaysForwardOnly"
+                            ]
+                          }
+                        },
+                        "x-kubernetes-validations": [
+                          {
+                            "rule": "(has(self.certDetailsToAdd) \u0026\u0026 self.certDetailsToAdd.size() \u003e 0) ? (self.mode == 'AppendForward' || self.mode == 'SanitizeSet') : true",
+                            "message": "certDetailsToAdd can only be set when mode is AppendForward or SanitizeSet"
+                          }
+                        ]
+                      }
+                    }
+                  },
+                  "healthCheck": {
+                    "description": "HealthCheck provides configuration for determining whether the HTTP/HTTPS listener is healthy.",
+                    "type": "object",
+                    "required": [
+                      "path"
+                    ],
+                    "properties": {
+                      "path": {
+                        "description": "Path specifies the HTTP path to match on for health check requests.",
+                        "type": "string",
+                        "maxLength": 1024,
+                        "minLength": 1
+                      }
+                    }
+                  },
+                  "http1": {
+                    "description": "HTTP1 provides HTTP/1 configuration on the listener.",
+                    "type": "object",
+                    "properties": {
+                      "enableTrailers": {
+                        "description": "EnableTrailers defines if HTTP/1 trailers should be proxied by Envoy.",
+                        "type": "boolean"
+                      },
+                      "http10": {
+                        "description": "HTTP10 turns on support for HTTP/1.0 and HTTP/0.9 requests.",
+                        "type": "object",
+                        "properties": {
+                          "useDefaultHost": {
+                            "description": "UseDefaultHost defines if the HTTP/1.0 request is missing the Host header,\nthen the hostname associated with the listener should be injected into the\nrequest.\nIf this is not set and an HTTP/1.0 request arrives without a host, then\nit will be rejected.",
+                            "type": "boolean"
+                          }
+                        }
+                      },
+                      "preserveHeaderCase": {
+                        "description": "PreserveHeaderCase defines if Envoy should preserve the letter case of headers.\nBy default, Envoy will lowercase all the headers.",
+                        "type": "boolean"
+                      }
+                    }
+                  },
+                  "http2": {
+                    "description": "HTTP2 provides HTTP/2 configuration on the listener.",
+                    "type": "object",
+                    "properties": {
+                      "initialConnectionWindowSize": {
+                        "description": "InitialConnectionWindowSize sets the initial window size for HTTP/2 connections.\nIf not set, the default value is 1 MiB.",
+                        "pattern": "^(\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))(([KMGTPE]i)|[numkMGTPE]|([eE](\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))))?$",
+                        "anyOf": [
+                          {
+                            "type": "integer"
+                          },
+                          {
+                            "type": "string"
+                          }
+                        ],
+                        "x-kubernetes-int-or-string": true,
+                        "x-kubernetes-validations": [
+                          {
+                            "rule": "type(self) == string ? self.matches(r\"^[1-9]+[0-9]*([EPTGMK]i|[EPTGMk])?$\") : type(self) == int",
+                            "message": "initialConnectionWindowSize must be of the format \"^[1-9]+[0-9]*([EPTGMK]i|[EPTGMk])?$\""
+                          }
+                        ]
+                      },
+                      "initialStreamWindowSize": {
+                        "description": "InitialStreamWindowSize sets the initial window size for HTTP/2 streams.\nIf not set, the default value is 64 KiB(64*1024).",
+                        "pattern": "^(\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))(([KMGTPE]i)|[numkMGTPE]|([eE](\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))))?$",
+                        "anyOf": [
+                          {
+                            "type": "integer"
+                          },
+                          {
+                            "type": "string"
+                          }
+                        ],
+                        "x-kubernetes-int-or-string": true,
+                        "x-kubernetes-validations": [
+                          {
+                            "rule": "type(self) == string ? self.matches(r\"^[1-9]+[0-9]*([EPTGMK]i|[EPTGMk])?$\") : type(self) == int",
+                            "message": "initialStreamWindowSize must be of the format \"^[1-9]+[0-9]*([EPTGMK]i|[EPTGMk])?$\""
+                          }
+                        ]
+                      },
+                      "maxConcurrentStreams": {
+                        "description": "MaxConcurrentStreams sets the maximum number of concurrent streams allowed per connection.\nIf not set, the default value is 100.",
+                        "type": "integer",
+                        "format": "int32",
+                        "maximum": 2147483647,
+                        "minimum": 1
+                      }
+                    }
+                  },
+                  "http3": {
+                    "description": "HTTP3 provides HTTP/3 configuration on the listener.",
+                    "type": "object"
+                  },
+                  "path": {
+                    "description": "Path enables managing how the incoming path set by clients can be normalized.",
+                    "type": "object",
+                    "properties": {
+                      "disableMergeSlashes": {
+                        "description": "DisableMergeSlashes allows disabling the default configuration of merging adjacent\nslashes in the path.\nNote that slash merging is not part of the HTTP spec and is provided for convenience.",
+                        "type": "boolean"
+                      },
+                      "escapedSlashesAction": {
+                        "description": "EscapedSlashesAction determines how %2f, %2F, %5c, or %5C sequences in the path URI\nshould be handled.\nThe default is UnescapeAndRedirect.",
+                        "type": "string",
+                        "enum": [
+                          "KeepUnchanged",
+                          "RejectRequest",
+                          "UnescapeAndForward",
+                          "UnescapeAndRedirect"
+                        ]
+                      }
+                    }
+                  },
                   "targetRef": {
-                    "description": "TargetRef is the name of the Gateway resource this policy is being attached to. This Policy and the TargetRef MUST be in the same namespace for this Policy to have effect and be applied to the Gateway. TargetRef",
+                    "description": "TargetRef is the name of the resource this policy is being attached to.\nThis policy and the TargetRef MUST be in the same namespace for this\nPolicy to have effect\n\n\nDeprecated: use targetRefs/targetSelectors instead",
                     "type": "object",
                     "required": [
                       "group",
@@ -79,122 +348,438 @@
                         "maxLength": 253,
                         "minLength": 1
                       },
-                      "namespace": {
-                        "description": "Namespace is the namespace of the referent. When unspecified, the local namespace is inferred. Even when policy targets a resource in a different namespace, it MUST only apply to traffic originating from the same namespace as the policy.",
-                        "type": "string",
-                        "maxLength": 63,
-                        "minLength": 1,
-                        "pattern": "^[a-z0-9]([-a-z0-9]*[a-z0-9])?$"
-                      },
                       "sectionName": {
-                        "description": "SectionName is the name of a section within the target resource. When unspecified, this targetRef targets the entire resource. In the following resources, SectionName is interpreted as the following: \n * Gateway: Listener Name * Service: Port Name \n If a SectionName is specified, but does not exist on the targeted object, the Policy must fail to attach, and the policy implementation should record a `ResolvedRefs` or similar Condition in the Policy's status.",
+                        "description": "SectionName is the name of a section within the target resource. When\nunspecified, this targetRef targets the entire resource. In the following\nresources, SectionName is interpreted as the following:\n\n\n* Gateway: Listener name\n* HTTPRoute: HTTPRouteRule name\n* Service: Port name\n\n\nIf a SectionName is specified, but does not exist on the targeted object,\nthe Policy must fail to attach, and the policy implementation should record\na `ResolvedRefs` or similar Condition in the Policy's status.",
                         "type": "string",
                         "maxLength": 253,
                         "minLength": 1,
                         "pattern": "^[a-z0-9]([-a-z0-9]*[a-z0-9])?(\\.[a-z0-9]([-a-z0-9]*[a-z0-9])?)*$"
                       }
-                    },
-                    "x-kubernetes-validations": [
-                      {
-                        "rule": "self.group == 'gateway.networking.k8s.io'",
-                        "message": "this policy can only have a targetRef.group of gateway.networking.k8s.io"
-                      },
-                      {
-                        "rule": "self.kind == 'Gateway'",
-                        "message": "this policy can only have a targetRef.kind of Gateway"
-                      },
-                      {
-                        "rule": "!has(self.sectionName)",
-                        "message": "this policy does not yet support the sectionName field"
+                    }
+                  },
+                  "targetRefs": {
+                    "description": "TargetRefs are the names of the Gateway resources this policy\nis being attached to.",
+                    "type": "array",
+                    "items": {
+                      "description": "LocalPolicyTargetReferenceWithSectionName identifies an API object to apply a\ndirect policy to. This should be used as part of Policy resources that can\ntarget single resources. For more information on how this policy attachment\nmode works, and a sample Policy resource, refer to the policy attachment\ndocumentation for Gateway API.\n\n\nNote: This should only be used for direct policy attachment when references\nto SectionName are actually needed. In all other cases,\nLocalPolicyTargetReference should be used.",
+                      "type": "object",
+                      "required": [
+                        "group",
+                        "kind",
+                        "name"
+                      ],
+                      "properties": {
+                        "group": {
+                          "description": "Group is the group of the target resource.",
+                          "type": "string",
+                          "maxLength": 253,
+                          "pattern": "^$|^[a-z0-9]([-a-z0-9]*[a-z0-9])?(\\.[a-z0-9]([-a-z0-9]*[a-z0-9])?)*$"
+                        },
+                        "kind": {
+                          "description": "Kind is kind of the target resource.",
+                          "type": "string",
+                          "maxLength": 63,
+                          "minLength": 1,
+                          "pattern": "^[a-zA-Z]([-a-zA-Z0-9]*[a-zA-Z0-9])?$"
+                        },
+                        "name": {
+                          "description": "Name is the name of the target resource.",
+                          "type": "string",
+                          "maxLength": 253,
+                          "minLength": 1
+                        },
+                        "sectionName": {
+                          "description": "SectionName is the name of a section within the target resource. When\nunspecified, this targetRef targets the entire resource. In the following\nresources, SectionName is interpreted as the following:\n\n\n* Gateway: Listener name\n* HTTPRoute: HTTPRouteRule name\n* Service: Port name\n\n\nIf a SectionName is specified, but does not exist on the targeted object,\nthe Policy must fail to attach, and the policy implementation should record\na `ResolvedRefs` or similar Condition in the Policy's status.",
+                          "type": "string",
+                          "maxLength": 253,
+                          "minLength": 1,
+                          "pattern": "^[a-z0-9]([-a-z0-9]*[a-z0-9])?(\\.[a-z0-9]([-a-z0-9]*[a-z0-9])?)*$"
+                        }
                       }
-                    ]
+                    }
+                  },
+                  "targetSelectors": {
+                    "description": "TargetSelectors allow targeting resources for this policy based on labels",
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "required": [
+                        "kind",
+                        "matchLabels"
+                      ],
+                      "properties": {
+                        "group": {
+                          "description": "Group is the group that this selector targets. Defaults to gateway.networking.k8s.io",
+                          "type": "string",
+                          "default": "gateway.networking.k8s.io",
+                          "maxLength": 253,
+                          "pattern": "^$|^[a-z0-9]([-a-z0-9]*[a-z0-9])?(\\.[a-z0-9]([-a-z0-9]*[a-z0-9])?)*$"
+                        },
+                        "kind": {
+                          "description": "Kind is the resource kind that this selector targets.",
+                          "type": "string",
+                          "maxLength": 63,
+                          "minLength": 1,
+                          "pattern": "^[a-zA-Z]([-a-zA-Z0-9]*[a-zA-Z0-9])?$"
+                        },
+                        "matchLabels": {
+                          "description": "MatchLabels are the set of label selectors for identifying the targeted resource",
+                          "type": "object",
+                          "additionalProperties": {
+                            "type": "string"
+                          }
+                        }
+                      },
+                      "x-kubernetes-validations": [
+                        {
+                          "rule": "has(self.group) ? self.group == 'gateway.networking.k8s.io' : true ",
+                          "message": "group must be gateway.networking.k8s.io"
+                        }
+                      ]
+                    }
                   },
                   "tcpKeepalive": {
-                    "description": "TcpKeepalive settings associated with the downstream client connection. If defined, sets SO_KEEPALIVE on the listener socket to enable TCP Keepalives. Disabled by default.",
+                    "description": "TcpKeepalive settings associated with the downstream client connection.\nIf defined, sets SO_KEEPALIVE on the listener socket to enable TCP Keepalives.\nDisabled by default.",
                     "type": "object",
                     "properties": {
                       "idleTime": {
-                        "description": "The duration a connection needs to be idle before keep-alive probes start being sent. The duration format is Defaults to `7200s`.",
+                        "description": "The duration a connection needs to be idle before keep-alive\nprobes start being sent.\nThe duration format is\nDefaults to `7200s`.",
                         "type": "string",
                         "pattern": "^([0-9]{1,5}(h|m|s|ms)){1,4}$"
                       },
                       "interval": {
-                        "description": "The duration between keep-alive probes. Defaults to `75s`.",
+                        "description": "The duration between keep-alive probes.\nDefaults to `75s`.",
                         "type": "string",
                         "pattern": "^([0-9]{1,5}(h|m|s|ms)){1,4}$"
                       },
                       "probes": {
-                        "description": "The total number of unacknowledged probes to send before deciding the connection is dead. Defaults to 9.",
+                        "description": "The total number of unacknowledged probes to send before deciding\nthe connection is dead.\nDefaults to 9.",
                         "type": "integer",
                         "format": "int32"
                       }
                     }
+                  },
+                  "timeout": {
+                    "description": "Timeout settings for the client connections.",
+                    "type": "object",
+                    "properties": {
+                      "http": {
+                        "description": "Timeout settings for HTTP.",
+                        "type": "object",
+                        "properties": {
+                          "idleTimeout": {
+                            "description": "IdleTimeout for an HTTP connection. Idle time is defined as a period in which there are no active requests in the connection.\nDefault: 1 hour.",
+                            "type": "string",
+                            "pattern": "^([0-9]{1,5}(h|m|s|ms)){1,4}$"
+                          },
+                          "requestReceivedTimeout": {
+                            "description": "RequestReceivedTimeout is the duration envoy waits for the complete request reception. This timer starts upon request\ninitiation and stops when either the last byte of the request is sent upstream or when the response begins.",
+                            "type": "string",
+                            "pattern": "^([0-9]{1,5}(h|m|s|ms)){1,4}$"
+                          }
+                        }
+                      },
+                      "tcp": {
+                        "description": "Timeout settings for TCP.",
+                        "type": "object",
+                        "properties": {
+                          "idleTimeout": {
+                            "description": "IdleTimeout for a TCP connection. Idle time is defined as a period in which there are no\nbytes sent or received on either the upstream or downstream connection.\nDefault: 1 hour.",
+                            "type": "string",
+                            "pattern": "^([0-9]{1,5}(h|m|s|ms)){1,4}$"
+                          }
+                        }
+                      }
+                    }
+                  },
+                  "tls": {
+                    "description": "TLS settings configure TLS termination settings with the downstream client.",
+                    "type": "object",
+                    "properties": {
+                      "alpnProtocols": {
+                        "description": "ALPNProtocols supplies the list of ALPN protocols that should be\nexposed by the listener. By default h2 and http/1.1 are enabled.\nSupported values are:\n- http/1.0\n- http/1.1\n- h2",
+                        "type": "array",
+                        "items": {
+                          "description": "ALPNProtocol specifies the protocol to be negotiated using ALPN",
+                          "type": "string",
+                          "enum": [
+                            "http/1.0",
+                            "http/1.1",
+                            "h2"
+                          ]
+                        }
+                      },
+                      "ciphers": {
+                        "description": "Ciphers specifies the set of cipher suites supported when\nnegotiating TLS 1.0 - 1.2. This setting has no effect for TLS 1.3.\nIn non-FIPS Envoy Proxy builds the default cipher list is:\n- [ECDHE-ECDSA-AES128-GCM-SHA256|ECDHE-ECDSA-CHACHA20-POLY1305]\n- [ECDHE-RSA-AES128-GCM-SHA256|ECDHE-RSA-CHACHA20-POLY1305]\n- ECDHE-ECDSA-AES256-GCM-SHA384\n- ECDHE-RSA-AES256-GCM-SHA384\nIn builds using BoringSSL FIPS the default cipher list is:\n- ECDHE-ECDSA-AES128-GCM-SHA256\n- ECDHE-RSA-AES128-GCM-SHA256\n- ECDHE-ECDSA-AES256-GCM-SHA384\n- ECDHE-RSA-AES256-GCM-SHA384",
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        }
+                      },
+                      "clientValidation": {
+                        "description": "ClientValidation specifies the configuration to validate the client\ninitiating the TLS connection to the Gateway listener.",
+                        "type": "object",
+                        "properties": {
+                          "caCertificateRefs": {
+                            "description": "CACertificateRefs contains one or more references to\nKubernetes objects that contain TLS certificates of\nthe Certificate Authorities that can be used\nas a trust anchor to validate the certificates presented by the client.\n\n\nA single reference to a Kubernetes ConfigMap or a Kubernetes Secret,\nwith the CA certificate in a key named `ca.crt` is currently supported.\n\n\nReferences to a resource in different namespace are invalid UNLESS there\nis a ReferenceGrant in the target namespace that allows the certificate\nto be attached.",
+                            "type": "array",
+                            "maxItems": 8,
+                            "items": {
+                              "description": "SecretObjectReference identifies an API object including its namespace,\ndefaulting to Secret.\n\n\nThe API object must be valid in the cluster; the Group and Kind must\nbe registered in the cluster for this reference to be valid.\n\n\nReferences to objects with invalid Group and Kind are not valid, and must\nbe rejected by the implementation, with appropriate Conditions set\non the containing object.",
+                              "type": "object",
+                              "required": [
+                                "name"
+                              ],
+                              "properties": {
+                                "group": {
+                                  "description": "Group is the group of the referent. For example, \"gateway.networking.k8s.io\".\nWhen unspecified or empty string, core API group is inferred.",
+                                  "type": "string",
+                                  "default": "",
+                                  "maxLength": 253,
+                                  "pattern": "^$|^[a-z0-9]([-a-z0-9]*[a-z0-9])?(\\.[a-z0-9]([-a-z0-9]*[a-z0-9])?)*$"
+                                },
+                                "kind": {
+                                  "description": "Kind is kind of the referent. For example \"Secret\".",
+                                  "type": "string",
+                                  "default": "Secret",
+                                  "maxLength": 63,
+                                  "minLength": 1,
+                                  "pattern": "^[a-zA-Z]([-a-zA-Z0-9]*[a-zA-Z0-9])?$"
+                                },
+                                "name": {
+                                  "description": "Name is the name of the referent.",
+                                  "type": "string",
+                                  "maxLength": 253,
+                                  "minLength": 1
+                                },
+                                "namespace": {
+                                  "description": "Namespace is the namespace of the referenced object. When unspecified, the local\nnamespace is inferred.\n\n\nNote that when a namespace different than the local namespace is specified,\na ReferenceGrant object is required in the referent namespace to allow that\nnamespace's owner to accept the reference. See the ReferenceGrant\ndocumentation for details.\n\n\nSupport: Core",
+                                  "type": "string",
+                                  "maxLength": 63,
+                                  "minLength": 1,
+                                  "pattern": "^[a-z0-9]([-a-z0-9]*[a-z0-9])?$"
+                                }
+                              }
+                            }
+                          },
+                          "optional": {
+                            "description": "Optional set to true accepts connections even when a client doesn't present a certificate.\nDefaults to false, which rejects connections without a valid client certificate.",
+                            "type": "boolean"
+                          }
+                        }
+                      },
+                      "ecdhCurves": {
+                        "description": "ECDHCurves specifies the set of supported ECDH curves.\nIn non-FIPS Envoy Proxy builds the default curves are:\n- X25519\n- P-256\nIn builds using BoringSSL FIPS the default curve is:\n- P-256",
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        }
+                      },
+                      "maxVersion": {
+                        "description": "Max specifies the maximal TLS protocol version to allow\nThe default is TLS 1.3 if this is not specified.",
+                        "type": "string",
+                        "enum": [
+                          "Auto",
+                          "1.0",
+                          "1.1",
+                          "1.2",
+                          "1.3"
+                        ]
+                      },
+                      "minVersion": {
+                        "description": "Min specifies the minimal TLS protocol version to allow.\nThe default is TLS 1.2 if this is not specified.",
+                        "type": "string",
+                        "enum": [
+                          "Auto",
+                          "1.0",
+                          "1.1",
+                          "1.2",
+                          "1.3"
+                        ]
+                      },
+                      "signatureAlgorithms": {
+                        "description": "SignatureAlgorithms specifies which signature algorithms the listener should\nsupport.",
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        }
+                      }
+                    },
+                    "x-kubernetes-validations": [
+                      {
+                        "rule": "has(self.minVersion) \u0026\u0026 self.minVersion == '1.3' ? !has(self.ciphers) : true",
+                        "message": "setting ciphers has no effect if the minimum possible TLS version is 1.3"
+                      },
+                      {
+                        "rule": "has(self.minVersion) \u0026\u0026 has(self.maxVersion) ? {\"Auto\":0,\"1.0\":1,\"1.1\":2,\"1.2\":3,\"1.3\":4}[self.minVersion] \u003c= {\"1.0\":1,\"1.1\":2,\"1.2\":3,\"1.3\":4,\"Auto\":5}[self.maxVersion] : !has(self.minVersion) \u0026\u0026 has(self.maxVersion) ? 3 \u003c= {\"1.0\":1,\"1.1\":2,\"1.2\":3,\"1.3\":4,\"Auto\":5}[self.maxVersion] : true",
+                        "message": "minVersion must be smaller or equal to maxVersion"
+                      }
+                    ]
                   }
-                }
+                },
+                "x-kubernetes-validations": [
+                  {
+                    "rule": "(has(self.targetRef) \u0026\u0026 !has(self.targetRefs)) || (!has(self.targetRef) \u0026\u0026 has(self.targetRefs)) || (has(self.targetSelectors) \u0026\u0026 self.targetSelectors.size() \u003e 0) ",
+                    "message": "either targetRef or targetRefs must be used"
+                  },
+                  {
+                    "rule": "has(self.targetRef) ? self.targetRef.group == 'gateway.networking.k8s.io' : true",
+                    "message": "this policy can only have a targetRef.group of gateway.networking.k8s.io"
+                  },
+                  {
+                    "rule": "has(self.targetRef) ? self.targetRef.kind == 'Gateway' : true",
+                    "message": "this policy can only have a targetRef.kind of Gateway"
+                  },
+                  {
+                    "rule": "has(self.targetRefs) ? self.targetRefs.all(ref, ref.group == 'gateway.networking.k8s.io') : true",
+                    "message": "this policy can only have a targetRefs[*].group of gateway.networking.k8s.io"
+                  },
+                  {
+                    "rule": "has(self.targetRefs) ? self.targetRefs.all(ref, ref.kind == 'Gateway') : true",
+                    "message": "this policy can only have a targetRefs[*].kind of Gateway"
+                  }
+                ]
               },
               "status": {
                 "description": "Status defines the current status of ClientTrafficPolicy.",
                 "type": "object",
+                "required": [
+                  "ancestors"
+                ],
                 "properties": {
-                  "conditions": {
-                    "description": "Conditions describe the current conditions of the ClientTrafficPolicy.",
+                  "ancestors": {
+                    "description": "Ancestors is a list of ancestor resources (usually Gateways) that are\nassociated with the policy, and the status of the policy with respect to\neach ancestor. When this policy attaches to a parent, the controller that\nmanages the parent and the ancestors MUST add an entry to this list when\nthe controller first sees the policy and SHOULD update the entry as\nappropriate when the relevant ancestor is modified.\n\n\nNote that choosing the relevant ancestor is left to the Policy designers;\nan important part of Policy design is designing the right object level at\nwhich to namespace this status.\n\n\nNote also that implementations MUST ONLY populate ancestor status for\nthe Ancestor resources they are responsible for. Implementations MUST\nuse the ControllerName field to uniquely identify the entries in this list\nthat they are responsible for.\n\n\nNote that to achieve this, the list of PolicyAncestorStatus structs\nMUST be treated as a map with a composite key, made up of the AncestorRef\nand ControllerName fields combined.\n\n\nA maximum of 16 ancestors will be represented in this list. An empty list\nmeans the Policy is not relevant for any ancestors.\n\n\nIf this slice is full, implementations MUST NOT add further entries.\nInstead they MUST consider the policy unimplementable and signal that\non any related resources such as the ancestor that would be referenced\nhere. For example, if this list was full on BackendTLSPolicy, no\nadditional Gateways would be able to reference the Service targeted by\nthe BackendTLSPolicy.",
                     "type": "array",
-                    "maxItems": 8,
+                    "maxItems": 16,
                     "items": {
-                      "description": "Condition contains details for one aspect of the current state of this API Resource. --- This struct is intended for direct use as an array at the field path .status.conditions.  For example, \n type FooStatus struct{ // Represents the observations of a foo's current state. // Known .status.conditions.type are: \"Available\", \"Progressing\", and \"Degraded\" // +patchMergeKey=type // +patchStrategy=merge // +listType=map // +listMapKey=type Conditions []metav1.Condition `json:\"conditions,omitempty\" patchStrategy:\"merge\" patchMergeKey:\"type\" protobuf:\"bytes,1,rep,name=conditions\"` \n // other fields }",
+                      "description": "PolicyAncestorStatus describes the status of a route with respect to an\nassociated Ancestor.\n\n\nAncestors refer to objects that are either the Target of a policy or above it\nin terms of object hierarchy. For example, if a policy targets a Service, the\nPolicy's Ancestors are, in order, the Service, the HTTPRoute, the Gateway, and\nthe GatewayClass. Almost always, in this hierarchy, the Gateway will be the most\nuseful object to place Policy status on, so we recommend that implementations\nSHOULD use Gateway as the PolicyAncestorStatus object unless the designers\nhave a _very_ good reason otherwise.\n\n\nIn the context of policy attachment, the Ancestor is used to distinguish which\nresource results in a distinct application of this policy. For example, if a policy\ntargets a Service, it may have a distinct result per attached Gateway.\n\n\nPolicies targeting the same resource may have different effects depending on the\nancestors of those resources. For example, different Gateways targeting the same\nService may have different capabilities, especially if they have different underlying\nimplementations.\n\n\nFor example, in BackendTLSPolicy, the Policy attaches to a Service that is\nused as a backend in a HTTPRoute that is itself attached to a Gateway.\nIn this case, the relevant object for status is the Gateway, and that is the\nancestor object referred to in this status.\n\n\nNote that a parent is also an ancestor, so for objects where the parent is the\nrelevant object for status, this struct SHOULD still be used.\n\n\nThis struct is intended to be used in a slice that's effectively a map,\nwith a composite key made up of the AncestorRef and the ControllerName.",
                       "type": "object",
                       "required": [
-                        "lastTransitionTime",
-                        "message",
-                        "reason",
-                        "status",
-                        "type"
+                        "ancestorRef",
+                        "controllerName"
                       ],
                       "properties": {
-                        "lastTransitionTime": {
-                          "description": "lastTransitionTime is the last time the condition transitioned from one status to another. This should be when the underlying condition changed.  If that is not known, then using the time when the API field changed is acceptable.",
-                          "type": "string",
-                          "format": "date-time"
+                        "ancestorRef": {
+                          "description": "AncestorRef corresponds with a ParentRef in the spec that this\nPolicyAncestorStatus struct describes the status of.",
+                          "type": "object",
+                          "required": [
+                            "name"
+                          ],
+                          "properties": {
+                            "group": {
+                              "description": "Group is the group of the referent.\nWhen unspecified, \"gateway.networking.k8s.io\" is inferred.\nTo set the core API group (such as for a \"Service\" kind referent),\nGroup must be explicitly set to \"\" (empty string).\n\n\nSupport: Core",
+                              "type": "string",
+                              "default": "gateway.networking.k8s.io",
+                              "maxLength": 253,
+                              "pattern": "^$|^[a-z0-9]([-a-z0-9]*[a-z0-9])?(\\.[a-z0-9]([-a-z0-9]*[a-z0-9])?)*$"
+                            },
+                            "kind": {
+                              "description": "Kind is kind of the referent.\n\n\nThere are two kinds of parent resources with \"Core\" support:\n\n\n* Gateway (Gateway conformance profile)\n* Service (Mesh conformance profile, ClusterIP Services only)\n\n\nSupport for other resources is Implementation-Specific.",
+                              "type": "string",
+                              "default": "Gateway",
+                              "maxLength": 63,
+                              "minLength": 1,
+                              "pattern": "^[a-zA-Z]([-a-zA-Z0-9]*[a-zA-Z0-9])?$"
+                            },
+                            "name": {
+                              "description": "Name is the name of the referent.\n\n\nSupport: Core",
+                              "type": "string",
+                              "maxLength": 253,
+                              "minLength": 1
+                            },
+                            "namespace": {
+                              "description": "Namespace is the namespace of the referent. When unspecified, this refers\nto the local namespace of the Route.\n\n\nNote that there are specific rules for ParentRefs which cross namespace\nboundaries. Cross-namespace references are only valid if they are explicitly\nallowed by something in the namespace they are referring to. For example:\nGateway has the AllowedRoutes field, and ReferenceGrant provides a\ngeneric way to enable any other kind of cross-namespace reference.\n\n\n\u003cgateway:experimental:description\u003e\nParentRefs from a Route to a Service in the same namespace are \"producer\"\nroutes, which apply default routing rules to inbound connections from\nany namespace to the Service.\n\n\nParentRefs from a Route to a Service in a different namespace are\n\"consumer\" routes, and these routing rules are only applied to outbound\nconnections originating from the same namespace as the Route, for which\nthe intended destination of the connections are a Service targeted as a\nParentRef of the Route.\n\u003c/gateway:experimental:description\u003e\n\n\nSupport: Core",
+                              "type": "string",
+                              "maxLength": 63,
+                              "minLength": 1,
+                              "pattern": "^[a-z0-9]([-a-z0-9]*[a-z0-9])?$"
+                            },
+                            "port": {
+                              "description": "Port is the network port this Route targets. It can be interpreted\ndifferently based on the type of parent resource.\n\n\nWhen the parent resource is a Gateway, this targets all listeners\nlistening on the specified port that also support this kind of Route(and\nselect this Route). It's not recommended to set `Port` unless the\nnetworking behaviors specified in a Route must apply to a specific port\nas opposed to a listener(s) whose port(s) may be changed. When both Port\nand SectionName are specified, the name and port of the selected listener\nmust match both specified values.\n\n\n\u003cgateway:experimental:description\u003e\nWhen the parent resource is a Service, this targets a specific port in the\nService spec. When both Port (experimental) and SectionName are specified,\nthe name and port of the selected port must match both specified values.\n\u003c/gateway:experimental:description\u003e\n\n\nImplementations MAY choose to support other parent resources.\nImplementations supporting other types of parent resources MUST clearly\ndocument how/if Port is interpreted.\n\n\nFor the purpose of status, an attachment is considered successful as\nlong as the parent resource accepts it partially. For example, Gateway\nlisteners can restrict which Routes can attach to them by Route kind,\nnamespace, or hostname. If 1 of 2 Gateway listeners accept attachment\nfrom the referencing Route, the Route MUST be considered successfully\nattached. If no Gateway listeners accept attachment from this Route,\nthe Route MUST be considered detached from the Gateway.\n\n\nSupport: Extended",
+                              "type": "integer",
+                              "format": "int32",
+                              "maximum": 65535,
+                              "minimum": 1
+                            },
+                            "sectionName": {
+                              "description": "SectionName is the name of a section within the target resource. In the\nfollowing resources, SectionName is interpreted as the following:\n\n\n* Gateway: Listener name. When both Port (experimental) and SectionName\nare specified, the name and port of the selected listener must match\nboth specified values.\n* Service: Port name. When both Port (experimental) and SectionName\nare specified, the name and port of the selected listener must match\nboth specified values.\n\n\nImplementations MAY choose to support attaching Routes to other resources.\nIf that is the case, they MUST clearly document how SectionName is\ninterpreted.\n\n\nWhen unspecified (empty string), this will reference the entire resource.\nFor the purpose of status, an attachment is considered successful if at\nleast one section in the parent resource accepts it. For example, Gateway\nlisteners can restrict which Routes can attach to them by Route kind,\nnamespace, or hostname. If 1 of 2 Gateway listeners accept attachment from\nthe referencing Route, the Route MUST be considered successfully\nattached. If no Gateway listeners accept attachment from this Route, the\nRoute MUST be considered detached from the Gateway.\n\n\nSupport: Core",
+                              "type": "string",
+                              "maxLength": 253,
+                              "minLength": 1,
+                              "pattern": "^[a-z0-9]([-a-z0-9]*[a-z0-9])?(\\.[a-z0-9]([-a-z0-9]*[a-z0-9])?)*$"
+                            }
+                          }
                         },
-                        "message": {
-                          "description": "message is a human readable message indicating details about the transition. This may be an empty string.",
-                          "type": "string",
-                          "maxLength": 32768
+                        "conditions": {
+                          "description": "Conditions describes the status of the Policy with respect to the given Ancestor.",
+                          "type": "array",
+                          "maxItems": 8,
+                          "minItems": 1,
+                          "items": {
+                            "description": "Condition contains details for one aspect of the current state of this API Resource.\n---\nThis struct is intended for direct use as an array at the field path .status.conditions.  For example,\n\n\n\ttype FooStatus struct{\n\t    // Represents the observations of a foo's current state.\n\t    // Known .status.conditions.type are: \"Available\", \"Progressing\", and \"Degraded\"\n\t    // +patchMergeKey=type\n\t    // +patchStrategy=merge\n\t    // +listType=map\n\t    // +listMapKey=type\n\t    Conditions []metav1.Condition `json:\"conditions,omitempty\" patchStrategy:\"merge\" patchMergeKey:\"type\" protobuf:\"bytes,1,rep,name=conditions\"`\n\n\n\t    // other fields\n\t}",
+                            "type": "object",
+                            "required": [
+                              "lastTransitionTime",
+                              "message",
+                              "reason",
+                              "status",
+                              "type"
+                            ],
+                            "properties": {
+                              "lastTransitionTime": {
+                                "description": "lastTransitionTime is the last time the condition transitioned from one status to another.\nThis should be when the underlying condition changed.  If that is not known, then using the time when the API field changed is acceptable.",
+                                "type": "string",
+                                "format": "date-time"
+                              },
+                              "message": {
+                                "description": "message is a human readable message indicating details about the transition.\nThis may be an empty string.",
+                                "type": "string",
+                                "maxLength": 32768
+                              },
+                              "observedGeneration": {
+                                "description": "observedGeneration represents the .metadata.generation that the condition was set based upon.\nFor instance, if .metadata.generation is currently 12, but the .status.conditions[x].observedGeneration is 9, the condition is out of date\nwith respect to the current state of the instance.",
+                                "type": "integer",
+                                "format": "int64",
+                                "minimum": 0
+                              },
+                              "reason": {
+                                "description": "reason contains a programmatic identifier indicating the reason for the condition's last transition.\nProducers of specific condition types may define expected values and meanings for this field,\nand whether the values are considered a guaranteed API.\nThe value should be a CamelCase string.\nThis field may not be empty.",
+                                "type": "string",
+                                "maxLength": 1024,
+                                "minLength": 1,
+                                "pattern": "^[A-Za-z]([A-Za-z0-9_,:]*[A-Za-z0-9_])?$"
+                              },
+                              "status": {
+                                "description": "status of the condition, one of True, False, Unknown.",
+                                "type": "string",
+                                "enum": [
+                                  "True",
+                                  "False",
+                                  "Unknown"
+                                ]
+                              },
+                              "type": {
+                                "description": "type of condition in CamelCase or in foo.example.com/CamelCase.\n---\nMany .condition.type values are consistent across resources like Available, but because arbitrary conditions can be\nuseful (see .node.status.conditions), the ability to deconflict is important.\nThe regex it matches is (dns1123SubdomainFmt/)?(qualifiedNameFmt)",
+                                "type": "string",
+                                "maxLength": 316,
+                                "pattern": "^([a-z0-9]([-a-z0-9]*[a-z0-9])?(\\.[a-z0-9]([-a-z0-9]*[a-z0-9])?)*/)?(([A-Za-z0-9][-A-Za-z0-9_.]*)?[A-Za-z0-9])$"
+                              }
+                            }
+                          },
+                          "x-kubernetes-list-map-keys": [
+                            "type"
+                          ],
+                          "x-kubernetes-list-type": "map"
                         },
-                        "observedGeneration": {
-                          "description": "observedGeneration represents the .metadata.generation that the condition was set based upon. For instance, if .metadata.generation is currently 12, but the .status.conditions[x].observedGeneration is 9, the condition is out of date with respect to the current state of the instance.",
-                          "type": "integer",
-                          "format": "int64",
-                          "minimum": 0
-                        },
-                        "reason": {
-                          "description": "reason contains a programmatic identifier indicating the reason for the condition's last transition. Producers of specific condition types may define expected values and meanings for this field, and whether the values are considered a guaranteed API. The value should be a CamelCase string. This field may not be empty.",
+                        "controllerName": {
+                          "description": "ControllerName is a domain/path string that indicates the name of the\ncontroller that wrote this status. This corresponds with the\ncontrollerName field on GatewayClass.\n\n\nExample: \"example.net/gateway-controller\".\n\n\nThe format of this field is DOMAIN \"/\" PATH, where DOMAIN and PATH are\nvalid Kubernetes names\n(https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names).\n\n\nControllers MUST populate this field when writing status. Controllers should ensure that\nentries to status populated with their ControllerName are cleaned up when they are no\nlonger necessary.",
                           "type": "string",
-                          "maxLength": 1024,
+                          "maxLength": 253,
                           "minLength": 1,
-                          "pattern": "^[A-Za-z]([A-Za-z0-9_,:]*[A-Za-z0-9_])?$"
-                        },
-                        "status": {
-                          "description": "status of the condition, one of True, False, Unknown.",
-                          "type": "string",
-                          "enum": [
-                            "True",
-                            "False",
-                            "Unknown"
-                          ]
-                        },
-                        "type": {
-                          "description": "type of condition in CamelCase or in foo.example.com/CamelCase. --- Many .condition.type values are consistent across resources like Available, but because arbitrary conditions can be useful (see .node.status.conditions), the ability to deconflict is important. The regex it matches is (dns1123SubdomainFmt/)?(qualifiedNameFmt)",
-                          "type": "string",
-                          "maxLength": 316,
-                          "pattern": "^([a-z0-9]([-a-z0-9]*[a-z0-9])?(\\.[a-z0-9]([-a-z0-9]*[a-z0-9])?)*/)?(([A-Za-z0-9][-A-Za-z0-9_.]*)?[A-Za-z0-9])$"
+                          "pattern": "^[a-z0-9]([-a-z0-9]*[a-z0-9])?(\\.[a-z0-9]([-a-z0-9]*[a-z0-9])?)*\\/[A-Za-z0-9\\/\\-._~%!$\u0026'()*+,;=:]+$"
                         }
                       }
-                    },
-                    "x-kubernetes-list-map-keys": [
-                      "type"
-                    ],
-                    "x-kubernetes-list-type": "map"
+                    }
                   }
                 }
               }
@@ -205,11 +790,6 @@
           "status": {}
         },
         "additionalPrinterColumns": [
-          {
-            "name": "Status",
-            "type": "string",
-            "jsonPath": ".status.conditions[?(@.type==\"Accepted\")].reason"
-          },
           {
             "name": "Age",
             "type": "date",

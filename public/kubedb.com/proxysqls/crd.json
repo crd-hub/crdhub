@@ -107,6 +107,9 @@
                       "DoNotTerminate"
                     ]
                   },
+                  "halted": {
+                    "type": "boolean"
+                  },
                   "healthChecker": {
                     "type": "object",
                     "default": {
@@ -5655,6 +5658,9 @@
                     },
                     "x-kubernetes-map-type": "atomic"
                   },
+                  "halted": {
+                    "type": "boolean"
+                  },
                   "healthChecker": {
                     "type": "object",
                     "default": {
@@ -10087,7 +10093,8 @@
                           "enum": [
                             "primary",
                             "standby",
-                            "stats"
+                            "stats",
+                            "dashboard"
                           ]
                         },
                         "metadata": {

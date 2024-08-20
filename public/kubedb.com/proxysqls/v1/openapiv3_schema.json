@@ -97,6 +97,9 @@
             "DoNotTerminate"
           ]
         },
+        "halted": {
+          "type": "boolean"
+        },
         "healthChecker": {
           "type": "object",
           "default": {

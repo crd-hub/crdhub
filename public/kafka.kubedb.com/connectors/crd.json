@@ -17,7 +17,12 @@
         "kc"
       ],
       "kind": "Connector",
-      "listKind": "ConnectorList"
+      "listKind": "ConnectorList",
+      "categories": [
+        "kfstore",
+        "kubedb",
+        "appscode"
+      ]
     },
     "scope": "Namespaced",
     "versions": [

@@ -1,6 +1,9 @@
 {
   "$schema": "http://json-schema.org/schema#",
   "type": "object",
+  "required": [
+    "spec"
+  ],
   "properties": {
     "apiVersion": {
       "type": "string",
@@ -44,526 +47,104 @@
     "spec": {
       "type": "object",
       "required": [
-        "maxReplicas",
-        "serverRef"
+        "databaseRef"
       ],
       "properties": {
-        "behavior": {
+        "compute": {
           "type": "object",
           "properties": {
-            "scaleDown": {
+            "nodeTopology": {
               "type": "object",
               "properties": {
-                "policies": {
-                  "type": "array",
-                  "items": {
-                    "type": "object",
-                    "required": [
-                      "periodSeconds",
-                      "type",
-                      "value"
-                    ],
-                    "properties": {
-                      "periodSeconds": {
-                        "type": "integer",
-                        "format": "int32"
-                      },
-                      "type": {
-                        "type": "string"
-                      },
-                      "value": {
-                        "type": "integer",
-                        "format": "int32"
-                      }
-                    }
-                  }
-                },
-                "selectPolicy": {
+                "name": {
                   "type": "string"
                 },
-                "stabilizationWindowSeconds": {
+                "scaleDownDiffPercentage": {
                   "type": "integer",
-                  "format": "int32"
+                  "format": "int32",
+                  "default": 25
+                },
+                "scaleUpDiffPercentage": {
+                  "type": "integer",
+                  "format": "int32",
+                  "default": 15
                 }
               }
             },
-            "scaleUp": {
+            "pgbouncer": {
               "type": "object",
               "properties": {
-                "policies": {
+                "containerControlledValues": {
+                  "type": "string",
+                  "enum": [
+                    "RequestsAndLimits",
+                    "RequestsOnly"
+                  ]
+                },
+                "controlledResources": {
                   "type": "array",
                   "items": {
-                    "type": "object",
-                    "required": [
-                      "periodSeconds",
-                      "type",
-                      "value"
-                    ],
-                    "properties": {
-                      "periodSeconds": {
-                        "type": "integer",
-                        "format": "int32"
-                      },
-                      "type": {
-                        "type": "string"
-                      },
-                      "value": {
-                        "type": "integer",
-                        "format": "int32"
-                      }
+                    "type": "string"
+                  }
+                },
+                "inMemoryStorage": {
+                  "type": "object",
+                  "properties": {
+                    "scalingFactorPercentage": {
+                      "type": "integer",
+                      "format": "int32"
+                    },
+                    "usageThresholdPercentage": {
+                      "type": "integer",
+                      "format": "int32"
                     }
                   }
                 },
-                "selectPolicy": {
+                "maxAllowed": {
+                  "type": "object",
+                  "additionalProperties": {
+                    "pattern": "^(\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))(([KMGTPE]i)|[numkMGTPE]|([eE](\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))))?$",
+                    "anyOf": [
+                      {
+                        "type": "integer"
+                      },
+                      {
+                        "type": "string"
+                      }
+                    ],
+                    "x-kubernetes-int-or-string": true
+                  }
+                },
+                "minAllowed": {
+                  "type": "object",
+                  "additionalProperties": {
+                    "pattern": "^(\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))(([KMGTPE]i)|[numkMGTPE]|([eE](\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))))?$",
+                    "anyOf": [
+                      {
+                        "type": "integer"
+                      },
+                      {
+                        "type": "string"
+                      }
+                    ],
+                    "x-kubernetes-int-or-string": true
+                  }
+                },
+                "podLifeTimeThreshold": {
                   "type": "string"
                 },
-                "stabilizationWindowSeconds": {
+                "resourceDiffPercentage": {
                   "type": "integer",
                   "format": "int32"
+                },
+                "trigger": {
+                  "type": "string"
                 }
               }
             }
           }
         },
-        "maxReplicas": {
-          "type": "integer",
-          "format": "int32"
-        },
-        "metrics": {
-          "type": "array",
-          "items": {
-            "type": "object",
-            "required": [
-              "type"
-            ],
-            "properties": {
-              "containerResource": {
-                "type": "object",
-                "required": [
-                  "container",
-                  "name",
-                  "target"
-                ],
-                "properties": {
-                  "container": {
-                    "type": "string"
-                  },
-                  "name": {
-                    "type": "string"
-                  },
-                  "target": {
-                    "type": "object",
-                    "required": [
-                      "type"
-                    ],
-                    "properties": {
-                      "averageUtilization": {
-                        "type": "integer",
-                        "format": "int32"
-                      },
-                      "averageValue": {
-                        "pattern": "^(\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))(([KMGTPE]i)|[numkMGTPE]|([eE](\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))))?$",
-                        "anyOf": [
-                          {
-                            "type": "integer"
-                          },
-                          {
-                            "type": "string"
-                          }
-                        ],
-                        "x-kubernetes-int-or-string": true
-                      },
-                      "type": {
-                        "type": "string"
-                      },
-                      "value": {
-                        "pattern": "^(\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))(([KMGTPE]i)|[numkMGTPE]|([eE](\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))))?$",
-                        "anyOf": [
-                          {
-                            "type": "integer"
-                          },
-                          {
-                            "type": "string"
-                          }
-                        ],
-                        "x-kubernetes-int-or-string": true
-                      }
-                    }
-                  }
-                }
-              },
-              "external": {
-                "type": "object",
-                "required": [
-                  "metric",
-                  "target"
-                ],
-                "properties": {
-                  "metric": {
-                    "type": "object",
-                    "required": [
-                      "name"
-                    ],
-                    "properties": {
-                      "name": {
-                        "type": "string"
-                      },
-                      "selector": {
-                        "type": "object",
-                        "properties": {
-                          "matchExpressions": {
-                            "type": "array",
-                            "items": {
-                              "type": "object",
-                              "required": [
-                                "key",
-                                "operator"
-                              ],
-                              "properties": {
-                                "key": {
-                                  "type": "string"
-                                },
-                                "operator": {
-                                  "type": "string"
-                                },
-                                "values": {
-                                  "type": "array",
-                                  "items": {
-                                    "type": "string"
-                                  },
-                                  "x-kubernetes-list-type": "atomic"
-                                }
-                              }
-                            },
-                            "x-kubernetes-list-type": "atomic"
-                          },
-                          "matchLabels": {
-                            "type": "object",
-                            "additionalProperties": {
-                              "type": "string"
-                            }
-                          }
-                        },
-                        "x-kubernetes-map-type": "atomic"
-                      }
-                    }
-                  },
-                  "target": {
-                    "type": "object",
-                    "required": [
-                      "type"
-                    ],
-                    "properties": {
-                      "averageUtilization": {
-                        "type": "integer",
-                        "format": "int32"
-                      },
-                      "averageValue": {
-                        "pattern": "^(\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))(([KMGTPE]i)|[numkMGTPE]|([eE](\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))))?$",
-                        "anyOf": [
-                          {
-                            "type": "integer"
-                          },
-                          {
-                            "type": "string"
-                          }
-                        ],
-                        "x-kubernetes-int-or-string": true
-                      },
-                      "type": {
-                        "type": "string"
-                      },
-                      "value": {
-                        "pattern": "^(\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))(([KMGTPE]i)|[numkMGTPE]|([eE](\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))))?$",
-                        "anyOf": [
-                          {
-                            "type": "integer"
-                          },
-                          {
-                            "type": "string"
-                          }
-                        ],
-                        "x-kubernetes-int-or-string": true
-                      }
-                    }
-                  }
-                }
-              },
-              "object": {
-                "type": "object",
-                "required": [
-                  "describedObject",
-                  "metric",
-                  "target"
-                ],
-                "properties": {
-                  "describedObject": {
-                    "type": "object",
-                    "required": [
-                      "kind",
-                      "name"
-                    ],
-                    "properties": {
-                      "apiVersion": {
-                        "type": "string"
-                      },
-                      "kind": {
-                        "type": "string"
-                      },
-                      "name": {
-                        "type": "string"
-                      }
-                    }
-                  },
-                  "metric": {
-                    "type": "object",
-                    "required": [
-                      "name"
-                    ],
-                    "properties": {
-                      "name": {
-                        "type": "string"
-                      },
-                      "selector": {
-                        "type": "object",
-                        "properties": {
-                          "matchExpressions": {
-                            "type": "array",
-                            "items": {
-                              "type": "object",
-                              "required": [
-                                "key",
-                                "operator"
-                              ],
-                              "properties": {
-                                "key": {
-                                  "type": "string"
-                                },
-                                "operator": {
-                                  "type": "string"
-                                },
-                                "values": {
-                                  "type": "array",
-                                  "items": {
-                                    "type": "string"
-                                  },
-                                  "x-kubernetes-list-type": "atomic"
-                                }
-                              }
-                            },
-                            "x-kubernetes-list-type": "atomic"
-                          },
-                          "matchLabels": {
-                            "type": "object",
-                            "additionalProperties": {
-                              "type": "string"
-                            }
-                          }
-                        },
-                        "x-kubernetes-map-type": "atomic"
-                      }
-                    }
-                  },
-                  "target": {
-                    "type": "object",
-                    "required": [
-                      "type"
-                    ],
-                    "properties": {
-                      "averageUtilization": {
-                        "type": "integer",
-                        "format": "int32"
-                      },
-                      "averageValue": {
-                        "pattern": "^(\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))(([KMGTPE]i)|[numkMGTPE]|([eE](\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))))?$",
-                        "anyOf": [
-                          {
-                            "type": "integer"
-                          },
-                          {
-                            "type": "string"
-                          }
-                        ],
-                        "x-kubernetes-int-or-string": true
-                      },
-                      "type": {
-                        "type": "string"
-                      },
-                      "value": {
-                        "pattern": "^(\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))(([KMGTPE]i)|[numkMGTPE]|([eE](\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))))?$",
-                        "anyOf": [
-                          {
-                            "type": "integer"
-                          },
-                          {
-                            "type": "string"
-                          }
-                        ],
-                        "x-kubernetes-int-or-string": true
-                      }
-                    }
-                  }
-                }
-              },
-              "pods": {
-                "type": "object",
-                "required": [
-                  "metric",
-                  "target"
-                ],
-                "properties": {
-                  "metric": {
-                    "type": "object",
-                    "required": [
-                      "name"
-                    ],
-                    "properties": {
-                      "name": {
-                        "type": "string"
-                      },
-                      "selector": {
-                        "type": "object",
-                        "properties": {
-                          "matchExpressions": {
-                            "type": "array",
-                            "items": {
-                              "type": "object",
-                              "required": [
-                                "key",
-                                "operator"
-                              ],
-                              "properties": {
-                                "key": {
-                                  "type": "string"
-                                },
-                                "operator": {
-                                  "type": "string"
-                                },
-                                "values": {
-                                  "type": "array",
-                                  "items": {
-                                    "type": "string"
-                                  },
-                                  "x-kubernetes-list-type": "atomic"
-                                }
-                              }
-                            },
-                            "x-kubernetes-list-type": "atomic"
-                          },
-                          "matchLabels": {
-                            "type": "object",
-                            "additionalProperties": {
-                              "type": "string"
-                            }
-                          }
-                        },
-                        "x-kubernetes-map-type": "atomic"
-                      }
-                    }
-                  },
-                  "target": {
-                    "type": "object",
-                    "required": [
-                      "type"
-                    ],
-                    "properties": {
-                      "averageUtilization": {
-                        "type": "integer",
-                        "format": "int32"
-                      },
-                      "averageValue": {
-                        "pattern": "^(\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))(([KMGTPE]i)|[numkMGTPE]|([eE](\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))))?$",
-                        "anyOf": [
-                          {
-                            "type": "integer"
-                          },
-                          {
-                            "type": "string"
-                          }
-                        ],
-                        "x-kubernetes-int-or-string": true
-                      },
-                      "type": {
-                        "type": "string"
-                      },
-                      "value": {
-                        "pattern": "^(\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))(([KMGTPE]i)|[numkMGTPE]|([eE](\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))))?$",
-                        "anyOf": [
-                          {
-                            "type": "integer"
-                          },
-                          {
-                            "type": "string"
-                          }
-                        ],
-                        "x-kubernetes-int-or-string": true
-                      }
-                    }
-                  }
-                }
-              },
-              "resource": {
-                "type": "object",
-                "required": [
-                  "name",
-                  "target"
-                ],
-                "properties": {
-                  "name": {
-                    "type": "string"
-                  },
-                  "target": {
-                    "type": "object",
-                    "required": [
-                      "type"
-                    ],
-                    "properties": {
-                      "averageUtilization": {
-                        "type": "integer",
-                        "format": "int32"
-                      },
-                      "averageValue": {
-                        "pattern": "^(\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))(([KMGTPE]i)|[numkMGTPE]|([eE](\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))))?$",
-                        "anyOf": [
-                          {
-                            "type": "integer"
-                          },
-                          {
-                            "type": "string"
-                          }
-                        ],
-                        "x-kubernetes-int-or-string": true
-                      },
-                      "type": {
-                        "type": "string"
-                      },
-                      "value": {
-                        "pattern": "^(\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))(([KMGTPE]i)|[numkMGTPE]|([eE](\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))))?$",
-                        "anyOf": [
-                          {
-                            "type": "integer"
-                          },
-                          {
-                            "type": "string"
-                          }
-                        ],
-                        "x-kubernetes-int-or-string": true
-                      }
-                    }
-                  }
-                }
-              },
-              "type": {
-                "type": "string"
-              }
-            }
-          }
-        },
-        "minReplicas": {
-          "type": "integer",
-          "format": "int32"
-        },
-        "serverRef": {
+        "databaseRef": {
           "type": "object",
           "properties": {
             "name": {
@@ -572,6 +153,22 @@
             }
           },
           "x-kubernetes-map-type": "atomic"
+        },
+        "opsRequestOptions": {
+          "type": "object",
+          "properties": {
+            "apply": {
+              "type": "string",
+              "default": "IfReady",
+              "enum": [
+                "IfReady",
+                "Always"
+              ]
+            },
+            "timeout": {
+              "type": "string"
+            }
+          }
         }
       }
     }

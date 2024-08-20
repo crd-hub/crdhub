@@ -17,7 +17,12 @@
         "kcc"
       ],
       "kind": "ConnectCluster",
-      "listKind": "ConnectClusterList"
+      "listKind": "ConnectClusterList",
+      "categories": [
+        "kfstore",
+        "kubedb",
+        "appscode"
+      ]
     },
     "scope": "Namespaced",
     "versions": [

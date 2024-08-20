@@ -5182,7 +5182,8 @@
                 "enum": [
                   "primary",
                   "standby",
-                  "stats"
+                  "stats",
+                  "dashboard"
                 ]
               },
               "metadata": {

@@ -19,10 +19,9 @@
       "kind": "MongoDBDatabase",
       "listKind": "MongoDBDatabaseList",
       "categories": [
-        "datastore",
+        "schema",
         "kubedb",
-        "appscode",
-        "all"
+        "appscode"
       ]
     },
     "scope": "Namespaced",

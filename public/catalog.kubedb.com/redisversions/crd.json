@@ -19,7 +19,7 @@
       "kind": "RedisVersion",
       "listKind": "RedisVersionList",
       "categories": [
-        "datastore",
+        "catalog",
         "kubedb",
         "appscode"
       ]

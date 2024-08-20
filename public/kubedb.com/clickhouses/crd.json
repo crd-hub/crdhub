@@ -17,7 +17,13 @@
         "ch"
       ],
       "kind": "ClickHouse",
-      "listKind": "ClickHouseList"
+      "listKind": "ClickHouseList",
+      "categories": [
+        "datastore",
+        "kubedb",
+        "appscode",
+        "all"
+      ]
     },
     "scope": "Namespaced",
     "versions": [
@@ -9725,7 +9731,8 @@
                           "enum": [
                             "primary",
                             "standby",
-                            "stats"
+                            "stats",
+                            "dashboard"
                           ]
                         },
                         "metadata": {

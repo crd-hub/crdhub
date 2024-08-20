@@ -19,7 +19,7 @@
       "kind": "MySQLAutoscaler",
       "listKind": "MySQLAutoscalerList",
       "categories": [
-        "datastore",
+        "autoscaler",
         "kubedb",
         "appscode"
       ]

@@ -19,7 +19,7 @@
       "kind": "PostgresAutoscaler",
       "listKind": "PostgresAutoscalerList",
       "categories": [
-        "datastore",
+        "autoscaler",
         "kubedb",
         "appscode"
       ]

@@ -19,7 +19,7 @@
       "kind": "MongoDBAutoscaler",
       "listKind": "MongoDBAutoscalerList",
       "categories": [
-        "datastore",
+        "autoscaler",
         "kubedb",
         "appscode"
       ]

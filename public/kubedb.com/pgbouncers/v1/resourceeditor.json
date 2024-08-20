@@ -18,6 +18,170 @@
       "name": "pgbouncers",
       "kind": "PgBouncer",
       "scope": "Namespaced"
-    }
+    },
+    "ui": {
+      "options": {
+        "name": "kubedbcom-pgbouncer-editor-options",
+        "version": "v0.5.0",
+        "sourceRef": {
+          "apiGroup": "source.toolkit.fluxcd.io",
+          "kind": "HelmRepository",
+          "name": "appscode-charts-oci"
+        }
+      },
+      "editor": {
+        "name": "kubedbcom-pgbouncer-editor",
+        "version": "v0.5.0",
+        "sourceRef": {
+          "apiGroup": "source.toolkit.fluxcd.io",
+          "kind": "HelmRepository",
+          "name": "appscode-charts-oci"
+        }
+      },
+      "enforceQuota": false,
+      "actions": [
+        {
+          "name": "Operations",
+          "items": [
+            {
+              "name": "Restart",
+              "icons": [
+                {
+                  "src": "https://cdn.appscode.com/k8s/icons/action-icons/restart.svg",
+                  "type": "image/svg+xml"
+                }
+              ],
+              "operationId": "create-opsrequest-restart",
+              "flow": "standalone-create",
+              "editor": {
+                "name": "opskubedbcom-pgbounceropsrequest-editor",
+                "version": "v0.5.0",
+                "sourceRef": {
+                  "apiGroup": "source.toolkit.fluxcd.io",
+                  "kind": "HelmRepository",
+                  "name": "appscode-charts-oci"
+                }
+              },
+              "enforceQuota": false
+            },
+            {
+              "name": "Reconfigure",
+              "icons": [
+                {
+                  "src": "https://cdn.appscode.com/k8s/icons/action-icons/reconfigure.svg",
+                  "type": "image/svg+xml"
+                }
+              ],
+              "operationId": "create-opsrequest-reconfigure",
+              "flow": "standalone-create",
+              "editor": {
+                "name": "opskubedbcom-pgbounceropsrequest-editor",
+                "version": "v0.5.0",
+                "sourceRef": {
+                  "apiGroup": "source.toolkit.fluxcd.io",
+                  "kind": "HelmRepository",
+                  "name": "appscode-charts-oci"
+                }
+              },
+              "enforceQuota": false
+            }
+          ]
+        },
+        {
+          "name": "Scaling",
+          "items": [
+            {
+              "name": "Horizontal Scale",
+              "icons": [
+                {
+                  "src": "https://cdn.appscode.com/k8s/icons/action-icons/horizontal_scale.svg",
+                  "type": "image/svg+xml"
+                }
+              ],
+              "operationId": "create-opsrequest-horizontalscaling",
+              "flow": "standalone-create",
+              "disabledTemplate": "{{ not (gt .spec.replicas 1) }}\n",
+              "editor": {
+                "name": "opskubedbcom-pgbounceropsrequest-editor",
+                "version": "v0.5.0",
+                "sourceRef": {
+                  "apiGroup": "source.toolkit.fluxcd.io",
+                  "kind": "HelmRepository",
+                  "name": "appscode-charts-oci"
+                }
+              },
+              "enforceQuota": true
+            },
+            {
+              "name": "Vertical Scale",
+              "icons": [
+                {
+                  "src": "https://cdn.appscode.com/k8s/icons/action-icons/vertical_scale.svg",
+                  "type": "image/svg+xml"
+                }
+              ],
+              "operationId": "create-opsrequest-verticalscaling",
+              "flow": "standalone-create",
+              "editor": {
+                "name": "opskubedbcom-pgbounceropsrequest-editor",
+                "version": "v0.5.0",
+                "sourceRef": {
+                  "apiGroup": "source.toolkit.fluxcd.io",
+                  "kind": "HelmRepository",
+                  "name": "appscode-charts-oci"
+                }
+              },
+              "enforceQuota": true
+            }
+          ]
+        },
+        {
+          "name": "Autoscaling",
+          "items": [
+            {
+              "name": "Compute",
+              "icons": [
+                {
+                  "src": "https://cdn.appscode.com/k8s/icons/action-icons/compute.svg",
+                  "type": "image/svg+xml"
+                }
+              ],
+              "operationId": "create-opsrequest-compute",
+              "flow": "standalone-create",
+              "editor": {
+                "name": "autoscalingkubedbcom-pgbouncerautoscaler-editor",
+                "version": "v0.5.0",
+                "sourceRef": {
+                  "apiGroup": "source.toolkit.fluxcd.io",
+                  "kind": "HelmRepository",
+                  "name": "appscode-charts-oci"
+                }
+              },
+              "enforceQuota": true
+            }
+          ]
+        }
+      ]
+    },
+    "icons": [
+      {
+        "src": "https://cdn.appscode.com/k8s/icons/kubedb.com/pgbouncers.svg",
+        "type": "image/svg+xml"
+      },
+      {
+        "src": "https://cdn.appscode.com/k8s/icons/kubedb.com/pgbouncers.png",
+        "type": "image/png"
+      }
+    ],
+    "variants": [
+      {
+        "name": "default",
+        "selector": {
+          "matchLabels": {
+            "charts.x-helm.dev/is-default-preset": "true"
+          }
+        }
+      }
+    ]
   }
 }

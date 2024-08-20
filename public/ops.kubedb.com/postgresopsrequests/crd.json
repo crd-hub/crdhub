@@ -19,7 +19,7 @@
       "kind": "PostgresOpsRequest",
       "listKind": "PostgresOpsRequestList",
       "categories": [
-        "datastore",
+        "ops",
         "kubedb",
         "appscode"
       ]

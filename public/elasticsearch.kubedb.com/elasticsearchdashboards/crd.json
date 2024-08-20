@@ -17,7 +17,12 @@
         "ed"
       ],
       "kind": "ElasticsearchDashboard",
-      "listKind": "ElasticsearchDashboardList"
+      "listKind": "ElasticsearchDashboardList",
+      "categories": [
+        "esstore",
+        "kubedb",
+        "appscode"
+      ]
     },
     "scope": "Namespaced",
     "versions": [

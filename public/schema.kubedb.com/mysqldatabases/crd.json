@@ -19,10 +19,9 @@
       "kind": "MySQLDatabase",
       "listKind": "MySQLDatabaseList",
       "categories": [
-        "datastore",
+        "schema",
         "kubedb",
-        "appscode",
-        "all"
+        "appscode"
       ]
     },
     "scope": "Namespaced",

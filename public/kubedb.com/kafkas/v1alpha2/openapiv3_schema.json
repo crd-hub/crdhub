@@ -4887,6 +4887,9 @@
         "enableSSL": {
           "type": "boolean"
         },
+        "halted": {
+          "type": "boolean"
+        },
         "healthChecker": {
           "type": "object",
           "default": {
@@ -9970,7 +9973,8 @@
                 "enum": [
                   "primary",
                   "standby",
-                  "stats"
+                  "stats",
+                  "dashboard"
                 ]
               },
               "metadata": {

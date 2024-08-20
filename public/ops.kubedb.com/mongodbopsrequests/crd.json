@@ -19,7 +19,7 @@
       "kind": "MongoDBOpsRequest",
       "listKind": "MongoDBOpsRequestList",
       "categories": [
-        "datastore",
+        "ops",
         "kubedb",
         "appscode"
       ]

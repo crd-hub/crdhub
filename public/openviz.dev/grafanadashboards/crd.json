@@ -52,11 +52,6 @@
               "spec": {
                 "type": "object",
                 "properties": {
-                  "folderID": {
-                    "description": "FolderID defines the Grafana folderID",
-                    "type": "integer",
-                    "format": "int64"
-                  },
                   "grafanaRef": {
                     "description": "GrafanaRef defines the grafana app binding name for the GrafanaDashboard",
                     "type": "object",
@@ -157,6 +152,9 @@
                         "format": "int64"
                       },
                       "slug": {
+                        "type": "string"
+                      },
+                      "state": {
                         "type": "string"
                       },
                       "uid": {

@@ -60,6 +60,15 @@
           },
           "x-kubernetes-map-type": "atomic"
         },
+        "deletionPolicy": {
+          "type": "string",
+          "enum": [
+            "Halt",
+            "Delete",
+            "WipeOut",
+            "DoNotTerminate"
+          ]
+        },
         "halted": {
           "type": "boolean"
         },
@@ -5924,7 +5933,8 @@
                 "enum": [
                   "primary",
                   "standby",
-                  "stats"
+                  "stats",
+                  "dashboard"
                 ]
               },
               "metadata": {
@@ -6158,15 +6168,6 @@
           "enum": [
             "Durable",
             "Ephemeral"
-          ]
-        },
-        "terminationPolicy": {
-          "type": "string",
-          "enum": [
-            "Halt",
-            "Delete",
-            "WipeOut",
-            "DoNotTerminate"
           ]
         },
         "tls": {

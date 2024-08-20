@@ -19,7 +19,7 @@
       "kind": "FerretDBVersion",
       "listKind": "FerretDBVersionList",
       "categories": [
-        "datastore",
+        "catalog",
         "kubedb",
         "appscode"
       ]

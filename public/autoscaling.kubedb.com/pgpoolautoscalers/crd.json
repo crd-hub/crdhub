@@ -19,7 +19,7 @@
       "kind": "PgpoolAutoscaler",
       "listKind": "PgpoolAutoscalerList",
       "categories": [
-        "datastore",
+        "autoscaler",
         "kubedb",
         "appscode"
       ]

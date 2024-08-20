@@ -19,7 +19,7 @@
       "kind": "PerconaXtraDBAutoscaler",
       "listKind": "PerconaXtraDBAutoscalerList",
       "categories": [
-        "datastore",
+        "autoscaler",
         "kubedb",
         "appscode"
       ]

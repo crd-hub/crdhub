@@ -19,10 +19,9 @@
       "kind": "PostgresDatabase",
       "listKind": "PostgresDatabaseList",
       "categories": [
-        "datastore",
+        "schema",
         "kubedb",
-        "appscode",
-        "all"
+        "appscode"
       ]
     },
     "scope": "Namespaced",

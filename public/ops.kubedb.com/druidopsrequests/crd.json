@@ -19,7 +19,7 @@
       "kind": "DruidOpsRequest",
       "listKind": "DruidOpsRequestList",
       "categories": [
-        "datastore",
+        "ops",
         "kubedb",
         "appscode"
       ]

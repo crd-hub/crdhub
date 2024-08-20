@@ -5,8 +5,8 @@
     "name": "probes.monitoring.coreos.com",
     "creationTimestamp": null,
     "annotations": {
-      "controller-gen.kubebuilder.io/version": "v0.13.0",
-      "operator.prometheus.io/version": "0.70.0"
+      "controller-gen.kubebuilder.io/version": "v0.15.0",
+      "operator.prometheus.io/version": "0.75.2"
     }
   },
   "spec": {
@@ -38,11 +38,11 @@
             ],
             "properties": {
               "apiVersion": {
-                "description": "APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources",
+                "description": "APIVersion defines the versioned schema of this representation of an object.\nServers should convert recognized schemas to the latest internal value, and\nmay reject unrecognized values.\nMore info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources",
                 "type": "string"
               },
               "kind": {
-                "description": "Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds",
+                "description": "Kind is a string value representing the REST resource this object represents.\nServers may infer this from the endpoint the client submits requests to.\nCannot be updated.\nIn CamelCase.\nMore info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds",
                 "type": "string"
               },
               "metadata": {
@@ -68,8 +68,9 @@
                             "type": "string"
                           },
                           "name": {
-                            "description": "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-                            "type": "string"
+                            "description": "Name of the referent.\nThis field is effectively required, but due to backwards compatibility is\nallowed to be empty. Instances of this type with an empty value here are\nalmost certainly wrong.\nTODO: Add other useful fields. apiVersion, kind, uid?\nMore info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names\nTODO: Drop `kubebuilder:default` when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+                            "type": "string",
+                            "default": ""
                           },
                           "optional": {
                             "description": "Specify whether the Secret or its key must be defined",
@@ -79,17 +80,17 @@
                         "x-kubernetes-map-type": "atomic"
                       },
                       "type": {
-                        "description": "Defines the authentication type. The value is case-insensitive. \n \"Basic\" is not a supported value. \n Default: \"Bearer\"",
+                        "description": "Defines the authentication type. The value is case-insensitive.\n\n\n\"Basic\" is not a supported value.\n\n\nDefault: \"Bearer\"",
                         "type": "string"
                       }
                     }
                   },
                   "basicAuth": {
-                    "description": "BasicAuth allow an endpoint to authenticate over basic authentication. More info: https://prometheus.io/docs/operating/configuration/#endpoint",
+                    "description": "BasicAuth allow an endpoint to authenticate over basic authentication.\nMore info: https://prometheus.io/docs/operating/configuration/#endpoint",
                     "type": "object",
                     "properties": {
                       "password": {
-                        "description": "`password` specifies a key of a Secret containing the password for authentication.",
+                        "description": "`password` specifies a key of a Secret containing the password for\nauthentication.",
                         "type": "object",
                         "required": [
                           "key"
@@ -100,8 +101,9 @@
                             "type": "string"
                           },
                           "name": {
-                            "description": "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-                            "type": "string"
+                            "description": "Name of the referent.\nThis field is effectively required, but due to backwards compatibility is\nallowed to be empty. Instances of this type with an empty value here are\nalmost certainly wrong.\nTODO: Add other useful fields. apiVersion, kind, uid?\nMore info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names\nTODO: Drop `kubebuilder:default` when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+                            "type": "string",
+                            "default": ""
                           },
                           "optional": {
                             "description": "Specify whether the Secret or its key must be defined",
@@ -111,7 +113,7 @@
                         "x-kubernetes-map-type": "atomic"
                       },
                       "username": {
-                        "description": "`username` specifies a key of a Secret containing the username for authentication.",
+                        "description": "`username` specifies a key of a Secret containing the username for\nauthentication.",
                         "type": "object",
                         "required": [
                           "key"
@@ -122,8 +124,9 @@
                             "type": "string"
                           },
                           "name": {
-                            "description": "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-                            "type": "string"
+                            "description": "Name of the referent.\nThis field is effectively required, but due to backwards compatibility is\nallowed to be empty. Instances of this type with an empty value here are\nalmost certainly wrong.\nTODO: Add other useful fields. apiVersion, kind, uid?\nMore info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names\nTODO: Drop `kubebuilder:default` when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+                            "type": "string",
+                            "default": ""
                           },
                           "optional": {
                             "description": "Specify whether the Secret or its key must be defined",
@@ -135,7 +138,7 @@
                     }
                   },
                   "bearerTokenSecret": {
-                    "description": "Secret to mount to read bearer token for scraping targets. The secret needs to be in the same namespace as the probe and accessible by the Prometheus Operator.",
+                    "description": "Secret to mount to read bearer token for scraping targets. The secret\nneeds to be in the same namespace as the probe and accessible by\nthe Prometheus Operator.",
                     "type": "object",
                     "required": [
                       "key"
@@ -146,8 +149,9 @@
                         "type": "string"
                       },
                       "name": {
-                        "description": "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-                        "type": "string"
+                        "description": "Name of the referent.\nThis field is effectively required, but due to backwards compatibility is\nallowed to be empty. Instances of this type with an empty value here are\nalmost certainly wrong.\nTODO: Add other useful fields. apiVersion, kind, uid?\nMore info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names\nTODO: Drop `kubebuilder:default` when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+                        "type": "string",
+                        "default": ""
                       },
                       "optional": {
                         "description": "Specify whether the Secret or its key must be defined",
@@ -157,7 +161,7 @@
                     "x-kubernetes-map-type": "atomic"
                   },
                   "interval": {
-                    "description": "Interval at which targets are probed using the configured prober. If not specified Prometheus' global scrape interval is used.",
+                    "description": "Interval at which targets are probed using the configured prober.\nIf not specified Prometheus' global scrape interval is used.",
                     "type": "string",
                     "pattern": "^(0|(([0-9]+)y)?(([0-9]+)w)?(([0-9]+)d)?(([0-9]+)h)?(([0-9]+)m)?(([0-9]+)s)?(([0-9]+)ms)?)$"
                   },
@@ -166,22 +170,22 @@
                     "type": "string"
                   },
                   "keepDroppedTargets": {
-                    "description": "Per-scrape limit on the number of targets dropped by relabeling that will be kept in memory. 0 means no limit. \n It requires Prometheus \u003e= v2.47.0.",
+                    "description": "Per-scrape limit on the number of targets dropped by relabeling\nthat will be kept in memory. 0 means no limit.\n\n\nIt requires Prometheus \u003e= v2.47.0.",
                     "type": "integer",
                     "format": "int64"
                   },
                   "labelLimit": {
-                    "description": "Per-scrape limit on number of labels that will be accepted for a sample. Only valid in Prometheus versions 2.27.0 and newer.",
+                    "description": "Per-scrape limit on number of labels that will be accepted for a sample.\nOnly valid in Prometheus versions 2.27.0 and newer.",
                     "type": "integer",
                     "format": "int64"
                   },
                   "labelNameLengthLimit": {
-                    "description": "Per-scrape limit on length of labels name that will be accepted for a sample. Only valid in Prometheus versions 2.27.0 and newer.",
+                    "description": "Per-scrape limit on length of labels name that will be accepted for a sample.\nOnly valid in Prometheus versions 2.27.0 and newer.",
                     "type": "integer",
                     "format": "int64"
                   },
                   "labelValueLengthLimit": {
-                    "description": "Per-scrape limit on length of labels value that will be accepted for a sample. Only valid in Prometheus versions 2.27.0 and newer.",
+                    "description": "Per-scrape limit on length of labels value that will be accepted for a sample.\nOnly valid in Prometheus versions 2.27.0 and newer.",
                     "type": "integer",
                     "format": "int64"
                   },
@@ -189,11 +193,11 @@
                     "description": "MetricRelabelConfigs to apply to samples before ingestion.",
                     "type": "array",
                     "items": {
-                      "description": "RelabelConfig allows dynamic rewriting of the label set for targets, alerts, scraped samples and remote write samples. \n More info: https://prometheus.io/docs/prometheus/latest/configuration/configuration/#relabel_config",
+                      "description": "RelabelConfig allows dynamic rewriting of the label set for targets, alerts,\nscraped samples and remote write samples.\n\n\nMore info: https://prometheus.io/docs/prometheus/latest/configuration/configuration/#relabel_config",
                       "type": "object",
                       "properties": {
                         "action": {
-                          "description": "Action to perform based on the regex matching. \n `Uppercase` and `Lowercase` actions require Prometheus \u003e= v2.36.0. `DropEqual` and `KeepEqual` actions require Prometheus \u003e= v2.41.0. \n Default: \"Replace\"",
+                          "description": "Action to perform based on the regex matching.\n\n\n`Uppercase` and `Lowercase` actions require Prometheus \u003e= v2.36.0.\n`DropEqual` and `KeepEqual` actions require Prometheus \u003e= v2.41.0.\n\n\nDefault: \"Replace\"",
                           "type": "string",
                           "default": "replace",
                           "enum": [
@@ -222,7 +226,7 @@
                           ]
                         },
                         "modulus": {
-                          "description": "Modulus to take of the hash of the source label values. \n Only applicable when the action is `HashMod`.",
+                          "description": "Modulus to take of the hash of the source label values.\n\n\nOnly applicable when the action is `HashMod`.",
                           "type": "integer",
                           "format": "int64"
                         },
@@ -231,7 +235,7 @@
                           "type": "string"
                         },
                         "replacement": {
-                          "description": "Replacement value against which a Replace action is performed if the regular expression matches. \n Regex capture groups are available.",
+                          "description": "Replacement value against which a Replace action is performed if the\nregular expression matches.\n\n\nRegex capture groups are available.",
                           "type": "string"
                         },
                         "separator": {
@@ -239,23 +243,23 @@
                           "type": "string"
                         },
                         "sourceLabels": {
-                          "description": "The source labels select values from existing labels. Their content is concatenated using the configured Separator and matched against the configured regular expression.",
+                          "description": "The source labels select values from existing labels. Their content is\nconcatenated using the configured Separator and matched against the\nconfigured regular expression.",
                           "type": "array",
                           "items": {
-                            "description": "LabelName is a valid Prometheus label name which may only contain ASCII letters, numbers, as well as underscores.",
+                            "description": "LabelName is a valid Prometheus label name which may only contain ASCII\nletters, numbers, as well as underscores.",
                             "type": "string",
                             "pattern": "^[a-zA-Z_][a-zA-Z0-9_]*$"
                           }
                         },
                         "targetLabel": {
-                          "description": "Label to which the resulting string is written in a replacement. \n It is mandatory for `Replace`, `HashMod`, `Lowercase`, `Uppercase`, `KeepEqual` and `DropEqual` actions. \n Regex capture groups are available.",
+                          "description": "Label to which the resulting string is written in a replacement.\n\n\nIt is mandatory for `Replace`, `HashMod`, `Lowercase`, `Uppercase`,\n`KeepEqual` and `DropEqual` actions.\n\n\nRegex capture groups are available.",
                           "type": "string"
                         }
                       }
                     }
                   },
                   "module": {
-                    "description": "The module to use for probing specifying how to probe the target. Example module configuring in the blackbox exporter: https://github.com/prometheus/blackbox_exporter/blob/master/example.yml",
+                    "description": "The module to use for probing specifying how to probe the target.\nExample module configuring in the blackbox exporter:\nhttps://github.com/prometheus/blackbox_exporter/blob/master/example.yml",
                     "type": "string"
                   },
                   "oauth2": {
@@ -268,7 +272,7 @@
                     ],
                     "properties": {
                       "clientId": {
-                        "description": "`clientId` specifies a key of a Secret or ConfigMap containing the OAuth2 client's ID.",
+                        "description": "`clientId` specifies a key of a Secret or ConfigMap containing the\nOAuth2 client's ID.",
                         "type": "object",
                         "properties": {
                           "configMap": {
@@ -283,8 +287,9 @@
                                 "type": "string"
                               },
                               "name": {
-                                "description": "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-                                "type": "string"
+                                "description": "Name of the referent.\nThis field is effectively required, but due to backwards compatibility is\nallowed to be empty. Instances of this type with an empty value here are\nalmost certainly wrong.\nTODO: Add other useful fields. apiVersion, kind, uid?\nMore info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names\nTODO: Drop `kubebuilder:default` when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+                                "type": "string",
+                                "default": ""
                               },
                               "optional": {
                                 "description": "Specify whether the ConfigMap or its key must be defined",
@@ -305,8 +310,9 @@
                                 "type": "string"
                               },
                               "name": {
-                                "description": "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-                                "type": "string"
+                                "description": "Name of the referent.\nThis field is effectively required, but due to backwards compatibility is\nallowed to be empty. Instances of this type with an empty value here are\nalmost certainly wrong.\nTODO: Add other useful fields. apiVersion, kind, uid?\nMore info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names\nTODO: Drop `kubebuilder:default` when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+                                "type": "string",
+                                "default": ""
                               },
                               "optional": {
                                 "description": "Specify whether the Secret or its key must be defined",
@@ -318,7 +324,7 @@
                         }
                       },
                       "clientSecret": {
-                        "description": "`clientSecret` specifies a key of a Secret containing the OAuth2 client's secret.",
+                        "description": "`clientSecret` specifies a key of a Secret containing the OAuth2\nclient's secret.",
                         "type": "object",
                         "required": [
                           "key"
@@ -329,8 +335,9 @@
                             "type": "string"
                           },
                           "name": {
-                            "description": "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-                            "type": "string"
+                            "description": "Name of the referent.\nThis field is effectively required, but due to backwards compatibility is\nallowed to be empty. Instances of this type with an empty value here are\nalmost certainly wrong.\nTODO: Add other useful fields. apiVersion, kind, uid?\nMore info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names\nTODO: Drop `kubebuilder:default` when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+                            "type": "string",
+                            "default": ""
                           },
                           "optional": {
                             "description": "Specify whether the Secret or its key must be defined",
@@ -340,7 +347,7 @@
                         "x-kubernetes-map-type": "atomic"
                       },
                       "endpointParams": {
-                        "description": "`endpointParams` configures the HTTP parameters to append to the token URL.",
+                        "description": "`endpointParams` configures the HTTP parameters to append to the token\nURL.",
                         "type": "object",
                         "additionalProperties": {
                           "type": "string"
@@ -361,14 +368,14 @@
                     }
                   },
                   "prober": {
-                    "description": "Specification for the prober to use for probing targets. The prober.URL parameter is required. Targets cannot be probed if left empty.",
+                    "description": "Specification for the prober to use for probing targets.\nThe prober.URL parameter is required. Targets cannot be probed if left empty.",
                     "type": "object",
                     "required": [
                       "url"
                     ],
                     "properties": {
                       "path": {
-                        "description": "Path to collect metrics from. Defaults to `/probe`.",
+                        "description": "Path to collect metrics from.\nDefaults to `/probe`.",
                         "type": "string",
                         "default": "/probe"
                       },
@@ -377,7 +384,7 @@
                         "type": "string"
                       },
                       "scheme": {
-                        "description": "HTTP scheme to use for scraping. `http` and `https` are the expected values unless you rewrite the `__scheme__` label via relabeling. If empty, Prometheus uses the default value `http`.",
+                        "description": "HTTP scheme to use for scraping.\n`http` and `https` are the expected values unless you rewrite the `__scheme__` label via relabeling.\nIf empty, Prometheus uses the default value `http`.",
                         "type": "string",
                         "enum": [
                           "http",
@@ -395,8 +402,28 @@
                     "type": "integer",
                     "format": "int64"
                   },
+                  "scrapeClass": {
+                    "description": "The scrape class to apply.",
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "scrapeProtocols": {
+                    "description": "`scrapeProtocols` defines the protocols to negotiate during a scrape. It tells clients the\nprotocols supported by Prometheus in order of preference (from most to least preferred).\n\n\nIf unset, Prometheus uses its default value.\n\n\nIt requires Prometheus \u003e= v2.49.0.",
+                    "type": "array",
+                    "items": {
+                      "description": "ScrapeProtocol represents a protocol used by Prometheus for scraping metrics.\nSupported values are:\n* `OpenMetricsText0.0.1`\n* `OpenMetricsText1.0.0`\n* `PrometheusProto`\n* `PrometheusText0.0.4`",
+                      "type": "string",
+                      "enum": [
+                        "PrometheusProto",
+                        "OpenMetricsText0.0.1",
+                        "OpenMetricsText1.0.0",
+                        "PrometheusText0.0.4"
+                      ]
+                    },
+                    "x-kubernetes-list-type": "set"
+                  },
                   "scrapeTimeout": {
-                    "description": "Timeout for scraping metrics from the Prometheus exporter. If not specified, the Prometheus global scrape timeout is used.",
+                    "description": "Timeout for scraping metrics from the Prometheus exporter.\nIf not specified, the Prometheus global scrape timeout is used.",
                     "type": "string",
                     "pattern": "^(0|(([0-9]+)y)?(([0-9]+)w)?(([0-9]+)d)?(([0-9]+)h)?(([0-9]+)m)?(([0-9]+)s)?(([0-9]+)ms)?)$"
                   },
@@ -410,7 +437,7 @@
                     "type": "object",
                     "properties": {
                       "ingress": {
-                        "description": "ingress defines the Ingress objects to probe and the relabeling configuration. If `staticConfig` is also defined, `staticConfig` takes precedence.",
+                        "description": "ingress defines the Ingress objects to probe and the relabeling\nconfiguration.\nIf `staticConfig` is also defined, `staticConfig` takes precedence.",
                         "type": "object",
                         "properties": {
                           "namespaceSelector": {
@@ -418,7 +445,7 @@
                             "type": "object",
                             "properties": {
                               "any": {
-                                "description": "Boolean describing whether all namespaces are selected in contrast to a list restricting them.",
+                                "description": "Boolean describing whether all namespaces are selected in contrast to a\nlist restricting them.",
                                 "type": "boolean"
                               },
                               "matchNames": {
@@ -431,14 +458,14 @@
                             }
                           },
                           "relabelingConfigs": {
-                            "description": "RelabelConfigs to apply to the label set of the target before it gets scraped. The original ingress address is available via the `__tmp_prometheus_ingress_address` label. It can be used to customize the probed URL. The original scrape job's name is available via the `__tmp_prometheus_job_name` label. More info: https://prometheus.io/docs/prometheus/latest/configuration/configuration/#relabel_config",
+                            "description": "RelabelConfigs to apply to the label set of the target before it gets\nscraped.\nThe original ingress address is available via the\n`__tmp_prometheus_ingress_address` label. It can be used to customize the\nprobed URL.\nThe original scrape job's name is available via the `__tmp_prometheus_job_name` label.\nMore info: https://prometheus.io/docs/prometheus/latest/configuration/configuration/#relabel_config",
                             "type": "array",
                             "items": {
-                              "description": "RelabelConfig allows dynamic rewriting of the label set for targets, alerts, scraped samples and remote write samples. \n More info: https://prometheus.io/docs/prometheus/latest/configuration/configuration/#relabel_config",
+                              "description": "RelabelConfig allows dynamic rewriting of the label set for targets, alerts,\nscraped samples and remote write samples.\n\n\nMore info: https://prometheus.io/docs/prometheus/latest/configuration/configuration/#relabel_config",
                               "type": "object",
                               "properties": {
                                 "action": {
-                                  "description": "Action to perform based on the regex matching. \n `Uppercase` and `Lowercase` actions require Prometheus \u003e= v2.36.0. `DropEqual` and `KeepEqual` actions require Prometheus \u003e= v2.41.0. \n Default: \"Replace\"",
+                                  "description": "Action to perform based on the regex matching.\n\n\n`Uppercase` and `Lowercase` actions require Prometheus \u003e= v2.36.0.\n`DropEqual` and `KeepEqual` actions require Prometheus \u003e= v2.41.0.\n\n\nDefault: \"Replace\"",
                                   "type": "string",
                                   "default": "replace",
                                   "enum": [
@@ -467,7 +494,7 @@
                                   ]
                                 },
                                 "modulus": {
-                                  "description": "Modulus to take of the hash of the source label values. \n Only applicable when the action is `HashMod`.",
+                                  "description": "Modulus to take of the hash of the source label values.\n\n\nOnly applicable when the action is `HashMod`.",
                                   "type": "integer",
                                   "format": "int64"
                                 },
@@ -476,7 +503,7 @@
                                   "type": "string"
                                 },
                                 "replacement": {
-                                  "description": "Replacement value against which a Replace action is performed if the regular expression matches. \n Regex capture groups are available.",
+                                  "description": "Replacement value against which a Replace action is performed if the\nregular expression matches.\n\n\nRegex capture groups are available.",
                                   "type": "string"
                                 },
                                 "separator": {
@@ -484,16 +511,16 @@
                                   "type": "string"
                                 },
                                 "sourceLabels": {
-                                  "description": "The source labels select values from existing labels. Their content is concatenated using the configured Separator and matched against the configured regular expression.",
+                                  "description": "The source labels select values from existing labels. Their content is\nconcatenated using the configured Separator and matched against the\nconfigured regular expression.",
                                   "type": "array",
                                   "items": {
-                                    "description": "LabelName is a valid Prometheus label name which may only contain ASCII letters, numbers, as well as underscores.",
+                                    "description": "LabelName is a valid Prometheus label name which may only contain ASCII\nletters, numbers, as well as underscores.",
                                     "type": "string",
                                     "pattern": "^[a-zA-Z_][a-zA-Z0-9_]*$"
                                   }
                                 },
                                 "targetLabel": {
-                                  "description": "Label to which the resulting string is written in a replacement. \n It is mandatory for `Replace`, `HashMod`, `Lowercase`, `Uppercase`, `KeepEqual` and `DropEqual` actions. \n Regex capture groups are available.",
+                                  "description": "Label to which the resulting string is written in a replacement.\n\n\nIt is mandatory for `Replace`, `HashMod`, `Lowercase`, `Uppercase`,\n`KeepEqual` and `DropEqual` actions.\n\n\nRegex capture groups are available.",
                                   "type": "string"
                                 }
                               }
@@ -507,7 +534,7 @@
                                 "description": "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
                                 "type": "array",
                                 "items": {
-                                  "description": "A label selector requirement is a selector that contains values, a key, and an operator that relates the key and values.",
+                                  "description": "A label selector requirement is a selector that contains values, a key, and an operator that\nrelates the key and values.",
                                   "type": "object",
                                   "required": [
                                     "key",
@@ -519,21 +546,23 @@
                                       "type": "string"
                                     },
                                     "operator": {
-                                      "description": "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+                                      "description": "operator represents a key's relationship to a set of values.\nValid operators are In, NotIn, Exists and DoesNotExist.",
                                       "type": "string"
                                     },
                                     "values": {
-                                      "description": "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+                                      "description": "values is an array of string values. If the operator is In or NotIn,\nthe values array must be non-empty. If the operator is Exists or DoesNotExist,\nthe values array must be empty. This array is replaced during a strategic\nmerge patch.",
                                       "type": "array",
                                       "items": {
                                         "type": "string"
-                                      }
+                                      },
+                                      "x-kubernetes-list-type": "atomic"
                                     }
                                   }
-                                }
+                                },
+                                "x-kubernetes-list-type": "atomic"
                               },
                               "matchLabels": {
-                                "description": "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is \"key\", the operator is \"In\", and the values array contains only \"value\". The requirements are ANDed.",
+                                "description": "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels\nmap is equivalent to an element of matchExpressions, whose key field is \"key\", the\noperator is \"In\", and the values array contains only \"value\". The requirements are ANDed.",
                                 "type": "object",
                                 "additionalProperties": {
                                   "type": "string"
@@ -545,7 +574,7 @@
                         }
                       },
                       "staticConfig": {
-                        "description": "staticConfig defines the static list of targets to probe and the relabeling configuration. If `ingress` is also defined, `staticConfig` takes precedence. More info: https://prometheus.io/docs/prometheus/latest/configuration/configuration/#static_config.",
+                        "description": "staticConfig defines the static list of targets to probe and the\nrelabeling configuration.\nIf `ingress` is also defined, `staticConfig` takes precedence.\nMore info: https://prometheus.io/docs/prometheus/latest/configuration/configuration/#static_config.",
                         "type": "object",
                         "properties": {
                           "labels": {
@@ -556,14 +585,14 @@
                             }
                           },
                           "relabelingConfigs": {
-                            "description": "RelabelConfigs to apply to the label set of the targets before it gets scraped. More info: https://prometheus.io/docs/prometheus/latest/configuration/configuration/#relabel_config",
+                            "description": "RelabelConfigs to apply to the label set of the targets before it gets\nscraped.\nMore info: https://prometheus.io/docs/prometheus/latest/configuration/configuration/#relabel_config",
                             "type": "array",
                             "items": {
-                              "description": "RelabelConfig allows dynamic rewriting of the label set for targets, alerts, scraped samples and remote write samples. \n More info: https://prometheus.io/docs/prometheus/latest/configuration/configuration/#relabel_config",
+                              "description": "RelabelConfig allows dynamic rewriting of the label set for targets, alerts,\nscraped samples and remote write samples.\n\n\nMore info: https://prometheus.io/docs/prometheus/latest/configuration/configuration/#relabel_config",
                               "type": "object",
                               "properties": {
                                 "action": {
-                                  "description": "Action to perform based on the regex matching. \n `Uppercase` and `Lowercase` actions require Prometheus \u003e= v2.36.0. `DropEqual` and `KeepEqual` actions require Prometheus \u003e= v2.41.0. \n Default: \"Replace\"",
+                                  "description": "Action to perform based on the regex matching.\n\n\n`Uppercase` and `Lowercase` actions require Prometheus \u003e= v2.36.0.\n`DropEqual` and `KeepEqual` actions require Prometheus \u003e= v2.41.0.\n\n\nDefault: \"Replace\"",
                                   "type": "string",
                                   "default": "replace",
                                   "enum": [
@@ -592,7 +621,7 @@
                                   ]
                                 },
                                 "modulus": {
-                                  "description": "Modulus to take of the hash of the source label values. \n Only applicable when the action is `HashMod`.",
+                                  "description": "Modulus to take of the hash of the source label values.\n\n\nOnly applicable when the action is `HashMod`.",
                                   "type": "integer",
                                   "format": "int64"
                                 },
@@ -601,7 +630,7 @@
                                   "type": "string"
                                 },
                                 "replacement": {
-                                  "description": "Replacement value against which a Replace action is performed if the regular expression matches. \n Regex capture groups are available.",
+                                  "description": "Replacement value against which a Replace action is performed if the\nregular expression matches.\n\n\nRegex capture groups are available.",
                                   "type": "string"
                                 },
                                 "separator": {
@@ -609,16 +638,16 @@
                                   "type": "string"
                                 },
                                 "sourceLabels": {
-                                  "description": "The source labels select values from existing labels. Their content is concatenated using the configured Separator and matched against the configured regular expression.",
+                                  "description": "The source labels select values from existing labels. Their content is\nconcatenated using the configured Separator and matched against the\nconfigured regular expression.",
                                   "type": "array",
                                   "items": {
-                                    "description": "LabelName is a valid Prometheus label name which may only contain ASCII letters, numbers, as well as underscores.",
+                                    "description": "LabelName is a valid Prometheus label name which may only contain ASCII\nletters, numbers, as well as underscores.",
                                     "type": "string",
                                     "pattern": "^[a-zA-Z_][a-zA-Z0-9_]*$"
                                   }
                                 },
                                 "targetLabel": {
-                                  "description": "Label to which the resulting string is written in a replacement. \n It is mandatory for `Replace`, `HashMod`, `Lowercase`, `Uppercase`, `KeepEqual` and `DropEqual` actions. \n Regex capture groups are available.",
+                                  "description": "Label to which the resulting string is written in a replacement.\n\n\nIt is mandatory for `Replace`, `HashMod`, `Lowercase`, `Uppercase`,\n`KeepEqual` and `DropEqual` actions.\n\n\nRegex capture groups are available.",
                                   "type": "string"
                                 }
                               }
@@ -655,8 +684,9 @@
                                 "type": "string"
                               },
                               "name": {
-                                "description": "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-                                "type": "string"
+                                "description": "Name of the referent.\nThis field is effectively required, but due to backwards compatibility is\nallowed to be empty. Instances of this type with an empty value here are\nalmost certainly wrong.\nTODO: Add other useful fields. apiVersion, kind, uid?\nMore info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names\nTODO: Drop `kubebuilder:default` when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+                                "type": "string",
+                                "default": ""
                               },
                               "optional": {
                                 "description": "Specify whether the ConfigMap or its key must be defined",
@@ -677,8 +707,9 @@
                                 "type": "string"
                               },
                               "name": {
-                                "description": "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-                                "type": "string"
+                                "description": "Name of the referent.\nThis field is effectively required, but due to backwards compatibility is\nallowed to be empty. Instances of this type with an empty value here are\nalmost certainly wrong.\nTODO: Add other useful fields. apiVersion, kind, uid?\nMore info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names\nTODO: Drop `kubebuilder:default` when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+                                "type": "string",
+                                "default": ""
                               },
                               "optional": {
                                 "description": "Specify whether the Secret or its key must be defined",
@@ -705,8 +736,9 @@
                                 "type": "string"
                               },
                               "name": {
-                                "description": "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-                                "type": "string"
+                                "description": "Name of the referent.\nThis field is effectively required, but due to backwards compatibility is\nallowed to be empty. Instances of this type with an empty value here are\nalmost certainly wrong.\nTODO: Add other useful fields. apiVersion, kind, uid?\nMore info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names\nTODO: Drop `kubebuilder:default` when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+                                "type": "string",
+                                "default": ""
                               },
                               "optional": {
                                 "description": "Specify whether the ConfigMap or its key must be defined",
@@ -727,8 +759,9 @@
                                 "type": "string"
                               },
                               "name": {
-                                "description": "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-                                "type": "string"
+                                "description": "Name of the referent.\nThis field is effectively required, but due to backwards compatibility is\nallowed to be empty. Instances of this type with an empty value here are\nalmost certainly wrong.\nTODO: Add other useful fields. apiVersion, kind, uid?\nMore info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names\nTODO: Drop `kubebuilder:default` when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+                                "type": "string",
+                                "default": ""
                               },
                               "optional": {
                                 "description": "Specify whether the Secret or its key must be defined",
@@ -755,8 +788,9 @@
                             "type": "string"
                           },
                           "name": {
-                            "description": "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-                            "type": "string"
+                            "description": "Name of the referent.\nThis field is effectively required, but due to backwards compatibility is\nallowed to be empty. Instances of this type with an empty value here are\nalmost certainly wrong.\nTODO: Add other useful fields. apiVersion, kind, uid?\nMore info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names\nTODO: Drop `kubebuilder:default` when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+                            "type": "string",
+                            "default": ""
                           },
                           "optional": {
                             "description": "Specify whether the Secret or its key must be defined",

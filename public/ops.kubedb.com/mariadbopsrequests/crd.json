@@ -19,7 +19,7 @@
       "kind": "MariaDBOpsRequest",
       "listKind": "MariaDBOpsRequestList",
       "categories": [
-        "datastore",
+        "ops",
         "kubedb",
         "appscode"
       ]

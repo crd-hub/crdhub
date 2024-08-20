@@ -19,7 +19,7 @@
       "kind": "ElasticsearchVersion",
       "listKind": "ElasticsearchVersionList",
       "categories": [
-        "datastore",
+        "catalog",
         "kubedb",
         "appscode"
       ]

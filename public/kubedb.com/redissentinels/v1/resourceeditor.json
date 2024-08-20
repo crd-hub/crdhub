@@ -18,6 +18,228 @@
       "name": "redissentinels",
       "kind": "RedisSentinel",
       "scope": "Namespaced"
-    }
+    },
+    "ui": {
+      "editor": {
+        "name": "kubedbcom-redissentinel-editor",
+        "version": "v0.5.0",
+        "sourceRef": {
+          "apiGroup": "source.toolkit.fluxcd.io",
+          "kind": "HelmRepository",
+          "name": "appscode-charts-oci"
+        }
+      },
+      "enforceQuota": false,
+      "actions": [
+        {
+          "name": "Operations",
+          "items": [
+            {
+              "name": "Update Version",
+              "icons": [
+                {
+                  "src": "https://cdn.appscode.com/k8s/icons/action-icons/version.svg",
+                  "type": "image/svg+xml"
+                }
+              ],
+              "operationId": "create-opsrequest-upgrade",
+              "flow": "standalone-create",
+              "editor": {
+                "name": "opskubedbcom-redissentinelopsrequest-editor",
+                "version": "v0.5.0",
+                "sourceRef": {
+                  "apiGroup": "source.toolkit.fluxcd.io",
+                  "kind": "HelmRepository",
+                  "name": "appscode-charts-oci"
+                }
+              },
+              "enforceQuota": false
+            },
+            {
+              "name": "Restart",
+              "icons": [
+                {
+                  "src": "https://cdn.appscode.com/k8s/icons/action-icons/restart.svg",
+                  "type": "image/svg+xml"
+                }
+              ],
+              "operationId": "create-opsrequest-restart",
+              "flow": "standalone-create",
+              "editor": {
+                "name": "opskubedbcom-redissentinelopsrequest-editor",
+                "version": "v0.5.0",
+                "sourceRef": {
+                  "apiGroup": "source.toolkit.fluxcd.io",
+                  "kind": "HelmRepository",
+                  "name": "appscode-charts-oci"
+                }
+              },
+              "enforceQuota": false
+            },
+            {
+              "name": "Reconfigure",
+              "icons": [
+                {
+                  "src": "https://cdn.appscode.com/k8s/icons/action-icons/reconfigure.svg",
+                  "type": "image/svg+xml"
+                }
+              ],
+              "operationId": "create-opsrequest-reconfigure",
+              "flow": "standalone-create",
+              "editor": {
+                "name": "opskubedbcom-redissentinelopsrequest-editor",
+                "version": "v0.5.0",
+                "sourceRef": {
+                  "apiGroup": "source.toolkit.fluxcd.io",
+                  "kind": "HelmRepository",
+                  "name": "appscode-charts-oci"
+                }
+              },
+              "enforceQuota": false
+            }
+          ]
+        },
+        {
+          "name": "Scaling",
+          "items": [
+            {
+              "name": "Horizontal Scale",
+              "icons": [
+                {
+                  "src": "https://cdn.appscode.com/k8s/icons/action-icons/horizontal_scale.svg",
+                  "type": "image/svg+xml"
+                }
+              ],
+              "operationId": "create-opsrequest-horizontalscaling",
+              "flow": "standalone-create",
+              "editor": {
+                "name": "opskubedbcom-redissentinelopsrequest-editor",
+                "version": "v0.5.0",
+                "sourceRef": {
+                  "apiGroup": "source.toolkit.fluxcd.io",
+                  "kind": "HelmRepository",
+                  "name": "appscode-charts-oci"
+                }
+              },
+              "enforceQuota": false
+            },
+            {
+              "name": "Vertical Scale",
+              "icons": [
+                {
+                  "src": "https://cdn.appscode.com/k8s/icons/action-icons/vertical_scale.svg",
+                  "type": "image/svg+xml"
+                }
+              ],
+              "operationId": "create-opsrequest-verticalscaling",
+              "flow": "standalone-create",
+              "editor": {
+                "name": "opskubedbcom-redissentinelopsrequest-editor",
+                "version": "v0.5.0",
+                "sourceRef": {
+                  "apiGroup": "source.toolkit.fluxcd.io",
+                  "kind": "HelmRepository",
+                  "name": "appscode-charts-oci"
+                }
+              },
+              "enforceQuota": false
+            }
+          ]
+        },
+        {
+          "name": "Autoscaling",
+          "items": [
+            {
+              "name": "Compute",
+              "icons": [
+                {
+                  "src": "https://cdn.appscode.com/k8s/icons/action-icons/compute.svg",
+                  "type": "image/svg+xml"
+                }
+              ],
+              "operationId": "create-opsrequest-compute",
+              "flow": "standalone-create",
+              "editor": {
+                "name": "autoscalingkubedbcom-redissentinelautoscaler-editor",
+                "version": "v0.5.0",
+                "sourceRef": {
+                  "apiGroup": "source.toolkit.fluxcd.io",
+                  "kind": "HelmRepository",
+                  "name": "appscode-charts-oci"
+                }
+              },
+              "enforceQuota": true
+            }
+          ]
+        },
+        {
+          "name": "Security \u0026 Monitoring",
+          "items": [
+            {
+              "name": "TLS Configure",
+              "icons": [
+                {
+                  "src": "https://cdn.appscode.com/k8s/icons/action-icons/configure.svg",
+                  "type": "image/svg+xml"
+                }
+              ],
+              "operationId": "create-opsrequest-reconfiguretls",
+              "flow": "standalone-create",
+              "editor": {
+                "name": "opskubedbcom-redissentinelopsrequest-editor",
+                "version": "v0.5.0",
+                "sourceRef": {
+                  "apiGroup": "source.toolkit.fluxcd.io",
+                  "kind": "HelmRepository",
+                  "name": "appscode-charts-oci"
+                }
+              },
+              "enforceQuota": false
+            },
+            {
+              "name": "Monitoring",
+              "icons": [
+                {
+                  "src": "https://cdn.appscode.com/k8s/icons/action-icons/monitor.svg",
+                  "type": "image/svg+xml"
+                }
+              ],
+              "operationId": "edit-self-monitoring",
+              "flow": "standalone-edit",
+              "editor": {
+                "name": "kubedbcom-redissentinel-editor",
+                "version": "v0.5.0",
+                "sourceRef": {
+                  "apiGroup": "source.toolkit.fluxcd.io",
+                  "kind": "HelmRepository",
+                  "name": "appscode-charts-oci"
+                }
+              },
+              "enforceQuota": false
+            }
+          ]
+        }
+      ]
+    },
+    "icons": [
+      {
+        "src": "https://cdn.appscode.com/k8s/icons/kubedb.com/redissentinels.svg",
+        "type": "image/svg+xml"
+      },
+      {
+        "src": "https://cdn.appscode.com/k8s/icons/kubedb.com/redissentinels.png",
+        "type": "image/png"
+      }
+    ],
+    "variants": [
+      {
+        "name": "default",
+        "selector": {
+          "matchLabels": {
+            "charts.x-helm.dev/is-default-preset": "true"
+          }
+        }
+      }
+    ]
   }
 }

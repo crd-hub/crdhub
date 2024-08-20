@@ -19,7 +19,7 @@
       "kind": "PgpoolOpsRequest",
       "listKind": "PgpoolOpsRequestList",
       "categories": [
-        "datastore",
+        "ops",
         "kubedb",
         "appscode"
       ]

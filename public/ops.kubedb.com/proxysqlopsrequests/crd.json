@@ -19,7 +19,7 @@
       "kind": "ProxySQLOpsRequest",
       "listKind": "ProxySQLOpsRequestList",
       "categories": [
-        "datastore",
+        "ops",
         "kubedb",
         "appscode"
       ]

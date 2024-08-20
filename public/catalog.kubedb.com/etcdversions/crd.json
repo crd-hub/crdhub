@@ -19,7 +19,7 @@
       "kind": "EtcdVersion",
       "listKind": "EtcdVersionList",
       "categories": [
-        "datastore",
+        "catalog",
         "kubedb",
         "appscode"
       ]

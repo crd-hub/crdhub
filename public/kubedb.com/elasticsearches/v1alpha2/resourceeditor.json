@@ -22,7 +22,7 @@
     "ui": {
       "options": {
         "name": "kubedbcom-elasticsearch-editor-options",
-        "version": "v0.4.20",
+        "version": "v0.5.0",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",
@@ -31,7 +31,7 @@
       },
       "editor": {
         "name": "kubedbcom-elasticsearch-editor",
-        "version": "v0.4.21",
+        "version": "v0.5.0",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",
@@ -55,7 +55,7 @@
               "flow": "standalone-edit",
               "editor": {
                 "name": "kubedbcom-elasticsearch-editor",
-                "version": "v0.4.20",
+                "version": "v0.5.0",
                 "sourceRef": {
                   "apiGroup": "source.toolkit.fluxcd.io",
                   "kind": "HelmRepository",
@@ -75,8 +75,8 @@
               "operationId": "create-restoresession",
               "flow": "standalone-create",
               "editor": {
-                "name": "stashappscodecom-restoresession-editor-options",
-                "version": "v0.4.20",
+                "name": "corekubestashcom-restoresession-editor-options",
+                "version": "v0.5.0",
                 "sourceRef": {
                   "apiGroup": "source.toolkit.fluxcd.io",
                   "kind": "HelmRepository",
@@ -102,7 +102,7 @@
               "flow": "standalone-create",
               "editor": {
                 "name": "opskubedbcom-elasticsearchopsrequest-editor",
-                "version": "v0.4.20",
+                "version": "v0.5.0",
                 "sourceRef": {
                   "apiGroup": "source.toolkit.fluxcd.io",
                   "kind": "HelmRepository",
@@ -123,7 +123,7 @@
               "flow": "standalone-create",
               "editor": {
                 "name": "opskubedbcom-elasticsearchopsrequest-editor",
-                "version": "v0.4.20",
+                "version": "v0.5.0",
                 "sourceRef": {
                   "apiGroup": "source.toolkit.fluxcd.io",
                   "kind": "HelmRepository",
@@ -149,7 +149,7 @@
               "flow": "standalone-create",
               "editor": {
                 "name": "opskubedbcom-elasticsearchopsrequest-editor",
-                "version": "v0.4.20",
+                "version": "v0.5.0",
                 "sourceRef": {
                   "apiGroup": "source.toolkit.fluxcd.io",
                   "kind": "HelmRepository",
@@ -170,7 +170,7 @@
               "flow": "standalone-create",
               "editor": {
                 "name": "opskubedbcom-elasticsearchopsrequest-editor",
-                "version": "v0.4.20",
+                "version": "v0.5.0",
                 "sourceRef": {
                   "apiGroup": "source.toolkit.fluxcd.io",
                   "kind": "HelmRepository",
@@ -191,7 +191,7 @@
               "flow": "standalone-create",
               "editor": {
                 "name": "opskubedbcom-elasticsearchopsrequest-editor",
-                "version": "v0.4.20",
+                "version": "v0.5.0",
                 "sourceRef": {
                   "apiGroup": "source.toolkit.fluxcd.io",
                   "kind": "HelmRepository",
@@ -218,7 +218,7 @@
               "disabledTemplate": "{{ not (and (hasKey .spec \"tls\") ( hasKey .spec.tls \"issuerRef\"))}}\n",
               "editor": {
                 "name": "opskubedbcom-elasticsearchopsrequest-editor",
-                "version": "v0.4.20",
+                "version": "v0.5.0",
                 "sourceRef": {
                   "apiGroup": "source.toolkit.fluxcd.io",
                   "kind": "HelmRepository",
@@ -239,7 +239,7 @@
               "flow": "standalone-edit",
               "editor": {
                 "name": "kubedbcom-elasticsearch-editor",
-                "version": "v0.4.20",
+                "version": "v0.5.0",
                 "sourceRef": {
                   "apiGroup": "source.toolkit.fluxcd.io",
                   "kind": "HelmRepository",

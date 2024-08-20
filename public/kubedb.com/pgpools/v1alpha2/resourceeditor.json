@@ -22,7 +22,7 @@
     "ui": {
       "options": {
         "name": "kubedbcom-pgpool-editor-options",
-        "version": "v0.4.20",
+        "version": "v0.5.0",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",
@@ -31,14 +31,226 @@
       },
       "editor": {
         "name": "kubedbcom-pgpool-editor",
-        "version": "v0.4.21",
+        "version": "v0.5.0",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",
           "name": "appscode-charts-oci"
         }
       },
-      "enforceQuota": true
+      "enforceQuota": true,
+      "actions": [
+        {
+          "name": "Operations",
+          "items": [
+            {
+              "name": "Restart",
+              "icons": [
+                {
+                  "src": "https://cdn.appscode.com/k8s/icons/action-icons/restart.svg",
+                  "type": "image/svg+xml"
+                }
+              ],
+              "operationId": "create-opsrequest-restart",
+              "flow": "standalone-create",
+              "editor": {
+                "name": "opskubedbcom-pgpoolopsrequest-editor",
+                "version": "v0.5.0",
+                "sourceRef": {
+                  "apiGroup": "source.toolkit.fluxcd.io",
+                  "kind": "HelmRepository",
+                  "name": "appscode-charts-oci"
+                }
+              },
+              "enforceQuota": false
+            },
+            {
+              "name": "Reconfigure",
+              "icons": [
+                {
+                  "src": "https://cdn.appscode.com/k8s/icons/action-icons/reconfigure.svg",
+                  "type": "image/svg+xml"
+                }
+              ],
+              "operationId": "create-opsrequest-reconfigure",
+              "flow": "standalone-create",
+              "editor": {
+                "name": "opskubedbcom-pgpoolopsrequest-editor",
+                "version": "v0.5.0",
+                "sourceRef": {
+                  "apiGroup": "source.toolkit.fluxcd.io",
+                  "kind": "HelmRepository",
+                  "name": "appscode-charts-oci"
+                }
+              },
+              "enforceQuota": false
+            }
+          ]
+        },
+        {
+          "name": "Scaling",
+          "items": [
+            {
+              "name": "Horizontal Scale",
+              "icons": [
+                {
+                  "src": "https://cdn.appscode.com/k8s/icons/action-icons/horizontal_scale.svg",
+                  "type": "image/svg+xml"
+                }
+              ],
+              "operationId": "create-opsrequest-horizontalscaling",
+              "flow": "standalone-create",
+              "disabledTemplate": "{{ not (gt .spec.replicas 1) }}\n",
+              "editor": {
+                "name": "opskubedbcom-pgpoolopsrequest-editor",
+                "version": "v0.5.0",
+                "sourceRef": {
+                  "apiGroup": "source.toolkit.fluxcd.io",
+                  "kind": "HelmRepository",
+                  "name": "appscode-charts-oci"
+                }
+              },
+              "enforceQuota": true
+            },
+            {
+              "name": "Vertical Scale",
+              "icons": [
+                {
+                  "src": "https://cdn.appscode.com/k8s/icons/action-icons/vertical_scale.svg",
+                  "type": "image/svg+xml"
+                }
+              ],
+              "operationId": "create-opsrequest-verticalscaling",
+              "flow": "standalone-create",
+              "editor": {
+                "name": "opskubedbcom-pgpoolopsrequest-editor",
+                "version": "v0.5.0",
+                "sourceRef": {
+                  "apiGroup": "source.toolkit.fluxcd.io",
+                  "kind": "HelmRepository",
+                  "name": "appscode-charts-oci"
+                }
+              },
+              "enforceQuota": true
+            },
+            {
+              "name": "Expand Volume",
+              "icons": [
+                {
+                  "src": "https://cdn.appscode.com/k8s/icons/action-icons/expand.svg",
+                  "type": "image/svg+xml"
+                }
+              ],
+              "operationId": "create-opsrequest-volumeexpansion",
+              "flow": "standalone-create",
+              "editor": {
+                "name": "opskubedbcom-pgpoolopsrequest-editor",
+                "version": "v0.5.0",
+                "sourceRef": {
+                  "apiGroup": "source.toolkit.fluxcd.io",
+                  "kind": "HelmRepository",
+                  "name": "appscode-charts-oci"
+                }
+              },
+              "enforceQuota": true
+            }
+          ]
+        },
+        {
+          "name": "Autoscaling",
+          "items": [
+            {
+              "name": "Compute",
+              "icons": [
+                {
+                  "src": "https://cdn.appscode.com/k8s/icons/action-icons/compute.svg",
+                  "type": "image/svg+xml"
+                }
+              ],
+              "operationId": "create-opsrequest-compute",
+              "flow": "standalone-create",
+              "editor": {
+                "name": "autoscalingkubedbcom-pgpoolautoscaler-editor",
+                "version": "v0.5.0",
+                "sourceRef": {
+                  "apiGroup": "source.toolkit.fluxcd.io",
+                  "kind": "HelmRepository",
+                  "name": "appscode-charts-oci"
+                }
+              },
+              "enforceQuota": true
+            },
+            {
+              "name": "Storage",
+              "icons": [
+                {
+                  "src": "https://cdn.appscode.com/k8s/icons/action-icons/storage.svg",
+                  "type": "image/svg+xml"
+                }
+              ],
+              "operationId": "create-opsrequest-storage",
+              "flow": "standalone-create",
+              "editor": {
+                "name": "autoscalingkubedbcom-pgpoolautoscaler-editor",
+                "version": "v0.5.0",
+                "sourceRef": {
+                  "apiGroup": "source.toolkit.fluxcd.io",
+                  "kind": "HelmRepository",
+                  "name": "appscode-charts-oci"
+                }
+              },
+              "enforceQuota": true
+            }
+          ]
+        },
+        {
+          "name": "Security \u0026 Monitoring",
+          "items": [
+            {
+              "name": "TLS Configure",
+              "icons": [
+                {
+                  "src": "https://cdn.appscode.com/k8s/icons/action-icons/configure.svg",
+                  "type": "image/svg+xml"
+                }
+              ],
+              "operationId": "create-opsrequest-reconfiguretls",
+              "flow": "standalone-create",
+              "editor": {
+                "name": "opskubedbcom-pgpoolopsrequest-editor",
+                "version": "v0.5.0",
+                "sourceRef": {
+                  "apiGroup": "source.toolkit.fluxcd.io",
+                  "kind": "HelmRepository",
+                  "name": "appscode-charts-oci"
+                }
+              },
+              "enforceQuota": false
+            },
+            {
+              "name": "Monitoring",
+              "icons": [
+                {
+                  "src": "https://cdn.appscode.com/k8s/icons/action-icons/monitor.svg",
+                  "type": "image/svg+xml"
+                }
+              ],
+              "operationId": "edit-self-monitoring",
+              "flow": "standalone-edit",
+              "editor": {
+                "name": "kubedbcom-pgpool-editor",
+                "version": "v0.5.0",
+                "sourceRef": {
+                  "apiGroup": "source.toolkit.fluxcd.io",
+                  "kind": "HelmRepository",
+                  "name": "appscode-charts-oci"
+                }
+              },
+              "enforceQuota": false
+            }
+          ]
+        }
+      ]
     },
     "icons": [
       {

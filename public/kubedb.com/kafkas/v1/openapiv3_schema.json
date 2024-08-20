@@ -4887,6 +4887,9 @@
         "enableSSL": {
           "type": "boolean"
         },
+        "halted": {
+          "type": "boolean"
+        },
         "healthChecker": {
           "type": "object",
           "default": {

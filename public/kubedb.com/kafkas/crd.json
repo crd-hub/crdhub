@@ -17,7 +17,13 @@
         "kf"
       ],
       "kind": "Kafka",
-      "listKind": "KafkaList"
+      "listKind": "KafkaList",
+      "categories": [
+        "datastore",
+        "kubedb",
+        "appscode",
+        "all"
+      ]
     },
     "scope": "Namespaced",
     "versions": [
@@ -4882,6 +4888,9 @@
                     "type": "boolean"
                   },
                   "enableSSL": {
+                    "type": "boolean"
+                  },
+                  "halted": {
                     "type": "boolean"
                   },
                   "healthChecker": {
@@ -25038,6 +25047,9 @@
                   "enableSSL": {
                     "type": "boolean"
                   },
+                  "halted": {
+                    "type": "boolean"
+                  },
                   "healthChecker": {
                     "type": "object",
                     "default": {
@@ -30121,7 +30133,8 @@
                           "enum": [
                             "primary",
                             "standby",
-                            "stats"
+                            "stats",
+                            "dashboard"
                           ]
                         },
                         "metadata": {

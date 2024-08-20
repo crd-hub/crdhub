@@ -19,7 +19,7 @@
       "kind": "MariaDBAutoscaler",
       "listKind": "MariaDBAutoscalerList",
       "categories": [
-        "datastore",
+        "autoscaler",
         "kubedb",
         "appscode"
       ]

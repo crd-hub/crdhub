@@ -22,7 +22,7 @@
     "ui": {
       "options": {
         "name": "kubedbcom-zookeeper-editor-options",
-        "version": "v0.4.20",
+        "version": "v0.5.0",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",
@@ -31,14 +31,110 @@
       },
       "editor": {
         "name": "kubedbcom-zookeeper-editor",
-        "version": "v0.4.21",
+        "version": "v0.5.0",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",
           "name": "appscode-charts-oci"
         }
       },
-      "enforceQuota": true
+      "enforceQuota": true,
+      "actions": [
+        {
+          "name": "Operations",
+          "items": [
+            {
+              "name": "Restart",
+              "icons": [
+                {
+                  "src": "https://cdn.appscode.com/k8s/icons/action-icons/restart.svg",
+                  "type": "image/svg+xml"
+                }
+              ],
+              "operationId": "create-opsrequest-restart",
+              "flow": "standalone-create",
+              "editor": {
+                "name": "opskubedbcom-zookeeperopsrequest-editor",
+                "version": "v0.5.0",
+                "sourceRef": {
+                  "apiGroup": "source.toolkit.fluxcd.io",
+                  "kind": "HelmRepository",
+                  "name": "appscode-charts-oci"
+                }
+              },
+              "enforceQuota": false
+            },
+            {
+              "name": "Reconfigure",
+              "icons": [
+                {
+                  "src": "https://cdn.appscode.com/k8s/icons/action-icons/reconfigure.svg",
+                  "type": "image/svg+xml"
+                }
+              ],
+              "operationId": "create-opsrequest-reconfigure",
+              "flow": "standalone-create",
+              "editor": {
+                "name": "opskubedbcom-zookeeperopsrequest-editor",
+                "version": "v0.5.0",
+                "sourceRef": {
+                  "apiGroup": "source.toolkit.fluxcd.io",
+                  "kind": "HelmRepository",
+                  "name": "appscode-charts-oci"
+                }
+              },
+              "enforceQuota": false
+            }
+          ]
+        },
+        {
+          "name": "Scaling",
+          "items": [
+            {
+              "name": "Horizontal Scale",
+              "icons": [
+                {
+                  "src": "https://cdn.appscode.com/k8s/icons/action-icons/horizontal_scale.svg",
+                  "type": "image/svg+xml"
+                }
+              ],
+              "operationId": "create-opsrequest-horizontalscaling",
+              "flow": "standalone-create",
+              "editor": {
+                "name": "opskubedbcom-zookeeperopsrequest-editor",
+                "version": "v0.5.0",
+                "sourceRef": {
+                  "apiGroup": "source.toolkit.fluxcd.io",
+                  "kind": "HelmRepository",
+                  "name": "appscode-charts-oci"
+                }
+              },
+              "enforceQuota": false
+            },
+            {
+              "name": "Vertical Scale",
+              "icons": [
+                {
+                  "src": "https://cdn.appscode.com/k8s/icons/action-icons/vertical_scale.svg",
+                  "type": "image/svg+xml"
+                }
+              ],
+              "operationId": "create-opsrequest-verticalscaling",
+              "flow": "standalone-create",
+              "editor": {
+                "name": "opskubedbcom-zookeeperopsrequest-editor",
+                "version": "v0.5.0",
+                "sourceRef": {
+                  "apiGroup": "source.toolkit.fluxcd.io",
+                  "kind": "HelmRepository",
+                  "name": "appscode-charts-oci"
+                }
+              },
+              "enforceQuota": false
+            }
+          ]
+        }
+      ]
     },
     "icons": [
       {

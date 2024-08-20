@@ -1,0 +1,23 @@
+{
+  "kind": "ResourceEditor",
+  "apiVersion": "ui.k8s.appscode.com/v1alpha1",
+  "metadata": {
+    "name": "ops.kubedb.com-v1alpha1-ferretdbopsrequests",
+    "creationTimestamp": null,
+    "labels": {
+      "k8s.io/group": "ops.kubedb.com",
+      "k8s.io/kind": "FerretDBOpsRequest",
+      "k8s.io/resource": "ferretdbopsrequests",
+      "k8s.io/version": "v1alpha1"
+    }
+  },
+  "spec": {
+    "resource": {
+      "group": "ops.kubedb.com",
+      "version": "v1alpha1",
+      "name": "ferretdbopsrequests",
+      "kind": "FerretDBOpsRequest",
+      "scope": "Namespaced"
+    }
+  }
+}

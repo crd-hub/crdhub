@@ -19,7 +19,7 @@
       "kind": "SchemaRegistryVersion",
       "listKind": "SchemaRegistryVersionList",
       "categories": [
-        "datastore",
+        "catalog",
         "kubedb",
         "appscode"
       ]

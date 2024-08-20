@@ -19,10 +19,9 @@
       "kind": "Publisher",
       "listKind": "PublisherList",
       "categories": [
-        "datastore",
+        "pgstore",
         "kubedb",
-        "appscode",
-        "all"
+        "appscode"
       ]
     },
     "scope": "Namespaced",

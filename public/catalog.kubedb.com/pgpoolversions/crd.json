@@ -19,7 +19,7 @@
       "kind": "PgpoolVersion",
       "listKind": "PgpoolVersionList",
       "categories": [
-        "datastore",
+        "catalog",
         "kubedb",
         "appscode"
       ]

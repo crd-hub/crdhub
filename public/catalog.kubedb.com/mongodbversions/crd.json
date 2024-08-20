@@ -19,7 +19,7 @@
       "kind": "MongoDBVersion",
       "listKind": "MongoDBVersionList",
       "categories": [
-        "datastore",
+        "catalog",
         "kubedb",
         "appscode"
       ]
@@ -66,12 +66,35 @@
                               "mongodb-addon",
                               "postgres-addon",
                               "mysql-addon",
-                              "mariadb-addon"
+                              "mariadb-addon",
+                              "mssqlserver-addon"
                             ]
                           },
                           "tasks": {
                             "type": "object",
                             "properties": {
+                              "fullBackup": {
+                                "type": "object",
+                                "required": [
+                                  "name"
+                                ],
+                                "properties": {
+                                  "name": {
+                                    "type": "string"
+                                  }
+                                }
+                              },
+                              "fullBackupRestore": {
+                                "type": "object",
+                                "required": [
+                                  "name"
+                                ],
+                                "properties": {
+                                  "name": {
+                                    "type": "string"
+                                  }
+                                }
+                              },
                               "manifestBackup": {
                                 "type": "object",
                                 "required": [

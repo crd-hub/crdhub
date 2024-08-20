@@ -19,10 +19,9 @@
       "kind": "Subscriber",
       "listKind": "SubscriberList",
       "categories": [
-        "datastore",
+        "pgstore",
         "kubedb",
-        "appscode",
-        "all"
+        "appscode"
       ]
     },
     "scope": "Namespaced",

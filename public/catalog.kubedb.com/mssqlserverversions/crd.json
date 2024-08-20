@@ -19,7 +19,7 @@
       "kind": "MSSQLServerVersion",
       "listKind": "MSSQLServerVersionList",
       "categories": [
-        "datastore",
+        "catalog",
         "kubedb",
         "appscode"
       ]
@@ -47,10 +47,102 @@
                 "type": "object",
                 "required": [
                   "db",
+                  "exporter",
                   "initContainer",
                   "version"
                 ],
                 "properties": {
+                  "archiver": {
+                    "type": "object",
+                    "properties": {
+                      "addon": {
+                        "type": "object",
+                        "properties": {
+                          "name": {
+                            "type": "string",
+                            "enum": [
+                              "mongodb-addon",
+                              "postgres-addon",
+                              "mysql-addon",
+                              "mariadb-addon",
+                              "mssqlserver-addon"
+                            ]
+                          },
+                          "tasks": {
+                            "type": "object",
+                            "properties": {
+                              "fullBackup": {
+                                "type": "object",
+                                "required": [
+                                  "name"
+                                ],
+                                "properties": {
+                                  "name": {
+                                    "type": "string"
+                                  }
+                                }
+                              },
+                              "fullBackupRestore": {
+                                "type": "object",
+                                "required": [
+                                  "name"
+                                ],
+                                "properties": {
+                                  "name": {
+                                    "type": "string"
+                                  }
+                                }
+                              },
+                              "manifestBackup": {
+                                "type": "object",
+                                "required": [
+                                  "name"
+                                ],
+                                "properties": {
+                                  "name": {
+                                    "type": "string"
+                                  }
+                                }
+                              },
+                              "manifestRestore": {
+                                "type": "object",
+                                "required": [
+                                  "name"
+                                ],
+                                "properties": {
+                                  "name": {
+                                    "type": "string"
+                                  }
+                                }
+                              },
+                              "volumeSnapshot": {
+                                "type": "object",
+                                "required": [
+                                  "name"
+                                ],
+                                "properties": {
+                                  "name": {
+                                    "type": "string"
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        }
+                      },
+                      "walg": {
+                        "type": "object",
+                        "required": [
+                          "image"
+                        ],
+                        "properties": {
+                          "image": {
+                            "type": "string"
+                          }
+                        }
+                      }
+                    }
+                  },
                   "coordinator": {
                     "type": "object",
                     "required": [
@@ -75,6 +167,17 @@
                   },
                   "deprecated": {
                     "type": "boolean"
+                  },
+                  "exporter": {
+                    "type": "object",
+                    "required": [
+                      "image"
+                    ],
+                    "properties": {
+                      "image": {
+                        "type": "string"
+                      }
+                    }
                   },
                   "initContainer": {
                     "type": "object",

@@ -19,7 +19,7 @@
       "kind": "ZooKeeperVersion",
       "listKind": "ZooKeeperVersionList",
       "categories": [
-        "datastore",
+        "catalog",
         "kubedb",
         "appscode"
       ]

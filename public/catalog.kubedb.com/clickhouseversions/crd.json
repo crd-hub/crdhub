@@ -19,7 +19,7 @@
       "kind": "ClickHouseVersion",
       "listKind": "ClickHouseVersionList",
       "categories": [
-        "datastore",
+        "catalog",
         "kubedb",
         "appscode"
       ]

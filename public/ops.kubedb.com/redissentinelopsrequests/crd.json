@@ -19,7 +19,7 @@
       "kind": "RedisSentinelOpsRequest",
       "listKind": "RedisSentinelOpsRequestList",
       "categories": [
-        "datastore",
+        "ops",
         "kubedb",
         "appscode"
       ]

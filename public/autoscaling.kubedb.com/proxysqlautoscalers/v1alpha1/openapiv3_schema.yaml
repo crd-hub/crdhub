@@ -89,6 +89,13 @@ properties:
                 type: string
             type: object
         type: object
+      databaseRef:
+        properties:
+          name:
+            default: ""
+            type: string
+        type: object
+        x-kubernetes-map-type: atomic
       opsRequestOptions:
         properties:
           apply:
@@ -100,14 +107,7 @@ properties:
           timeout:
             type: string
         type: object
-      proxyRef:
-        properties:
-          name:
-            default: ""
-            type: string
-        type: object
-        x-kubernetes-map-type: atomic
     required:
-    - proxyRef
+    - databaseRef
     type: object
 type: object

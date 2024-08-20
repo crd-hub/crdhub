@@ -19,7 +19,7 @@
       "kind": "EtcdAutoscaler",
       "listKind": "EtcdAutoscalerList",
       "categories": [
-        "datastore",
+        "autoscaler",
         "kubedb",
         "appscode"
       ]

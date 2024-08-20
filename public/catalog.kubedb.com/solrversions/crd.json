@@ -19,7 +19,7 @@
       "kind": "SolrVersion",
       "listKind": "SolrVersionList",
       "categories": [
-        "datastore",
+        "catalog",
         "kubedb",
         "appscode"
       ]

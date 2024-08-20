@@ -19,7 +19,7 @@
       "kind": "MemcachedVersion",
       "listKind": "MemcachedVersionList",
       "categories": [
-        "datastore",
+        "catalog",
         "kubedb",
         "appscode"
       ]

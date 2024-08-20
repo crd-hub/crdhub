@@ -135,7 +135,7 @@
                       "type": "string"
                     },
                     "mountPropagation": {
-                      "description": "mountPropagation determines how mounts are propagated from the host to container and the other way around. When not set, MountPropagationNone is used. This field is beta in 1.10.",
+                      "description": "mountPropagation determines how mounts are propagated from the host to container and the other way around. When not set, MountPropagationNone is used. This field is beta in 1.10. When RecursiveReadOnly is set to IfPossible or to Enabled, MountPropagation must be None or unspecified (which defaults to None).",
                       "type": "string"
                     },
                     "name": {
@@ -145,6 +145,10 @@
                     "readOnly": {
                       "description": "Mounted read-only if true, read-write otherwise (false or unspecified). Defaults to false.",
                       "type": "boolean"
+                    },
+                    "recursiveReadOnly": {
+                      "description": "RecursiveReadOnly specifies whether read-only mounts should be handled recursively. \n If ReadOnly is false, this field has no meaning and must be unspecified. \n If ReadOnly is true, and this field is set to Disabled, the mount is not made recursively read-only.  If this field is set to IfPossible, the mount is made recursively read-only, if it is supported by the container runtime.  If this field is set to Enabled, the mount is made recursively read-only if it is supported by the container runtime, otherwise the pod will not be started and an error will be generated to indicate the reason. \n If this field is set to IfPossible or Enabled, MountPropagation must be set to None (or be unspecified, which defaults to None). \n If this field is not specified, it is treated as an equivalent of Disabled.",
+                      "type": "string"
                     },
                     "subPath": {
                       "description": "Path within the volume from which the container's volume should be mounted. Defaults to \"\" (volume's root).",
@@ -266,7 +270,8 @@
                               "type": "array",
                               "items": {
                                 "type": "string"
-                              }
+                              },
+                              "x-kubernetes-list-type": "atomic"
                             },
                             "path": {
                               "description": "path is Optional: Used as the mounted root, rather than the full Ceph tree, default is /",
@@ -285,8 +290,9 @@
                               "type": "object",
                               "properties": {
                                 "name": {
-                                  "description": "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-                                  "type": "string"
+                                  "description": "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop `kubebuilder:default` when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+                                  "type": "string",
+                                  "default": ""
                                 }
                               },
                               "x-kubernetes-map-type": "atomic"
@@ -317,8 +323,9 @@
                               "type": "object",
                               "properties": {
                                 "name": {
-                                  "description": "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-                                  "type": "string"
+                                  "description": "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop `kubebuilder:default` when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+                                  "type": "string",
+                                  "default": ""
                                 }
                               },
                               "x-kubernetes-map-type": "atomic"
@@ -363,11 +370,13 @@
                                     "type": "string"
                                   }
                                 }
-                              }
+                              },
+                              "x-kubernetes-list-type": "atomic"
                             },
                             "name": {
-                              "description": "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-                              "type": "string"
+                              "description": "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop `kubebuilder:default` when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+                              "type": "string",
+                              "default": ""
                             },
                             "optional": {
                               "description": "optional specify whether the ConfigMap or its keys must be defined",
@@ -396,8 +405,9 @@
                               "type": "object",
                               "properties": {
                                 "name": {
-                                  "description": "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-                                  "type": "string"
+                                  "description": "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop `kubebuilder:default` when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+                                  "type": "string",
+                                  "default": ""
                                 }
                               },
                               "x-kubernetes-map-type": "atomic"
@@ -435,7 +445,7 @@
                                 ],
                                 "properties": {
                                   "fieldRef": {
-                                    "description": "Required: Selects a field of the pod: only annotations, labels, name and namespace are supported.",
+                                    "description": "Required: Selects a field of the pod: only annotations, labels, name, namespace and uid are supported.",
                                     "type": "object",
                                     "required": [
                                       "fieldPath"
@@ -493,7 +503,8 @@
                                     "x-kubernetes-map-type": "atomic"
                                   }
                                 }
-                              }
+                              },
+                              "x-kubernetes-list-type": "atomic"
                             }
                           }
                         },
@@ -613,7 +624,8 @@
                                       "type": "array",
                                       "items": {
                                         "type": "string"
-                                      }
+                                      },
+                                      "x-kubernetes-list-type": "atomic"
                                     },
                                     "dataSource": {
                                       "description": "dataSource field can be used to specify either: * An existing VolumeSnapshot object (snapshot.storage.k8s.io/VolumeSnapshot) * An existing PVC (PersistentVolumeClaim) If the provisioner or an external controller can support the specified data source, it will create a new volume based on the contents of the specified data source. When the AnyVolumeDataSource feature gate is enabled, dataSource contents will be copied to dataSourceRef, and dataSourceRef contents will be copied to dataSource when dataSourceRef.namespace is not specified. If the namespace is specified, then dataSourceRef will not be copied to dataSource.",
@@ -730,10 +742,12 @@
                                                 "type": "array",
                                                 "items": {
                                                   "type": "string"
-                                                }
+                                                },
+                                                "x-kubernetes-list-type": "atomic"
                                               }
                                             }
-                                          }
+                                          },
+                                          "x-kubernetes-list-type": "atomic"
                                         },
                                         "matchLabels": {
                                           "description": "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is \"key\", the operator is \"In\", and the values array contains only \"value\". The requirements are ANDed.",
@@ -750,7 +764,7 @@
                                       "type": "string"
                                     },
                                     "volumeAttributesClassName": {
-                                      "description": "volumeAttributesClassName may be used to set the VolumeAttributesClass used by this claim. If specified, the CSI driver will create or update the volume with the attributes defined in the corresponding VolumeAttributesClass. This has a different purpose than storageClassName, it can be changed after the claim is created. An empty string value means that no VolumeAttributesClass will be applied to the claim but it's not allowed to reset this field to empty string once it is set. If unspecified and the PersistentVolumeClaim is unbound, the default VolumeAttributesClass will be set by the persistentvolume controller if it exists. If the resource referred to by volumeAttributesClass does not exist, this PersistentVolumeClaim will be set to a Pending state, as reflected by the modifyVolumeStatus field, until such as a resource exists. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#volumeattributesclass (Alpha) Using this field requires the VolumeAttributesClass feature gate to be enabled.",
+                                      "description": "volumeAttributesClassName may be used to set the VolumeAttributesClass used by this claim. If specified, the CSI driver will create or update the volume with the attributes defined in the corresponding VolumeAttributesClass. This has a different purpose than storageClassName, it can be changed after the claim is created. An empty string value means that no VolumeAttributesClass will be applied to the claim but it's not allowed to reset this field to empty string once it is set. If unspecified and the PersistentVolumeClaim is unbound, the default VolumeAttributesClass will be set by the persistentvolume controller if it exists. If the resource referred to by volumeAttributesClass does not exist, this PersistentVolumeClaim will be set to a Pending state, as reflected by the modifyVolumeStatus field, until such as a resource exists. More info: https://kubernetes.io/docs/concepts/storage/volume-attributes-classes/ (Alpha) Using this field requires the VolumeAttributesClass feature gate to be enabled.",
                                       "type": "string"
                                     },
                                     "volumeMode": {
@@ -789,14 +803,16 @@
                               "type": "array",
                               "items": {
                                 "type": "string"
-                              }
+                              },
+                              "x-kubernetes-list-type": "atomic"
                             },
                             "wwids": {
                               "description": "wwids Optional: FC volume world wide identifiers (wwids) Either wwids or combination of targetWWNs and lun must be set, but not both simultaneously.",
                               "type": "array",
                               "items": {
                                 "type": "string"
-                              }
+                              },
+                              "x-kubernetes-list-type": "atomic"
                             }
                           }
                         },
@@ -831,8 +847,9 @@
                               "type": "object",
                               "properties": {
                                 "name": {
-                                  "description": "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-                                  "type": "string"
+                                  "description": "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop `kubebuilder:default` when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+                                  "type": "string",
+                                  "default": ""
                                 }
                               },
                               "x-kubernetes-map-type": "atomic"
@@ -961,7 +978,8 @@
                               "type": "array",
                               "items": {
                                 "type": "string"
-                              }
+                              },
+                              "x-kubernetes-list-type": "atomic"
                             },
                             "readOnly": {
                               "description": "readOnly here will force the ReadOnly setting in VolumeMounts. Defaults to false.",
@@ -972,8 +990,9 @@
                               "type": "object",
                               "properties": {
                                 "name": {
-                                  "description": "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-                                  "type": "string"
+                                  "description": "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop `kubebuilder:default` when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+                                  "type": "string",
+                                  "default": ""
                                 }
                               },
                               "x-kubernetes-map-type": "atomic"
@@ -1112,10 +1131,12 @@
                                                   "type": "array",
                                                   "items": {
                                                     "type": "string"
-                                                  }
+                                                  },
+                                                  "x-kubernetes-list-type": "atomic"
                                                 }
                                               }
-                                            }
+                                            },
+                                            "x-kubernetes-list-type": "atomic"
                                           },
                                           "matchLabels": {
                                             "description": "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is \"key\", the operator is \"In\", and the values array contains only \"value\". The requirements are ANDed.",
@@ -1174,11 +1195,13 @@
                                               "type": "string"
                                             }
                                           }
-                                        }
+                                        },
+                                        "x-kubernetes-list-type": "atomic"
                                       },
                                       "name": {
-                                        "description": "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-                                        "type": "string"
+                                        "description": "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop `kubebuilder:default` when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+                                        "type": "string",
+                                        "default": ""
                                       },
                                       "optional": {
                                         "description": "optional specify whether the ConfigMap or its keys must be defined",
@@ -1202,7 +1225,7 @@
                                           ],
                                           "properties": {
                                             "fieldRef": {
-                                              "description": "Required: Selects a field of the pod: only annotations, labels, name and namespace are supported.",
+                                              "description": "Required: Selects a field of the pod: only annotations, labels, name, namespace and uid are supported.",
                                               "type": "object",
                                               "required": [
                                                 "fieldPath"
@@ -1260,7 +1283,8 @@
                                               "x-kubernetes-map-type": "atomic"
                                             }
                                           }
-                                        }
+                                        },
+                                        "x-kubernetes-list-type": "atomic"
                                       }
                                     }
                                   },
@@ -1293,11 +1317,13 @@
                                               "type": "string"
                                             }
                                           }
-                                        }
+                                        },
+                                        "x-kubernetes-list-type": "atomic"
                                       },
                                       "name": {
-                                        "description": "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-                                        "type": "string"
+                                        "description": "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop `kubebuilder:default` when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+                                        "type": "string",
+                                        "default": ""
                                       },
                                       "optional": {
                                         "description": "optional field specify whether the Secret or its key must be defined",
@@ -1329,7 +1355,8 @@
                                     }
                                   }
                                 }
-                              }
+                              },
+                              "x-kubernetes-list-type": "atomic"
                             }
                           }
                         },
@@ -1392,7 +1419,8 @@
                               "type": "array",
                               "items": {
                                 "type": "string"
-                              }
+                              },
+                              "x-kubernetes-list-type": "atomic"
                             },
                             "pool": {
                               "description": "pool is the rados pool name. Default is rbd. More info: https://examples.k8s.io/volumes/rbd/README.md#how-to-use-it",
@@ -1407,8 +1435,9 @@
                               "type": "object",
                               "properties": {
                                 "name": {
-                                  "description": "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-                                  "type": "string"
+                                  "description": "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop `kubebuilder:default` when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+                                  "type": "string",
+                                  "default": ""
                                 }
                               },
                               "x-kubernetes-map-type": "atomic"
@@ -1449,8 +1478,9 @@
                               "type": "object",
                               "properties": {
                                 "name": {
-                                  "description": "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-                                  "type": "string"
+                                  "description": "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop `kubebuilder:default` when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+                                  "type": "string",
+                                  "default": ""
                                 }
                               },
                               "x-kubernetes-map-type": "atomic"
@@ -1511,7 +1541,8 @@
                                     "type": "string"
                                   }
                                 }
-                              }
+                              },
+                              "x-kubernetes-list-type": "atomic"
                             },
                             "optional": {
                               "description": "optional field specify whether the Secret or its keys must be defined",
@@ -1540,8 +1571,9 @@
                               "type": "object",
                               "properties": {
                                 "name": {
-                                  "description": "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-                                  "type": "string"
+                                  "description": "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop `kubebuilder:default` when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+                                  "type": "string",
+                                  "default": ""
                                 }
                               },
                               "x-kubernetes-map-type": "atomic"
@@ -1645,7 +1677,8 @@
                                   "type": "array",
                                   "items": {
                                     "type": "string"
-                                  }
+                                  },
+                                  "x-kubernetes-list-type": "atomic"
                                 },
                                 "dataSource": {
                                   "description": "dataSource field can be used to specify either: * An existing VolumeSnapshot object (snapshot.storage.k8s.io/VolumeSnapshot) * An existing PVC (PersistentVolumeClaim) If the provisioner or an external controller can support the specified data source, it will create a new volume based on the contents of the specified data source. When the AnyVolumeDataSource feature gate is enabled, dataSource contents will be copied to dataSourceRef, and dataSourceRef contents will be copied to dataSource when dataSourceRef.namespace is not specified. If the namespace is specified, then dataSourceRef will not be copied to dataSource.",
@@ -1762,10 +1795,12 @@
                                             "type": "array",
                                             "items": {
                                               "type": "string"
-                                            }
+                                            },
+                                            "x-kubernetes-list-type": "atomic"
                                           }
                                         }
-                                      }
+                                      },
+                                      "x-kubernetes-list-type": "atomic"
                                     },
                                     "matchLabels": {
                                       "description": "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is \"key\", the operator is \"In\", and the values array contains only \"value\". The requirements are ANDed.",
@@ -1782,7 +1817,7 @@
                                   "type": "string"
                                 },
                                 "volumeAttributesClassName": {
-                                  "description": "volumeAttributesClassName may be used to set the VolumeAttributesClass used by this claim. If specified, the CSI driver will create or update the volume with the attributes defined in the corresponding VolumeAttributesClass. This has a different purpose than storageClassName, it can be changed after the claim is created. An empty string value means that no VolumeAttributesClass will be applied to the claim but it's not allowed to reset this field to empty string once it is set. If unspecified and the PersistentVolumeClaim is unbound, the default VolumeAttributesClass will be set by the persistentvolume controller if it exists. If the resource referred to by volumeAttributesClass does not exist, this PersistentVolumeClaim will be set to a Pending state, as reflected by the modifyVolumeStatus field, until such as a resource exists. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#volumeattributesclass (Alpha) Using this field requires the VolumeAttributesClass feature gate to be enabled.",
+                                  "description": "volumeAttributesClassName may be used to set the VolumeAttributesClass used by this claim. If specified, the CSI driver will create or update the volume with the attributes defined in the corresponding VolumeAttributesClass. This has a different purpose than storageClassName, it can be changed after the claim is created. An empty string value means that no VolumeAttributesClass will be applied to the claim but it's not allowed to reset this field to empty string once it is set. If unspecified and the PersistentVolumeClaim is unbound, the default VolumeAttributesClass will be set by the persistentvolume controller if it exists. If the resource referred to by volumeAttributesClass does not exist, this PersistentVolumeClaim will be set to a Pending state, as reflected by the modifyVolumeStatus field, until such as a resource exists. More info: https://kubernetes.io/docs/concepts/storage/volume-attributes-classes/ (Alpha) Using this field requires the VolumeAttributesClass feature gate to be enabled.",
                                   "type": "string"
                                 },
                                 "volumeMode": {
@@ -1925,7 +1960,7 @@
                       "type": "string"
                     },
                     "mountPropagation": {
-                      "description": "mountPropagation determines how mounts are propagated from the host to container and the other way around. When not set, MountPropagationNone is used. This field is beta in 1.10.",
+                      "description": "mountPropagation determines how mounts are propagated from the host to container and the other way around. When not set, MountPropagationNone is used. This field is beta in 1.10. When RecursiveReadOnly is set to IfPossible or to Enabled, MountPropagation must be None or unspecified (which defaults to None).",
                       "type": "string"
                     },
                     "name": {
@@ -1935,6 +1970,10 @@
                     "readOnly": {
                       "description": "Mounted read-only if true, read-write otherwise (false or unspecified). Defaults to false.",
                       "type": "boolean"
+                    },
+                    "recursiveReadOnly": {
+                      "description": "RecursiveReadOnly specifies whether read-only mounts should be handled recursively. \n If ReadOnly is false, this field has no meaning and must be unspecified. \n If ReadOnly is true, and this field is set to Disabled, the mount is not made recursively read-only.  If this field is set to IfPossible, the mount is made recursively read-only, if it is supported by the container runtime.  If this field is set to Enabled, the mount is made recursively read-only if it is supported by the container runtime, otherwise the pod will not be started and an error will be generated to indicate the reason. \n If this field is set to IfPossible or Enabled, MountPropagation must be set to None (or be unspecified, which defaults to None). \n If this field is not specified, it is treated as an equivalent of Disabled.",
+                      "type": "string"
                     },
                     "subPath": {
                       "description": "Path within the volume from which the container's volume should be mounted. Defaults to \"\" (volume's root).",
@@ -2056,7 +2095,8 @@
                               "type": "array",
                               "items": {
                                 "type": "string"
-                              }
+                              },
+                              "x-kubernetes-list-type": "atomic"
                             },
                             "path": {
                               "description": "path is Optional: Used as the mounted root, rather than the full Ceph tree, default is /",
@@ -2075,8 +2115,9 @@
                               "type": "object",
                               "properties": {
                                 "name": {
-                                  "description": "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-                                  "type": "string"
+                                  "description": "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop `kubebuilder:default` when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+                                  "type": "string",
+                                  "default": ""
                                 }
                               },
                               "x-kubernetes-map-type": "atomic"
@@ -2107,8 +2148,9 @@
                               "type": "object",
                               "properties": {
                                 "name": {
-                                  "description": "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-                                  "type": "string"
+                                  "description": "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop `kubebuilder:default` when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+                                  "type": "string",
+                                  "default": ""
                                 }
                               },
                               "x-kubernetes-map-type": "atomic"
@@ -2153,11 +2195,13 @@
                                     "type": "string"
                                   }
                                 }
-                              }
+                              },
+                              "x-kubernetes-list-type": "atomic"
                             },
                             "name": {
-                              "description": "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-                              "type": "string"
+                              "description": "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop `kubebuilder:default` when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+                              "type": "string",
+                              "default": ""
                             },
                             "optional": {
                               "description": "optional specify whether the ConfigMap or its keys must be defined",
@@ -2186,8 +2230,9 @@
                               "type": "object",
                               "properties": {
                                 "name": {
-                                  "description": "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-                                  "type": "string"
+                                  "description": "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop `kubebuilder:default` when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+                                  "type": "string",
+                                  "default": ""
                                 }
                               },
                               "x-kubernetes-map-type": "atomic"
@@ -2225,7 +2270,7 @@
                                 ],
                                 "properties": {
                                   "fieldRef": {
-                                    "description": "Required: Selects a field of the pod: only annotations, labels, name and namespace are supported.",
+                                    "description": "Required: Selects a field of the pod: only annotations, labels, name, namespace and uid are supported.",
                                     "type": "object",
                                     "required": [
                                       "fieldPath"
@@ -2283,7 +2328,8 @@
                                     "x-kubernetes-map-type": "atomic"
                                   }
                                 }
-                              }
+                              },
+                              "x-kubernetes-list-type": "atomic"
                             }
                           }
                         },
@@ -2403,7 +2449,8 @@
                                       "type": "array",
                                       "items": {
                                         "type": "string"
-                                      }
+                                      },
+                                      "x-kubernetes-list-type": "atomic"
                                     },
                                     "dataSource": {
                                       "description": "dataSource field can be used to specify either: * An existing VolumeSnapshot object (snapshot.storage.k8s.io/VolumeSnapshot) * An existing PVC (PersistentVolumeClaim) If the provisioner or an external controller can support the specified data source, it will create a new volume based on the contents of the specified data source. When the AnyVolumeDataSource feature gate is enabled, dataSource contents will be copied to dataSourceRef, and dataSourceRef contents will be copied to dataSource when dataSourceRef.namespace is not specified. If the namespace is specified, then dataSourceRef will not be copied to dataSource.",
@@ -2520,10 +2567,12 @@
                                                 "type": "array",
                                                 "items": {
                                                   "type": "string"
-                                                }
+                                                },
+                                                "x-kubernetes-list-type": "atomic"
                                               }
                                             }
-                                          }
+                                          },
+                                          "x-kubernetes-list-type": "atomic"
                                         },
                                         "matchLabels": {
                                           "description": "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is \"key\", the operator is \"In\", and the values array contains only \"value\". The requirements are ANDed.",
@@ -2540,7 +2589,7 @@
                                       "type": "string"
                                     },
                                     "volumeAttributesClassName": {
-                                      "description": "volumeAttributesClassName may be used to set the VolumeAttributesClass used by this claim. If specified, the CSI driver will create or update the volume with the attributes defined in the corresponding VolumeAttributesClass. This has a different purpose than storageClassName, it can be changed after the claim is created. An empty string value means that no VolumeAttributesClass will be applied to the claim but it's not allowed to reset this field to empty string once it is set. If unspecified and the PersistentVolumeClaim is unbound, the default VolumeAttributesClass will be set by the persistentvolume controller if it exists. If the resource referred to by volumeAttributesClass does not exist, this PersistentVolumeClaim will be set to a Pending state, as reflected by the modifyVolumeStatus field, until such as a resource exists. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#volumeattributesclass (Alpha) Using this field requires the VolumeAttributesClass feature gate to be enabled.",
+                                      "description": "volumeAttributesClassName may be used to set the VolumeAttributesClass used by this claim. If specified, the CSI driver will create or update the volume with the attributes defined in the corresponding VolumeAttributesClass. This has a different purpose than storageClassName, it can be changed after the claim is created. An empty string value means that no VolumeAttributesClass will be applied to the claim but it's not allowed to reset this field to empty string once it is set. If unspecified and the PersistentVolumeClaim is unbound, the default VolumeAttributesClass will be set by the persistentvolume controller if it exists. If the resource referred to by volumeAttributesClass does not exist, this PersistentVolumeClaim will be set to a Pending state, as reflected by the modifyVolumeStatus field, until such as a resource exists. More info: https://kubernetes.io/docs/concepts/storage/volume-attributes-classes/ (Alpha) Using this field requires the VolumeAttributesClass feature gate to be enabled.",
                                       "type": "string"
                                     },
                                     "volumeMode": {
@@ -2579,14 +2628,16 @@
                               "type": "array",
                               "items": {
                                 "type": "string"
-                              }
+                              },
+                              "x-kubernetes-list-type": "atomic"
                             },
                             "wwids": {
                               "description": "wwids Optional: FC volume world wide identifiers (wwids) Either wwids or combination of targetWWNs and lun must be set, but not both simultaneously.",
                               "type": "array",
                               "items": {
                                 "type": "string"
-                              }
+                              },
+                              "x-kubernetes-list-type": "atomic"
                             }
                           }
                         },
@@ -2621,8 +2672,9 @@
                               "type": "object",
                               "properties": {
                                 "name": {
-                                  "description": "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-                                  "type": "string"
+                                  "description": "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop `kubebuilder:default` when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+                                  "type": "string",
+                                  "default": ""
                                 }
                               },
                               "x-kubernetes-map-type": "atomic"
@@ -2751,7 +2803,8 @@
                               "type": "array",
                               "items": {
                                 "type": "string"
-                              }
+                              },
+                              "x-kubernetes-list-type": "atomic"
                             },
                             "readOnly": {
                               "description": "readOnly here will force the ReadOnly setting in VolumeMounts. Defaults to false.",
@@ -2762,8 +2815,9 @@
                               "type": "object",
                               "properties": {
                                 "name": {
-                                  "description": "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-                                  "type": "string"
+                                  "description": "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop `kubebuilder:default` when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+                                  "type": "string",
+                                  "default": ""
                                 }
                               },
                               "x-kubernetes-map-type": "atomic"
@@ -2902,10 +2956,12 @@
                                                   "type": "array",
                                                   "items": {
                                                     "type": "string"
-                                                  }
+                                                  },
+                                                  "x-kubernetes-list-type": "atomic"
                                                 }
                                               }
-                                            }
+                                            },
+                                            "x-kubernetes-list-type": "atomic"
                                           },
                                           "matchLabels": {
                                             "description": "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is \"key\", the operator is \"In\", and the values array contains only \"value\". The requirements are ANDed.",
@@ -2964,11 +3020,13 @@
                                               "type": "string"
                                             }
                                           }
-                                        }
+                                        },
+                                        "x-kubernetes-list-type": "atomic"
                                       },
                                       "name": {
-                                        "description": "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-                                        "type": "string"
+                                        "description": "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop `kubebuilder:default` when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+                                        "type": "string",
+                                        "default": ""
                                       },
                                       "optional": {
                                         "description": "optional specify whether the ConfigMap or its keys must be defined",
@@ -2992,7 +3050,7 @@
                                           ],
                                           "properties": {
                                             "fieldRef": {
-                                              "description": "Required: Selects a field of the pod: only annotations, labels, name and namespace are supported.",
+                                              "description": "Required: Selects a field of the pod: only annotations, labels, name, namespace and uid are supported.",
                                               "type": "object",
                                               "required": [
                                                 "fieldPath"
@@ -3050,7 +3108,8 @@
                                               "x-kubernetes-map-type": "atomic"
                                             }
                                           }
-                                        }
+                                        },
+                                        "x-kubernetes-list-type": "atomic"
                                       }
                                     }
                                   },
@@ -3083,11 +3142,13 @@
                                               "type": "string"
                                             }
                                           }
-                                        }
+                                        },
+                                        "x-kubernetes-list-type": "atomic"
                                       },
                                       "name": {
-                                        "description": "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-                                        "type": "string"
+                                        "description": "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop `kubebuilder:default` when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+                                        "type": "string",
+                                        "default": ""
                                       },
                                       "optional": {
                                         "description": "optional field specify whether the Secret or its key must be defined",
@@ -3119,7 +3180,8 @@
                                     }
                                   }
                                 }
-                              }
+                              },
+                              "x-kubernetes-list-type": "atomic"
                             }
                           }
                         },
@@ -3182,7 +3244,8 @@
                               "type": "array",
                               "items": {
                                 "type": "string"
-                              }
+                              },
+                              "x-kubernetes-list-type": "atomic"
                             },
                             "pool": {
                               "description": "pool is the rados pool name. Default is rbd. More info: https://examples.k8s.io/volumes/rbd/README.md#how-to-use-it",
@@ -3197,8 +3260,9 @@
                               "type": "object",
                               "properties": {
                                 "name": {
-                                  "description": "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-                                  "type": "string"
+                                  "description": "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop `kubebuilder:default` when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+                                  "type": "string",
+                                  "default": ""
                                 }
                               },
                               "x-kubernetes-map-type": "atomic"
@@ -3239,8 +3303,9 @@
                               "type": "object",
                               "properties": {
                                 "name": {
-                                  "description": "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-                                  "type": "string"
+                                  "description": "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop `kubebuilder:default` when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+                                  "type": "string",
+                                  "default": ""
                                 }
                               },
                               "x-kubernetes-map-type": "atomic"
@@ -3301,7 +3366,8 @@
                                     "type": "string"
                                   }
                                 }
-                              }
+                              },
+                              "x-kubernetes-list-type": "atomic"
                             },
                             "optional": {
                               "description": "optional field specify whether the Secret or its keys must be defined",
@@ -3330,8 +3396,9 @@
                               "type": "object",
                               "properties": {
                                 "name": {
-                                  "description": "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-                                  "type": "string"
+                                  "description": "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop `kubebuilder:default` when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+                                  "type": "string",
+                                  "default": ""
                                 }
                               },
                               "x-kubernetes-map-type": "atomic"
@@ -3435,7 +3502,8 @@
                                   "type": "array",
                                   "items": {
                                     "type": "string"
-                                  }
+                                  },
+                                  "x-kubernetes-list-type": "atomic"
                                 },
                                 "dataSource": {
                                   "description": "dataSource field can be used to specify either: * An existing VolumeSnapshot object (snapshot.storage.k8s.io/VolumeSnapshot) * An existing PVC (PersistentVolumeClaim) If the provisioner or an external controller can support the specified data source, it will create a new volume based on the contents of the specified data source. When the AnyVolumeDataSource feature gate is enabled, dataSource contents will be copied to dataSourceRef, and dataSourceRef contents will be copied to dataSource when dataSourceRef.namespace is not specified. If the namespace is specified, then dataSourceRef will not be copied to dataSource.",
@@ -3552,10 +3620,12 @@
                                             "type": "array",
                                             "items": {
                                               "type": "string"
-                                            }
+                                            },
+                                            "x-kubernetes-list-type": "atomic"
                                           }
                                         }
-                                      }
+                                      },
+                                      "x-kubernetes-list-type": "atomic"
                                     },
                                     "matchLabels": {
                                       "description": "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is \"key\", the operator is \"In\", and the values array contains only \"value\". The requirements are ANDed.",
@@ -3572,7 +3642,7 @@
                                   "type": "string"
                                 },
                                 "volumeAttributesClassName": {
-                                  "description": "volumeAttributesClassName may be used to set the VolumeAttributesClass used by this claim. If specified, the CSI driver will create or update the volume with the attributes defined in the corresponding VolumeAttributesClass. This has a different purpose than storageClassName, it can be changed after the claim is created. An empty string value means that no VolumeAttributesClass will be applied to the claim but it's not allowed to reset this field to empty string once it is set. If unspecified and the PersistentVolumeClaim is unbound, the default VolumeAttributesClass will be set by the persistentvolume controller if it exists. If the resource referred to by volumeAttributesClass does not exist, this PersistentVolumeClaim will be set to a Pending state, as reflected by the modifyVolumeStatus field, until such as a resource exists. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#volumeattributesclass (Alpha) Using this field requires the VolumeAttributesClass feature gate to be enabled.",
+                                  "description": "volumeAttributesClassName may be used to set the VolumeAttributesClass used by this claim. If specified, the CSI driver will create or update the volume with the attributes defined in the corresponding VolumeAttributesClass. This has a different purpose than storageClassName, it can be changed after the claim is created. An empty string value means that no VolumeAttributesClass will be applied to the claim but it's not allowed to reset this field to empty string once it is set. If unspecified and the PersistentVolumeClaim is unbound, the default VolumeAttributesClass will be set by the persistentvolume controller if it exists. If the resource referred to by volumeAttributesClass does not exist, this PersistentVolumeClaim will be set to a Pending state, as reflected by the modifyVolumeStatus field, until such as a resource exists. More info: https://kubernetes.io/docs/concepts/storage/volume-attributes-classes/ (Alpha) Using this field requires the VolumeAttributesClass feature gate to be enabled.",
                                   "type": "string"
                                 },
                                 "volumeMode": {

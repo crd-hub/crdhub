@@ -6327,6 +6327,7 @@ properties:
               - primary
               - standby
               - stats
+              - dashboard
               type: string
             metadata:
               properties:

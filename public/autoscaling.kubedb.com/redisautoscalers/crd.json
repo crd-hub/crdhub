@@ -19,7 +19,7 @@
       "kind": "RedisAutoscaler",
       "listKind": "RedisAutoscalerList",
       "categories": [
-        "datastore",
+        "autoscaler",
         "kubedb",
         "appscode"
       ]

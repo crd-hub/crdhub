@@ -16,7 +16,7 @@
       "kind": "ProxySQLVersion",
       "listKind": "ProxySQLVersionList",
       "categories": [
-        "datastore",
+        "catalog",
         "kubedb",
         "appscode"
       ]

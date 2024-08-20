@@ -17,7 +17,13 @@
         "fr"
       ],
       "kind": "FerretDB",
-      "listKind": "FerretDBList"
+      "listKind": "FerretDBList",
+      "categories": [
+        "datastore",
+        "kubedb",
+        "appscode",
+        "all"
+      ]
     },
     "scope": "Namespaced",
     "versions": [
@@ -5171,7 +5177,8 @@
                           "enum": [
                             "primary",
                             "standby",
-                            "stats"
+                            "stats",
+                            "dashboard"
                           ]
                         },
                         "metadata": {

@@ -19,7 +19,7 @@
       "kind": "KafkaOpsRequest",
       "listKind": "KafkaOpsRequestList",
       "categories": [
-        "datastore",
+        "ops",
         "kubedb",
         "appscode"
       ]

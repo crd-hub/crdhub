@@ -19,10 +19,9 @@
       "kind": "MariaDBDatabase",
       "listKind": "MariaDBDatabaseList",
       "categories": [
-        "datastore",
+        "schema",
         "kubedb",
-        "appscode",
-        "all"
+        "appscode"
       ]
     },
     "scope": "Namespaced",

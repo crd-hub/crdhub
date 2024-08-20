@@ -19,7 +19,7 @@
       "kind": "PerconaXtraDBVersion",
       "listKind": "PerconaXtraDBVersionList",
       "categories": [
-        "datastore",
+        "catalog",
         "kubedb",
         "appscode"
       ]

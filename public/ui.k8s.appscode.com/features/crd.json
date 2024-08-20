@@ -180,6 +180,9 @@
                             "kind": {
                               "type": "string"
                             },
+                            "optional": {
+                              "type": "string"
+                            },
                             "selector": {
                               "description": "Selector specifies label selector that should be used to select this workload",
                               "type": "object",

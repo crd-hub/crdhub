@@ -19,7 +19,7 @@
       "kind": "KafkaVersion",
       "listKind": "KafkaVersionList",
       "categories": [
-        "datastore",
+        "catalog",
         "kubedb",
         "appscode"
       ]

@@ -183,10 +183,14 @@
         "deletionPolicy": {
           "type": "string",
           "enum": [
+            "Halt",
             "Delete",
             "WipeOut",
             "DoNotTerminate"
           ]
+        },
+        "halted": {
+          "type": "boolean"
         },
         "healthChecker": {
           "type": "object",

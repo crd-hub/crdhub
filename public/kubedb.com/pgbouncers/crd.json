@@ -19,7 +19,7 @@
       "kind": "PgBouncer",
       "listKind": "PgBouncerList",
       "categories": [
-        "proxy",
+        "datastore",
         "kubedb",
         "appscode",
         "all"
@@ -193,10 +193,14 @@
                   "deletionPolicy": {
                     "type": "string",
                     "enum": [
+                      "Halt",
                       "Delete",
                       "WipeOut",
                       "DoNotTerminate"
                     ]
+                  },
+                  "halted": {
+                    "type": "boolean"
                   },
                   "healthChecker": {
                     "type": "object",
@@ -5765,6 +5769,9 @@
                       }
                     }
                   },
+                  "halted": {
+                    "type": "boolean"
+                  },
                   "healthChecker": {
                     "type": "object",
                     "default": {
@@ -10125,7 +10132,8 @@
                           "enum": [
                             "primary",
                             "standby",
-                            "stats"
+                            "stats",
+                            "dashboard"
                           ]
                         },
                         "metadata": {
@@ -10231,6 +10239,7 @@
                   "terminationPolicy": {
                     "type": "string",
                     "enum": [
+                      "Halt",
                       "Delete",
                       "WipeOut",
                       "DoNotTerminate"

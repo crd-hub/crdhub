@@ -19,7 +19,7 @@
       "kind": "SinglestoreVersion",
       "listKind": "SinglestoreVersionList",
       "categories": [
-        "datastore",
+        "catalog",
         "kubedb",
         "appscode"
       ]

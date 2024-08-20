@@ -19,7 +19,7 @@
       "kind": "RabbitMQAutoscaler",
       "listKind": "RabbitMQAutoscalerList",
       "categories": [
-        "datastore",
+        "autoscaler",
         "kubedb",
         "appscode"
       ]

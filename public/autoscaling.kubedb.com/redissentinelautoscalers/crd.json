@@ -19,7 +19,7 @@
       "kind": "RedisSentinelAutoscaler",
       "listKind": "RedisSentinelAutoscalerList",
       "categories": [
-        "datastore",
+        "autoscaler",
         "kubedb",
         "appscode"
       ]

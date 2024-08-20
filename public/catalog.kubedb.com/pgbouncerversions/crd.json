@@ -19,7 +19,7 @@
       "kind": "PgBouncerVersion",
       "listKind": "PgBouncerVersionList",
       "categories": [
-        "datastore",
+        "catalog",
         "kubedb",
         "appscode"
       ]

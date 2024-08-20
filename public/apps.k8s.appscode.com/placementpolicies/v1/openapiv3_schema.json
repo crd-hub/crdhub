@@ -1,0 +1,141 @@
+{
+  "$schema": "http://json-schema.org/schema#",
+  "description": "PlacementPolicy represents a set of pods with consistent identities. Identities are defined as: - Network: A single stable DNS and hostname. - Storage: As many VolumeClaims as requested. \n The PlacementPolicy guarantees that a given network identity will always map to the same storage identity.",
+  "type": "object",
+  "properties": {
+    "apiVersion": {
+      "description": "APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources",
+      "type": "string",
+      "enum": [
+        "apps.k8s.appscode.com/v1"
+      ]
+    },
+    "kind": {
+      "description": "Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds",
+      "type": "string",
+      "enum": [
+        "PlacementPolicy"
+      ]
+    },
+    "metadata": {
+      "type": "object",
+      "properties": {
+        "annotations": {
+          "description": "Annotations is an unstructured key value map stored with a resource that may be set by external tools to store and retrieve arbitrary metadata. They are not queryable and should be preserved when modifying objects. More info: http://kubernetes.io/docs/user-guide/annotations",
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          }
+        },
+        "labels": {
+          "description": "Map of string keys and values that can be used to organize and categorize (scope and select) objects. May match selectors of replication controllers and services. More info: http://kubernetes.io/docs/user-guide/labels",
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          }
+        },
+        "name": {
+          "description": "Name must be unique within a namespace. Is required when creating resources, although some resources may allow a client to request the generation of an appropriate name automatically. Name is primarily intended for creation idempotence and configuration definition. Cannot be updated. More info: http://kubernetes.io/docs/user-guide/identifiers#names",
+          "type": "string"
+        }
+      }
+    },
+    "spec": {
+      "description": "Spec defines the desired identities of pods in this set.",
+      "type": "object",
+      "properties": {
+        "affinity": {
+          "description": "If specified, the pod's scheduling constraints",
+          "type": "object",
+          "properties": {
+            "nodeAffinity": {
+              "description": "Describes node affinity scheduling rules for the pod.",
+              "type": "array",
+              "items": {
+                "type": "object",
+                "required": [
+                  "domains",
+                  "topologyKey",
+                  "weight",
+                  "whenUnsatisfiable"
+                ],
+                "properties": {
+                  "domains": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "required": [
+                        "replicas",
+                        "values"
+                      ],
+                      "properties": {
+                        "replicas": {
+                          "type": "string"
+                        },
+                        "values": {
+                          "type": "array",
+                          "items": {
+                            "type": "string"
+                          }
+                        }
+                      }
+                    }
+                  },
+                  "topologyKey": {
+                    "type": "string"
+                  },
+                  "weight": {
+                    "description": "Weight associated with matching the corresponding nodeSelectorTerm, in the range 1-100.",
+                    "type": "integer",
+                    "format": "int32",
+                    "default": 50
+                  },
+                  "whenUnsatisfiable": {
+                    "type": "string",
+                    "default": "DoNotSchedule"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "nodeSpreadConstraint": {
+          "type": "object",
+          "required": [
+            "maxSkew",
+            "whenUnsatisfiable"
+          ],
+          "properties": {
+            "maxSkew": {
+              "type": "integer",
+              "format": "int32",
+              "default": 1
+            },
+            "whenUnsatisfiable": {
+              "type": "string",
+              "default": "DoNotSchedule"
+            }
+          }
+        },
+        "zoneSpreadConstraint": {
+          "type": "object",
+          "required": [
+            "maxSkew",
+            "whenUnsatisfiable"
+          ],
+          "properties": {
+            "maxSkew": {
+              "type": "integer",
+              "format": "int32",
+              "default": 1
+            },
+            "whenUnsatisfiable": {
+              "type": "string",
+              "default": "DoNotSchedule"
+            }
+          }
+        }
+      }
+    }
+  }
+}

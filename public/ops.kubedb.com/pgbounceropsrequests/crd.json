@@ -19,7 +19,7 @@
       "kind": "PgBouncerOpsRequest",
       "listKind": "PgBouncerOpsRequestList",
       "categories": [
-        "datastore",
+        "ops",
         "kubedb",
         "appscode"
       ]

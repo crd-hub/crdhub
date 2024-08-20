@@ -19,7 +19,7 @@
       "kind": "ElasticsearchOpsRequest",
       "listKind": "ElasticsearchOpsRequestList",
       "categories": [
-        "datastore",
+        "ops",
         "kubedb",
         "appscode"
       ]

@@ -38,6 +38,13 @@ properties:
             type: string
         type: object
         x-kubernetes-map-type: atomic
+      deletionPolicy:
+        enum:
+        - Halt
+        - Delete
+        - WipeOut
+        - DoNotTerminate
+        type: string
       halted:
         type: boolean
       init:
@@ -3890,6 +3897,7 @@ properties:
               - primary
               - standby
               - stats
+              - dashboard
               type: string
             metadata:
               properties:
@@ -4044,13 +4052,6 @@ properties:
         enum:
         - Durable
         - Ephemeral
-        type: string
-      terminationPolicy:
-        enum:
-        - Halt
-        - Delete
-        - WipeOut
-        - DoNotTerminate
         type: string
       tls:
         properties:

@@ -19,7 +19,7 @@
       "kind": "SinglestoreAutoscaler",
       "listKind": "SinglestoreAutoscalerList",
       "categories": [
-        "datastore",
+        "autoscaler",
         "kubedb",
         "appscode"
       ]
