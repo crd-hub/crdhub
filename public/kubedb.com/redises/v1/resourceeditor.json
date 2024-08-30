@@ -168,7 +168,7 @@
               ],
               "operationId": "create-opsrequest-horizontalscaling",
               "flow": "standalone-create",
-              "disabledTemplate": "{{ if ne .spec.replicas 1 }}\n",
+              "disabledTemplate": "{{ not (gt .spec.replicas 1) }}\n",
               "editor": {
                 "name": "opskubedbcom-redisopsrequest-editor",
                 "version": "v0.5.0",
@@ -334,9 +334,16 @@
       {
         "name": "default",
         "selector": {
-          "matchLabels": {
-            "charts.x-helm.dev/is-default-preset": "true"
-          }
+          "matchExpressions": [
+            {
+              "key": "charts.x-helm.dev/is-default-preset",
+              "operator": "In",
+              "values": [
+                "true",
+                "kubedb"
+              ]
+            }
+          ]
         }
       }
     ]

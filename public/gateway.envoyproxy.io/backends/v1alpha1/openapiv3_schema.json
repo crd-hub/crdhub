@@ -1,0 +1,159 @@
+{
+  "$schema": "http://json-schema.org/schema#",
+  "description": "Backend allows the user to configure the endpoints of a backend and\nthe behavior of the connection from Envoy Proxy to the backend.",
+  "type": "object",
+  "required": [
+    "spec"
+  ],
+  "properties": {
+    "apiVersion": {
+      "description": "APIVersion defines the versioned schema of this representation of an object.\nServers should convert recognized schemas to the latest internal value, and\nmay reject unrecognized values.\nMore info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources",
+      "type": "string",
+      "enum": [
+        "gateway.envoyproxy.io/v1alpha1"
+      ]
+    },
+    "kind": {
+      "description": "Kind is a string value representing the REST resource this object represents.\nServers may infer this from the endpoint the client submits requests to.\nCannot be updated.\nIn CamelCase.\nMore info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds",
+      "type": "string",
+      "enum": [
+        "Backend"
+      ]
+    },
+    "metadata": {
+      "type": "object",
+      "properties": {
+        "annotations": {
+          "description": "Annotations is an unstructured key value map stored with a resource that may be set by external tools to store and retrieve arbitrary metadata. They are not queryable and should be preserved when modifying objects. More info: http://kubernetes.io/docs/user-guide/annotations",
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          }
+        },
+        "labels": {
+          "description": "Map of string keys and values that can be used to organize and categorize (scope and select) objects. May match selectors of replication controllers and services. More info: http://kubernetes.io/docs/user-guide/labels",
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          }
+        },
+        "name": {
+          "description": "Name must be unique within a namespace. Is required when creating resources, although some resources may allow a client to request the generation of an appropriate name automatically. Name is primarily intended for creation idempotence and configuration definition. Cannot be updated. More info: http://kubernetes.io/docs/user-guide/identifiers#names",
+          "type": "string"
+        },
+        "namespace": {
+          "description": "Namespace defines the space within which each name must be unique. An empty namespace is equivalent to the \"default\" namespace, but \"default\" is the canonical representation. Not all objects are required to be scoped to a namespace - the value of this field for those objects will be empty. \n Must be a DNS_LABEL. Cannot be updated. More info: http://kubernetes.io/docs/user-guide/namespaces",
+          "type": "string"
+        }
+      }
+    },
+    "spec": {
+      "description": "Spec defines the desired state of Backend.",
+      "type": "object",
+      "properties": {
+        "appProtocols": {
+          "description": "AppProtocols defines the application protocols to be supported when connecting to the backend.",
+          "type": "array",
+          "items": {
+            "description": "AppProtocolType defines various backend applications protocols supported by Envoy Gateway",
+            "type": "string",
+            "enum": [
+              "gateway.envoyproxy.io/h2c",
+              "gateway.envoyproxy.io/ws",
+              "gateway.envoyproxy.io/wss"
+            ]
+          }
+        },
+        "endpoints": {
+          "description": "Endpoints defines the endpoints to be used when connecting to the backend.",
+          "type": "array",
+          "maxItems": 4,
+          "minItems": 1,
+          "items": {
+            "description": "BackendEndpoint describes a backend endpoint, which can be either a fully-qualified domain name, IP address or unix domain socket\ncorresponding to Envoy's Address: https://www.envoyproxy.io/docs/envoy/latest/api-v3/config/core/v3/address.proto#config-core-v3-address",
+            "type": "object",
+            "properties": {
+              "fqdn": {
+                "description": "FQDN defines a FQDN endpoint",
+                "type": "object",
+                "required": [
+                  "hostname",
+                  "port"
+                ],
+                "properties": {
+                  "hostname": {
+                    "description": "Hostname defines the FQDN hostname of the backend endpoint.",
+                    "type": "string",
+                    "maxLength": 253,
+                    "minLength": 1,
+                    "pattern": "^[a-z0-9]([-a-z0-9]*[a-z0-9])?(\\.[a-z0-9]([-a-z0-9]*[a-z0-9]))*$"
+                  },
+                  "port": {
+                    "description": "Port defines the port of the backend endpoint.",
+                    "type": "integer",
+                    "format": "int32",
+                    "maximum": 65535,
+                    "minimum": 0
+                  }
+                }
+              },
+              "ip": {
+                "description": "IP defines an IP endpoint. Currently, only IPv4 Addresses are supported.",
+                "type": "object",
+                "required": [
+                  "address",
+                  "port"
+                ],
+                "properties": {
+                  "address": {
+                    "description": "Address defines the IP address of the backend endpoint.",
+                    "type": "string",
+                    "maxLength": 15,
+                    "minLength": 7,
+                    "pattern": "^((25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.){3}(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$"
+                  },
+                  "port": {
+                    "description": "Port defines the port of the backend endpoint.",
+                    "type": "integer",
+                    "format": "int32",
+                    "maximum": 65535,
+                    "minimum": 0
+                  }
+                }
+              },
+              "unix": {
+                "description": "Unix defines the unix domain socket endpoint",
+                "type": "object",
+                "required": [
+                  "path"
+                ],
+                "properties": {
+                  "path": {
+                    "description": "Path defines the unix domain socket path of the backend endpoint.",
+                    "type": "string"
+                  }
+                }
+              }
+            },
+            "x-kubernetes-validations": [
+              {
+                "rule": "(has(self.fqdn) || has(self.ip) || has(self.unix))",
+                "message": "one of fqdn, ip or unix must be specified"
+              },
+              {
+                "rule": "((has(self.fqdn) \u0026\u0026 !(has(self.ip) || has(self.unix))) || (has(self.ip) \u0026\u0026 !(has(self.fqdn) || has(self.unix))) || (has(self.unix) \u0026\u0026 !(has(self.ip) || has(self.fqdn))))",
+                "message": "only one of fqdn, ip or unix can be specified"
+              }
+            ]
+          },
+          "x-kubernetes-validations": [
+            {
+              "rule": "self.all(f, has(f.fqdn)) || !self.exists(f, has(f.fqdn))",
+              "message": "fqdn addresses cannot be mixed with other address types"
+            }
+          ]
+        }
+      }
+    }
+  }
+}

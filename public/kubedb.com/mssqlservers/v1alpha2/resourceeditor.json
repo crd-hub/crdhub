@@ -54,7 +54,7 @@
               "operationId": "edit-self-backupconfiguration",
               "flow": "standalone-edit",
               "editor": {
-                "name": "kubedbcom-mysql-editor",
+                "name": "kubedbcom-mssqlserver-editor",
                 "version": "v0.5.0",
                 "sourceRef": {
                   "apiGroup": "source.toolkit.fluxcd.io",
@@ -101,7 +101,7 @@
               "operationId": "create-opsrequest-restart",
               "flow": "standalone-create",
               "editor": {
-                "name": "opskubedbcom-mysqlopsrequest-editor",
+                "name": "opskubedbcom-mssqlserveropsrequest-editor",
                 "version": "v0.5.0",
                 "sourceRef": {
                   "apiGroup": "source.toolkit.fluxcd.io",
@@ -122,7 +122,7 @@
               "operationId": "create-opsrequest-reconfigure",
               "flow": "standalone-create",
               "editor": {
-                "name": "opskubedbcom-mysqlopsrequest-editor",
+                "name": "opskubedbcom-mssqlserveropsrequest-editor",
                 "version": "v0.5.0",
                 "sourceRef": {
                   "apiGroup": "source.toolkit.fluxcd.io",
@@ -149,7 +149,7 @@
               "flow": "standalone-create",
               "disabledTemplate": "{{ not (gt .spec.replicas 1) }}\n",
               "editor": {
-                "name": "opskubedbcom-mysqlopsrequest-editor",
+                "name": "opskubedbcom-mssqlserveropsrequest-editor",
                 "version": "v0.5.0",
                 "sourceRef": {
                   "apiGroup": "source.toolkit.fluxcd.io",
@@ -170,7 +170,7 @@
               "operationId": "create-opsrequest-verticalscaling",
               "flow": "standalone-create",
               "editor": {
-                "name": "opskubedbcom-mysqlopsrequest-editor",
+                "name": "opskubedbcom-mssqlserveropsrequest-editor",
                 "version": "v0.5.0",
                 "sourceRef": {
                   "apiGroup": "source.toolkit.fluxcd.io",
@@ -191,7 +191,7 @@
               "operationId": "create-opsrequest-volumeexpansion",
               "flow": "standalone-create",
               "editor": {
-                "name": "opskubedbcom-mysqlopsrequest-editor",
+                "name": "opskubedbcom-mssqlserveropsrequest-editor",
                 "version": "v0.5.0",
                 "sourceRef": {
                   "apiGroup": "source.toolkit.fluxcd.io",
@@ -217,7 +217,7 @@
               "operationId": "create-opsrequest-reconfiguretls",
               "flow": "standalone-create",
               "editor": {
-                "name": "opskubedbcom-mysqlopsrequest-editor",
+                "name": "opskubedbcom-mssqlserveropsrequest-editor",
                 "version": "v0.5.0",
                 "sourceRef": {
                   "apiGroup": "source.toolkit.fluxcd.io",
@@ -238,7 +238,7 @@
               "operationId": "edit-self-monitoring",
               "flow": "standalone-edit",
               "editor": {
-                "name": "kubedbcom-mysql-editor",
+                "name": "kubedbcom-mssqlserver-editor",
                 "version": "v0.5.0",
                 "sourceRef": {
                   "apiGroup": "source.toolkit.fluxcd.io",
@@ -266,9 +266,16 @@
       {
         "name": "default",
         "selector": {
-          "matchLabels": {
-            "charts.x-helm.dev/is-default-preset": "true"
-          }
+          "matchExpressions": [
+            {
+              "key": "charts.x-helm.dev/is-default-preset",
+              "operator": "In",
+              "values": [
+                "true",
+                "kubedb"
+              ]
+            }
+          ]
         }
       }
     ]

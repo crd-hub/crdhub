@@ -1,0 +1,172 @@
+{
+  "$schema": "http://json-schema.org/schema#",
+  "description": "BackendTLSPolicy provides a way to configure how a Gateway\nconnects to a Backend via TLS.",
+  "type": "object",
+  "required": [
+    "spec"
+  ],
+  "properties": {
+    "apiVersion": {
+      "description": "APIVersion defines the versioned schema of this representation of an object.\nServers should convert recognized schemas to the latest internal value, and\nmay reject unrecognized values.\nMore info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources",
+      "type": "string",
+      "enum": [
+        "gateway.networking.k8s.io/v1alpha3"
+      ]
+    },
+    "kind": {
+      "description": "Kind is a string value representing the REST resource this object represents.\nServers may infer this from the endpoint the client submits requests to.\nCannot be updated.\nIn CamelCase.\nMore info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds",
+      "type": "string",
+      "enum": [
+        "BackendTLSPolicy"
+      ]
+    },
+    "metadata": {
+      "type": "object",
+      "properties": {
+        "annotations": {
+          "description": "Annotations is an unstructured key value map stored with a resource that may be set by external tools to store and retrieve arbitrary metadata. They are not queryable and should be preserved when modifying objects. More info: http://kubernetes.io/docs/user-guide/annotations",
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          }
+        },
+        "labels": {
+          "description": "Map of string keys and values that can be used to organize and categorize (scope and select) objects. May match selectors of replication controllers and services. More info: http://kubernetes.io/docs/user-guide/labels",
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          }
+        },
+        "name": {
+          "description": "Name must be unique within a namespace. Is required when creating resources, although some resources may allow a client to request the generation of an appropriate name automatically. Name is primarily intended for creation idempotence and configuration definition. Cannot be updated. More info: http://kubernetes.io/docs/user-guide/identifiers#names",
+          "type": "string"
+        },
+        "namespace": {
+          "description": "Namespace defines the space within which each name must be unique. An empty namespace is equivalent to the \"default\" namespace, but \"default\" is the canonical representation. Not all objects are required to be scoped to a namespace - the value of this field for those objects will be empty. \n Must be a DNS_LABEL. Cannot be updated. More info: http://kubernetes.io/docs/user-guide/namespaces",
+          "type": "string"
+        }
+      }
+    },
+    "spec": {
+      "description": "Spec defines the desired state of BackendTLSPolicy.",
+      "type": "object",
+      "required": [
+        "targetRefs",
+        "validation"
+      ],
+      "properties": {
+        "targetRefs": {
+          "description": "TargetRefs identifies an API object to apply the policy to.\nOnly Services have Extended support. Implementations MAY support\nadditional objects, with Implementation Specific support.\nNote that this config applies to the entire referenced resource\nby default, but this default may change in the future to provide\na more granular application of the policy.\n\n\nSupport: Extended for Kubernetes Service\n\n\nSupport: Implementation-specific for any other resource",
+          "type": "array",
+          "maxItems": 16,
+          "minItems": 1,
+          "items": {
+            "description": "LocalPolicyTargetReferenceWithSectionName identifies an API object to apply a\ndirect policy to. This should be used as part of Policy resources that can\ntarget single resources. For more information on how this policy attachment\nmode works, and a sample Policy resource, refer to the policy attachment\ndocumentation for Gateway API.\n\n\nNote: This should only be used for direct policy attachment when references\nto SectionName are actually needed. In all other cases,\nLocalPolicyTargetReference should be used.",
+            "type": "object",
+            "required": [
+              "group",
+              "kind",
+              "name"
+            ],
+            "properties": {
+              "group": {
+                "description": "Group is the group of the target resource.",
+                "type": "string",
+                "maxLength": 253,
+                "pattern": "^$|^[a-z0-9]([-a-z0-9]*[a-z0-9])?(\\.[a-z0-9]([-a-z0-9]*[a-z0-9])?)*$"
+              },
+              "kind": {
+                "description": "Kind is kind of the target resource.",
+                "type": "string",
+                "maxLength": 63,
+                "minLength": 1,
+                "pattern": "^[a-zA-Z]([-a-zA-Z0-9]*[a-zA-Z0-9])?$"
+              },
+              "name": {
+                "description": "Name is the name of the target resource.",
+                "type": "string",
+                "maxLength": 253,
+                "minLength": 1
+              },
+              "sectionName": {
+                "description": "SectionName is the name of a section within the target resource. When\nunspecified, this targetRef targets the entire resource. In the following\nresources, SectionName is interpreted as the following:\n\n\n* Gateway: Listener name\n* HTTPRoute: HTTPRouteRule name\n* Service: Port name\n\n\nIf a SectionName is specified, but does not exist on the targeted object,\nthe Policy must fail to attach, and the policy implementation should record\na `ResolvedRefs` or similar Condition in the Policy's status.",
+                "type": "string",
+                "maxLength": 253,
+                "minLength": 1,
+                "pattern": "^[a-z0-9]([-a-z0-9]*[a-z0-9])?(\\.[a-z0-9]([-a-z0-9]*[a-z0-9])?)*$"
+              }
+            }
+          }
+        },
+        "validation": {
+          "description": "Validation contains backend TLS validation configuration.",
+          "type": "object",
+          "required": [
+            "hostname"
+          ],
+          "properties": {
+            "caCertificateRefs": {
+              "description": "CACertificateRefs contains one or more references to Kubernetes objects that\ncontain a PEM-encoded TLS CA certificate bundle, which is used to\nvalidate a TLS handshake between the Gateway and backend Pod.\n\n\nIf CACertificateRefs is empty or unspecified, then WellKnownCACertificates must be\nspecified. Only one of CACertificateRefs or WellKnownCACertificates may be specified,\nnot both. If CACertifcateRefs is empty or unspecified, the configuration for\nWellKnownCACertificates MUST be honored instead if supported by the implementation.\n\n\nReferences to a resource in a different namespace are invalid for the\nmoment, although we will revisit this in the future.\n\n\nA single CACertificateRef to a Kubernetes ConfigMap kind has \"Core\" support.\nImplementations MAY choose to support attaching multiple certificates to\na backend, but this behavior is implementation-specific.\n\n\nSupport: Core - An optional single reference to a Kubernetes ConfigMap,\nwith the CA certificate in a key named `ca.crt`.\n\n\nSupport: Implementation-specific (More than one reference, or other kinds\nof resources).",
+              "type": "array",
+              "maxItems": 8,
+              "items": {
+                "description": "LocalObjectReference identifies an API object within the namespace of the\nreferrer.\nThe API object must be valid in the cluster; the Group and Kind must\nbe registered in the cluster for this reference to be valid.\n\n\nReferences to objects with invalid Group and Kind are not valid, and must\nbe rejected by the implementation, with appropriate Conditions set\non the containing object.",
+                "type": "object",
+                "required": [
+                  "group",
+                  "kind",
+                  "name"
+                ],
+                "properties": {
+                  "group": {
+                    "description": "Group is the group of the referent. For example, \"gateway.networking.k8s.io\".\nWhen unspecified or empty string, core API group is inferred.",
+                    "type": "string",
+                    "maxLength": 253,
+                    "pattern": "^$|^[a-z0-9]([-a-z0-9]*[a-z0-9])?(\\.[a-z0-9]([-a-z0-9]*[a-z0-9])?)*$"
+                  },
+                  "kind": {
+                    "description": "Kind is kind of the referent. For example \"HTTPRoute\" or \"Service\".",
+                    "type": "string",
+                    "maxLength": 63,
+                    "minLength": 1,
+                    "pattern": "^[a-zA-Z]([-a-zA-Z0-9]*[a-zA-Z0-9])?$"
+                  },
+                  "name": {
+                    "description": "Name is the name of the referent.",
+                    "type": "string",
+                    "maxLength": 253,
+                    "minLength": 1
+                  }
+                }
+              }
+            },
+            "hostname": {
+              "description": "Hostname is used for two purposes in the connection between Gateways and\nbackends:\n\n\n1. Hostname MUST be used as the SNI to connect to the backend (RFC 6066).\n2. Hostname MUST be used for authentication and MUST match the certificate\n   served by the matching backend.\n\n\nSupport: Core",
+              "type": "string",
+              "maxLength": 253,
+              "minLength": 1,
+              "pattern": "^[a-z0-9]([-a-z0-9]*[a-z0-9])?(\\.[a-z0-9]([-a-z0-9]*[a-z0-9])?)*$"
+            },
+            "wellKnownCACertificates": {
+              "description": "WellKnownCACertificates specifies whether system CA certificates may be used in\nthe TLS handshake between the gateway and backend pod.\n\n\nIf WellKnownCACertificates is unspecified or empty (\"\"), then CACertificateRefs\nmust be specified with at least one entry for a valid configuration. Only one of\nCACertificateRefs or WellKnownCACertificates may be specified, not both. If an\nimplementation does not support the WellKnownCACertificates field or the value\nsupplied is not supported, the Status Conditions on the Policy MUST be\nupdated to include an Accepted: False Condition with Reason: Invalid.\n\n\nSupport: Implementation-specific",
+              "type": "string",
+              "enum": [
+                "System"
+              ]
+            }
+          },
+          "x-kubernetes-validations": [
+            {
+              "rule": "!(has(self.caCertificateRefs) \u0026\u0026 size(self.caCertificateRefs) \u003e 0 \u0026\u0026 has(self.wellKnownCACertificates) \u0026\u0026 self.wellKnownCACertificates != \"\")",
+              "message": "must not contain both CACertificateRefs and WellKnownCACertificates"
+            },
+            {
+              "rule": "(has(self.caCertificateRefs) \u0026\u0026 size(self.caCertificateRefs) \u003e 0 || has(self.wellKnownCACertificates) \u0026\u0026 self.wellKnownCACertificates != \"\")",
+              "message": "must specify either CACertificateRefs or WellKnownCACertificates"
+            }
+          ]
+        }
+      }
+    }
+  }
+}

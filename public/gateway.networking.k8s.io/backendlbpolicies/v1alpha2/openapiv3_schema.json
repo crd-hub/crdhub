@@ -1,0 +1,153 @@
+{
+  "$schema": "http://json-schema.org/schema#",
+  "description": "BackendLBPolicy provides a way to define load balancing rules\nfor a backend.",
+  "type": "object",
+  "required": [
+    "spec"
+  ],
+  "properties": {
+    "apiVersion": {
+      "description": "APIVersion defines the versioned schema of this representation of an object.\nServers should convert recognized schemas to the latest internal value, and\nmay reject unrecognized values.\nMore info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources",
+      "type": "string",
+      "enum": [
+        "gateway.networking.k8s.io/v1alpha2"
+      ]
+    },
+    "kind": {
+      "description": "Kind is a string value representing the REST resource this object represents.\nServers may infer this from the endpoint the client submits requests to.\nCannot be updated.\nIn CamelCase.\nMore info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds",
+      "type": "string",
+      "enum": [
+        "BackendLBPolicy"
+      ]
+    },
+    "metadata": {
+      "type": "object",
+      "properties": {
+        "annotations": {
+          "description": "Annotations is an unstructured key value map stored with a resource that may be set by external tools to store and retrieve arbitrary metadata. They are not queryable and should be preserved when modifying objects. More info: http://kubernetes.io/docs/user-guide/annotations",
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          }
+        },
+        "labels": {
+          "description": "Map of string keys and values that can be used to organize and categorize (scope and select) objects. May match selectors of replication controllers and services. More info: http://kubernetes.io/docs/user-guide/labels",
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          }
+        },
+        "name": {
+          "description": "Name must be unique within a namespace. Is required when creating resources, although some resources may allow a client to request the generation of an appropriate name automatically. Name is primarily intended for creation idempotence and configuration definition. Cannot be updated. More info: http://kubernetes.io/docs/user-guide/identifiers#names",
+          "type": "string"
+        },
+        "namespace": {
+          "description": "Namespace defines the space within which each name must be unique. An empty namespace is equivalent to the \"default\" namespace, but \"default\" is the canonical representation. Not all objects are required to be scoped to a namespace - the value of this field for those objects will be empty. \n Must be a DNS_LABEL. Cannot be updated. More info: http://kubernetes.io/docs/user-guide/namespaces",
+          "type": "string"
+        }
+      }
+    },
+    "spec": {
+      "description": "Spec defines the desired state of BackendLBPolicy.",
+      "type": "object",
+      "required": [
+        "targetRefs"
+      ],
+      "properties": {
+        "sessionPersistence": {
+          "description": "SessionPersistence defines and configures session persistence\nfor the backend.\n\n\nSupport: Extended",
+          "type": "object",
+          "properties": {
+            "absoluteTimeout": {
+              "description": "AbsoluteTimeout defines the absolute timeout of the persistent\nsession. Once the AbsoluteTimeout duration has elapsed, the\nsession becomes invalid.\n\n\nSupport: Extended",
+              "type": "string",
+              "pattern": "^([0-9]{1,5}(h|m|s|ms)){1,4}$"
+            },
+            "cookieConfig": {
+              "description": "CookieConfig provides configuration settings that are specific\nto cookie-based session persistence.\n\n\nSupport: Core",
+              "type": "object",
+              "properties": {
+                "lifetimeType": {
+                  "description": "LifetimeType specifies whether the cookie has a permanent or\nsession-based lifetime. A permanent cookie persists until its\nspecified expiry time, defined by the Expires or Max-Age cookie\nattributes, while a session cookie is deleted when the current\nsession ends.\n\n\nWhen set to \"Permanent\", AbsoluteTimeout indicates the\ncookie's lifetime via the Expires or Max-Age cookie attributes\nand is required.\n\n\nWhen set to \"Session\", AbsoluteTimeout indicates the\nabsolute lifetime of the cookie tracked by the gateway and\nis optional.\n\n\nSupport: Core for \"Session\" type\n\n\nSupport: Extended for \"Permanent\" type",
+                  "type": "string",
+                  "default": "Session",
+                  "enum": [
+                    "Permanent",
+                    "Session"
+                  ]
+                }
+              }
+            },
+            "idleTimeout": {
+              "description": "IdleTimeout defines the idle timeout of the persistent session.\nOnce the session has been idle for more than the specified\nIdleTimeout duration, the session becomes invalid.\n\n\nSupport: Extended",
+              "type": "string",
+              "pattern": "^([0-9]{1,5}(h|m|s|ms)){1,4}$"
+            },
+            "sessionName": {
+              "description": "SessionName defines the name of the persistent session token\nwhich may be reflected in the cookie or the header. Users\nshould avoid reusing session names to prevent unintended\nconsequences, such as rejection or unpredictable behavior.\n\n\nSupport: Implementation-specific",
+              "type": "string",
+              "maxLength": 128
+            },
+            "type": {
+              "description": "Type defines the type of session persistence such as through\nthe use a header or cookie. Defaults to cookie based session\npersistence.\n\n\nSupport: Core for \"Cookie\" type\n\n\nSupport: Extended for \"Header\" type",
+              "type": "string",
+              "default": "Cookie",
+              "enum": [
+                "Cookie",
+                "Header"
+              ]
+            }
+          },
+          "x-kubernetes-validations": [
+            {
+              "rule": "!has(self.cookieConfig.lifetimeType) || self.cookieConfig.lifetimeType != 'Permanent' || has(self.absoluteTimeout)",
+              "message": "AbsoluteTimeout must be specified when cookie lifetimeType is Permanent"
+            }
+          ]
+        },
+        "targetRefs": {
+          "description": "TargetRef identifies an API object to apply policy to.\nCurrently, Backends (i.e. Service, ServiceImport, or any\nimplementation-specific backendRef) are the only valid API\ntarget references.",
+          "type": "array",
+          "maxItems": 16,
+          "minItems": 1,
+          "items": {
+            "description": "LocalPolicyTargetReference identifies an API object to apply a direct or\ninherited policy to. This should be used as part of Policy resources\nthat can target Gateway API resources. For more information on how this\npolicy attachment model works, and a sample Policy resource, refer to\nthe policy attachment documentation for Gateway API.",
+            "type": "object",
+            "required": [
+              "group",
+              "kind",
+              "name"
+            ],
+            "properties": {
+              "group": {
+                "description": "Group is the group of the target resource.",
+                "type": "string",
+                "maxLength": 253,
+                "pattern": "^$|^[a-z0-9]([-a-z0-9]*[a-z0-9])?(\\.[a-z0-9]([-a-z0-9]*[a-z0-9])?)*$"
+              },
+              "kind": {
+                "description": "Kind is kind of the target resource.",
+                "type": "string",
+                "maxLength": 63,
+                "minLength": 1,
+                "pattern": "^[a-zA-Z]([-a-zA-Z0-9]*[a-zA-Z0-9])?$"
+              },
+              "name": {
+                "description": "Name is the name of the target resource.",
+                "type": "string",
+                "maxLength": 253,
+                "minLength": 1
+              }
+            }
+          },
+          "x-kubernetes-list-map-keys": [
+            "group",
+            "kind",
+            "name"
+          ],
+          "x-kubernetes-list-type": "map"
+        }
+      }
+    }
+  }
+}
