@@ -286,6 +286,137 @@
                           }
                         }
                       },
+                      "gateway": {
+                        "type": "object",
+                        "required": [
+                          "name",
+                          "namespace"
+                        ],
+                        "properties": {
+                          "hostname": {
+                            "type": "string"
+                          },
+                          "ip": {
+                            "type": "string"
+                          },
+                          "name": {
+                            "type": "string"
+                          },
+                          "namespace": {
+                            "type": "string"
+                          },
+                          "services": {
+                            "description": "Services is an optional configuration for services used to expose database",
+                            "type": "array",
+                            "items": {
+                              "type": "object",
+                              "required": [
+                                "alias",
+                                "ports"
+                              ],
+                              "properties": {
+                                "alias": {
+                                  "description": "Alias represents the identifier of the service.",
+                                  "type": "string"
+                                },
+                                "ports": {
+                                  "type": "array",
+                                  "items": {
+                                    "description": "GatewayPort contains information on Gateway service's port.",
+                                    "type": "object",
+                                    "required": [
+                                      "port"
+                                    ],
+                                    "properties": {
+                                      "backendServicePort": {
+                                        "description": "Number of the port to access the backend service.",
+                                        "type": "integer",
+                                        "format": "int32"
+                                      },
+                                      "name": {
+                                        "description": "The name of this port within the gateway service.",
+                                        "type": "string"
+                                      },
+                                      "nodePort": {
+                                        "description": "The port on each node on which this gateway service is exposed when type is NodePort or LoadBalancer.",
+                                        "type": "integer",
+                                        "format": "int32"
+                                      },
+                                      "port": {
+                                        "description": "The port that will be exposed by the gateway service.",
+                                        "type": "integer",
+                                        "format": "int32"
+                                      }
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          },
+                          "ui": {
+                            "description": "UI is an optional list of database web uis",
+                            "type": "array",
+                            "items": {
+                              "type": "object",
+                              "required": [
+                                "alias",
+                                "port",
+                                "url"
+                              ],
+                              "properties": {
+                                "alias": {
+                                  "description": "Alias represents the identifier of the service. This should match the db ui chart name",
+                                  "type": "string"
+                                },
+                                "helmRelease": {
+                                  "description": "HelmRelease is the name of the helm release used to deploy this ui The name format is typically \u003calias\u003e-\u003cdb-name\u003e",
+                                  "type": "object",
+                                  "properties": {
+                                    "name": {
+                                      "description": "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop `kubebuilder:default` when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+                                      "type": "string",
+                                      "default": ""
+                                    }
+                                  },
+                                  "x-kubernetes-map-type": "atomic"
+                                },
+                                "port": {
+                                  "description": "GatewayPort contains information on Gateway service's port.",
+                                  "type": "object",
+                                  "required": [
+                                    "port"
+                                  ],
+                                  "properties": {
+                                    "backendServicePort": {
+                                      "description": "Number of the port to access the backend service.",
+                                      "type": "integer",
+                                      "format": "int32"
+                                    },
+                                    "name": {
+                                      "description": "The name of this port within the gateway service.",
+                                      "type": "string"
+                                    },
+                                    "nodePort": {
+                                      "description": "The port on each node on which this gateway service is exposed when type is NodePort or LoadBalancer.",
+                                      "type": "integer",
+                                      "format": "int32"
+                                    },
+                                    "port": {
+                                      "description": "The port that will be exposed by the gateway service.",
+                                      "type": "integer",
+                                      "format": "int32"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "description": "URL of the database ui",
+                                  "type": "string"
+                                }
+                              }
+                            }
+                          }
+                        }
+                      },
                       "monitoring": {
                         "type": "object",
                         "required": [
