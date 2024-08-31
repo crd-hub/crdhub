@@ -14,9 +14,13 @@
     "names": {
       "plural": "redisbindings",
       "singular": "redisbinding",
+      "shortNames": [
+        "rdbinding"
+      ],
       "kind": "RedisBinding",
       "listKind": "RedisBindingList",
       "categories": [
+        "binding",
         "kubedb",
         "appscode"
       ]

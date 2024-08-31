@@ -14,9 +14,13 @@
     "names": {
       "plural": "mysqlbindings",
       "singular": "mysqlbinding",
+      "shortNames": [
+        "mybinding"
+      ],
       "kind": "MySQLBinding",
       "listKind": "MySQLBindingList",
       "categories": [
+        "binding",
         "kubedb",
         "appscode"
       ]

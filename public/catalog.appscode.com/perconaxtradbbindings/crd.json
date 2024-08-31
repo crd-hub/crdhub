@@ -14,9 +14,13 @@
     "names": {
       "plural": "perconaxtradbbindings",
       "singular": "perconaxtradbbinding",
+      "shortNames": [
+        "pxbinding"
+      ],
       "kind": "PerconaXtraDBBinding",
       "listKind": "PerconaXtraDBBindingList",
       "categories": [
+        "binding",
         "kubedb",
         "appscode"
       ]

@@ -14,9 +14,13 @@
     "names": {
       "plural": "singlestorebindings",
       "singular": "singlestorebinding",
+      "shortNames": [
+        "sdbbinding"
+      ],
       "kind": "SinglestoreBinding",
       "listKind": "SinglestoreBindingList",
       "categories": [
+        "binding",
         "kubedb",
         "appscode"
       ]

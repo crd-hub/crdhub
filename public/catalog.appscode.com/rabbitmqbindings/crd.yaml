@@ -10,11 +10,14 @@ spec:
   group: catalog.appscode.com
   names:
     categories:
+    - binding
     - kubedb
     - appscode
     kind: RabbitMQBinding
     listKind: RabbitMQBindingList
     plural: rabbitmqbindings
+    shortNames:
+    - rmbinding
     singular: rabbitmqbinding
   scope: Namespaced
   versions:

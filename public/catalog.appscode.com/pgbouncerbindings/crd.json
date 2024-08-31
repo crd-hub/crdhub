@@ -14,9 +14,13 @@
     "names": {
       "plural": "pgbouncerbindings",
       "singular": "pgbouncerbinding",
+      "shortNames": [
+        "pbbinding"
+      ],
       "kind": "PgBouncerBinding",
       "listKind": "PgBouncerBindingList",
       "categories": [
+        "binding",
         "kubedb",
         "appscode"
       ]

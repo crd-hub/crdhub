@@ -14,9 +14,13 @@
     "names": {
       "plural": "pgpoolbindings",
       "singular": "pgpoolbinding",
+      "shortNames": [
+        "ppbinding"
+      ],
       "kind": "PgpoolBinding",
       "listKind": "PgpoolBindingList",
       "categories": [
+        "binding",
         "kubedb",
         "appscode"
       ]

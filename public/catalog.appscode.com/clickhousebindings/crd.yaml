@@ -5,7 +5,7 @@ metadata:
   labels:
     app.kubernetes.io/name: ace
     kube-bind.appscode.com/exported: "true"
-  name: postgresbindings.catalog.appscode.com
+  name: clickhousebindings.catalog.appscode.com
 spec:
   group: catalog.appscode.com
   names:
@@ -13,12 +13,12 @@ spec:
     - binding
     - kubedb
     - appscode
-    kind: PostgresBinding
-    listKind: PostgresBindingList
-    plural: postgresbindings
+    kind: ClickHouseBinding
+    listKind: ClickHouseBindingList
+    plural: clickhousebindings
     shortNames:
-    - pgbinding
-    singular: postgresbinding
+    - chbinding
+    singular: clickhousebinding
   scope: Namespaced
   versions:
   - additionalPrinterColumns:
@@ -37,7 +37,7 @@ spec:
     name: v1alpha1
     schema:
       openAPIV3Schema:
-        description: PostgresBinding is the Schema for the postgresbindings API
+        description: ClickHouseBinding is the Schema for the clickhousebindings API
         properties:
           apiVersion:
             description: 'APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources'
@@ -48,7 +48,7 @@ spec:
           metadata:
             type: object
           spec:
-            description: PostgresBindingSpec defines the desired state of PostgresBinding
+            description: ClickHouseBindingSpec defines the desired state of ClickHouseBinding
             properties:
               sourceRef:
                 description: SourceRef refers to the source app instance.

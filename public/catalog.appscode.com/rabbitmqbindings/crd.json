@@ -14,9 +14,13 @@
     "names": {
       "plural": "rabbitmqbindings",
       "singular": "rabbitmqbinding",
+      "shortNames": [
+        "rmbinding"
+      ],
       "kind": "RabbitMQBinding",
       "listKind": "RabbitMQBindingList",
       "categories": [
+        "binding",
         "kubedb",
         "appscode"
       ]

@@ -14,9 +14,13 @@
     "names": {
       "plural": "mongodbbindings",
       "singular": "mongodbbinding",
+      "shortNames": [
+        "mgbinding"
+      ],
       "kind": "MongoDBBinding",
       "listKind": "MongoDBBindingList",
       "categories": [
+        "binding",
         "kubedb",
         "appscode"
       ]

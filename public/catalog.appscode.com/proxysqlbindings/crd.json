@@ -14,9 +14,13 @@
     "names": {
       "plural": "proxysqlbindings",
       "singular": "proxysqlbinding",
+      "shortNames": [
+        "prxbinding"
+      ],
       "kind": "ProxySQLBinding",
       "listKind": "ProxySQLBindingList",
       "categories": [
+        "binding",
         "kubedb",
         "appscode"
       ]

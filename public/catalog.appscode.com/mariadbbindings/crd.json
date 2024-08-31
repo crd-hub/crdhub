@@ -14,9 +14,13 @@
     "names": {
       "plural": "mariadbbindings",
       "singular": "mariadbbinding",
+      "shortNames": [
+        "mdbinding"
+      ],
       "kind": "MariaDBBinding",
       "listKind": "MariaDBBindingList",
       "categories": [
+        "binding",
         "kubedb",
         "appscode"
       ]

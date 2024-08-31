@@ -14,9 +14,13 @@
     "names": {
       "plural": "postgresbindings",
       "singular": "postgresbinding",
+      "shortNames": [
+        "pgbinding"
+      ],
       "kind": "PostgresBinding",
       "listKind": "PostgresBindingList",
       "categories": [
+        "binding",
         "kubedb",
         "appscode"
       ]

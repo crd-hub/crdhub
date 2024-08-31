@@ -14,9 +14,13 @@
     "names": {
       "plural": "memcachedbindings",
       "singular": "memcachedbinding",
+      "shortNames": [
+        "mcbinding"
+      ],
       "kind": "MemcachedBinding",
       "listKind": "MemcachedBindingList",
       "categories": [
+        "binding",
         "kubedb",
         "appscode"
       ]

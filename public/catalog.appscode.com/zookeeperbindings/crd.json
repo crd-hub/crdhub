@@ -14,9 +14,13 @@
     "names": {
       "plural": "zookeeperbindings",
       "singular": "zookeeperbinding",
+      "shortNames": [
+        "zkbinding"
+      ],
       "kind": "ZooKeeperBinding",
       "listKind": "ZooKeeperBindingList",
       "categories": [
+        "binding",
         "kubedb",
         "appscode"
       ]

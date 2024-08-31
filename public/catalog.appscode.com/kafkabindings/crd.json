@@ -14,9 +14,13 @@
     "names": {
       "plural": "kafkabindings",
       "singular": "kafkabinding",
+      "shortNames": [
+        "kfbinding"
+      ],
       "kind": "KafkaBinding",
       "listKind": "KafkaBindingList",
       "categories": [
+        "binding",
         "kubedb",
         "appscode"
       ]

@@ -14,9 +14,13 @@
     "names": {
       "plural": "mssqlserverbindings",
       "singular": "mssqlserverbinding",
+      "shortNames": [
+        "msbinding"
+      ],
       "kind": "MSSQLServerBinding",
       "listKind": "MSSQLServerBindingList",
       "categories": [
+        "binding",
         "kubedb",
         "appscode"
       ]

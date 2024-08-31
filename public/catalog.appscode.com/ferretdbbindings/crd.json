@@ -14,9 +14,13 @@
     "names": {
       "plural": "ferretdbbindings",
       "singular": "ferretdbbinding",
+      "shortNames": [
+        "frbinding"
+      ],
       "kind": "FerretDBBinding",
       "listKind": "FerretDBBindingList",
       "categories": [
+        "binding",
         "kubedb",
         "appscode"
       ]

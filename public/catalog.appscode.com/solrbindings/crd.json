@@ -14,9 +14,13 @@
     "names": {
       "plural": "solrbindings",
       "singular": "solrbinding",
+      "shortNames": [
+        "slbinding"
+      ],
       "kind": "SolrBinding",
       "listKind": "SolrBindingList",
       "categories": [
+        "binding",
         "kubedb",
         "appscode"
       ]

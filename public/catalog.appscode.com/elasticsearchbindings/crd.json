@@ -14,9 +14,13 @@
     "names": {
       "plural": "elasticsearchbindings",
       "singular": "elasticsearchbinding",
+      "shortNames": [
+        "esbinding"
+      ],
       "kind": "ElasticsearchBinding",
       "listKind": "ElasticsearchBindingList",
       "categories": [
+        "binding",
         "kubedb",
         "appscode"
       ]
