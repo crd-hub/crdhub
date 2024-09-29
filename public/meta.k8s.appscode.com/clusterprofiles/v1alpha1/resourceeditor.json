@@ -1,0 +1,35 @@
+{
+  "kind": "ResourceEditor",
+  "apiVersion": "ui.k8s.appscode.com/v1alpha1",
+  "metadata": {
+    "name": "meta.k8s.appscode.com-v1alpha1-clusterprofiles",
+    "creationTimestamp": null,
+    "labels": {
+      "k8s.io/group": "meta.k8s.appscode.com",
+      "k8s.io/kind": "ClusterProfile",
+      "k8s.io/resource": "clusterprofiles",
+      "k8s.io/version": "v1alpha1"
+    }
+  },
+  "spec": {
+    "resource": {
+      "group": "meta.k8s.appscode.com",
+      "version": "v1alpha1",
+      "name": "clusterprofiles",
+      "kind": "ClusterProfile",
+      "scope": "Cluster"
+    },
+    "ui": {
+      "editor": {
+        "name": "metak8sappscodecom-clusterprofile-editor",
+        "version": "v0.6.0",
+        "sourceRef": {
+          "apiGroup": "source.toolkit.fluxcd.io",
+          "kind": "HelmRepository",
+          "name": "appscode-charts-oci"
+        }
+      },
+      "enforceQuota": false
+    }
+  }
+}

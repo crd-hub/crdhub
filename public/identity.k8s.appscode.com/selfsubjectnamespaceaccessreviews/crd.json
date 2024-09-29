@@ -102,7 +102,13 @@
               "status": {
                 "description": "Status is filled in by the server and indicates whether the request is allowed or not",
                 "type": "object",
+                "required": [
+                  "allNamespaces"
+                ],
                 "properties": {
+                  "allNamespaces": {
+                    "type": "boolean"
+                  },
                   "namespaces": {
                     "type": "array",
                     "items": {

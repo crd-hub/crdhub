@@ -1,0 +1,35 @@
+{
+  "kind": "ResourceEditor",
+  "apiVersion": "ui.k8s.appscode.com/v1alpha1",
+  "metadata": {
+    "name": "authentication.k8s.appscode.com-v1alpha1-accounts",
+    "creationTimestamp": null,
+    "labels": {
+      "k8s.io/group": "authentication.k8s.appscode.com",
+      "k8s.io/kind": "Account",
+      "k8s.io/resource": "accounts",
+      "k8s.io/version": "v1alpha1"
+    }
+  },
+  "spec": {
+    "resource": {
+      "group": "authentication.k8s.appscode.com",
+      "version": "v1alpha1",
+      "name": "accounts",
+      "kind": "Account",
+      "scope": "Cluster"
+    },
+    "ui": {
+      "editor": {
+        "name": "authenticationk8sappscodecom-account-editor",
+        "version": "v0.6.0",
+        "sourceRef": {
+          "apiGroup": "source.toolkit.fluxcd.io",
+          "kind": "HelmRepository",
+          "name": "appscode-charts-oci"
+        }
+      },
+      "enforceQuota": false
+    }
+  }
+}

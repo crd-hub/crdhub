@@ -54,6 +54,7 @@
               "spec": {
                 "type": "object",
                 "required": [
+                  "database",
                   "version"
                 ],
                 "properties": {
@@ -93,7 +94,6 @@
                     "properties": {
                       "authType": {
                         "type": "string",
-                        "default": "md5",
                         "enum": [
                           "md5",
                           "scram-sha-256",
@@ -102,56 +102,45 @@
                       },
                       "defaultPoolSize": {
                         "type": "integer",
-                        "format": "int64",
-                        "default": 20
+                        "format": "int64"
                       },
                       "ignoreStartupParameters": {
-                        "type": "string",
-                        "default": "empty"
+                        "type": "string"
                       },
                       "maxClientConnections": {
                         "type": "integer",
-                        "format": "int64",
-                        "default": 100
+                        "format": "int64"
                       },
                       "maxDBConnections": {
                         "type": "integer",
-                        "format": "int64",
-                        "default": 0
+                        "format": "int64"
                       },
                       "maxUserConnections": {
                         "type": "integer",
-                        "format": "int64",
-                        "default": 0
+                        "format": "int64"
                       },
                       "minPoolSize": {
                         "type": "integer",
-                        "format": "int64",
-                        "default": 0
+                        "format": "int64"
                       },
                       "poolMode": {
-                        "type": "string",
-                        "default": "session"
+                        "type": "string"
                       },
                       "port": {
                         "type": "integer",
-                        "format": "int32",
-                        "default": 5432
+                        "format": "int32"
                       },
                       "reservePoolSize": {
                         "type": "integer",
-                        "format": "int64",
-                        "default": 0
+                        "format": "int64"
                       },
                       "reservePoolTimeoutSeconds": {
                         "type": "integer",
-                        "format": "int64",
-                        "default": 5
+                        "format": "int64"
                       },
                       "statsPeriodSeconds": {
                         "type": "integer",
-                        "format": "int64",
-                        "default": 60
+                        "format": "int64"
                       }
                     }
                   },

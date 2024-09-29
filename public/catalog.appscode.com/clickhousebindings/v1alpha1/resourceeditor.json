@@ -18,6 +18,18 @@
       "name": "clickhousebindings",
       "kind": "ClickHouseBinding",
       "scope": "Namespaced"
+    },
+    "ui": {
+      "editor": {
+        "name": "catalogappscodecom-clickhousebinding-editor",
+        "version": "v0.6.0",
+        "sourceRef": {
+          "apiGroup": "source.toolkit.fluxcd.io",
+          "kind": "HelmRepository",
+          "name": "appscode-charts-oci"
+        }
+      },
+      "enforceQuota": false
     }
   }
 }

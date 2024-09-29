@@ -85,6 +85,16 @@
           },
           "x-kubernetes-map-type": "atomic"
         },
+        "configSecret": {
+          "type": "object",
+          "properties": {
+            "name": {
+              "type": "string",
+              "default": ""
+            }
+          },
+          "x-kubernetes-map-type": "atomic"
+        },
         "coordinator": {
           "type": "object",
           "properties": {

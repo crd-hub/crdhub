@@ -70,6 +70,9 @@
                     },
                     "x-kubernetes-map-type": "atomic"
                   },
+                  "clientAuthSSL": {
+                    "type": "string"
+                  },
                   "configSecret": {
                     "type": "object",
                     "properties": {
@@ -122,6 +125,16 @@
                         "default": 10
                       }
                     }
+                  },
+                  "keystoreSecret": {
+                    "type": "object",
+                    "properties": {
+                      "name": {
+                        "type": "string",
+                        "default": ""
+                      }
+                    },
+                    "x-kubernetes-map-type": "atomic"
                   },
                   "monitor": {
                     "type": "object",

@@ -22,7 +22,7 @@
     "ui": {
       "options": {
         "name": "kubedbcom-clickhouse-editor-options",
-        "version": "v0.5.0",
+        "version": "v0.6.0",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",
@@ -31,7 +31,7 @@
       },
       "editor": {
         "name": "kubedbcom-clickhouse-editor",
-        "version": "v0.5.0",
+        "version": "v0.6.0",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",
@@ -55,7 +55,7 @@
               "flow": "standalone-create",
               "editor": {
                 "name": "opskubedbcom-mysqlopsrequest-editor",
-                "version": "v0.5.0",
+                "version": "v0.6.0",
                 "sourceRef": {
                   "apiGroup": "source.toolkit.fluxcd.io",
                   "kind": "HelmRepository",
@@ -76,7 +76,7 @@
               "flow": "standalone-create",
               "editor": {
                 "name": "opskubedbcom-mysqlopsrequest-editor",
-                "version": "v0.5.0",
+                "version": "v0.6.0",
                 "sourceRef": {
                   "apiGroup": "source.toolkit.fluxcd.io",
                   "kind": "HelmRepository",
@@ -103,7 +103,7 @@
               "disabledTemplate": "{{ not (gt .spec.replicas 1) }}\n",
               "editor": {
                 "name": "opskubedbcom-mysqlopsrequest-editor",
-                "version": "v0.5.0",
+                "version": "v0.6.0",
                 "sourceRef": {
                   "apiGroup": "source.toolkit.fluxcd.io",
                   "kind": "HelmRepository",
@@ -124,7 +124,7 @@
               "flow": "standalone-create",
               "editor": {
                 "name": "opskubedbcom-mysqlopsrequest-editor",
-                "version": "v0.5.0",
+                "version": "v0.6.0",
                 "sourceRef": {
                   "apiGroup": "source.toolkit.fluxcd.io",
                   "kind": "HelmRepository",
@@ -145,7 +145,7 @@
               "flow": "standalone-create",
               "editor": {
                 "name": "opskubedbcom-mysqlopsrequest-editor",
-                "version": "v0.5.0",
+                "version": "v0.6.0",
                 "sourceRef": {
                   "apiGroup": "source.toolkit.fluxcd.io",
                   "kind": "HelmRepository",

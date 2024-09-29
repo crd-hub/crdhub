@@ -48,17 +48,6 @@
         "type"
       ],
       "properties": {
-        "UpdateVersion": {
-          "type": "object",
-          "properties": {
-            "readinessCriteria": {
-              "type": "object"
-            },
-            "targetVersion": {
-              "type": "string"
-            }
-          }
-        },
         "apply": {
           "type": "string",
           "default": "IfReady",
@@ -68,7 +57,36 @@
           ]
         },
         "configuration": {
-          "type": "object"
+          "type": "object",
+          "required": [
+            "pgbouncer"
+          ],
+          "properties": {
+            "pgbouncer": {
+              "type": "object",
+              "properties": {
+                "applyConfig": {
+                  "type": "object",
+                  "additionalProperties": {
+                    "type": "string"
+                  }
+                },
+                "configSecret": {
+                  "type": "object",
+                  "properties": {
+                    "name": {
+                      "type": "string",
+                      "default": ""
+                    }
+                  },
+                  "x-kubernetes-map-type": "atomic"
+                },
+                "removeCustomConfig": {
+                  "type": "boolean"
+                }
+              }
+            }
+          }
         },
         "horizontalScaling": {
           "type": "object",
@@ -257,8 +275,18 @@
           "type": "string",
           "enum": [
             "HorizontalScaling",
-            "VerticalScaling"
+            "VerticalScaling",
+            "UpdateVersion",
+            "Reconfigure"
           ]
+        },
+        "updateVersion": {
+          "type": "object",
+          "properties": {
+            "targetVersion": {
+              "type": "string"
+            }
+          }
         },
         "verticalScaling": {
           "type": "object",

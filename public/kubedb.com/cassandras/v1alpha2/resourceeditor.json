@@ -1,0 +1,35 @@
+{
+  "kind": "ResourceEditor",
+  "apiVersion": "ui.k8s.appscode.com/v1alpha1",
+  "metadata": {
+    "name": "kubedb.com-v1alpha2-cassandras",
+    "creationTimestamp": null,
+    "labels": {
+      "k8s.io/group": "kubedb.com",
+      "k8s.io/kind": "Cassandra",
+      "k8s.io/resource": "cassandras",
+      "k8s.io/version": "v1alpha2"
+    }
+  },
+  "spec": {
+    "resource": {
+      "group": "kubedb.com",
+      "version": "v1alpha2",
+      "name": "cassandras",
+      "kind": "Cassandra",
+      "scope": "Namespaced"
+    },
+    "ui": {
+      "editor": {
+        "name": "kubedbcom-cassandra-editor",
+        "version": "v0.6.0",
+        "sourceRef": {
+          "apiGroup": "source.toolkit.fluxcd.io",
+          "kind": "HelmRepository",
+          "name": "appscode-charts-oci"
+        }
+      },
+      "enforceQuota": false
+    }
+  }
+}

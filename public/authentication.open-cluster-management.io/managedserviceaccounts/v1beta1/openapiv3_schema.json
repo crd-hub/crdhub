@@ -56,12 +56,12 @@
           "type": "object",
           "properties": {
             "enabled": {
-              "description": "Enabled prescribes whether the ServiceAccount token will\nbe rotated from the upstream",
+              "description": "Enabled prescribes whether the ServiceAccount token will be rotated before it expires.\nDeprecated: All ServiceAccount tokens will be rotated before they expire regardless of this field.",
               "type": "boolean",
               "default": true
             },
             "validity": {
-              "description": "Validity is the duration for which the signed ServiceAccount token is valid.",
+              "description": "Validity is the duration of validity for requesting the signed ServiceAccount token.",
               "type": "string",
               "default": "8640h0m0s"
             }

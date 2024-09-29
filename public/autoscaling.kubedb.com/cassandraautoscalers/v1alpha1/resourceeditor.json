@@ -1,0 +1,35 @@
+{
+  "kind": "ResourceEditor",
+  "apiVersion": "ui.k8s.appscode.com/v1alpha1",
+  "metadata": {
+    "name": "autoscaling.kubedb.com-v1alpha1-cassandraautoscalers",
+    "creationTimestamp": null,
+    "labels": {
+      "k8s.io/group": "autoscaling.kubedb.com",
+      "k8s.io/kind": "CassandraAutoscaler",
+      "k8s.io/resource": "cassandraautoscalers",
+      "k8s.io/version": "v1alpha1"
+    }
+  },
+  "spec": {
+    "resource": {
+      "group": "autoscaling.kubedb.com",
+      "version": "v1alpha1",
+      "name": "cassandraautoscalers",
+      "kind": "CassandraAutoscaler",
+      "scope": "Namespaced"
+    },
+    "ui": {
+      "editor": {
+        "name": "autoscalingkubedbcom-cassandraautoscaler-editor",
+        "version": "v0.6.0",
+        "sourceRef": {
+          "apiGroup": "source.toolkit.fluxcd.io",
+          "kind": "HelmRepository",
+          "name": "appscode-charts-oci"
+        }
+      },
+      "enforceQuota": false
+    }
+  }
+}

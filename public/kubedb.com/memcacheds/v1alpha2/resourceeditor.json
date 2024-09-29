@@ -22,7 +22,7 @@
     "ui": {
       "options": {
         "name": "kubedbcom-memcached-editor-options",
-        "version": "v0.5.0",
+        "version": "v0.6.0",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",
@@ -31,7 +31,7 @@
       },
       "editor": {
         "name": "kubedbcom-memcached-editor",
-        "version": "v0.5.0",
+        "version": "v0.6.0",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",

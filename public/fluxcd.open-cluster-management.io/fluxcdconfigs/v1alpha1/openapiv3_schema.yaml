@@ -51,11 +51,13 @@ properties:
                                     items:
                                       type: string
                                     type: array
+                                    x-kubernetes-list-type: atomic
                                 required:
                                 - key
                                 - operator
                                 type: object
                               type: array
+                              x-kubernetes-list-type: atomic
                             matchFields:
                               items:
                                 properties:
@@ -67,11 +69,13 @@ properties:
                                     items:
                                       type: string
                                     type: array
+                                    x-kubernetes-list-type: atomic
                                 required:
                                 - key
                                 - operator
                                 type: object
                               type: array
+                              x-kubernetes-list-type: atomic
                           type: object
                           x-kubernetes-map-type: atomic
                         weight:
@@ -82,6 +86,7 @@ properties:
                       - weight
                       type: object
                     type: array
+                    x-kubernetes-list-type: atomic
                   requiredDuringSchedulingIgnoredDuringExecution:
                     properties:
                       nodeSelectorTerms:
@@ -98,11 +103,13 @@ properties:
                                     items:
                                       type: string
                                     type: array
+                                    x-kubernetes-list-type: atomic
                                 required:
                                 - key
                                 - operator
                                 type: object
                               type: array
+                              x-kubernetes-list-type: atomic
                             matchFields:
                               items:
                                 properties:
@@ -114,14 +121,17 @@ properties:
                                     items:
                                       type: string
                                     type: array
+                                    x-kubernetes-list-type: atomic
                                 required:
                                 - key
                                 - operator
                                 type: object
                               type: array
+                              x-kubernetes-list-type: atomic
                           type: object
                           x-kubernetes-map-type: atomic
                         type: array
+                        x-kubernetes-list-type: atomic
                     required:
                     - nodeSelectorTerms
                     type: object
@@ -147,11 +157,13 @@ properties:
                                         items:
                                           type: string
                                         type: array
+                                        x-kubernetes-list-type: atomic
                                     required:
                                     - key
                                     - operator
                                     type: object
                                   type: array
+                                  x-kubernetes-list-type: atomic
                                 matchLabels:
                                   additionalProperties:
                                     type: string
@@ -181,11 +193,13 @@ properties:
                                         items:
                                           type: string
                                         type: array
+                                        x-kubernetes-list-type: atomic
                                     required:
                                     - key
                                     - operator
                                     type: object
                                   type: array
+                                  x-kubernetes-list-type: atomic
                                 matchLabels:
                                   additionalProperties:
                                     type: string
@@ -196,6 +210,7 @@ properties:
                               items:
                                 type: string
                               type: array
+                              x-kubernetes-list-type: atomic
                             topologyKey:
                               type: string
                           required:
@@ -209,6 +224,7 @@ properties:
                       - weight
                       type: object
                     type: array
+                    x-kubernetes-list-type: atomic
                   requiredDuringSchedulingIgnoredDuringExecution:
                     items:
                       properties:
@@ -225,11 +241,13 @@ properties:
                                     items:
                                       type: string
                                     type: array
+                                    x-kubernetes-list-type: atomic
                                 required:
                                 - key
                                 - operator
                                 type: object
                               type: array
+                              x-kubernetes-list-type: atomic
                             matchLabels:
                               additionalProperties:
                                 type: string
@@ -259,11 +277,13 @@ properties:
                                     items:
                                       type: string
                                     type: array
+                                    x-kubernetes-list-type: atomic
                                 required:
                                 - key
                                 - operator
                                 type: object
                               type: array
+                              x-kubernetes-list-type: atomic
                             matchLabels:
                               additionalProperties:
                                 type: string
@@ -274,12 +294,14 @@ properties:
                           items:
                             type: string
                           type: array
+                          x-kubernetes-list-type: atomic
                         topologyKey:
                           type: string
                       required:
                       - topologyKey
                       type: object
                     type: array
+                    x-kubernetes-list-type: atomic
                 type: object
               podAntiAffinity:
                 properties:
@@ -301,11 +323,13 @@ properties:
                                         items:
                                           type: string
                                         type: array
+                                        x-kubernetes-list-type: atomic
                                     required:
                                     - key
                                     - operator
                                     type: object
                                   type: array
+                                  x-kubernetes-list-type: atomic
                                 matchLabels:
                                   additionalProperties:
                                     type: string
@@ -335,11 +359,13 @@ properties:
                                         items:
                                           type: string
                                         type: array
+                                        x-kubernetes-list-type: atomic
                                     required:
                                     - key
                                     - operator
                                     type: object
                                   type: array
+                                  x-kubernetes-list-type: atomic
                                 matchLabels:
                                   additionalProperties:
                                     type: string
@@ -350,6 +376,7 @@ properties:
                               items:
                                 type: string
                               type: array
+                              x-kubernetes-list-type: atomic
                             topologyKey:
                               type: string
                           required:
@@ -363,6 +390,7 @@ properties:
                       - weight
                       type: object
                     type: array
+                    x-kubernetes-list-type: atomic
                   requiredDuringSchedulingIgnoredDuringExecution:
                     items:
                       properties:
@@ -379,11 +407,13 @@ properties:
                                     items:
                                       type: string
                                     type: array
+                                    x-kubernetes-list-type: atomic
                                 required:
                                 - key
                                 - operator
                                 type: object
                               type: array
+                              x-kubernetes-list-type: atomic
                             matchLabels:
                               additionalProperties:
                                 type: string
@@ -413,11 +443,13 @@ properties:
                                     items:
                                       type: string
                                     type: array
+                                    x-kubernetes-list-type: atomic
                                 required:
                                 - key
                                 - operator
                                 type: object
                               type: array
+                              x-kubernetes-list-type: atomic
                             matchLabels:
                               additionalProperties:
                                 type: string
@@ -428,12 +460,14 @@ properties:
                           items:
                             type: string
                           type: array
+                          x-kubernetes-list-type: atomic
                         topologyKey:
                           type: string
                       required:
                       - topologyKey
                       type: object
                     type: array
+                    x-kubernetes-list-type: atomic
                 type: object
             type: object
           annotations:
@@ -506,11 +540,13 @@ properties:
                                     items:
                                       type: string
                                     type: array
+                                    x-kubernetes-list-type: atomic
                                 required:
                                 - key
                                 - operator
                                 type: object
                               type: array
+                              x-kubernetes-list-type: atomic
                             matchFields:
                               items:
                                 properties:
@@ -522,11 +558,13 @@ properties:
                                     items:
                                       type: string
                                     type: array
+                                    x-kubernetes-list-type: atomic
                                 required:
                                 - key
                                 - operator
                                 type: object
                               type: array
+                              x-kubernetes-list-type: atomic
                           type: object
                           x-kubernetes-map-type: atomic
                         weight:
@@ -537,6 +575,7 @@ properties:
                       - weight
                       type: object
                     type: array
+                    x-kubernetes-list-type: atomic
                   requiredDuringSchedulingIgnoredDuringExecution:
                     properties:
                       nodeSelectorTerms:
@@ -553,11 +592,13 @@ properties:
                                     items:
                                       type: string
                                     type: array
+                                    x-kubernetes-list-type: atomic
                                 required:
                                 - key
                                 - operator
                                 type: object
                               type: array
+                              x-kubernetes-list-type: atomic
                             matchFields:
                               items:
                                 properties:
@@ -569,14 +610,17 @@ properties:
                                     items:
                                       type: string
                                     type: array
+                                    x-kubernetes-list-type: atomic
                                 required:
                                 - key
                                 - operator
                                 type: object
                               type: array
+                              x-kubernetes-list-type: atomic
                           type: object
                           x-kubernetes-map-type: atomic
                         type: array
+                        x-kubernetes-list-type: atomic
                     required:
                     - nodeSelectorTerms
                     type: object
@@ -602,11 +646,13 @@ properties:
                                         items:
                                           type: string
                                         type: array
+                                        x-kubernetes-list-type: atomic
                                     required:
                                     - key
                                     - operator
                                     type: object
                                   type: array
+                                  x-kubernetes-list-type: atomic
                                 matchLabels:
                                   additionalProperties:
                                     type: string
@@ -636,11 +682,13 @@ properties:
                                         items:
                                           type: string
                                         type: array
+                                        x-kubernetes-list-type: atomic
                                     required:
                                     - key
                                     - operator
                                     type: object
                                   type: array
+                                  x-kubernetes-list-type: atomic
                                 matchLabels:
                                   additionalProperties:
                                     type: string
@@ -651,6 +699,7 @@ properties:
                               items:
                                 type: string
                               type: array
+                              x-kubernetes-list-type: atomic
                             topologyKey:
                               type: string
                           required:
@@ -664,6 +713,7 @@ properties:
                       - weight
                       type: object
                     type: array
+                    x-kubernetes-list-type: atomic
                   requiredDuringSchedulingIgnoredDuringExecution:
                     items:
                       properties:
@@ -680,11 +730,13 @@ properties:
                                     items:
                                       type: string
                                     type: array
+                                    x-kubernetes-list-type: atomic
                                 required:
                                 - key
                                 - operator
                                 type: object
                               type: array
+                              x-kubernetes-list-type: atomic
                             matchLabels:
                               additionalProperties:
                                 type: string
@@ -714,11 +766,13 @@ properties:
                                     items:
                                       type: string
                                     type: array
+                                    x-kubernetes-list-type: atomic
                                 required:
                                 - key
                                 - operator
                                 type: object
                               type: array
+                              x-kubernetes-list-type: atomic
                             matchLabels:
                               additionalProperties:
                                 type: string
@@ -729,12 +783,14 @@ properties:
                           items:
                             type: string
                           type: array
+                          x-kubernetes-list-type: atomic
                         topologyKey:
                           type: string
                       required:
                       - topologyKey
                       type: object
                     type: array
+                    x-kubernetes-list-type: atomic
                 type: object
               podAntiAffinity:
                 properties:
@@ -756,11 +812,13 @@ properties:
                                         items:
                                           type: string
                                         type: array
+                                        x-kubernetes-list-type: atomic
                                     required:
                                     - key
                                     - operator
                                     type: object
                                   type: array
+                                  x-kubernetes-list-type: atomic
                                 matchLabels:
                                   additionalProperties:
                                     type: string
@@ -790,11 +848,13 @@ properties:
                                         items:
                                           type: string
                                         type: array
+                                        x-kubernetes-list-type: atomic
                                     required:
                                     - key
                                     - operator
                                     type: object
                                   type: array
+                                  x-kubernetes-list-type: atomic
                                 matchLabels:
                                   additionalProperties:
                                     type: string
@@ -805,6 +865,7 @@ properties:
                               items:
                                 type: string
                               type: array
+                              x-kubernetes-list-type: atomic
                             topologyKey:
                               type: string
                           required:
@@ -818,6 +879,7 @@ properties:
                       - weight
                       type: object
                     type: array
+                    x-kubernetes-list-type: atomic
                   requiredDuringSchedulingIgnoredDuringExecution:
                     items:
                       properties:
@@ -834,11 +896,13 @@ properties:
                                     items:
                                       type: string
                                     type: array
+                                    x-kubernetes-list-type: atomic
                                 required:
                                 - key
                                 - operator
                                 type: object
                               type: array
+                              x-kubernetes-list-type: atomic
                             matchLabels:
                               additionalProperties:
                                 type: string
@@ -868,11 +932,13 @@ properties:
                                     items:
                                       type: string
                                     type: array
+                                    x-kubernetes-list-type: atomic
                                 required:
                                 - key
                                 - operator
                                 type: object
                               type: array
+                              x-kubernetes-list-type: atomic
                             matchLabels:
                               additionalProperties:
                                 type: string
@@ -883,12 +949,14 @@ properties:
                           items:
                             type: string
                           type: array
+                          x-kubernetes-list-type: atomic
                         topologyKey:
                           type: string
                       required:
                       - topologyKey
                       type: object
                     type: array
+                    x-kubernetes-list-type: atomic
                 type: object
             type: object
           annotations:
@@ -918,6 +986,7 @@ properties:
                         key:
                           type: string
                         name:
+                          default: ""
                           type: string
                         optional:
                           type: boolean
@@ -956,6 +1025,7 @@ properties:
                         key:
                           type: string
                         name:
+                          default: ""
                           type: string
                         optional:
                           type: boolean
@@ -1062,11 +1132,13 @@ properties:
                                     items:
                                       type: string
                                     type: array
+                                    x-kubernetes-list-type: atomic
                                 required:
                                 - key
                                 - operator
                                 type: object
                               type: array
+                              x-kubernetes-list-type: atomic
                             matchFields:
                               items:
                                 properties:
@@ -1078,11 +1150,13 @@ properties:
                                     items:
                                       type: string
                                     type: array
+                                    x-kubernetes-list-type: atomic
                                 required:
                                 - key
                                 - operator
                                 type: object
                               type: array
+                              x-kubernetes-list-type: atomic
                           type: object
                           x-kubernetes-map-type: atomic
                         weight:
@@ -1093,6 +1167,7 @@ properties:
                       - weight
                       type: object
                     type: array
+                    x-kubernetes-list-type: atomic
                   requiredDuringSchedulingIgnoredDuringExecution:
                     properties:
                       nodeSelectorTerms:
@@ -1109,11 +1184,13 @@ properties:
                                     items:
                                       type: string
                                     type: array
+                                    x-kubernetes-list-type: atomic
                                 required:
                                 - key
                                 - operator
                                 type: object
                               type: array
+                              x-kubernetes-list-type: atomic
                             matchFields:
                               items:
                                 properties:
@@ -1125,14 +1202,17 @@ properties:
                                     items:
                                       type: string
                                     type: array
+                                    x-kubernetes-list-type: atomic
                                 required:
                                 - key
                                 - operator
                                 type: object
                               type: array
+                              x-kubernetes-list-type: atomic
                           type: object
                           x-kubernetes-map-type: atomic
                         type: array
+                        x-kubernetes-list-type: atomic
                     required:
                     - nodeSelectorTerms
                     type: object
@@ -1158,11 +1238,13 @@ properties:
                                         items:
                                           type: string
                                         type: array
+                                        x-kubernetes-list-type: atomic
                                     required:
                                     - key
                                     - operator
                                     type: object
                                   type: array
+                                  x-kubernetes-list-type: atomic
                                 matchLabels:
                                   additionalProperties:
                                     type: string
@@ -1192,11 +1274,13 @@ properties:
                                         items:
                                           type: string
                                         type: array
+                                        x-kubernetes-list-type: atomic
                                     required:
                                     - key
                                     - operator
                                     type: object
                                   type: array
+                                  x-kubernetes-list-type: atomic
                                 matchLabels:
                                   additionalProperties:
                                     type: string
@@ -1207,6 +1291,7 @@ properties:
                               items:
                                 type: string
                               type: array
+                              x-kubernetes-list-type: atomic
                             topologyKey:
                               type: string
                           required:
@@ -1220,6 +1305,7 @@ properties:
                       - weight
                       type: object
                     type: array
+                    x-kubernetes-list-type: atomic
                   requiredDuringSchedulingIgnoredDuringExecution:
                     items:
                       properties:
@@ -1236,11 +1322,13 @@ properties:
                                     items:
                                       type: string
                                     type: array
+                                    x-kubernetes-list-type: atomic
                                 required:
                                 - key
                                 - operator
                                 type: object
                               type: array
+                              x-kubernetes-list-type: atomic
                             matchLabels:
                               additionalProperties:
                                 type: string
@@ -1270,11 +1358,13 @@ properties:
                                     items:
                                       type: string
                                     type: array
+                                    x-kubernetes-list-type: atomic
                                 required:
                                 - key
                                 - operator
                                 type: object
                               type: array
+                              x-kubernetes-list-type: atomic
                             matchLabels:
                               additionalProperties:
                                 type: string
@@ -1285,12 +1375,14 @@ properties:
                           items:
                             type: string
                           type: array
+                          x-kubernetes-list-type: atomic
                         topologyKey:
                           type: string
                       required:
                       - topologyKey
                       type: object
                     type: array
+                    x-kubernetes-list-type: atomic
                 type: object
               podAntiAffinity:
                 properties:
@@ -1312,11 +1404,13 @@ properties:
                                         items:
                                           type: string
                                         type: array
+                                        x-kubernetes-list-type: atomic
                                     required:
                                     - key
                                     - operator
                                     type: object
                                   type: array
+                                  x-kubernetes-list-type: atomic
                                 matchLabels:
                                   additionalProperties:
                                     type: string
@@ -1346,11 +1440,13 @@ properties:
                                         items:
                                           type: string
                                         type: array
+                                        x-kubernetes-list-type: atomic
                                     required:
                                     - key
                                     - operator
                                     type: object
                                   type: array
+                                  x-kubernetes-list-type: atomic
                                 matchLabels:
                                   additionalProperties:
                                     type: string
@@ -1361,6 +1457,7 @@ properties:
                               items:
                                 type: string
                               type: array
+                              x-kubernetes-list-type: atomic
                             topologyKey:
                               type: string
                           required:
@@ -1374,6 +1471,7 @@ properties:
                       - weight
                       type: object
                     type: array
+                    x-kubernetes-list-type: atomic
                   requiredDuringSchedulingIgnoredDuringExecution:
                     items:
                       properties:
@@ -1390,11 +1488,13 @@ properties:
                                     items:
                                       type: string
                                     type: array
+                                    x-kubernetes-list-type: atomic
                                 required:
                                 - key
                                 - operator
                                 type: object
                               type: array
+                              x-kubernetes-list-type: atomic
                             matchLabels:
                               additionalProperties:
                                 type: string
@@ -1424,11 +1524,13 @@ properties:
                                     items:
                                       type: string
                                     type: array
+                                    x-kubernetes-list-type: atomic
                                 required:
                                 - key
                                 - operator
                                 type: object
                               type: array
+                              x-kubernetes-list-type: atomic
                             matchLabels:
                               additionalProperties:
                                 type: string
@@ -1439,12 +1541,14 @@ properties:
                           items:
                             type: string
                           type: array
+                          x-kubernetes-list-type: atomic
                         topologyKey:
                           type: string
                       required:
                       - topologyKey
                       type: object
                     type: array
+                    x-kubernetes-list-type: atomic
                 type: object
             type: object
           annotations:
@@ -1474,6 +1578,7 @@ properties:
                         key:
                           type: string
                         name:
+                          default: ""
                           type: string
                         optional:
                           type: boolean
@@ -1512,6 +1617,7 @@ properties:
                         key:
                           type: string
                         name:
+                          default: ""
                           type: string
                         optional:
                           type: boolean
@@ -1600,6 +1706,7 @@ properties:
         items:
           properties:
             name:
+              default: ""
               type: string
           type: object
           x-kubernetes-map-type: atomic
@@ -1626,11 +1733,13 @@ properties:
                                     items:
                                       type: string
                                     type: array
+                                    x-kubernetes-list-type: atomic
                                 required:
                                 - key
                                 - operator
                                 type: object
                               type: array
+                              x-kubernetes-list-type: atomic
                             matchFields:
                               items:
                                 properties:
@@ -1642,11 +1751,13 @@ properties:
                                     items:
                                       type: string
                                     type: array
+                                    x-kubernetes-list-type: atomic
                                 required:
                                 - key
                                 - operator
                                 type: object
                               type: array
+                              x-kubernetes-list-type: atomic
                           type: object
                           x-kubernetes-map-type: atomic
                         weight:
@@ -1657,6 +1768,7 @@ properties:
                       - weight
                       type: object
                     type: array
+                    x-kubernetes-list-type: atomic
                   requiredDuringSchedulingIgnoredDuringExecution:
                     properties:
                       nodeSelectorTerms:
@@ -1673,11 +1785,13 @@ properties:
                                     items:
                                       type: string
                                     type: array
+                                    x-kubernetes-list-type: atomic
                                 required:
                                 - key
                                 - operator
                                 type: object
                               type: array
+                              x-kubernetes-list-type: atomic
                             matchFields:
                               items:
                                 properties:
@@ -1689,14 +1803,17 @@ properties:
                                     items:
                                       type: string
                                     type: array
+                                    x-kubernetes-list-type: atomic
                                 required:
                                 - key
                                 - operator
                                 type: object
                               type: array
+                              x-kubernetes-list-type: atomic
                           type: object
                           x-kubernetes-map-type: atomic
                         type: array
+                        x-kubernetes-list-type: atomic
                     required:
                     - nodeSelectorTerms
                     type: object
@@ -1722,11 +1839,13 @@ properties:
                                         items:
                                           type: string
                                         type: array
+                                        x-kubernetes-list-type: atomic
                                     required:
                                     - key
                                     - operator
                                     type: object
                                   type: array
+                                  x-kubernetes-list-type: atomic
                                 matchLabels:
                                   additionalProperties:
                                     type: string
@@ -1756,11 +1875,13 @@ properties:
                                         items:
                                           type: string
                                         type: array
+                                        x-kubernetes-list-type: atomic
                                     required:
                                     - key
                                     - operator
                                     type: object
                                   type: array
+                                  x-kubernetes-list-type: atomic
                                 matchLabels:
                                   additionalProperties:
                                     type: string
@@ -1771,6 +1892,7 @@ properties:
                               items:
                                 type: string
                               type: array
+                              x-kubernetes-list-type: atomic
                             topologyKey:
                               type: string
                           required:
@@ -1784,6 +1906,7 @@ properties:
                       - weight
                       type: object
                     type: array
+                    x-kubernetes-list-type: atomic
                   requiredDuringSchedulingIgnoredDuringExecution:
                     items:
                       properties:
@@ -1800,11 +1923,13 @@ properties:
                                     items:
                                       type: string
                                     type: array
+                                    x-kubernetes-list-type: atomic
                                 required:
                                 - key
                                 - operator
                                 type: object
                               type: array
+                              x-kubernetes-list-type: atomic
                             matchLabels:
                               additionalProperties:
                                 type: string
@@ -1834,11 +1959,13 @@ properties:
                                     items:
                                       type: string
                                     type: array
+                                    x-kubernetes-list-type: atomic
                                 required:
                                 - key
                                 - operator
                                 type: object
                               type: array
+                              x-kubernetes-list-type: atomic
                             matchLabels:
                               additionalProperties:
                                 type: string
@@ -1849,12 +1976,14 @@ properties:
                           items:
                             type: string
                           type: array
+                          x-kubernetes-list-type: atomic
                         topologyKey:
                           type: string
                       required:
                       - topologyKey
                       type: object
                     type: array
+                    x-kubernetes-list-type: atomic
                 type: object
               podAntiAffinity:
                 properties:
@@ -1876,11 +2005,13 @@ properties:
                                         items:
                                           type: string
                                         type: array
+                                        x-kubernetes-list-type: atomic
                                     required:
                                     - key
                                     - operator
                                     type: object
                                   type: array
+                                  x-kubernetes-list-type: atomic
                                 matchLabels:
                                   additionalProperties:
                                     type: string
@@ -1910,11 +2041,13 @@ properties:
                                         items:
                                           type: string
                                         type: array
+                                        x-kubernetes-list-type: atomic
                                     required:
                                     - key
                                     - operator
                                     type: object
                                   type: array
+                                  x-kubernetes-list-type: atomic
                                 matchLabels:
                                   additionalProperties:
                                     type: string
@@ -1925,6 +2058,7 @@ properties:
                               items:
                                 type: string
                               type: array
+                              x-kubernetes-list-type: atomic
                             topologyKey:
                               type: string
                           required:
@@ -1938,6 +2072,7 @@ properties:
                       - weight
                       type: object
                     type: array
+                    x-kubernetes-list-type: atomic
                   requiredDuringSchedulingIgnoredDuringExecution:
                     items:
                       properties:
@@ -1954,11 +2089,13 @@ properties:
                                     items:
                                       type: string
                                     type: array
+                                    x-kubernetes-list-type: atomic
                                 required:
                                 - key
                                 - operator
                                 type: object
                               type: array
+                              x-kubernetes-list-type: atomic
                             matchLabels:
                               additionalProperties:
                                 type: string
@@ -1988,11 +2125,13 @@ properties:
                                     items:
                                       type: string
                                     type: array
+                                    x-kubernetes-list-type: atomic
                                 required:
                                 - key
                                 - operator
                                 type: object
                               type: array
+                              x-kubernetes-list-type: atomic
                             matchLabels:
                               additionalProperties:
                                 type: string
@@ -2003,12 +2142,14 @@ properties:
                           items:
                             type: string
                           type: array
+                          x-kubernetes-list-type: atomic
                         topologyKey:
                           type: string
                       required:
                       - topologyKey
                       type: object
                     type: array
+                    x-kubernetes-list-type: atomic
                 type: object
             type: object
           annotations:
@@ -2038,6 +2179,7 @@ properties:
                         key:
                           type: string
                         name:
+                          default: ""
                           type: string
                         optional:
                           type: boolean
@@ -2076,6 +2218,7 @@ properties:
                         key:
                           type: string
                         name:
+                          default: ""
                           type: string
                         optional:
                           type: boolean
@@ -2184,11 +2327,13 @@ properties:
                                     items:
                                       type: string
                                     type: array
+                                    x-kubernetes-list-type: atomic
                                 required:
                                 - key
                                 - operator
                                 type: object
                               type: array
+                              x-kubernetes-list-type: atomic
                             matchFields:
                               items:
                                 properties:
@@ -2200,11 +2345,13 @@ properties:
                                     items:
                                       type: string
                                     type: array
+                                    x-kubernetes-list-type: atomic
                                 required:
                                 - key
                                 - operator
                                 type: object
                               type: array
+                              x-kubernetes-list-type: atomic
                           type: object
                           x-kubernetes-map-type: atomic
                         weight:
@@ -2215,6 +2362,7 @@ properties:
                       - weight
                       type: object
                     type: array
+                    x-kubernetes-list-type: atomic
                   requiredDuringSchedulingIgnoredDuringExecution:
                     properties:
                       nodeSelectorTerms:
@@ -2231,11 +2379,13 @@ properties:
                                     items:
                                       type: string
                                     type: array
+                                    x-kubernetes-list-type: atomic
                                 required:
                                 - key
                                 - operator
                                 type: object
                               type: array
+                              x-kubernetes-list-type: atomic
                             matchFields:
                               items:
                                 properties:
@@ -2247,14 +2397,17 @@ properties:
                                     items:
                                       type: string
                                     type: array
+                                    x-kubernetes-list-type: atomic
                                 required:
                                 - key
                                 - operator
                                 type: object
                               type: array
+                              x-kubernetes-list-type: atomic
                           type: object
                           x-kubernetes-map-type: atomic
                         type: array
+                        x-kubernetes-list-type: atomic
                     required:
                     - nodeSelectorTerms
                     type: object
@@ -2280,11 +2433,13 @@ properties:
                                         items:
                                           type: string
                                         type: array
+                                        x-kubernetes-list-type: atomic
                                     required:
                                     - key
                                     - operator
                                     type: object
                                   type: array
+                                  x-kubernetes-list-type: atomic
                                 matchLabels:
                                   additionalProperties:
                                     type: string
@@ -2314,11 +2469,13 @@ properties:
                                         items:
                                           type: string
                                         type: array
+                                        x-kubernetes-list-type: atomic
                                     required:
                                     - key
                                     - operator
                                     type: object
                                   type: array
+                                  x-kubernetes-list-type: atomic
                                 matchLabels:
                                   additionalProperties:
                                     type: string
@@ -2329,6 +2486,7 @@ properties:
                               items:
                                 type: string
                               type: array
+                              x-kubernetes-list-type: atomic
                             topologyKey:
                               type: string
                           required:
@@ -2342,6 +2500,7 @@ properties:
                       - weight
                       type: object
                     type: array
+                    x-kubernetes-list-type: atomic
                   requiredDuringSchedulingIgnoredDuringExecution:
                     items:
                       properties:
@@ -2358,11 +2517,13 @@ properties:
                                     items:
                                       type: string
                                     type: array
+                                    x-kubernetes-list-type: atomic
                                 required:
                                 - key
                                 - operator
                                 type: object
                               type: array
+                              x-kubernetes-list-type: atomic
                             matchLabels:
                               additionalProperties:
                                 type: string
@@ -2392,11 +2553,13 @@ properties:
                                     items:
                                       type: string
                                     type: array
+                                    x-kubernetes-list-type: atomic
                                 required:
                                 - key
                                 - operator
                                 type: object
                               type: array
+                              x-kubernetes-list-type: atomic
                             matchLabels:
                               additionalProperties:
                                 type: string
@@ -2407,12 +2570,14 @@ properties:
                           items:
                             type: string
                           type: array
+                          x-kubernetes-list-type: atomic
                         topologyKey:
                           type: string
                       required:
                       - topologyKey
                       type: object
                     type: array
+                    x-kubernetes-list-type: atomic
                 type: object
               podAntiAffinity:
                 properties:
@@ -2434,11 +2599,13 @@ properties:
                                         items:
                                           type: string
                                         type: array
+                                        x-kubernetes-list-type: atomic
                                     required:
                                     - key
                                     - operator
                                     type: object
                                   type: array
+                                  x-kubernetes-list-type: atomic
                                 matchLabels:
                                   additionalProperties:
                                     type: string
@@ -2468,11 +2635,13 @@ properties:
                                         items:
                                           type: string
                                         type: array
+                                        x-kubernetes-list-type: atomic
                                     required:
                                     - key
                                     - operator
                                     type: object
                                   type: array
+                                  x-kubernetes-list-type: atomic
                                 matchLabels:
                                   additionalProperties:
                                     type: string
@@ -2483,6 +2652,7 @@ properties:
                               items:
                                 type: string
                               type: array
+                              x-kubernetes-list-type: atomic
                             topologyKey:
                               type: string
                           required:
@@ -2496,6 +2666,7 @@ properties:
                       - weight
                       type: object
                     type: array
+                    x-kubernetes-list-type: atomic
                   requiredDuringSchedulingIgnoredDuringExecution:
                     items:
                       properties:
@@ -2512,11 +2683,13 @@ properties:
                                     items:
                                       type: string
                                     type: array
+                                    x-kubernetes-list-type: atomic
                                 required:
                                 - key
                                 - operator
                                 type: object
                               type: array
+                              x-kubernetes-list-type: atomic
                             matchLabels:
                               additionalProperties:
                                 type: string
@@ -2546,11 +2719,13 @@ properties:
                                     items:
                                       type: string
                                     type: array
+                                    x-kubernetes-list-type: atomic
                                 required:
                                 - key
                                 - operator
                                 type: object
                               type: array
+                              x-kubernetes-list-type: atomic
                             matchLabels:
                               additionalProperties:
                                 type: string
@@ -2561,12 +2736,14 @@ properties:
                           items:
                             type: string
                           type: array
+                          x-kubernetes-list-type: atomic
                         topologyKey:
                           type: string
                       required:
                       - topologyKey
                       type: object
                     type: array
+                    x-kubernetes-list-type: atomic
                 type: object
             type: object
           annotations:
@@ -2609,6 +2786,7 @@ properties:
                         key:
                           type: string
                         name:
+                          default: ""
                           type: string
                         optional:
                           type: boolean
@@ -2647,6 +2825,7 @@ properties:
                         key:
                           type: string
                         name:
+                          default: ""
                           type: string
                         optional:
                           type: boolean
@@ -2670,6 +2849,8 @@ properties:
                   type: string
                 readOnly:
                   type: boolean
+                recursiveReadOnly:
+                  type: string
                 subPath:
                   type: string
                 subPathExpr:
@@ -2797,11 +2978,13 @@ properties:
                                     items:
                                       type: string
                                     type: array
+                                    x-kubernetes-list-type: atomic
                                 required:
                                 - key
                                 - operator
                                 type: object
                               type: array
+                              x-kubernetes-list-type: atomic
                             matchFields:
                               items:
                                 properties:
@@ -2813,11 +2996,13 @@ properties:
                                     items:
                                       type: string
                                     type: array
+                                    x-kubernetes-list-type: atomic
                                 required:
                                 - key
                                 - operator
                                 type: object
                               type: array
+                              x-kubernetes-list-type: atomic
                           type: object
                           x-kubernetes-map-type: atomic
                         weight:
@@ -2828,6 +3013,7 @@ properties:
                       - weight
                       type: object
                     type: array
+                    x-kubernetes-list-type: atomic
                   requiredDuringSchedulingIgnoredDuringExecution:
                     properties:
                       nodeSelectorTerms:
@@ -2844,11 +3030,13 @@ properties:
                                     items:
                                       type: string
                                     type: array
+                                    x-kubernetes-list-type: atomic
                                 required:
                                 - key
                                 - operator
                                 type: object
                               type: array
+                              x-kubernetes-list-type: atomic
                             matchFields:
                               items:
                                 properties:
@@ -2860,14 +3048,17 @@ properties:
                                     items:
                                       type: string
                                     type: array
+                                    x-kubernetes-list-type: atomic
                                 required:
                                 - key
                                 - operator
                                 type: object
                               type: array
+                              x-kubernetes-list-type: atomic
                           type: object
                           x-kubernetes-map-type: atomic
                         type: array
+                        x-kubernetes-list-type: atomic
                     required:
                     - nodeSelectorTerms
                     type: object
@@ -2893,11 +3084,13 @@ properties:
                                         items:
                                           type: string
                                         type: array
+                                        x-kubernetes-list-type: atomic
                                     required:
                                     - key
                                     - operator
                                     type: object
                                   type: array
+                                  x-kubernetes-list-type: atomic
                                 matchLabels:
                                   additionalProperties:
                                     type: string
@@ -2927,11 +3120,13 @@ properties:
                                         items:
                                           type: string
                                         type: array
+                                        x-kubernetes-list-type: atomic
                                     required:
                                     - key
                                     - operator
                                     type: object
                                   type: array
+                                  x-kubernetes-list-type: atomic
                                 matchLabels:
                                   additionalProperties:
                                     type: string
@@ -2942,6 +3137,7 @@ properties:
                               items:
                                 type: string
                               type: array
+                              x-kubernetes-list-type: atomic
                             topologyKey:
                               type: string
                           required:
@@ -2955,6 +3151,7 @@ properties:
                       - weight
                       type: object
                     type: array
+                    x-kubernetes-list-type: atomic
                   requiredDuringSchedulingIgnoredDuringExecution:
                     items:
                       properties:
@@ -2971,11 +3168,13 @@ properties:
                                     items:
                                       type: string
                                     type: array
+                                    x-kubernetes-list-type: atomic
                                 required:
                                 - key
                                 - operator
                                 type: object
                               type: array
+                              x-kubernetes-list-type: atomic
                             matchLabels:
                               additionalProperties:
                                 type: string
@@ -3005,11 +3204,13 @@ properties:
                                     items:
                                       type: string
                                     type: array
+                                    x-kubernetes-list-type: atomic
                                 required:
                                 - key
                                 - operator
                                 type: object
                               type: array
+                              x-kubernetes-list-type: atomic
                             matchLabels:
                               additionalProperties:
                                 type: string
@@ -3020,12 +3221,14 @@ properties:
                           items:
                             type: string
                           type: array
+                          x-kubernetes-list-type: atomic
                         topologyKey:
                           type: string
                       required:
                       - topologyKey
                       type: object
                     type: array
+                    x-kubernetes-list-type: atomic
                 type: object
               podAntiAffinity:
                 properties:
@@ -3047,11 +3250,13 @@ properties:
                                         items:
                                           type: string
                                         type: array
+                                        x-kubernetes-list-type: atomic
                                     required:
                                     - key
                                     - operator
                                     type: object
                                   type: array
+                                  x-kubernetes-list-type: atomic
                                 matchLabels:
                                   additionalProperties:
                                     type: string
@@ -3081,11 +3286,13 @@ properties:
                                         items:
                                           type: string
                                         type: array
+                                        x-kubernetes-list-type: atomic
                                     required:
                                     - key
                                     - operator
                                     type: object
                                   type: array
+                                  x-kubernetes-list-type: atomic
                                 matchLabels:
                                   additionalProperties:
                                     type: string
@@ -3096,6 +3303,7 @@ properties:
                               items:
                                 type: string
                               type: array
+                              x-kubernetes-list-type: atomic
                             topologyKey:
                               type: string
                           required:
@@ -3109,6 +3317,7 @@ properties:
                       - weight
                       type: object
                     type: array
+                    x-kubernetes-list-type: atomic
                   requiredDuringSchedulingIgnoredDuringExecution:
                     items:
                       properties:
@@ -3125,11 +3334,13 @@ properties:
                                     items:
                                       type: string
                                     type: array
+                                    x-kubernetes-list-type: atomic
                                 required:
                                 - key
                                 - operator
                                 type: object
                               type: array
+                              x-kubernetes-list-type: atomic
                             matchLabels:
                               additionalProperties:
                                 type: string
@@ -3159,11 +3370,13 @@ properties:
                                     items:
                                       type: string
                                     type: array
+                                    x-kubernetes-list-type: atomic
                                 required:
                                 - key
                                 - operator
                                 type: object
                               type: array
+                              x-kubernetes-list-type: atomic
                             matchLabels:
                               additionalProperties:
                                 type: string
@@ -3174,12 +3387,14 @@ properties:
                           items:
                             type: string
                           type: array
+                          x-kubernetes-list-type: atomic
                         topologyKey:
                           type: string
                       required:
                       - topologyKey
                       type: object
                     type: array
+                    x-kubernetes-list-type: atomic
                 type: object
             type: object
           annotations:
@@ -3209,6 +3424,7 @@ properties:
                         key:
                           type: string
                         name:
+                          default: ""
                           type: string
                         optional:
                           type: boolean
@@ -3247,6 +3463,7 @@ properties:
                         key:
                           type: string
                         name:
+                          default: ""
                           type: string
                         optional:
                           type: boolean
@@ -3488,11 +3705,13 @@ properties:
                                     items:
                                       type: string
                                     type: array
+                                    x-kubernetes-list-type: atomic
                                 required:
                                 - key
                                 - operator
                                 type: object
                               type: array
+                              x-kubernetes-list-type: atomic
                             matchFields:
                               items:
                                 properties:
@@ -3504,11 +3723,13 @@ properties:
                                     items:
                                       type: string
                                     type: array
+                                    x-kubernetes-list-type: atomic
                                 required:
                                 - key
                                 - operator
                                 type: object
                               type: array
+                              x-kubernetes-list-type: atomic
                           type: object
                           x-kubernetes-map-type: atomic
                         weight:
@@ -3519,6 +3740,7 @@ properties:
                       - weight
                       type: object
                     type: array
+                    x-kubernetes-list-type: atomic
                   requiredDuringSchedulingIgnoredDuringExecution:
                     properties:
                       nodeSelectorTerms:
@@ -3535,11 +3757,13 @@ properties:
                                     items:
                                       type: string
                                     type: array
+                                    x-kubernetes-list-type: atomic
                                 required:
                                 - key
                                 - operator
                                 type: object
                               type: array
+                              x-kubernetes-list-type: atomic
                             matchFields:
                               items:
                                 properties:
@@ -3551,14 +3775,17 @@ properties:
                                     items:
                                       type: string
                                     type: array
+                                    x-kubernetes-list-type: atomic
                                 required:
                                 - key
                                 - operator
                                 type: object
                               type: array
+                              x-kubernetes-list-type: atomic
                           type: object
                           x-kubernetes-map-type: atomic
                         type: array
+                        x-kubernetes-list-type: atomic
                     required:
                     - nodeSelectorTerms
                     type: object
@@ -3584,11 +3811,13 @@ properties:
                                         items:
                                           type: string
                                         type: array
+                                        x-kubernetes-list-type: atomic
                                     required:
                                     - key
                                     - operator
                                     type: object
                                   type: array
+                                  x-kubernetes-list-type: atomic
                                 matchLabels:
                                   additionalProperties:
                                     type: string
@@ -3618,11 +3847,13 @@ properties:
                                         items:
                                           type: string
                                         type: array
+                                        x-kubernetes-list-type: atomic
                                     required:
                                     - key
                                     - operator
                                     type: object
                                   type: array
+                                  x-kubernetes-list-type: atomic
                                 matchLabels:
                                   additionalProperties:
                                     type: string
@@ -3633,6 +3864,7 @@ properties:
                               items:
                                 type: string
                               type: array
+                              x-kubernetes-list-type: atomic
                             topologyKey:
                               type: string
                           required:
@@ -3646,6 +3878,7 @@ properties:
                       - weight
                       type: object
                     type: array
+                    x-kubernetes-list-type: atomic
                   requiredDuringSchedulingIgnoredDuringExecution:
                     items:
                       properties:
@@ -3662,11 +3895,13 @@ properties:
                                     items:
                                       type: string
                                     type: array
+                                    x-kubernetes-list-type: atomic
                                 required:
                                 - key
                                 - operator
                                 type: object
                               type: array
+                              x-kubernetes-list-type: atomic
                             matchLabels:
                               additionalProperties:
                                 type: string
@@ -3696,11 +3931,13 @@ properties:
                                     items:
                                       type: string
                                     type: array
+                                    x-kubernetes-list-type: atomic
                                 required:
                                 - key
                                 - operator
                                 type: object
                               type: array
+                              x-kubernetes-list-type: atomic
                             matchLabels:
                               additionalProperties:
                                 type: string
@@ -3711,12 +3948,14 @@ properties:
                           items:
                             type: string
                           type: array
+                          x-kubernetes-list-type: atomic
                         topologyKey:
                           type: string
                       required:
                       - topologyKey
                       type: object
                     type: array
+                    x-kubernetes-list-type: atomic
                 type: object
               podAntiAffinity:
                 properties:
@@ -3738,11 +3977,13 @@ properties:
                                         items:
                                           type: string
                                         type: array
+                                        x-kubernetes-list-type: atomic
                                     required:
                                     - key
                                     - operator
                                     type: object
                                   type: array
+                                  x-kubernetes-list-type: atomic
                                 matchLabels:
                                   additionalProperties:
                                     type: string
@@ -3772,11 +4013,13 @@ properties:
                                         items:
                                           type: string
                                         type: array
+                                        x-kubernetes-list-type: atomic
                                     required:
                                     - key
                                     - operator
                                     type: object
                                   type: array
+                                  x-kubernetes-list-type: atomic
                                 matchLabels:
                                   additionalProperties:
                                     type: string
@@ -3787,6 +4030,7 @@ properties:
                               items:
                                 type: string
                               type: array
+                              x-kubernetes-list-type: atomic
                             topologyKey:
                               type: string
                           required:
@@ -3800,6 +4044,7 @@ properties:
                       - weight
                       type: object
                     type: array
+                    x-kubernetes-list-type: atomic
                   requiredDuringSchedulingIgnoredDuringExecution:
                     items:
                       properties:
@@ -3816,11 +4061,13 @@ properties:
                                     items:
                                       type: string
                                     type: array
+                                    x-kubernetes-list-type: atomic
                                 required:
                                 - key
                                 - operator
                                 type: object
                               type: array
+                              x-kubernetes-list-type: atomic
                             matchLabels:
                               additionalProperties:
                                 type: string
@@ -3850,11 +4097,13 @@ properties:
                                     items:
                                       type: string
                                     type: array
+                                    x-kubernetes-list-type: atomic
                                 required:
                                 - key
                                 - operator
                                 type: object
                               type: array
+                              x-kubernetes-list-type: atomic
                             matchLabels:
                               additionalProperties:
                                 type: string
@@ -3865,12 +4114,14 @@ properties:
                           items:
                             type: string
                           type: array
+                          x-kubernetes-list-type: atomic
                         topologyKey:
                           type: string
                       required:
                       - topologyKey
                       type: object
                     type: array
+                    x-kubernetes-list-type: atomic
                 type: object
             type: object
           annotations:
@@ -3900,6 +4151,7 @@ properties:
                         key:
                           type: string
                         name:
+                          default: ""
                           type: string
                         optional:
                           type: boolean
@@ -3938,6 +4190,7 @@ properties:
                         key:
                           type: string
                         name:
+                          default: ""
                           type: string
                         optional:
                           type: boolean

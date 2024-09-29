@@ -53,31 +53,36 @@
             "type": "array",
             "items": {
               "type": "string"
-            }
+            },
+            "x-kubernetes-list-type": "atomic"
           },
           "nonResourceURLs": {
             "type": "array",
             "items": {
               "type": "string"
-            }
+            },
+            "x-kubernetes-list-type": "atomic"
           },
           "resourceNames": {
             "type": "array",
             "items": {
               "type": "string"
-            }
+            },
+            "x-kubernetes-list-type": "atomic"
           },
           "resources": {
             "type": "array",
             "items": {
               "type": "string"
-            }
+            },
+            "x-kubernetes-list-type": "atomic"
           },
           "verbs": {
             "type": "array",
             "items": {
               "type": "string"
-            }
+            },
+            "x-kubernetes-list-type": "atomic"
           }
         }
       }
