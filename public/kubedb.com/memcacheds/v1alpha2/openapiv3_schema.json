@@ -5594,7 +5594,8 @@
                   "primary",
                   "standby",
                   "stats",
-                  "dashboard"
+                  "dashboard",
+                  "secondary"
                 ]
               },
               "metadata": {

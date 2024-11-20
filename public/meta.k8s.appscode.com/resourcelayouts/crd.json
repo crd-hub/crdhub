@@ -97,6 +97,9 @@
                           }
                         }
                       },
+                      "impersonate": {
+                        "type": "boolean"
+                      },
                       "kind": {
                         "type": "string",
                         "enum": [
@@ -406,6 +409,9 @@
                                         }
                                       }
                                     },
+                                    "impersonate": {
+                                      "type": "boolean"
+                                    },
                                     "kind": {
                                       "type": "string",
                                       "enum": [
@@ -713,6 +719,9 @@
                                       }
                                     }
                                   },
+                                  "impersonate": {
+                                    "type": "boolean"
+                                  },
                                   "kind": {
                                     "type": "string",
                                     "enum": [
@@ -994,6 +1003,9 @@
                                         }
                                       }
                                     }
+                                  },
+                                  "impersonate": {
+                                    "type": "boolean"
                                   },
                                   "kind": {
                                     "type": "string",
@@ -1321,6 +1333,9 @@
                             }
                           }
                         }
+                      },
+                      "impersonate": {
+                        "type": "boolean"
                       },
                       "kind": {
                         "type": "string",

@@ -22,7 +22,7 @@
     "ui": {
       "options": {
         "name": "kubedbcom-memcached-editor-options",
-        "version": "v0.6.0",
+        "version": "v0.10.0",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",
@@ -31,7 +31,7 @@
       },
       "editor": {
         "name": "kubedbcom-memcached-editor",
-        "version": "v0.6.0",
+        "version": "v0.10.0",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",
@@ -44,6 +44,27 @@
           "name": "Operations",
           "items": [
             {
+              "name": "Update Version",
+              "icons": [
+                {
+                  "src": "https://cdn.appscode.com/k8s/icons/action-icons/version.svg",
+                  "type": "image/svg+xml"
+                }
+              ],
+              "operationId": "create-opsrequest-upgrade",
+              "flow": "standalone-create",
+              "editor": {
+                "name": "opskubedbcom-memcachedopsrequest-editor",
+                "version": "v0.10.0",
+                "sourceRef": {
+                  "apiGroup": "source.toolkit.fluxcd.io",
+                  "kind": "HelmRepository",
+                  "name": "appscode-charts-oci"
+                }
+              },
+              "enforceQuota": false
+            },
+            {
               "name": "Restart",
               "icons": [
                 {
@@ -55,7 +76,7 @@
               "flow": "standalone-create",
               "editor": {
                 "name": "opskubedbcom-memcachedopsrequest-editor",
-                "version": "v0.6.0",
+                "version": "v0.10.0",
                 "sourceRef": {
                   "apiGroup": "source.toolkit.fluxcd.io",
                   "kind": "HelmRepository",
@@ -76,7 +97,7 @@
               "flow": "standalone-create",
               "editor": {
                 "name": "opskubedbcom-memcachedopsrequest-editor",
-                "version": "v0.6.0",
+                "version": "v0.10.0",
                 "sourceRef": {
                   "apiGroup": "source.toolkit.fluxcd.io",
                   "kind": "HelmRepository",
@@ -103,7 +124,7 @@
               "disabledTemplate": "{{ not (gt .spec.replicas 1) }}\n",
               "editor": {
                 "name": "opskubedbcom-memcachedopsrequest-editor",
-                "version": "v0.6.0",
+                "version": "v0.10.0",
                 "sourceRef": {
                   "apiGroup": "source.toolkit.fluxcd.io",
                   "kind": "HelmRepository",
@@ -124,7 +145,7 @@
               "flow": "standalone-create",
               "editor": {
                 "name": "opskubedbcom-memcachedopsrequest-editor",
-                "version": "v0.6.0",
+                "version": "v0.10.0",
                 "sourceRef": {
                   "apiGroup": "source.toolkit.fluxcd.io",
                   "kind": "HelmRepository",
@@ -132,6 +153,79 @@
                 }
               },
               "enforceQuota": true
+            }
+          ]
+        },
+        {
+          "name": "Autoscaling",
+          "items": [
+            {
+              "name": "Compute",
+              "icons": [
+                {
+                  "src": "https://cdn.appscode.com/k8s/icons/action-icons/compute.svg",
+                  "type": "image/svg+xml"
+                }
+              ],
+              "operationId": "create-opsrequest-compute",
+              "flow": "standalone-create",
+              "editor": {
+                "name": "autoscalingkubedbcom-memcachedautoscaler-editor",
+                "version": "v0.10.0",
+                "sourceRef": {
+                  "apiGroup": "source.toolkit.fluxcd.io",
+                  "kind": "HelmRepository",
+                  "name": "appscode-charts-oci"
+                }
+              },
+              "enforceQuota": true
+            }
+          ]
+        },
+        {
+          "name": "Security \u0026 Monitoring",
+          "items": [
+            {
+              "name": "TLS Configure",
+              "icons": [
+                {
+                  "src": "https://cdn.appscode.com/k8s/icons/action-icons/configure.svg",
+                  "type": "image/svg+xml"
+                }
+              ],
+              "operationId": "create-opsrequest-reconfiguretls",
+              "flow": "standalone-create",
+              "editor": {
+                "name": "opskubedbcom-memcachedopsrequest-editor",
+                "version": "v0.10.0",
+                "sourceRef": {
+                  "apiGroup": "source.toolkit.fluxcd.io",
+                  "kind": "HelmRepository",
+                  "name": "appscode-charts-oci"
+                }
+              },
+              "enforceQuota": false
+            },
+            {
+              "name": "Monitoring",
+              "icons": [
+                {
+                  "src": "https://cdn.appscode.com/k8s/icons/action-icons/monitor.svg",
+                  "type": "image/svg+xml"
+                }
+              ],
+              "operationId": "edit-self-monitoring",
+              "flow": "standalone-edit",
+              "editor": {
+                "name": "kubedbcom-memcached-editor",
+                "version": "v0.10.0",
+                "sourceRef": {
+                  "apiGroup": "source.toolkit.fluxcd.io",
+                  "kind": "HelmRepository",
+                  "name": "appscode-charts-oci"
+                }
+              },
+              "enforceQuota": false
             }
           ]
         }

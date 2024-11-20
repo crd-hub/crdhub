@@ -20,9 +20,18 @@
       "scope": "Namespaced"
     },
     "ui": {
+      "options": {
+        "name": "corekubestashcom-backupconfiguration-editor-options",
+        "version": "v0.10.0",
+        "sourceRef": {
+          "apiGroup": "source.toolkit.fluxcd.io",
+          "kind": "HelmRepository",
+          "name": "appscode-charts-oci"
+        }
+      },
       "editor": {
         "name": "corekubestashcom-backupconfiguration-editor",
-        "version": "v0.6.0",
+        "version": "v0.10.0",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",

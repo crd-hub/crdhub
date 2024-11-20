@@ -22,7 +22,7 @@
     "ui": {
       "options": {
         "name": "kubedbcom-pgpool-editor-options",
-        "version": "v0.6.0",
+        "version": "v0.10.0",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",
@@ -31,7 +31,7 @@
       },
       "editor": {
         "name": "kubedbcom-pgpool-editor",
-        "version": "v0.6.0",
+        "version": "v0.10.0",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",
@@ -55,7 +55,7 @@
               "flow": "standalone-create",
               "editor": {
                 "name": "opskubedbcom-pgpoolopsrequest-editor",
-                "version": "v0.6.0",
+                "version": "v0.10.0",
                 "sourceRef": {
                   "apiGroup": "source.toolkit.fluxcd.io",
                   "kind": "HelmRepository",
@@ -76,7 +76,7 @@
               "flow": "standalone-create",
               "editor": {
                 "name": "opskubedbcom-pgpoolopsrequest-editor",
-                "version": "v0.6.0",
+                "version": "v0.10.0",
                 "sourceRef": {
                   "apiGroup": "source.toolkit.fluxcd.io",
                   "kind": "HelmRepository",
@@ -103,7 +103,7 @@
               "disabledTemplate": "{{ not (gt .spec.replicas 1) }}\n",
               "editor": {
                 "name": "opskubedbcom-pgpoolopsrequest-editor",
-                "version": "v0.6.0",
+                "version": "v0.10.0",
                 "sourceRef": {
                   "apiGroup": "source.toolkit.fluxcd.io",
                   "kind": "HelmRepository",
@@ -124,28 +124,7 @@
               "flow": "standalone-create",
               "editor": {
                 "name": "opskubedbcom-pgpoolopsrequest-editor",
-                "version": "v0.6.0",
-                "sourceRef": {
-                  "apiGroup": "source.toolkit.fluxcd.io",
-                  "kind": "HelmRepository",
-                  "name": "appscode-charts-oci"
-                }
-              },
-              "enforceQuota": true
-            },
-            {
-              "name": "Expand Volume",
-              "icons": [
-                {
-                  "src": "https://cdn.appscode.com/k8s/icons/action-icons/expand.svg",
-                  "type": "image/svg+xml"
-                }
-              ],
-              "operationId": "create-opsrequest-volumeexpansion",
-              "flow": "standalone-create",
-              "editor": {
-                "name": "opskubedbcom-pgpoolopsrequest-editor",
-                "version": "v0.6.0",
+                "version": "v0.10.0",
                 "sourceRef": {
                   "apiGroup": "source.toolkit.fluxcd.io",
                   "kind": "HelmRepository",
@@ -171,28 +150,7 @@
               "flow": "standalone-create",
               "editor": {
                 "name": "autoscalingkubedbcom-pgpoolautoscaler-editor",
-                "version": "v0.6.0",
-                "sourceRef": {
-                  "apiGroup": "source.toolkit.fluxcd.io",
-                  "kind": "HelmRepository",
-                  "name": "appscode-charts-oci"
-                }
-              },
-              "enforceQuota": true
-            },
-            {
-              "name": "Storage",
-              "icons": [
-                {
-                  "src": "https://cdn.appscode.com/k8s/icons/action-icons/storage.svg",
-                  "type": "image/svg+xml"
-                }
-              ],
-              "operationId": "create-opsrequest-storage",
-              "flow": "standalone-create",
-              "editor": {
-                "name": "autoscalingkubedbcom-pgpoolautoscaler-editor",
-                "version": "v0.6.0",
+                "version": "v0.10.0",
                 "sourceRef": {
                   "apiGroup": "source.toolkit.fluxcd.io",
                   "kind": "HelmRepository",
@@ -218,7 +176,7 @@
               "flow": "standalone-create",
               "editor": {
                 "name": "opskubedbcom-pgpoolopsrequest-editor",
-                "version": "v0.6.0",
+                "version": "v0.10.0",
                 "sourceRef": {
                   "apiGroup": "source.toolkit.fluxcd.io",
                   "kind": "HelmRepository",
@@ -239,7 +197,7 @@
               "flow": "standalone-edit",
               "editor": {
                 "name": "kubedbcom-pgpool-editor",
-                "version": "v0.6.0",
+                "version": "v0.10.0",
                 "sourceRef": {
                   "apiGroup": "source.toolkit.fluxcd.io",
                   "kind": "HelmRepository",

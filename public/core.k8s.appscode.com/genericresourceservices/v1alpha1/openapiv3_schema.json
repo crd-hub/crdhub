@@ -92,6 +92,12 @@
             "displayName": {
               "type": "string"
             },
+            "hubClusterID": {
+              "type": "string"
+            },
+            "managerID": {
+              "type": "string"
+            },
             "name": {
               "type": "string"
             },
@@ -104,18 +110,17 @@
             "provider": {
               "type": "string",
               "enum": [
-                "Aws",
-                "Azure",
+                "AKS",
                 "DigitalOcean",
-                "GoogleCloud",
+                "EKS",
+                "Exoscale",
+                "Generic",
+                "GKE",
                 "Linode",
                 "Packet",
+                "Rancher",
                 "Scaleway",
-                "Vultr",
-                "BareMetal",
-                "KIND",
-                "Generic",
-                "Private"
+                "Vultr"
               ]
             },
             "uid": {

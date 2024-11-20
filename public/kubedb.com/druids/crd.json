@@ -54,9 +54,19 @@
                   "authSecret": {
                     "type": "object",
                     "properties": {
+                      "activeFrom": {
+                        "type": "string",
+                        "format": "date-time"
+                      },
+                      "externallyManaged": {
+                        "type": "boolean"
+                      },
                       "name": {
                         "type": "string",
                         "default": ""
+                      },
+                      "rotateAfter": {
+                        "type": "string"
                       }
                     },
                     "x-kubernetes-map-type": "atomic"
@@ -108,6 +118,9 @@
                     ]
                   },
                   "disableSecurity": {
+                    "type": "boolean"
+                  },
+                  "enableSSL": {
                     "type": "boolean"
                   },
                   "halted": {
@@ -195,6 +208,15 @@
                           "recoveryTimestamp": {
                             "type": "string",
                             "format": "date-time"
+                          },
+                          "replicationStrategy": {
+                            "type": "string",
+                            "enum": [
+                              "fscopy",
+                              "clone",
+                              "sync",
+                              "none"
+                            ]
                           }
                         }
                       },
@@ -1670,6 +1692,26 @@
                       }
                     }
                   },
+                  "keystoreCredSecret": {
+                    "type": "object",
+                    "properties": {
+                      "activeFrom": {
+                        "type": "string",
+                        "format": "date-time"
+                      },
+                      "externallyManaged": {
+                        "type": "boolean"
+                      },
+                      "name": {
+                        "type": "string",
+                        "default": ""
+                      },
+                      "rotateAfter": {
+                        "type": "string"
+                      }
+                    },
+                    "x-kubernetes-map-type": "atomic"
+                  },
                   "metadataStorage": {
                     "type": "object",
                     "required": [
@@ -2029,7 +2071,8 @@
                             "primary",
                             "standby",
                             "stats",
-                            "dashboard"
+                            "dashboard",
+                            "secondary"
                           ]
                         },
                         "metadata": {
@@ -2118,6 +2161,158 @@
                             }
                           }
                         }
+                      }
+                    }
+                  },
+                  "tls": {
+                    "type": "object",
+                    "properties": {
+                      "certificates": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "required": [
+                            "alias"
+                          ],
+                          "properties": {
+                            "alias": {
+                              "type": "string"
+                            },
+                            "dnsNames": {
+                              "type": "array",
+                              "items": {
+                                "type": "string"
+                              }
+                            },
+                            "duration": {
+                              "type": "string"
+                            },
+                            "emailAddresses": {
+                              "type": "array",
+                              "items": {
+                                "type": "string"
+                              }
+                            },
+                            "ipAddresses": {
+                              "type": "array",
+                              "items": {
+                                "type": "string"
+                              }
+                            },
+                            "issuerRef": {
+                              "type": "object",
+                              "required": [
+                                "kind",
+                                "name"
+                              ],
+                              "properties": {
+                                "apiGroup": {
+                                  "type": "string"
+                                },
+                                "kind": {
+                                  "type": "string"
+                                },
+                                "name": {
+                                  "type": "string"
+                                }
+                              },
+                              "x-kubernetes-map-type": "atomic"
+                            },
+                            "privateKey": {
+                              "type": "object",
+                              "properties": {
+                                "encoding": {
+                                  "type": "string",
+                                  "enum": [
+                                    "PKCS1",
+                                    "PKCS8"
+                                  ]
+                                }
+                              }
+                            },
+                            "renewBefore": {
+                              "type": "string"
+                            },
+                            "secretName": {
+                              "type": "string"
+                            },
+                            "subject": {
+                              "type": "object",
+                              "properties": {
+                                "countries": {
+                                  "type": "array",
+                                  "items": {
+                                    "type": "string"
+                                  }
+                                },
+                                "localities": {
+                                  "type": "array",
+                                  "items": {
+                                    "type": "string"
+                                  }
+                                },
+                                "organizationalUnits": {
+                                  "type": "array",
+                                  "items": {
+                                    "type": "string"
+                                  }
+                                },
+                                "organizations": {
+                                  "type": "array",
+                                  "items": {
+                                    "type": "string"
+                                  }
+                                },
+                                "postalCodes": {
+                                  "type": "array",
+                                  "items": {
+                                    "type": "string"
+                                  }
+                                },
+                                "provinces": {
+                                  "type": "array",
+                                  "items": {
+                                    "type": "string"
+                                  }
+                                },
+                                "serialNumber": {
+                                  "type": "string"
+                                },
+                                "streetAddresses": {
+                                  "type": "array",
+                                  "items": {
+                                    "type": "string"
+                                  }
+                                }
+                              }
+                            },
+                            "uris": {
+                              "type": "array",
+                              "items": {
+                                "type": "string"
+                              }
+                            }
+                          }
+                        }
+                      },
+                      "issuerRef": {
+                        "type": "object",
+                        "required": [
+                          "kind",
+                          "name"
+                        ],
+                        "properties": {
+                          "apiGroup": {
+                            "type": "string"
+                          },
+                          "kind": {
+                            "type": "string"
+                          },
+                          "name": {
+                            "type": "string"
+                          }
+                        },
+                        "x-kubernetes-map-type": "atomic"
                       }
                     }
                   },

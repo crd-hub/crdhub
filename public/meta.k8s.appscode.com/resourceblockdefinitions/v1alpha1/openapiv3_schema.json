@@ -104,6 +104,9 @@
                   }
                 }
               },
+              "impersonate": {
+                "type": "boolean"
+              },
               "kind": {
                 "type": "string",
                 "enum": [

@@ -22,7 +22,7 @@
     "ui": {
       "options": {
         "name": "kubedbcom-rabbitmq-editor-options",
-        "version": "v0.6.0",
+        "version": "v0.10.0",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",
@@ -31,7 +31,7 @@
       },
       "editor": {
         "name": "kubedbcom-rabbitmq-editor",
-        "version": "v0.6.0",
+        "version": "v0.10.0",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",
@@ -40,6 +40,31 @@
       },
       "enforceQuota": true,
       "actions": [
+        {
+          "items": [
+            {
+              "name": "Update Version",
+              "icons": [
+                {
+                  "src": "https://cdn.appscode.com/k8s/icons/action-icons/version.svg",
+                  "type": "image/svg+xml"
+                }
+              ],
+              "operationId": "create-opsrequest-upgrade",
+              "flow": "standalone-create",
+              "editor": {
+                "name": "opskubedbcom-rabbitmqopsrequest-editor",
+                "version": "v0.10.0",
+                "sourceRef": {
+                  "apiGroup": "source.toolkit.fluxcd.io",
+                  "kind": "HelmRepository",
+                  "name": "appscode-charts-oci"
+                }
+              },
+              "enforceQuota": false
+            }
+          ]
+        },
         {
           "name": "Operations",
           "items": [
@@ -54,8 +79,8 @@
               "operationId": "create-opsrequest-restart",
               "flow": "standalone-create",
               "editor": {
-                "name": "opskubedbcom-mysqlopsrequest-editor",
-                "version": "v0.6.0",
+                "name": "opskubedbcom-rabbitmqopsrequest-editor",
+                "version": "v0.10.0",
                 "sourceRef": {
                   "apiGroup": "source.toolkit.fluxcd.io",
                   "kind": "HelmRepository",
@@ -75,8 +100,8 @@
               "operationId": "create-opsrequest-reconfigure",
               "flow": "standalone-create",
               "editor": {
-                "name": "opskubedbcom-mysqlopsrequest-editor",
-                "version": "v0.6.0",
+                "name": "opskubedbcom-rabbitmqopsrequest-editor",
+                "version": "v0.10.0",
                 "sourceRef": {
                   "apiGroup": "source.toolkit.fluxcd.io",
                   "kind": "HelmRepository",
@@ -102,8 +127,8 @@
               "flow": "standalone-create",
               "disabledTemplate": "{{ not (gt .spec.replicas 1) }}\n",
               "editor": {
-                "name": "opskubedbcom-mysqlopsrequest-editor",
-                "version": "v0.6.0",
+                "name": "opskubedbcom-rabbitmqopsrequest-editor",
+                "version": "v0.10.0",
                 "sourceRef": {
                   "apiGroup": "source.toolkit.fluxcd.io",
                   "kind": "HelmRepository",
@@ -123,8 +148,8 @@
               "operationId": "create-opsrequest-verticalscaling",
               "flow": "standalone-create",
               "editor": {
-                "name": "opskubedbcom-mysqlopsrequest-editor",
-                "version": "v0.6.0",
+                "name": "opskubedbcom-rabbitmqopsrequest-editor",
+                "version": "v0.10.0",
                 "sourceRef": {
                   "apiGroup": "source.toolkit.fluxcd.io",
                   "kind": "HelmRepository",
@@ -144,8 +169,8 @@
               "operationId": "create-opsrequest-volumeexpansion",
               "flow": "standalone-create",
               "editor": {
-                "name": "opskubedbcom-mysqlopsrequest-editor",
-                "version": "v0.6.0",
+                "name": "opskubedbcom-rabbitmqopsrequest-editor",
+                "version": "v0.10.0",
                 "sourceRef": {
                   "apiGroup": "source.toolkit.fluxcd.io",
                   "kind": "HelmRepository",
@@ -170,8 +195,8 @@
               "operationId": "create-opsrequest-compute",
               "flow": "standalone-create",
               "editor": {
-                "name": "autoscalingkubedbcom-mysqlautoscaler-editor",
-                "version": "v0.6.0",
+                "name": "autoscalingkubedbcom-rabbitmqautoscaler-editor",
+                "version": "v0.10.0",
                 "sourceRef": {
                   "apiGroup": "source.toolkit.fluxcd.io",
                   "kind": "HelmRepository",
@@ -191,8 +216,8 @@
               "operationId": "create-opsrequest-storage",
               "flow": "standalone-create",
               "editor": {
-                "name": "autoscalingkubedbcom-mysqlautoscaler-editor",
-                "version": "v0.6.0",
+                "name": "autoscalingkubedbcom-rabbitmqautoscaler-editor",
+                "version": "v0.10.0",
                 "sourceRef": {
                   "apiGroup": "source.toolkit.fluxcd.io",
                   "kind": "HelmRepository",
@@ -217,8 +242,8 @@
               "operationId": "create-opsrequest-reconfiguretls",
               "flow": "standalone-create",
               "editor": {
-                "name": "opskubedbcom-mysqlopsrequest-editor",
-                "version": "v0.6.0",
+                "name": "opskubedbcom-rabbitmqopsrequest-editor",
+                "version": "v0.10.0",
                 "sourceRef": {
                   "apiGroup": "source.toolkit.fluxcd.io",
                   "kind": "HelmRepository",
@@ -238,8 +263,8 @@
               "operationId": "edit-self-monitoring",
               "flow": "standalone-edit",
               "editor": {
-                "name": "kubedbcom-mysql-editor",
-                "version": "v0.6.0",
+                "name": "kubedbcom-rabbitmq-editor",
+                "version": "v0.10.0",
                 "sourceRef": {
                   "apiGroup": "source.toolkit.fluxcd.io",
                   "kind": "HelmRepository",

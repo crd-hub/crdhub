@@ -45,8 +45,8 @@
       "type": "object",
       "required": [
         "databaseName",
-        "name",
-        "serverRef"
+        "databaseRef",
+        "name"
       ],
       "properties": {
         "allowedSubscribers": {
@@ -155,6 +155,16 @@
         "databaseName": {
           "type": "string"
         },
+        "databaseRef": {
+          "type": "object",
+          "properties": {
+            "name": {
+              "type": "string",
+              "default": ""
+            }
+          },
+          "x-kubernetes-map-type": "atomic"
+        },
         "deletionPolicy": {
           "type": "string",
           "default": "Delete",
@@ -191,16 +201,6 @@
         },
         "publishAllTables": {
           "type": "boolean"
-        },
-        "serverRef": {
-          "type": "object",
-          "properties": {
-            "name": {
-              "type": "string",
-              "default": ""
-            }
-          },
-          "x-kubernetes-map-type": "atomic"
         },
         "tables": {
           "type": "array",

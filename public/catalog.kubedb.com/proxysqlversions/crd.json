@@ -13,6 +13,9 @@
     "names": {
       "plural": "proxysqlversions",
       "singular": "proxysqlversion",
+      "shortNames": [
+        "prxversion"
+      ],
       "kind": "ProxySQLVersion",
       "listKind": "ProxySQLVersionList",
       "categories": [

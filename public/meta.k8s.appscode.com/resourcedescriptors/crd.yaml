@@ -164,6 +164,8 @@ spec:
                           type: string
                         connected:
                           properties:
+                            impersonate:
+                              type: boolean
                             query:
                               properties:
                                 byLabel:

@@ -20,18 +20,9 @@
       "scope": "Namespaced"
     },
     "ui": {
-      "options": {
-        "name": "kubedbcom-etcd-editor-options",
-        "version": "v0.5.0",
-        "sourceRef": {
-          "apiGroup": "source.toolkit.fluxcd.io",
-          "kind": "HelmRepository",
-          "name": "appscode-charts-oci"
-        }
-      },
       "editor": {
         "name": "kubedbcom-etcd-editor",
-        "version": "v0.5.0",
+        "version": "v0.10.0",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",
@@ -39,33 +30,6 @@
         }
       },
       "enforceQuota": false
-    },
-    "icons": [
-      {
-        "src": "https://cdn.appscode.com/k8s/icons/kubedb.com/etcds.svg",
-        "type": "image/svg+xml"
-      },
-      {
-        "src": "https://cdn.appscode.com/k8s/icons/kubedb.com/etcds.png",
-        "type": "image/png"
-      }
-    ],
-    "variants": [
-      {
-        "name": "default",
-        "selector": {
-          "matchExpressions": [
-            {
-              "key": "charts.x-helm.dev/is-default-preset",
-              "operator": "In",
-              "values": [
-                "true",
-                "kubedb"
-              ]
-            }
-          ]
-        }
-      }
-    ]
+    }
   }
 }

@@ -22,7 +22,7 @@
     "ui": {
       "options": {
         "name": "kubedbcom-pgbouncer-editor-options",
-        "version": "v0.6.0",
+        "version": "v0.10.0",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",
@@ -31,7 +31,7 @@
       },
       "editor": {
         "name": "kubedbcom-pgbouncer-editor",
-        "version": "v0.6.0",
+        "version": "v0.10.0",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",
@@ -44,18 +44,18 @@
           "name": "Operations",
           "items": [
             {
-              "name": "Restart",
+              "name": "Update Version",
               "icons": [
                 {
-                  "src": "https://cdn.appscode.com/k8s/icons/action-icons/restart.svg",
+                  "src": "https://cdn.appscode.com/k8s/icons/action-icons/version.svg",
                   "type": "image/svg+xml"
                 }
               ],
-              "operationId": "create-opsrequest-restart",
+              "operationId": "create-opsrequest-upgrade",
               "flow": "standalone-create",
               "editor": {
                 "name": "opskubedbcom-pgbounceropsrequest-editor",
-                "version": "v0.6.0",
+                "version": "v0.10.0",
                 "sourceRef": {
                   "apiGroup": "source.toolkit.fluxcd.io",
                   "kind": "HelmRepository",
@@ -76,7 +76,7 @@
               "flow": "standalone-create",
               "editor": {
                 "name": "opskubedbcom-pgbounceropsrequest-editor",
-                "version": "v0.6.0",
+                "version": "v0.10.0",
                 "sourceRef": {
                   "apiGroup": "source.toolkit.fluxcd.io",
                   "kind": "HelmRepository",
@@ -103,7 +103,7 @@
               "disabledTemplate": "{{ not (gt .spec.replicas 1) }}\n",
               "editor": {
                 "name": "opskubedbcom-pgbounceropsrequest-editor",
-                "version": "v0.6.0",
+                "version": "v0.10.0",
                 "sourceRef": {
                   "apiGroup": "source.toolkit.fluxcd.io",
                   "kind": "HelmRepository",
@@ -124,7 +124,7 @@
               "flow": "standalone-create",
               "editor": {
                 "name": "opskubedbcom-pgbounceropsrequest-editor",
-                "version": "v0.6.0",
+                "version": "v0.10.0",
                 "sourceRef": {
                   "apiGroup": "source.toolkit.fluxcd.io",
                   "kind": "HelmRepository",
@@ -150,7 +150,7 @@
               "flow": "standalone-create",
               "editor": {
                 "name": "autoscalingkubedbcom-pgbouncerautoscaler-editor",
-                "version": "v0.6.0",
+                "version": "v0.10.0",
                 "sourceRef": {
                   "apiGroup": "source.toolkit.fluxcd.io",
                   "kind": "HelmRepository",
@@ -158,6 +158,32 @@
                 }
               },
               "enforceQuota": true
+            }
+          ]
+        },
+        {
+          "name": "Security \u0026 Monitoring",
+          "items": [
+            {
+              "name": "Monitoring",
+              "icons": [
+                {
+                  "src": "https://cdn.appscode.com/k8s/icons/action-icons/monitor.svg",
+                  "type": "image/svg+xml"
+                }
+              ],
+              "operationId": "edit-self-monitoring",
+              "flow": "standalone-edit",
+              "editor": {
+                "name": "kubedbcom-pgbouncer-editor",
+                "version": "v0.10.0",
+                "sourceRef": {
+                  "apiGroup": "source.toolkit.fluxcd.io",
+                  "kind": "HelmRepository",
+                  "name": "appscode-charts-oci"
+                }
+              },
+              "enforceQuota": false
             }
           ]
         }

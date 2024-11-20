@@ -267,12 +267,19 @@
         "authSecret": {
           "type": "object",
           "properties": {
+            "activeFrom": {
+              "type": "string",
+              "format": "date-time"
+            },
             "externallyManaged": {
               "type": "boolean"
             },
             "name": {
               "type": "string",
               "default": ""
+            },
+            "rotateAfter": {
+              "type": "string"
             }
           },
           "x-kubernetes-map-type": "atomic"
@@ -400,6 +407,15 @@
                 "recoveryTimestamp": {
                   "type": "string",
                   "format": "date-time"
+                },
+                "replicationStrategy": {
+                  "type": "string",
+                  "enum": [
+                    "fscopy",
+                    "clone",
+                    "sync",
+                    "none"
+                  ]
                 }
               }
             },

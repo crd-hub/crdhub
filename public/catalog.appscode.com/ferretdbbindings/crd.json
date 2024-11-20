@@ -79,7 +79,7 @@
                 "properties": {
                   "conditions": {
                     "type": "array",
-                    "maxItems": 8,
+                    "maxItems": 12,
                     "items": {
                       "description": "Condition defines an observation of a object operational state.",
                       "type": "object",

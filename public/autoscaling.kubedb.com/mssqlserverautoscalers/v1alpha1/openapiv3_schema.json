@@ -165,9 +165,6 @@
                 "Always"
               ]
             },
-            "readinessCriteria": {
-              "type": "object"
-            },
             "timeout": {
               "type": "string"
             }

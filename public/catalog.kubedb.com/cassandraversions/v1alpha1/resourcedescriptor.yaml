@@ -47,6 +47,13 @@ spec:
               required:
               - image
               type: object
+            exporter:
+              properties:
+                image:
+                  type: string
+              required:
+              - image
+              type: object
             initContainer:
               properties:
                 image:
@@ -79,6 +86,7 @@ spec:
               type: string
           required:
           - db
+          - exporter
           - initContainer
           - version
           type: object

@@ -9,57 +9,6 @@ metadata:
     k8s.io/version: v1alpha2
   name: kubedb.com-v1alpha2-etcds
 spec:
-  connections:
-  - labels:
-    - offshoot
-    level: Controller
-    namespace:
-      path: metadata.namespace
-    selector:
-      matchLabels:
-        app.kubernetes.io/instance: '{.metadata.name}'
-        app.kubernetes.io/managed-by: kubedb.com
-        app.kubernetes.io/name: etcds.kubedb.com
-    target:
-      apiVersion: apps.k8s.appscode.com/v1
-      kind: PetSet
-    type: MatchSelector
-  - labels:
-    - connect_via
-    level: Controller
-    nameTemplate: '{.metadata.name}'
-    namespace:
-      path: metadata.namespace
-    target:
-      apiVersion: appcatalog.appscode.com/v1alpha1
-      kind: AppBinding
-    type: MatchName
-  - labels:
-    - catalog
-    references:
-    - '{.spec.version}'
-    target:
-      apiVersion: catalog.kubedb.com/v1alpha1
-      kind: EtcdVersion
-    type: MatchRef
-  - labels:
-    - cert_issuer
-    namespace:
-      path: metadata.namespace
-    references:
-    - '{.spec.tls.issuerRef.name},{.metadata.namespace}'
-    target:
-      apiVersion: cert-manager.io/v1
-      kind: Issuer
-    type: MatchRef
-  - labels:
-    - cert_issuer
-    references:
-    - '{.spec.tls.issuerRef.name}'
-    target:
-      apiVersion: cert-manager.io/v1
-      kind: ClusterIssuer
-    type: MatchRef
   resource:
     group: kubedb.com
     kind: Etcd
@@ -96,10 +45,15 @@ spec:
           properties:
             authSecret:
               properties:
+                activeFrom:
+                  format: date-time
+                  type: string
                 externallyManaged:
                   type: boolean
                 name:
                   default: ""
+                  type: string
+                rotateAfter:
                   type: string
               type: object
               x-kubernetes-map-type: atomic
@@ -145,6 +99,13 @@ spec:
                       type: object
                     recoveryTimestamp:
                       format: date-time
+                      type: string
+                    replicationStrategy:
+                      enum:
+                      - fscopy
+                      - clone
+                      - sync
+                      - none
                       type: string
                   required:
                   - recoveryTimestamp
@@ -3963,6 +3924,7 @@ spec:
                     - standby
                     - stats
                     - dashboard
+                    - secondary
                     type: string
                   metadata:
                     properties:

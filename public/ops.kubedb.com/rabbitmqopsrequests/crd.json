@@ -58,6 +58,21 @@
                       "Always"
                     ]
                   },
+                  "authentication": {
+                    "type": "object",
+                    "properties": {
+                      "secretRef": {
+                        "type": "object",
+                        "properties": {
+                          "name": {
+                            "type": "string",
+                            "default": ""
+                          }
+                        },
+                        "x-kubernetes-map-type": "atomic"
+                      }
+                    }
+                  },
                   "configuration": {
                     "type": "object",
                     "properties": {
@@ -274,7 +289,8 @@
                       "VolumeExpansion",
                       "Restart",
                       "Reconfigure",
-                      "ReconfigureTLS"
+                      "ReconfigureTLS",
+                      "RotateAuth"
                     ]
                   },
                   "updateVersion": {

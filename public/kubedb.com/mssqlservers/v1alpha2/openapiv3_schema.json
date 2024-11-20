@@ -75,12 +75,19 @@
         "authSecret": {
           "type": "object",
           "properties": {
+            "activeFrom": {
+              "type": "string",
+              "format": "date-time"
+            },
             "externallyManaged": {
               "type": "boolean"
             },
             "name": {
               "type": "string",
               "default": ""
+            },
+            "rotateAfter": {
+              "type": "string"
             }
           },
           "x-kubernetes-map-type": "atomic"
@@ -94,173 +101,6 @@
             }
           },
           "x-kubernetes-map-type": "atomic"
-        },
-        "coordinator": {
-          "type": "object",
-          "properties": {
-            "resources": {
-              "type": "object",
-              "properties": {
-                "claims": {
-                  "type": "array",
-                  "items": {
-                    "type": "object",
-                    "required": [
-                      "name"
-                    ],
-                    "properties": {
-                      "name": {
-                        "type": "string"
-                      }
-                    }
-                  },
-                  "x-kubernetes-list-map-keys": [
-                    "name"
-                  ],
-                  "x-kubernetes-list-type": "map"
-                },
-                "limits": {
-                  "type": "object",
-                  "additionalProperties": {
-                    "pattern": "^(\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))(([KMGTPE]i)|[numkMGTPE]|([eE](\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))))?$",
-                    "anyOf": [
-                      {
-                        "type": "integer"
-                      },
-                      {
-                        "type": "string"
-                      }
-                    ],
-                    "x-kubernetes-int-or-string": true
-                  }
-                },
-                "requests": {
-                  "type": "object",
-                  "additionalProperties": {
-                    "pattern": "^(\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))(([KMGTPE]i)|[numkMGTPE]|([eE](\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))))?$",
-                    "anyOf": [
-                      {
-                        "type": "integer"
-                      },
-                      {
-                        "type": "string"
-                      }
-                    ],
-                    "x-kubernetes-int-or-string": true
-                  }
-                }
-              }
-            },
-            "securityContext": {
-              "type": "object",
-              "properties": {
-                "allowPrivilegeEscalation": {
-                  "type": "boolean"
-                },
-                "appArmorProfile": {
-                  "type": "object",
-                  "required": [
-                    "type"
-                  ],
-                  "properties": {
-                    "localhostProfile": {
-                      "type": "string"
-                    },
-                    "type": {
-                      "type": "string"
-                    }
-                  }
-                },
-                "capabilities": {
-                  "type": "object",
-                  "properties": {
-                    "add": {
-                      "type": "array",
-                      "items": {
-                        "type": "string"
-                      },
-                      "x-kubernetes-list-type": "atomic"
-                    },
-                    "drop": {
-                      "type": "array",
-                      "items": {
-                        "type": "string"
-                      },
-                      "x-kubernetes-list-type": "atomic"
-                    }
-                  }
-                },
-                "privileged": {
-                  "type": "boolean"
-                },
-                "procMount": {
-                  "type": "string"
-                },
-                "readOnlyRootFilesystem": {
-                  "type": "boolean"
-                },
-                "runAsGroup": {
-                  "type": "integer",
-                  "format": "int64"
-                },
-                "runAsNonRoot": {
-                  "type": "boolean"
-                },
-                "runAsUser": {
-                  "type": "integer",
-                  "format": "int64"
-                },
-                "seLinuxOptions": {
-                  "type": "object",
-                  "properties": {
-                    "level": {
-                      "type": "string"
-                    },
-                    "role": {
-                      "type": "string"
-                    },
-                    "type": {
-                      "type": "string"
-                    },
-                    "user": {
-                      "type": "string"
-                    }
-                  }
-                },
-                "seccompProfile": {
-                  "type": "object",
-                  "required": [
-                    "type"
-                  ],
-                  "properties": {
-                    "localhostProfile": {
-                      "type": "string"
-                    },
-                    "type": {
-                      "type": "string"
-                    }
-                  }
-                },
-                "windowsOptions": {
-                  "type": "object",
-                  "properties": {
-                    "gmsaCredentialSpec": {
-                      "type": "string"
-                    },
-                    "gmsaCredentialSpecName": {
-                      "type": "string"
-                    },
-                    "hostProcess": {
-                      "type": "boolean"
-                    },
-                    "runAsUserName": {
-                      "type": "string"
-                    }
-                  }
-                }
-              }
-            }
-          }
         },
         "deletionPolicy": {
           "type": "string",
@@ -356,6 +196,15 @@
                 "recoveryTimestamp": {
                   "type": "string",
                   "format": "date-time"
+                },
+                "replicationStrategy": {
+                  "type": "string",
+                  "enum": [
+                    "fscopy",
+                    "clone",
+                    "sync",
+                    "none"
+                  ]
                 }
               }
             },
@@ -1828,194 +1677,6 @@
             },
             "waitForInitialRestore": {
               "type": "boolean"
-            }
-          }
-        },
-        "internalAuth": {
-          "type": "object",
-          "required": [
-            "endpointCert"
-          ],
-          "properties": {
-            "endpointCert": {
-              "type": "object",
-              "properties": {
-                "certificates": {
-                  "type": "array",
-                  "items": {
-                    "type": "object",
-                    "required": [
-                      "alias"
-                    ],
-                    "properties": {
-                      "alias": {
-                        "type": "string"
-                      },
-                      "dnsNames": {
-                        "type": "array",
-                        "items": {
-                          "type": "string"
-                        }
-                      },
-                      "duration": {
-                        "type": "string"
-                      },
-                      "emailAddresses": {
-                        "type": "array",
-                        "items": {
-                          "type": "string"
-                        }
-                      },
-                      "ipAddresses": {
-                        "type": "array",
-                        "items": {
-                          "type": "string"
-                        }
-                      },
-                      "issuerRef": {
-                        "type": "object",
-                        "required": [
-                          "kind",
-                          "name"
-                        ],
-                        "properties": {
-                          "apiGroup": {
-                            "type": "string"
-                          },
-                          "kind": {
-                            "type": "string"
-                          },
-                          "name": {
-                            "type": "string"
-                          }
-                        },
-                        "x-kubernetes-map-type": "atomic"
-                      },
-                      "privateKey": {
-                        "type": "object",
-                        "properties": {
-                          "encoding": {
-                            "type": "string",
-                            "enum": [
-                              "PKCS1",
-                              "PKCS8"
-                            ]
-                          }
-                        }
-                      },
-                      "renewBefore": {
-                        "type": "string"
-                      },
-                      "secretName": {
-                        "type": "string"
-                      },
-                      "subject": {
-                        "type": "object",
-                        "properties": {
-                          "countries": {
-                            "type": "array",
-                            "items": {
-                              "type": "string"
-                            }
-                          },
-                          "localities": {
-                            "type": "array",
-                            "items": {
-                              "type": "string"
-                            }
-                          },
-                          "organizationalUnits": {
-                            "type": "array",
-                            "items": {
-                              "type": "string"
-                            }
-                          },
-                          "organizations": {
-                            "type": "array",
-                            "items": {
-                              "type": "string"
-                            }
-                          },
-                          "postalCodes": {
-                            "type": "array",
-                            "items": {
-                              "type": "string"
-                            }
-                          },
-                          "provinces": {
-                            "type": "array",
-                            "items": {
-                              "type": "string"
-                            }
-                          },
-                          "serialNumber": {
-                            "type": "string"
-                          },
-                          "streetAddresses": {
-                            "type": "array",
-                            "items": {
-                              "type": "string"
-                            }
-                          }
-                        }
-                      },
-                      "uris": {
-                        "type": "array",
-                        "items": {
-                          "type": "string"
-                        }
-                      }
-                    }
-                  }
-                },
-                "issuerRef": {
-                  "type": "object",
-                  "required": [
-                    "kind",
-                    "name"
-                  ],
-                  "properties": {
-                    "apiGroup": {
-                      "type": "string"
-                    },
-                    "kind": {
-                      "type": "string"
-                    },
-                    "name": {
-                      "type": "string"
-                    }
-                  },
-                  "x-kubernetes-map-type": "atomic"
-                }
-              }
-            }
-          },
-          "nullable": true
-        },
-        "leaderElection": {
-          "type": "object",
-          "properties": {
-            "electionTick": {
-              "type": "integer",
-              "format": "int32",
-              "default": 10
-            },
-            "heartbeatTick": {
-              "type": "integer",
-              "format": "int32",
-              "default": 1
-            },
-            "period": {
-              "type": "string",
-              "default": "100ms"
-            },
-            "transferLeadershipInterval": {
-              "type": "string",
-              "default": "1s"
-            },
-            "transferLeadershipTimeout": {
-              "type": "string",
-              "default": "60s"
             }
           }
         },
@@ -7062,7 +6723,8 @@
                   "primary",
                   "standby",
                   "stats",
-                  "dashboard"
+                  "dashboard",
+                  "secondary"
                 ]
               },
               "metadata": {
@@ -7300,9 +6962,6 @@
         },
         "tls": {
           "type": "object",
-          "required": [
-            "clientTLS"
-          ],
           "properties": {
             "certificates": {
               "type": "array",
@@ -7466,6 +7125,33 @@
                   "type": "array",
                   "items": {
                     "type": "string"
+                  }
+                },
+                "leaderElection": {
+                  "type": "object",
+                  "properties": {
+                    "electionTick": {
+                      "type": "integer",
+                      "format": "int32",
+                      "default": 10
+                    },
+                    "heartbeatTick": {
+                      "type": "integer",
+                      "format": "int32",
+                      "default": 1
+                    },
+                    "period": {
+                      "type": "string",
+                      "default": "100ms"
+                    },
+                    "transferLeadershipInterval": {
+                      "type": "string",
+                      "default": "1s"
+                    },
+                    "transferLeadershipTimeout": {
+                      "type": "string",
+                      "default": "60s"
+                    }
                   }
                 }
               }

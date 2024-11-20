@@ -64,6 +64,9 @@
                       "ref"
                     ],
                     "properties": {
+                      "impersonate": {
+                        "type": "boolean"
+                      },
                       "query": {
                         "type": "object",
                         "required": [

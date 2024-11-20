@@ -47,13 +47,23 @@
                 "type": "object",
                 "required": [
                   "databaseName",
+                  "databaseRef",
                   "name",
-                  "publisher",
-                  "serverRef"
+                  "publisher"
                 ],
                 "properties": {
                   "databaseName": {
                     "type": "string"
+                  },
+                  "databaseRef": {
+                    "type": "object",
+                    "properties": {
+                      "name": {
+                        "type": "string",
+                        "default": ""
+                      }
+                    },
+                    "x-kubernetes-map-type": "atomic"
                   },
                   "deletionPolicy": {
                     "type": "string",
@@ -162,16 +172,6 @@
                         }
                       }
                     }
-                  },
-                  "serverRef": {
-                    "type": "object",
-                    "properties": {
-                      "name": {
-                        "type": "string",
-                        "default": ""
-                      }
-                    },
-                    "x-kubernetes-map-type": "atomic"
                   }
                 }
               },

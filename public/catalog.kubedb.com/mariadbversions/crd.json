@@ -14,7 +14,7 @@
       "plural": "mariadbversions",
       "singular": "mariadbversion",
       "shortNames": [
-        "mariaversion"
+        "mdversion"
       ],
       "kind": "MariaDBVersion",
       "listKind": "MariaDBVersionList",

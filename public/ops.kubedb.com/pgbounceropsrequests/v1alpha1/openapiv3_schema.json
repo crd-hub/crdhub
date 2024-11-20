@@ -44,7 +44,7 @@
     "spec": {
       "type": "object",
       "required": [
-        "serverRef",
+        "databaseRef",
         "type"
       ],
       "properties": {
@@ -55,6 +55,21 @@
             "IfReady",
             "Always"
           ]
+        },
+        "authentication": {
+          "type": "object",
+          "properties": {
+            "secretRef": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string",
+                  "default": ""
+                }
+              },
+              "x-kubernetes-map-type": "atomic"
+            }
+          }
         },
         "configuration": {
           "type": "object",
@@ -88,6 +103,16 @@
             }
           }
         },
+        "databaseRef": {
+          "type": "object",
+          "properties": {
+            "name": {
+              "type": "string",
+              "default": ""
+            }
+          },
+          "x-kubernetes-map-type": "atomic"
+        },
         "horizontalScaling": {
           "type": "object",
           "properties": {
@@ -99,16 +124,6 @@
         },
         "restart": {
           "type": "object"
-        },
-        "serverRef": {
-          "type": "object",
-          "properties": {
-            "name": {
-              "type": "string",
-              "default": ""
-            }
-          },
-          "x-kubernetes-map-type": "atomic"
         },
         "timeout": {
           "type": "string"
@@ -277,7 +292,9 @@
             "HorizontalScaling",
             "VerticalScaling",
             "UpdateVersion",
-            "Reconfigure"
+            "Reconfigure",
+            "RotateAuth",
+            "Restart"
           ]
         },
         "updateVersion": {

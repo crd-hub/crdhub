@@ -58,6 +58,21 @@
                       "Always"
                     ]
                   },
+                  "authentication": {
+                    "type": "object",
+                    "properties": {
+                      "secretRef": {
+                        "type": "object",
+                        "properties": {
+                          "name": {
+                            "type": "string",
+                            "default": ""
+                          }
+                        },
+                        "x-kubernetes-map-type": "atomic"
+                      }
+                    }
+                  },
                   "databaseRef": {
                     "type": "object",
                     "properties": {
@@ -266,7 +281,8 @@
                       "VerticalScaling",
                       "Restart",
                       "HorizontalScaling",
-                      "ReconfigureTLS"
+                      "ReconfigureTLS",
+                      "RotateAuth"
                     ]
                   },
                   "updateVersion": {

@@ -2760,10 +2760,15 @@ properties:
         type: object
       authSecret:
         properties:
+          activeFrom:
+            format: date-time
+            type: string
           externallyManaged:
             type: boolean
           name:
             default: ""
+            type: string
+          rotateAfter:
             type: string
         type: object
         x-kubernetes-map-type: atomic
@@ -5696,6 +5701,13 @@ properties:
                 type: object
               recoveryTimestamp:
                 format: date-time
+                type: string
+              replicationStrategy:
+                enum:
+                - fscopy
+                - clone
+                - sync
+                - none
                 type: string
             required:
             - recoveryTimestamp
@@ -9528,6 +9540,7 @@ properties:
               - standby
               - stats
               - dashboard
+              - secondary
               type: string
             metadata:
               properties:

@@ -1,0 +1,35 @@
+{
+  "kind": "ResourceEditor",
+  "apiVersion": "ui.k8s.appscode.com/v1alpha1",
+  "metadata": {
+    "name": "meta.k8s.appscode.com-v1alpha1-gatewayinfoes",
+    "creationTimestamp": null,
+    "labels": {
+      "k8s.io/group": "meta.k8s.appscode.com",
+      "k8s.io/kind": "GatewayInfo",
+      "k8s.io/resource": "gatewayinfoes",
+      "k8s.io/version": "v1alpha1"
+    }
+  },
+  "spec": {
+    "resource": {
+      "group": "meta.k8s.appscode.com",
+      "version": "v1alpha1",
+      "name": "gatewayinfoes",
+      "kind": "GatewayInfo",
+      "scope": "Namespaced"
+    },
+    "ui": {
+      "editor": {
+        "name": "metak8sappscodecom-gatewayinfo-editor",
+        "version": "v0.10.0",
+        "sourceRef": {
+          "apiGroup": "source.toolkit.fluxcd.io",
+          "kind": "HelmRepository",
+          "name": "appscode-charts-oci"
+        }
+      },
+      "enforceQuota": false
+    }
+  }
+}

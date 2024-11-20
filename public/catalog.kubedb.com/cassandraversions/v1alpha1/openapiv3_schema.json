@@ -41,11 +41,23 @@
       "type": "object",
       "required": [
         "db",
+        "exporter",
         "initContainer",
         "version"
       ],
       "properties": {
         "db": {
+          "type": "object",
+          "required": [
+            "image"
+          ],
+          "properties": {
+            "image": {
+              "type": "string"
+            }
+          }
+        },
+        "exporter": {
           "type": "object",
           "required": [
             "image"
