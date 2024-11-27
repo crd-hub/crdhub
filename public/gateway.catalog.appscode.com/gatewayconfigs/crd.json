@@ -498,17 +498,11 @@
                       "certgen": {
                         "type": "object",
                         "required": [
-                          "job",
-                          "rbac"
+                          "job"
                         ],
                         "properties": {
                           "job": {
                             "type": "object",
-                            "required": [
-                              "annotations",
-                              "resources",
-                              "ttlSecondsAfterFinished"
-                            ],
                             "properties": {
                               "annotations": {
                                 "type": "object",
@@ -2980,11 +2974,6 @@
                           },
                           "server": {
                             "type": "object",
-                            "required": [
-                              "registry",
-                              "repository",
-                              "tag"
-                            ],
                             "properties": {
                               "registry": {
                                 "type": "string"

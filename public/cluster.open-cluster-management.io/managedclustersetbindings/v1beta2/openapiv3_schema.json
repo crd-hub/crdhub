@@ -1,17 +1,17 @@
 {
   "$schema": "http://json-schema.org/schema#",
-  "description": "ManagedClusterSetBinding projects a ManagedClusterSet into a certain namespace. You can create a ManagedClusterSetBinding in a namespace and bind it to a ManagedClusterSet if both have a RBAC rules to CREATE on the virtual subresource of managedclustersets/bind. Workloads that you create in the same namespace can only be distributed to ManagedClusters in ManagedClusterSets that are bound in this namespace by higher-level controllers.",
+  "description": "ManagedClusterSetBinding projects a ManagedClusterSet into a certain namespace.\nYou can create a ManagedClusterSetBinding in a namespace and bind it to a\nManagedClusterSet if both have a RBAC rules to CREATE on the virtual subresource of managedclustersets/bind.\nWorkloads that you create in the same namespace can only be distributed to ManagedClusters\nin ManagedClusterSets that are bound in this namespace by higher-level controllers.",
   "type": "object",
   "properties": {
     "apiVersion": {
-      "description": "APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources",
+      "description": "APIVersion defines the versioned schema of this representation of an object.\nServers should convert recognized schemas to the latest internal value, and\nmay reject unrecognized values.\nMore info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources",
       "type": "string",
       "enum": [
         "cluster.open-cluster-management.io/v1beta2"
       ]
     },
     "kind": {
-      "description": "Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds",
+      "description": "Kind is a string value representing the REST resource this object represents.\nServers may infer this from the endpoint the client submits requests to.\nCannot be updated.\nIn CamelCase.\nMore info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds",
       "type": "string",
       "enum": [
         "ManagedClusterSetBinding"
@@ -49,7 +49,7 @@
       "type": "object",
       "properties": {
         "clusterSet": {
-          "description": "ClusterSet is the name of the ManagedClusterSet to bind. It must match the instance name of the ManagedClusterSetBinding and cannot change once created. User is allowed to set this field if they have an RBAC rule to CREATE on the virtual subresource of managedclustersets/bind.",
+          "description": "ClusterSet is the name of the ManagedClusterSet to bind. It must match the\ninstance name of the ManagedClusterSetBinding and cannot change once created.\nUser is allowed to set this field if they have an RBAC rule to CREATE on the\nvirtual subresource of managedclustersets/bind.",
           "type": "string",
           "minLength": 1
         }

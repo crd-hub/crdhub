@@ -1,17 +1,17 @@
 {
   "$schema": "http://json-schema.org/schema#",
-  "description": "ManagedClusterSet defines a group of ManagedClusters that user's workload can run on. A workload can be defined to deployed on a ManagedClusterSet, which mean: 1. The workload can run on any ManagedCluster in the ManagedClusterSet 2. The workload cannot run on any ManagedCluster outside the ManagedClusterSet 3. The service exposed by the workload can be shared in any ManagedCluster in the ManagedClusterSet \n In order to assign a ManagedCluster to a certian ManagedClusterSet, add a label with name `cluster.open-cluster-management.io/clusterset` on the ManagedCluster to refers to the ManagedClusterSet. User is not allow to add/remove this label on a ManagedCluster unless they have a RBAC rule to CREATE on a virtual subresource of managedclustersets/join. In order to update this label, user must have the permission on both the old and new ManagedClusterSet.",
+  "description": "ManagedClusterSet defines a group of ManagedClusters that you can run\nworkloads on. You can define a workload to be deployed on a ManagedClusterSet. See the following options  for the workload:\n- The workload can run on any ManagedCluster in the ManagedClusterSet\n- The workload cannot run on any ManagedCluster outside the ManagedClusterSet\n- The service exposed by the workload can be shared in any ManagedCluster in the ManagedClusterSet\n\n\nTo assign a ManagedCluster to a certain ManagedClusterSet, add a label with the name cluster.open-cluster-management.io/clusterset\non the ManagedCluster to refer to the ManagedClusterSet. You are not\nallowed to add or remove this label on a ManagedCluster unless you have an\nRBAC rule to CREATE on a virtual subresource of managedclustersets/join.\nTo update this label, you must have the permission on both\nthe old and new ManagedClusterSet.",
   "type": "object",
   "properties": {
     "apiVersion": {
-      "description": "APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources",
+      "description": "APIVersion defines the versioned schema of this representation of an object.\nServers should convert recognized schemas to the latest internal value, and\nmay reject unrecognized values.\nMore info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources",
       "type": "string",
       "enum": [
         "cluster.open-cluster-management.io/v1beta2"
       ]
     },
     "kind": {
-      "description": "Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds",
+      "description": "Kind is a string value representing the REST resource this object represents.\nServers may infer this from the endpoint the client submits requests to.\nCannot be updated.\nIn CamelCase.\nMore info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds",
       "type": "string",
       "enum": [
         "ManagedClusterSet"
@@ -64,7 +64,7 @@
                   "description": "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
                   "type": "array",
                   "items": {
-                    "description": "A label selector requirement is a selector that contains values, a key, and an operator that relates the key and values.",
+                    "description": "A label selector requirement is a selector that contains values, a key, and an operator that\nrelates the key and values.",
                     "type": "object",
                     "required": [
                       "key",
@@ -76,21 +76,23 @@
                         "type": "string"
                       },
                       "operator": {
-                        "description": "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+                        "description": "operator represents a key's relationship to a set of values.\nValid operators are In, NotIn, Exists and DoesNotExist.",
                         "type": "string"
                       },
                       "values": {
-                        "description": "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+                        "description": "values is an array of string values. If the operator is In or NotIn,\nthe values array must be non-empty. If the operator is Exists or DoesNotExist,\nthe values array must be empty. This array is replaced during a strategic\nmerge patch.",
                         "type": "array",
                         "items": {
                           "type": "string"
-                        }
+                        },
+                        "x-kubernetes-list-type": "atomic"
                       }
                     }
-                  }
+                  },
+                  "x-kubernetes-list-type": "atomic"
                 },
                 "matchLabels": {
-                  "description": "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is \"key\", the operator is \"In\", and the values array contains only \"value\". The requirements are ANDed.",
+                  "description": "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels\nmap is equivalent to an element of matchExpressions, whose key field is \"key\", the\noperator is \"In\", and the values array contains only \"value\". The requirements are ANDed.",
                   "type": "object",
                   "additionalProperties": {
                     "type": "string"
@@ -100,7 +102,7 @@
               "x-kubernetes-map-type": "atomic"
             },
             "selectorType": {
-              "description": "SelectorType could only be \"ExclusiveClusterSetLabel\" or \"LabelSelector\" \"ExclusiveClusterSetLabel\" means to use label \"cluster.open-cluster-management.io/clusterset:\u003cManagedClusterSet Name\u003e\"\" to select target clusters. \"LabelSelector\" means use labelSelector to select target managedClusters",
+              "description": "SelectorType could only be \"ExclusiveClusterSetLabel\" or \"LabelSelector\"\n\"ExclusiveClusterSetLabel\" means to use label \"cluster.open-cluster-management.io/clusterset:\u003cManagedClusterSet Name\u003e\"\" to select target clusters.\n\"LabelSelector\" means use labelSelector to select target managedClusters",
               "type": "string",
               "default": "ExclusiveClusterSetLabel",
               "enum": [
