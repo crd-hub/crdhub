@@ -249,6 +249,32 @@
               "enforceQuota": false
             }
           ]
+        },
+        {
+          "name": "Extras",
+          "items": [
+            {
+              "name": "Expose via Gateway",
+              "icons": [
+                {
+                  "src": "https://cdn.appscode.com/k8s/icons/action-icons/configure.svg",
+                  "type": "image/svg+xml"
+                }
+              ],
+              "operationId": "edit-self-binding",
+              "flow": "standalone-edit",
+              "editor": {
+                "name": "kubedbcom-kafka-editor",
+                "version": "v0.11.0",
+                "sourceRef": {
+                  "apiGroup": "source.toolkit.fluxcd.io",
+                  "kind": "HelmRepository",
+                  "name": "appscode-charts-oci"
+                }
+              },
+              "enforceQuota": false
+            }
+          ]
         }
       ]
     },

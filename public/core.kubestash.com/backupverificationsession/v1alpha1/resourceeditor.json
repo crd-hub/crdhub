@@ -1,0 +1,35 @@
+{
+  "kind": "ResourceEditor",
+  "apiVersion": "ui.k8s.appscode.com/v1alpha1",
+  "metadata": {
+    "name": "core.kubestash.com-v1alpha1-backupverificationsession",
+    "creationTimestamp": null,
+    "labels": {
+      "k8s.io/group": "core.kubestash.com",
+      "k8s.io/kind": "BackupVerificationSession",
+      "k8s.io/resource": "backupverificationsession",
+      "k8s.io/version": "v1alpha1"
+    }
+  },
+  "spec": {
+    "resource": {
+      "group": "core.kubestash.com",
+      "version": "v1alpha1",
+      "name": "backupverificationsession",
+      "kind": "BackupVerificationSession",
+      "scope": "Namespaced"
+    },
+    "ui": {
+      "editor": {
+        "name": "corekubestashcom-backupverificationsession-editor",
+        "version": "v0.11.0",
+        "sourceRef": {
+          "apiGroup": "source.toolkit.fluxcd.io",
+          "kind": "HelmRepository",
+          "name": "appscode-charts-oci"
+        }
+      },
+      "enforceQuota": false
+    }
+  }
+}

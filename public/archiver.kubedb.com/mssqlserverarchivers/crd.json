@@ -9079,6 +9079,1763 @@
                       }
                     }
                   },
+                  "logBackup": {
+                    "type": "object",
+                    "properties": {
+                      "configSecret": {
+                        "type": "object",
+                        "required": [
+                          "envToSecretKey",
+                          "name"
+                        ],
+                        "properties": {
+                          "envToSecretKey": {
+                            "type": "object",
+                            "additionalProperties": {
+                              "type": "string"
+                            }
+                          },
+                          "name": {
+                            "type": "string"
+                          }
+                        }
+                      },
+                      "failedLogHistoryLimit": {
+                        "type": "integer",
+                        "format": "int32",
+                        "default": 5
+                      },
+                      "runtimeSettings": {
+                        "type": "object",
+                        "properties": {
+                          "container": {
+                            "type": "object",
+                            "properties": {
+                              "env": {
+                                "type": "array",
+                                "items": {
+                                  "type": "object",
+                                  "required": [
+                                    "name"
+                                  ],
+                                  "properties": {
+                                    "name": {
+                                      "type": "string"
+                                    },
+                                    "value": {
+                                      "type": "string"
+                                    },
+                                    "valueFrom": {
+                                      "type": "object",
+                                      "properties": {
+                                        "configMapKeyRef": {
+                                          "type": "object",
+                                          "required": [
+                                            "key"
+                                          ],
+                                          "properties": {
+                                            "key": {
+                                              "type": "string"
+                                            },
+                                            "name": {
+                                              "type": "string",
+                                              "default": ""
+                                            },
+                                            "optional": {
+                                              "type": "boolean"
+                                            }
+                                          },
+                                          "x-kubernetes-map-type": "atomic"
+                                        },
+                                        "fieldRef": {
+                                          "type": "object",
+                                          "required": [
+                                            "fieldPath"
+                                          ],
+                                          "properties": {
+                                            "apiVersion": {
+                                              "type": "string"
+                                            },
+                                            "fieldPath": {
+                                              "type": "string"
+                                            }
+                                          },
+                                          "x-kubernetes-map-type": "atomic"
+                                        },
+                                        "resourceFieldRef": {
+                                          "type": "object",
+                                          "required": [
+                                            "resource"
+                                          ],
+                                          "properties": {
+                                            "containerName": {
+                                              "type": "string"
+                                            },
+                                            "divisor": {
+                                              "pattern": "^(\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))(([KMGTPE]i)|[numkMGTPE]|([eE](\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))))?$",
+                                              "anyOf": [
+                                                {
+                                                  "type": "integer"
+                                                },
+                                                {
+                                                  "type": "string"
+                                                }
+                                              ],
+                                              "x-kubernetes-int-or-string": true
+                                            },
+                                            "resource": {
+                                              "type": "string"
+                                            }
+                                          },
+                                          "x-kubernetes-map-type": "atomic"
+                                        },
+                                        "secretKeyRef": {
+                                          "type": "object",
+                                          "required": [
+                                            "key"
+                                          ],
+                                          "properties": {
+                                            "key": {
+                                              "type": "string"
+                                            },
+                                            "name": {
+                                              "type": "string",
+                                              "default": ""
+                                            },
+                                            "optional": {
+                                              "type": "boolean"
+                                            }
+                                          },
+                                          "x-kubernetes-map-type": "atomic"
+                                        }
+                                      }
+                                    }
+                                  }
+                                }
+                              },
+                              "envFrom": {
+                                "type": "array",
+                                "items": {
+                                  "type": "object",
+                                  "properties": {
+                                    "configMapRef": {
+                                      "type": "object",
+                                      "properties": {
+                                        "name": {
+                                          "type": "string",
+                                          "default": ""
+                                        },
+                                        "optional": {
+                                          "type": "boolean"
+                                        }
+                                      },
+                                      "x-kubernetes-map-type": "atomic"
+                                    },
+                                    "prefix": {
+                                      "type": "string"
+                                    },
+                                    "secretRef": {
+                                      "type": "object",
+                                      "properties": {
+                                        "name": {
+                                          "type": "string",
+                                          "default": ""
+                                        },
+                                        "optional": {
+                                          "type": "boolean"
+                                        }
+                                      },
+                                      "x-kubernetes-map-type": "atomic"
+                                    }
+                                  }
+                                }
+                              },
+                              "ionice": {
+                                "type": "object",
+                                "properties": {
+                                  "class": {
+                                    "type": "integer",
+                                    "format": "int32"
+                                  },
+                                  "classData": {
+                                    "type": "integer",
+                                    "format": "int32"
+                                  }
+                                }
+                              },
+                              "lifecycle": {
+                                "type": "object",
+                                "properties": {
+                                  "postStart": {
+                                    "type": "object",
+                                    "properties": {
+                                      "exec": {
+                                        "type": "object",
+                                        "properties": {
+                                          "command": {
+                                            "type": "array",
+                                            "items": {
+                                              "type": "string"
+                                            },
+                                            "x-kubernetes-list-type": "atomic"
+                                          }
+                                        }
+                                      },
+                                      "httpGet": {
+                                        "type": "object",
+                                        "required": [
+                                          "port"
+                                        ],
+                                        "properties": {
+                                          "host": {
+                                            "type": "string"
+                                          },
+                                          "httpHeaders": {
+                                            "type": "array",
+                                            "items": {
+                                              "type": "object",
+                                              "required": [
+                                                "name",
+                                                "value"
+                                              ],
+                                              "properties": {
+                                                "name": {
+                                                  "type": "string"
+                                                },
+                                                "value": {
+                                                  "type": "string"
+                                                }
+                                              }
+                                            },
+                                            "x-kubernetes-list-type": "atomic"
+                                          },
+                                          "path": {
+                                            "type": "string"
+                                          },
+                                          "port": {
+                                            "anyOf": [
+                                              {
+                                                "type": "integer"
+                                              },
+                                              {
+                                                "type": "string"
+                                              }
+                                            ],
+                                            "x-kubernetes-int-or-string": true
+                                          },
+                                          "scheme": {
+                                            "type": "string"
+                                          }
+                                        }
+                                      },
+                                      "sleep": {
+                                        "type": "object",
+                                        "required": [
+                                          "seconds"
+                                        ],
+                                        "properties": {
+                                          "seconds": {
+                                            "type": "integer",
+                                            "format": "int64"
+                                          }
+                                        }
+                                      },
+                                      "tcpSocket": {
+                                        "type": "object",
+                                        "required": [
+                                          "port"
+                                        ],
+                                        "properties": {
+                                          "host": {
+                                            "type": "string"
+                                          },
+                                          "port": {
+                                            "anyOf": [
+                                              {
+                                                "type": "integer"
+                                              },
+                                              {
+                                                "type": "string"
+                                              }
+                                            ],
+                                            "x-kubernetes-int-or-string": true
+                                          }
+                                        }
+                                      }
+                                    }
+                                  },
+                                  "preStop": {
+                                    "type": "object",
+                                    "properties": {
+                                      "exec": {
+                                        "type": "object",
+                                        "properties": {
+                                          "command": {
+                                            "type": "array",
+                                            "items": {
+                                              "type": "string"
+                                            },
+                                            "x-kubernetes-list-type": "atomic"
+                                          }
+                                        }
+                                      },
+                                      "httpGet": {
+                                        "type": "object",
+                                        "required": [
+                                          "port"
+                                        ],
+                                        "properties": {
+                                          "host": {
+                                            "type": "string"
+                                          },
+                                          "httpHeaders": {
+                                            "type": "array",
+                                            "items": {
+                                              "type": "object",
+                                              "required": [
+                                                "name",
+                                                "value"
+                                              ],
+                                              "properties": {
+                                                "name": {
+                                                  "type": "string"
+                                                },
+                                                "value": {
+                                                  "type": "string"
+                                                }
+                                              }
+                                            },
+                                            "x-kubernetes-list-type": "atomic"
+                                          },
+                                          "path": {
+                                            "type": "string"
+                                          },
+                                          "port": {
+                                            "anyOf": [
+                                              {
+                                                "type": "integer"
+                                              },
+                                              {
+                                                "type": "string"
+                                              }
+                                            ],
+                                            "x-kubernetes-int-or-string": true
+                                          },
+                                          "scheme": {
+                                            "type": "string"
+                                          }
+                                        }
+                                      },
+                                      "sleep": {
+                                        "type": "object",
+                                        "required": [
+                                          "seconds"
+                                        ],
+                                        "properties": {
+                                          "seconds": {
+                                            "type": "integer",
+                                            "format": "int64"
+                                          }
+                                        }
+                                      },
+                                      "tcpSocket": {
+                                        "type": "object",
+                                        "required": [
+                                          "port"
+                                        ],
+                                        "properties": {
+                                          "host": {
+                                            "type": "string"
+                                          },
+                                          "port": {
+                                            "anyOf": [
+                                              {
+                                                "type": "integer"
+                                              },
+                                              {
+                                                "type": "string"
+                                              }
+                                            ],
+                                            "x-kubernetes-int-or-string": true
+                                          }
+                                        }
+                                      }
+                                    }
+                                  }
+                                }
+                              },
+                              "livenessProbe": {
+                                "type": "object",
+                                "properties": {
+                                  "exec": {
+                                    "type": "object",
+                                    "properties": {
+                                      "command": {
+                                        "type": "array",
+                                        "items": {
+                                          "type": "string"
+                                        },
+                                        "x-kubernetes-list-type": "atomic"
+                                      }
+                                    }
+                                  },
+                                  "failureThreshold": {
+                                    "type": "integer",
+                                    "format": "int32"
+                                  },
+                                  "grpc": {
+                                    "type": "object",
+                                    "required": [
+                                      "port"
+                                    ],
+                                    "properties": {
+                                      "port": {
+                                        "type": "integer",
+                                        "format": "int32"
+                                      },
+                                      "service": {
+                                        "type": "string"
+                                      }
+                                    }
+                                  },
+                                  "httpGet": {
+                                    "type": "object",
+                                    "required": [
+                                      "port"
+                                    ],
+                                    "properties": {
+                                      "host": {
+                                        "type": "string"
+                                      },
+                                      "httpHeaders": {
+                                        "type": "array",
+                                        "items": {
+                                          "type": "object",
+                                          "required": [
+                                            "name",
+                                            "value"
+                                          ],
+                                          "properties": {
+                                            "name": {
+                                              "type": "string"
+                                            },
+                                            "value": {
+                                              "type": "string"
+                                            }
+                                          }
+                                        },
+                                        "x-kubernetes-list-type": "atomic"
+                                      },
+                                      "path": {
+                                        "type": "string"
+                                      },
+                                      "port": {
+                                        "anyOf": [
+                                          {
+                                            "type": "integer"
+                                          },
+                                          {
+                                            "type": "string"
+                                          }
+                                        ],
+                                        "x-kubernetes-int-or-string": true
+                                      },
+                                      "scheme": {
+                                        "type": "string"
+                                      }
+                                    }
+                                  },
+                                  "initialDelaySeconds": {
+                                    "type": "integer",
+                                    "format": "int32"
+                                  },
+                                  "periodSeconds": {
+                                    "type": "integer",
+                                    "format": "int32"
+                                  },
+                                  "successThreshold": {
+                                    "type": "integer",
+                                    "format": "int32"
+                                  },
+                                  "tcpSocket": {
+                                    "type": "object",
+                                    "required": [
+                                      "port"
+                                    ],
+                                    "properties": {
+                                      "host": {
+                                        "type": "string"
+                                      },
+                                      "port": {
+                                        "anyOf": [
+                                          {
+                                            "type": "integer"
+                                          },
+                                          {
+                                            "type": "string"
+                                          }
+                                        ],
+                                        "x-kubernetes-int-or-string": true
+                                      }
+                                    }
+                                  },
+                                  "terminationGracePeriodSeconds": {
+                                    "type": "integer",
+                                    "format": "int64"
+                                  },
+                                  "timeoutSeconds": {
+                                    "type": "integer",
+                                    "format": "int32"
+                                  }
+                                }
+                              },
+                              "nice": {
+                                "type": "object",
+                                "properties": {
+                                  "adjustment": {
+                                    "type": "integer",
+                                    "format": "int32"
+                                  }
+                                }
+                              },
+                              "readinessProbe": {
+                                "type": "object",
+                                "properties": {
+                                  "exec": {
+                                    "type": "object",
+                                    "properties": {
+                                      "command": {
+                                        "type": "array",
+                                        "items": {
+                                          "type": "string"
+                                        },
+                                        "x-kubernetes-list-type": "atomic"
+                                      }
+                                    }
+                                  },
+                                  "failureThreshold": {
+                                    "type": "integer",
+                                    "format": "int32"
+                                  },
+                                  "grpc": {
+                                    "type": "object",
+                                    "required": [
+                                      "port"
+                                    ],
+                                    "properties": {
+                                      "port": {
+                                        "type": "integer",
+                                        "format": "int32"
+                                      },
+                                      "service": {
+                                        "type": "string"
+                                      }
+                                    }
+                                  },
+                                  "httpGet": {
+                                    "type": "object",
+                                    "required": [
+                                      "port"
+                                    ],
+                                    "properties": {
+                                      "host": {
+                                        "type": "string"
+                                      },
+                                      "httpHeaders": {
+                                        "type": "array",
+                                        "items": {
+                                          "type": "object",
+                                          "required": [
+                                            "name",
+                                            "value"
+                                          ],
+                                          "properties": {
+                                            "name": {
+                                              "type": "string"
+                                            },
+                                            "value": {
+                                              "type": "string"
+                                            }
+                                          }
+                                        },
+                                        "x-kubernetes-list-type": "atomic"
+                                      },
+                                      "path": {
+                                        "type": "string"
+                                      },
+                                      "port": {
+                                        "anyOf": [
+                                          {
+                                            "type": "integer"
+                                          },
+                                          {
+                                            "type": "string"
+                                          }
+                                        ],
+                                        "x-kubernetes-int-or-string": true
+                                      },
+                                      "scheme": {
+                                        "type": "string"
+                                      }
+                                    }
+                                  },
+                                  "initialDelaySeconds": {
+                                    "type": "integer",
+                                    "format": "int32"
+                                  },
+                                  "periodSeconds": {
+                                    "type": "integer",
+                                    "format": "int32"
+                                  },
+                                  "successThreshold": {
+                                    "type": "integer",
+                                    "format": "int32"
+                                  },
+                                  "tcpSocket": {
+                                    "type": "object",
+                                    "required": [
+                                      "port"
+                                    ],
+                                    "properties": {
+                                      "host": {
+                                        "type": "string"
+                                      },
+                                      "port": {
+                                        "anyOf": [
+                                          {
+                                            "type": "integer"
+                                          },
+                                          {
+                                            "type": "string"
+                                          }
+                                        ],
+                                        "x-kubernetes-int-or-string": true
+                                      }
+                                    }
+                                  },
+                                  "terminationGracePeriodSeconds": {
+                                    "type": "integer",
+                                    "format": "int64"
+                                  },
+                                  "timeoutSeconds": {
+                                    "type": "integer",
+                                    "format": "int32"
+                                  }
+                                }
+                              },
+                              "resources": {
+                                "type": "object",
+                                "properties": {
+                                  "claims": {
+                                    "type": "array",
+                                    "items": {
+                                      "type": "object",
+                                      "required": [
+                                        "name"
+                                      ],
+                                      "properties": {
+                                        "name": {
+                                          "type": "string"
+                                        }
+                                      }
+                                    },
+                                    "x-kubernetes-list-map-keys": [
+                                      "name"
+                                    ],
+                                    "x-kubernetes-list-type": "map"
+                                  },
+                                  "limits": {
+                                    "type": "object",
+                                    "additionalProperties": {
+                                      "pattern": "^(\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))(([KMGTPE]i)|[numkMGTPE]|([eE](\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))))?$",
+                                      "anyOf": [
+                                        {
+                                          "type": "integer"
+                                        },
+                                        {
+                                          "type": "string"
+                                        }
+                                      ],
+                                      "x-kubernetes-int-or-string": true
+                                    }
+                                  },
+                                  "requests": {
+                                    "type": "object",
+                                    "additionalProperties": {
+                                      "pattern": "^(\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))(([KMGTPE]i)|[numkMGTPE]|([eE](\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))))?$",
+                                      "anyOf": [
+                                        {
+                                          "type": "integer"
+                                        },
+                                        {
+                                          "type": "string"
+                                        }
+                                      ],
+                                      "x-kubernetes-int-or-string": true
+                                    }
+                                  }
+                                }
+                              },
+                              "securityContext": {
+                                "type": "object",
+                                "properties": {
+                                  "allowPrivilegeEscalation": {
+                                    "type": "boolean"
+                                  },
+                                  "appArmorProfile": {
+                                    "type": "object",
+                                    "required": [
+                                      "type"
+                                    ],
+                                    "properties": {
+                                      "localhostProfile": {
+                                        "type": "string"
+                                      },
+                                      "type": {
+                                        "type": "string"
+                                      }
+                                    }
+                                  },
+                                  "capabilities": {
+                                    "type": "object",
+                                    "properties": {
+                                      "add": {
+                                        "type": "array",
+                                        "items": {
+                                          "type": "string"
+                                        },
+                                        "x-kubernetes-list-type": "atomic"
+                                      },
+                                      "drop": {
+                                        "type": "array",
+                                        "items": {
+                                          "type": "string"
+                                        },
+                                        "x-kubernetes-list-type": "atomic"
+                                      }
+                                    }
+                                  },
+                                  "privileged": {
+                                    "type": "boolean"
+                                  },
+                                  "procMount": {
+                                    "type": "string"
+                                  },
+                                  "readOnlyRootFilesystem": {
+                                    "type": "boolean"
+                                  },
+                                  "runAsGroup": {
+                                    "type": "integer",
+                                    "format": "int64"
+                                  },
+                                  "runAsNonRoot": {
+                                    "type": "boolean"
+                                  },
+                                  "runAsUser": {
+                                    "type": "integer",
+                                    "format": "int64"
+                                  },
+                                  "seLinuxOptions": {
+                                    "type": "object",
+                                    "properties": {
+                                      "level": {
+                                        "type": "string"
+                                      },
+                                      "role": {
+                                        "type": "string"
+                                      },
+                                      "type": {
+                                        "type": "string"
+                                      },
+                                      "user": {
+                                        "type": "string"
+                                      }
+                                    }
+                                  },
+                                  "seccompProfile": {
+                                    "type": "object",
+                                    "required": [
+                                      "type"
+                                    ],
+                                    "properties": {
+                                      "localhostProfile": {
+                                        "type": "string"
+                                      },
+                                      "type": {
+                                        "type": "string"
+                                      }
+                                    }
+                                  },
+                                  "windowsOptions": {
+                                    "type": "object",
+                                    "properties": {
+                                      "gmsaCredentialSpec": {
+                                        "type": "string"
+                                      },
+                                      "gmsaCredentialSpecName": {
+                                        "type": "string"
+                                      },
+                                      "hostProcess": {
+                                        "type": "boolean"
+                                      },
+                                      "runAsUserName": {
+                                        "type": "string"
+                                      }
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          },
+                          "pod": {
+                            "type": "object",
+                            "properties": {
+                              "affinity": {
+                                "type": "object",
+                                "properties": {
+                                  "nodeAffinity": {
+                                    "type": "object",
+                                    "properties": {
+                                      "preferredDuringSchedulingIgnoredDuringExecution": {
+                                        "type": "array",
+                                        "items": {
+                                          "type": "object",
+                                          "required": [
+                                            "preference",
+                                            "weight"
+                                          ],
+                                          "properties": {
+                                            "preference": {
+                                              "type": "object",
+                                              "properties": {
+                                                "matchExpressions": {
+                                                  "type": "array",
+                                                  "items": {
+                                                    "type": "object",
+                                                    "required": [
+                                                      "key",
+                                                      "operator"
+                                                    ],
+                                                    "properties": {
+                                                      "key": {
+                                                        "type": "string"
+                                                      },
+                                                      "operator": {
+                                                        "type": "string"
+                                                      },
+                                                      "values": {
+                                                        "type": "array",
+                                                        "items": {
+                                                          "type": "string"
+                                                        },
+                                                        "x-kubernetes-list-type": "atomic"
+                                                      }
+                                                    }
+                                                  },
+                                                  "x-kubernetes-list-type": "atomic"
+                                                },
+                                                "matchFields": {
+                                                  "type": "array",
+                                                  "items": {
+                                                    "type": "object",
+                                                    "required": [
+                                                      "key",
+                                                      "operator"
+                                                    ],
+                                                    "properties": {
+                                                      "key": {
+                                                        "type": "string"
+                                                      },
+                                                      "operator": {
+                                                        "type": "string"
+                                                      },
+                                                      "values": {
+                                                        "type": "array",
+                                                        "items": {
+                                                          "type": "string"
+                                                        },
+                                                        "x-kubernetes-list-type": "atomic"
+                                                      }
+                                                    }
+                                                  },
+                                                  "x-kubernetes-list-type": "atomic"
+                                                }
+                                              },
+                                              "x-kubernetes-map-type": "atomic"
+                                            },
+                                            "weight": {
+                                              "type": "integer",
+                                              "format": "int32"
+                                            }
+                                          }
+                                        },
+                                        "x-kubernetes-list-type": "atomic"
+                                      },
+                                      "requiredDuringSchedulingIgnoredDuringExecution": {
+                                        "type": "object",
+                                        "required": [
+                                          "nodeSelectorTerms"
+                                        ],
+                                        "properties": {
+                                          "nodeSelectorTerms": {
+                                            "type": "array",
+                                            "items": {
+                                              "type": "object",
+                                              "properties": {
+                                                "matchExpressions": {
+                                                  "type": "array",
+                                                  "items": {
+                                                    "type": "object",
+                                                    "required": [
+                                                      "key",
+                                                      "operator"
+                                                    ],
+                                                    "properties": {
+                                                      "key": {
+                                                        "type": "string"
+                                                      },
+                                                      "operator": {
+                                                        "type": "string"
+                                                      },
+                                                      "values": {
+                                                        "type": "array",
+                                                        "items": {
+                                                          "type": "string"
+                                                        },
+                                                        "x-kubernetes-list-type": "atomic"
+                                                      }
+                                                    }
+                                                  },
+                                                  "x-kubernetes-list-type": "atomic"
+                                                },
+                                                "matchFields": {
+                                                  "type": "array",
+                                                  "items": {
+                                                    "type": "object",
+                                                    "required": [
+                                                      "key",
+                                                      "operator"
+                                                    ],
+                                                    "properties": {
+                                                      "key": {
+                                                        "type": "string"
+                                                      },
+                                                      "operator": {
+                                                        "type": "string"
+                                                      },
+                                                      "values": {
+                                                        "type": "array",
+                                                        "items": {
+                                                          "type": "string"
+                                                        },
+                                                        "x-kubernetes-list-type": "atomic"
+                                                      }
+                                                    }
+                                                  },
+                                                  "x-kubernetes-list-type": "atomic"
+                                                }
+                                              },
+                                              "x-kubernetes-map-type": "atomic"
+                                            },
+                                            "x-kubernetes-list-type": "atomic"
+                                          }
+                                        },
+                                        "x-kubernetes-map-type": "atomic"
+                                      }
+                                    }
+                                  },
+                                  "podAffinity": {
+                                    "type": "object",
+                                    "properties": {
+                                      "preferredDuringSchedulingIgnoredDuringExecution": {
+                                        "type": "array",
+                                        "items": {
+                                          "type": "object",
+                                          "required": [
+                                            "podAffinityTerm",
+                                            "weight"
+                                          ],
+                                          "properties": {
+                                            "podAffinityTerm": {
+                                              "type": "object",
+                                              "required": [
+                                                "topologyKey"
+                                              ],
+                                              "properties": {
+                                                "labelSelector": {
+                                                  "type": "object",
+                                                  "properties": {
+                                                    "matchExpressions": {
+                                                      "type": "array",
+                                                      "items": {
+                                                        "type": "object",
+                                                        "required": [
+                                                          "key",
+                                                          "operator"
+                                                        ],
+                                                        "properties": {
+                                                          "key": {
+                                                            "type": "string"
+                                                          },
+                                                          "operator": {
+                                                            "type": "string"
+                                                          },
+                                                          "values": {
+                                                            "type": "array",
+                                                            "items": {
+                                                              "type": "string"
+                                                            },
+                                                            "x-kubernetes-list-type": "atomic"
+                                                          }
+                                                        }
+                                                      },
+                                                      "x-kubernetes-list-type": "atomic"
+                                                    },
+                                                    "matchLabels": {
+                                                      "type": "object",
+                                                      "additionalProperties": {
+                                                        "type": "string"
+                                                      }
+                                                    }
+                                                  },
+                                                  "x-kubernetes-map-type": "atomic"
+                                                },
+                                                "matchLabelKeys": {
+                                                  "type": "array",
+                                                  "items": {
+                                                    "type": "string"
+                                                  },
+                                                  "x-kubernetes-list-type": "atomic"
+                                                },
+                                                "mismatchLabelKeys": {
+                                                  "type": "array",
+                                                  "items": {
+                                                    "type": "string"
+                                                  },
+                                                  "x-kubernetes-list-type": "atomic"
+                                                },
+                                                "namespaceSelector": {
+                                                  "type": "object",
+                                                  "properties": {
+                                                    "matchExpressions": {
+                                                      "type": "array",
+                                                      "items": {
+                                                        "type": "object",
+                                                        "required": [
+                                                          "key",
+                                                          "operator"
+                                                        ],
+                                                        "properties": {
+                                                          "key": {
+                                                            "type": "string"
+                                                          },
+                                                          "operator": {
+                                                            "type": "string"
+                                                          },
+                                                          "values": {
+                                                            "type": "array",
+                                                            "items": {
+                                                              "type": "string"
+                                                            },
+                                                            "x-kubernetes-list-type": "atomic"
+                                                          }
+                                                        }
+                                                      },
+                                                      "x-kubernetes-list-type": "atomic"
+                                                    },
+                                                    "matchLabels": {
+                                                      "type": "object",
+                                                      "additionalProperties": {
+                                                        "type": "string"
+                                                      }
+                                                    }
+                                                  },
+                                                  "x-kubernetes-map-type": "atomic"
+                                                },
+                                                "namespaces": {
+                                                  "type": "array",
+                                                  "items": {
+                                                    "type": "string"
+                                                  },
+                                                  "x-kubernetes-list-type": "atomic"
+                                                },
+                                                "topologyKey": {
+                                                  "type": "string"
+                                                }
+                                              }
+                                            },
+                                            "weight": {
+                                              "type": "integer",
+                                              "format": "int32"
+                                            }
+                                          }
+                                        },
+                                        "x-kubernetes-list-type": "atomic"
+                                      },
+                                      "requiredDuringSchedulingIgnoredDuringExecution": {
+                                        "type": "array",
+                                        "items": {
+                                          "type": "object",
+                                          "required": [
+                                            "topologyKey"
+                                          ],
+                                          "properties": {
+                                            "labelSelector": {
+                                              "type": "object",
+                                              "properties": {
+                                                "matchExpressions": {
+                                                  "type": "array",
+                                                  "items": {
+                                                    "type": "object",
+                                                    "required": [
+                                                      "key",
+                                                      "operator"
+                                                    ],
+                                                    "properties": {
+                                                      "key": {
+                                                        "type": "string"
+                                                      },
+                                                      "operator": {
+                                                        "type": "string"
+                                                      },
+                                                      "values": {
+                                                        "type": "array",
+                                                        "items": {
+                                                          "type": "string"
+                                                        },
+                                                        "x-kubernetes-list-type": "atomic"
+                                                      }
+                                                    }
+                                                  },
+                                                  "x-kubernetes-list-type": "atomic"
+                                                },
+                                                "matchLabels": {
+                                                  "type": "object",
+                                                  "additionalProperties": {
+                                                    "type": "string"
+                                                  }
+                                                }
+                                              },
+                                              "x-kubernetes-map-type": "atomic"
+                                            },
+                                            "matchLabelKeys": {
+                                              "type": "array",
+                                              "items": {
+                                                "type": "string"
+                                              },
+                                              "x-kubernetes-list-type": "atomic"
+                                            },
+                                            "mismatchLabelKeys": {
+                                              "type": "array",
+                                              "items": {
+                                                "type": "string"
+                                              },
+                                              "x-kubernetes-list-type": "atomic"
+                                            },
+                                            "namespaceSelector": {
+                                              "type": "object",
+                                              "properties": {
+                                                "matchExpressions": {
+                                                  "type": "array",
+                                                  "items": {
+                                                    "type": "object",
+                                                    "required": [
+                                                      "key",
+                                                      "operator"
+                                                    ],
+                                                    "properties": {
+                                                      "key": {
+                                                        "type": "string"
+                                                      },
+                                                      "operator": {
+                                                        "type": "string"
+                                                      },
+                                                      "values": {
+                                                        "type": "array",
+                                                        "items": {
+                                                          "type": "string"
+                                                        },
+                                                        "x-kubernetes-list-type": "atomic"
+                                                      }
+                                                    }
+                                                  },
+                                                  "x-kubernetes-list-type": "atomic"
+                                                },
+                                                "matchLabels": {
+                                                  "type": "object",
+                                                  "additionalProperties": {
+                                                    "type": "string"
+                                                  }
+                                                }
+                                              },
+                                              "x-kubernetes-map-type": "atomic"
+                                            },
+                                            "namespaces": {
+                                              "type": "array",
+                                              "items": {
+                                                "type": "string"
+                                              },
+                                              "x-kubernetes-list-type": "atomic"
+                                            },
+                                            "topologyKey": {
+                                              "type": "string"
+                                            }
+                                          }
+                                        },
+                                        "x-kubernetes-list-type": "atomic"
+                                      }
+                                    }
+                                  },
+                                  "podAntiAffinity": {
+                                    "type": "object",
+                                    "properties": {
+                                      "preferredDuringSchedulingIgnoredDuringExecution": {
+                                        "type": "array",
+                                        "items": {
+                                          "type": "object",
+                                          "required": [
+                                            "podAffinityTerm",
+                                            "weight"
+                                          ],
+                                          "properties": {
+                                            "podAffinityTerm": {
+                                              "type": "object",
+                                              "required": [
+                                                "topologyKey"
+                                              ],
+                                              "properties": {
+                                                "labelSelector": {
+                                                  "type": "object",
+                                                  "properties": {
+                                                    "matchExpressions": {
+                                                      "type": "array",
+                                                      "items": {
+                                                        "type": "object",
+                                                        "required": [
+                                                          "key",
+                                                          "operator"
+                                                        ],
+                                                        "properties": {
+                                                          "key": {
+                                                            "type": "string"
+                                                          },
+                                                          "operator": {
+                                                            "type": "string"
+                                                          },
+                                                          "values": {
+                                                            "type": "array",
+                                                            "items": {
+                                                              "type": "string"
+                                                            },
+                                                            "x-kubernetes-list-type": "atomic"
+                                                          }
+                                                        }
+                                                      },
+                                                      "x-kubernetes-list-type": "atomic"
+                                                    },
+                                                    "matchLabels": {
+                                                      "type": "object",
+                                                      "additionalProperties": {
+                                                        "type": "string"
+                                                      }
+                                                    }
+                                                  },
+                                                  "x-kubernetes-map-type": "atomic"
+                                                },
+                                                "matchLabelKeys": {
+                                                  "type": "array",
+                                                  "items": {
+                                                    "type": "string"
+                                                  },
+                                                  "x-kubernetes-list-type": "atomic"
+                                                },
+                                                "mismatchLabelKeys": {
+                                                  "type": "array",
+                                                  "items": {
+                                                    "type": "string"
+                                                  },
+                                                  "x-kubernetes-list-type": "atomic"
+                                                },
+                                                "namespaceSelector": {
+                                                  "type": "object",
+                                                  "properties": {
+                                                    "matchExpressions": {
+                                                      "type": "array",
+                                                      "items": {
+                                                        "type": "object",
+                                                        "required": [
+                                                          "key",
+                                                          "operator"
+                                                        ],
+                                                        "properties": {
+                                                          "key": {
+                                                            "type": "string"
+                                                          },
+                                                          "operator": {
+                                                            "type": "string"
+                                                          },
+                                                          "values": {
+                                                            "type": "array",
+                                                            "items": {
+                                                              "type": "string"
+                                                            },
+                                                            "x-kubernetes-list-type": "atomic"
+                                                          }
+                                                        }
+                                                      },
+                                                      "x-kubernetes-list-type": "atomic"
+                                                    },
+                                                    "matchLabels": {
+                                                      "type": "object",
+                                                      "additionalProperties": {
+                                                        "type": "string"
+                                                      }
+                                                    }
+                                                  },
+                                                  "x-kubernetes-map-type": "atomic"
+                                                },
+                                                "namespaces": {
+                                                  "type": "array",
+                                                  "items": {
+                                                    "type": "string"
+                                                  },
+                                                  "x-kubernetes-list-type": "atomic"
+                                                },
+                                                "topologyKey": {
+                                                  "type": "string"
+                                                }
+                                              }
+                                            },
+                                            "weight": {
+                                              "type": "integer",
+                                              "format": "int32"
+                                            }
+                                          }
+                                        },
+                                        "x-kubernetes-list-type": "atomic"
+                                      },
+                                      "requiredDuringSchedulingIgnoredDuringExecution": {
+                                        "type": "array",
+                                        "items": {
+                                          "type": "object",
+                                          "required": [
+                                            "topologyKey"
+                                          ],
+                                          "properties": {
+                                            "labelSelector": {
+                                              "type": "object",
+                                              "properties": {
+                                                "matchExpressions": {
+                                                  "type": "array",
+                                                  "items": {
+                                                    "type": "object",
+                                                    "required": [
+                                                      "key",
+                                                      "operator"
+                                                    ],
+                                                    "properties": {
+                                                      "key": {
+                                                        "type": "string"
+                                                      },
+                                                      "operator": {
+                                                        "type": "string"
+                                                      },
+                                                      "values": {
+                                                        "type": "array",
+                                                        "items": {
+                                                          "type": "string"
+                                                        },
+                                                        "x-kubernetes-list-type": "atomic"
+                                                      }
+                                                    }
+                                                  },
+                                                  "x-kubernetes-list-type": "atomic"
+                                                },
+                                                "matchLabels": {
+                                                  "type": "object",
+                                                  "additionalProperties": {
+                                                    "type": "string"
+                                                  }
+                                                }
+                                              },
+                                              "x-kubernetes-map-type": "atomic"
+                                            },
+                                            "matchLabelKeys": {
+                                              "type": "array",
+                                              "items": {
+                                                "type": "string"
+                                              },
+                                              "x-kubernetes-list-type": "atomic"
+                                            },
+                                            "mismatchLabelKeys": {
+                                              "type": "array",
+                                              "items": {
+                                                "type": "string"
+                                              },
+                                              "x-kubernetes-list-type": "atomic"
+                                            },
+                                            "namespaceSelector": {
+                                              "type": "object",
+                                              "properties": {
+                                                "matchExpressions": {
+                                                  "type": "array",
+                                                  "items": {
+                                                    "type": "object",
+                                                    "required": [
+                                                      "key",
+                                                      "operator"
+                                                    ],
+                                                    "properties": {
+                                                      "key": {
+                                                        "type": "string"
+                                                      },
+                                                      "operator": {
+                                                        "type": "string"
+                                                      },
+                                                      "values": {
+                                                        "type": "array",
+                                                        "items": {
+                                                          "type": "string"
+                                                        },
+                                                        "x-kubernetes-list-type": "atomic"
+                                                      }
+                                                    }
+                                                  },
+                                                  "x-kubernetes-list-type": "atomic"
+                                                },
+                                                "matchLabels": {
+                                                  "type": "object",
+                                                  "additionalProperties": {
+                                                    "type": "string"
+                                                  }
+                                                }
+                                              },
+                                              "x-kubernetes-map-type": "atomic"
+                                            },
+                                            "namespaces": {
+                                              "type": "array",
+                                              "items": {
+                                                "type": "string"
+                                              },
+                                              "x-kubernetes-list-type": "atomic"
+                                            },
+                                            "topologyKey": {
+                                              "type": "string"
+                                            }
+                                          }
+                                        },
+                                        "x-kubernetes-list-type": "atomic"
+                                      }
+                                    }
+                                  }
+                                }
+                              },
+                              "automountServiceAccountToken": {
+                                "type": "boolean"
+                              },
+                              "enableServiceLinks": {
+                                "type": "boolean"
+                              },
+                              "imagePullSecrets": {
+                                "type": "array",
+                                "items": {
+                                  "type": "object",
+                                  "properties": {
+                                    "name": {
+                                      "type": "string",
+                                      "default": ""
+                                    }
+                                  },
+                                  "x-kubernetes-map-type": "atomic"
+                                }
+                              },
+                              "nodeName": {
+                                "type": "string"
+                              },
+                              "nodeSelector": {
+                                "type": "object",
+                                "additionalProperties": {
+                                  "type": "string"
+                                }
+                              },
+                              "podAnnotations": {
+                                "type": "object",
+                                "additionalProperties": {
+                                  "type": "string"
+                                }
+                              },
+                              "podLabels": {
+                                "type": "object",
+                                "additionalProperties": {
+                                  "type": "string"
+                                }
+                              },
+                              "priority": {
+                                "type": "integer",
+                                "format": "int32"
+                              },
+                              "priorityClassName": {
+                                "type": "string"
+                              },
+                              "readinessGates": {
+                                "type": "array",
+                                "items": {
+                                  "type": "object",
+                                  "required": [
+                                    "conditionType"
+                                  ],
+                                  "properties": {
+                                    "conditionType": {
+                                      "type": "string"
+                                    }
+                                  }
+                                }
+                              },
+                              "runtimeClassName": {
+                                "type": "string"
+                              },
+                              "schedulerName": {
+                                "type": "string"
+                              },
+                              "securityContext": {
+                                "type": "object",
+                                "properties": {
+                                  "appArmorProfile": {
+                                    "type": "object",
+                                    "required": [
+                                      "type"
+                                    ],
+                                    "properties": {
+                                      "localhostProfile": {
+                                        "type": "string"
+                                      },
+                                      "type": {
+                                        "type": "string"
+                                      }
+                                    }
+                                  },
+                                  "fsGroup": {
+                                    "type": "integer",
+                                    "format": "int64"
+                                  },
+                                  "fsGroupChangePolicy": {
+                                    "type": "string"
+                                  },
+                                  "runAsGroup": {
+                                    "type": "integer",
+                                    "format": "int64"
+                                  },
+                                  "runAsNonRoot": {
+                                    "type": "boolean"
+                                  },
+                                  "runAsUser": {
+                                    "type": "integer",
+                                    "format": "int64"
+                                  },
+                                  "seLinuxOptions": {
+                                    "type": "object",
+                                    "properties": {
+                                      "level": {
+                                        "type": "string"
+                                      },
+                                      "role": {
+                                        "type": "string"
+                                      },
+                                      "type": {
+                                        "type": "string"
+                                      },
+                                      "user": {
+                                        "type": "string"
+                                      }
+                                    }
+                                  },
+                                  "seccompProfile": {
+                                    "type": "object",
+                                    "required": [
+                                      "type"
+                                    ],
+                                    "properties": {
+                                      "localhostProfile": {
+                                        "type": "string"
+                                      },
+                                      "type": {
+                                        "type": "string"
+                                      }
+                                    }
+                                  },
+                                  "supplementalGroups": {
+                                    "type": "array",
+                                    "items": {
+                                      "type": "integer",
+                                      "format": "int64"
+                                    },
+                                    "x-kubernetes-list-type": "atomic"
+                                  },
+                                  "sysctls": {
+                                    "type": "array",
+                                    "items": {
+                                      "type": "object",
+                                      "required": [
+                                        "name",
+                                        "value"
+                                      ],
+                                      "properties": {
+                                        "name": {
+                                          "type": "string"
+                                        },
+                                        "value": {
+                                          "type": "string"
+                                        }
+                                      }
+                                    },
+                                    "x-kubernetes-list-type": "atomic"
+                                  },
+                                  "windowsOptions": {
+                                    "type": "object",
+                                    "properties": {
+                                      "gmsaCredentialSpec": {
+                                        "type": "string"
+                                      },
+                                      "gmsaCredentialSpecName": {
+                                        "type": "string"
+                                      },
+                                      "hostProcess": {
+                                        "type": "boolean"
+                                      },
+                                      "runAsUserName": {
+                                        "type": "string"
+                                      }
+                                    }
+                                  }
+                                }
+                              },
+                              "serviceAccountAnnotations": {
+                                "type": "object",
+                                "additionalProperties": {
+                                  "type": "string"
+                                }
+                              },
+                              "serviceAccountName": {
+                                "type": "string"
+                              },
+                              "tolerations": {
+                                "type": "array",
+                                "items": {
+                                  "type": "object",
+                                  "properties": {
+                                    "effect": {
+                                      "type": "string"
+                                    },
+                                    "key": {
+                                      "type": "string"
+                                    },
+                                    "operator": {
+                                      "type": "string"
+                                    },
+                                    "tolerationSeconds": {
+                                      "type": "integer",
+                                      "format": "int64"
+                                    },
+                                    "value": {
+                                      "type": "string"
+                                    }
+                                  }
+                                }
+                              },
+                              "topologySpreadConstraints": {
+                                "type": "array",
+                                "items": {
+                                  "type": "object",
+                                  "required": [
+                                    "maxSkew",
+                                    "topologyKey",
+                                    "whenUnsatisfiable"
+                                  ],
+                                  "properties": {
+                                    "labelSelector": {
+                                      "type": "object",
+                                      "properties": {
+                                        "matchExpressions": {
+                                          "type": "array",
+                                          "items": {
+                                            "type": "object",
+                                            "required": [
+                                              "key",
+                                              "operator"
+                                            ],
+                                            "properties": {
+                                              "key": {
+                                                "type": "string"
+                                              },
+                                              "operator": {
+                                                "type": "string"
+                                              },
+                                              "values": {
+                                                "type": "array",
+                                                "items": {
+                                                  "type": "string"
+                                                },
+                                                "x-kubernetes-list-type": "atomic"
+                                              }
+                                            }
+                                          },
+                                          "x-kubernetes-list-type": "atomic"
+                                        },
+                                        "matchLabels": {
+                                          "type": "object",
+                                          "additionalProperties": {
+                                            "type": "string"
+                                          }
+                                        }
+                                      },
+                                      "x-kubernetes-map-type": "atomic"
+                                    },
+                                    "matchLabelKeys": {
+                                      "type": "array",
+                                      "items": {
+                                        "type": "string"
+                                      },
+                                      "x-kubernetes-list-type": "atomic"
+                                    },
+                                    "maxSkew": {
+                                      "type": "integer",
+                                      "format": "int32"
+                                    },
+                                    "minDomains": {
+                                      "type": "integer",
+                                      "format": "int32"
+                                    },
+                                    "nodeAffinityPolicy": {
+                                      "type": "string"
+                                    },
+                                    "nodeTaintsPolicy": {
+                                      "type": "string"
+                                    },
+                                    "topologyKey": {
+                                      "type": "string"
+                                    },
+                                    "whenUnsatisfiable": {
+                                      "type": "string"
+                                    }
+                                  }
+                                },
+                                "x-kubernetes-list-map-keys": [
+                                  "topologyKey",
+                                  "whenUnsatisfiable"
+                                ],
+                                "x-kubernetes-list-type": "map"
+                              }
+                            }
+                          }
+                        }
+                      },
+                      "successfulLogHistoryLimit": {
+                        "type": "integer",
+                        "format": "int32",
+                        "default": 5
+                      }
+                    }
+                  },
                   "manifestBackup": {
                     "type": "object",
                     "properties": {
@@ -17957,1753 +19714,6 @@
                       },
                       "namespace": {
                         "type": "string"
-                      }
-                    }
-                  },
-                  "walBackup": {
-                    "type": "object",
-                    "properties": {
-                      "configSecret": {
-                        "type": "object",
-                        "required": [
-                          "envToSecretKey",
-                          "name"
-                        ],
-                        "properties": {
-                          "envToSecretKey": {
-                            "type": "object",
-                            "additionalProperties": {
-                              "type": "string"
-                            }
-                          },
-                          "name": {
-                            "type": "string"
-                          }
-                        }
-                      },
-                      "runtimeSettings": {
-                        "type": "object",
-                        "properties": {
-                          "container": {
-                            "type": "object",
-                            "properties": {
-                              "env": {
-                                "type": "array",
-                                "items": {
-                                  "type": "object",
-                                  "required": [
-                                    "name"
-                                  ],
-                                  "properties": {
-                                    "name": {
-                                      "type": "string"
-                                    },
-                                    "value": {
-                                      "type": "string"
-                                    },
-                                    "valueFrom": {
-                                      "type": "object",
-                                      "properties": {
-                                        "configMapKeyRef": {
-                                          "type": "object",
-                                          "required": [
-                                            "key"
-                                          ],
-                                          "properties": {
-                                            "key": {
-                                              "type": "string"
-                                            },
-                                            "name": {
-                                              "type": "string",
-                                              "default": ""
-                                            },
-                                            "optional": {
-                                              "type": "boolean"
-                                            }
-                                          },
-                                          "x-kubernetes-map-type": "atomic"
-                                        },
-                                        "fieldRef": {
-                                          "type": "object",
-                                          "required": [
-                                            "fieldPath"
-                                          ],
-                                          "properties": {
-                                            "apiVersion": {
-                                              "type": "string"
-                                            },
-                                            "fieldPath": {
-                                              "type": "string"
-                                            }
-                                          },
-                                          "x-kubernetes-map-type": "atomic"
-                                        },
-                                        "resourceFieldRef": {
-                                          "type": "object",
-                                          "required": [
-                                            "resource"
-                                          ],
-                                          "properties": {
-                                            "containerName": {
-                                              "type": "string"
-                                            },
-                                            "divisor": {
-                                              "pattern": "^(\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))(([KMGTPE]i)|[numkMGTPE]|([eE](\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))))?$",
-                                              "anyOf": [
-                                                {
-                                                  "type": "integer"
-                                                },
-                                                {
-                                                  "type": "string"
-                                                }
-                                              ],
-                                              "x-kubernetes-int-or-string": true
-                                            },
-                                            "resource": {
-                                              "type": "string"
-                                            }
-                                          },
-                                          "x-kubernetes-map-type": "atomic"
-                                        },
-                                        "secretKeyRef": {
-                                          "type": "object",
-                                          "required": [
-                                            "key"
-                                          ],
-                                          "properties": {
-                                            "key": {
-                                              "type": "string"
-                                            },
-                                            "name": {
-                                              "type": "string",
-                                              "default": ""
-                                            },
-                                            "optional": {
-                                              "type": "boolean"
-                                            }
-                                          },
-                                          "x-kubernetes-map-type": "atomic"
-                                        }
-                                      }
-                                    }
-                                  }
-                                }
-                              },
-                              "envFrom": {
-                                "type": "array",
-                                "items": {
-                                  "type": "object",
-                                  "properties": {
-                                    "configMapRef": {
-                                      "type": "object",
-                                      "properties": {
-                                        "name": {
-                                          "type": "string",
-                                          "default": ""
-                                        },
-                                        "optional": {
-                                          "type": "boolean"
-                                        }
-                                      },
-                                      "x-kubernetes-map-type": "atomic"
-                                    },
-                                    "prefix": {
-                                      "type": "string"
-                                    },
-                                    "secretRef": {
-                                      "type": "object",
-                                      "properties": {
-                                        "name": {
-                                          "type": "string",
-                                          "default": ""
-                                        },
-                                        "optional": {
-                                          "type": "boolean"
-                                        }
-                                      },
-                                      "x-kubernetes-map-type": "atomic"
-                                    }
-                                  }
-                                }
-                              },
-                              "ionice": {
-                                "type": "object",
-                                "properties": {
-                                  "class": {
-                                    "type": "integer",
-                                    "format": "int32"
-                                  },
-                                  "classData": {
-                                    "type": "integer",
-                                    "format": "int32"
-                                  }
-                                }
-                              },
-                              "lifecycle": {
-                                "type": "object",
-                                "properties": {
-                                  "postStart": {
-                                    "type": "object",
-                                    "properties": {
-                                      "exec": {
-                                        "type": "object",
-                                        "properties": {
-                                          "command": {
-                                            "type": "array",
-                                            "items": {
-                                              "type": "string"
-                                            },
-                                            "x-kubernetes-list-type": "atomic"
-                                          }
-                                        }
-                                      },
-                                      "httpGet": {
-                                        "type": "object",
-                                        "required": [
-                                          "port"
-                                        ],
-                                        "properties": {
-                                          "host": {
-                                            "type": "string"
-                                          },
-                                          "httpHeaders": {
-                                            "type": "array",
-                                            "items": {
-                                              "type": "object",
-                                              "required": [
-                                                "name",
-                                                "value"
-                                              ],
-                                              "properties": {
-                                                "name": {
-                                                  "type": "string"
-                                                },
-                                                "value": {
-                                                  "type": "string"
-                                                }
-                                              }
-                                            },
-                                            "x-kubernetes-list-type": "atomic"
-                                          },
-                                          "path": {
-                                            "type": "string"
-                                          },
-                                          "port": {
-                                            "anyOf": [
-                                              {
-                                                "type": "integer"
-                                              },
-                                              {
-                                                "type": "string"
-                                              }
-                                            ],
-                                            "x-kubernetes-int-or-string": true
-                                          },
-                                          "scheme": {
-                                            "type": "string"
-                                          }
-                                        }
-                                      },
-                                      "sleep": {
-                                        "type": "object",
-                                        "required": [
-                                          "seconds"
-                                        ],
-                                        "properties": {
-                                          "seconds": {
-                                            "type": "integer",
-                                            "format": "int64"
-                                          }
-                                        }
-                                      },
-                                      "tcpSocket": {
-                                        "type": "object",
-                                        "required": [
-                                          "port"
-                                        ],
-                                        "properties": {
-                                          "host": {
-                                            "type": "string"
-                                          },
-                                          "port": {
-                                            "anyOf": [
-                                              {
-                                                "type": "integer"
-                                              },
-                                              {
-                                                "type": "string"
-                                              }
-                                            ],
-                                            "x-kubernetes-int-or-string": true
-                                          }
-                                        }
-                                      }
-                                    }
-                                  },
-                                  "preStop": {
-                                    "type": "object",
-                                    "properties": {
-                                      "exec": {
-                                        "type": "object",
-                                        "properties": {
-                                          "command": {
-                                            "type": "array",
-                                            "items": {
-                                              "type": "string"
-                                            },
-                                            "x-kubernetes-list-type": "atomic"
-                                          }
-                                        }
-                                      },
-                                      "httpGet": {
-                                        "type": "object",
-                                        "required": [
-                                          "port"
-                                        ],
-                                        "properties": {
-                                          "host": {
-                                            "type": "string"
-                                          },
-                                          "httpHeaders": {
-                                            "type": "array",
-                                            "items": {
-                                              "type": "object",
-                                              "required": [
-                                                "name",
-                                                "value"
-                                              ],
-                                              "properties": {
-                                                "name": {
-                                                  "type": "string"
-                                                },
-                                                "value": {
-                                                  "type": "string"
-                                                }
-                                              }
-                                            },
-                                            "x-kubernetes-list-type": "atomic"
-                                          },
-                                          "path": {
-                                            "type": "string"
-                                          },
-                                          "port": {
-                                            "anyOf": [
-                                              {
-                                                "type": "integer"
-                                              },
-                                              {
-                                                "type": "string"
-                                              }
-                                            ],
-                                            "x-kubernetes-int-or-string": true
-                                          },
-                                          "scheme": {
-                                            "type": "string"
-                                          }
-                                        }
-                                      },
-                                      "sleep": {
-                                        "type": "object",
-                                        "required": [
-                                          "seconds"
-                                        ],
-                                        "properties": {
-                                          "seconds": {
-                                            "type": "integer",
-                                            "format": "int64"
-                                          }
-                                        }
-                                      },
-                                      "tcpSocket": {
-                                        "type": "object",
-                                        "required": [
-                                          "port"
-                                        ],
-                                        "properties": {
-                                          "host": {
-                                            "type": "string"
-                                          },
-                                          "port": {
-                                            "anyOf": [
-                                              {
-                                                "type": "integer"
-                                              },
-                                              {
-                                                "type": "string"
-                                              }
-                                            ],
-                                            "x-kubernetes-int-or-string": true
-                                          }
-                                        }
-                                      }
-                                    }
-                                  }
-                                }
-                              },
-                              "livenessProbe": {
-                                "type": "object",
-                                "properties": {
-                                  "exec": {
-                                    "type": "object",
-                                    "properties": {
-                                      "command": {
-                                        "type": "array",
-                                        "items": {
-                                          "type": "string"
-                                        },
-                                        "x-kubernetes-list-type": "atomic"
-                                      }
-                                    }
-                                  },
-                                  "failureThreshold": {
-                                    "type": "integer",
-                                    "format": "int32"
-                                  },
-                                  "grpc": {
-                                    "type": "object",
-                                    "required": [
-                                      "port"
-                                    ],
-                                    "properties": {
-                                      "port": {
-                                        "type": "integer",
-                                        "format": "int32"
-                                      },
-                                      "service": {
-                                        "type": "string"
-                                      }
-                                    }
-                                  },
-                                  "httpGet": {
-                                    "type": "object",
-                                    "required": [
-                                      "port"
-                                    ],
-                                    "properties": {
-                                      "host": {
-                                        "type": "string"
-                                      },
-                                      "httpHeaders": {
-                                        "type": "array",
-                                        "items": {
-                                          "type": "object",
-                                          "required": [
-                                            "name",
-                                            "value"
-                                          ],
-                                          "properties": {
-                                            "name": {
-                                              "type": "string"
-                                            },
-                                            "value": {
-                                              "type": "string"
-                                            }
-                                          }
-                                        },
-                                        "x-kubernetes-list-type": "atomic"
-                                      },
-                                      "path": {
-                                        "type": "string"
-                                      },
-                                      "port": {
-                                        "anyOf": [
-                                          {
-                                            "type": "integer"
-                                          },
-                                          {
-                                            "type": "string"
-                                          }
-                                        ],
-                                        "x-kubernetes-int-or-string": true
-                                      },
-                                      "scheme": {
-                                        "type": "string"
-                                      }
-                                    }
-                                  },
-                                  "initialDelaySeconds": {
-                                    "type": "integer",
-                                    "format": "int32"
-                                  },
-                                  "periodSeconds": {
-                                    "type": "integer",
-                                    "format": "int32"
-                                  },
-                                  "successThreshold": {
-                                    "type": "integer",
-                                    "format": "int32"
-                                  },
-                                  "tcpSocket": {
-                                    "type": "object",
-                                    "required": [
-                                      "port"
-                                    ],
-                                    "properties": {
-                                      "host": {
-                                        "type": "string"
-                                      },
-                                      "port": {
-                                        "anyOf": [
-                                          {
-                                            "type": "integer"
-                                          },
-                                          {
-                                            "type": "string"
-                                          }
-                                        ],
-                                        "x-kubernetes-int-or-string": true
-                                      }
-                                    }
-                                  },
-                                  "terminationGracePeriodSeconds": {
-                                    "type": "integer",
-                                    "format": "int64"
-                                  },
-                                  "timeoutSeconds": {
-                                    "type": "integer",
-                                    "format": "int32"
-                                  }
-                                }
-                              },
-                              "nice": {
-                                "type": "object",
-                                "properties": {
-                                  "adjustment": {
-                                    "type": "integer",
-                                    "format": "int32"
-                                  }
-                                }
-                              },
-                              "readinessProbe": {
-                                "type": "object",
-                                "properties": {
-                                  "exec": {
-                                    "type": "object",
-                                    "properties": {
-                                      "command": {
-                                        "type": "array",
-                                        "items": {
-                                          "type": "string"
-                                        },
-                                        "x-kubernetes-list-type": "atomic"
-                                      }
-                                    }
-                                  },
-                                  "failureThreshold": {
-                                    "type": "integer",
-                                    "format": "int32"
-                                  },
-                                  "grpc": {
-                                    "type": "object",
-                                    "required": [
-                                      "port"
-                                    ],
-                                    "properties": {
-                                      "port": {
-                                        "type": "integer",
-                                        "format": "int32"
-                                      },
-                                      "service": {
-                                        "type": "string"
-                                      }
-                                    }
-                                  },
-                                  "httpGet": {
-                                    "type": "object",
-                                    "required": [
-                                      "port"
-                                    ],
-                                    "properties": {
-                                      "host": {
-                                        "type": "string"
-                                      },
-                                      "httpHeaders": {
-                                        "type": "array",
-                                        "items": {
-                                          "type": "object",
-                                          "required": [
-                                            "name",
-                                            "value"
-                                          ],
-                                          "properties": {
-                                            "name": {
-                                              "type": "string"
-                                            },
-                                            "value": {
-                                              "type": "string"
-                                            }
-                                          }
-                                        },
-                                        "x-kubernetes-list-type": "atomic"
-                                      },
-                                      "path": {
-                                        "type": "string"
-                                      },
-                                      "port": {
-                                        "anyOf": [
-                                          {
-                                            "type": "integer"
-                                          },
-                                          {
-                                            "type": "string"
-                                          }
-                                        ],
-                                        "x-kubernetes-int-or-string": true
-                                      },
-                                      "scheme": {
-                                        "type": "string"
-                                      }
-                                    }
-                                  },
-                                  "initialDelaySeconds": {
-                                    "type": "integer",
-                                    "format": "int32"
-                                  },
-                                  "periodSeconds": {
-                                    "type": "integer",
-                                    "format": "int32"
-                                  },
-                                  "successThreshold": {
-                                    "type": "integer",
-                                    "format": "int32"
-                                  },
-                                  "tcpSocket": {
-                                    "type": "object",
-                                    "required": [
-                                      "port"
-                                    ],
-                                    "properties": {
-                                      "host": {
-                                        "type": "string"
-                                      },
-                                      "port": {
-                                        "anyOf": [
-                                          {
-                                            "type": "integer"
-                                          },
-                                          {
-                                            "type": "string"
-                                          }
-                                        ],
-                                        "x-kubernetes-int-or-string": true
-                                      }
-                                    }
-                                  },
-                                  "terminationGracePeriodSeconds": {
-                                    "type": "integer",
-                                    "format": "int64"
-                                  },
-                                  "timeoutSeconds": {
-                                    "type": "integer",
-                                    "format": "int32"
-                                  }
-                                }
-                              },
-                              "resources": {
-                                "type": "object",
-                                "properties": {
-                                  "claims": {
-                                    "type": "array",
-                                    "items": {
-                                      "type": "object",
-                                      "required": [
-                                        "name"
-                                      ],
-                                      "properties": {
-                                        "name": {
-                                          "type": "string"
-                                        }
-                                      }
-                                    },
-                                    "x-kubernetes-list-map-keys": [
-                                      "name"
-                                    ],
-                                    "x-kubernetes-list-type": "map"
-                                  },
-                                  "limits": {
-                                    "type": "object",
-                                    "additionalProperties": {
-                                      "pattern": "^(\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))(([KMGTPE]i)|[numkMGTPE]|([eE](\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))))?$",
-                                      "anyOf": [
-                                        {
-                                          "type": "integer"
-                                        },
-                                        {
-                                          "type": "string"
-                                        }
-                                      ],
-                                      "x-kubernetes-int-or-string": true
-                                    }
-                                  },
-                                  "requests": {
-                                    "type": "object",
-                                    "additionalProperties": {
-                                      "pattern": "^(\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))(([KMGTPE]i)|[numkMGTPE]|([eE](\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))))?$",
-                                      "anyOf": [
-                                        {
-                                          "type": "integer"
-                                        },
-                                        {
-                                          "type": "string"
-                                        }
-                                      ],
-                                      "x-kubernetes-int-or-string": true
-                                    }
-                                  }
-                                }
-                              },
-                              "securityContext": {
-                                "type": "object",
-                                "properties": {
-                                  "allowPrivilegeEscalation": {
-                                    "type": "boolean"
-                                  },
-                                  "appArmorProfile": {
-                                    "type": "object",
-                                    "required": [
-                                      "type"
-                                    ],
-                                    "properties": {
-                                      "localhostProfile": {
-                                        "type": "string"
-                                      },
-                                      "type": {
-                                        "type": "string"
-                                      }
-                                    }
-                                  },
-                                  "capabilities": {
-                                    "type": "object",
-                                    "properties": {
-                                      "add": {
-                                        "type": "array",
-                                        "items": {
-                                          "type": "string"
-                                        },
-                                        "x-kubernetes-list-type": "atomic"
-                                      },
-                                      "drop": {
-                                        "type": "array",
-                                        "items": {
-                                          "type": "string"
-                                        },
-                                        "x-kubernetes-list-type": "atomic"
-                                      }
-                                    }
-                                  },
-                                  "privileged": {
-                                    "type": "boolean"
-                                  },
-                                  "procMount": {
-                                    "type": "string"
-                                  },
-                                  "readOnlyRootFilesystem": {
-                                    "type": "boolean"
-                                  },
-                                  "runAsGroup": {
-                                    "type": "integer",
-                                    "format": "int64"
-                                  },
-                                  "runAsNonRoot": {
-                                    "type": "boolean"
-                                  },
-                                  "runAsUser": {
-                                    "type": "integer",
-                                    "format": "int64"
-                                  },
-                                  "seLinuxOptions": {
-                                    "type": "object",
-                                    "properties": {
-                                      "level": {
-                                        "type": "string"
-                                      },
-                                      "role": {
-                                        "type": "string"
-                                      },
-                                      "type": {
-                                        "type": "string"
-                                      },
-                                      "user": {
-                                        "type": "string"
-                                      }
-                                    }
-                                  },
-                                  "seccompProfile": {
-                                    "type": "object",
-                                    "required": [
-                                      "type"
-                                    ],
-                                    "properties": {
-                                      "localhostProfile": {
-                                        "type": "string"
-                                      },
-                                      "type": {
-                                        "type": "string"
-                                      }
-                                    }
-                                  },
-                                  "windowsOptions": {
-                                    "type": "object",
-                                    "properties": {
-                                      "gmsaCredentialSpec": {
-                                        "type": "string"
-                                      },
-                                      "gmsaCredentialSpecName": {
-                                        "type": "string"
-                                      },
-                                      "hostProcess": {
-                                        "type": "boolean"
-                                      },
-                                      "runAsUserName": {
-                                        "type": "string"
-                                      }
-                                    }
-                                  }
-                                }
-                              }
-                            }
-                          },
-                          "pod": {
-                            "type": "object",
-                            "properties": {
-                              "affinity": {
-                                "type": "object",
-                                "properties": {
-                                  "nodeAffinity": {
-                                    "type": "object",
-                                    "properties": {
-                                      "preferredDuringSchedulingIgnoredDuringExecution": {
-                                        "type": "array",
-                                        "items": {
-                                          "type": "object",
-                                          "required": [
-                                            "preference",
-                                            "weight"
-                                          ],
-                                          "properties": {
-                                            "preference": {
-                                              "type": "object",
-                                              "properties": {
-                                                "matchExpressions": {
-                                                  "type": "array",
-                                                  "items": {
-                                                    "type": "object",
-                                                    "required": [
-                                                      "key",
-                                                      "operator"
-                                                    ],
-                                                    "properties": {
-                                                      "key": {
-                                                        "type": "string"
-                                                      },
-                                                      "operator": {
-                                                        "type": "string"
-                                                      },
-                                                      "values": {
-                                                        "type": "array",
-                                                        "items": {
-                                                          "type": "string"
-                                                        },
-                                                        "x-kubernetes-list-type": "atomic"
-                                                      }
-                                                    }
-                                                  },
-                                                  "x-kubernetes-list-type": "atomic"
-                                                },
-                                                "matchFields": {
-                                                  "type": "array",
-                                                  "items": {
-                                                    "type": "object",
-                                                    "required": [
-                                                      "key",
-                                                      "operator"
-                                                    ],
-                                                    "properties": {
-                                                      "key": {
-                                                        "type": "string"
-                                                      },
-                                                      "operator": {
-                                                        "type": "string"
-                                                      },
-                                                      "values": {
-                                                        "type": "array",
-                                                        "items": {
-                                                          "type": "string"
-                                                        },
-                                                        "x-kubernetes-list-type": "atomic"
-                                                      }
-                                                    }
-                                                  },
-                                                  "x-kubernetes-list-type": "atomic"
-                                                }
-                                              },
-                                              "x-kubernetes-map-type": "atomic"
-                                            },
-                                            "weight": {
-                                              "type": "integer",
-                                              "format": "int32"
-                                            }
-                                          }
-                                        },
-                                        "x-kubernetes-list-type": "atomic"
-                                      },
-                                      "requiredDuringSchedulingIgnoredDuringExecution": {
-                                        "type": "object",
-                                        "required": [
-                                          "nodeSelectorTerms"
-                                        ],
-                                        "properties": {
-                                          "nodeSelectorTerms": {
-                                            "type": "array",
-                                            "items": {
-                                              "type": "object",
-                                              "properties": {
-                                                "matchExpressions": {
-                                                  "type": "array",
-                                                  "items": {
-                                                    "type": "object",
-                                                    "required": [
-                                                      "key",
-                                                      "operator"
-                                                    ],
-                                                    "properties": {
-                                                      "key": {
-                                                        "type": "string"
-                                                      },
-                                                      "operator": {
-                                                        "type": "string"
-                                                      },
-                                                      "values": {
-                                                        "type": "array",
-                                                        "items": {
-                                                          "type": "string"
-                                                        },
-                                                        "x-kubernetes-list-type": "atomic"
-                                                      }
-                                                    }
-                                                  },
-                                                  "x-kubernetes-list-type": "atomic"
-                                                },
-                                                "matchFields": {
-                                                  "type": "array",
-                                                  "items": {
-                                                    "type": "object",
-                                                    "required": [
-                                                      "key",
-                                                      "operator"
-                                                    ],
-                                                    "properties": {
-                                                      "key": {
-                                                        "type": "string"
-                                                      },
-                                                      "operator": {
-                                                        "type": "string"
-                                                      },
-                                                      "values": {
-                                                        "type": "array",
-                                                        "items": {
-                                                          "type": "string"
-                                                        },
-                                                        "x-kubernetes-list-type": "atomic"
-                                                      }
-                                                    }
-                                                  },
-                                                  "x-kubernetes-list-type": "atomic"
-                                                }
-                                              },
-                                              "x-kubernetes-map-type": "atomic"
-                                            },
-                                            "x-kubernetes-list-type": "atomic"
-                                          }
-                                        },
-                                        "x-kubernetes-map-type": "atomic"
-                                      }
-                                    }
-                                  },
-                                  "podAffinity": {
-                                    "type": "object",
-                                    "properties": {
-                                      "preferredDuringSchedulingIgnoredDuringExecution": {
-                                        "type": "array",
-                                        "items": {
-                                          "type": "object",
-                                          "required": [
-                                            "podAffinityTerm",
-                                            "weight"
-                                          ],
-                                          "properties": {
-                                            "podAffinityTerm": {
-                                              "type": "object",
-                                              "required": [
-                                                "topologyKey"
-                                              ],
-                                              "properties": {
-                                                "labelSelector": {
-                                                  "type": "object",
-                                                  "properties": {
-                                                    "matchExpressions": {
-                                                      "type": "array",
-                                                      "items": {
-                                                        "type": "object",
-                                                        "required": [
-                                                          "key",
-                                                          "operator"
-                                                        ],
-                                                        "properties": {
-                                                          "key": {
-                                                            "type": "string"
-                                                          },
-                                                          "operator": {
-                                                            "type": "string"
-                                                          },
-                                                          "values": {
-                                                            "type": "array",
-                                                            "items": {
-                                                              "type": "string"
-                                                            },
-                                                            "x-kubernetes-list-type": "atomic"
-                                                          }
-                                                        }
-                                                      },
-                                                      "x-kubernetes-list-type": "atomic"
-                                                    },
-                                                    "matchLabels": {
-                                                      "type": "object",
-                                                      "additionalProperties": {
-                                                        "type": "string"
-                                                      }
-                                                    }
-                                                  },
-                                                  "x-kubernetes-map-type": "atomic"
-                                                },
-                                                "matchLabelKeys": {
-                                                  "type": "array",
-                                                  "items": {
-                                                    "type": "string"
-                                                  },
-                                                  "x-kubernetes-list-type": "atomic"
-                                                },
-                                                "mismatchLabelKeys": {
-                                                  "type": "array",
-                                                  "items": {
-                                                    "type": "string"
-                                                  },
-                                                  "x-kubernetes-list-type": "atomic"
-                                                },
-                                                "namespaceSelector": {
-                                                  "type": "object",
-                                                  "properties": {
-                                                    "matchExpressions": {
-                                                      "type": "array",
-                                                      "items": {
-                                                        "type": "object",
-                                                        "required": [
-                                                          "key",
-                                                          "operator"
-                                                        ],
-                                                        "properties": {
-                                                          "key": {
-                                                            "type": "string"
-                                                          },
-                                                          "operator": {
-                                                            "type": "string"
-                                                          },
-                                                          "values": {
-                                                            "type": "array",
-                                                            "items": {
-                                                              "type": "string"
-                                                            },
-                                                            "x-kubernetes-list-type": "atomic"
-                                                          }
-                                                        }
-                                                      },
-                                                      "x-kubernetes-list-type": "atomic"
-                                                    },
-                                                    "matchLabels": {
-                                                      "type": "object",
-                                                      "additionalProperties": {
-                                                        "type": "string"
-                                                      }
-                                                    }
-                                                  },
-                                                  "x-kubernetes-map-type": "atomic"
-                                                },
-                                                "namespaces": {
-                                                  "type": "array",
-                                                  "items": {
-                                                    "type": "string"
-                                                  },
-                                                  "x-kubernetes-list-type": "atomic"
-                                                },
-                                                "topologyKey": {
-                                                  "type": "string"
-                                                }
-                                              }
-                                            },
-                                            "weight": {
-                                              "type": "integer",
-                                              "format": "int32"
-                                            }
-                                          }
-                                        },
-                                        "x-kubernetes-list-type": "atomic"
-                                      },
-                                      "requiredDuringSchedulingIgnoredDuringExecution": {
-                                        "type": "array",
-                                        "items": {
-                                          "type": "object",
-                                          "required": [
-                                            "topologyKey"
-                                          ],
-                                          "properties": {
-                                            "labelSelector": {
-                                              "type": "object",
-                                              "properties": {
-                                                "matchExpressions": {
-                                                  "type": "array",
-                                                  "items": {
-                                                    "type": "object",
-                                                    "required": [
-                                                      "key",
-                                                      "operator"
-                                                    ],
-                                                    "properties": {
-                                                      "key": {
-                                                        "type": "string"
-                                                      },
-                                                      "operator": {
-                                                        "type": "string"
-                                                      },
-                                                      "values": {
-                                                        "type": "array",
-                                                        "items": {
-                                                          "type": "string"
-                                                        },
-                                                        "x-kubernetes-list-type": "atomic"
-                                                      }
-                                                    }
-                                                  },
-                                                  "x-kubernetes-list-type": "atomic"
-                                                },
-                                                "matchLabels": {
-                                                  "type": "object",
-                                                  "additionalProperties": {
-                                                    "type": "string"
-                                                  }
-                                                }
-                                              },
-                                              "x-kubernetes-map-type": "atomic"
-                                            },
-                                            "matchLabelKeys": {
-                                              "type": "array",
-                                              "items": {
-                                                "type": "string"
-                                              },
-                                              "x-kubernetes-list-type": "atomic"
-                                            },
-                                            "mismatchLabelKeys": {
-                                              "type": "array",
-                                              "items": {
-                                                "type": "string"
-                                              },
-                                              "x-kubernetes-list-type": "atomic"
-                                            },
-                                            "namespaceSelector": {
-                                              "type": "object",
-                                              "properties": {
-                                                "matchExpressions": {
-                                                  "type": "array",
-                                                  "items": {
-                                                    "type": "object",
-                                                    "required": [
-                                                      "key",
-                                                      "operator"
-                                                    ],
-                                                    "properties": {
-                                                      "key": {
-                                                        "type": "string"
-                                                      },
-                                                      "operator": {
-                                                        "type": "string"
-                                                      },
-                                                      "values": {
-                                                        "type": "array",
-                                                        "items": {
-                                                          "type": "string"
-                                                        },
-                                                        "x-kubernetes-list-type": "atomic"
-                                                      }
-                                                    }
-                                                  },
-                                                  "x-kubernetes-list-type": "atomic"
-                                                },
-                                                "matchLabels": {
-                                                  "type": "object",
-                                                  "additionalProperties": {
-                                                    "type": "string"
-                                                  }
-                                                }
-                                              },
-                                              "x-kubernetes-map-type": "atomic"
-                                            },
-                                            "namespaces": {
-                                              "type": "array",
-                                              "items": {
-                                                "type": "string"
-                                              },
-                                              "x-kubernetes-list-type": "atomic"
-                                            },
-                                            "topologyKey": {
-                                              "type": "string"
-                                            }
-                                          }
-                                        },
-                                        "x-kubernetes-list-type": "atomic"
-                                      }
-                                    }
-                                  },
-                                  "podAntiAffinity": {
-                                    "type": "object",
-                                    "properties": {
-                                      "preferredDuringSchedulingIgnoredDuringExecution": {
-                                        "type": "array",
-                                        "items": {
-                                          "type": "object",
-                                          "required": [
-                                            "podAffinityTerm",
-                                            "weight"
-                                          ],
-                                          "properties": {
-                                            "podAffinityTerm": {
-                                              "type": "object",
-                                              "required": [
-                                                "topologyKey"
-                                              ],
-                                              "properties": {
-                                                "labelSelector": {
-                                                  "type": "object",
-                                                  "properties": {
-                                                    "matchExpressions": {
-                                                      "type": "array",
-                                                      "items": {
-                                                        "type": "object",
-                                                        "required": [
-                                                          "key",
-                                                          "operator"
-                                                        ],
-                                                        "properties": {
-                                                          "key": {
-                                                            "type": "string"
-                                                          },
-                                                          "operator": {
-                                                            "type": "string"
-                                                          },
-                                                          "values": {
-                                                            "type": "array",
-                                                            "items": {
-                                                              "type": "string"
-                                                            },
-                                                            "x-kubernetes-list-type": "atomic"
-                                                          }
-                                                        }
-                                                      },
-                                                      "x-kubernetes-list-type": "atomic"
-                                                    },
-                                                    "matchLabels": {
-                                                      "type": "object",
-                                                      "additionalProperties": {
-                                                        "type": "string"
-                                                      }
-                                                    }
-                                                  },
-                                                  "x-kubernetes-map-type": "atomic"
-                                                },
-                                                "matchLabelKeys": {
-                                                  "type": "array",
-                                                  "items": {
-                                                    "type": "string"
-                                                  },
-                                                  "x-kubernetes-list-type": "atomic"
-                                                },
-                                                "mismatchLabelKeys": {
-                                                  "type": "array",
-                                                  "items": {
-                                                    "type": "string"
-                                                  },
-                                                  "x-kubernetes-list-type": "atomic"
-                                                },
-                                                "namespaceSelector": {
-                                                  "type": "object",
-                                                  "properties": {
-                                                    "matchExpressions": {
-                                                      "type": "array",
-                                                      "items": {
-                                                        "type": "object",
-                                                        "required": [
-                                                          "key",
-                                                          "operator"
-                                                        ],
-                                                        "properties": {
-                                                          "key": {
-                                                            "type": "string"
-                                                          },
-                                                          "operator": {
-                                                            "type": "string"
-                                                          },
-                                                          "values": {
-                                                            "type": "array",
-                                                            "items": {
-                                                              "type": "string"
-                                                            },
-                                                            "x-kubernetes-list-type": "atomic"
-                                                          }
-                                                        }
-                                                      },
-                                                      "x-kubernetes-list-type": "atomic"
-                                                    },
-                                                    "matchLabels": {
-                                                      "type": "object",
-                                                      "additionalProperties": {
-                                                        "type": "string"
-                                                      }
-                                                    }
-                                                  },
-                                                  "x-kubernetes-map-type": "atomic"
-                                                },
-                                                "namespaces": {
-                                                  "type": "array",
-                                                  "items": {
-                                                    "type": "string"
-                                                  },
-                                                  "x-kubernetes-list-type": "atomic"
-                                                },
-                                                "topologyKey": {
-                                                  "type": "string"
-                                                }
-                                              }
-                                            },
-                                            "weight": {
-                                              "type": "integer",
-                                              "format": "int32"
-                                            }
-                                          }
-                                        },
-                                        "x-kubernetes-list-type": "atomic"
-                                      },
-                                      "requiredDuringSchedulingIgnoredDuringExecution": {
-                                        "type": "array",
-                                        "items": {
-                                          "type": "object",
-                                          "required": [
-                                            "topologyKey"
-                                          ],
-                                          "properties": {
-                                            "labelSelector": {
-                                              "type": "object",
-                                              "properties": {
-                                                "matchExpressions": {
-                                                  "type": "array",
-                                                  "items": {
-                                                    "type": "object",
-                                                    "required": [
-                                                      "key",
-                                                      "operator"
-                                                    ],
-                                                    "properties": {
-                                                      "key": {
-                                                        "type": "string"
-                                                      },
-                                                      "operator": {
-                                                        "type": "string"
-                                                      },
-                                                      "values": {
-                                                        "type": "array",
-                                                        "items": {
-                                                          "type": "string"
-                                                        },
-                                                        "x-kubernetes-list-type": "atomic"
-                                                      }
-                                                    }
-                                                  },
-                                                  "x-kubernetes-list-type": "atomic"
-                                                },
-                                                "matchLabels": {
-                                                  "type": "object",
-                                                  "additionalProperties": {
-                                                    "type": "string"
-                                                  }
-                                                }
-                                              },
-                                              "x-kubernetes-map-type": "atomic"
-                                            },
-                                            "matchLabelKeys": {
-                                              "type": "array",
-                                              "items": {
-                                                "type": "string"
-                                              },
-                                              "x-kubernetes-list-type": "atomic"
-                                            },
-                                            "mismatchLabelKeys": {
-                                              "type": "array",
-                                              "items": {
-                                                "type": "string"
-                                              },
-                                              "x-kubernetes-list-type": "atomic"
-                                            },
-                                            "namespaceSelector": {
-                                              "type": "object",
-                                              "properties": {
-                                                "matchExpressions": {
-                                                  "type": "array",
-                                                  "items": {
-                                                    "type": "object",
-                                                    "required": [
-                                                      "key",
-                                                      "operator"
-                                                    ],
-                                                    "properties": {
-                                                      "key": {
-                                                        "type": "string"
-                                                      },
-                                                      "operator": {
-                                                        "type": "string"
-                                                      },
-                                                      "values": {
-                                                        "type": "array",
-                                                        "items": {
-                                                          "type": "string"
-                                                        },
-                                                        "x-kubernetes-list-type": "atomic"
-                                                      }
-                                                    }
-                                                  },
-                                                  "x-kubernetes-list-type": "atomic"
-                                                },
-                                                "matchLabels": {
-                                                  "type": "object",
-                                                  "additionalProperties": {
-                                                    "type": "string"
-                                                  }
-                                                }
-                                              },
-                                              "x-kubernetes-map-type": "atomic"
-                                            },
-                                            "namespaces": {
-                                              "type": "array",
-                                              "items": {
-                                                "type": "string"
-                                              },
-                                              "x-kubernetes-list-type": "atomic"
-                                            },
-                                            "topologyKey": {
-                                              "type": "string"
-                                            }
-                                          }
-                                        },
-                                        "x-kubernetes-list-type": "atomic"
-                                      }
-                                    }
-                                  }
-                                }
-                              },
-                              "automountServiceAccountToken": {
-                                "type": "boolean"
-                              },
-                              "enableServiceLinks": {
-                                "type": "boolean"
-                              },
-                              "imagePullSecrets": {
-                                "type": "array",
-                                "items": {
-                                  "type": "object",
-                                  "properties": {
-                                    "name": {
-                                      "type": "string",
-                                      "default": ""
-                                    }
-                                  },
-                                  "x-kubernetes-map-type": "atomic"
-                                }
-                              },
-                              "nodeName": {
-                                "type": "string"
-                              },
-                              "nodeSelector": {
-                                "type": "object",
-                                "additionalProperties": {
-                                  "type": "string"
-                                }
-                              },
-                              "podAnnotations": {
-                                "type": "object",
-                                "additionalProperties": {
-                                  "type": "string"
-                                }
-                              },
-                              "podLabels": {
-                                "type": "object",
-                                "additionalProperties": {
-                                  "type": "string"
-                                }
-                              },
-                              "priority": {
-                                "type": "integer",
-                                "format": "int32"
-                              },
-                              "priorityClassName": {
-                                "type": "string"
-                              },
-                              "readinessGates": {
-                                "type": "array",
-                                "items": {
-                                  "type": "object",
-                                  "required": [
-                                    "conditionType"
-                                  ],
-                                  "properties": {
-                                    "conditionType": {
-                                      "type": "string"
-                                    }
-                                  }
-                                }
-                              },
-                              "runtimeClassName": {
-                                "type": "string"
-                              },
-                              "schedulerName": {
-                                "type": "string"
-                              },
-                              "securityContext": {
-                                "type": "object",
-                                "properties": {
-                                  "appArmorProfile": {
-                                    "type": "object",
-                                    "required": [
-                                      "type"
-                                    ],
-                                    "properties": {
-                                      "localhostProfile": {
-                                        "type": "string"
-                                      },
-                                      "type": {
-                                        "type": "string"
-                                      }
-                                    }
-                                  },
-                                  "fsGroup": {
-                                    "type": "integer",
-                                    "format": "int64"
-                                  },
-                                  "fsGroupChangePolicy": {
-                                    "type": "string"
-                                  },
-                                  "runAsGroup": {
-                                    "type": "integer",
-                                    "format": "int64"
-                                  },
-                                  "runAsNonRoot": {
-                                    "type": "boolean"
-                                  },
-                                  "runAsUser": {
-                                    "type": "integer",
-                                    "format": "int64"
-                                  },
-                                  "seLinuxOptions": {
-                                    "type": "object",
-                                    "properties": {
-                                      "level": {
-                                        "type": "string"
-                                      },
-                                      "role": {
-                                        "type": "string"
-                                      },
-                                      "type": {
-                                        "type": "string"
-                                      },
-                                      "user": {
-                                        "type": "string"
-                                      }
-                                    }
-                                  },
-                                  "seccompProfile": {
-                                    "type": "object",
-                                    "required": [
-                                      "type"
-                                    ],
-                                    "properties": {
-                                      "localhostProfile": {
-                                        "type": "string"
-                                      },
-                                      "type": {
-                                        "type": "string"
-                                      }
-                                    }
-                                  },
-                                  "supplementalGroups": {
-                                    "type": "array",
-                                    "items": {
-                                      "type": "integer",
-                                      "format": "int64"
-                                    },
-                                    "x-kubernetes-list-type": "atomic"
-                                  },
-                                  "sysctls": {
-                                    "type": "array",
-                                    "items": {
-                                      "type": "object",
-                                      "required": [
-                                        "name",
-                                        "value"
-                                      ],
-                                      "properties": {
-                                        "name": {
-                                          "type": "string"
-                                        },
-                                        "value": {
-                                          "type": "string"
-                                        }
-                                      }
-                                    },
-                                    "x-kubernetes-list-type": "atomic"
-                                  },
-                                  "windowsOptions": {
-                                    "type": "object",
-                                    "properties": {
-                                      "gmsaCredentialSpec": {
-                                        "type": "string"
-                                      },
-                                      "gmsaCredentialSpecName": {
-                                        "type": "string"
-                                      },
-                                      "hostProcess": {
-                                        "type": "boolean"
-                                      },
-                                      "runAsUserName": {
-                                        "type": "string"
-                                      }
-                                    }
-                                  }
-                                }
-                              },
-                              "serviceAccountAnnotations": {
-                                "type": "object",
-                                "additionalProperties": {
-                                  "type": "string"
-                                }
-                              },
-                              "serviceAccountName": {
-                                "type": "string"
-                              },
-                              "tolerations": {
-                                "type": "array",
-                                "items": {
-                                  "type": "object",
-                                  "properties": {
-                                    "effect": {
-                                      "type": "string"
-                                    },
-                                    "key": {
-                                      "type": "string"
-                                    },
-                                    "operator": {
-                                      "type": "string"
-                                    },
-                                    "tolerationSeconds": {
-                                      "type": "integer",
-                                      "format": "int64"
-                                    },
-                                    "value": {
-                                      "type": "string"
-                                    }
-                                  }
-                                }
-                              },
-                              "topologySpreadConstraints": {
-                                "type": "array",
-                                "items": {
-                                  "type": "object",
-                                  "required": [
-                                    "maxSkew",
-                                    "topologyKey",
-                                    "whenUnsatisfiable"
-                                  ],
-                                  "properties": {
-                                    "labelSelector": {
-                                      "type": "object",
-                                      "properties": {
-                                        "matchExpressions": {
-                                          "type": "array",
-                                          "items": {
-                                            "type": "object",
-                                            "required": [
-                                              "key",
-                                              "operator"
-                                            ],
-                                            "properties": {
-                                              "key": {
-                                                "type": "string"
-                                              },
-                                              "operator": {
-                                                "type": "string"
-                                              },
-                                              "values": {
-                                                "type": "array",
-                                                "items": {
-                                                  "type": "string"
-                                                },
-                                                "x-kubernetes-list-type": "atomic"
-                                              }
-                                            }
-                                          },
-                                          "x-kubernetes-list-type": "atomic"
-                                        },
-                                        "matchLabels": {
-                                          "type": "object",
-                                          "additionalProperties": {
-                                            "type": "string"
-                                          }
-                                        }
-                                      },
-                                      "x-kubernetes-map-type": "atomic"
-                                    },
-                                    "matchLabelKeys": {
-                                      "type": "array",
-                                      "items": {
-                                        "type": "string"
-                                      },
-                                      "x-kubernetes-list-type": "atomic"
-                                    },
-                                    "maxSkew": {
-                                      "type": "integer",
-                                      "format": "int32"
-                                    },
-                                    "minDomains": {
-                                      "type": "integer",
-                                      "format": "int32"
-                                    },
-                                    "nodeAffinityPolicy": {
-                                      "type": "string"
-                                    },
-                                    "nodeTaintsPolicy": {
-                                      "type": "string"
-                                    },
-                                    "topologyKey": {
-                                      "type": "string"
-                                    },
-                                    "whenUnsatisfiable": {
-                                      "type": "string"
-                                    }
-                                  }
-                                },
-                                "x-kubernetes-list-map-keys": [
-                                  "topologyKey",
-                                  "whenUnsatisfiable"
-                                ],
-                                "x-kubernetes-list-type": "map"
-                              }
-                            }
-                          }
-                        }
                       }
                     }
                   }

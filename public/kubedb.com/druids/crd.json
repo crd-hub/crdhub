@@ -31080,9 +31080,12 @@
                     "type": "string",
                     "enum": [
                       "Provisioning",
+                      "DataRestoring",
                       "Ready",
+                      "Critical",
                       "NotReady",
-                      "Critical"
+                      "Halted",
+                      "Unknown"
                     ]
                   }
                 }

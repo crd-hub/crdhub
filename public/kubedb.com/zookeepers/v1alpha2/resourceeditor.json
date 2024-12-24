@@ -41,6 +41,74 @@
       "enforceQuota": true,
       "actions": [
         {
+          "name": "Backups",
+          "items": [
+            {
+              "name": "Configure Backup",
+              "icons": [
+                {
+                  "src": "https://cdn.appscode.com/k8s/icons/action-icons/configure-backup.svg",
+                  "type": "image/svg+xml"
+                }
+              ],
+              "operationId": "edit-self-backupconfiguration",
+              "flow": "standalone-edit",
+              "editor": {
+                "name": "kubedbcom-zookeeper-editor",
+                "version": "v0.11.0",
+                "sourceRef": {
+                  "apiGroup": "source.toolkit.fluxcd.io",
+                  "kind": "HelmRepository",
+                  "name": "appscode-charts-oci"
+                }
+              },
+              "enforceQuota": false
+            },
+            {
+              "name": "Instant Backup",
+              "icons": [
+                {
+                  "src": "https://cdn.appscode.com/k8s/icons/action-icons/instant-backup.svg",
+                  "type": "image/svg+xml"
+                }
+              ],
+              "operationId": "create-instant-backup",
+              "flow": "standalone-create",
+              "editor": {
+                "name": "corekubestashcom-backupsession-editor",
+                "version": "v0.11.0",
+                "sourceRef": {
+                  "apiGroup": "source.toolkit.fluxcd.io",
+                  "kind": "HelmRepository",
+                  "name": "appscode-charts-oci"
+                }
+              },
+              "enforceQuota": false
+            },
+            {
+              "name": "Restore",
+              "icons": [
+                {
+                  "src": "https://cdn.appscode.com/k8s/icons/action-icons/restore.svg",
+                  "type": "image/svg+xml"
+                }
+              ],
+              "operationId": "create-restoresession",
+              "flow": "standalone-create",
+              "editor": {
+                "name": "corekubestashcom-restoresession-editor-options",
+                "version": "v0.11.0",
+                "sourceRef": {
+                  "apiGroup": "source.toolkit.fluxcd.io",
+                  "kind": "HelmRepository",
+                  "name": "appscode-charts-oci"
+                }
+              },
+              "enforceQuota": false
+            }
+          ]
+        },
+        {
           "name": "Operations",
           "items": [
             {

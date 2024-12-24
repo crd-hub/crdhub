@@ -44,10 +44,10 @@
           "name": "Backups",
           "items": [
             {
-              "name": "Backup",
+              "name": "Configure Backup",
               "icons": [
                 {
-                  "src": "https://cdn.appscode.com/k8s/icons/action-icons/backup.svg",
+                  "src": "https://cdn.appscode.com/k8s/icons/action-icons/configure-backup.svg",
                   "type": "image/svg+xml"
                 }
               ],
@@ -55,6 +55,27 @@
               "flow": "standalone-edit",
               "editor": {
                 "name": "kubedbcom-solr-editor",
+                "version": "v0.11.0",
+                "sourceRef": {
+                  "apiGroup": "source.toolkit.fluxcd.io",
+                  "kind": "HelmRepository",
+                  "name": "appscode-charts-oci"
+                }
+              },
+              "enforceQuota": false
+            },
+            {
+              "name": "Instant Backup",
+              "icons": [
+                {
+                  "src": "https://cdn.appscode.com/k8s/icons/action-icons/instant-backup.svg",
+                  "type": "image/svg+xml"
+                }
+              ],
+              "operationId": "create-instant-backup",
+              "flow": "standalone-create",
+              "editor": {
+                "name": "corekubestashcom-backupsession-editor",
                 "version": "v0.11.0",
                 "sourceRef": {
                   "apiGroup": "source.toolkit.fluxcd.io",

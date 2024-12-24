@@ -18,6 +18,18 @@
       "name": "gatewaypresets",
       "kind": "GatewayPreset",
       "scope": "Namespaced"
+    },
+    "ui": {
+      "editor": {
+        "name": "gatewaycatalogappscodecom-gatewaypreset-editor",
+        "version": "v0.11.0",
+        "sourceRef": {
+          "apiGroup": "source.toolkit.fluxcd.io",
+          "kind": "HelmRepository",
+          "name": "appscode-charts-oci"
+        }
+      },
+      "enforceQuota": false
     }
   }
 }

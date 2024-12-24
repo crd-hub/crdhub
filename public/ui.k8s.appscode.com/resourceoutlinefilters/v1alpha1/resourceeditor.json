@@ -1,0 +1,23 @@
+{
+  "kind": "ResourceEditor",
+  "apiVersion": "ui.k8s.appscode.com/v1alpha1",
+  "metadata": {
+    "name": "ui.k8s.appscode.com-v1alpha1-resourceoutlinefilters",
+    "creationTimestamp": null,
+    "labels": {
+      "k8s.io/group": "ui.k8s.appscode.com",
+      "k8s.io/kind": "ResourceOutlineFilter",
+      "k8s.io/resource": "resourceoutlinefilters",
+      "k8s.io/version": "v1alpha1"
+    }
+  },
+  "spec": {
+    "resource": {
+      "group": "ui.k8s.appscode.com",
+      "version": "v1alpha1",
+      "name": "resourceoutlinefilters",
+      "kind": "ResourceOutlineFilter",
+      "scope": "Cluster"
+    }
+  }
+}

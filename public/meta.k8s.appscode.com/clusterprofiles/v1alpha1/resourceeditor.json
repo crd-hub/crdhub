@@ -2,12 +2,12 @@
   "kind": "ResourceEditor",
   "apiVersion": "ui.k8s.appscode.com/v1alpha1",
   "metadata": {
-    "name": "meta.k8s.appscode.com-v1alpha1-ClusterProfiles",
+    "name": "meta.k8s.appscode.com-v1alpha1-clusterprofiles",
     "creationTimestamp": null,
     "labels": {
       "k8s.io/group": "meta.k8s.appscode.com",
       "k8s.io/kind": "ClusterProfile",
-      "k8s.io/resource": "ClusterProfiles",
+      "k8s.io/resource": "clusterprofiles",
       "k8s.io/version": "v1alpha1"
     }
   },
@@ -15,7 +15,7 @@
     "resource": {
       "group": "meta.k8s.appscode.com",
       "version": "v1alpha1",
-      "name": "ClusterProfiles",
+      "name": "clusterprofiles",
       "kind": "ClusterProfile",
       "scope": "Cluster"
     },
