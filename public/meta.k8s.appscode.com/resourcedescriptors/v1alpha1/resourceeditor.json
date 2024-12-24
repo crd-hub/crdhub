@@ -6,7 +6,7 @@
     "creationTimestamp": null,
     "labels": {
       "k8s.io/group": "meta.k8s.appscode.com",
-      "k8s.io/kind": "ResourceEditor",
+      "k8s.io/kind": "ResourceDescriptor",
       "k8s.io/resource": "resourcedescriptors",
       "k8s.io/version": "v1alpha1"
     }
@@ -16,8 +16,8 @@
       "group": "meta.k8s.appscode.com",
       "version": "v1alpha1",
       "name": "resourcedescriptors",
-      "kind": "ResourceEditor",
-      "scope": "Namespaced"
+      "kind": "ResourceDescriptor",
+      "scope": "Cluster"
     },
     "ui": {
       "editor": {
