@@ -48,7 +48,7 @@
                 "type": "object"
               },
               "spec": {
-                "description": "DruidBindingSpec defines the desired state of DruidBinding",
+                "description": "BindingSpec defines the desired state of Binding",
                 "type": "object",
                 "required": [
                   "sourceRef"

@@ -22,7 +22,7 @@
     "ui": {
       "editor": {
         "name": "elasticacheawskubedbcom-parametergroup-editor",
-        "version": "v0.11.0",
+        "version": "sha256:5137f0bd381c9b4926b425bbbbfecc89bf51aff3ba082699bc55fc762fa58767",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",

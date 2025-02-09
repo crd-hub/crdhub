@@ -22,7 +22,7 @@
     "ui": {
       "editor": {
         "name": "archiverkubedbcom-mongodbarchiver-editor",
-        "version": "v0.11.0",
+        "version": "sha256:31b6b4c56c9ba5a5555e44e20d1803e8d86a02a78a198307304f989756f332d9",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",

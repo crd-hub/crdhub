@@ -22,7 +22,7 @@
     "ui": {
       "editor": {
         "name": "policy-eviction-editor",
-        "version": "v0.11.0",
+        "version": "sha256:ca0523e288e3f52ce42d01848ae1b7098a8283d75a6dfc01524f8649c4497c86",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",

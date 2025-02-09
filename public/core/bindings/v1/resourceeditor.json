@@ -22,7 +22,7 @@
     "ui": {
       "editor": {
         "name": "core-binding-editor",
-        "version": "v0.11.0",
+        "version": "sha256:c515f3cd4d8167b9917668d586bf03e140f18d88178ef6c6c56be3dd75237dfb",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",

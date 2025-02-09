@@ -48,7 +48,7 @@
                 "type": "object"
               },
               "spec": {
-                "description": "SolrBindingSpec defines the desired state of SolrBinding",
+                "description": "BindingSpec defines the desired state of Binding",
                 "type": "object",
                 "required": [
                   "sourceRef"

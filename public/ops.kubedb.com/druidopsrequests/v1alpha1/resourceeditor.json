@@ -22,7 +22,7 @@
     "ui": {
       "editor": {
         "name": "opskubedbcom-druidopsrequest-editor",
-        "version": "v0.11.0",
+        "version": "sha256:b8e4b498e915ea7f268d4513bc6ceb20c74610b7798ff5affd359355d0096c8d",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",

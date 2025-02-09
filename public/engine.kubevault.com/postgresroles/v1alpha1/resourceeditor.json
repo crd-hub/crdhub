@@ -22,7 +22,7 @@
     "ui": {
       "editor": {
         "name": "enginekubevaultcom-postgresrole-editor",
-        "version": "v0.11.0",
+        "version": "sha256:c021d0dd7bac9a393229452c6a5e2bada1bb13dad506e3de258a3fd134908e81",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",

@@ -4818,6 +4818,23 @@
                     "type": "integer",
                     "format": "int32"
                   },
+                  "schemaRegistryRef": {
+                    "type": "object",
+                    "required": [
+                      "name"
+                    ],
+                    "properties": {
+                      "internallyManaged": {
+                        "type": "boolean"
+                      },
+                      "name": {
+                        "type": "string"
+                      },
+                      "namespace": {
+                        "type": "string"
+                      }
+                    }
+                  },
                   "serviceTemplates": {
                     "type": "array",
                     "items": {

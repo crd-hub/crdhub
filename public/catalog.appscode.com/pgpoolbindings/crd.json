@@ -48,7 +48,7 @@
                 "type": "object"
               },
               "spec": {
-                "description": "PgpoolBindingSpec defines the desired state of PgpoolBinding",
+                "description": "BindingSpec defines the desired state of Binding",
                 "type": "object",
                 "required": [
                   "sourceRef"

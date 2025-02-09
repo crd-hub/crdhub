@@ -22,7 +22,7 @@
     "ui": {
       "editor": {
         "name": "catalogkubedbcom-postgresversion-editor",
-        "version": "v0.11.0",
+        "version": "sha256:2e0ed230ae5ed7edc9460ad0e49464cd414c2caa5c1db13761893224c08aed44",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",

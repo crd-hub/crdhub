@@ -22,7 +22,7 @@
     "ui": {
       "editor": {
         "name": "catalogkubedbcom-druidversion-editor",
-        "version": "v0.11.0",
+        "version": "sha256:d3ececf5e5857a090c304863f30fc1ee2335e5a6c06e7362342502be8eeb0b8e",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",

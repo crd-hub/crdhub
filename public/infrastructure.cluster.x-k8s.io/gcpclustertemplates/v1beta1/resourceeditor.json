@@ -22,7 +22,7 @@
     "ui": {
       "editor": {
         "name": "infrastructureclusterxk8sio-gcpclustertemplate-editor",
-        "version": "v0.11.0",
+        "version": "sha256:5fdfc3d1bedafe65f812b3b8485df774569bdf914c390bd6d150895e688e47f2",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",

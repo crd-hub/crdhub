@@ -22,7 +22,7 @@
     "ui": {
       "editor": {
         "name": "openvizdev-grafanadashboardtemplate-editor",
-        "version": "v0.11.0",
+        "version": "sha256:48d82d57c828c37e32ccb25b770c156ded347ef9ef19082a494f4709da4b7db4",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",

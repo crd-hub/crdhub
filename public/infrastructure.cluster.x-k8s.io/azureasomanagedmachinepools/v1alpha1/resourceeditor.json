@@ -22,7 +22,7 @@
     "ui": {
       "editor": {
         "name": "infrastructureclusterxk8sio-azureasomanagedmachinepool-editor",
-        "version": "v0.11.0",
+        "version": "sha256:3623f3d638fa486f620bcaa7fa326d3f9ae9c52f9e0cf6c0286cba930b9ec993",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",

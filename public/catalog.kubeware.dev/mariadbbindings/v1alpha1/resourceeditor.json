@@ -22,7 +22,7 @@
     "ui": {
       "editor": {
         "name": "catalogkubewaredev-mariadbbinding-editor",
-        "version": "v0.11.0",
+        "version": "sha256:0f0b42b6431c4ea54e5f3cf3d7b680571785dc493a23e63d4ad63687e7ceeafe",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",

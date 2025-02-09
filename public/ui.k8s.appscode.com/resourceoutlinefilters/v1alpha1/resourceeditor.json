@@ -18,6 +18,18 @@
       "name": "resourceoutlinefilters",
       "kind": "ResourceOutlineFilter",
       "scope": "Cluster"
+    },
+    "ui": {
+      "editor": {
+        "name": "uik8sappscodecom-resourceoutlinefilter-editor",
+        "version": "sha256:e78caff1906315940c7223be333742fb34dd2d8b60d58231645bd0b40d0d9f91",
+        "sourceRef": {
+          "apiGroup": "source.toolkit.fluxcd.io",
+          "kind": "HelmRepository",
+          "name": "appscode-charts-oci"
+        }
+      },
+      "enforceQuota": false
     }
   }
 }

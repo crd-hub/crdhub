@@ -22,7 +22,7 @@
     "ui": {
       "editor": {
         "name": "iamawskubedbcom-role-editor",
-        "version": "v0.11.0",
+        "version": "sha256:7ba92b18b4aa284deda96be1e8e3732b161167522410e3ffb17862a60b6e4f2e",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",

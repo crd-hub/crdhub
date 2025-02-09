@@ -22,7 +22,7 @@
     "ui": {
       "editor": {
         "name": "monitoringcoreoscom-scrapeconfig-editor",
-        "version": "v0.11.0",
+        "version": "sha256:b3acda141639b83c7bf2fa6765de4861cbc9f45107ee57470126e56a475905bc",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",

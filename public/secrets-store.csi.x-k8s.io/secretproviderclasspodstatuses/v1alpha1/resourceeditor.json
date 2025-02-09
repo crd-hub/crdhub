@@ -22,7 +22,7 @@
     "ui": {
       "editor": {
         "name": "secretsstorecsixk8sio-secretproviderclasspodstatus-editor",
-        "version": "v0.11.0",
+        "version": "sha256:3efb35cb2f69a21d0bcc1702dbc117265258897309da32fc27e5c3c329f7c576",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",

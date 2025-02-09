@@ -103,8 +103,7 @@
                         "type": "string",
                         "enum": [
                           "md5",
-                          "scram-sha-256",
-                          "cert"
+                          "scram-sha-256"
                         ]
                       },
                       "defaultPoolSize": {

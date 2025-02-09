@@ -22,7 +22,7 @@
     "ui": {
       "editor": {
         "name": "secretscrossplaneio-storeconfig-editor",
-        "version": "v0.11.0",
+        "version": "sha256:bf8a42efb7edd4fabe71d4fad678faa22cf12b4aca1771a1d020dd0e6da0664c",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",

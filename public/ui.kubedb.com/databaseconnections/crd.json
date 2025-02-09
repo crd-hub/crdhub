@@ -38,10 +38,6 @@
               "spec": {
                 "type": "object",
                 "properties": {
-                  "caCert": {
-                    "type": "string",
-                    "format": "byte"
-                  },
                   "connectOptions": {
                     "type": "object",
                     "additionalProperties": {
@@ -63,6 +59,10 @@
                         "namespace"
                       ],
                       "properties": {
+                        "caCert": {
+                          "type": "string",
+                          "format": "byte"
+                        },
                         "hostname": {
                           "type": "string"
                         },
@@ -188,6 +188,10 @@
                   "inCluster": {
                     "type": "object",
                     "properties": {
+                      "caCert": {
+                        "type": "string",
+                        "format": "byte"
+                      },
                       "exec": {
                         "type": "string"
                       },

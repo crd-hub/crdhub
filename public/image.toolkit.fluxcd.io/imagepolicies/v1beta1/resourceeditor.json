@@ -22,7 +22,7 @@
     "ui": {
       "editor": {
         "name": "imagetoolkitfluxcdio-imagepolicy-editor",
-        "version": "v0.11.0",
+        "version": "sha256:8da01c1c8aaee560d9a485ce532554557be0fafa87a8d04c08a81c223458ebaf",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",

@@ -48,7 +48,7 @@
                 "type": "object"
               },
               "spec": {
-                "description": "KafkaBindingSpec defines the desired state of KafkaBinding",
+                "description": "BindingSpec defines the desired state of Binding",
                 "type": "object",
                 "required": [
                   "sourceRef"

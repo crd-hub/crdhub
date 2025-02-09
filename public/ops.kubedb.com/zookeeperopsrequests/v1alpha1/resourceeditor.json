@@ -22,7 +22,7 @@
     "ui": {
       "editor": {
         "name": "opskubedbcom-zookeeperopsrequest-editor",
-        "version": "v0.11.0",
+        "version": "sha256:077c6517825ed4747261ee7991e498b8a82a50ca46aa9882775c4296f92989d8",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",

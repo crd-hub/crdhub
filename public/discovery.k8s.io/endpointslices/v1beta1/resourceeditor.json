@@ -22,7 +22,7 @@
     "ui": {
       "editor": {
         "name": "discoveryk8sio-endpointslice-editor",
-        "version": "v0.11.0",
+        "version": "sha256:da349aab83a55fcdfa0f936542c861ca7397c598610c8003594c3f3df3229351",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",

@@ -22,7 +22,7 @@
     "ui": {
       "editor": {
         "name": "helmtoolkitfluxcdio-helmrelease-editor",
-        "version": "v0.11.0",
+        "version": "sha256:fc8415f83dc79bcd53806c899bb8539e78cbdd21052e318c3fb2f8604d508d28",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",

@@ -22,7 +22,7 @@
     "ui": {
       "editor": {
         "name": "kafkakubedbcom-restproxy-editor",
-        "version": "v0.11.0",
+        "version": "sha256:d3e9e90b05863ff75c6815d432e04c5b6a641d0cfd67adaadba39c5daf74d315",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",

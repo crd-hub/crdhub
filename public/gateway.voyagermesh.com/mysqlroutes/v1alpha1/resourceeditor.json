@@ -22,7 +22,7 @@
     "ui": {
       "editor": {
         "name": "gatewayvoyagermeshcom-mysqlroute-editor",
-        "version": "v0.11.0",
+        "version": "sha256:11d88ac4954c845ccc31169e29a7f58b4a34bd8b18e34a819e70c60c198a9da0",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",

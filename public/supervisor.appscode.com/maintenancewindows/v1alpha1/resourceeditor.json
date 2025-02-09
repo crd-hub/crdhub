@@ -22,7 +22,7 @@
     "ui": {
       "editor": {
         "name": "supervisorappscodecom-maintenancewindow-editor",
-        "version": "v0.11.0",
+        "version": "sha256:26cd3889ae6ab0fda3b53f9eab508158abe6a342de026c37fb0bd97643bd91ae",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",

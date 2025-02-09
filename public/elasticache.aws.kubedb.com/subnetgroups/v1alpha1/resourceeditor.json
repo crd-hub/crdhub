@@ -22,7 +22,7 @@
     "ui": {
       "editor": {
         "name": "elasticacheawskubedbcom-subnetgroup-editor",
-        "version": "v0.11.0",
+        "version": "sha256:a9bab06b7df65f118fde3678bd137e783f7c59c38ea33f361b5a991a1cf09d91",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",

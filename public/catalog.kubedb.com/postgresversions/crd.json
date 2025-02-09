@@ -309,6 +309,14 @@
                       }
                     }
                   },
+                  "tls": {
+                    "type": "object",
+                    "properties": {
+                      "disableSSLSessionResumption": {
+                        "type": "boolean"
+                      }
+                    }
+                  },
                   "ui": {
                     "type": "array",
                     "items": {

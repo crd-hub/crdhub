@@ -46,6 +46,10 @@ properties:
             type: string
           fieldPath:
             type: string
+          filters:
+            additionalProperties:
+              type: boolean
+            type: object
           icons:
             items:
               description: ImageSpec contains information about an image used as an icon.
@@ -263,6 +267,10 @@ properties:
                           type: string
                         fieldPath:
                           type: string
+                        filters:
+                          additionalProperties:
+                            type: boolean
+                          type: object
                         icons:
                           items:
                             description: ImageSpec contains information about an image used as an icon.
@@ -483,6 +491,10 @@ properties:
                         type: string
                       fieldPath:
                         type: string
+                      filters:
+                        additionalProperties:
+                          type: boolean
+                        type: object
                       icons:
                         items:
                           description: ImageSpec contains information about an image used as an icon.
@@ -685,6 +697,10 @@ properties:
                         type: string
                       fieldPath:
                         type: string
+                      filters:
+                        additionalProperties:
+                          type: boolean
+                        type: object
                       icons:
                         items:
                           description: ImageSpec contains information about an image used as an icon.
@@ -920,6 +936,10 @@ properties:
             type: string
           fieldPath:
             type: string
+          filters:
+            additionalProperties:
+              type: boolean
+            type: object
           icons:
             items:
               description: ImageSpec contains information about an image used as an icon.
@@ -1126,7 +1146,7 @@ properties:
                           name:
                             type: string
                           sourceRef:
-                            description: TypedObjectReference represents an typed namespaced object.
+                            description: TypedObjectReference represents a typed namespaced object.
                             properties:
                               apiGroup:
                                 type: string
@@ -1191,7 +1211,7 @@ properties:
               name:
                 type: string
               sourceRef:
-                description: TypedObjectReference represents an typed namespaced object.
+                description: TypedObjectReference represents a typed namespaced object.
                 properties:
                   apiGroup:
                     type: string
@@ -1226,7 +1246,7 @@ properties:
               name:
                 type: string
               sourceRef:
-                description: TypedObjectReference represents an typed namespaced object.
+                description: TypedObjectReference represents a typed namespaced object.
                 properties:
                   apiGroup:
                     type: string

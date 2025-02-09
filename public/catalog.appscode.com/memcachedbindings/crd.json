@@ -48,7 +48,7 @@
                 "type": "object"
               },
               "spec": {
-                "description": "MemcachedBindingSpec defines the desired state of MemcachedBinding",
+                "description": "BindingSpec defines the desired state of Binding",
                 "type": "object",
                 "required": [
                   "sourceRef"

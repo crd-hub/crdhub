@@ -9932,6 +9932,33 @@
                               }
                             }
                           },
+                          "manifestOptions": {
+                            "type": "object",
+                            "properties": {
+                              "archiver": {
+                                "type": "boolean",
+                                "default": false
+                              },
+                              "archiverRef": {
+                                "type": "object",
+                                "required": [
+                                  "name"
+                                ],
+                                "properties": {
+                                  "name": {
+                                    "type": "string"
+                                  },
+                                  "namespace": {
+                                    "type": "string"
+                                  }
+                                }
+                              },
+                              "initScript": {
+                                "type": "boolean",
+                                "default": false
+                              }
+                            }
+                          },
                           "manifestRepository": {
                             "type": "object",
                             "required": [
@@ -40167,6 +40194,33 @@
                               },
                               "namespace": {
                                 "type": "string"
+                              }
+                            }
+                          },
+                          "manifestOptions": {
+                            "type": "object",
+                            "properties": {
+                              "archiver": {
+                                "type": "boolean",
+                                "default": false
+                              },
+                              "archiverRef": {
+                                "type": "object",
+                                "required": [
+                                  "name"
+                                ],
+                                "properties": {
+                                  "name": {
+                                    "type": "string"
+                                  },
+                                  "namespace": {
+                                    "type": "string"
+                                  }
+                                }
+                              },
+                              "initScript": {
+                                "type": "boolean",
+                                "default": false
                               }
                             }
                           },

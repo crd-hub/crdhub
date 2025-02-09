@@ -22,7 +22,7 @@
     "ui": {
       "editor": {
         "name": "metak8sappscodecom-resourcedescriptor-editor",
-        "version": "v0.11.0",
+        "version": "sha256:2ffd6d75462b50971fc20ba468bbb9be53d8693a27eb3685562fa2fa8a4b88ce",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",

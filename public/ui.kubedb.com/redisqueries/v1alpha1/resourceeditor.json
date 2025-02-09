@@ -22,7 +22,7 @@
     "ui": {
       "editor": {
         "name": "uikubedbcom-redisqueries-editor",
-        "version": "v0.11.0",
+        "version": "sha256:313ac4b8bf0177b3a85a6dd25ff962d09bfffdb3de60ba6d8c150a8ac5591c1e",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",

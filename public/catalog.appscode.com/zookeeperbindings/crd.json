@@ -48,7 +48,7 @@
                 "type": "object"
               },
               "spec": {
-                "description": "ZooKeeperBindingSpec defines the desired state of ZooKeeperBinding",
+                "description": "BindingSpec defines the desired state of Binding",
                 "type": "object",
                 "required": [
                   "sourceRef"

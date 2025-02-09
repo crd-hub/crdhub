@@ -22,7 +22,7 @@
     "ui": {
       "editor": {
         "name": "networkazurekubedbcom-subnetnetworksecuritygroupassociation-editor",
-        "version": "v0.11.0",
+        "version": "sha256:b5f2310e73c30ac80b8ebf234c01d263ede922816c49c2ddbfb1929182ca977a",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",

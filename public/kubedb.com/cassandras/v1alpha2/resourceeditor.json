@@ -22,7 +22,7 @@
     "ui": {
       "editor": {
         "name": "kubedbcom-cassandra-editor",
-        "version": "v0.11.0",
+        "version": "sha256:0cb34310791a10b3f2aec92d56b871507b2f691c508ab6e03f9e74a39760d1c5",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",

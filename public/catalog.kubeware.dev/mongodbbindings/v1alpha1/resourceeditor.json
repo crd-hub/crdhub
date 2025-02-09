@@ -22,7 +22,7 @@
     "ui": {
       "editor": {
         "name": "catalogkubewaredev-mongodbbinding-editor",
-        "version": "v0.11.0",
+        "version": "sha256:7004c7a1d447d7f080587207010a67201e0689e4c967c37f4199fcec6181badf",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",

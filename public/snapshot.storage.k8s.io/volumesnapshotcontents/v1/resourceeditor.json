@@ -22,7 +22,7 @@
     "ui": {
       "editor": {
         "name": "snapshotstoragek8sio-volumesnapshotcontent-editor",
-        "version": "v0.11.0",
+        "version": "sha256:5c41fddcecdc443302108c2e03b2160e0a9df6bcd1c66edff327f7a72c7901fb",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",

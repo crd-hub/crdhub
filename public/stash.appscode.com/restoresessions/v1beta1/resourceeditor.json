@@ -22,7 +22,7 @@
     "ui": {
       "options": {
         "name": "stashappscodecom-restoresession-editor-options",
-        "version": "v0.11.0",
+        "version": "sha256:96ae4da8c65e789b7df9b761282536f68b90815c1514762ddf31527eef68d3ca",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",
@@ -31,7 +31,7 @@
       },
       "editor": {
         "name": "stashappscodecom-restoresession-editor",
-        "version": "v0.11.0",
+        "version": "sha256:84ea9359aa9ff43751bcaacd17e8f87688b02de0933fdcd14956ca04bd73f2bf",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",

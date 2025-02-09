@@ -22,7 +22,7 @@
     "ui": {
       "editor": {
         "name": "uikubedbcom-pgbouncerinsight-editor",
-        "version": "v0.11.0",
+        "version": "sha256:f197b677c908a01a35bf6036e34f17bbcb0c7f2a57c500f3423f20ff0953680f",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",

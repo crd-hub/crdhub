@@ -78,6 +78,12 @@
             "fieldPath": {
               "type": "string"
             },
+            "filters": {
+              "type": "object",
+              "additionalProperties": {
+                "type": "boolean"
+              }
+            },
             "icons": {
               "type": "array",
               "items": {
@@ -390,6 +396,12 @@
                           "fieldPath": {
                             "type": "string"
                           },
+                          "filters": {
+                            "type": "object",
+                            "additionalProperties": {
+                              "type": "boolean"
+                            }
+                          },
                           "icons": {
                             "type": "array",
                             "items": {
@@ -700,6 +712,12 @@
                         "fieldPath": {
                           "type": "string"
                         },
+                        "filters": {
+                          "type": "object",
+                          "additionalProperties": {
+                            "type": "boolean"
+                          }
+                        },
                         "icons": {
                           "type": "array",
                           "items": {
@@ -984,6 +1002,12 @@
                         },
                         "fieldPath": {
                           "type": "string"
+                        },
+                        "filters": {
+                          "type": "object",
+                          "additionalProperties": {
+                            "type": "boolean"
+                          }
                         },
                         "icons": {
                           "type": "array",
@@ -1315,6 +1339,12 @@
             "fieldPath": {
               "type": "string"
             },
+            "filters": {
+              "type": "object",
+              "additionalProperties": {
+                "type": "boolean"
+              }
+            },
             "icons": {
               "type": "array",
               "items": {
@@ -1617,7 +1647,7 @@
                               "type": "string"
                             },
                             "sourceRef": {
-                              "description": "TypedObjectReference represents an typed namespaced object.",
+                              "description": "TypedObjectReference represents a typed namespaced object.",
                               "type": "object",
                               "required": [
                                 "name"
@@ -1702,7 +1732,7 @@
                   "type": "string"
                 },
                 "sourceRef": {
-                  "description": "TypedObjectReference represents an typed namespaced object.",
+                  "description": "TypedObjectReference represents a typed namespaced object.",
                   "type": "object",
                   "required": [
                     "name"
@@ -1752,7 +1782,7 @@
                   "type": "string"
                 },
                 "sourceRef": {
-                  "description": "TypedObjectReference represents an typed namespaced object.",
+                  "description": "TypedObjectReference represents a typed namespaced object.",
                   "type": "object",
                   "required": [
                     "name"

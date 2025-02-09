@@ -22,7 +22,7 @@
     "ui": {
       "editor": {
         "name": "catalogappscodecom-mysqlbinding-editor",
-        "version": "v0.11.0",
+        "version": "sha256:8698aa994b001cac395ddb63e6b96e1cd8b2db8b95a8a810d47847301e980000",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",

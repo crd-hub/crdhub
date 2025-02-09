@@ -202,6 +202,26 @@
                       }
                     }
                   },
+                  "maxscale": {
+                    "type": "object",
+                    "required": [
+                      "image"
+                    ],
+                    "properties": {
+                      "image": {
+                        "type": "string"
+                      },
+                      "securityContext": {
+                        "type": "object",
+                        "properties": {
+                          "runAsUser": {
+                            "type": "integer",
+                            "format": "int64"
+                          }
+                        }
+                      }
+                    }
+                  },
                   "podSecurityPolicies": {
                     "type": "object",
                     "required": [

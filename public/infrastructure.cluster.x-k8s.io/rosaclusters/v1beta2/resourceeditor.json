@@ -22,7 +22,7 @@
     "ui": {
       "editor": {
         "name": "infrastructureclusterxk8sio-rosacluster-editor",
-        "version": "v0.11.0",
+        "version": "sha256:5a9b53212337eff0a90eec1b7de1a91a874a88c57e96f7472a545327d384fb4e",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",

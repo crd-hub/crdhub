@@ -48,7 +48,7 @@
                 "type": "object"
               },
               "spec": {
-                "description": "MariaDBBindingSpec defines the desired state of MariaDBBinding",
+                "description": "BindingSpec defines the desired state of Binding",
                 "type": "object",
                 "required": [
                   "sourceRef"

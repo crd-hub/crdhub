@@ -22,7 +22,7 @@
     "ui": {
       "editor": {
         "name": "rdsawskubedbcom-subnetgroup-editor",
-        "version": "v0.11.0",
+        "version": "sha256:0ead8909370a5f52e0f9783b092293baf3f0bc659270f01212ba05cc062a9e0b",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",

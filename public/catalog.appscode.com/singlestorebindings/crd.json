@@ -48,7 +48,7 @@
                 "type": "object"
               },
               "spec": {
-                "description": "SinglestoreBindingSpec defines the desired state of SinglestoreBinding",
+                "description": "BindingSpec defines the desired state of Binding",
                 "type": "object",
                 "required": [
                   "sourceRef"

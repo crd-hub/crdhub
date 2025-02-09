@@ -22,7 +22,7 @@
     "ui": {
       "editor": {
         "name": "apiextensionscrossplaneio-environmentconfig-editor",
-        "version": "v0.11.0",
+        "version": "sha256:0e58163b004cd4fd9264a5a67a630f71e49e60a9af0a11741a725f52bdae3c7d",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",

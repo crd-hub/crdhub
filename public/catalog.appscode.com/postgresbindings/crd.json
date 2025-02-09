@@ -48,7 +48,7 @@
                 "type": "object"
               },
               "spec": {
-                "description": "PostgresBindingSpec defines the desired state of PostgresBinding",
+                "description": "BindingSpec defines the desired state of Binding",
                 "type": "object",
                 "required": [
                   "sourceRef"

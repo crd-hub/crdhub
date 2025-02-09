@@ -48,7 +48,7 @@
                 "type": "object"
               },
               "spec": {
-                "description": "ClickHouseBindingSpec defines the desired state of ClickHouseBinding",
+                "description": "BindingSpec defines the desired state of Binding",
                 "type": "object",
                 "required": [
                   "sourceRef"

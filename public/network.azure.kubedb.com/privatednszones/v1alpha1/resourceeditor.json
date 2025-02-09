@@ -22,7 +22,7 @@
     "ui": {
       "editor": {
         "name": "networkazurekubedbcom-privatednszone-editor",
-        "version": "v0.11.0",
+        "version": "sha256:ddb144a42b205673f53077307bcdeea2e23f1d71d932fb073bad4fd8a7cfe521",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",

@@ -22,7 +22,7 @@
     "ui": {
       "editor": {
         "name": "autoscalingkubedbcom-elasticsearchautoscaler-editor",
-        "version": "v0.11.0",
+        "version": "sha256:5e1b1d74384499f0b50703ea0377b0eb924c2bd1fe105ba7a9be0bc94a192e55",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",

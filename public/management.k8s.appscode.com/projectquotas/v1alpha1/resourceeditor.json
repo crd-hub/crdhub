@@ -22,7 +22,7 @@
     "ui": {
       "editor": {
         "name": "managementk8sappscodecom-projectquota-editor",
-        "version": "v0.11.0",
+        "version": "sha256:66413fe5e901d837ee5ceeb09a7fbb363acacf2d742ecd68c7567748f5cdb9ee",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",

@@ -22,7 +22,7 @@
     "ui": {
       "editor": {
         "name": "core-limitrange-editor",
-        "version": "v0.11.0",
+        "version": "sha256:95ffd53e0f228374e024e3024f410273415ae1ca4e3b5c00b3ccd59f4e8071bf",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",

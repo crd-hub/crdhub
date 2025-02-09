@@ -22,7 +22,7 @@
     "ui": {
       "editor": {
         "name": "corekubestashcom-backupverifier-editor",
-        "version": "v0.11.0",
+        "version": "sha256:f3209307658527cb528ecd63728b5cdfb23924fb709661a03fe1e5931d4e558c",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",

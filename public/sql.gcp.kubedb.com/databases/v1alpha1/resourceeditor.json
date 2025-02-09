@@ -22,7 +22,7 @@
     "ui": {
       "editor": {
         "name": "sqlgcpkubedbcom-database-editor",
-        "version": "v0.11.0",
+        "version": "sha256:1905c3314f8ef26f358c99c37755c0617be249bef5e3114fe0c4f762b0514d94",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",

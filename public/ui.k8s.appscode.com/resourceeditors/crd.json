@@ -81,7 +81,7 @@
                             "type": "string"
                           },
                           "sourceRef": {
-                            "description": "TypedObjectReference represents an typed namespaced object.",
+                            "description": "TypedObjectReference represents a typed namespaced object.",
                             "type": "object",
                             "required": [
                               "name"
@@ -189,7 +189,7 @@
                                         "type": "string"
                                       },
                                       "sourceRef": {
-                                        "description": "TypedObjectReference represents an typed namespaced object.",
+                                        "description": "TypedObjectReference represents a typed namespaced object.",
                                         "type": "object",
                                         "required": [
                                           "name"
@@ -274,7 +274,7 @@
                             "type": "string"
                           },
                           "sourceRef": {
-                            "description": "TypedObjectReference represents an typed namespaced object.",
+                            "description": "TypedObjectReference represents a typed namespaced object.",
                             "type": "object",
                             "required": [
                               "name"
@@ -324,7 +324,7 @@
                             "type": "string"
                           },
                           "sourceRef": {
-                            "description": "TypedObjectReference represents an typed namespaced object.",
+                            "description": "TypedObjectReference represents a typed namespaced object.",
                             "type": "object",
                             "required": [
                               "name"

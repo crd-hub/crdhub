@@ -48,7 +48,7 @@
                 "type": "object"
               },
               "spec": {
-                "description": "MSSQLServerBindingSpec defines the desired state of MSSQLServerBinding",
+                "description": "BindingSpec defines the desired state of Binding",
                 "type": "object",
                 "required": [
                   "sourceRef"

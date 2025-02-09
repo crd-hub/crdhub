@@ -22,7 +22,7 @@
     "ui": {
       "editor": {
         "name": "autoscaling-horizontalpodautoscaler-editor",
-        "version": "v0.11.0",
+        "version": "sha256:32678fb8b09fa880cf9c3529916311e57cfa83b73eeb3a073a25ea9ff219bbec",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",

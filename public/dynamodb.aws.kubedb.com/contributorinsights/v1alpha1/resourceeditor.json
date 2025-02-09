@@ -22,7 +22,7 @@
     "ui": {
       "editor": {
         "name": "dynamodbawskubedbcom-contributorinsights-editor",
-        "version": "v0.11.0",
+        "version": "sha256:5e4e0d0899bcf3a11bbc0541b74ef302cf09d2d657af97ba48907e3b06a4a371",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",

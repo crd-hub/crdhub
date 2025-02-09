@@ -22,7 +22,7 @@
     "ui": {
       "editor": {
         "name": "core-service-editor",
-        "version": "v0.11.0",
+        "version": "sha256:efad41960c6b9c8c9cd2ada06c0d89662959ff1754abf16d839c7b19a7fce79f",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",

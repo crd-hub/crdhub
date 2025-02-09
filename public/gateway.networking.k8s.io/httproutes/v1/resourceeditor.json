@@ -22,7 +22,7 @@
     "ui": {
       "editor": {
         "name": "gatewaynetworkingk8sio-httproute-editor",
-        "version": "v0.11.0",
+        "version": "sha256:0bb3448e9b6bb22151f8b7fee1c4514190cc80700bb52a3d7b1ccf5666f01504",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",

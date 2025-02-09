@@ -22,7 +22,7 @@
     "ui": {
       "editor": {
         "name": "core-endpoints-editor",
-        "version": "v0.11.0",
+        "version": "sha256:6e62468eb036914b3f38d971792c81360885b7b72e453a727b0d5e096c5ab09f",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",

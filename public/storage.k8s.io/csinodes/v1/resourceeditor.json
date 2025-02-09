@@ -22,7 +22,7 @@
     "ui": {
       "editor": {
         "name": "storagek8sio-csinode-editor",
-        "version": "v0.11.0",
+        "version": "sha256:8c6995ee826ae5c38c3cfd8134c47b208560429e7274c781c26bc17a02f1edf2",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",

@@ -22,7 +22,7 @@
     "ui": {
       "editor": {
         "name": "awskubedbcom-providerconfigusage-editor",
-        "version": "v0.11.0",
+        "version": "sha256:ded43766394e595c9e57fee342179560cf200951a58447ed47174eb131767abf",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",

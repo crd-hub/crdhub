@@ -22,7 +22,7 @@
     "ui": {
       "editor": {
         "name": "sqlazurekubedbcom-mssqljobagent-editor",
-        "version": "v0.11.0",
+        "version": "sha256:19e7b81fa9aff52dc63e1e3934273c6fb57f19a2b83c1d6a2db0df6c7e05880b",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",

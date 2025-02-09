@@ -22,7 +22,7 @@
     "ui": {
       "editor": {
         "name": "redisgcpkubedbcom-instance-editor",
-        "version": "v0.11.0",
+        "version": "sha256:2fddf5eac54b20dc3c23a5e8d8922cb639292b28d4bef8d9292d093508f2e70f",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",

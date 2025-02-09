@@ -22,7 +22,7 @@
     "ui": {
       "editor": {
         "name": "catalogkubewaredev-perconaxtradbbinding-editor",
-        "version": "v0.11.0",
+        "version": "sha256:aeead74fe03716f721e50074f4029f998726d6e6a7ab927a7417724784db50fc",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",

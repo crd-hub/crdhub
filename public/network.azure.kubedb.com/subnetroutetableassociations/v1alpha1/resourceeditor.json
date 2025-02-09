@@ -22,7 +22,7 @@
     "ui": {
       "editor": {
         "name": "networkazurekubedbcom-subnetroutetableassociation-editor",
-        "version": "v0.11.0",
+        "version": "sha256:1c041137e7918158bbc9ce20832a5a4b1dd8d307bc9ac11ed009665430dcd933",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",

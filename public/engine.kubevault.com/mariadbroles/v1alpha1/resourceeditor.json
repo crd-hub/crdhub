@@ -22,7 +22,7 @@
     "ui": {
       "editor": {
         "name": "enginekubevaultcom-mariadbrole-editor",
-        "version": "v0.11.0",
+        "version": "sha256:fea1ce0c10b0af6344a372844b27e9249c69baa02188da78f0f18a1951a29164",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",

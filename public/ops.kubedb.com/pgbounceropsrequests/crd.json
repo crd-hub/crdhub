@@ -261,6 +261,13 @@
                           }
                         }
                       },
+                      "clientAuthMode": {
+                        "type": "string",
+                        "enum": [
+                          "md5",
+                          "scram-sha-256"
+                        ]
+                      },
                       "issuerRef": {
                         "type": "object",
                         "required": [
@@ -285,6 +292,17 @@
                       },
                       "rotateCertificates": {
                         "type": "boolean"
+                      },
+                      "sslMode": {
+                        "type": "string",
+                        "enum": [
+                          "disable",
+                          "allow",
+                          "prefer",
+                          "require",
+                          "verify-ca",
+                          "verify-full"
+                        ]
                       }
                     }
                   },
@@ -296,7 +314,8 @@
                       "UpdateVersion",
                       "Reconfigure",
                       "RotateAuth",
-                      "Restart"
+                      "Restart",
+                      "ReconfigureTLS"
                     ]
                   },
                   "updateVersion": {

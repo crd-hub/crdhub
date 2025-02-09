@@ -22,7 +22,7 @@
     "ui": {
       "editor": {
         "name": "catalogkubedbcom-clickhouseversion-editor",
-        "version": "v0.11.0",
+        "version": "sha256:367d0fdae85917e6fdaad7f83529d55f7e405b0ca89f8e2924d9b1af2da2d899",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",

@@ -22,7 +22,7 @@
     "ui": {
       "editor": {
         "name": "catalogkubewaredev-elasticsearchbinding-editor",
-        "version": "v0.11.0",
+        "version": "sha256:ac7b0f90a3006adc960e8b038a9b604090e2881b79ad2fd548253edb46de988b",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",

@@ -47,7 +47,8 @@
                     "items": {
                       "type": "object",
                       "required": [
-                        "items"
+                        "name",
+                        "show"
                       ],
                       "properties": {
                         "items": {
@@ -58,6 +59,9 @@
                         },
                         "name": {
                           "type": "string"
+                        },
+                        "show": {
+                          "type": "boolean"
                         }
                       }
                     }
@@ -70,7 +74,8 @@
                     "items": {
                       "type": "object",
                       "required": [
-                        "name"
+                        "name",
+                        "show"
                       ],
                       "properties": {
                         "name": {
@@ -82,7 +87,8 @@
                             "type": "object",
                             "required": [
                               "info",
-                              "insight"
+                              "insight",
+                              "show"
                             ],
                             "properties": {
                               "blocks": {
@@ -92,16 +98,25 @@
                                 }
                               },
                               "info": {
-                                "type": "boolean"
+                                "type": "object",
+                                "additionalProperties": {
+                                  "type": "boolean"
+                                }
                               },
                               "insight": {
                                 "type": "boolean"
                               },
                               "name": {
                                 "type": "string"
+                              },
+                              "show": {
+                                "type": "boolean"
                               }
                             }
                           }
+                        },
+                        "show": {
+                          "type": "boolean"
                         }
                       }
                     }

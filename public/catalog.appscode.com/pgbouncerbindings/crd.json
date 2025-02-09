@@ -48,7 +48,7 @@
                 "type": "object"
               },
               "spec": {
-                "description": "PgBouncerBindingSpec defines the desired state of PgBouncerBinding",
+                "description": "BindingSpec defines the desired state of Binding",
                 "type": "object",
                 "required": [
                   "sourceRef"

@@ -22,7 +22,7 @@
     "ui": {
       "editor": {
         "name": "networkazurekubedbcom-routetable-editor",
-        "version": "v0.11.0",
+        "version": "sha256:477d7606e652f4a0334aea31153b7e08caf4890dcd5229390629e8c9a3d6fdc9",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",

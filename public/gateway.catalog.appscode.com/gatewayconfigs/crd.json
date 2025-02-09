@@ -3895,10 +3895,14 @@
                             "type": "object",
                             "required": [
                               "email",
+                              "gatewayName",
                               "solver"
                             ],
                             "properties": {
                               "email": {
+                                "type": "string"
+                              },
+                              "gatewayName": {
                                 "type": "string"
                               },
                               "solver": {

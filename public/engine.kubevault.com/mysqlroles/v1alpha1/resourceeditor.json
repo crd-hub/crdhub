@@ -22,7 +22,7 @@
     "ui": {
       "editor": {
         "name": "enginekubevaultcom-mysqlrole-editor",
-        "version": "v0.11.0",
+        "version": "sha256:ffffc32320d40046d94f962cb51ef27f7455301db5873b98e9d9c5fbdb98874f",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",

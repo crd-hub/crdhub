@@ -1684,7 +1684,7 @@
                     "description": "References holds a list of resource references that using this Repository",
                     "type": "array",
                     "items": {
-                      "description": "TypedObjectReference represents an typed namespaced object.",
+                      "description": "TypedObjectReference represents a typed namespaced object.",
                       "type": "object",
                       "required": [
                         "name"

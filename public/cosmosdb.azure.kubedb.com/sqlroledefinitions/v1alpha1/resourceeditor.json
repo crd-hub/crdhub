@@ -22,7 +22,7 @@
     "ui": {
       "editor": {
         "name": "cosmosdbazurekubedbcom-sqlroledefinition-editor",
-        "version": "v0.11.0",
+        "version": "sha256:094f773e8632d670092877cb25a8cbb940a4891205406b315a6ecf67ccc2c50d",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",

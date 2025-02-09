@@ -174,7 +174,7 @@
                     "enum": [
                       "Delete",
                       "WipeOut",
-                      "DoNotDelete"
+                      "Retain"
                     ]
                   },
                   "encryptionSecret": {

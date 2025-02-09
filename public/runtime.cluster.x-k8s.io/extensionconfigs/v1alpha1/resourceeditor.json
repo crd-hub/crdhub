@@ -22,7 +22,7 @@
     "ui": {
       "editor": {
         "name": "runtimeclusterxk8sio-extensionconfig-editor",
-        "version": "v0.11.0",
+        "version": "sha256:6f25ddc54ed13fdd9dac943d217f6bb844b99cfff85980a8fc6c34eaa8b53fa0",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",

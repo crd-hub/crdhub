@@ -22,7 +22,7 @@
     "ui": {
       "editor": {
         "name": "notificationtoolkitfluxcdio-receiver-editor",
-        "version": "v0.11.0",
+        "version": "sha256:fecfee1f89d6e92c98c2fef0a674e1de3512bb994ed048d3346d487fe39352cb",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",

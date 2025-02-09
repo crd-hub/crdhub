@@ -22,7 +22,7 @@
     "ui": {
       "editor": {
         "name": "docdbawskubedbcom-clusterparametergroup-editor",
-        "version": "v0.11.0",
+        "version": "sha256:a89b42419adce39260d5197ed58487a75888dd95a118efeef283d5ba091d02e4",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",
