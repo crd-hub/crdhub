@@ -22,7 +22,7 @@
     "ui": {
       "editor": {
         "name": "repositoriesstashappscodecom-snapshot-editor",
-        "version": "sha256:f3d1d9c7a64e42d36e410ff713982e5928d489f2e64476728ef3b299b09b6d08",
+        "version": "v0.14.0",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",

@@ -22,7 +22,7 @@
     "ui": {
       "editor": {
         "name": "sqlazurekubedbcom-mssqlfailovergroup-editor",
-        "version": "sha256:70bd4d07ea2b3bd50573f1ac4959bffb9fcd1e13e4201b1ad0ec70f3d42e815e",
+        "version": "v0.14.0",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",

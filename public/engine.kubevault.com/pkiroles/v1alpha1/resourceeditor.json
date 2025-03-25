@@ -22,7 +22,7 @@
     "ui": {
       "editor": {
         "name": "enginekubevaultcom-pkirole-editor",
-        "version": "sha256:4b1029bca9b02cd0bea883adf860dec80fc500a418ca1b0d21c16dc1f389bebb",
+        "version": "v0.14.0",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",

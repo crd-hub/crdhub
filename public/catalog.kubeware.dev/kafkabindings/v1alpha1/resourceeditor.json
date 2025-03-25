@@ -22,7 +22,7 @@
     "ui": {
       "editor": {
         "name": "catalogkubewaredev-kafkabinding-editor",
-        "version": "sha256:da2d3767ab64f2f498f02ad7317641b79f669a49a34409fdea0351a1574c0d38",
+        "version": "v0.14.0",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",

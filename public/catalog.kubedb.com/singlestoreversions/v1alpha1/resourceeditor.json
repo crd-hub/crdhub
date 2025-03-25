@@ -22,7 +22,7 @@
     "ui": {
       "editor": {
         "name": "catalogkubedbcom-singlestoreversion-editor",
-        "version": "sha256:5987f224124611e871635627d21dc823ce93de77d7e61324efe72213b3ec58f4",
+        "version": "v0.14.0",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",

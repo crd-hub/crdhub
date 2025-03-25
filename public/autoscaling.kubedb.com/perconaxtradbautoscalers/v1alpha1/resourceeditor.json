@@ -22,7 +22,7 @@
     "ui": {
       "editor": {
         "name": "autoscalingkubedbcom-perconaxtradbautoscaler-editor",
-        "version": "sha256:4fcbe4641f22bb5864032423c7bee2c75d10b432fe0cbb7be44e6597e336b54b",
+        "version": "v0.14.0",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",

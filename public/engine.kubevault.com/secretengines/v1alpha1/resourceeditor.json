@@ -22,7 +22,7 @@
     "ui": {
       "editor": {
         "name": "enginekubevaultcom-secretengine-editor",
-        "version": "sha256:d4a490ccc3d31ff2ddbcbf5d52d250c6f5d093e97ad20ef087f9cd62743337ed",
+        "version": "v0.14.0",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",

@@ -69,6 +69,23 @@
             }
           }
         },
+        "initContainer": {
+          "description": "init container image",
+          "type": "object",
+          "required": [
+            "image"
+          ],
+          "properties": {
+            "image": {
+              "description": "Image is the Docker image name",
+              "type": "string"
+            },
+            "imagePullPolicy": {
+              "description": "ImagePullPolicy one of Always, Never, IfNotPresent. It defaults to Always if :latest is used, or IfNotPresent otherwise.",
+              "type": "string"
+            }
+          }
+        },
         "stash": {
           "description": "Stash defines backup and restore task definitions.",
           "type": "object",

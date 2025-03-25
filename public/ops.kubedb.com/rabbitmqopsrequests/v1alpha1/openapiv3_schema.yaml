@@ -212,6 +212,8 @@ properties:
                       properties:
                         name:
                           type: string
+                        request:
+                          type: string
                       required:
                       - name
                       type: object

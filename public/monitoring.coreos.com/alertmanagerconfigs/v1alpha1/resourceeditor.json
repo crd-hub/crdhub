@@ -22,7 +22,7 @@
     "ui": {
       "editor": {
         "name": "monitoringcoreoscom-alertmanagerconfig-editor",
-        "version": "sha256:a001cc2a191d436cdf2c7b97f2a117ffc8ffb42b2a4bd725fdec98fc42880b69",
+        "version": "v0.14.0",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",

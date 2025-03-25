@@ -1,0 +1,35 @@
+{
+  "kind": "ResourceEditor",
+  "apiVersion": "ui.k8s.appscode.com/v1alpha1",
+  "metadata": {
+    "name": "meta.k8s.appscode.com-v1alpha1-resourcemanifests",
+    "creationTimestamp": null,
+    "labels": {
+      "k8s.io/group": "meta.k8s.appscode.com",
+      "k8s.io/kind": "ResourceManifests",
+      "k8s.io/resource": "resourcemanifests",
+      "k8s.io/version": "v1alpha1"
+    }
+  },
+  "spec": {
+    "resource": {
+      "group": "meta.k8s.appscode.com",
+      "version": "v1alpha1",
+      "name": "resourcemanifests",
+      "kind": "ResourceManifests",
+      "scope": "Namespaced"
+    },
+    "ui": {
+      "editor": {
+        "name": "metak8sappscodecom-resourcemanifests-editor",
+        "version": "v0.14.0",
+        "sourceRef": {
+          "apiGroup": "source.toolkit.fluxcd.io",
+          "kind": "HelmRepository",
+          "name": "appscode-charts-oci"
+        }
+      },
+      "enforceQuota": false
+    }
+  }
+}

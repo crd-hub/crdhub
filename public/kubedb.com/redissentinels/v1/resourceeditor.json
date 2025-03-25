@@ -22,7 +22,7 @@
     "ui": {
       "editor": {
         "name": "kubedbcom-redissentinel-editor",
-        "version": "sha256:5fba6f564cc6101e2ff25c40c8dd9eed7db9f69cd0fa1f148cc1e3e59cff67df",
+        "version": "v0.14.0",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",
@@ -46,7 +46,7 @@
               "flow": "standalone-create",
               "editor": {
                 "name": "opskubedbcom-redissentinelopsrequest-editor",
-                "version": "sha256:f38592516e8563ade479c075f69320f0b7f3aa387236e6bc0c412188c3d94a73",
+                "version": "v0.14.0",
                 "sourceRef": {
                   "apiGroup": "source.toolkit.fluxcd.io",
                   "kind": "HelmRepository",
@@ -67,7 +67,7 @@
               "flow": "standalone-create",
               "editor": {
                 "name": "opskubedbcom-redissentinelopsrequest-editor",
-                "version": "sha256:f38592516e8563ade479c075f69320f0b7f3aa387236e6bc0c412188c3d94a73",
+                "version": "v0.14.0",
                 "sourceRef": {
                   "apiGroup": "source.toolkit.fluxcd.io",
                   "kind": "HelmRepository",
@@ -88,7 +88,7 @@
               "flow": "standalone-create",
               "editor": {
                 "name": "opskubedbcom-redissentinelopsrequest-editor",
-                "version": "sha256:f38592516e8563ade479c075f69320f0b7f3aa387236e6bc0c412188c3d94a73",
+                "version": "v0.14.0",
                 "sourceRef": {
                   "apiGroup": "source.toolkit.fluxcd.io",
                   "kind": "HelmRepository",
@@ -114,7 +114,7 @@
               "flow": "standalone-create",
               "editor": {
                 "name": "opskubedbcom-redissentinelopsrequest-editor",
-                "version": "sha256:f38592516e8563ade479c075f69320f0b7f3aa387236e6bc0c412188c3d94a73",
+                "version": "v0.14.0",
                 "sourceRef": {
                   "apiGroup": "source.toolkit.fluxcd.io",
                   "kind": "HelmRepository",
@@ -135,7 +135,7 @@
               "flow": "standalone-create",
               "editor": {
                 "name": "opskubedbcom-redissentinelopsrequest-editor",
-                "version": "sha256:f38592516e8563ade479c075f69320f0b7f3aa387236e6bc0c412188c3d94a73",
+                "version": "v0.14.0",
                 "sourceRef": {
                   "apiGroup": "source.toolkit.fluxcd.io",
                   "kind": "HelmRepository",
@@ -161,7 +161,7 @@
               "flow": "standalone-edit",
               "editor": {
                 "name": "kubedbcom-redissentinel-editor",
-                "version": "sha256:5fba6f564cc6101e2ff25c40c8dd9eed7db9f69cd0fa1f148cc1e3e59cff67df",
+                "version": "v0.14.0",
                 "sourceRef": {
                   "apiGroup": "source.toolkit.fluxcd.io",
                   "kind": "HelmRepository",
@@ -187,7 +187,7 @@
               "flow": "standalone-create",
               "editor": {
                 "name": "opskubedbcom-redissentinelopsrequest-editor",
-                "version": "sha256:f38592516e8563ade479c075f69320f0b7f3aa387236e6bc0c412188c3d94a73",
+                "version": "v0.14.0",
                 "sourceRef": {
                   "apiGroup": "source.toolkit.fluxcd.io",
                   "kind": "HelmRepository",
@@ -208,7 +208,7 @@
               "flow": "standalone-edit",
               "editor": {
                 "name": "kubedbcom-redissentinel-editor",
-                "version": "sha256:5fba6f564cc6101e2ff25c40c8dd9eed7db9f69cd0fa1f148cc1e3e59cff67df",
+                "version": "v0.14.0",
                 "sourceRef": {
                   "apiGroup": "source.toolkit.fluxcd.io",
                   "kind": "HelmRepository",

@@ -55,7 +55,25 @@
                   "compute": {
                     "type": "object",
                     "properties": {
-                      "ferretdb": {
+                      "nodeTopology": {
+                        "type": "object",
+                        "properties": {
+                          "name": {
+                            "type": "string"
+                          },
+                          "scaleDownDiffPercentage": {
+                            "type": "integer",
+                            "format": "int32",
+                            "default": 25
+                          },
+                          "scaleUpDiffPercentage": {
+                            "type": "integer",
+                            "format": "int32",
+                            "default": 15
+                          }
+                        }
+                      },
+                      "primary": {
                         "type": "object",
                         "properties": {
                           "containerControlledValues": {
@@ -126,21 +144,74 @@
                           }
                         }
                       },
-                      "nodeTopology": {
+                      "secondary": {
                         "type": "object",
                         "properties": {
-                          "name": {
+                          "containerControlledValues": {
+                            "type": "string",
+                            "enum": [
+                              "RequestsAndLimits",
+                              "RequestsOnly"
+                            ]
+                          },
+                          "controlledResources": {
+                            "type": "array",
+                            "items": {
+                              "type": "string"
+                            }
+                          },
+                          "inMemoryStorage": {
+                            "type": "object",
+                            "properties": {
+                              "scalingFactorPercentage": {
+                                "type": "integer",
+                                "format": "int32"
+                              },
+                              "usageThresholdPercentage": {
+                                "type": "integer",
+                                "format": "int32"
+                              }
+                            }
+                          },
+                          "maxAllowed": {
+                            "type": "object",
+                            "additionalProperties": {
+                              "pattern": "^(\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))(([KMGTPE]i)|[numkMGTPE]|([eE](\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))))?$",
+                              "anyOf": [
+                                {
+                                  "type": "integer"
+                                },
+                                {
+                                  "type": "string"
+                                }
+                              ],
+                              "x-kubernetes-int-or-string": true
+                            }
+                          },
+                          "minAllowed": {
+                            "type": "object",
+                            "additionalProperties": {
+                              "pattern": "^(\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))(([KMGTPE]i)|[numkMGTPE]|([eE](\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))))?$",
+                              "anyOf": [
+                                {
+                                  "type": "integer"
+                                },
+                                {
+                                  "type": "string"
+                                }
+                              ],
+                              "x-kubernetes-int-or-string": true
+                            }
+                          },
+                          "podLifeTimeThreshold": {
                             "type": "string"
                           },
-                          "scaleDownDiffPercentage": {
+                          "resourceDiffPercentage": {
                             "type": "integer",
-                            "format": "int32",
-                            "default": 25
+                            "format": "int32"
                           },
-                          "scaleUpDiffPercentage": {
-                            "type": "integer",
-                            "format": "int32",
-                            "default": 15
+                          "trigger": {
+                            "type": "string"
                           }
                         }
                       }

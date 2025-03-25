@@ -22,7 +22,7 @@
     "ui": {
       "editor": {
         "name": "rdsawskubedbcom-optiongroup-editor",
-        "version": "sha256:b605fe7d04195dfae556c59c6330ae075d438dc2601007df40c52d2a29a0c2f3",
+        "version": "v0.14.0",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",

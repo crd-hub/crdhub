@@ -22,7 +22,7 @@
     "ui": {
       "editor": {
         "name": "appsk8sappscodecom-placementpolicy-editor",
-        "version": "sha256:3812acc26e66a89bd1600a11bb99a35db4c393a90dede2b57d6fc4d1ee895ece",
+        "version": "v0.14.0",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",

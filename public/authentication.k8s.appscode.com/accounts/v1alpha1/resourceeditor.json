@@ -22,7 +22,7 @@
     "ui": {
       "editor": {
         "name": "authenticationk8sappscodecom-account-editor",
-        "version": "sha256:6b43c8c28fd390052ab2e5437616d0ea86c063e7fabbb7e9903eef6469dfd92e",
+        "version": "v0.14.0",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",

@@ -22,7 +22,7 @@
     "ui": {
       "editor": {
         "name": "rdsawskubedbcom-snapshot-editor",
-        "version": "sha256:9df488a0908887bb65054f6bce2234db86a0327940f2e85d24487b9abd9bf9c1",
+        "version": "v0.14.0",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",

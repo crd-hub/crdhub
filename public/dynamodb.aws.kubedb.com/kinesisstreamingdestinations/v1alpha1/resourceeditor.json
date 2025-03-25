@@ -22,7 +22,7 @@
     "ui": {
       "editor": {
         "name": "dynamodbawskubedbcom-kinesisstreamingdestination-editor",
-        "version": "sha256:91e42c92dec8076393c5c222352b0d4e8af1010502f7f5965b235dc2a54be48d",
+        "version": "v0.14.0",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",

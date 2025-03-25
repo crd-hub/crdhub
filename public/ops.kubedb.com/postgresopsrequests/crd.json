@@ -107,6 +107,17 @@
                     },
                     "x-kubernetes-map-type": "atomic"
                   },
+                  "forceFailOver": {
+                    "type": "object",
+                    "properties": {
+                      "candidates": {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  },
                   "horizontalScaling": {
                     "type": "object",
                     "properties": {
@@ -116,7 +127,7 @@
                       },
                       "standbyMode": {
                         "type": "string",
-                        "default": "Warm",
+                        "default": "Hot",
                         "enum": [
                           "Hot",
                           "Warm"
@@ -132,8 +143,27 @@
                       }
                     }
                   },
+                  "reconnectStandby": {
+                    "type": "object",
+                    "properties": {
+                      "readyTimeOut": {
+                        "type": "string"
+                      }
+                    }
+                  },
                   "restart": {
                     "type": "object"
+                  },
+                  "setRaftKeyPair": {
+                    "type": "object",
+                    "properties": {
+                      "keyPair": {
+                        "type": "object",
+                        "additionalProperties": {
+                          "type": "string"
+                        }
+                      }
+                    }
                   },
                   "timeout": {
                     "type": "string"
@@ -326,7 +356,10 @@
                       "Restart",
                       "Reconfigure",
                       "ReconfigureTLS",
-                      "RotateAuth"
+                      "RotateAuth",
+                      "ReconnectStandby",
+                      "ForceFailOver",
+                      "SetRaftKeyPair"
                     ]
                   },
                   "updateVersion": {
@@ -358,6 +391,9 @@
                                   ],
                                   "properties": {
                                     "name": {
+                                      "type": "string"
+                                    },
+                                    "request": {
                                       "type": "string"
                                     }
                                   }
@@ -432,6 +468,9 @@
                                   "properties": {
                                     "name": {
                                       "type": "string"
+                                    },
+                                    "request": {
+                                      "type": "string"
                                     }
                                   }
                                 },
@@ -489,6 +528,9 @@
                                   ],
                                   "properties": {
                                     "name": {
+                                      "type": "string"
+                                    },
+                                    "request": {
                                       "type": "string"
                                     }
                                   }
@@ -550,6 +592,9 @@
                                   ],
                                   "properties": {
                                     "name": {
+                                      "type": "string"
+                                    },
+                                    "request": {
                                       "type": "string"
                                     }
                                   }

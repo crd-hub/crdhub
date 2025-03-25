@@ -22,7 +22,7 @@
     "ui": {
       "editor": {
         "name": "catalogappscodecom-mariadbbinding-editor",
-        "version": "sha256:4f05aa677837d35a391ea981b6941023921d09c97ddd7764fca6660fb1b2e258",
+        "version": "v0.14.0",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",

@@ -8035,7 +8035,7 @@
                     }
                   },
                   "renewBefore": {
-                    "description": "Certificate renew before expiration duration",
+                    "description": "Certificate renew before expiration duration \n Deprecated use `ReconfigureTLS` type OpsRequest instead.",
                     "type": "string"
                   },
                   "secretName": {

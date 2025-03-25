@@ -213,6 +213,15 @@
               "type": "string"
             }
           }
+        },
+        "tls": {
+          "type": "object",
+          "properties": {
+            "disableSSLSessionResumption": {
+              "description": "DisableSSLSessionResumption determines whether to disable or enable Envoy TLS Session Resumption",
+              "type": "boolean"
+            }
+          }
         }
       }
     }

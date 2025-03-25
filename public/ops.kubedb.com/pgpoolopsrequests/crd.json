@@ -341,6 +341,9 @@
                                   "properties": {
                                     "name": {
                                       "type": "string"
+                                    },
+                                    "request": {
+                                      "type": "string"
                                     }
                                   }
                                 },

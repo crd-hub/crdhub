@@ -22,7 +22,7 @@
     "ui": {
       "editor": {
         "name": "storagek8sio-csidriver-editor",
-        "version": "sha256:a0afc038435388b0707370e3945ac6a21ce82a1e9069c37460d5de6ffe98f900",
+        "version": "v0.14.0",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",

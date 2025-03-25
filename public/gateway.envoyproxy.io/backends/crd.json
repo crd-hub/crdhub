@@ -5,7 +5,7 @@
     "name": "backends.gateway.envoyproxy.io",
     "creationTimestamp": null,
     "annotations": {
-      "controller-gen.kubebuilder.io/version": "v0.15.0"
+      "controller-gen.kubebuilder.io/version": "v0.16.1"
     }
   },
   "spec": {
@@ -67,7 +67,7 @@
                   "endpoints": {
                     "description": "Endpoints defines the endpoints to be used when connecting to the backend.",
                     "type": "array",
-                    "maxItems": 4,
+                    "maxItems": 64,
                     "minItems": 1,
                     "items": {
                       "description": "BackendEndpoint describes a backend endpoint, which can be either a fully-qualified domain name, IP address or unix domain socket\ncorresponding to Envoy's Address: https://www.envoyproxy.io/docs/envoy/latest/api-v3/config/core/v3/address.proto#config-core-v3-address",
@@ -86,7 +86,7 @@
                               "type": "string",
                               "maxLength": 253,
                               "minLength": 1,
-                              "pattern": "^[a-z0-9]([-a-z0-9]*[a-z0-9])?(\\.[a-z0-9]([-a-z0-9]*[a-z0-9]))*$"
+                              "pattern": "^[a-z0-9]([-a-z0-9]*[a-z0-9])?(\\.[a-z0-9]([-a-z0-9]*[a-z0-9])?)*$"
                             },
                             "port": {
                               "description": "Port defines the port of the backend endpoint.",
@@ -98,7 +98,7 @@
                           }
                         },
                         "ip": {
-                          "description": "IP defines an IP endpoint. Currently, only IPv4 Addresses are supported.",
+                          "description": "IP defines an IP endpoint. Supports both IPv4 and IPv6 addresses.",
                           "type": "object",
                           "required": [
                             "address",
@@ -106,11 +106,11 @@
                           ],
                           "properties": {
                             "address": {
-                              "description": "Address defines the IP address of the backend endpoint.",
+                              "description": "Address defines the IP address of the backend endpoint.\nSupports both IPv4 and IPv6 addresses.",
                               "type": "string",
-                              "maxLength": 15,
-                              "minLength": 7,
-                              "pattern": "^((25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.){3}(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$"
+                              "maxLength": 45,
+                              "minLength": 3,
+                              "pattern": "^((25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.){3}(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$|^(([0-9a-fA-F]{1,4}:){1,7}[0-9a-fA-F]{1,4}|::|(([0-9a-fA-F]{1,4}:){0,5})?(:[0-9a-fA-F]{1,4}){1,2})$"
                             },
                             "port": {
                               "description": "Port defines the port of the backend endpoint.",
@@ -152,6 +152,10 @@
                         "message": "fqdn addresses cannot be mixed with other address types"
                       }
                     ]
+                  },
+                  "fallback": {
+                    "description": "Fallback indicates whether the backend is designated as a fallback.\nIt is highly recommended to configure active or passive health checks to ensure that failover can be detected\nwhen the active backends become unhealthy and to automatically readjust once the primary backends are healthy again.\nThe overprovisioning factor is set to 1.4, meaning the fallback backends will only start receiving traffic when\nthe health of the active backends falls below 72%.",
+                    "type": "boolean"
                   }
                 }
               },
@@ -164,7 +168,7 @@
                     "type": "array",
                     "maxItems": 8,
                     "items": {
-                      "description": "Condition contains details for one aspect of the current state of this API Resource.\n---\nThis struct is intended for direct use as an array at the field path .status.conditions.  For example,\n\n\n\ttype FooStatus struct{\n\t    // Represents the observations of a foo's current state.\n\t    // Known .status.conditions.type are: \"Available\", \"Progressing\", and \"Degraded\"\n\t    // +patchMergeKey=type\n\t    // +patchStrategy=merge\n\t    // +listType=map\n\t    // +listMapKey=type\n\t    Conditions []metav1.Condition `json:\"conditions,omitempty\" patchStrategy:\"merge\" patchMergeKey:\"type\" protobuf:\"bytes,1,rep,name=conditions\"`\n\n\n\t    // other fields\n\t}",
+                      "description": "Condition contains details for one aspect of the current state of this API Resource.",
                       "type": "object",
                       "required": [
                         "lastTransitionTime",
@@ -207,7 +211,7 @@
                           ]
                         },
                         "type": {
-                          "description": "type of condition in CamelCase or in foo.example.com/CamelCase.\n---\nMany .condition.type values are consistent across resources like Available, but because arbitrary conditions can be\nuseful (see .node.status.conditions), the ability to deconflict is important.\nThe regex it matches is (dns1123SubdomainFmt/)?(qualifiedNameFmt)",
+                          "description": "type of condition in CamelCase or in foo.example.com/CamelCase.",
                           "type": "string",
                           "maxLength": 316,
                           "pattern": "^([a-z0-9]([-a-z0-9]*[a-z0-9])?(\\.[a-z0-9]([-a-z0-9]*[a-z0-9])?)*/)?(([A-Za-z0-9][-A-Za-z0-9_.]*)?[A-Za-z0-9])$"

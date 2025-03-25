@@ -22,7 +22,7 @@
     "ui": {
       "editor": {
         "name": "karpentersh-nodeclaim-editor",
-        "version": "sha256:43d29409f7255643290cff297c9969e7076038fdcc6c162153e97bfa0547c5b6",
+        "version": "v0.14.0",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",

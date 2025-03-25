@@ -22,7 +22,7 @@
     "ui": {
       "editor": {
         "name": "rdsawskubedbcom-clusteractivitystream-editor",
-        "version": "sha256:3d82c2c2c39e44b7fff2e1591e00b6396a008869d640b0f98adcb53c306a0257",
+        "version": "v0.14.0",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",

@@ -22,7 +22,7 @@
     "ui": {
       "editor": {
         "name": "uikubedbcom-proxysqlqueries-editor",
-        "version": "sha256:6e7ca002497752ca71e6b3608b8456fe81a48f5c7b38434fc57619b611f9a92c",
+        "version": "v0.14.0",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",

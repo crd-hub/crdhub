@@ -22,7 +22,7 @@
     "ui": {
       "editor": {
         "name": "kubebindappscodecom-clusterbinding-editor",
-        "version": "sha256:150fc0271eed2608f64b63245c4282a8bf8de0cbde42c0b7a5f132ed225290ce",
+        "version": "v0.14.0",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",

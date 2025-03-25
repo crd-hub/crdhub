@@ -22,7 +22,7 @@
     "ui": {
       "editor": {
         "name": "opskubedbcom-mysqlopsrequest-editor",
-        "version": "sha256:027242d19c27904a769ab22a30110c57220dcf4ee2b77e35a8f9814cfbc395eb",
+        "version": "v0.14.0",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",

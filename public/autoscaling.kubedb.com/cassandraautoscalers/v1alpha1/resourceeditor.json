@@ -22,7 +22,7 @@
     "ui": {
       "editor": {
         "name": "autoscalingkubedbcom-cassandraautoscaler-editor",
-        "version": "sha256:14a99eedb646414f330e141c8b7540b587fbb849c454c5869988f20768a9321e",
+        "version": "v0.14.0",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",

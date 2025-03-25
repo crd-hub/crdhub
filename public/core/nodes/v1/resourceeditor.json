@@ -22,7 +22,7 @@
     "ui": {
       "editor": {
         "name": "core-node-editor",
-        "version": "sha256:38c15ae5e59984cb0ca21d28ac5244eefcdbb64b55b29c0fee1087ef5b422652",
+        "version": "v0.14.0",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",

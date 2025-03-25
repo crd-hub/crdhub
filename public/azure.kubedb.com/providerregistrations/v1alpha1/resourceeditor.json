@@ -22,7 +22,7 @@
     "ui": {
       "editor": {
         "name": "azurekubedbcom-providerregistration-editor",
-        "version": "sha256:1d3515d3f5d11c761425733fb7c66a88b9361b7b7845959d820261284ef2e7c7",
+        "version": "v0.14.0",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",

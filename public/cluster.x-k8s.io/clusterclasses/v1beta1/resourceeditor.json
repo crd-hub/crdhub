@@ -22,7 +22,7 @@
     "ui": {
       "editor": {
         "name": "clusterxk8sio-clusterclass-editor",
-        "version": "sha256:ff56d5b84f0e87885c0e9d814fafc01150a361006b4a3b89f5d24dd580208d8d",
+        "version": "v0.14.0",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",

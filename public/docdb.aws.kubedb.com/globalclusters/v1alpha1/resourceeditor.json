@@ -22,7 +22,7 @@
     "ui": {
       "editor": {
         "name": "docdbawskubedbcom-globalcluster-editor",
-        "version": "sha256:42ca3072f2cdcac1592e1462488ddb417b287b5170db948020fcd7215ec60619",
+        "version": "v0.14.0",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",

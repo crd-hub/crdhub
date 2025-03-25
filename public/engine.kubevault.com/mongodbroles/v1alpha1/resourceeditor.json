@@ -22,7 +22,7 @@
     "ui": {
       "editor": {
         "name": "enginekubevaultcom-mongodbrole-editor",
-        "version": "sha256:870d66eb3ded0c8e5269384e92e79b027bfbc07635d4c9009d28d3a2f6244521",
+        "version": "v0.14.0",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",

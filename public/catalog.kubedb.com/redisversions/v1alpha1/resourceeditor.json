@@ -22,7 +22,7 @@
     "ui": {
       "editor": {
         "name": "catalogkubedbcom-redisversion-editor",
-        "version": "sha256:e8fe63208c4dadeae7031023278f393abd3d0da439ab0f14be7e84ee413700ed",
+        "version": "v0.14.0",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",

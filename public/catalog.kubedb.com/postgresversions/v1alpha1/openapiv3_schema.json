@@ -172,6 +172,7 @@
             "TimescaleDB",
             "PostGIS",
             "KubeDB",
+            "DocumentDB",
             "PostgreSQL"
           ]
         },
@@ -300,6 +301,14 @@
                   }
                 }
               }
+            }
+          }
+        },
+        "tls": {
+          "type": "object",
+          "properties": {
+            "disableSSLSessionResumption": {
+              "type": "boolean"
             }
           }
         },

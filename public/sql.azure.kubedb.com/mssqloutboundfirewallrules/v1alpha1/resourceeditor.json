@@ -22,7 +22,7 @@
     "ui": {
       "editor": {
         "name": "sqlazurekubedbcom-mssqloutboundfirewallrule-editor",
-        "version": "sha256:6c5d3b6268dfbc7159004ffa62c84d04c2545c9427b2d6ca5f96b3dd652d86e4",
+        "version": "v0.14.0",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",

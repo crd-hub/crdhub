@@ -22,7 +22,7 @@
     "ui": {
       "editor": {
         "name": "snsawskubedbcom-topic-editor",
-        "version": "sha256:23000421c2b0ba95b3f0c416ca101f3410f9514be4a29c64f76de8a5fd64cbe4",
+        "version": "v0.14.0",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",

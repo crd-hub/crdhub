@@ -22,7 +22,7 @@
     "ui": {
       "editor": {
         "name": "catalogkubedbcom-kafkaversion-editor",
-        "version": "sha256:62f40bbe3e6461466a3648dc94ddddacd6d37fc867b2c23a93e53b859d69dab9",
+        "version": "v0.14.0",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",

@@ -22,7 +22,7 @@
     "ui": {
       "editor": {
         "name": "azurekubedbcom-resourcegroup-editor",
-        "version": "sha256:bae74de870392138a47f81e4ea75cd59400a056496b615b7f58b329e2714a198",
+        "version": "v0.14.0",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",

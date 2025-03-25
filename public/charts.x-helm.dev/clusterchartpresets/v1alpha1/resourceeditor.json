@@ -22,7 +22,7 @@
     "ui": {
       "options": {
         "name": "chartsxhelmdev-clusterchartpreset-editor-options",
-        "version": "sha256:606ddbcc037d2fc16308bad10723a69b697cc09aa8fb3071fbe5ea33e3bd8a8d",
+        "version": "v0.14.0",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",
@@ -31,7 +31,7 @@
       },
       "editor": {
         "name": "chartsxhelmdev-clusterchartpreset-editor",
-        "version": "sha256:1a015b2cc3a10bc23a680a75eac4f36f421bb639f81529a7a722249e9c18b70e",
+        "version": "v0.14.0",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",

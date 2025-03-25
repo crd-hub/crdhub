@@ -22,7 +22,7 @@
     "ui": {
       "editor": {
         "name": "autoscalingkubedbcom-proxysqlautoscaler-editor",
-        "version": "sha256:58dceb678c47e77aa9611c703a099855379daef280c11ff0385f17765153a189",
+        "version": "v0.14.0",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",

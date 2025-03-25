@@ -22,7 +22,7 @@
     "ui": {
       "options": {
         "name": "kubedbcom-pgpool-editor-options",
-        "version": "sha256:c5c374796185ede8d9d1cf9f22813d4cbcfa4db7479d43a28877297424524f28",
+        "version": "v0.14.0",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",
@@ -31,7 +31,7 @@
       },
       "editor": {
         "name": "kubedbcom-pgpool-editor",
-        "version": "sha256:5511a5f88ab6d88c54d6ee9bfec31989ffa8765742cbfc47ebaffe2ccde46efb",
+        "version": "v0.14.0",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",
@@ -55,7 +55,7 @@
               "flow": "standalone-create",
               "editor": {
                 "name": "opskubedbcom-pgpoolopsrequest-editor",
-                "version": "sha256:8c0bcb3d4f7eccecceea0bdc7cd9706b8095dadc8a2b4c4b21036f5b9843503b",
+                "version": "v0.14.0",
                 "sourceRef": {
                   "apiGroup": "source.toolkit.fluxcd.io",
                   "kind": "HelmRepository",
@@ -76,7 +76,7 @@
               "flow": "standalone-create",
               "editor": {
                 "name": "opskubedbcom-pgpoolopsrequest-editor",
-                "version": "sha256:8c0bcb3d4f7eccecceea0bdc7cd9706b8095dadc8a2b4c4b21036f5b9843503b",
+                "version": "v0.14.0",
                 "sourceRef": {
                   "apiGroup": "source.toolkit.fluxcd.io",
                   "kind": "HelmRepository",
@@ -103,7 +103,7 @@
               "disabledTemplate": "{{ not (gt .spec.replicas 1) }}\n",
               "editor": {
                 "name": "opskubedbcom-pgpoolopsrequest-editor",
-                "version": "sha256:8c0bcb3d4f7eccecceea0bdc7cd9706b8095dadc8a2b4c4b21036f5b9843503b",
+                "version": "v0.14.0",
                 "sourceRef": {
                   "apiGroup": "source.toolkit.fluxcd.io",
                   "kind": "HelmRepository",
@@ -124,7 +124,7 @@
               "flow": "standalone-create",
               "editor": {
                 "name": "opskubedbcom-pgpoolopsrequest-editor",
-                "version": "sha256:8c0bcb3d4f7eccecceea0bdc7cd9706b8095dadc8a2b4c4b21036f5b9843503b",
+                "version": "v0.14.0",
                 "sourceRef": {
                   "apiGroup": "source.toolkit.fluxcd.io",
                   "kind": "HelmRepository",
@@ -150,7 +150,7 @@
               "flow": "standalone-edit",
               "editor": {
                 "name": "kubedbcom-pgpool-editor",
-                "version": "sha256:5511a5f88ab6d88c54d6ee9bfec31989ffa8765742cbfc47ebaffe2ccde46efb",
+                "version": "v0.14.0",
                 "sourceRef": {
                   "apiGroup": "source.toolkit.fluxcd.io",
                   "kind": "HelmRepository",
@@ -176,7 +176,7 @@
               "flow": "standalone-create",
               "editor": {
                 "name": "opskubedbcom-pgpoolopsrequest-editor",
-                "version": "sha256:8c0bcb3d4f7eccecceea0bdc7cd9706b8095dadc8a2b4c4b21036f5b9843503b",
+                "version": "v0.14.0",
                 "sourceRef": {
                   "apiGroup": "source.toolkit.fluxcd.io",
                   "kind": "HelmRepository",
@@ -197,7 +197,7 @@
               "flow": "standalone-edit",
               "editor": {
                 "name": "kubedbcom-pgpool-editor",
-                "version": "sha256:5511a5f88ab6d88c54d6ee9bfec31989ffa8765742cbfc47ebaffe2ccde46efb",
+                "version": "v0.14.0",
                 "sourceRef": {
                   "apiGroup": "source.toolkit.fluxcd.io",
                   "kind": "HelmRepository",

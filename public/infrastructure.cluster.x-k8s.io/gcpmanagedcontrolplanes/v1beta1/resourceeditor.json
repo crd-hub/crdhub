@@ -22,7 +22,7 @@
     "ui": {
       "editor": {
         "name": "infrastructureclusterxk8sio-gcpmanagedcontrolplane-editor",
-        "version": "sha256:a8b6095a789227a0fb1d324b9433a4570a87214168e2db074d2df588654cd103",
+        "version": "v0.14.0",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",

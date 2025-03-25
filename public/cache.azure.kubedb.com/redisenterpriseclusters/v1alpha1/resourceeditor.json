@@ -22,7 +22,7 @@
     "ui": {
       "editor": {
         "name": "cacheazurekubedbcom-redisenterprisecluster-editor",
-        "version": "sha256:66e67ba205da8b193b29ccff8b6c207765ff8cc699ada2f5c2a188ba4738a335",
+        "version": "v0.14.0",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",

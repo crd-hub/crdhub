@@ -22,7 +22,7 @@
     "ui": {
       "editor": {
         "name": "gatewayvoyagermeshcom-kafkaroute-editor",
-        "version": "sha256:d62ae256468bfad26d6ad221e470dfac64e87aecc503bead47dcf936de822946",
+        "version": "v0.14.0",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",

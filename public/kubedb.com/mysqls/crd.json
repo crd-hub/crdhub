@@ -295,6 +295,9 @@
                         "type": "string",
                         "format": "date-time"
                       },
+                      "apiGroup": {
+                        "type": "string"
+                      },
                       "externallyManaged": {
                         "type": "boolean"
                       },
@@ -303,6 +306,9 @@
                         "default": ""
                       },
                       "rotateAfter": {
+                        "type": "string"
+                      },
+                      "secretStoreName": {
                         "type": "string"
                       }
                     },
@@ -503,13 +509,15 @@
                                 "type": "string"
                               },
                               "fsType": {
-                                "type": "string"
+                                "type": "string",
+                                "default": "ext4"
                               },
                               "kind": {
                                 "type": "string"
                               },
                               "readOnly": {
-                                "type": "boolean"
+                                "type": "boolean",
+                                "default": false
                               }
                             }
                           },
@@ -1168,6 +1176,9 @@
                                       "properties": {
                                         "name": {
                                           "type": "string"
+                                        },
+                                        "request": {
+                                          "type": "string"
                                         }
                                       }
                                     },
@@ -1368,6 +1379,17 @@
                               }
                             }
                           },
+                          "image": {
+                            "type": "object",
+                            "properties": {
+                              "pullPolicy": {
+                                "type": "string"
+                              },
+                              "reference": {
+                                "type": "string"
+                              }
+                            }
+                          },
                           "iscsi": {
                             "type": "object",
                             "required": [
@@ -1392,7 +1414,8 @@
                                 "type": "string"
                               },
                               "iscsiInterface": {
-                                "type": "string"
+                                "type": "string",
+                                "default": "default"
                               },
                               "lun": {
                                 "type": "integer",
@@ -1759,7 +1782,8 @@
                                 "type": "string"
                               },
                               "keyring": {
-                                "type": "string"
+                                "type": "string",
+                                "default": "/etc/ceph/keyring"
                               },
                               "monitors": {
                                 "type": "array",
@@ -1769,7 +1793,8 @@
                                 "x-kubernetes-list-type": "atomic"
                               },
                               "pool": {
-                                "type": "string"
+                                "type": "string",
+                                "default": "rbd"
                               },
                               "readOnly": {
                                 "type": "boolean"
@@ -1785,7 +1810,8 @@
                                 "x-kubernetes-map-type": "atomic"
                               },
                               "user": {
-                                "type": "string"
+                                "type": "string",
+                                "default": "admin"
                               }
                             }
                           },
@@ -1798,7 +1824,8 @@
                             ],
                             "properties": {
                               "fsType": {
-                                "type": "string"
+                                "type": "string",
+                                "default": "xfs"
                               },
                               "gateway": {
                                 "type": "string"
@@ -1823,7 +1850,8 @@
                                 "type": "boolean"
                               },
                               "storageMode": {
-                                "type": "string"
+                                "type": "string",
+                                "default": "ThinProvisioned"
                               },
                               "storagePool": {
                                 "type": "string"
@@ -2073,6 +2101,9 @@
                                       ],
                                       "properties": {
                                         "name": {
+                                          "type": "string"
+                                        },
+                                        "request": {
                                           "type": "string"
                                         }
                                       }
@@ -2693,7 +2724,8 @@
                                           "format": "int32"
                                         },
                                         "service": {
-                                          "type": "string"
+                                          "type": "string",
+                                          "default": ""
                                         }
                                       }
                                     },
@@ -2855,7 +2887,8 @@
                                           "format": "int32"
                                         },
                                         "service": {
-                                          "type": "string"
+                                          "type": "string",
+                                          "default": ""
                                         }
                                       }
                                     },
@@ -2981,6 +3014,9 @@
                                         ],
                                         "properties": {
                                           "name": {
+                                            "type": "string"
+                                          },
+                                          "request": {
                                             "type": "string"
                                           }
                                         }
@@ -3164,7 +3200,8 @@
                                           "format": "int32"
                                         },
                                         "service": {
-                                          "type": "string"
+                                          "type": "string",
+                                          "default": ""
                                         }
                                       }
                                     },
@@ -3782,7 +3819,8 @@
                                           "format": "int32"
                                         },
                                         "service": {
-                                          "type": "string"
+                                          "type": "string",
+                                          "default": ""
                                         }
                                       }
                                     },
@@ -3944,7 +3982,8 @@
                                           "format": "int32"
                                         },
                                         "service": {
-                                          "type": "string"
+                                          "type": "string",
+                                          "default": ""
                                         }
                                       }
                                     },
@@ -4070,6 +4109,9 @@
                                         ],
                                         "properties": {
                                           "name": {
+                                            "type": "string"
+                                          },
+                                          "request": {
                                             "type": "string"
                                           }
                                         }
@@ -4253,7 +4295,8 @@
                                           "format": "int32"
                                         },
                                         "service": {
-                                          "type": "string"
+                                          "type": "string",
+                                          "default": ""
                                         }
                                       }
                                     },
@@ -4880,7 +4923,8 @@
                                           "format": "int32"
                                         },
                                         "service": {
-                                          "type": "string"
+                                          "type": "string",
+                                          "default": ""
                                         }
                                       }
                                     },
@@ -5042,7 +5086,8 @@
                                           "format": "int32"
                                         },
                                         "service": {
-                                          "type": "string"
+                                          "type": "string",
+                                          "default": ""
                                         }
                                       }
                                     },
@@ -5168,6 +5213,9 @@
                                         ],
                                         "properties": {
                                           "name": {
+                                            "type": "string"
+                                          },
+                                          "request": {
                                             "type": "string"
                                           }
                                         }
@@ -5351,7 +5399,8 @@
                                           "format": "int32"
                                         },
                                         "service": {
-                                          "type": "string"
+                                          "type": "string",
+                                          "default": ""
                                         }
                                       }
                                     },
@@ -5643,6 +5692,9 @@
                                 "type": "integer",
                                 "format": "int64"
                               },
+                              "seLinuxChangePolicy": {
+                                "type": "string"
+                              },
                               "seLinuxOptions": {
                                 "type": "object",
                                 "properties": {
@@ -5681,6 +5733,9 @@
                                   "format": "int64"
                                 },
                                 "x-kubernetes-list-type": "atomic"
+                              },
+                              "supplementalGroupsPolicy": {
+                                "type": "string"
                               },
                               "sysctls": {
                                 "type": "array",
@@ -5803,13 +5858,15 @@
                                       "type": "string"
                                     },
                                     "fsType": {
-                                      "type": "string"
+                                      "type": "string",
+                                      "default": "ext4"
                                     },
                                     "kind": {
                                       "type": "string"
                                     },
                                     "readOnly": {
-                                      "type": "boolean"
+                                      "type": "boolean",
+                                      "default": false
                                     }
                                   }
                                 },
@@ -6417,7 +6474,8 @@
                                       "type": "string"
                                     },
                                     "iscsiInterface": {
-                                      "type": "string"
+                                      "type": "string",
+                                      "default": "default"
                                     },
                                     "lun": {
                                       "type": "integer",
@@ -6787,7 +6845,8 @@
                                       "type": "string"
                                     },
                                     "keyring": {
-                                      "type": "string"
+                                      "type": "string",
+                                      "default": "/etc/ceph/keyring"
                                     },
                                     "monitors": {
                                       "type": "array",
@@ -6797,7 +6856,8 @@
                                       "x-kubernetes-list-type": "atomic"
                                     },
                                     "pool": {
-                                      "type": "string"
+                                      "type": "string",
+                                      "default": "rbd"
                                     },
                                     "readOnly": {
                                       "type": "boolean"
@@ -6813,7 +6873,8 @@
                                       "x-kubernetes-map-type": "atomic"
                                     },
                                     "user": {
-                                      "type": "string"
+                                      "type": "string",
+                                      "default": "admin"
                                     }
                                   }
                                 },
@@ -6826,7 +6887,8 @@
                                   ],
                                   "properties": {
                                     "fsType": {
-                                      "type": "string"
+                                      "type": "string",
+                                      "default": "xfs"
                                     },
                                     "gateway": {
                                       "type": "string"
@@ -6851,7 +6913,8 @@
                                       "type": "boolean"
                                     },
                                     "storageMode": {
-                                      "type": "string"
+                                      "type": "string",
+                                      "default": "ThinProvisioned"
                                     },
                                     "storagePool": {
                                       "type": "string"
@@ -7847,7 +7910,8 @@
                                                       "format": "int32"
                                                     },
                                                     "service": {
-                                                      "type": "string"
+                                                      "type": "string",
+                                                      "default": ""
                                                     }
                                                   }
                                                 },
@@ -8009,7 +8073,8 @@
                                                       "format": "int32"
                                                     },
                                                     "service": {
-                                                      "type": "string"
+                                                      "type": "string",
+                                                      "default": ""
                                                     }
                                                   }
                                                 },
@@ -8135,6 +8200,9 @@
                                                     ],
                                                     "properties": {
                                                       "name": {
+                                                        "type": "string"
+                                                      },
+                                                      "request": {
                                                         "type": "string"
                                                       }
                                                     }
@@ -8318,7 +8386,8 @@
                                                       "format": "int32"
                                                     },
                                                     "service": {
-                                                      "type": "string"
+                                                      "type": "string",
+                                                      "default": ""
                                                     }
                                                   }
                                                 },
@@ -8936,7 +9005,8 @@
                                                       "format": "int32"
                                                     },
                                                     "service": {
-                                                      "type": "string"
+                                                      "type": "string",
+                                                      "default": ""
                                                     }
                                                   }
                                                 },
@@ -9098,7 +9168,8 @@
                                                       "format": "int32"
                                                     },
                                                     "service": {
-                                                      "type": "string"
+                                                      "type": "string",
+                                                      "default": ""
                                                     }
                                                   }
                                                 },
@@ -9224,6 +9295,9 @@
                                                     ],
                                                     "properties": {
                                                       "name": {
+                                                        "type": "string"
+                                                      },
+                                                      "request": {
                                                         "type": "string"
                                                       }
                                                     }
@@ -9407,7 +9481,8 @@
                                                       "format": "int32"
                                                     },
                                                     "service": {
-                                                      "type": "string"
+                                                      "type": "string",
+                                                      "default": ""
                                                     }
                                                   }
                                                 },
@@ -10034,7 +10109,8 @@
                                                       "format": "int32"
                                                     },
                                                     "service": {
-                                                      "type": "string"
+                                                      "type": "string",
+                                                      "default": ""
                                                     }
                                                   }
                                                 },
@@ -10196,7 +10272,8 @@
                                                       "format": "int32"
                                                     },
                                                     "service": {
-                                                      "type": "string"
+                                                      "type": "string",
+                                                      "default": ""
                                                     }
                                                   }
                                                 },
@@ -10322,6 +10399,9 @@
                                                     ],
                                                     "properties": {
                                                       "name": {
+                                                        "type": "string"
+                                                      },
+                                                      "request": {
                                                         "type": "string"
                                                       }
                                                     }
@@ -10505,7 +10585,8 @@
                                                       "format": "int32"
                                                     },
                                                     "service": {
-                                                      "type": "string"
+                                                      "type": "string",
+                                                      "default": ""
                                                     }
                                                   }
                                                 },
@@ -10797,6 +10878,9 @@
                                             "type": "integer",
                                             "format": "int64"
                                           },
+                                          "seLinuxChangePolicy": {
+                                            "type": "string"
+                                          },
                                           "seLinuxOptions": {
                                             "type": "object",
                                             "properties": {
@@ -10835,6 +10919,9 @@
                                               "format": "int64"
                                             },
                                             "x-kubernetes-list-type": "atomic"
+                                          },
+                                          "supplementalGroupsPolicy": {
+                                            "type": "string"
                                           },
                                           "sysctls": {
                                             "type": "array",
@@ -10957,13 +11044,15 @@
                                                   "type": "string"
                                                 },
                                                 "fsType": {
-                                                  "type": "string"
+                                                  "type": "string",
+                                                  "default": "ext4"
                                                 },
                                                 "kind": {
                                                   "type": "string"
                                                 },
                                                 "readOnly": {
-                                                  "type": "boolean"
+                                                  "type": "boolean",
+                                                  "default": false
                                                 }
                                               }
                                             },
@@ -11571,7 +11660,8 @@
                                                   "type": "string"
                                                 },
                                                 "iscsiInterface": {
-                                                  "type": "string"
+                                                  "type": "string",
+                                                  "default": "default"
                                                 },
                                                 "lun": {
                                                   "type": "integer",
@@ -11941,7 +12031,8 @@
                                                   "type": "string"
                                                 },
                                                 "keyring": {
-                                                  "type": "string"
+                                                  "type": "string",
+                                                  "default": "/etc/ceph/keyring"
                                                 },
                                                 "monitors": {
                                                   "type": "array",
@@ -11951,7 +12042,8 @@
                                                   "x-kubernetes-list-type": "atomic"
                                                 },
                                                 "pool": {
-                                                  "type": "string"
+                                                  "type": "string",
+                                                  "default": "rbd"
                                                 },
                                                 "readOnly": {
                                                   "type": "boolean"
@@ -11967,7 +12059,8 @@
                                                   "x-kubernetes-map-type": "atomic"
                                                 },
                                                 "user": {
-                                                  "type": "string"
+                                                  "type": "string",
+                                                  "default": "admin"
                                                 }
                                               }
                                             },
@@ -11980,7 +12073,8 @@
                                               ],
                                               "properties": {
                                                 "fsType": {
-                                                  "type": "string"
+                                                  "type": "string",
+                                                  "default": "xfs"
                                                 },
                                                 "gateway": {
                                                   "type": "string"
@@ -12005,7 +12099,8 @@
                                                   "type": "boolean"
                                                 },
                                                 "storageMode": {
-                                                  "type": "string"
+                                                  "type": "string",
+                                                  "default": "ThinProvisioned"
                                                 },
                                                 "storagePool": {
                                                   "type": "string"
@@ -12557,6 +12652,9 @@
                         "type": "string",
                         "format": "date-time"
                       },
+                      "apiGroup": {
+                        "type": "string"
+                      },
                       "externallyManaged": {
                         "type": "boolean"
                       },
@@ -12565,6 +12663,9 @@
                         "default": ""
                       },
                       "rotateAfter": {
+                        "type": "string"
+                      },
+                      "secretStoreName": {
                         "type": "string"
                       }
                     },
@@ -12603,6 +12704,9 @@
                               ],
                               "properties": {
                                 "name": {
+                                  "type": "string"
+                                },
+                                "request": {
                                   "type": "string"
                                 }
                               }
@@ -12923,13 +13027,15 @@
                                 "type": "string"
                               },
                               "fsType": {
-                                "type": "string"
+                                "type": "string",
+                                "default": "ext4"
                               },
                               "kind": {
                                 "type": "string"
                               },
                               "readOnly": {
-                                "type": "boolean"
+                                "type": "boolean",
+                                "default": false
                               }
                             }
                           },
@@ -13588,6 +13694,9 @@
                                       "properties": {
                                         "name": {
                                           "type": "string"
+                                        },
+                                        "request": {
+                                          "type": "string"
                                         }
                                       }
                                     },
@@ -13788,6 +13897,17 @@
                               }
                             }
                           },
+                          "image": {
+                            "type": "object",
+                            "properties": {
+                              "pullPolicy": {
+                                "type": "string"
+                              },
+                              "reference": {
+                                "type": "string"
+                              }
+                            }
+                          },
                           "iscsi": {
                             "type": "object",
                             "required": [
@@ -13812,7 +13932,8 @@
                                 "type": "string"
                               },
                               "iscsiInterface": {
-                                "type": "string"
+                                "type": "string",
+                                "default": "default"
                               },
                               "lun": {
                                 "type": "integer",
@@ -14179,7 +14300,8 @@
                                 "type": "string"
                               },
                               "keyring": {
-                                "type": "string"
+                                "type": "string",
+                                "default": "/etc/ceph/keyring"
                               },
                               "monitors": {
                                 "type": "array",
@@ -14189,7 +14311,8 @@
                                 "x-kubernetes-list-type": "atomic"
                               },
                               "pool": {
-                                "type": "string"
+                                "type": "string",
+                                "default": "rbd"
                               },
                               "readOnly": {
                                 "type": "boolean"
@@ -14205,7 +14328,8 @@
                                 "x-kubernetes-map-type": "atomic"
                               },
                               "user": {
-                                "type": "string"
+                                "type": "string",
+                                "default": "admin"
                               }
                             }
                           },
@@ -14218,7 +14342,8 @@
                             ],
                             "properties": {
                               "fsType": {
-                                "type": "string"
+                                "type": "string",
+                                "default": "xfs"
                               },
                               "gateway": {
                                 "type": "string"
@@ -14243,7 +14368,8 @@
                                 "type": "boolean"
                               },
                               "storageMode": {
-                                "type": "string"
+                                "type": "string",
+                                "default": "ThinProvisioned"
                               },
                               "storagePool": {
                                 "type": "string"
@@ -14493,6 +14619,9 @@
                                       ],
                                       "properties": {
                                         "name": {
+                                          "type": "string"
+                                        },
+                                        "request": {
                                           "type": "string"
                                         }
                                       }
@@ -16025,7 +16154,8 @@
                                           "format": "int32"
                                         },
                                         "service": {
-                                          "type": "string"
+                                          "type": "string",
+                                          "default": ""
                                         }
                                       }
                                     },
@@ -16187,7 +16317,8 @@
                                           "format": "int32"
                                         },
                                         "service": {
-                                          "type": "string"
+                                          "type": "string",
+                                          "default": ""
                                         }
                                       }
                                     },
@@ -16313,6 +16444,9 @@
                                         ],
                                         "properties": {
                                           "name": {
+                                            "type": "string"
+                                          },
+                                          "request": {
                                             "type": "string"
                                           }
                                         }
@@ -16496,7 +16630,8 @@
                                           "format": "int32"
                                         },
                                         "service": {
-                                          "type": "string"
+                                          "type": "string",
+                                          "default": ""
                                         }
                                       }
                                     },
@@ -16902,7 +17037,8 @@
                                     "format": "int32"
                                   },
                                   "service": {
-                                    "type": "string"
+                                    "type": "string",
+                                    "default": ""
                                   }
                                 }
                               },
@@ -17051,7 +17187,8 @@
                                     "format": "int32"
                                   },
                                   "service": {
-                                    "type": "string"
+                                    "type": "string",
+                                    "default": ""
                                   }
                                 }
                               },
@@ -17159,6 +17296,9 @@
                                   "properties": {
                                     "name": {
                                       "type": "string"
+                                    },
+                                    "request": {
+                                      "type": "string"
                                     }
                                   }
                                 },
@@ -17240,6 +17380,9 @@
                                 "type": "integer",
                                 "format": "int64"
                               },
+                              "seLinuxChangePolicy": {
+                                "type": "string"
+                              },
                               "seLinuxOptions": {
                                 "type": "object",
                                 "properties": {
@@ -17278,6 +17421,9 @@
                                   "format": "int64"
                                 },
                                 "x-kubernetes-list-type": "atomic"
+                              },
+                              "supplementalGroupsPolicy": {
+                                "type": "string"
                               },
                               "sysctls": {
                                 "type": "array",
@@ -17513,13 +17659,15 @@
                                       "type": "string"
                                     },
                                     "fsType": {
-                                      "type": "string"
+                                      "type": "string",
+                                      "default": "ext4"
                                     },
                                     "kind": {
                                       "type": "string"
                                     },
                                     "readOnly": {
-                                      "type": "boolean"
+                                      "type": "boolean",
+                                      "default": false
                                     }
                                   }
                                 },
@@ -18127,7 +18275,8 @@
                                       "type": "string"
                                     },
                                     "iscsiInterface": {
-                                      "type": "string"
+                                      "type": "string",
+                                      "default": "default"
                                     },
                                     "lun": {
                                       "type": "integer",
@@ -18497,7 +18646,8 @@
                                       "type": "string"
                                     },
                                     "keyring": {
-                                      "type": "string"
+                                      "type": "string",
+                                      "default": "/etc/ceph/keyring"
                                     },
                                     "monitors": {
                                       "type": "array",
@@ -18507,7 +18657,8 @@
                                       "x-kubernetes-list-type": "atomic"
                                     },
                                     "pool": {
-                                      "type": "string"
+                                      "type": "string",
+                                      "default": "rbd"
                                     },
                                     "readOnly": {
                                       "type": "boolean"
@@ -18523,7 +18674,8 @@
                                       "x-kubernetes-map-type": "atomic"
                                     },
                                     "user": {
-                                      "type": "string"
+                                      "type": "string",
+                                      "default": "admin"
                                     }
                                   }
                                 },
@@ -18536,7 +18688,8 @@
                                   ],
                                   "properties": {
                                     "fsType": {
-                                      "type": "string"
+                                      "type": "string",
+                                      "default": "xfs"
                                     },
                                     "gateway": {
                                       "type": "string"
@@ -18561,7 +18714,8 @@
                                       "type": "boolean"
                                     },
                                     "storageMode": {
-                                      "type": "string"
+                                      "type": "string",
+                                      "default": "ThinProvisioned"
                                     },
                                     "storagePool": {
                                       "type": "string"
@@ -20480,7 +20634,8 @@
                                                       "format": "int32"
                                                     },
                                                     "service": {
-                                                      "type": "string"
+                                                      "type": "string",
+                                                      "default": ""
                                                     }
                                                   }
                                                 },
@@ -20642,7 +20797,8 @@
                                                       "format": "int32"
                                                     },
                                                     "service": {
-                                                      "type": "string"
+                                                      "type": "string",
+                                                      "default": ""
                                                     }
                                                   }
                                                 },
@@ -20768,6 +20924,9 @@
                                                     ],
                                                     "properties": {
                                                       "name": {
+                                                        "type": "string"
+                                                      },
+                                                      "request": {
                                                         "type": "string"
                                                       }
                                                     }
@@ -20951,7 +21110,8 @@
                                                       "format": "int32"
                                                     },
                                                     "service": {
-                                                      "type": "string"
+                                                      "type": "string",
+                                                      "default": ""
                                                     }
                                                   }
                                                 },
@@ -21357,7 +21517,8 @@
                                                 "format": "int32"
                                               },
                                               "service": {
-                                                "type": "string"
+                                                "type": "string",
+                                                "default": ""
                                               }
                                             }
                                           },
@@ -21506,7 +21667,8 @@
                                                 "format": "int32"
                                               },
                                               "service": {
-                                                "type": "string"
+                                                "type": "string",
+                                                "default": ""
                                               }
                                             }
                                           },
@@ -21614,6 +21776,9 @@
                                               "properties": {
                                                 "name": {
                                                   "type": "string"
+                                                },
+                                                "request": {
+                                                  "type": "string"
                                                 }
                                               }
                                             },
@@ -21695,6 +21860,9 @@
                                             "type": "integer",
                                             "format": "int64"
                                           },
+                                          "seLinuxChangePolicy": {
+                                            "type": "string"
+                                          },
                                           "seLinuxOptions": {
                                             "type": "object",
                                             "properties": {
@@ -21733,6 +21901,9 @@
                                               "format": "int64"
                                             },
                                             "x-kubernetes-list-type": "atomic"
+                                          },
+                                          "supplementalGroupsPolicy": {
+                                            "type": "string"
                                           },
                                           "sysctls": {
                                             "type": "array",
@@ -21968,13 +22139,15 @@
                                                   "type": "string"
                                                 },
                                                 "fsType": {
-                                                  "type": "string"
+                                                  "type": "string",
+                                                  "default": "ext4"
                                                 },
                                                 "kind": {
                                                   "type": "string"
                                                 },
                                                 "readOnly": {
-                                                  "type": "boolean"
+                                                  "type": "boolean",
+                                                  "default": false
                                                 }
                                               }
                                             },
@@ -22582,7 +22755,8 @@
                                                   "type": "string"
                                                 },
                                                 "iscsiInterface": {
-                                                  "type": "string"
+                                                  "type": "string",
+                                                  "default": "default"
                                                 },
                                                 "lun": {
                                                   "type": "integer",
@@ -22952,7 +23126,8 @@
                                                   "type": "string"
                                                 },
                                                 "keyring": {
-                                                  "type": "string"
+                                                  "type": "string",
+                                                  "default": "/etc/ceph/keyring"
                                                 },
                                                 "monitors": {
                                                   "type": "array",
@@ -22962,7 +23137,8 @@
                                                   "x-kubernetes-list-type": "atomic"
                                                 },
                                                 "pool": {
-                                                  "type": "string"
+                                                  "type": "string",
+                                                  "default": "rbd"
                                                 },
                                                 "readOnly": {
                                                   "type": "boolean"
@@ -22978,7 +23154,8 @@
                                                   "x-kubernetes-map-type": "atomic"
                                                 },
                                                 "user": {
-                                                  "type": "string"
+                                                  "type": "string",
+                                                  "default": "admin"
                                                 }
                                               }
                                             },
@@ -22991,7 +23168,8 @@
                                               ],
                                               "properties": {
                                                 "fsType": {
-                                                  "type": "string"
+                                                  "type": "string",
+                                                  "default": "xfs"
                                                 },
                                                 "gateway": {
                                                   "type": "string"
@@ -23016,7 +23194,8 @@
                                                   "type": "boolean"
                                                 },
                                                 "storageMode": {
-                                                  "type": "string"
+                                                  "type": "string",
+                                                  "default": "ThinProvisioned"
                                                 },
                                                 "storagePool": {
                                                   "type": "string"

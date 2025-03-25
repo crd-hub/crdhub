@@ -1,0 +1,23 @@
+{
+  "kind": "ResourceEditor",
+  "apiVersion": "ui.k8s.appscode.com/v1alpha1",
+  "metadata": {
+    "name": "config.virtual-secrets.dev-v1alpha1-secretmetadatas",
+    "creationTimestamp": null,
+    "labels": {
+      "k8s.io/group": "config.virtual-secrets.dev",
+      "k8s.io/kind": "SecretMetadata",
+      "k8s.io/resource": "secretmetadatas",
+      "k8s.io/version": "v1alpha1"
+    }
+  },
+  "spec": {
+    "resource": {
+      "group": "config.virtual-secrets.dev",
+      "version": "v1alpha1",
+      "name": "secretmetadatas",
+      "kind": "SecretMetadata",
+      "scope": "Namespaced"
+    }
+  }
+}

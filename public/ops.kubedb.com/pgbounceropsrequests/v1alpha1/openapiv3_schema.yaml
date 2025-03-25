@@ -170,6 +170,11 @@ properties:
               - alias
               type: object
             type: array
+          clientAuthMode:
+            enum:
+            - md5
+            - scram-sha-256
+            type: string
           issuerRef:
             properties:
               apiGroup:
@@ -187,6 +192,15 @@ properties:
             type: boolean
           rotateCertificates:
             type: boolean
+          sslMode:
+            enum:
+            - disable
+            - allow
+            - prefer
+            - require
+            - verify-ca
+            - verify-full
+            type: string
         type: object
       type:
         enum:
@@ -196,6 +210,7 @@ properties:
         - Reconfigure
         - RotateAuth
         - Restart
+        - ReconfigureTLS
         type: string
       updateVersion:
         properties:
@@ -212,6 +227,8 @@ properties:
                     items:
                       properties:
                         name:
+                          type: string
+                        request:
                           type: string
                       required:
                       - name
@@ -248,6 +265,8 @@ properties:
                     items:
                       properties:
                         name:
+                          type: string
+                        request:
                           type: string
                       required:
                       - name

@@ -22,7 +22,7 @@
     "ui": {
       "editor": {
         "name": "flowcontrolapiserverk8sio-flowschema-editor",
-        "version": "sha256:6b168048136170a67335f6b99c09bf9bddb7e9625b627db6f3c4abb5a839e81e",
+        "version": "v0.14.0",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",

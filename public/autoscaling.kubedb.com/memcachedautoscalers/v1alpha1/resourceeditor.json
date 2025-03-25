@@ -22,7 +22,7 @@
     "ui": {
       "editor": {
         "name": "autoscalingkubedbcom-memcachedautoscaler-editor",
-        "version": "sha256:83372375eb790a99e1b02341b21caf6ced79ed8df6f8566ee7bf8cc1b700a1b3",
+        "version": "v0.14.0",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",

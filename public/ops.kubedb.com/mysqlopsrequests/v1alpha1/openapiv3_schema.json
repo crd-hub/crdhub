@@ -492,6 +492,9 @@
                         "properties": {
                           "name": {
                             "type": "string"
+                          },
+                          "request": {
+                            "type": "string"
                           }
                         }
                       },
@@ -549,6 +552,9 @@
                         ],
                         "properties": {
                           "name": {
+                            "type": "string"
+                          },
+                          "request": {
                             "type": "string"
                           }
                         }
@@ -610,6 +616,9 @@
                         ],
                         "properties": {
                           "name": {
+                            "type": "string"
+                          },
+                          "request": {
                             "type": "string"
                           }
                         }

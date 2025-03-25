@@ -22,7 +22,7 @@
     "ui": {
       "editor": {
         "name": "enginekubevaultcom-azurerole-editor",
-        "version": "sha256:e43a6e4785ef3ef21f8e1d40200221d41009bafce253b649cae900f7027b0037",
+        "version": "v0.14.0",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",

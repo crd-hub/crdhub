@@ -22,7 +22,7 @@
     "ui": {
       "editor": {
         "name": "sqlazurekubedbcom-mssqlservertransparentdataencryption-editor",
-        "version": "sha256:fa2d1c07e5179ea323645546de622ccb1d5a56c0a441b620c05ba83da5ea3809",
+        "version": "v0.14.0",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",

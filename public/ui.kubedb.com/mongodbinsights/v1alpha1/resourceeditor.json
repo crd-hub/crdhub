@@ -22,7 +22,7 @@
     "ui": {
       "editor": {
         "name": "uikubedbcom-mongodbinsight-editor",
-        "version": "sha256:909e546a111d4eaee0583f9e4580ac6e24a4971f3d2373166c4c0ba117d282f0",
+        "version": "v0.14.0",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",

@@ -22,7 +22,7 @@
     "ui": {
       "editor": {
         "name": "opskubevaultcom-vaultopsrequest-editor",
-        "version": "sha256:2b5807d6e6b74c471cfa34fb461f59d02966b6c36250b3ab3fc82126f37d5371",
+        "version": "v0.14.0",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",

@@ -22,7 +22,7 @@
     "ui": {
       "editor": {
         "name": "archiverkubedbcom-mssqlserverarchiver-editor",
-        "version": "sha256:23bb0670c3754a25e7f5f1a3bcbe3438415145f4924e42900b33ddf27752f44c",
+        "version": "v0.14.0",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",

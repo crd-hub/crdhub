@@ -22,7 +22,7 @@
     "ui": {
       "editor": {
         "name": "autoscalingkubedbcom-clickhouseautoscaler-editor",
-        "version": "sha256:4b4b134e21645ba797d8565e9e30ed3a0723d109a87b5a8beb706a915f5f236f",
+        "version": "v0.14.0",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",

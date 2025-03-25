@@ -13,7 +13,7 @@ spec:
   - labels:
     - ops
     references:
-    - '{.spec.serverRef.name}'
+    - '{.spec.databaseRef.name}'
     target:
       apiVersion: kubedb.com/v1
       kind: PgBouncer
@@ -193,6 +193,11 @@ spec:
                     - alias
                     type: object
                   type: array
+                clientAuthMode:
+                  enum:
+                  - md5
+                  - scram-sha-256
+                  type: string
                 issuerRef:
                   properties:
                     apiGroup:
@@ -210,6 +215,15 @@ spec:
                   type: boolean
                 rotateCertificates:
                   type: boolean
+                sslMode:
+                  enum:
+                  - disable
+                  - allow
+                  - prefer
+                  - require
+                  - verify-ca
+                  - verify-full
+                  type: string
               type: object
             type:
               enum:
@@ -219,6 +233,7 @@ spec:
               - Reconfigure
               - RotateAuth
               - Restart
+              - ReconfigureTLS
               type: string
             updateVersion:
               properties:
@@ -235,6 +250,8 @@ spec:
                           items:
                             properties:
                               name:
+                                type: string
+                              request:
                                 type: string
                             required:
                             - name
@@ -271,6 +288,8 @@ spec:
                           items:
                             properties:
                               name:
+                                type: string
+                              request:
                                 type: string
                             required:
                             - name

@@ -22,7 +22,7 @@
     "ui": {
       "editor": {
         "name": "catalogkubewaredev-proxysqlbinding-editor",
-        "version": "sha256:cce88fe18d7a36ab5a29bbb2ff83c65ca3ddbf45d583f5bd1c00fbaa9f584b68",
+        "version": "v0.14.0",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",

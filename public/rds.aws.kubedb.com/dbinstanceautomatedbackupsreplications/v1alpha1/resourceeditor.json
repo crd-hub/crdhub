@@ -22,7 +22,7 @@
     "ui": {
       "editor": {
         "name": "rdsawskubedbcom-dbinstanceautomatedbackupsreplication-editor",
-        "version": "sha256:970eda224915d76931d721dec2fd2ab5b97069c378012c31455351ef19a6cabd",
+        "version": "v0.14.0",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",

@@ -22,7 +22,7 @@
     "ui": {
       "options": {
         "name": "corekubestashcom-backupconfiguration-editor-options",
-        "version": "sha256:fa28df7e849e65ec338e302b2a0eecccc24214387d9d5dfabc06d0dc771b8c09",
+        "version": "v0.14.0",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",
@@ -31,7 +31,7 @@
       },
       "editor": {
         "name": "corekubestashcom-backupconfiguration-editor",
-        "version": "sha256:35a58768371ffc19d9eb90ba65ff7deb6faed351d6cf3c91cd2816155da6b0e5",
+        "version": "v0.14.0",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",

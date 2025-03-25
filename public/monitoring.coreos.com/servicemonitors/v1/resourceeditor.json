@@ -22,7 +22,7 @@
     "ui": {
       "editor": {
         "name": "monitoringcoreoscom-servicemonitor-editor",
-        "version": "sha256:989db94ea0f53acd82a6ed36278a9609fb612c73ca4811444c20ba896bbffed2",
+        "version": "v0.14.0",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",

@@ -71,6 +71,13 @@
         "deprecated": {
           "type": "boolean"
         },
+        "distribution": {
+          "type": "string",
+          "enum": [
+            "Redis",
+            "Valkey"
+          ]
+        },
         "exporter": {
           "type": "object",
           "required": [

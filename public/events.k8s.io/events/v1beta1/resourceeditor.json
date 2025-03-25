@@ -22,7 +22,7 @@
     "ui": {
       "editor": {
         "name": "eventsk8sio-event-editor",
-        "version": "sha256:a10b9392ea448a62b0060249fa4d5f242795d8286c9896779e96b646c6803895",
+        "version": "v0.14.0",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",

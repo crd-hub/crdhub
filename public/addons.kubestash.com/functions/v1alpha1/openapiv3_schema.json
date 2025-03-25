@@ -476,7 +476,8 @@
                       "format": "int32"
                     },
                     "service": {
-                      "type": "string"
+                      "type": "string",
+                      "default": ""
                     }
                   }
                 },
@@ -610,7 +611,8 @@
                       "format": "int32"
                     },
                     "service": {
-                      "type": "string"
+                      "type": "string",
+                      "default": ""
                     }
                   }
                 },
@@ -717,6 +719,9 @@
                     ],
                     "properties": {
                       "name": {
+                        "type": "string"
+                      },
+                      "request": {
                         "type": "string"
                       }
                     }

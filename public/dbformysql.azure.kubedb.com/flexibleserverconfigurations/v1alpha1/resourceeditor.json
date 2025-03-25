@@ -22,7 +22,7 @@
     "ui": {
       "editor": {
         "name": "dbformysqlazurekubedbcom-flexibleserverconfiguration-editor",
-        "version": "sha256:1a114bf3f23e770c078a7c0bc54c1e81cbdfc33a4315af99f9a908d6c8369337",
+        "version": "v0.14.0",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",

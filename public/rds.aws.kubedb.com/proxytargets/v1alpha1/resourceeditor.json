@@ -22,7 +22,7 @@
     "ui": {
       "editor": {
         "name": "rdsawskubedbcom-proxytarget-editor",
-        "version": "sha256:24d5ef74eaef260ba441e35cf9b821e678769d7600667827035a8f1394392d9b",
+        "version": "v0.14.0",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",

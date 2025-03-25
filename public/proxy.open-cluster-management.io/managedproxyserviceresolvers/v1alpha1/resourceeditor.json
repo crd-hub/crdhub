@@ -22,7 +22,7 @@
     "ui": {
       "editor": {
         "name": "proxyopenclustermanagementio-managedproxyserviceresolver-editor",
-        "version": "sha256:b3770cd8fec62604d57c3259bc6ac1be6bbffbee28333445f240a86d980d44f7",
+        "version": "v0.14.0",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",

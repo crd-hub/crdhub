@@ -22,7 +22,7 @@
     "ui": {
       "editor": {
         "name": "cosmosdbazurekubedbcom-gremlingraph-editor",
-        "version": "sha256:78785842d0f54dff30d60b659c787dbd33998122ddfc1f7703eb2ef7502cc580",
+        "version": "v0.14.0",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",

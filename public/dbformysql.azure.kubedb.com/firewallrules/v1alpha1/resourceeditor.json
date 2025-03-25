@@ -22,7 +22,7 @@
     "ui": {
       "editor": {
         "name": "dbformysqlazurekubedbcom-firewallrule-editor",
-        "version": "sha256:a17d385568478a48150ed1df809d564042c80cee3db2aaba3654b484bea35a78",
+        "version": "v0.14.0",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",

@@ -178,6 +178,7 @@
                       "TimescaleDB",
                       "PostGIS",
                       "KubeDB",
+                      "DocumentDB",
                       "PostgreSQL"
                     ]
                   },

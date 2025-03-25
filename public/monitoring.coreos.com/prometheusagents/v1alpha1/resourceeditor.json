@@ -22,7 +22,7 @@
     "ui": {
       "editor": {
         "name": "monitoringcoreoscom-prometheusagent-editor",
-        "version": "sha256:4ff6bf35ffae05861500d2c4356e40488a84a0623c3436095e8561139e834411",
+        "version": "v0.14.0",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",

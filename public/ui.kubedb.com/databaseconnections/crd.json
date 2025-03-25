@@ -38,151 +38,10 @@
               "spec": {
                 "type": "object",
                 "properties": {
-                  "connectOptions": {
-                    "type": "object",
-                    "additionalProperties": {
-                      "type": "string"
-                    }
-                  },
                   "databases": {
                     "type": "array",
                     "items": {
                       "type": "string"
-                    }
-                  },
-                  "gateway": {
-                    "type": "array",
-                    "items": {
-                      "type": "object",
-                      "required": [
-                        "name",
-                        "namespace"
-                      ],
-                      "properties": {
-                        "caCert": {
-                          "type": "string",
-                          "format": "byte"
-                        },
-                        "hostname": {
-                          "type": "string"
-                        },
-                        "ip": {
-                          "type": "string"
-                        },
-                        "name": {
-                          "type": "string"
-                        },
-                        "namespace": {
-                          "type": "string"
-                        },
-                        "secretRef": {
-                          "type": "object",
-                          "required": [
-                            "name"
-                          ],
-                          "properties": {
-                            "name": {
-                              "type": "string"
-                            },
-                            "namespace": {
-                              "type": "string"
-                            }
-                          }
-                        },
-                        "services": {
-                          "type": "array",
-                          "items": {
-                            "type": "object",
-                            "required": [
-                              "alias",
-                              "ports"
-                            ],
-                            "properties": {
-                              "alias": {
-                                "type": "string"
-                              },
-                              "ports": {
-                                "type": "array",
-                                "items": {
-                                  "type": "object",
-                                  "required": [
-                                    "port"
-                                  ],
-                                  "properties": {
-                                    "backendServicePort": {
-                                      "type": "integer",
-                                      "format": "int32"
-                                    },
-                                    "name": {
-                                      "type": "string"
-                                    },
-                                    "nodePort": {
-                                      "type": "integer",
-                                      "format": "int32"
-                                    },
-                                    "port": {
-                                      "type": "integer",
-                                      "format": "int32"
-                                    }
-                                  }
-                                }
-                              }
-                            }
-                          }
-                        },
-                        "ui": {
-                          "type": "array",
-                          "items": {
-                            "type": "object",
-                            "required": [
-                              "alias",
-                              "port",
-                              "url"
-                            ],
-                            "properties": {
-                              "alias": {
-                                "type": "string"
-                              },
-                              "helmRelease": {
-                                "type": "object",
-                                "properties": {
-                                  "name": {
-                                    "type": "string",
-                                    "default": ""
-                                  }
-                                },
-                                "x-kubernetes-map-type": "atomic"
-                              },
-                              "port": {
-                                "type": "object",
-                                "required": [
-                                  "port"
-                                ],
-                                "properties": {
-                                  "backendServicePort": {
-                                    "type": "integer",
-                                    "format": "int32"
-                                  },
-                                  "name": {
-                                    "type": "string"
-                                  },
-                                  "nodePort": {
-                                    "type": "integer",
-                                    "format": "int32"
-                                  },
-                                  "port": {
-                                    "type": "integer",
-                                    "format": "int32"
-                                  }
-                                }
-                              },
-                              "url": {
-                                "type": "string"
-                              }
-                            }
-                          }
-                        }
-                      }
                     }
                   },
                   "inCluster": {
@@ -191,6 +50,12 @@
                       "caCert": {
                         "type": "string",
                         "format": "byte"
+                      },
+                      "connectOptions": {
+                        "type": "object",
+                        "additionalProperties": {
+                          "type": "string"
+                        }
                       },
                       "exec": {
                         "type": "string"
@@ -213,6 +78,155 @@
                           },
                           "namespace": {
                             "type": "string"
+                          }
+                        }
+                      }
+                    }
+                  },
+                  "public": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "connectOptions": {
+                          "type": "object",
+                          "additionalProperties": {
+                            "type": "string"
+                          }
+                        },
+                        "gateway": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "required": [
+                              "name",
+                              "namespace"
+                            ],
+                            "properties": {
+                              "caCert": {
+                                "type": "string",
+                                "format": "byte"
+                              },
+                              "hostname": {
+                                "type": "string"
+                              },
+                              "ip": {
+                                "type": "string"
+                              },
+                              "name": {
+                                "type": "string"
+                              },
+                              "namespace": {
+                                "type": "string"
+                              },
+                              "secretRef": {
+                                "type": "object",
+                                "required": [
+                                  "name"
+                                ],
+                                "properties": {
+                                  "name": {
+                                    "type": "string"
+                                  },
+                                  "namespace": {
+                                    "type": "string"
+                                  }
+                                }
+                              },
+                              "services": {
+                                "type": "array",
+                                "items": {
+                                  "type": "object",
+                                  "required": [
+                                    "alias",
+                                    "ports"
+                                  ],
+                                  "properties": {
+                                    "alias": {
+                                      "type": "string"
+                                    },
+                                    "ports": {
+                                      "type": "array",
+                                      "items": {
+                                        "type": "object",
+                                        "required": [
+                                          "port"
+                                        ],
+                                        "properties": {
+                                          "backendServicePort": {
+                                            "type": "integer",
+                                            "format": "int32"
+                                          },
+                                          "name": {
+                                            "type": "string"
+                                          },
+                                          "nodePort": {
+                                            "type": "integer",
+                                            "format": "int32"
+                                          },
+                                          "port": {
+                                            "type": "integer",
+                                            "format": "int32"
+                                          }
+                                        }
+                                      }
+                                    }
+                                  }
+                                }
+                              },
+                              "ui": {
+                                "type": "array",
+                                "items": {
+                                  "type": "object",
+                                  "required": [
+                                    "alias",
+                                    "port",
+                                    "url"
+                                  ],
+                                  "properties": {
+                                    "alias": {
+                                      "type": "string"
+                                    },
+                                    "helmRelease": {
+                                      "type": "object",
+                                      "properties": {
+                                        "name": {
+                                          "type": "string",
+                                          "default": ""
+                                        }
+                                      },
+                                      "x-kubernetes-map-type": "atomic"
+                                    },
+                                    "port": {
+                                      "type": "object",
+                                      "required": [
+                                        "port"
+                                      ],
+                                      "properties": {
+                                        "backendServicePort": {
+                                          "type": "integer",
+                                          "format": "int32"
+                                        },
+                                        "name": {
+                                          "type": "string"
+                                        },
+                                        "nodePort": {
+                                          "type": "integer",
+                                          "format": "int32"
+                                        },
+                                        "port": {
+                                          "type": "integer",
+                                          "format": "int32"
+                                        }
+                                      }
+                                    },
+                                    "url": {
+                                      "type": "string"
+                                    }
+                                  }
+                                }
+                              }
+                            }
                           }
                         }
                       }

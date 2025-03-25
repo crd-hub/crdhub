@@ -5,7 +5,7 @@
     "name": "backendtrafficpolicies.gateway.envoyproxy.io",
     "creationTimestamp": null,
     "annotations": {
-      "controller-gen.kubebuilder.io/version": "v0.15.0"
+      "controller-gen.kubebuilder.io/version": "v0.16.1"
     }
   },
   "spec": {
@@ -106,6 +106,10 @@
                         "type"
                       ],
                       "properties": {
+                        "brotli": {
+                          "description": "The configuration for Brotli compressor.",
+                          "type": "object"
+                        },
                         "gzip": {
                           "description": "The configuration for GZIP compressor.",
                           "type": "object"
@@ -114,7 +118,8 @@
                           "description": "CompressorType defines the compressor type to use for compression.",
                           "type": "string",
                           "enum": [
-                            "Gzip"
+                            "Gzip",
+                            "Brotli"
                           ]
                         }
                       }
@@ -125,8 +130,15 @@
                     "type": "object",
                     "properties": {
                       "bufferLimit": {
-                        "description": "BufferLimit Soft limit on size of the cluster’s connections read and write buffers.\nIf unspecified, an implementation defined default is applied (32768 bytes).\nFor example, 20Mi, 1Gi, 256Ki etc.\nNote: that when the suffix is not provided, the value is interpreted as bytes.",
-                        "pattern": "^(\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))(([KMGTPE]i)|[numkMGTPE]|([eE](\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))))?$",
+                        "description": "BufferLimit Soft limit on size of the cluster’s connections read and write buffers.\nBufferLimit applies to connection streaming (maybe non-streaming) channel between processes, it's in user space.\nIf unspecified, an implementation defined default is applied (32768 bytes).\nFor example, 20Mi, 1Gi, 256Ki etc.\nNote: that when the suffix is not provided, the value is interpreted as bytes.",
+                        "allOf": [
+                          {
+                            "pattern": "^(\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))(([KMGTPE]i)|[numkMGTPE]|([eE](\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))))?$"
+                          },
+                          {
+                            "pattern": "^[1-9]+[0-9]*([EPTGMK]i|[EPTGMk])?$"
+                          }
+                        ],
                         "anyOf": [
                           {
                             "type": "integer"
@@ -135,13 +147,41 @@
                             "type": "string"
                           }
                         ],
-                        "x-kubernetes-int-or-string": true,
-                        "x-kubernetes-validations": [
+                        "x-kubernetes-int-or-string": true
+                      },
+                      "socketBufferLimit": {
+                        "description": "SocketBufferLimit provides configuration for the maximum buffer size in bytes for each socket\nto backend.\nSocketBufferLimit applies to socket streaming channel between TCP/IP stacks, it's in kernel space.\nFor example, 20Mi, 1Gi, 256Ki etc.\nNote that when the suffix is not provided, the value is interpreted as bytes.",
+                        "allOf": [
                           {
-                            "rule": "type(self) == string ? self.matches(r\"^[1-9]+[0-9]*([EPTGMK]i|[EPTGMk])?$\") : type(self) == int",
-                            "message": "BufferLimit must be of the format \"^[1-9]+[0-9]*([EPTGMK]i|[EPTGMk])?$\""
+                            "pattern": "^(\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))(([KMGTPE]i)|[numkMGTPE]|([eE](\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))))?$"
+                          },
+                          {
+                            "pattern": "^[1-9]+[0-9]*([EPTGMK]i|[EPTGMk])?$"
                           }
-                        ]
+                        ],
+                        "anyOf": [
+                          {
+                            "type": "integer"
+                          },
+                          {
+                            "type": "string"
+                          }
+                        ],
+                        "x-kubernetes-int-or-string": true
+                      }
+                    }
+                  },
+                  "dns": {
+                    "description": "DNS includes dns resolution settings.",
+                    "type": "object",
+                    "properties": {
+                      "dnsRefreshRate": {
+                        "description": "DNSRefreshRate specifies the rate at which DNS records should be refreshed.\nDefaults to 30 seconds.",
+                        "type": "string"
+                      },
+                      "respectDnsTtl": {
+                        "description": "RespectDNSTTL indicates whether the DNS Time-To-Live (TTL) should be respected.\nIf the value is set to true, the DNS refresh rate will be set to the resource record’s TTL.\nDefaults to true.",
+                        "type": "boolean"
                       }
                     }
                   },
@@ -219,6 +259,16 @@
                           "type"
                         ],
                         "properties": {
+                          "grpc": {
+                            "description": "GRPC defines the configuration of the GRPC health checker.\nIt's optional, and can only be used if the specified type is GRPC.",
+                            "type": "object",
+                            "properties": {
+                              "service": {
+                                "description": "Service to send in the health check request.\nIf this is not specified, then the health check request applies to the entire\nserver and not to a specific service.",
+                                "type": "string"
+                              }
+                            }
+                          },
                           "healthyThreshold": {
                             "description": "HealthyThreshold defines the number of healthy health checks required before a backend host is marked healthy.",
                             "type": "integer",
@@ -419,13 +469,15 @@
                               {
                                 "enum": [
                                   "HTTP",
-                                  "TCP"
+                                  "TCP",
+                                  "GRPC"
                                 ]
                               },
                               {
                                 "enum": [
                                   "HTTP",
-                                  "TCP"
+                                  "TCP",
+                                  "GRPC"
                                 ]
                               }
                             ]
@@ -446,6 +498,10 @@
                           {
                             "rule": "self.type == 'TCP' ? has(self.tcp) : !has(self.tcp)",
                             "message": "If Health Checker type is TCP, tcp field needs to be set."
+                          },
+                          {
+                            "rule": "has(self.grpc) ? self.type == 'GRPC' : true",
+                            "message": "The grpc field can only be set if the Health Checker type is GRPC."
                           }
                         ]
                       },
@@ -498,8 +554,65 @@
                       }
                     }
                   },
+                  "http2": {
+                    "description": "HTTP2 provides HTTP/2 configuration for backend connections.",
+                    "type": "object",
+                    "properties": {
+                      "initialConnectionWindowSize": {
+                        "description": "InitialConnectionWindowSize sets the initial window size for HTTP/2 connections.\nIf not set, the default value is 1 MiB.",
+                        "allOf": [
+                          {
+                            "pattern": "^(\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))(([KMGTPE]i)|[numkMGTPE]|([eE](\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))))?$"
+                          },
+                          {
+                            "pattern": "^[1-9]+[0-9]*([EPTGMK]i|[EPTGMk])?$"
+                          }
+                        ],
+                        "anyOf": [
+                          {
+                            "type": "integer"
+                          },
+                          {
+                            "type": "string"
+                          }
+                        ],
+                        "x-kubernetes-int-or-string": true
+                      },
+                      "initialStreamWindowSize": {
+                        "description": "InitialStreamWindowSize sets the initial window size for HTTP/2 streams.\nIf not set, the default value is 64 KiB(64*1024).",
+                        "allOf": [
+                          {
+                            "pattern": "^(\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))(([KMGTPE]i)|[numkMGTPE]|([eE](\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))))?$"
+                          },
+                          {
+                            "pattern": "^[1-9]+[0-9]*([EPTGMK]i|[EPTGMk])?$"
+                          }
+                        ],
+                        "anyOf": [
+                          {
+                            "type": "integer"
+                          },
+                          {
+                            "type": "string"
+                          }
+                        ],
+                        "x-kubernetes-int-or-string": true
+                      },
+                      "maxConcurrentStreams": {
+                        "description": "MaxConcurrentStreams sets the maximum number of concurrent streams allowed per connection.\nIf not set, the default value is 100.",
+                        "type": "integer",
+                        "format": "int32",
+                        "maximum": 2147483647,
+                        "minimum": 1
+                      },
+                      "onInvalidMessage": {
+                        "description": "OnInvalidMessage determines if Envoy will terminate the connection or just the offending stream in the event of HTTP messaging error\nIt's recommended for L2 Envoy deployments to set this value to TerminateStream.\nhttps://www.envoyproxy.io/docs/envoy/latest/configuration/best_practices/level_two\nDefault: TerminateConnection",
+                        "type": "string"
+                      }
+                    }
+                  },
                   "loadBalancer": {
-                    "description": "LoadBalancer policy to apply when routing traffic from the gateway to\nthe backend endpoints",
+                    "description": "LoadBalancer policy to apply when routing traffic from the gateway to\nthe backend endpoints. Defaults to `LeastRequest`.",
                     "type": "object",
                     "required": [
                       "type"
@@ -656,7 +769,7 @@
                               ],
                               "properties": {
                                 "clientSelectors": {
-                                  "description": "ClientSelectors holds the list of select conditions to select\nspecific clients using attributes from the traffic flow.\nAll individual select conditions must hold True for this rule\nand its limit to be applied.\n\n\nIf no client selectors are specified, the rule applies to all traffic of\nthe targeted Route.\n\n\nIf the policy targets a Gateway, the rule applies to each Route of the Gateway.\nPlease note that each Route has its own rate limit counters. For example,\nif a Gateway has two Routes, and the policy has a rule with limit 10rps,\neach Route will have its own 10rps limit.",
+                                  "description": "ClientSelectors holds the list of select conditions to select\nspecific clients using attributes from the traffic flow.\nAll individual select conditions must hold True for this rule\nand its limit to be applied.\n\nIf no client selectors are specified, the rule applies to all traffic of\nthe targeted Route.\n\nIf the policy targets a Gateway, the rule applies to each Route of the Gateway.\nPlease note that each Route has its own rate limit counters. For example,\nif a Gateway has two Routes, and the policy has a rule with limit 10rps,\neach Route will have its own 10rps limit.",
                                   "type": "array",
                                   "maxItems": 8,
                                   "items": {
@@ -674,6 +787,11 @@
                                             "name"
                                           ],
                                           "properties": {
+                                            "invert": {
+                                              "description": "Invert specifies whether the value match result will be inverted.\nDo not set this field when Type=\"Distinct\", implying matching on any/all unique\nvalues within the header.",
+                                              "type": "boolean",
+                                              "default": false
+                                            },
                                             "name": {
                                               "description": "Name of the HTTP header.",
                                               "type": "string",
@@ -696,11 +814,7 @@
                                               "maxLength": 1024
                                             }
                                           }
-                                        },
-                                        "x-kubernetes-list-map-keys": [
-                                          "name"
-                                        ],
-                                        "x-kubernetes-list-type": "map"
+                                        }
                                       },
                                       "sourceCIDR": {
                                         "description": "SourceCIDR is the client IP Address range to match on.\nAt least one of headers or sourceCIDR condition must be specified.",
@@ -725,6 +839,104 @@
                                           }
                                         }
                                       }
+                                    }
+                                  }
+                                },
+                                "cost": {
+                                  "description": "Cost specifies the cost of requests and responses for the rule.\n\nThis is optional and if not specified, the default behavior is to reduce the rate limit counters by 1 on\nthe request path and do not reduce the rate limit counters on the response path.",
+                                  "type": "object",
+                                  "properties": {
+                                    "request": {
+                                      "description": "Request specifies the number to reduce the rate limit counters\non the request path. If this is not specified, the default behavior\nis to reduce the rate limit counters by 1.\n\nWhen Envoy receives a request that matches the rule, it tries to reduce the\nrate limit counters by the specified number. If the counter doesn't have\nenough capacity, the request is rate limited.",
+                                      "type": "object",
+                                      "required": [
+                                        "from"
+                                      ],
+                                      "properties": {
+                                        "from": {
+                                          "description": "From specifies where to get the rate limit cost. Currently, only \"Number\" and \"Metadata\" are supported.",
+                                          "type": "string",
+                                          "enum": [
+                                            "Number",
+                                            "Metadata"
+                                          ]
+                                        },
+                                        "metadata": {
+                                          "description": "Metadata specifies the per-request metadata to retrieve the usage number from.",
+                                          "type": "object",
+                                          "required": [
+                                            "key",
+                                            "namespace"
+                                          ],
+                                          "properties": {
+                                            "key": {
+                                              "description": "Key is the key to retrieve the usage number from the filter metadata.",
+                                              "type": "string"
+                                            },
+                                            "namespace": {
+                                              "description": "Namespace is the namespace of the dynamic metadata.",
+                                              "type": "string"
+                                            }
+                                          }
+                                        },
+                                        "number": {
+                                          "description": "Number specifies the fixed usage number to reduce the rate limit counters.\nUsing zero can be used to only check the rate limit counters without reducing them.",
+                                          "type": "integer",
+                                          "format": "int64"
+                                        }
+                                      },
+                                      "x-kubernetes-validations": [
+                                        {
+                                          "rule": "!(has(self.number) \u0026\u0026 has(self.metadata))",
+                                          "message": "only one of number or metadata can be specified"
+                                        }
+                                      ]
+                                    },
+                                    "response": {
+                                      "description": "Response specifies the number to reduce the rate limit counters\nafter the response is sent back to the client or the request stream is closed.\n\nThe cost is used to reduce the rate limit counters for the matching requests.\nSince the reduction happens after the request stream is complete, the rate limit\nwon't be enforced for the current request, but for the subsequent matching requests.\n\nThis is optional and if not specified, the rate limit counters are not reduced\non the response path.\n\nCurrently, this is only supported for HTTP Global Rate Limits.",
+                                      "type": "object",
+                                      "required": [
+                                        "from"
+                                      ],
+                                      "properties": {
+                                        "from": {
+                                          "description": "From specifies where to get the rate limit cost. Currently, only \"Number\" and \"Metadata\" are supported.",
+                                          "type": "string",
+                                          "enum": [
+                                            "Number",
+                                            "Metadata"
+                                          ]
+                                        },
+                                        "metadata": {
+                                          "description": "Metadata specifies the per-request metadata to retrieve the usage number from.",
+                                          "type": "object",
+                                          "required": [
+                                            "key",
+                                            "namespace"
+                                          ],
+                                          "properties": {
+                                            "key": {
+                                              "description": "Key is the key to retrieve the usage number from the filter metadata.",
+                                              "type": "string"
+                                            },
+                                            "namespace": {
+                                              "description": "Namespace is the namespace of the dynamic metadata.",
+                                              "type": "string"
+                                            }
+                                          }
+                                        },
+                                        "number": {
+                                          "description": "Number specifies the fixed usage number to reduce the rate limit counters.\nUsing zero can be used to only check the rate limit counters without reducing them.",
+                                          "type": "integer",
+                                          "format": "int64"
+                                        }
+                                      },
+                                      "x-kubernetes-validations": [
+                                        {
+                                          "rule": "!(has(self.number) \u0026\u0026 has(self.metadata))",
+                                          "message": "only one of number or metadata can be specified"
+                                        }
+                                      ]
                                     }
                                   }
                                 },
@@ -772,7 +984,7 @@
                               ],
                               "properties": {
                                 "clientSelectors": {
-                                  "description": "ClientSelectors holds the list of select conditions to select\nspecific clients using attributes from the traffic flow.\nAll individual select conditions must hold True for this rule\nand its limit to be applied.\n\n\nIf no client selectors are specified, the rule applies to all traffic of\nthe targeted Route.\n\n\nIf the policy targets a Gateway, the rule applies to each Route of the Gateway.\nPlease note that each Route has its own rate limit counters. For example,\nif a Gateway has two Routes, and the policy has a rule with limit 10rps,\neach Route will have its own 10rps limit.",
+                                  "description": "ClientSelectors holds the list of select conditions to select\nspecific clients using attributes from the traffic flow.\nAll individual select conditions must hold True for this rule\nand its limit to be applied.\n\nIf no client selectors are specified, the rule applies to all traffic of\nthe targeted Route.\n\nIf the policy targets a Gateway, the rule applies to each Route of the Gateway.\nPlease note that each Route has its own rate limit counters. For example,\nif a Gateway has two Routes, and the policy has a rule with limit 10rps,\neach Route will have its own 10rps limit.",
                                   "type": "array",
                                   "maxItems": 8,
                                   "items": {
@@ -790,6 +1002,11 @@
                                             "name"
                                           ],
                                           "properties": {
+                                            "invert": {
+                                              "description": "Invert specifies whether the value match result will be inverted.\nDo not set this field when Type=\"Distinct\", implying matching on any/all unique\nvalues within the header.",
+                                              "type": "boolean",
+                                              "default": false
+                                            },
                                             "name": {
                                               "description": "Name of the HTTP header.",
                                               "type": "string",
@@ -812,11 +1029,7 @@
                                               "maxLength": 1024
                                             }
                                           }
-                                        },
-                                        "x-kubernetes-list-map-keys": [
-                                          "name"
-                                        ],
-                                        "x-kubernetes-list-type": "map"
+                                        }
                                       },
                                       "sourceCIDR": {
                                         "description": "SourceCIDR is the client IP Address range to match on.\nAt least one of headers or sourceCIDR condition must be specified.",
@@ -844,6 +1057,104 @@
                                     }
                                   }
                                 },
+                                "cost": {
+                                  "description": "Cost specifies the cost of requests and responses for the rule.\n\nThis is optional and if not specified, the default behavior is to reduce the rate limit counters by 1 on\nthe request path and do not reduce the rate limit counters on the response path.",
+                                  "type": "object",
+                                  "properties": {
+                                    "request": {
+                                      "description": "Request specifies the number to reduce the rate limit counters\non the request path. If this is not specified, the default behavior\nis to reduce the rate limit counters by 1.\n\nWhen Envoy receives a request that matches the rule, it tries to reduce the\nrate limit counters by the specified number. If the counter doesn't have\nenough capacity, the request is rate limited.",
+                                      "type": "object",
+                                      "required": [
+                                        "from"
+                                      ],
+                                      "properties": {
+                                        "from": {
+                                          "description": "From specifies where to get the rate limit cost. Currently, only \"Number\" and \"Metadata\" are supported.",
+                                          "type": "string",
+                                          "enum": [
+                                            "Number",
+                                            "Metadata"
+                                          ]
+                                        },
+                                        "metadata": {
+                                          "description": "Metadata specifies the per-request metadata to retrieve the usage number from.",
+                                          "type": "object",
+                                          "required": [
+                                            "key",
+                                            "namespace"
+                                          ],
+                                          "properties": {
+                                            "key": {
+                                              "description": "Key is the key to retrieve the usage number from the filter metadata.",
+                                              "type": "string"
+                                            },
+                                            "namespace": {
+                                              "description": "Namespace is the namespace of the dynamic metadata.",
+                                              "type": "string"
+                                            }
+                                          }
+                                        },
+                                        "number": {
+                                          "description": "Number specifies the fixed usage number to reduce the rate limit counters.\nUsing zero can be used to only check the rate limit counters without reducing them.",
+                                          "type": "integer",
+                                          "format": "int64"
+                                        }
+                                      },
+                                      "x-kubernetes-validations": [
+                                        {
+                                          "rule": "!(has(self.number) \u0026\u0026 has(self.metadata))",
+                                          "message": "only one of number or metadata can be specified"
+                                        }
+                                      ]
+                                    },
+                                    "response": {
+                                      "description": "Response specifies the number to reduce the rate limit counters\nafter the response is sent back to the client or the request stream is closed.\n\nThe cost is used to reduce the rate limit counters for the matching requests.\nSince the reduction happens after the request stream is complete, the rate limit\nwon't be enforced for the current request, but for the subsequent matching requests.\n\nThis is optional and if not specified, the rate limit counters are not reduced\non the response path.\n\nCurrently, this is only supported for HTTP Global Rate Limits.",
+                                      "type": "object",
+                                      "required": [
+                                        "from"
+                                      ],
+                                      "properties": {
+                                        "from": {
+                                          "description": "From specifies where to get the rate limit cost. Currently, only \"Number\" and \"Metadata\" are supported.",
+                                          "type": "string",
+                                          "enum": [
+                                            "Number",
+                                            "Metadata"
+                                          ]
+                                        },
+                                        "metadata": {
+                                          "description": "Metadata specifies the per-request metadata to retrieve the usage number from.",
+                                          "type": "object",
+                                          "required": [
+                                            "key",
+                                            "namespace"
+                                          ],
+                                          "properties": {
+                                            "key": {
+                                              "description": "Key is the key to retrieve the usage number from the filter metadata.",
+                                              "type": "string"
+                                            },
+                                            "namespace": {
+                                              "description": "Namespace is the namespace of the dynamic metadata.",
+                                              "type": "string"
+                                            }
+                                          }
+                                        },
+                                        "number": {
+                                          "description": "Number specifies the fixed usage number to reduce the rate limit counters.\nUsing zero can be used to only check the rate limit counters without reducing them.",
+                                          "type": "integer",
+                                          "format": "int64"
+                                        }
+                                      },
+                                      "x-kubernetes-validations": [
+                                        {
+                                          "rule": "!(has(self.number) \u0026\u0026 has(self.metadata))",
+                                          "message": "only one of number or metadata can be specified"
+                                        }
+                                      ]
+                                    }
+                                  }
+                                },
                                 "limit": {
                                   "description": "Limit holds the rate limit values.\nThis limit is applied for traffic flows when the selectors\ncompute to True, causing the request to be counted towards the limit.\nThe limit is enforced and the request is ratelimited, i.e. a response with\n429 HTTP status code is sent back to the client when\nthe selected requests have reached the limit.",
                                   "type": "object",
@@ -868,7 +1179,13 @@
                                   }
                                 }
                               }
-                            }
+                            },
+                            "x-kubernetes-validations": [
+                              {
+                                "rule": "self.all(foo, !has(foo.cost) || !has(foo.cost.response))",
+                                "message": "response cost is not supported for Local Rate Limits"
+                              }
+                            ]
                           }
                         }
                       },
@@ -879,6 +1196,191 @@
                           "Global",
                           "Local"
                         ]
+                      }
+                    }
+                  },
+                  "responseOverride": {
+                    "description": "ResponseOverride defines the configuration to override specific responses with a custom one.\nIf multiple configurations are specified, the first one to match wins.",
+                    "type": "array",
+                    "items": {
+                      "description": "ResponseOverride defines the configuration to override specific responses with a custom one.",
+                      "type": "object",
+                      "required": [
+                        "match",
+                        "response"
+                      ],
+                      "properties": {
+                        "match": {
+                          "description": "Match configuration.",
+                          "type": "object",
+                          "required": [
+                            "statusCodes"
+                          ],
+                          "properties": {
+                            "statusCodes": {
+                              "description": "Status code to match on. The match evaluates to true if any of the matches are successful.",
+                              "type": "array",
+                              "maxItems": 50,
+                              "minItems": 1,
+                              "items": {
+                                "description": "StatusCodeMatch defines the configuration for matching a status code.",
+                                "type": "object",
+                                "required": [
+                                  "type"
+                                ],
+                                "properties": {
+                                  "range": {
+                                    "description": "Range contains the range of status codes.",
+                                    "type": "object",
+                                    "required": [
+                                      "end",
+                                      "start"
+                                    ],
+                                    "properties": {
+                                      "end": {
+                                        "description": "End of the range, including the end value.",
+                                        "type": "integer"
+                                      },
+                                      "start": {
+                                        "description": "Start of the range, including the start value.",
+                                        "type": "integer"
+                                      }
+                                    },
+                                    "x-kubernetes-validations": [
+                                      {
+                                        "rule": "self.end \u003e self.start",
+                                        "message": "end must be greater than start"
+                                      }
+                                    ]
+                                  },
+                                  "type": {
+                                    "description": "Type is the type of value.\nValid values are Value and Range, default is Value.",
+                                    "type": "string",
+                                    "default": "Value",
+                                    "allOf": [
+                                      {
+                                        "enum": [
+                                          "Value",
+                                          "Range"
+                                        ]
+                                      },
+                                      {
+                                        "enum": [
+                                          "Value",
+                                          "Range"
+                                        ]
+                                      }
+                                    ]
+                                  },
+                                  "value": {
+                                    "description": "Value contains the value of the status code.",
+                                    "type": "integer"
+                                  }
+                                },
+                                "x-kubernetes-validations": [
+                                  {
+                                    "rule": "(!has(self.type) || self.type == 'Value')? has(self.value) : true",
+                                    "message": "value must be set for type Value"
+                                  },
+                                  {
+                                    "rule": "(has(self.type) \u0026\u0026 self.type == 'Range')? has(self.range) : true",
+                                    "message": "range must be set for type Range"
+                                  }
+                                ]
+                              }
+                            }
+                          }
+                        },
+                        "response": {
+                          "description": "Response configuration.",
+                          "type": "object",
+                          "properties": {
+                            "body": {
+                              "description": "Body of the Custom Response",
+                              "type": "object",
+                              "required": [
+                                "type"
+                              ],
+                              "properties": {
+                                "inline": {
+                                  "description": "Inline contains the value as an inline string.",
+                                  "type": "string"
+                                },
+                                "type": {
+                                  "description": "Type is the type of method to use to read the body value.\nValid values are Inline and ValueRef, default is Inline.",
+                                  "type": "string",
+                                  "default": "Inline",
+                                  "allOf": [
+                                    {
+                                      "enum": [
+                                        "Inline",
+                                        "ValueRef"
+                                      ]
+                                    },
+                                    {
+                                      "enum": [
+                                        "Inline",
+                                        "ValueRef"
+                                      ]
+                                    }
+                                  ]
+                                },
+                                "valueRef": {
+                                  "description": "ValueRef contains the contents of the body\nspecified as a local object reference.\nOnly a reference to ConfigMap is supported.\n\nThe value of key `response.body` in the ConfigMap will be used as the response body.\nIf the key is not found, the first value in the ConfigMap will be used.",
+                                  "type": "object",
+                                  "required": [
+                                    "group",
+                                    "kind",
+                                    "name"
+                                  ],
+                                  "properties": {
+                                    "group": {
+                                      "description": "Group is the group of the referent. For example, \"gateway.networking.k8s.io\".\nWhen unspecified or empty string, core API group is inferred.",
+                                      "type": "string",
+                                      "maxLength": 253,
+                                      "pattern": "^$|^[a-z0-9]([-a-z0-9]*[a-z0-9])?(\\.[a-z0-9]([-a-z0-9]*[a-z0-9])?)*$"
+                                    },
+                                    "kind": {
+                                      "description": "Kind is kind of the referent. For example \"HTTPRoute\" or \"Service\".",
+                                      "type": "string",
+                                      "maxLength": 63,
+                                      "minLength": 1,
+                                      "pattern": "^[a-zA-Z]([-a-zA-Z0-9]*[a-zA-Z0-9])?$"
+                                    },
+                                    "name": {
+                                      "description": "Name is the name of the referent.",
+                                      "type": "string",
+                                      "maxLength": 253,
+                                      "minLength": 1
+                                    }
+                                  }
+                                }
+                              },
+                              "x-kubernetes-validations": [
+                                {
+                                  "rule": "(!has(self.type) || self.type == 'Inline')? has(self.inline) : true",
+                                  "message": "inline must be set for type Inline"
+                                },
+                                {
+                                  "rule": "(has(self.type) \u0026\u0026 self.type == 'ValueRef')? has(self.valueRef) : true",
+                                  "message": "valueRef must be set for type ValueRef"
+                                },
+                                {
+                                  "rule": "has(self.valueRef) ? self.valueRef.kind == 'ConfigMap' : true",
+                                  "message": "only ConfigMap is supported for ValueRef"
+                                }
+                              ]
+                            },
+                            "contentType": {
+                              "description": "Content Type of the response. This will be set in the Content-Type header.",
+                              "type": "string"
+                            },
+                            "statusCode": {
+                              "description": "Status Code of the Custom Response\nIf unset, does not override the status of response.",
+                              "type": "integer"
+                            }
+                          }
+                        }
                       }
                     }
                   },
@@ -921,7 +1423,7 @@
                         }
                       },
                       "retryOn": {
-                        "description": "RetryOn specifies the retry trigger condition.\n\n\nIf not specified, the default is to retry on connect-failure,refused-stream,unavailable,cancelled,retriable-status-codes(503).",
+                        "description": "RetryOn specifies the retry trigger condition.\n\nIf not specified, the default is to retry on connect-failure,refused-stream,unavailable,cancelled,retriable-status-codes(503).",
                         "type": "object",
                         "properties": {
                           "httpStatusCodes": {
@@ -962,7 +1464,7 @@
                     }
                   },
                   "targetRef": {
-                    "description": "TargetRef is the name of the resource this policy is being attached to.\nThis policy and the TargetRef MUST be in the same namespace for this\nPolicy to have effect\n\n\nDeprecated: use targetRefs/targetSelectors instead",
+                    "description": "TargetRef is the name of the resource this policy is being attached to.\nThis policy and the TargetRef MUST be in the same namespace for this\nPolicy to have effect\n\nDeprecated: use targetRefs/targetSelectors instead",
                     "type": "object",
                     "required": [
                       "group",
@@ -990,7 +1492,7 @@
                         "minLength": 1
                       },
                       "sectionName": {
-                        "description": "SectionName is the name of a section within the target resource. When\nunspecified, this targetRef targets the entire resource. In the following\nresources, SectionName is interpreted as the following:\n\n\n* Gateway: Listener name\n* HTTPRoute: HTTPRouteRule name\n* Service: Port name\n\n\nIf a SectionName is specified, but does not exist on the targeted object,\nthe Policy must fail to attach, and the policy implementation should record\na `ResolvedRefs` or similar Condition in the Policy's status.",
+                        "description": "SectionName is the name of a section within the target resource. When\nunspecified, this targetRef targets the entire resource. In the following\nresources, SectionName is interpreted as the following:\n\n* Gateway: Listener name\n* HTTPRoute: HTTPRouteRule name\n* Service: Port name\n\nIf a SectionName is specified, but does not exist on the targeted object,\nthe Policy must fail to attach, and the policy implementation should record\na `ResolvedRefs` or similar Condition in the Policy's status.",
                         "type": "string",
                         "maxLength": 253,
                         "minLength": 1,
@@ -1002,7 +1504,7 @@
                     "description": "TargetRefs are the names of the Gateway resources this policy\nis being attached to.",
                     "type": "array",
                     "items": {
-                      "description": "LocalPolicyTargetReferenceWithSectionName identifies an API object to apply a\ndirect policy to. This should be used as part of Policy resources that can\ntarget single resources. For more information on how this policy attachment\nmode works, and a sample Policy resource, refer to the policy attachment\ndocumentation for Gateway API.\n\n\nNote: This should only be used for direct policy attachment when references\nto SectionName are actually needed. In all other cases,\nLocalPolicyTargetReference should be used.",
+                      "description": "LocalPolicyTargetReferenceWithSectionName identifies an API object to apply a\ndirect policy to. This should be used as part of Policy resources that can\ntarget single resources. For more information on how this policy attachment\nmode works, and a sample Policy resource, refer to the policy attachment\ndocumentation for Gateway API.\n\nNote: This should only be used for direct policy attachment when references\nto SectionName are actually needed. In all other cases,\nLocalPolicyTargetReference should be used.",
                       "type": "object",
                       "required": [
                         "group",
@@ -1030,7 +1532,7 @@
                           "minLength": 1
                         },
                         "sectionName": {
-                          "description": "SectionName is the name of a section within the target resource. When\nunspecified, this targetRef targets the entire resource. In the following\nresources, SectionName is interpreted as the following:\n\n\n* Gateway: Listener name\n* HTTPRoute: HTTPRouteRule name\n* Service: Port name\n\n\nIf a SectionName is specified, but does not exist on the targeted object,\nthe Policy must fail to attach, and the policy implementation should record\na `ResolvedRefs` or similar Condition in the Policy's status.",
+                          "description": "SectionName is the name of a section within the target resource. When\nunspecified, this targetRef targets the entire resource. In the following\nresources, SectionName is interpreted as the following:\n\n* Gateway: Listener name\n* HTTPRoute: HTTPRouteRule name\n* Service: Port name\n\nIf a SectionName is specified, but does not exist on the targeted object,\nthe Policy must fail to attach, and the policy implementation should record\na `ResolvedRefs` or similar Condition in the Policy's status.",
                           "type": "string",
                           "maxLength": 253,
                           "minLength": 1,
@@ -1117,6 +1619,11 @@
                             "description": "The maximum duration of an HTTP connection.\nDefault: unlimited.",
                             "type": "string",
                             "pattern": "^([0-9]{1,5}(h|m|s|ms)){1,4}$"
+                          },
+                          "requestTimeout": {
+                            "description": "RequestTimeout is the time until which entire response is received from the upstream.",
+                            "type": "string",
+                            "pattern": "^([0-9]{1,5}(h|m|s|ms)){1,4}$"
                           }
                         }
                       },
@@ -1177,11 +1684,11 @@
                 ],
                 "properties": {
                   "ancestors": {
-                    "description": "Ancestors is a list of ancestor resources (usually Gateways) that are\nassociated with the policy, and the status of the policy with respect to\neach ancestor. When this policy attaches to a parent, the controller that\nmanages the parent and the ancestors MUST add an entry to this list when\nthe controller first sees the policy and SHOULD update the entry as\nappropriate when the relevant ancestor is modified.\n\n\nNote that choosing the relevant ancestor is left to the Policy designers;\nan important part of Policy design is designing the right object level at\nwhich to namespace this status.\n\n\nNote also that implementations MUST ONLY populate ancestor status for\nthe Ancestor resources they are responsible for. Implementations MUST\nuse the ControllerName field to uniquely identify the entries in this list\nthat they are responsible for.\n\n\nNote that to achieve this, the list of PolicyAncestorStatus structs\nMUST be treated as a map with a composite key, made up of the AncestorRef\nand ControllerName fields combined.\n\n\nA maximum of 16 ancestors will be represented in this list. An empty list\nmeans the Policy is not relevant for any ancestors.\n\n\nIf this slice is full, implementations MUST NOT add further entries.\nInstead they MUST consider the policy unimplementable and signal that\non any related resources such as the ancestor that would be referenced\nhere. For example, if this list was full on BackendTLSPolicy, no\nadditional Gateways would be able to reference the Service targeted by\nthe BackendTLSPolicy.",
+                    "description": "Ancestors is a list of ancestor resources (usually Gateways) that are\nassociated with the policy, and the status of the policy with respect to\neach ancestor. When this policy attaches to a parent, the controller that\nmanages the parent and the ancestors MUST add an entry to this list when\nthe controller first sees the policy and SHOULD update the entry as\nappropriate when the relevant ancestor is modified.\n\nNote that choosing the relevant ancestor is left to the Policy designers;\nan important part of Policy design is designing the right object level at\nwhich to namespace this status.\n\nNote also that implementations MUST ONLY populate ancestor status for\nthe Ancestor resources they are responsible for. Implementations MUST\nuse the ControllerName field to uniquely identify the entries in this list\nthat they are responsible for.\n\nNote that to achieve this, the list of PolicyAncestorStatus structs\nMUST be treated as a map with a composite key, made up of the AncestorRef\nand ControllerName fields combined.\n\nA maximum of 16 ancestors will be represented in this list. An empty list\nmeans the Policy is not relevant for any ancestors.\n\nIf this slice is full, implementations MUST NOT add further entries.\nInstead they MUST consider the policy unimplementable and signal that\non any related resources such as the ancestor that would be referenced\nhere. For example, if this list was full on BackendTLSPolicy, no\nadditional Gateways would be able to reference the Service targeted by\nthe BackendTLSPolicy.",
                     "type": "array",
                     "maxItems": 16,
                     "items": {
-                      "description": "PolicyAncestorStatus describes the status of a route with respect to an\nassociated Ancestor.\n\n\nAncestors refer to objects that are either the Target of a policy or above it\nin terms of object hierarchy. For example, if a policy targets a Service, the\nPolicy's Ancestors are, in order, the Service, the HTTPRoute, the Gateway, and\nthe GatewayClass. Almost always, in this hierarchy, the Gateway will be the most\nuseful object to place Policy status on, so we recommend that implementations\nSHOULD use Gateway as the PolicyAncestorStatus object unless the designers\nhave a _very_ good reason otherwise.\n\n\nIn the context of policy attachment, the Ancestor is used to distinguish which\nresource results in a distinct application of this policy. For example, if a policy\ntargets a Service, it may have a distinct result per attached Gateway.\n\n\nPolicies targeting the same resource may have different effects depending on the\nancestors of those resources. For example, different Gateways targeting the same\nService may have different capabilities, especially if they have different underlying\nimplementations.\n\n\nFor example, in BackendTLSPolicy, the Policy attaches to a Service that is\nused as a backend in a HTTPRoute that is itself attached to a Gateway.\nIn this case, the relevant object for status is the Gateway, and that is the\nancestor object referred to in this status.\n\n\nNote that a parent is also an ancestor, so for objects where the parent is the\nrelevant object for status, this struct SHOULD still be used.\n\n\nThis struct is intended to be used in a slice that's effectively a map,\nwith a composite key made up of the AncestorRef and the ControllerName.",
+                      "description": "PolicyAncestorStatus describes the status of a route with respect to an\nassociated Ancestor.\n\nAncestors refer to objects that are either the Target of a policy or above it\nin terms of object hierarchy. For example, if a policy targets a Service, the\nPolicy's Ancestors are, in order, the Service, the HTTPRoute, the Gateway, and\nthe GatewayClass. Almost always, in this hierarchy, the Gateway will be the most\nuseful object to place Policy status on, so we recommend that implementations\nSHOULD use Gateway as the PolicyAncestorStatus object unless the designers\nhave a _very_ good reason otherwise.\n\nIn the context of policy attachment, the Ancestor is used to distinguish which\nresource results in a distinct application of this policy. For example, if a policy\ntargets a Service, it may have a distinct result per attached Gateway.\n\nPolicies targeting the same resource may have different effects depending on the\nancestors of those resources. For example, different Gateways targeting the same\nService may have different capabilities, especially if they have different underlying\nimplementations.\n\nFor example, in BackendTLSPolicy, the Policy attaches to a Service that is\nused as a backend in a HTTPRoute that is itself attached to a Gateway.\nIn this case, the relevant object for status is the Gateway, and that is the\nancestor object referred to in this status.\n\nNote that a parent is also an ancestor, so for objects where the parent is the\nrelevant object for status, this struct SHOULD still be used.\n\nThis struct is intended to be used in a slice that's effectively a map,\nwith a composite key made up of the AncestorRef and the ControllerName.",
                       "type": "object",
                       "required": [
                         "ancestorRef",
@@ -1196,14 +1703,14 @@
                           ],
                           "properties": {
                             "group": {
-                              "description": "Group is the group of the referent.\nWhen unspecified, \"gateway.networking.k8s.io\" is inferred.\nTo set the core API group (such as for a \"Service\" kind referent),\nGroup must be explicitly set to \"\" (empty string).\n\n\nSupport: Core",
+                              "description": "Group is the group of the referent.\nWhen unspecified, \"gateway.networking.k8s.io\" is inferred.\nTo set the core API group (such as for a \"Service\" kind referent),\nGroup must be explicitly set to \"\" (empty string).\n\nSupport: Core",
                               "type": "string",
                               "default": "gateway.networking.k8s.io",
                               "maxLength": 253,
                               "pattern": "^$|^[a-z0-9]([-a-z0-9]*[a-z0-9])?(\\.[a-z0-9]([-a-z0-9]*[a-z0-9])?)*$"
                             },
                             "kind": {
-                              "description": "Kind is kind of the referent.\n\n\nThere are two kinds of parent resources with \"Core\" support:\n\n\n* Gateway (Gateway conformance profile)\n* Service (Mesh conformance profile, ClusterIP Services only)\n\n\nSupport for other resources is Implementation-Specific.",
+                              "description": "Kind is kind of the referent.\n\nThere are two kinds of parent resources with \"Core\" support:\n\n* Gateway (Gateway conformance profile)\n* Service (Mesh conformance profile, ClusterIP Services only)\n\nSupport for other resources is Implementation-Specific.",
                               "type": "string",
                               "default": "Gateway",
                               "maxLength": 63,
@@ -1211,27 +1718,27 @@
                               "pattern": "^[a-zA-Z]([-a-zA-Z0-9]*[a-zA-Z0-9])?$"
                             },
                             "name": {
-                              "description": "Name is the name of the referent.\n\n\nSupport: Core",
+                              "description": "Name is the name of the referent.\n\nSupport: Core",
                               "type": "string",
                               "maxLength": 253,
                               "minLength": 1
                             },
                             "namespace": {
-                              "description": "Namespace is the namespace of the referent. When unspecified, this refers\nto the local namespace of the Route.\n\n\nNote that there are specific rules for ParentRefs which cross namespace\nboundaries. Cross-namespace references are only valid if they are explicitly\nallowed by something in the namespace they are referring to. For example:\nGateway has the AllowedRoutes field, and ReferenceGrant provides a\ngeneric way to enable any other kind of cross-namespace reference.\n\n\n\u003cgateway:experimental:description\u003e\nParentRefs from a Route to a Service in the same namespace are \"producer\"\nroutes, which apply default routing rules to inbound connections from\nany namespace to the Service.\n\n\nParentRefs from a Route to a Service in a different namespace are\n\"consumer\" routes, and these routing rules are only applied to outbound\nconnections originating from the same namespace as the Route, for which\nthe intended destination of the connections are a Service targeted as a\nParentRef of the Route.\n\u003c/gateway:experimental:description\u003e\n\n\nSupport: Core",
+                              "description": "Namespace is the namespace of the referent. When unspecified, this refers\nto the local namespace of the Route.\n\nNote that there are specific rules for ParentRefs which cross namespace\nboundaries. Cross-namespace references are only valid if they are explicitly\nallowed by something in the namespace they are referring to. For example:\nGateway has the AllowedRoutes field, and ReferenceGrant provides a\ngeneric way to enable any other kind of cross-namespace reference.\n\n\u003cgateway:experimental:description\u003e\nParentRefs from a Route to a Service in the same namespace are \"producer\"\nroutes, which apply default routing rules to inbound connections from\nany namespace to the Service.\n\nParentRefs from a Route to a Service in a different namespace are\n\"consumer\" routes, and these routing rules are only applied to outbound\nconnections originating from the same namespace as the Route, for which\nthe intended destination of the connections are a Service targeted as a\nParentRef of the Route.\n\u003c/gateway:experimental:description\u003e\n\nSupport: Core",
                               "type": "string",
                               "maxLength": 63,
                               "minLength": 1,
                               "pattern": "^[a-z0-9]([-a-z0-9]*[a-z0-9])?$"
                             },
                             "port": {
-                              "description": "Port is the network port this Route targets. It can be interpreted\ndifferently based on the type of parent resource.\n\n\nWhen the parent resource is a Gateway, this targets all listeners\nlistening on the specified port that also support this kind of Route(and\nselect this Route). It's not recommended to set `Port` unless the\nnetworking behaviors specified in a Route must apply to a specific port\nas opposed to a listener(s) whose port(s) may be changed. When both Port\nand SectionName are specified, the name and port of the selected listener\nmust match both specified values.\n\n\n\u003cgateway:experimental:description\u003e\nWhen the parent resource is a Service, this targets a specific port in the\nService spec. When both Port (experimental) and SectionName are specified,\nthe name and port of the selected port must match both specified values.\n\u003c/gateway:experimental:description\u003e\n\n\nImplementations MAY choose to support other parent resources.\nImplementations supporting other types of parent resources MUST clearly\ndocument how/if Port is interpreted.\n\n\nFor the purpose of status, an attachment is considered successful as\nlong as the parent resource accepts it partially. For example, Gateway\nlisteners can restrict which Routes can attach to them by Route kind,\nnamespace, or hostname. If 1 of 2 Gateway listeners accept attachment\nfrom the referencing Route, the Route MUST be considered successfully\nattached. If no Gateway listeners accept attachment from this Route,\nthe Route MUST be considered detached from the Gateway.\n\n\nSupport: Extended",
+                              "description": "Port is the network port this Route targets. It can be interpreted\ndifferently based on the type of parent resource.\n\nWhen the parent resource is a Gateway, this targets all listeners\nlistening on the specified port that also support this kind of Route(and\nselect this Route). It's not recommended to set `Port` unless the\nnetworking behaviors specified in a Route must apply to a specific port\nas opposed to a listener(s) whose port(s) may be changed. When both Port\nand SectionName are specified, the name and port of the selected listener\nmust match both specified values.\n\n\u003cgateway:experimental:description\u003e\nWhen the parent resource is a Service, this targets a specific port in the\nService spec. When both Port (experimental) and SectionName are specified,\nthe name and port of the selected port must match both specified values.\n\u003c/gateway:experimental:description\u003e\n\nImplementations MAY choose to support other parent resources.\nImplementations supporting other types of parent resources MUST clearly\ndocument how/if Port is interpreted.\n\nFor the purpose of status, an attachment is considered successful as\nlong as the parent resource accepts it partially. For example, Gateway\nlisteners can restrict which Routes can attach to them by Route kind,\nnamespace, or hostname. If 1 of 2 Gateway listeners accept attachment\nfrom the referencing Route, the Route MUST be considered successfully\nattached. If no Gateway listeners accept attachment from this Route,\nthe Route MUST be considered detached from the Gateway.\n\nSupport: Extended",
                               "type": "integer",
                               "format": "int32",
                               "maximum": 65535,
                               "minimum": 1
                             },
                             "sectionName": {
-                              "description": "SectionName is the name of a section within the target resource. In the\nfollowing resources, SectionName is interpreted as the following:\n\n\n* Gateway: Listener name. When both Port (experimental) and SectionName\nare specified, the name and port of the selected listener must match\nboth specified values.\n* Service: Port name. When both Port (experimental) and SectionName\nare specified, the name and port of the selected listener must match\nboth specified values.\n\n\nImplementations MAY choose to support attaching Routes to other resources.\nIf that is the case, they MUST clearly document how SectionName is\ninterpreted.\n\n\nWhen unspecified (empty string), this will reference the entire resource.\nFor the purpose of status, an attachment is considered successful if at\nleast one section in the parent resource accepts it. For example, Gateway\nlisteners can restrict which Routes can attach to them by Route kind,\nnamespace, or hostname. If 1 of 2 Gateway listeners accept attachment from\nthe referencing Route, the Route MUST be considered successfully\nattached. If no Gateway listeners accept attachment from this Route, the\nRoute MUST be considered detached from the Gateway.\n\n\nSupport: Core",
+                              "description": "SectionName is the name of a section within the target resource. In the\nfollowing resources, SectionName is interpreted as the following:\n\n* Gateway: Listener name. When both Port (experimental) and SectionName\nare specified, the name and port of the selected listener must match\nboth specified values.\n* Service: Port name. When both Port (experimental) and SectionName\nare specified, the name and port of the selected listener must match\nboth specified values.\n\nImplementations MAY choose to support attaching Routes to other resources.\nIf that is the case, they MUST clearly document how SectionName is\ninterpreted.\n\nWhen unspecified (empty string), this will reference the entire resource.\nFor the purpose of status, an attachment is considered successful if at\nleast one section in the parent resource accepts it. For example, Gateway\nlisteners can restrict which Routes can attach to them by Route kind,\nnamespace, or hostname. If 1 of 2 Gateway listeners accept attachment from\nthe referencing Route, the Route MUST be considered successfully\nattached. If no Gateway listeners accept attachment from this Route, the\nRoute MUST be considered detached from the Gateway.\n\nSupport: Core",
                               "type": "string",
                               "maxLength": 253,
                               "minLength": 1,
@@ -1245,7 +1752,7 @@
                           "maxItems": 8,
                           "minItems": 1,
                           "items": {
-                            "description": "Condition contains details for one aspect of the current state of this API Resource.\n---\nThis struct is intended for direct use as an array at the field path .status.conditions.  For example,\n\n\n\ttype FooStatus struct{\n\t    // Represents the observations of a foo's current state.\n\t    // Known .status.conditions.type are: \"Available\", \"Progressing\", and \"Degraded\"\n\t    // +patchMergeKey=type\n\t    // +patchStrategy=merge\n\t    // +listType=map\n\t    // +listMapKey=type\n\t    Conditions []metav1.Condition `json:\"conditions,omitempty\" patchStrategy:\"merge\" patchMergeKey:\"type\" protobuf:\"bytes,1,rep,name=conditions\"`\n\n\n\t    // other fields\n\t}",
+                            "description": "Condition contains details for one aspect of the current state of this API Resource.",
                             "type": "object",
                             "required": [
                               "lastTransitionTime",
@@ -1288,7 +1795,7 @@
                                 ]
                               },
                               "type": {
-                                "description": "type of condition in CamelCase or in foo.example.com/CamelCase.\n---\nMany .condition.type values are consistent across resources like Available, but because arbitrary conditions can be\nuseful (see .node.status.conditions), the ability to deconflict is important.\nThe regex it matches is (dns1123SubdomainFmt/)?(qualifiedNameFmt)",
+                                "description": "type of condition in CamelCase or in foo.example.com/CamelCase.",
                                 "type": "string",
                                 "maxLength": 316,
                                 "pattern": "^([a-z0-9]([-a-z0-9]*[a-z0-9])?(\\.[a-z0-9]([-a-z0-9]*[a-z0-9])?)*/)?(([A-Za-z0-9][-A-Za-z0-9_.]*)?[A-Za-z0-9])$"
@@ -1301,7 +1808,7 @@
                           "x-kubernetes-list-type": "map"
                         },
                         "controllerName": {
-                          "description": "ControllerName is a domain/path string that indicates the name of the\ncontroller that wrote this status. This corresponds with the\ncontrollerName field on GatewayClass.\n\n\nExample: \"example.net/gateway-controller\".\n\n\nThe format of this field is DOMAIN \"/\" PATH, where DOMAIN and PATH are\nvalid Kubernetes names\n(https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names).\n\n\nControllers MUST populate this field when writing status. Controllers should ensure that\nentries to status populated with their ControllerName are cleaned up when they are no\nlonger necessary.",
+                          "description": "ControllerName is a domain/path string that indicates the name of the\ncontroller that wrote this status. This corresponds with the\ncontrollerName field on GatewayClass.\n\nExample: \"example.net/gateway-controller\".\n\nThe format of this field is DOMAIN \"/\" PATH, where DOMAIN and PATH are\nvalid Kubernetes names\n(https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names).\n\nControllers MUST populate this field when writing status. Controllers should ensure that\nentries to status populated with their ControllerName are cleaned up when they are no\nlonger necessary.",
                           "type": "string",
                           "maxLength": 253,
                           "minLength": 1,

@@ -22,7 +22,7 @@
     "ui": {
       "editor": {
         "name": "gatewayenvoyproxyio-authenticationfilter-editor",
-        "version": "sha256:b2e690389bdd6682f66e10aac42dfa787ed28129fb4c475a157ba1c082e14b2c",
+        "version": "v0.14.0",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",
