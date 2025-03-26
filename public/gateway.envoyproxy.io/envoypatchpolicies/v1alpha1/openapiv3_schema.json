@@ -75,12 +75,15 @@
                 "description": "Patch defines the JSON Patch Operation",
                 "type": "object",
                 "required": [
-                  "op",
-                  "path"
+                  "op"
                 ],
                 "properties": {
                   "from": {
                     "description": "From is the source location of the value to be copied or moved. Only valid\nfor move or copy operations\nRefer to https://datatracker.ietf.org/doc/html/rfc6901 for more details.",
+                    "type": "string"
+                  },
+                  "jsonPath": {
+                    "description": "JSONPath is a JSONPath expression. Refer to https://datatracker.ietf.org/doc/rfc9535/ for more details.\nIt produces one or more JSONPointer expressions based on the given JSON document.\nIf no JSONPointer is found, it will result in an error.\nIf the 'Path' property is also set, it will be appended to the resulting JSONPointer expressions from the JSONPath evaluation.\nThis is useful when creating a property that does not yet exist in the JSON document.\nThe final JSONPointer expressions specifies the locations in the target document/field where the operation will be applied.",
                     "type": "string"
                   },
                   "op": {
@@ -96,7 +99,7 @@
                     ]
                   },
                   "path": {
-                    "description": "Path is the location of the target document/field where the operation will be performed\nRefer to https://datatracker.ietf.org/doc/html/rfc6901 for more details.",
+                    "description": "Path is a JSONPointer expression. Refer to https://datatracker.ietf.org/doc/html/rfc6901 for more details.\nIt specifies the location of the target document/field where the operation will be performed",
                     "type": "string"
                   },
                   "value": {

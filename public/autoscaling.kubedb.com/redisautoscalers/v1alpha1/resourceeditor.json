@@ -22,7 +22,7 @@
     "ui": {
       "editor": {
         "name": "autoscalingkubedbcom-redisautoscaler-editor",
-        "version": "v0.14.0",
+        "version": "sha256:e686993a7733e46988bf0e21e8d4cffe35d1fdd314d40f0342ae7d1af50c88bb",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",

@@ -22,7 +22,7 @@
     "ui": {
       "editor": {
         "name": "chartsxhelmdev-chartpreset-editor",
-        "version": "v0.14.0",
+        "version": "sha256:7cec0bd3a1eef448a693ec75befcf108a0bbb1c132346f9e5dc5a6a997179132",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",

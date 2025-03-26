@@ -22,7 +22,7 @@
     "ui": {
       "editor": {
         "name": "enginekubevaultcom-gcprole-editor",
-        "version": "v0.14.0",
+        "version": "sha256:21b127978864fff63ba84a5757171b605edc95417536bc193edbdbda19b5a84d",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",

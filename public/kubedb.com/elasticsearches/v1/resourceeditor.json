@@ -22,7 +22,7 @@
     "ui": {
       "options": {
         "name": "kubedbcom-elasticsearch-editor-options",
-        "version": "v0.14.0",
+        "version": "sha256:18fd1b9a2b53f22313c921d988296c6ae3d18b22a0b3c4dcd5487098e7073f16",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",
@@ -31,7 +31,7 @@
       },
       "editor": {
         "name": "kubedbcom-elasticsearch-editor",
-        "version": "v0.14.0",
+        "version": "sha256:9f0da3cdf4a4ecd0ba6c9255c62e92086f2d2c27d39d392cb0ad31eb79e908db",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",
@@ -55,7 +55,7 @@
               "flow": "standalone-edit",
               "editor": {
                 "name": "kubedbcom-elasticsearch-editor",
-                "version": "v0.14.0",
+                "version": "sha256:9f0da3cdf4a4ecd0ba6c9255c62e92086f2d2c27d39d392cb0ad31eb79e908db",
                 "sourceRef": {
                   "apiGroup": "source.toolkit.fluxcd.io",
                   "kind": "HelmRepository",
@@ -76,7 +76,7 @@
               "flow": "standalone-create",
               "editor": {
                 "name": "corekubestashcom-backupsession-editor",
-                "version": "v0.14.0",
+                "version": "sha256:bc7ccb75de5004d3f4e9b7b49c8ae0a17e6009c7ccb608b35afb5deacd6c9b5d",
                 "sourceRef": {
                   "apiGroup": "source.toolkit.fluxcd.io",
                   "kind": "HelmRepository",
@@ -97,7 +97,7 @@
               "flow": "standalone-create",
               "editor": {
                 "name": "corekubestashcom-restoresession-editor-options",
-                "version": "v0.14.0",
+                "version": "sha256:66fb1eb161d84a80029bac82e3dcae40b657a434a5656fb329fc84748a72e19a",
                 "sourceRef": {
                   "apiGroup": "source.toolkit.fluxcd.io",
                   "kind": "HelmRepository",
@@ -123,7 +123,7 @@
               "flow": "standalone-create",
               "editor": {
                 "name": "opskubedbcom-elasticsearchopsrequest-editor",
-                "version": "v0.14.0",
+                "version": "sha256:f4d5a5143f663739f1c3855a5f31c043a44f95e7014920b4965e06c43e708acd",
                 "sourceRef": {
                   "apiGroup": "source.toolkit.fluxcd.io",
                   "kind": "HelmRepository",
@@ -144,7 +144,7 @@
               "flow": "standalone-create",
               "editor": {
                 "name": "opskubedbcom-elasticsearchopsrequest-editor",
-                "version": "v0.14.0",
+                "version": "sha256:f4d5a5143f663739f1c3855a5f31c043a44f95e7014920b4965e06c43e708acd",
                 "sourceRef": {
                   "apiGroup": "source.toolkit.fluxcd.io",
                   "kind": "HelmRepository",
@@ -165,7 +165,7 @@
               "flow": "standalone-create",
               "editor": {
                 "name": "opskubedbcom-elasticsearchopsrequest-editor",
-                "version": "v0.14.0",
+                "version": "sha256:f4d5a5143f663739f1c3855a5f31c043a44f95e7014920b4965e06c43e708acd",
                 "sourceRef": {
                   "apiGroup": "source.toolkit.fluxcd.io",
                   "kind": "HelmRepository",
@@ -192,7 +192,7 @@
               "disabledTemplate": "{{ not (or (hasKey .spec \"topology\") (gt .spec.replicas 1) )}}\n",
               "editor": {
                 "name": "opskubedbcom-elasticsearchopsrequest-editor",
-                "version": "v0.14.0",
+                "version": "sha256:f4d5a5143f663739f1c3855a5f31c043a44f95e7014920b4965e06c43e708acd",
                 "sourceRef": {
                   "apiGroup": "source.toolkit.fluxcd.io",
                   "kind": "HelmRepository",
@@ -213,7 +213,7 @@
               "flow": "standalone-create",
               "editor": {
                 "name": "opskubedbcom-elasticsearchopsrequest-editor",
-                "version": "v0.14.0",
+                "version": "sha256:f4d5a5143f663739f1c3855a5f31c043a44f95e7014920b4965e06c43e708acd",
                 "sourceRef": {
                   "apiGroup": "source.toolkit.fluxcd.io",
                   "kind": "HelmRepository",
@@ -234,7 +234,7 @@
               "flow": "standalone-create",
               "editor": {
                 "name": "opskubedbcom-elasticsearchopsrequest-editor",
-                "version": "v0.14.0",
+                "version": "sha256:f4d5a5143f663739f1c3855a5f31c043a44f95e7014920b4965e06c43e708acd",
                 "sourceRef": {
                   "apiGroup": "source.toolkit.fluxcd.io",
                   "kind": "HelmRepository",
@@ -260,7 +260,7 @@
               "flow": "standalone-edit",
               "editor": {
                 "name": "kubedbcom-elasticsearch-editor",
-                "version": "v0.14.0",
+                "version": "sha256:9f0da3cdf4a4ecd0ba6c9255c62e92086f2d2c27d39d392cb0ad31eb79e908db",
                 "sourceRef": {
                   "apiGroup": "source.toolkit.fluxcd.io",
                   "kind": "HelmRepository",
@@ -281,7 +281,7 @@
               "flow": "standalone-edit",
               "editor": {
                 "name": "kubedbcom-elasticsearch-editor",
-                "version": "v0.14.0",
+                "version": "sha256:9f0da3cdf4a4ecd0ba6c9255c62e92086f2d2c27d39d392cb0ad31eb79e908db",
                 "sourceRef": {
                   "apiGroup": "source.toolkit.fluxcd.io",
                   "kind": "HelmRepository",
@@ -308,7 +308,7 @@
               "disabledTemplate": "{{ not (and (hasKey .spec \"tls\") ( hasKey .spec.tls \"issuerRef\"))}}\n",
               "editor": {
                 "name": "opskubedbcom-elasticsearchopsrequest-editor",
-                "version": "v0.14.0",
+                "version": "sha256:f4d5a5143f663739f1c3855a5f31c043a44f95e7014920b4965e06c43e708acd",
                 "sourceRef": {
                   "apiGroup": "source.toolkit.fluxcd.io",
                   "kind": "HelmRepository",
@@ -329,7 +329,7 @@
               "flow": "standalone-edit",
               "editor": {
                 "name": "kubedbcom-elasticsearch-editor",
-                "version": "v0.14.0",
+                "version": "sha256:9f0da3cdf4a4ecd0ba6c9255c62e92086f2d2c27d39d392cb0ad31eb79e908db",
                 "sourceRef": {
                   "apiGroup": "source.toolkit.fluxcd.io",
                   "kind": "HelmRepository",
@@ -355,7 +355,7 @@
               "flow": "standalone-edit",
               "editor": {
                 "name": "kubedbcom-elasticsearch-editor",
-                "version": "v0.14.0",
+                "version": "sha256:9f0da3cdf4a4ecd0ba6c9255c62e92086f2d2c27d39d392cb0ad31eb79e908db",
                 "sourceRef": {
                   "apiGroup": "source.toolkit.fluxcd.io",
                   "kind": "HelmRepository",

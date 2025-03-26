@@ -22,7 +22,7 @@
     "ui": {
       "editor": {
         "name": "auditregistrationk8sio-auditsink-editor",
-        "version": "v0.14.0",
+        "version": "sha256:97a9ebb602743fb95a3a6c08d32c681fe7560caf4fe67a95e27f96cffe82e2c1",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",

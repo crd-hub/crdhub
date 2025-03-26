@@ -22,7 +22,7 @@
     "ui": {
       "editor": {
         "name": "statusgatekeepersh-mutatorpodstatus-editor",
-        "version": "v0.14.0",
+        "version": "sha256:80f9ac649d81aefeb55349acf8ed84e389d19a01bafbbb9e9be121b23a2db863",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",

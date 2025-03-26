@@ -22,7 +22,7 @@
     "ui": {
       "editor": {
         "name": "addonskubestashcom-addon-editor",
-        "version": "v0.14.0",
+        "version": "sha256:7a50dcd741cf3848a638a05dffc759e49d7341bb728db68c2bb225bb999ce081",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",

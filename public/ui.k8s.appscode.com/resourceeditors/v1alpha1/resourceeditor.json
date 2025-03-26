@@ -22,7 +22,7 @@
     "ui": {
       "editor": {
         "name": "uik8sappscodecom-resourceeditor-editor",
-        "version": "v0.14.0",
+        "version": "sha256:66cdaf105dd4d41e8aa36dc2fce297f6198660098398ee5267cfa12ae27ee6b7",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",

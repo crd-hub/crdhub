@@ -22,7 +22,7 @@
     "ui": {
       "editor": {
         "name": "uikubedbcom-proxysqlinsight-editor",
-        "version": "v0.14.0",
+        "version": "sha256:9d381896b465e6079cc1c54de0b80feb2bc268e898e0f8c7f36638b2b8910804",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",

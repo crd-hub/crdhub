@@ -80,11 +80,27 @@
               "type": "object",
               "properties": {
                 "numTrustedHops": {
-                  "description": "NumTrustedHops controls the number of additional ingress proxy hops from the right side of XFF HTTP\nheaders to trust when determining the origin client's IP address.\nRefer to https://www.envoyproxy.io/docs/envoy/latest/configuration/http/http_conn_man/headers#x-forwarded-for\nfor more details.",
+                  "description": "NumTrustedHops controls the number of additional ingress proxy hops from the right side of XFF HTTP\nheaders to trust when determining the origin client's IP address.\nOnly one of NumTrustedHops and TrustedCIDRs must be set.",
                   "type": "integer",
                   "format": "int32"
+                },
+                "trustedCIDRs": {
+                  "description": "TrustedCIDRs is a list of CIDR ranges to trust when evaluating\nthe remote IP address to determine the original client’s IP address.\nWhen the remote IP address matches a trusted CIDR and the x-forwarded-for header was sent,\neach entry in the x-forwarded-for header is evaluated from right to left\nand the first public non-trusted address is used as the original client address.\nIf all addresses in x-forwarded-for are within the trusted list, the first (leftmost) entry is used.\nOnly one of NumTrustedHops and TrustedCIDRs must be set.",
+                  "type": "array",
+                  "minItems": 1,
+                  "items": {
+                    "description": "CIDR defines a CIDR Address range.\nA CIDR can be an IPv4 address range such as \"192.168.1.0/24\" or an IPv6 address range such as \"2001:0db8:11a3:09d7::/64\".",
+                    "type": "string",
+                    "pattern": "((25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\/([0-9]+))|((([0-9a-fA-F]{1,4}:){7,7}[0-9a-fA-F]{1,4}|([0-9a-fA-F]{1,4}:){1,7}:|([0-9a-fA-F]{1,4}:){1,6}:[0-9a-fA-F]{1,4}|([0-9a-fA-F]{1,4}:){1,5}(:[0-9a-fA-F]{1,4}){1,2}|([0-9a-fA-F]{1,4}:){1,4}(:[0-9a-fA-F]{1,4}){1,3}|([0-9a-fA-F]{1,4}:){1,3}(:[0-9a-fA-F]{1,4}){1,4}|([0-9a-fA-F]{1,4}:){1,2}(:[0-9a-fA-F]{1,4}){1,5}|[0-9a-fA-F]{1,4}:((:[0-9a-fA-F]{1,4}){1,6})|:((:[0-9a-fA-F]{1,4}){1,7}|:)|fe80:(:[0-9a-fA-F]{0,4}){0,4}%[0-9a-zA-Z]{1,}|::(ffff(:0{1,4}){0,1}:){0,1}((25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])\\.){3,3}(25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])|([0-9a-fA-F]{1,4}:){1,4}:((25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])\\.){3,3}(25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9]))\\/([0-9]+))"
+                  }
                 }
-              }
+              },
+              "x-kubernetes-validations": [
+                {
+                  "rule": "(has(self.numTrustedHops) \u0026\u0026 !has(self.trustedCIDRs)) || (!has(self.numTrustedHops) \u0026\u0026 has(self.trustedCIDRs))",
+                  "message": "only one of numTrustedHops or trustedCIDRs must be set"
+                }
+              ]
             }
           },
           "x-kubernetes-validations": [
@@ -99,8 +115,15 @@
           "type": "object",
           "properties": {
             "bufferLimit": {
-              "description": "BufferLimit provides configuration for the maximum buffer size in bytes for each incoming connection.\nFor example, 20Mi, 1Gi, 256Ki etc.\nNote that when the suffix is not provided, the value is interpreted as bytes.\nDefault: 32768 bytes.",
-              "pattern": "^(\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))(([KMGTPE]i)|[numkMGTPE]|([eE](\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))))?$",
+              "description": "BufferLimit provides configuration for the maximum buffer size in bytes for each incoming connection.\nBufferLimit applies to connection streaming (maybe non-streaming) channel between processes, it's in user space.\nFor example, 20Mi, 1Gi, 256Ki etc.\nNote that when the suffix is not provided, the value is interpreted as bytes.\nDefault: 32768 bytes.",
+              "allOf": [
+                {
+                  "pattern": "^(\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))(([KMGTPE]i)|[numkMGTPE]|([eE](\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))))?$"
+                },
+                {
+                  "pattern": "^[1-9]+[0-9]*([EPTGMK]i|[EPTGMk])?$"
+                }
+              ],
               "anyOf": [
                 {
                   "type": "integer"
@@ -109,17 +132,14 @@
                   "type": "string"
                 }
               ],
-              "x-kubernetes-int-or-string": true,
-              "x-kubernetes-validations": [
-                {
-                  "rule": "type(self) == string ? self.matches(r\"^[1-9]+[0-9]*([EPTGMK]i|[EPTGMk])?$\") : type(self) == int",
-                  "message": "bufferLimit must be of the format \"^[1-9]+[0-9]*([EPTGMK]i|[EPTGMk])?$\""
-                }
-              ]
+              "x-kubernetes-int-or-string": true
             },
             "connectionLimit": {
               "description": "ConnectionLimit defines limits related to connections",
               "type": "object",
+              "required": [
+                "value"
+              ],
               "properties": {
                 "closeDelay": {
                   "description": "CloseDelay defines the delay to use before closing connections that are rejected\nonce the limit value is reached.\nDefault: none.",
@@ -127,12 +147,32 @@
                   "pattern": "^([0-9]{1,5}(h|m|s|ms)){1,4}$"
                 },
                 "value": {
-                  "description": "Value of the maximum concurrent connections limit.\nWhen the limit is reached, incoming connections will be closed after the CloseDelay duration.\nDefault: unlimited.",
+                  "description": "Value of the maximum concurrent connections limit.\nWhen the limit is reached, incoming connections will be closed after the CloseDelay duration.",
                   "type": "integer",
                   "format": "int64",
-                  "minimum": 0
+                  "minimum": 1
                 }
               }
+            },
+            "socketBufferLimit": {
+              "description": "SocketBufferLimit provides configuration for the maximum buffer size in bytes for each incoming socket.\nSocketBufferLimit applies to socket streaming channel between TCP/IP stacks, it's in kernel space.\nFor example, 20Mi, 1Gi, 256Ki etc.\nNote that when the suffix is not provided, the value is interpreted as bytes.",
+              "allOf": [
+                {
+                  "pattern": "^(\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))(([KMGTPE]i)|[numkMGTPE]|([eE](\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))))?$"
+                },
+                {
+                  "pattern": "^[1-9]+[0-9]*([EPTGMK]i|[EPTGMk])?$"
+                }
+              ],
+              "anyOf": [
+                {
+                  "type": "integer"
+                },
+                {
+                  "type": "string"
+                }
+              ],
+              "x-kubernetes-int-or-string": true
             }
           }
         },
@@ -147,6 +187,85 @@
             "disableRateLimitHeaders": {
               "description": "DisableRateLimitHeaders configures Envoy Proxy to omit the \"X-RateLimit-\" response headers\nwhen rate limiting is enabled.",
               "type": "boolean"
+            },
+            "earlyRequestHeaders": {
+              "description": "EarlyRequestHeaders defines settings for early request header modification, before envoy performs\nrouting, tracing and built-in header manipulation.",
+              "type": "object",
+              "properties": {
+                "add": {
+                  "description": "Add adds the given header(s) (name, value) to the request\nbefore the action. It appends to any existing values associated\nwith the header name.\n\nInput:\n  GET /foo HTTP/1.1\n  my-header: foo\n\nConfig:\n  add:\n  - name: \"my-header\"\n    value: \"bar,baz\"\n\nOutput:\n  GET /foo HTTP/1.1\n  my-header: foo,bar,baz",
+                  "type": "array",
+                  "maxItems": 16,
+                  "items": {
+                    "description": "HTTPHeader represents an HTTP Header name and value as defined by RFC 7230.",
+                    "type": "object",
+                    "required": [
+                      "name",
+                      "value"
+                    ],
+                    "properties": {
+                      "name": {
+                        "description": "Name is the name of the HTTP Header to be matched. Name matching MUST be\ncase insensitive. (See https://tools.ietf.org/html/rfc7230#section-3.2).\n\nIf multiple entries specify equivalent header names, the first entry with\nan equivalent name MUST be considered for a match. Subsequent entries\nwith an equivalent header name MUST be ignored. Due to the\ncase-insensitivity of header names, \"foo\" and \"Foo\" are considered\nequivalent.",
+                        "type": "string",
+                        "maxLength": 256,
+                        "minLength": 1,
+                        "pattern": "^[A-Za-z0-9!#$%\u0026'*+\\-.^_\\x60|~]+$"
+                      },
+                      "value": {
+                        "description": "Value is the value of HTTP Header to be matched.",
+                        "type": "string",
+                        "maxLength": 4096,
+                        "minLength": 1
+                      }
+                    }
+                  },
+                  "x-kubernetes-list-map-keys": [
+                    "name"
+                  ],
+                  "x-kubernetes-list-type": "map"
+                },
+                "remove": {
+                  "description": "Remove the given header(s) from the HTTP request before the action. The\nvalue of Remove is a list of HTTP header names. Note that the header\nnames are case-insensitive (see\nhttps://datatracker.ietf.org/doc/html/rfc2616#section-4.2).\n\nInput:\n  GET /foo HTTP/1.1\n  my-header1: foo\n  my-header2: bar\n  my-header3: baz\n\nConfig:\n  remove: [\"my-header1\", \"my-header3\"]\n\nOutput:\n  GET /foo HTTP/1.1\n  my-header2: bar",
+                  "type": "array",
+                  "maxItems": 16,
+                  "items": {
+                    "type": "string"
+                  },
+                  "x-kubernetes-list-type": "set"
+                },
+                "set": {
+                  "description": "Set overwrites the request with the given header (name, value)\nbefore the action.\n\nInput:\n  GET /foo HTTP/1.1\n  my-header: foo\n\nConfig:\n  set:\n  - name: \"my-header\"\n    value: \"bar\"\n\nOutput:\n  GET /foo HTTP/1.1\n  my-header: bar",
+                  "type": "array",
+                  "maxItems": 16,
+                  "items": {
+                    "description": "HTTPHeader represents an HTTP Header name and value as defined by RFC 7230.",
+                    "type": "object",
+                    "required": [
+                      "name",
+                      "value"
+                    ],
+                    "properties": {
+                      "name": {
+                        "description": "Name is the name of the HTTP Header to be matched. Name matching MUST be\ncase insensitive. (See https://tools.ietf.org/html/rfc7230#section-3.2).\n\nIf multiple entries specify equivalent header names, the first entry with\nan equivalent name MUST be considered for a match. Subsequent entries\nwith an equivalent header name MUST be ignored. Due to the\ncase-insensitivity of header names, \"foo\" and \"Foo\" are considered\nequivalent.",
+                        "type": "string",
+                        "maxLength": 256,
+                        "minLength": 1,
+                        "pattern": "^[A-Za-z0-9!#$%\u0026'*+\\-.^_\\x60|~]+$"
+                      },
+                      "value": {
+                        "description": "Value is the value of HTTP Header to be matched.",
+                        "type": "string",
+                        "maxLength": 4096,
+                        "minLength": 1
+                      }
+                    }
+                  },
+                  "x-kubernetes-list-map-keys": [
+                    "name"
+                  ],
+                  "x-kubernetes-list-type": "map"
+                }
+              }
             },
             "enableEnvoyHeaders": {
               "description": "EnableEnvoyHeaders configures Envoy Proxy to add the \"X-Envoy-\" headers to requests\nand responses.",
@@ -166,11 +285,11 @@
               ]
             },
             "xForwardedClientCert": {
-              "description": "XForwardedClientCert configures how Envoy Proxy handle the x-forwarded-client-cert (XFCC) HTTP header.\n\n\nx-forwarded-client-cert (XFCC) is an HTTP header used to forward the certificate\ninformation of part or all of the clients or proxies that a request has flowed through,\non its way from the client to the server.\n\n\nEnvoy proxy may choose to sanitize/append/forward the XFCC header before proxying the request.\n\n\nIf not set, the default behavior is sanitizing the XFCC header.",
+              "description": "XForwardedClientCert configures how Envoy Proxy handle the x-forwarded-client-cert (XFCC) HTTP header.\n\nx-forwarded-client-cert (XFCC) is an HTTP header used to forward the certificate\ninformation of part or all of the clients or proxies that a request has flowed through,\non its way from the client to the server.\n\nEnvoy proxy may choose to sanitize/append/forward the XFCC header before proxying the request.\n\nIf not set, the default behavior is sanitizing the XFCC header.",
               "type": "object",
               "properties": {
                 "certDetailsToAdd": {
-                  "description": "CertDetailsToAdd specifies the fields in the client certificate to be forwarded in the XFCC header.\n\n\nHash(the SHA 256 digest of the current client certificate) and By(the Subject Alternative Name)\nare always included if the client certificate is forwarded.\n\n\nThis field is only applicable when the mode is set to `AppendForward` or\n`SanitizeSet` and the client connection is mTLS.",
+                  "description": "CertDetailsToAdd specifies the fields in the client certificate to be forwarded in the XFCC header.\n\nHash(the SHA 256 digest of the current client certificate) and By(the Subject Alternative Name)\nare always included if the client certificate is forwarded.\n\nThis field is only applicable when the mode is set to `AppendForward` or\n`SanitizeSet` and the client connection is mTLS.",
                   "type": "array",
                   "maxItems": 5,
                   "items": {
@@ -251,7 +370,14 @@
           "properties": {
             "initialConnectionWindowSize": {
               "description": "InitialConnectionWindowSize sets the initial window size for HTTP/2 connections.\nIf not set, the default value is 1 MiB.",
-              "pattern": "^(\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))(([KMGTPE]i)|[numkMGTPE]|([eE](\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))))?$",
+              "allOf": [
+                {
+                  "pattern": "^(\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))(([KMGTPE]i)|[numkMGTPE]|([eE](\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))))?$"
+                },
+                {
+                  "pattern": "^[1-9]+[0-9]*([EPTGMK]i|[EPTGMk])?$"
+                }
+              ],
               "anyOf": [
                 {
                   "type": "integer"
@@ -260,17 +386,18 @@
                   "type": "string"
                 }
               ],
-              "x-kubernetes-int-or-string": true,
-              "x-kubernetes-validations": [
-                {
-                  "rule": "type(self) == string ? self.matches(r\"^[1-9]+[0-9]*([EPTGMK]i|[EPTGMk])?$\") : type(self) == int",
-                  "message": "initialConnectionWindowSize must be of the format \"^[1-9]+[0-9]*([EPTGMK]i|[EPTGMk])?$\""
-                }
-              ]
+              "x-kubernetes-int-or-string": true
             },
             "initialStreamWindowSize": {
               "description": "InitialStreamWindowSize sets the initial window size for HTTP/2 streams.\nIf not set, the default value is 64 KiB(64*1024).",
-              "pattern": "^(\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))(([KMGTPE]i)|[numkMGTPE]|([eE](\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))))?$",
+              "allOf": [
+                {
+                  "pattern": "^(\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))(([KMGTPE]i)|[numkMGTPE]|([eE](\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))))?$"
+                },
+                {
+                  "pattern": "^[1-9]+[0-9]*([EPTGMK]i|[EPTGMk])?$"
+                }
+              ],
               "anyOf": [
                 {
                   "type": "integer"
@@ -279,13 +406,7 @@
                   "type": "string"
                 }
               ],
-              "x-kubernetes-int-or-string": true,
-              "x-kubernetes-validations": [
-                {
-                  "rule": "type(self) == string ? self.matches(r\"^[1-9]+[0-9]*([EPTGMK]i|[EPTGMk])?$\") : type(self) == int",
-                  "message": "initialStreamWindowSize must be of the format \"^[1-9]+[0-9]*([EPTGMK]i|[EPTGMk])?$\""
-                }
-              ]
+              "x-kubernetes-int-or-string": true
             },
             "maxConcurrentStreams": {
               "description": "MaxConcurrentStreams sets the maximum number of concurrent streams allowed per connection.\nIf not set, the default value is 100.",
@@ -293,6 +414,10 @@
               "format": "int32",
               "maximum": 2147483647,
               "minimum": 1
+            },
+            "onInvalidMessage": {
+              "description": "OnInvalidMessage determines if Envoy will terminate the connection or just the offending stream in the event of HTTP messaging error\nIt's recommended for L2 Envoy deployments to set this value to TerminateStream.\nhttps://www.envoyproxy.io/docs/envoy/latest/configuration/best_practices/level_two\nDefault: TerminateConnection",
+              "type": "string"
             }
           }
         },
@@ -321,7 +446,7 @@
           }
         },
         "targetRef": {
-          "description": "TargetRef is the name of the resource this policy is being attached to.\nThis policy and the TargetRef MUST be in the same namespace for this\nPolicy to have effect\n\n\nDeprecated: use targetRefs/targetSelectors instead",
+          "description": "TargetRef is the name of the resource this policy is being attached to.\nThis policy and the TargetRef MUST be in the same namespace for this\nPolicy to have effect\n\nDeprecated: use targetRefs/targetSelectors instead",
           "type": "object",
           "required": [
             "group",
@@ -349,7 +474,7 @@
               "minLength": 1
             },
             "sectionName": {
-              "description": "SectionName is the name of a section within the target resource. When\nunspecified, this targetRef targets the entire resource. In the following\nresources, SectionName is interpreted as the following:\n\n\n* Gateway: Listener name\n* HTTPRoute: HTTPRouteRule name\n* Service: Port name\n\n\nIf a SectionName is specified, but does not exist on the targeted object,\nthe Policy must fail to attach, and the policy implementation should record\na `ResolvedRefs` or similar Condition in the Policy's status.",
+              "description": "SectionName is the name of a section within the target resource. When\nunspecified, this targetRef targets the entire resource. In the following\nresources, SectionName is interpreted as the following:\n\n* Gateway: Listener name\n* HTTPRoute: HTTPRouteRule name\n* Service: Port name\n\nIf a SectionName is specified, but does not exist on the targeted object,\nthe Policy must fail to attach, and the policy implementation should record\na `ResolvedRefs` or similar Condition in the Policy's status.",
               "type": "string",
               "maxLength": 253,
               "minLength": 1,
@@ -361,7 +486,7 @@
           "description": "TargetRefs are the names of the Gateway resources this policy\nis being attached to.",
           "type": "array",
           "items": {
-            "description": "LocalPolicyTargetReferenceWithSectionName identifies an API object to apply a\ndirect policy to. This should be used as part of Policy resources that can\ntarget single resources. For more information on how this policy attachment\nmode works, and a sample Policy resource, refer to the policy attachment\ndocumentation for Gateway API.\n\n\nNote: This should only be used for direct policy attachment when references\nto SectionName are actually needed. In all other cases,\nLocalPolicyTargetReference should be used.",
+            "description": "LocalPolicyTargetReferenceWithSectionName identifies an API object to apply a\ndirect policy to. This should be used as part of Policy resources that can\ntarget single resources. For more information on how this policy attachment\nmode works, and a sample Policy resource, refer to the policy attachment\ndocumentation for Gateway API.\n\nNote: This should only be used for direct policy attachment when references\nto SectionName are actually needed. In all other cases,\nLocalPolicyTargetReference should be used.",
             "type": "object",
             "required": [
               "group",
@@ -389,7 +514,7 @@
                 "minLength": 1
               },
               "sectionName": {
-                "description": "SectionName is the name of a section within the target resource. When\nunspecified, this targetRef targets the entire resource. In the following\nresources, SectionName is interpreted as the following:\n\n\n* Gateway: Listener name\n* HTTPRoute: HTTPRouteRule name\n* Service: Port name\n\n\nIf a SectionName is specified, but does not exist on the targeted object,\nthe Policy must fail to attach, and the policy implementation should record\na `ResolvedRefs` or similar Condition in the Policy's status.",
+                "description": "SectionName is the name of a section within the target resource. When\nunspecified, this targetRef targets the entire resource. In the following\nresources, SectionName is interpreted as the following:\n\n* Gateway: Listener name\n* HTTPRoute: HTTPRouteRule name\n* Service: Port name\n\nIf a SectionName is specified, but does not exist on the targeted object,\nthe Policy must fail to attach, and the policy implementation should record\na `ResolvedRefs` or similar Condition in the Policy's status.",
                 "type": "string",
                 "maxLength": 253,
                 "minLength": 1,
@@ -497,7 +622,7 @@
           "type": "object",
           "properties": {
             "alpnProtocols": {
-              "description": "ALPNProtocols supplies the list of ALPN protocols that should be\nexposed by the listener. By default h2 and http/1.1 are enabled.\nSupported values are:\n- http/1.0\n- http/1.1\n- h2",
+              "description": "ALPNProtocols supplies the list of ALPN protocols that should be\nexposed by the listener or used by the proxy to connect to the backend.\nDefaults:\n1. HTTPS Routes: h2 and http/1.1 are enabled in listener context.\n2. Other Routes: ALPN is disabled.\n3. Backends: proxy uses the appropriate ALPN options for the backend protocol.\nWhen an empty list is provided, the ALPN TLS extension is disabled.\nSupported values are:\n- http/1.0\n- http/1.1\n- h2",
               "type": "array",
               "items": {
                 "description": "ALPNProtocol specifies the protocol to be negotiated using ALPN",
@@ -521,11 +646,11 @@
               "type": "object",
               "properties": {
                 "caCertificateRefs": {
-                  "description": "CACertificateRefs contains one or more references to\nKubernetes objects that contain TLS certificates of\nthe Certificate Authorities that can be used\nas a trust anchor to validate the certificates presented by the client.\n\n\nA single reference to a Kubernetes ConfigMap or a Kubernetes Secret,\nwith the CA certificate in a key named `ca.crt` is currently supported.\n\n\nReferences to a resource in different namespace are invalid UNLESS there\nis a ReferenceGrant in the target namespace that allows the certificate\nto be attached.",
+                  "description": "CACertificateRefs contains one or more references to\nKubernetes objects that contain TLS certificates of\nthe Certificate Authorities that can be used\nas a trust anchor to validate the certificates presented by the client.\n\nA single reference to a Kubernetes ConfigMap or a Kubernetes Secret,\nwith the CA certificate in a key named `ca.crt` is currently supported.\n\nReferences to a resource in different namespace are invalid UNLESS there\nis a ReferenceGrant in the target namespace that allows the certificate\nto be attached.",
                   "type": "array",
                   "maxItems": 8,
                   "items": {
-                    "description": "SecretObjectReference identifies an API object including its namespace,\ndefaulting to Secret.\n\n\nThe API object must be valid in the cluster; the Group and Kind must\nbe registered in the cluster for this reference to be valid.\n\n\nReferences to objects with invalid Group and Kind are not valid, and must\nbe rejected by the implementation, with appropriate Conditions set\non the containing object.",
+                    "description": "SecretObjectReference identifies an API object including its namespace,\ndefaulting to Secret.\n\nThe API object must be valid in the cluster; the Group and Kind must\nbe registered in the cluster for this reference to be valid.\n\nReferences to objects with invalid Group and Kind are not valid, and must\nbe rejected by the implementation, with appropriate Conditions set\non the containing object.",
                     "type": "object",
                     "required": [
                       "name"
@@ -553,7 +678,7 @@
                         "minLength": 1
                       },
                       "namespace": {
-                        "description": "Namespace is the namespace of the referenced object. When unspecified, the local\nnamespace is inferred.\n\n\nNote that when a namespace different than the local namespace is specified,\na ReferenceGrant object is required in the referent namespace to allow that\nnamespace's owner to accept the reference. See the ReferenceGrant\ndocumentation for details.\n\n\nSupport: Core",
+                        "description": "Namespace is the namespace of the referenced object. When unspecified, the local\nnamespace is inferred.\n\nNote that when a namespace different than the local namespace is specified,\na ReferenceGrant object is required in the referent namespace to allow that\nnamespace's owner to accept the reference. See the ReferenceGrant\ndocumentation for details.\n\nSupport: Core",
                         "type": "string",
                         "maxLength": 63,
                         "minLength": 1,
@@ -596,6 +721,26 @@
                 "1.2",
                 "1.3"
               ]
+            },
+            "session": {
+              "description": "Session defines settings related to TLS session management.",
+              "type": "object",
+              "properties": {
+                "resumption": {
+                  "description": "Resumption determines the proxy's supported TLS session resumption option.\nBy default, Envoy Gateway does not enable session resumption. Use sessionResumption to\nenable stateful and stateless session resumption. Users should consider security impacts\nof different resumption methods. Performance gains from resumption are diminished when\nEnvoy proxy is deployed with more than one replica.",
+                  "type": "object",
+                  "properties": {
+                    "stateful": {
+                      "description": "Stateful defines setting for stateful (session-id based) session resumption",
+                      "type": "object"
+                    },
+                    "stateless": {
+                      "description": "Stateless defines setting for stateless (session-ticket based) session resumption",
+                      "type": "object"
+                    }
+                  }
+                }
+              }
             },
             "signatureAlgorithms": {
               "description": "SignatureAlgorithms specifies which signature algorithms the listener should\nsupport.",

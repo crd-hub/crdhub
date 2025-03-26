@@ -22,7 +22,7 @@
     "ui": {
       "editor": {
         "name": "rbacauthorizationk8sio-role-editor",
-        "version": "v0.14.0",
+        "version": "sha256:381eefee173e8ae99ef3f130e84afbcbd9688e567226194279ae5d990e5b4154",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",

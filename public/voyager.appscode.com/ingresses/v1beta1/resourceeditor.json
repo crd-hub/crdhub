@@ -22,7 +22,7 @@
     "ui": {
       "editor": {
         "name": "voyagerappscodecom-ingress-editor",
-        "version": "v0.14.0",
+        "version": "sha256:820bb1da6fa8198cba8a09e036e08125e14a4507f75bc4ca99589011525488a8",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",

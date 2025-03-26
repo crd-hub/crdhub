@@ -22,7 +22,7 @@
     "ui": {
       "options": {
         "name": "kubedbcom-pgbouncer-editor-options",
-        "version": "v0.14.0",
+        "version": "sha256:acd78d31384908dd93e3c9c59f892a5fb29490b0b3fc8b05ad68ae30bf380332",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",
@@ -31,7 +31,7 @@
       },
       "editor": {
         "name": "kubedbcom-pgbouncer-editor",
-        "version": "v0.14.0",
+        "version": "sha256:f4f881cf14ebffb221bb9f5e5977891bd475d374faa7f1bb8e7ea30312c2967f",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",
@@ -55,7 +55,7 @@
               "flow": "standalone-create",
               "editor": {
                 "name": "opskubedbcom-pgbounceropsrequest-editor",
-                "version": "v0.14.0",
+                "version": "sha256:305187d5ab2c1e2d8b9ed9afd281bd8e5576a4fc27c3c27d8b49999fb75665eb",
                 "sourceRef": {
                   "apiGroup": "source.toolkit.fluxcd.io",
                   "kind": "HelmRepository",
@@ -76,7 +76,7 @@
               "flow": "standalone-create",
               "editor": {
                 "name": "opskubedbcom-pgbounceropsrequest-editor",
-                "version": "v0.14.0",
+                "version": "sha256:305187d5ab2c1e2d8b9ed9afd281bd8e5576a4fc27c3c27d8b49999fb75665eb",
                 "sourceRef": {
                   "apiGroup": "source.toolkit.fluxcd.io",
                   "kind": "HelmRepository",
@@ -103,7 +103,7 @@
               "disabledTemplate": "{{ not (gt .spec.replicas 1) }}\n",
               "editor": {
                 "name": "opskubedbcom-pgbounceropsrequest-editor",
-                "version": "v0.14.0",
+                "version": "sha256:305187d5ab2c1e2d8b9ed9afd281bd8e5576a4fc27c3c27d8b49999fb75665eb",
                 "sourceRef": {
                   "apiGroup": "source.toolkit.fluxcd.io",
                   "kind": "HelmRepository",
@@ -124,7 +124,7 @@
               "flow": "standalone-create",
               "editor": {
                 "name": "opskubedbcom-pgbounceropsrequest-editor",
-                "version": "v0.14.0",
+                "version": "sha256:305187d5ab2c1e2d8b9ed9afd281bd8e5576a4fc27c3c27d8b49999fb75665eb",
                 "sourceRef": {
                   "apiGroup": "source.toolkit.fluxcd.io",
                   "kind": "HelmRepository",
@@ -150,7 +150,7 @@
               "flow": "standalone-edit",
               "editor": {
                 "name": "kubedbcom-pgbouncer-editor",
-                "version": "v0.14.0",
+                "version": "sha256:f4f881cf14ebffb221bb9f5e5977891bd475d374faa7f1bb8e7ea30312c2967f",
                 "sourceRef": {
                   "apiGroup": "source.toolkit.fluxcd.io",
                   "kind": "HelmRepository",
@@ -176,7 +176,7 @@
               "flow": "standalone-edit",
               "editor": {
                 "name": "kubedbcom-pgbouncer-editor",
-                "version": "v0.14.0",
+                "version": "sha256:f4f881cf14ebffb221bb9f5e5977891bd475d374faa7f1bb8e7ea30312c2967f",
                 "sourceRef": {
                   "apiGroup": "source.toolkit.fluxcd.io",
                   "kind": "HelmRepository",

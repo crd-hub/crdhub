@@ -22,7 +22,7 @@
     "ui": {
       "editor": {
         "name": "openvizdev-grafanadatasource-editor",
-        "version": "v0.14.0",
+        "version": "sha256:a8f0a381116e94626ce39eab7cc1a4e97a7da735d73119e0b38493738d9788fd",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",

@@ -5,7 +5,7 @@
     "name": "azureclusteridentities.infrastructure.cluster.x-k8s.io",
     "creationTimestamp": null,
     "annotations": {
-      "controller-gen.kubebuilder.io/version": "v0.14.0"
+      "controller-gen.kubebuilder.io/version": "v0.16.1"
     }
   },
   "spec": {
@@ -63,7 +63,7 @@
                         "nullable": true
                       },
                       "selector": {
-                        "description": "Selector is a selector of namespaces that AzureCluster can\nuse this Identity from. This is a standard Kubernetes LabelSelector,\na label query over a set of resources. The result of matchLabels and\nmatchExpressions are ANDed.\n\n\nA nil or empty selector indicates that AzureCluster cannot use this\nAzureClusterIdentity from any namespace.",
+                        "description": "Selector is a selector of namespaces that AzureCluster can\nuse this Identity from. This is a standard Kubernetes LabelSelector,\na label query over a set of resources. The result of matchLabels and\nmatchExpressions are ANDed.\n\nA nil or empty selector indicates that AzureCluster cannot use this\nAzureClusterIdentity from any namespace.",
                         "type": "object",
                         "properties": {
                           "matchExpressions": {
@@ -90,10 +90,12 @@
                                   "type": "array",
                                   "items": {
                                     "type": "string"
-                                  }
+                                  },
+                                  "x-kubernetes-list-type": "atomic"
                                 }
                               }
-                            }
+                            },
+                            "x-kubernetes-list-type": "atomic"
                           },
                           "matchLabels": {
                             "description": "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels\nmap is equivalent to an element of matchExpressions, whose key field is \"key\", the\noperator is \"In\", and the values array contains only \"value\". The requirements are ANDed.",
@@ -107,6 +109,10 @@
                       }
                     },
                     "nullable": true
+                  },
+                  "certPath": {
+                    "description": "CertPath is the path where certificates exist. When set, it takes precedence over ClientSecret for types that use certs like ServicePrincipalCertificate.",
+                    "type": "string"
                   },
                   "clientID": {
                     "description": "ClientID is the service principal client ID.\nBoth User Assigned MSI and SP can use this field.",
@@ -128,7 +134,7 @@
                     "x-kubernetes-map-type": "atomic"
                   },
                   "resourceID": {
-                    "description": "ResourceID is the Azure resource ID for the User Assigned MSI resource.\nOnly applicable when type is UserAssignedMSI.\n\n\nDeprecated: This field no longer has any effect.",
+                    "description": "ResourceID is the Azure resource ID for the User Assigned MSI resource.\nOnly applicable when type is UserAssignedMSI.\n\nDeprecated: This field no longer has any effect.",
                     "type": "string"
                   },
                   "tenantID": {
@@ -136,15 +142,24 @@
                     "type": "string"
                   },
                   "type": {
-                    "description": "Type is the type of Azure Identity used.\nServicePrincipal, ServicePrincipalCertificate, UserAssignedMSI, ManualServicePrincipal or WorkloadIdentity.",
+                    "description": "Type is the type of Azure Identity used.\nServicePrincipal, ServicePrincipalCertificate, UserAssignedMSI, ManualServicePrincipal, UserAssignedIdentityCredential, or WorkloadIdentity.",
                     "type": "string",
                     "enum": [
                       "ServicePrincipal",
                       "UserAssignedMSI",
                       "ManualServicePrincipal",
                       "ServicePrincipalCertificate",
-                      "WorkloadIdentity"
+                      "WorkloadIdentity",
+                      "UserAssignedIdentityCredential"
                     ]
+                  },
+                  "userAssignedIdentityCredentialsCloudType": {
+                    "description": "UserAssignedIdentityCredentialsCloudType is used with UserAssignedIdentityCredentialsPath to specify the Cloud\ntype. Can only be one of the following values: public, china, or usgovernment\nIf a value is not specified, defaults to public",
+                    "type": "string"
+                  },
+                  "userAssignedIdentityCredentialsPath": {
+                    "description": "UserAssignedIdentityCredentialsPath is the path where an existing JSON file exists containing the JSON format of\na UserAssignedIdentityCredentials struct.\nSee the msi-dataplane for more details on UserAssignedIdentityCredentials - https://github.com/Azure/msi-dataplane/blob/main/pkg/dataplane/internal/client/models.go#L125",
+                    "type": "string"
                   }
                 }
               },
@@ -174,19 +189,19 @@
                           "type": "string"
                         },
                         "reason": {
-                          "description": "The reason for the condition's last transition in CamelCase.\nThe specific API may choose whether or not this field is considered a guaranteed API.\nThis field may not be empty.",
+                          "description": "The reason for the condition's last transition in CamelCase.\nThe specific API may choose whether or not this field is considered a guaranteed API.\nThis field may be empty.",
                           "type": "string"
                         },
                         "severity": {
-                          "description": "Severity provides an explicit classification of Reason code, so the users or machines can immediately\nunderstand the current situation and act accordingly.\nThe Severity field MUST be set only when Status=False.",
+                          "description": "severity provides an explicit classification of Reason code, so the users or machines can immediately\nunderstand the current situation and act accordingly.\nThe Severity field MUST be set only when Status=False.",
                           "type": "string"
                         },
                         "status": {
-                          "description": "Status of the condition, one of True, False, Unknown.",
+                          "description": "status of the condition, one of True, False, Unknown.",
                           "type": "string"
                         },
                         "type": {
-                          "description": "Type of condition in CamelCase or in foo.example.com/CamelCase.\nMany .condition.type values are consistent across resources like Available, but because arbitrary conditions\ncan be useful (see .node.status.conditions), the ability to deconflict is important.",
+                          "description": "type of condition in CamelCase or in foo.example.com/CamelCase.\nMany .condition.type values are consistent across resources like Available, but because arbitrary conditions\ncan be useful (see .node.status.conditions), the ability to deconflict is important.",
                           "type": "string"
                         }
                       }

@@ -22,7 +22,7 @@
     "ui": {
       "editor": {
         "name": "autoscalingk8sio-verticalpodautoscalercheckpoint-editor",
-        "version": "v0.14.0",
+        "version": "sha256:afa9a42f9eb265113d227648832d75e6d9e32aeabe0e6b51df4b5c058c038399",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",

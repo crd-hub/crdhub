@@ -22,7 +22,7 @@
     "ui": {
       "editor": {
         "name": "driversxhelmdev-apprelease-editor",
-        "version": "v0.14.0",
+        "version": "sha256:3e8d759018053b4edd66adc769d3b0761c286d12165fab4c0613b08914dcbc3b",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",

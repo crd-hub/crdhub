@@ -22,7 +22,7 @@
     "ui": {
       "options": {
         "name": "kubedbcom-rabbitmq-editor-options",
-        "version": "v0.14.0",
+        "version": "sha256:c1c2403c02c5d22c489900ab28817b84f505ccecb83fd10a0b06afd0c208a4cd",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",
@@ -31,7 +31,7 @@
       },
       "editor": {
         "name": "kubedbcom-rabbitmq-editor",
-        "version": "v0.14.0",
+        "version": "sha256:8a0bd40c578fac282b3ed2efb96f342511e1145384c68ebfe759d6382488b330",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",
@@ -54,7 +54,7 @@
               "flow": "standalone-create",
               "editor": {
                 "name": "opskubedbcom-rabbitmqopsrequest-editor",
-                "version": "v0.14.0",
+                "version": "sha256:4be30f42ef6669baefa757f36b10b7dbabd699272406e37f983e4102474034fa",
                 "sourceRef": {
                   "apiGroup": "source.toolkit.fluxcd.io",
                   "kind": "HelmRepository",
@@ -80,7 +80,7 @@
               "flow": "standalone-create",
               "editor": {
                 "name": "opskubedbcom-rabbitmqopsrequest-editor",
-                "version": "v0.14.0",
+                "version": "sha256:4be30f42ef6669baefa757f36b10b7dbabd699272406e37f983e4102474034fa",
                 "sourceRef": {
                   "apiGroup": "source.toolkit.fluxcd.io",
                   "kind": "HelmRepository",
@@ -101,7 +101,7 @@
               "flow": "standalone-create",
               "editor": {
                 "name": "opskubedbcom-rabbitmqopsrequest-editor",
-                "version": "v0.14.0",
+                "version": "sha256:4be30f42ef6669baefa757f36b10b7dbabd699272406e37f983e4102474034fa",
                 "sourceRef": {
                   "apiGroup": "source.toolkit.fluxcd.io",
                   "kind": "HelmRepository",
@@ -128,7 +128,7 @@
               "disabledTemplate": "{{ not (gt .spec.replicas 1) }}\n",
               "editor": {
                 "name": "opskubedbcom-rabbitmqopsrequest-editor",
-                "version": "v0.14.0",
+                "version": "sha256:4be30f42ef6669baefa757f36b10b7dbabd699272406e37f983e4102474034fa",
                 "sourceRef": {
                   "apiGroup": "source.toolkit.fluxcd.io",
                   "kind": "HelmRepository",
@@ -149,7 +149,7 @@
               "flow": "standalone-create",
               "editor": {
                 "name": "opskubedbcom-rabbitmqopsrequest-editor",
-                "version": "v0.14.0",
+                "version": "sha256:4be30f42ef6669baefa757f36b10b7dbabd699272406e37f983e4102474034fa",
                 "sourceRef": {
                   "apiGroup": "source.toolkit.fluxcd.io",
                   "kind": "HelmRepository",
@@ -170,7 +170,7 @@
               "flow": "standalone-create",
               "editor": {
                 "name": "opskubedbcom-rabbitmqopsrequest-editor",
-                "version": "v0.14.0",
+                "version": "sha256:4be30f42ef6669baefa757f36b10b7dbabd699272406e37f983e4102474034fa",
                 "sourceRef": {
                   "apiGroup": "source.toolkit.fluxcd.io",
                   "kind": "HelmRepository",
@@ -196,7 +196,7 @@
               "flow": "standalone-edit",
               "editor": {
                 "name": "kubedbcom-rabbitmq-editor",
-                "version": "v0.14.0",
+                "version": "sha256:8a0bd40c578fac282b3ed2efb96f342511e1145384c68ebfe759d6382488b330",
                 "sourceRef": {
                   "apiGroup": "source.toolkit.fluxcd.io",
                   "kind": "HelmRepository",
@@ -217,7 +217,7 @@
               "flow": "standalone-edit",
               "editor": {
                 "name": "kubedbcom-rabbitmq-editor",
-                "version": "v0.14.0",
+                "version": "sha256:8a0bd40c578fac282b3ed2efb96f342511e1145384c68ebfe759d6382488b330",
                 "sourceRef": {
                   "apiGroup": "source.toolkit.fluxcd.io",
                   "kind": "HelmRepository",
@@ -243,7 +243,7 @@
               "flow": "standalone-create",
               "editor": {
                 "name": "opskubedbcom-rabbitmqopsrequest-editor",
-                "version": "v0.14.0",
+                "version": "sha256:4be30f42ef6669baefa757f36b10b7dbabd699272406e37f983e4102474034fa",
                 "sourceRef": {
                   "apiGroup": "source.toolkit.fluxcd.io",
                   "kind": "HelmRepository",
@@ -264,7 +264,7 @@
               "flow": "standalone-edit",
               "editor": {
                 "name": "kubedbcom-rabbitmq-editor",
-                "version": "v0.14.0",
+                "version": "sha256:8a0bd40c578fac282b3ed2efb96f342511e1145384c68ebfe759d6382488b330",
                 "sourceRef": {
                   "apiGroup": "source.toolkit.fluxcd.io",
                   "kind": "HelmRepository",

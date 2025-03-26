@@ -55,6 +55,10 @@
                   "rules"
                 ],
                 "properties": {
+                  "enableDecoding": {
+                    "description": "Controls whether SQL statements received in Frontend Query messages\nare decoded. Defaults to false.",
+                    "type": "boolean"
+                  },
                   "hostnames": {
                     "description": "Hostnames defines a set of SNI names that should match against the\nSNI attribute of TLS ClientHello message in TLS handshake. This matches\nthe RFC 1123 definition of a hostname with 2 notable exceptions:\n\n1. IPs are not allowed in SNI names per RFC 6066.\n2. A hostname may be prefixed with a wildcard label (`*.`). The wildcard\n   label must appear by itself as the first label.\n\nIf a hostname is specified by both the Listener and MySQLRoute, there\nmust be at least one intersecting hostname for the MySQLRoute to be\nattached to the Listener. For example:\n\n* A Listener with `test.example.com` as the hostname matches MySQLRoutes\n  that have either not specified any hostnames, or have specified at\n  least one of `test.example.com` or `*.example.com`.\n* A Listener with `*.example.com` as the hostname matches MySQLRoutes\n  that have either not specified any hostnames or have specified at least\n  one hostname that matches the Listener hostname. For example,\n  `test.example.com` and `*.example.com` would both match. On the other\n  hand, `example.com` and `test.example.net` would not match.\n\nIf both the Listener and MySQLRoute have specified hostnames, any\nMySQLRoute hostnames that do not match the Listener hostname MUST be\nignored. For example, if a Listener specified `*.example.com`, and the\nMySQLRoute specified `test.example.com` and `test.example.net`,\n`test.example.net` must not be considered for a match.\n\nIf both the Listener and MySQLRoute have specified hostnames, and none\nmatch with the criteria above, then the MySQLRoute is not accepted. The\nimplementation must raise an 'Accepted' Condition with a status of\n`False` in the corresponding RouteParentStatus.\n\nSupport: Core",
                     "type": "array",

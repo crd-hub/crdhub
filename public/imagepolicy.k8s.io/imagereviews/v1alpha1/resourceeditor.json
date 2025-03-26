@@ -22,7 +22,7 @@
     "ui": {
       "editor": {
         "name": "imagepolicyk8sio-imagereview-editor",
-        "version": "v0.14.0",
+        "version": "sha256:b1cbe4c29dfbfa54c1f26116713e7d3119b5902048064d8f8212f7a1b57c3b86",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",

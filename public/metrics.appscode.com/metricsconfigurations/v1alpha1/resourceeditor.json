@@ -22,7 +22,7 @@
     "ui": {
       "editor": {
         "name": "metricsappscodecom-metricsconfiguration-editor",
-        "version": "v0.14.0",
+        "version": "sha256:3b3255f53ca780de5dcea7ba55072def8c58721c0c8d2842880280dbc7b25208",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",

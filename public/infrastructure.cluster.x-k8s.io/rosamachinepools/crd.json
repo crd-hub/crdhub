@@ -5,7 +5,7 @@
     "name": "rosamachinepools.infrastructure.cluster.x-k8s.io",
     "creationTimestamp": null,
     "annotations": {
-      "controller-gen.kubebuilder.io/version": "v0.14.0"
+      "controller-gen.kubebuilder.io/version": "v0.16.5"
     }
   },
   "spec": {
@@ -101,7 +101,7 @@
                     }
                   },
                   "nodeDrainGracePeriod": {
-                    "description": "NodeDrainGracePeriod is grace period for how long Pod Disruption Budget-protected workloads will be\nrespected during upgrades. After this grace period, any workloads protected by Pod Disruption\nBudgets that have not been successfully drained from a node will be forcibly evicted.\n\n\nValid values are from 0 to 1 week(10080m|168h) .\n0 or empty value means that the MachinePool can be drained without any time limitation.",
+                    "description": "NodeDrainGracePeriod is grace period for how long Pod Disruption Budget-protected workloads will be\nrespected during upgrades. After this grace period, any workloads protected by Pod Disruption\nBudgets that have not been successfully drained from a node will be forcibly evicted.\n\nValid values are from 0 to 1 week(10080m|168h) .\n0 or empty value means that the MachinePool can be drained without any time limitation.",
                     "type": "string"
                   },
                   "nodePoolName": {
@@ -171,9 +171,55 @@
                       "type": "string"
                     }
                   },
+                  "updateConfig": {
+                    "description": "UpdateConfig specifies update configurations.",
+                    "type": "object",
+                    "properties": {
+                      "rollingUpdate": {
+                        "description": "RollingUpdate specifies MaxUnavailable \u0026 MaxSurge number of nodes during update.",
+                        "type": "object",
+                        "properties": {
+                          "maxSurge": {
+                            "description": "MaxSurge is the maximum number of nodes that can be provisioned above the desired number of nodes.\nValue can be an absolute number (ex: 5) or a percentage of desired nodes (ex: 10%).\nAbsolute number is calculated from percentage by rounding up.\n\nMaxSurge can not be 0 if MaxUnavailable is 0, default is 1.\nBoth MaxSurge \u0026 MaxUnavailable must use the same units (absolute value or percentage).\n\nExample: when MaxSurge is set to 30%, new nodes can be provisioned immediately\nwhen the rolling update starts, such that the total number of old and new\nnodes do not exceed 130% of desired nodes. Once old nodes have been\ndeleted, new nodes can be provisioned, ensuring that total number of nodes\nrunning at any time during the update is at most 130% of desired nodes.",
+                            "default": 1,
+                            "pattern": "^((100|[0-9]{1,2})%|[0-9]+)$",
+                            "anyOf": [
+                              {
+                                "type": "integer"
+                              },
+                              {
+                                "type": "string"
+                              }
+                            ],
+                            "x-kubernetes-int-or-string": true
+                          },
+                          "maxUnavailable": {
+                            "description": "MaxUnavailable is the maximum number of nodes that can be unavailable during the update.\nValue can be an absolute number (ex: 5) or a percentage of desired nodes (ex: 10%).\nAbsolute number is calculated from percentage by rounding down.\n\nMaxUnavailable can not be 0 if MaxSurge is 0, default is 0.\nBoth MaxUnavailable \u0026 MaxSurge must use the same units (absolute value or percentage).\n\nExample: when MaxUnavailable is set to 30%, old nodes can be deleted down to 70% of\ndesired nodes immediately when the rolling update starts. Once new nodes\nare ready, more old nodes be deleted, followed by provisioning new nodes,\nensuring that the total number of nodes available at all times during the\nupdate is at least 70% of desired nodes.",
+                            "default": 0,
+                            "pattern": "^((100|[0-9]{1,2})%|[0-9]+)$",
+                            "anyOf": [
+                              {
+                                "type": "integer"
+                              },
+                              {
+                                "type": "string"
+                              }
+                            ],
+                            "x-kubernetes-int-or-string": true
+                          }
+                        }
+                      }
+                    }
+                  },
                   "version": {
                     "description": "Version specifies the OpenShift version of the nodes associated with this machinepool.\nROSAControlPlane version is used if not set.",
                     "type": "string"
+                  },
+                  "volumeSize": {
+                    "description": "VolumeSize set the disk volume size for the machine pool, in Gib. The default is 300 GiB.",
+                    "type": "integer",
+                    "maximum": 16384,
+                    "minimum": 75
                   }
                 }
               },
@@ -184,6 +230,13 @@
                   "ready"
                 ],
                 "properties": {
+                  "availableUpgrades": {
+                    "description": "Available upgrades for the ROSA MachinePool.",
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  },
                   "conditions": {
                     "description": "Conditions defines current service state of the managed machine pool",
                     "type": "array",
@@ -206,26 +259,26 @@
                           "type": "string"
                         },
                         "reason": {
-                          "description": "The reason for the condition's last transition in CamelCase.\nThe specific API may choose whether or not this field is considered a guaranteed API.\nThis field may not be empty.",
+                          "description": "The reason for the condition's last transition in CamelCase.\nThe specific API may choose whether or not this field is considered a guaranteed API.\nThis field may be empty.",
                           "type": "string"
                         },
                         "severity": {
-                          "description": "Severity provides an explicit classification of Reason code, so the users or machines can immediately\nunderstand the current situation and act accordingly.\nThe Severity field MUST be set only when Status=False.",
+                          "description": "severity provides an explicit classification of Reason code, so the users or machines can immediately\nunderstand the current situation and act accordingly.\nThe Severity field MUST be set only when Status=False.",
                           "type": "string"
                         },
                         "status": {
-                          "description": "Status of the condition, one of True, False, Unknown.",
+                          "description": "status of the condition, one of True, False, Unknown.",
                           "type": "string"
                         },
                         "type": {
-                          "description": "Type of condition in CamelCase or in foo.example.com/CamelCase.\nMany .condition.type values are consistent across resources like Available, but because arbitrary conditions\ncan be useful (see .node.status.conditions), the ability to deconflict is important.",
+                          "description": "type of condition in CamelCase or in foo.example.com/CamelCase.\nMany .condition.type values are consistent across resources like Available, but because arbitrary conditions\ncan be useful (see .node.status.conditions), the ability to deconflict is important.",
                           "type": "string"
                         }
                       }
                     }
                   },
                   "failureMessage": {
-                    "description": "FailureMessage will be set in the event that there is a terminal problem\nreconciling the state and will be set to a descriptive error message.\n\n\nThis field should not be set for transitive errors that a controller\nfaces that are expected to be fixed automatically over\ntime (like service outages), but instead indicate that something is\nfundamentally wrong with the spec or the configuration of\nthe controller, and that manual intervention is required.",
+                    "description": "FailureMessage will be set in the event that there is a terminal problem\nreconciling the state and will be set to a descriptive error message.\n\nThis field should not be set for transitive errors that a controller\nfaces that are expected to be fixed automatically over\ntime (like service outages), but instead indicate that something is\nfundamentally wrong with the spec or the configuration of\nthe controller, and that manual intervention is required.",
                     "type": "string"
                   },
                   "id": {

@@ -5,7 +5,7 @@
     "name": "azureclustertemplates.infrastructure.cluster.x-k8s.io",
     "creationTimestamp": null,
     "annotations": {
-      "controller-gen.kubebuilder.io/version": "v0.14.0"
+      "controller-gen.kubebuilder.io/version": "v0.16.1"
     }
   },
   "spec": {
@@ -70,7 +70,7 @@
                             }
                           },
                           "azureEnvironment": {
-                            "description": "AzureEnvironment is the name of the AzureCloud to be used.\nThe default value that would be used by most users is \"AzurePublicCloud\", other values are:\n- ChinaCloud: \"AzureChinaCloud\"\n- GermanCloud: \"AzureGermanCloud\"\n- PublicCloud: \"AzurePublicCloud\"\n- USGovernmentCloud: \"AzureUSGovernmentCloud\"\n\n\nNote that values other than the default must also be accompanied by corresponding changes to the\naso-controller-settings Secret to configure ASO to refer to the non-Public cloud. ASO currently does\nnot support referring to multiple different clouds in a single installation. The following fields must\nbe defined in the Secret:\n- AZURE_AUTHORITY_HOST\n- AZURE_RESOURCE_MANAGER_ENDPOINT\n- AZURE_RESOURCE_MANAGER_AUDIENCE\n\n\nSee the [ASO docs] for more details.\n\n\n[ASO docs]: https://azure.github.io/azure-service-operator/guide/aso-controller-settings-options/",
+                            "description": "AzureEnvironment is the name of the AzureCloud to be used.\nThe default value that would be used by most users is \"AzurePublicCloud\", other values are:\n- ChinaCloud: \"AzureChinaCloud\"\n- GermanCloud: \"AzureGermanCloud\"\n- PublicCloud: \"AzurePublicCloud\"\n- USGovernmentCloud: \"AzureUSGovernmentCloud\"\n\nNote that values other than the default must also be accompanied by corresponding changes to the\naso-controller-settings Secret to configure ASO to refer to the non-Public cloud. ASO currently does\nnot support referring to multiple different clouds in a single installation. The following fields must\nbe defined in the Secret:\n- AZURE_AUTHORITY_HOST\n- AZURE_RESOURCE_MANAGER_ENDPOINT\n- AZURE_RESOURCE_MANAGER_AUDIENCE\n\nSee the [ASO docs] for more details.\n\n[ASO docs]: https://azure.github.io/azure-service-operator/guide/aso-controller-settings-options/",
                             "type": "string"
                           },
                           "bastionSpec": {
@@ -196,7 +196,7 @@
                                           "node",
                                           "control-plane",
                                           "bastion",
-                                          "all"
+                                          "cluster"
                                         ]
                                       },
                                       "securityGroup": {
@@ -474,14 +474,14 @@
                               "type": "object",
                               "properties": {
                                 "attributes": {
-                                  "description": "Attributes is a free form map of attributes an infrastructure provider might use or require.",
+                                  "description": "attributes is a free form map of attributes an infrastructure provider might use or require.",
                                   "type": "object",
                                   "additionalProperties": {
                                     "type": "string"
                                   }
                                 },
                                 "controlPlane": {
-                                  "description": "ControlPlane determines if this failure domain is suitable for use by control plane machines.",
+                                  "description": "controlPlane determines if this failure domain is suitable for use by control plane machines.",
                                   "type": "boolean"
                                 }
                               }
@@ -496,7 +496,7 @@
                                 "type": "string"
                               },
                               "fieldPath": {
-                                "description": "If referring to a piece of an object instead of an entire object, this string\nshould contain a valid JSON/Go field access statement, such as desiredState.manifest.containers[2].\nFor example, if the object reference is to a container within a pod, this would take on a value like:\n\"spec.containers{name}\" (where \"name\" refers to the name of the container that triggered\nthe event) or if no container name is specified \"spec.containers[2]\" (container with\nindex 2 in this pod). This syntax is chosen only to have some well-defined way of\nreferencing a part of an object.\nTODO: this design is not final and this field is subject to change in the future.",
+                                "description": "If referring to a piece of an object instead of an entire object, this string\nshould contain a valid JSON/Go field access statement, such as desiredState.manifest.containers[2].\nFor example, if the object reference is to a container within a pod, this would take on a value like:\n\"spec.containers{name}\" (where \"name\" refers to the name of the container that triggered\nthe event) or if no container name is specified \"spec.containers[2]\" (container with\nindex 2 in this pod). This syntax is chosen only to have some well-defined way of\nreferencing a part of an object.",
                                 "type": "string"
                               },
                               "kind": {
@@ -588,6 +588,10 @@
                               },
                               "privateDNSZoneName": {
                                 "description": "PrivateDNSZoneName defines the zone name for the Azure Private DNS.",
+                                "type": "string"
+                              },
+                              "privateDNSZoneResourceGroup": {
+                                "description": "PrivateDNSZoneResourceGroup defines the resource group to be used for Azure Private DNS Zone.\nIf not specified, the resource group of the cluster will be used to create the Azure Private DNS Zone.",
                                 "type": "string"
                               },
                               "subnets": {
@@ -708,7 +712,7 @@
                                         "node",
                                         "control-plane",
                                         "bastion",
-                                        "all"
+                                        "cluster"
                                       ]
                                     },
                                     "securityGroup": {

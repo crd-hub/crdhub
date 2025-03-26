@@ -5,7 +5,7 @@
     "name": "awsclustertemplates.infrastructure.cluster.x-k8s.io",
     "creationTimestamp": null,
     "annotations": {
-      "controller-gen.kubebuilder.io/version": "v0.14.0"
+      "controller-gen.kubebuilder.io/version": "v0.16.5"
     }
   },
   "spec": {
@@ -63,7 +63,7 @@
                         "type": "object",
                         "properties": {
                           "annotations": {
-                            "description": "Annotations is an unstructured key value map stored with a resource that may be\nset by external tools to store and retrieve arbitrary metadata. They are not\nqueryable and should be preserved when modifying objects.\nMore info: http://kubernetes.io/docs/user-guide/annotations",
+                            "description": "annotations is an unstructured key value map stored with a resource that may be\nset by external tools to store and retrieve arbitrary metadata. They are not\nqueryable and should be preserved when modifying objects.\nMore info: http://kubernetes.io/docs/user-guide/annotations",
                             "type": "object",
                             "additionalProperties": {
                               "type": "string"
@@ -149,7 +149,7 @@
                                 }
                               },
                               "crossZoneLoadBalancing": {
-                                "description": "CrossZoneLoadBalancing enables the classic ELB cross availability zone balancing.\n\n\nWith cross-zone load balancing, each load balancer node for your Classic Load Balancer\ndistributes requests evenly across the registered instances in all enabled Availability Zones.\nIf cross-zone load balancing is disabled, each load balancer node distributes requests evenly across\nthe registered instances in its Availability Zone only.\n\n\nDefaults to false.",
+                                "description": "CrossZoneLoadBalancing enables the classic ELB cross availability zone balancing.\n\nWith cross-zone load balancing, each load balancer node for your Classic Load Balancer\ndistributes requests evenly across the registered instances in all enabled Availability Zones.\nIf cross-zone load balancing is disabled, each load balancer node distributes requests evenly across\nthe registered instances in its Availability Zone only.\n\nDefaults to false.",
                                 "type": "boolean"
                               },
                               "healthCheckProtocol": {
@@ -468,7 +468,7 @@
                         "type": "object",
                         "properties": {
                           "annotations": {
-                            "description": "Annotations is an unstructured key value map stored with a resource that may be\nset by external tools to store and retrieve arbitrary metadata. They are not\nqueryable and should be preserved when modifying objects.\nMore info: http://kubernetes.io/docs/user-guide/annotations",
+                            "description": "annotations is an unstructured key value map stored with a resource that may be\nset by external tools to store and retrieve arbitrary metadata. They are not\nqueryable and should be preserved when modifying objects.\nMore info: http://kubernetes.io/docs/user-guide/annotations",
                             "type": "object",
                             "additionalProperties": {
                               "type": "string"
@@ -637,7 +637,7 @@
                                 }
                               },
                               "crossZoneLoadBalancing": {
-                                "description": "CrossZoneLoadBalancing enables the classic ELB cross availability zone balancing.\n\n\nWith cross-zone load balancing, each load balancer node for your Classic Load Balancer\ndistributes requests evenly across the registered instances in all enabled Availability Zones.\nIf cross-zone load balancing is disabled, each load balancer node distributes requests evenly across\nthe registered instances in its Availability Zone only.\n\n\nDefaults to false.",
+                                "description": "CrossZoneLoadBalancing enables the classic ELB cross availability zone balancing.\n\nWith cross-zone load balancing, each load balancer node for your Classic Load Balancer\ndistributes requests evenly across the registered instances in all enabled Availability Zones.\nIf cross-zone load balancing is disabled, each load balancer node distributes requests evenly across\nthe registered instances in its Availability Zone only.\n\nDefaults to false.",
                                 "type": "boolean"
                               },
                               "disableHostsRewrite": {
@@ -725,6 +725,10 @@
                                       "items": {
                                         "type": "string"
                                       }
+                                    },
+                                    "natGatewaysIPsSource": {
+                                      "description": "NatGatewaysIPsSource use the NAT gateways IPs as the source for the ingress rule.",
+                                      "type": "boolean"
                                     },
                                     "protocol": {
                                       "description": "Protocol is the protocol for the ingress rule. Accepted values are \"-1\" (all), \"4\" (IP in IP),\"tcp\", \"udp\", \"icmp\", and \"58\" (ICMPv6), \"50\" (ESP).",
@@ -886,6 +890,10 @@
                                         "type": "string"
                                       }
                                     },
+                                    "natGatewaysIPsSource": {
+                                      "description": "NatGatewaysIPsSource use the NAT gateways IPs as the source for the ingress rule.",
+                                      "type": "boolean"
+                                    },
                                     "protocol": {
                                       "description": "Protocol is the protocol for the ingress rule. Accepted values are \"-1\" (all), \"4\" (IP in IP),\"tcp\", \"udp\", \"icmp\", and \"58\" (ICMPv6), \"50\" (ESP).",
                                       "type": "string",
@@ -967,6 +975,13 @@
                                   }
                                 }
                               },
+                              "nodePortIngressRuleCidrBlocks": {
+                                "description": "NodePortIngressRuleCidrBlocks is an optional set of CIDR blocks to allow traffic to nodes' NodePort services.\nIf none are specified here, all IPs are allowed to connect.",
+                                "type": "array",
+                                "items": {
+                                  "type": "string"
+                                }
+                              },
                               "securityGroupOverrides": {
                                 "description": "SecurityGroupOverrides is an optional set of security groups to use for cluster instances\nThis is optional - if not provided new security groups will be created for the cluster",
                                 "type": "object",
@@ -993,7 +1008,7 @@
                                       "type": "string"
                                     },
                                     "id": {
-                                      "description": "ID defines a unique identifier to reference this resource.\nIf you're bringing your subnet, set the AWS subnet-id here, it must start with `subnet-`.\n\n\nWhen the VPC is managed by CAPA, and you'd like the provider to create a subnet for you,\nthe id can be set to any placeholder value that does not start with `subnet-`;\nupon creation, the subnet AWS identifier will be populated in the `ResourceID` field and\nthe `id` field is going to be used as the subnet name. If you specify a tag\ncalled `Name`, it takes precedence.",
+                                      "description": "ID defines a unique identifier to reference this resource.\nIf you're bringing your subnet, set the AWS subnet-id here, it must start with `subnet-`.\n\nWhen the VPC is managed by CAPA, and you'd like the provider to create a subnet for you,\nthe id can be set to any placeholder value that does not start with `subnet-`;\nupon creation, the subnet AWS identifier will be populated in the `ResourceID` field and\nthe `id` field is going to be used as the subnet name. If you specify a tag\ncalled `Name`, it takes precedence.",
                                       "type": "string"
                                     },
                                     "ipv6CidrBlock": {
@@ -1013,7 +1028,7 @@
                                       "type": "string"
                                     },
                                     "parentZoneName": {
-                                      "description": "ParentZoneName is the zone name where the current subnet's zone is tied when\nthe zone is a Local Zone.\n\n\nThe subnets in Local Zone or Wavelength Zone locations consume the ParentZoneName\nto select the correct private route table to egress traffic to the internet.",
+                                      "description": "ParentZoneName is the zone name where the current subnet's zone is tied when\nthe zone is a Local Zone.\n\nThe subnets in Local Zone or Wavelength Zone locations consume the ParentZoneName\nto select the correct private route table to egress traffic to the internet.",
                                       "type": "string"
                                     },
                                     "resourceID": {
@@ -1032,7 +1047,7 @@
                                       }
                                     },
                                     "zoneType": {
-                                      "description": "ZoneType defines the type of the zone where the subnet is created.\n\n\nThe valid values are availability-zone, local-zone, and wavelength-zone.\n\n\nSubnet with zone type availability-zone (regular) is always selected to create cluster\nresources, like Load Balancers, NAT Gateways, Contol Plane nodes, etc.\n\n\nSubnet with zone type local-zone or wavelength-zone is not eligible to automatically create\nregular cluster resources.\n\n\nThe public subnet in availability-zone or local-zone is associated with regular public\nroute table with default route entry to a Internet Gateway.\n\n\nThe public subnet in wavelength-zone is associated with a carrier public\nroute table with default route entry to a Carrier Gateway.\n\n\nThe private subnet in the availability-zone is associated with a private route table with\nthe default route entry to a NAT Gateway created in that zone.\n\n\nThe private subnet in the local-zone or wavelength-zone is associated with a private route table with\nthe default route entry re-using the NAT Gateway in the Region (preferred from the\nparent zone, the zone type availability-zone in the region, or first table available).",
+                                      "description": "ZoneType defines the type of the zone where the subnet is created.\n\nThe valid values are availability-zone, local-zone, and wavelength-zone.\n\nSubnet with zone type availability-zone (regular) is always selected to create cluster\nresources, like Load Balancers, NAT Gateways, Contol Plane nodes, etc.\n\nSubnet with zone type local-zone or wavelength-zone is not eligible to automatically create\nregular cluster resources.\n\nThe public subnet in availability-zone or local-zone is associated with regular public\nroute table with default route entry to a Internet Gateway.\n\nThe public subnet in wavelength-zone is associated with a carrier public\nroute table with default route entry to a Carrier Gateway.\n\nThe private subnet in the availability-zone is associated with a private route table with\nthe default route entry to a NAT Gateway created in that zone.\n\nThe private subnet in the local-zone or wavelength-zone is associated with a private route table with\nthe default route entry re-using the NAT Gateway in the Region (preferred from the\nparent zone, the zone type availability-zone in the region, or first table available).",
                                       "type": "string",
                                       "enum": [
                                         "availability-zone",
@@ -1080,8 +1095,33 @@
                                     "description": "CidrBlock is the CIDR block to be used when the provider creates a managed VPC.\nDefaults to 10.0.0.0/16.\nMutually exclusive with IPAMPool.",
                                     "type": "string"
                                   },
+                                  "elasticIpPool": {
+                                    "description": "ElasticIPPool contains specific configuration to allocate Public IPv4 address (Elastic IP) from user-defined pool\nbrought to AWS for core infrastructure resources, like NAT Gateways and Public Network Load Balancers for\nthe API Server.",
+                                    "type": "object",
+                                    "properties": {
+                                      "publicIpv4Pool": {
+                                        "description": "PublicIpv4Pool sets a custom Public IPv4 Pool used to create Elastic IP address for resources\ncreated in public IPv4 subnets. Every IPv4 address, Elastic IP, will be allocated from the custom\nPublic IPv4 pool that you brought to AWS, instead of Amazon-provided pool. The public IPv4 pool\nresource ID starts with 'ipv4pool-ec2'.",
+                                        "type": "string",
+                                        "maxLength": 30
+                                      },
+                                      "publicIpv4PoolFallbackOrder": {
+                                        "description": "PublicIpv4PoolFallBackOrder defines the fallback action when the Public IPv4 Pool has been exhausted,\nno more IPv4 address available in the pool.\n\nWhen set to 'amazon-pool', the controller check if the pool has available IPv4 address, when pool has reached the\nIPv4 limit, the address will be claimed from Amazon-pool (default).\n\nWhen set to 'none', the controller will fail the Elastic IP allocation when the publicIpv4Pool is exhausted.",
+                                        "type": "string",
+                                        "enum": [
+                                          "amazon-pool",
+                                          "none"
+                                        ],
+                                        "x-kubernetes-validations": [
+                                          {
+                                            "rule": "self in ['none','amazon-pool']",
+                                            "message": "allowed values are 'none' and 'amazon-pool'"
+                                          }
+                                        ]
+                                      }
+                                    }
+                                  },
                                   "emptyRoutesDefaultVPCSecurityGroup": {
-                                    "description": "EmptyRoutesDefaultVPCSecurityGroup specifies whether the default VPC security group ingress\nand egress rules should be removed.\n\n\nBy default, when creating a VPC, AWS creates a security group called `default` with ingress and egress\nrules that allow traffic from anywhere. The group could be used as a potential surface attack and\nit's generally suggested that the group rules are removed or modified appropriately.\n\n\nNOTE: This only applies when the VPC is managed by the Cluster API AWS controller.",
+                                    "description": "EmptyRoutesDefaultVPCSecurityGroup specifies whether the default VPC security group ingress\nand egress rules should be removed.\n\nBy default, when creating a VPC, AWS creates a security group called `default` with ingress and egress\nrules that allow traffic from anywhere. The group could be used as a potential surface attack and\nit's generally suggested that the group rules are removed or modified appropriately.\n\nNOTE: This only applies when the VPC is managed by the Cluster API AWS controller.",
                                     "type": "boolean"
                                   },
                                   "id": {
@@ -1156,6 +1196,33 @@
                                       "resource-name"
                                     ]
                                   },
+                                  "secondaryCidrBlocks": {
+                                    "description": "SecondaryCidrBlocks are additional CIDR blocks to be associated when the provider creates a managed VPC.\nDefaults to none. Mutually exclusive with IPAMPool. This makes sense to use if, for example, you want to use\na separate IP range for pods (e.g. Cilium ENI mode).",
+                                    "type": "array",
+                                    "items": {
+                                      "description": "VpcCidrBlock defines the CIDR block and settings to associate with the managed VPC. Currently, only IPv4 is supported.",
+                                      "type": "object",
+                                      "required": [
+                                        "ipv4CidrBlock"
+                                      ],
+                                      "properties": {
+                                        "ipv4CidrBlock": {
+                                          "description": "IPv4CidrBlock is the IPv4 CIDR block to associate with the managed VPC.",
+                                          "type": "string",
+                                          "minLength": 1
+                                        }
+                                      }
+                                    }
+                                  },
+                                  "subnetSchema": {
+                                    "description": "SubnetSchema specifies how CidrBlock should be divided on subnets in the VPC depending on the number of AZs.\nPreferPrivate - one private subnet for each AZ plus one other subnet that will be further sub-divided for the public subnets.\nPreferPublic - have the reverse logic of PreferPrivate, one public subnet for each AZ plus one other subnet\nthat will be further sub-divided for the private subnets.\nDefaults to PreferPrivate",
+                                    "type": "string",
+                                    "default": "PreferPrivate",
+                                    "enum": [
+                                      "PreferPrivate",
+                                      "PreferPublic"
+                                    ]
+                                  },
                                   "tags": {
                                     "description": "Tags is a collection of tags describing the resource.",
                                     "type": "object",
@@ -1205,13 +1272,13 @@
                                 }
                               },
                               "presignedURLDuration": {
-                                "description": "PresignedURLDuration defines the duration for which presigned URLs are valid.\n\n\nThis is used to generate presigned URLs for S3 Bucket objects, which are used by\ncontrol-plane and worker nodes to fetch bootstrap data.\n\n\nWhen enabled, the IAM instance profiles specified are not used.",
+                                "description": "PresignedURLDuration defines the duration for which presigned URLs are valid.\n\nThis is used to generate presigned URLs for S3 Bucket objects, which are used by\ncontrol-plane and worker nodes to fetch bootstrap data.\n\nWhen enabled, the IAM instance profiles specified are not used.",
                                 "type": "string"
                               }
                             }
                           },
                           "secondaryControlPlaneLoadBalancer": {
-                            "description": "SecondaryControlPlaneLoadBalancer is an additional load balancer that can be used for the control plane.\n\n\nAn example use case is to have a separate internal load balancer for internal traffic,\nand a separate external load balancer for external traffic.",
+                            "description": "SecondaryControlPlaneLoadBalancer is an additional load balancer that can be used for the control plane.\n\nAn example use case is to have a separate internal load balancer for internal traffic,\nand a separate external load balancer for external traffic.",
                             "type": "object",
                             "properties": {
                               "additionalListeners": {
@@ -1305,7 +1372,7 @@
                                 }
                               },
                               "crossZoneLoadBalancing": {
-                                "description": "CrossZoneLoadBalancing enables the classic ELB cross availability zone balancing.\n\n\nWith cross-zone load balancing, each load balancer node for your Classic Load Balancer\ndistributes requests evenly across the registered instances in all enabled Availability Zones.\nIf cross-zone load balancing is disabled, each load balancer node distributes requests evenly across\nthe registered instances in its Availability Zone only.\n\n\nDefaults to false.",
+                                "description": "CrossZoneLoadBalancing enables the classic ELB cross availability zone balancing.\n\nWith cross-zone load balancing, each load balancer node for your Classic Load Balancer\ndistributes requests evenly across the registered instances in all enabled Availability Zones.\nIf cross-zone load balancing is disabled, each load balancer node distributes requests evenly across\nthe registered instances in its Availability Zone only.\n\nDefaults to false.",
                                 "type": "boolean"
                               },
                               "disableHostsRewrite": {
@@ -1393,6 +1460,10 @@
                                       "items": {
                                         "type": "string"
                                       }
+                                    },
+                                    "natGatewaysIPsSource": {
+                                      "description": "NatGatewaysIPsSource use the NAT gateways IPs as the source for the ingress rule.",
+                                      "type": "boolean"
                                     },
                                     "protocol": {
                                       "description": "Protocol is the protocol for the ingress rule. Accepted values are \"-1\" (all), \"4\" (IP in IP),\"tcp\", \"udp\", \"icmp\", and \"58\" (ICMPv6), \"50\" (ESP).",

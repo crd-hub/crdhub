@@ -5,7 +5,7 @@
     "name": "awsmanagedcontrolplanes.controlplane.cluster.x-k8s.io",
     "creationTimestamp": null,
     "annotations": {
-      "controller-gen.kubebuilder.io/version": "v0.14.0"
+      "controller-gen.kubebuilder.io/version": "v0.16.5"
     }
   },
   "spec": {
@@ -388,6 +388,10 @@
                                 "type": "string"
                               }
                             },
+                            "natGatewaysIPsSource": {
+                              "description": "NatGatewaysIPsSource use the NAT gateways IPs as the source for the ingress rule.",
+                              "type": "boolean"
+                            },
                             "protocol": {
                               "description": "Protocol is the protocol for the ingress rule. Accepted values are \"-1\" (all), \"4\" (IP in IP),\"tcp\", \"udp\", \"icmp\", and \"58\" (ICMPv6), \"50\" (ESP).",
                               "type": "string",
@@ -469,6 +473,13 @@
                           }
                         }
                       },
+                      "nodePortIngressRuleCidrBlocks": {
+                        "description": "NodePortIngressRuleCidrBlocks is an optional set of CIDR blocks to allow traffic to nodes' NodePort services.\nIf none are specified here, all IPs are allowed to connect.",
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        }
+                      },
                       "securityGroupOverrides": {
                         "description": "SecurityGroupOverrides is an optional set of security groups to use for cluster instances\nThis is optional - if not provided new security groups will be created for the cluster",
                         "type": "object",
@@ -495,7 +506,7 @@
                               "type": "string"
                             },
                             "id": {
-                              "description": "ID defines a unique identifier to reference this resource.\nIf you're bringing your subnet, set the AWS subnet-id here, it must start with `subnet-`.\n\n\nWhen the VPC is managed by CAPA, and you'd like the provider to create a subnet for you,\nthe id can be set to any placeholder value that does not start with `subnet-`;\nupon creation, the subnet AWS identifier will be populated in the `ResourceID` field and\nthe `id` field is going to be used as the subnet name. If you specify a tag\ncalled `Name`, it takes precedence.",
+                              "description": "ID defines a unique identifier to reference this resource.\nIf you're bringing your subnet, set the AWS subnet-id here, it must start with `subnet-`.\n\nWhen the VPC is managed by CAPA, and you'd like the provider to create a subnet for you,\nthe id can be set to any placeholder value that does not start with `subnet-`;\nupon creation, the subnet AWS identifier will be populated in the `ResourceID` field and\nthe `id` field is going to be used as the subnet name. If you specify a tag\ncalled `Name`, it takes precedence.",
                               "type": "string"
                             },
                             "ipv6CidrBlock": {
@@ -515,7 +526,7 @@
                               "type": "string"
                             },
                             "parentZoneName": {
-                              "description": "ParentZoneName is the zone name where the current subnet's zone is tied when\nthe zone is a Local Zone.\n\n\nThe subnets in Local Zone or Wavelength Zone locations consume the ParentZoneName\nto select the correct private route table to egress traffic to the internet.",
+                              "description": "ParentZoneName is the zone name where the current subnet's zone is tied when\nthe zone is a Local Zone.\n\nThe subnets in Local Zone or Wavelength Zone locations consume the ParentZoneName\nto select the correct private route table to egress traffic to the internet.",
                               "type": "string"
                             },
                             "resourceID": {
@@ -534,7 +545,7 @@
                               }
                             },
                             "zoneType": {
-                              "description": "ZoneType defines the type of the zone where the subnet is created.\n\n\nThe valid values are availability-zone, local-zone, and wavelength-zone.\n\n\nSubnet with zone type availability-zone (regular) is always selected to create cluster\nresources, like Load Balancers, NAT Gateways, Contol Plane nodes, etc.\n\n\nSubnet with zone type local-zone or wavelength-zone is not eligible to automatically create\nregular cluster resources.\n\n\nThe public subnet in availability-zone or local-zone is associated with regular public\nroute table with default route entry to a Internet Gateway.\n\n\nThe public subnet in wavelength-zone is associated with a carrier public\nroute table with default route entry to a Carrier Gateway.\n\n\nThe private subnet in the availability-zone is associated with a private route table with\nthe default route entry to a NAT Gateway created in that zone.\n\n\nThe private subnet in the local-zone or wavelength-zone is associated with a private route table with\nthe default route entry re-using the NAT Gateway in the Region (preferred from the\nparent zone, the zone type availability-zone in the region, or first table available).",
+                              "description": "ZoneType defines the type of the zone where the subnet is created.\n\nThe valid values are availability-zone, local-zone, and wavelength-zone.\n\nSubnet with zone type availability-zone (regular) is always selected to create cluster\nresources, like Load Balancers, NAT Gateways, Contol Plane nodes, etc.\n\nSubnet with zone type local-zone or wavelength-zone is not eligible to automatically create\nregular cluster resources.\n\nThe public subnet in availability-zone or local-zone is associated with regular public\nroute table with default route entry to a Internet Gateway.\n\nThe public subnet in wavelength-zone is associated with a carrier public\nroute table with default route entry to a Carrier Gateway.\n\nThe private subnet in the availability-zone is associated with a private route table with\nthe default route entry to a NAT Gateway created in that zone.\n\nThe private subnet in the local-zone or wavelength-zone is associated with a private route table with\nthe default route entry re-using the NAT Gateway in the Region (preferred from the\nparent zone, the zone type availability-zone in the region, or first table available).",
                               "type": "string",
                               "enum": [
                                 "availability-zone",
@@ -582,8 +593,33 @@
                             "description": "CidrBlock is the CIDR block to be used when the provider creates a managed VPC.\nDefaults to 10.0.0.0/16.\nMutually exclusive with IPAMPool.",
                             "type": "string"
                           },
+                          "elasticIpPool": {
+                            "description": "ElasticIPPool contains specific configuration to allocate Public IPv4 address (Elastic IP) from user-defined pool\nbrought to AWS for core infrastructure resources, like NAT Gateways and Public Network Load Balancers for\nthe API Server.",
+                            "type": "object",
+                            "properties": {
+                              "publicIpv4Pool": {
+                                "description": "PublicIpv4Pool sets a custom Public IPv4 Pool used to create Elastic IP address for resources\ncreated in public IPv4 subnets. Every IPv4 address, Elastic IP, will be allocated from the custom\nPublic IPv4 pool that you brought to AWS, instead of Amazon-provided pool. The public IPv4 pool\nresource ID starts with 'ipv4pool-ec2'.",
+                                "type": "string",
+                                "maxLength": 30
+                              },
+                              "publicIpv4PoolFallbackOrder": {
+                                "description": "PublicIpv4PoolFallBackOrder defines the fallback action when the Public IPv4 Pool has been exhausted,\nno more IPv4 address available in the pool.\n\nWhen set to 'amazon-pool', the controller check if the pool has available IPv4 address, when pool has reached the\nIPv4 limit, the address will be claimed from Amazon-pool (default).\n\nWhen set to 'none', the controller will fail the Elastic IP allocation when the publicIpv4Pool is exhausted.",
+                                "type": "string",
+                                "enum": [
+                                  "amazon-pool",
+                                  "none"
+                                ],
+                                "x-kubernetes-validations": [
+                                  {
+                                    "rule": "self in ['none','amazon-pool']",
+                                    "message": "allowed values are 'none' and 'amazon-pool'"
+                                  }
+                                ]
+                              }
+                            }
+                          },
                           "emptyRoutesDefaultVPCSecurityGroup": {
-                            "description": "EmptyRoutesDefaultVPCSecurityGroup specifies whether the default VPC security group ingress\nand egress rules should be removed.\n\n\nBy default, when creating a VPC, AWS creates a security group called `default` with ingress and egress\nrules that allow traffic from anywhere. The group could be used as a potential surface attack and\nit's generally suggested that the group rules are removed or modified appropriately.\n\n\nNOTE: This only applies when the VPC is managed by the Cluster API AWS controller.",
+                            "description": "EmptyRoutesDefaultVPCSecurityGroup specifies whether the default VPC security group ingress\nand egress rules should be removed.\n\nBy default, when creating a VPC, AWS creates a security group called `default` with ingress and egress\nrules that allow traffic from anywhere. The group could be used as a potential surface attack and\nit's generally suggested that the group rules are removed or modified appropriately.\n\nNOTE: This only applies when the VPC is managed by the Cluster API AWS controller.",
                             "type": "boolean"
                           },
                           "id": {
@@ -658,6 +694,33 @@
                               "resource-name"
                             ]
                           },
+                          "secondaryCidrBlocks": {
+                            "description": "SecondaryCidrBlocks are additional CIDR blocks to be associated when the provider creates a managed VPC.\nDefaults to none. Mutually exclusive with IPAMPool. This makes sense to use if, for example, you want to use\na separate IP range for pods (e.g. Cilium ENI mode).",
+                            "type": "array",
+                            "items": {
+                              "description": "VpcCidrBlock defines the CIDR block and settings to associate with the managed VPC. Currently, only IPv4 is supported.",
+                              "type": "object",
+                              "required": [
+                                "ipv4CidrBlock"
+                              ],
+                              "properties": {
+                                "ipv4CidrBlock": {
+                                  "description": "IPv4CidrBlock is the IPv4 CIDR block to associate with the managed VPC.",
+                                  "type": "string",
+                                  "minLength": 1
+                                }
+                              }
+                            }
+                          },
+                          "subnetSchema": {
+                            "description": "SubnetSchema specifies how CidrBlock should be divided on subnets in the VPC depending on the number of AZs.\nPreferPrivate - one private subnet for each AZ plus one other subnet that will be further sub-divided for the public subnets.\nPreferPublic - have the reverse logic of PreferPrivate, one public subnet for each AZ plus one other subnet\nthat will be further sub-divided for the private subnets.\nDefaults to PreferPrivate",
+                            "type": "string",
+                            "default": "PreferPrivate",
+                            "enum": [
+                              "PreferPrivate",
+                              "PreferPublic"
+                            ]
+                          },
                           "tags": {
                             "description": "Tags is a collection of tags describing the resource.",
                             "type": "object",
@@ -672,6 +735,11 @@
                   "oidcIdentityProviderConfig": {
                     "description": "IdentityProviderconfig is used to specify the oidc provider config\nto be attached with this eks cluster",
                     "type": "object",
+                    "required": [
+                      "clientId",
+                      "identityProviderConfigName",
+                      "issuerUrl"
+                    ],
                     "properties": {
                       "clientId": {
                         "description": "This is also known as audience. The ID for the client application that makes\nauthentication requests to the OpenID identity provider.",
@@ -686,7 +754,7 @@
                         "type": "string"
                       },
                       "identityProviderConfigName": {
-                        "description": "The name of the OIDC provider configuration.\n\n\nIdentityProviderConfigName is a required field",
+                        "description": "The name of the OIDC provider configuration.\n\nIdentityProviderConfigName is a required field",
                         "type": "string"
                       },
                       "issuerUrl": {
@@ -794,8 +862,9 @@
                                       "type": "string"
                                     },
                                     "name": {
-                                      "description": "Name of the referent.\nMore info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names\nTODO: Add other useful fields. apiVersion, kind, uid?",
-                                      "type": "string"
+                                      "description": "Name of the referent.\nThis field is effectively required, but due to backwards compatibility is\nallowed to be empty. Instances of this type with an empty value here are\nalmost certainly wrong.\nMore info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+                                      "type": "string",
+                                      "default": ""
                                     },
                                     "optional": {
                                       "description": "Specify whether the ConfigMap or its key must be defined",
@@ -865,8 +934,9 @@
                                       "type": "string"
                                     },
                                     "name": {
-                                      "description": "Name of the referent.\nMore info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names\nTODO: Add other useful fields. apiVersion, kind, uid?",
-                                      "type": "string"
+                                      "description": "Name of the referent.\nThis field is effectively required, but due to backwards compatibility is\nallowed to be empty. Instances of this type with an empty value here are\nalmost certainly wrong.\nMore info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+                                      "type": "string",
+                                      "default": ""
                                     },
                                     "optional": {
                                       "description": "Specify whether the Secret or its key must be defined",
@@ -994,6 +1064,10 @@
                         "description": "Availability zone of instance",
                         "type": "string"
                       },
+                      "capacityReservationId": {
+                        "description": "CapacityReservationID specifies the target Capacity Reservation into which the instance should be launched.",
+                        "type": "string"
+                      },
                       "ebsOptimized": {
                         "description": "Indicates whether the instance is optimized for Amazon EBS I/O.",
                         "type": "boolean"
@@ -1018,7 +1092,7 @@
                         "type": "object",
                         "properties": {
                           "httpEndpoint": {
-                            "description": "Enables or disables the HTTP metadata endpoint on your instances.\n\n\nIf you specify a value of disabled, you cannot access your instance metadata.\n\n\nDefault: enabled",
+                            "description": "Enables or disables the HTTP metadata endpoint on your instances.\n\nIf you specify a value of disabled, you cannot access your instance metadata.\n\nDefault: enabled",
                             "type": "string",
                             "default": "enabled",
                             "enum": [
@@ -1027,7 +1101,7 @@
                             ]
                           },
                           "httpPutResponseHopLimit": {
-                            "description": "The desired HTTP PUT response hop limit for instance metadata requests. The\nlarger the number, the further instance metadata requests can travel.\n\n\nDefault: 1",
+                            "description": "The desired HTTP PUT response hop limit for instance metadata requests. The\nlarger the number, the further instance metadata requests can travel.\n\nDefault: 1",
                             "type": "integer",
                             "format": "int64",
                             "default": 1,
@@ -1035,7 +1109,7 @@
                             "minimum": 1
                           },
                           "httpTokens": {
-                            "description": "The state of token usage for your instance metadata requests.\n\n\nIf the state is optional, you can choose to retrieve instance metadata with\nor without a session token on your request. If you retrieve the IAM role\ncredentials without a token, the version 1.0 role credentials are returned.\nIf you retrieve the IAM role credentials using a valid session token, the\nversion 2.0 role credentials are returned.\n\n\nIf the state is required, you must send a session token with any instance\nmetadata retrieval requests. In this state, retrieving the IAM role credentials\nalways returns the version 2.0 credentials; the version 1.0 credentials are\nnot available.\n\n\nDefault: optional",
+                            "description": "The state of token usage for your instance metadata requests.\n\nIf the state is optional, you can choose to retrieve instance metadata with\nor without a session token on your request. If you retrieve the IAM role\ncredentials without a token, the version 1.0 role credentials are returned.\nIf you retrieve the IAM role credentials using a valid session token, the\nversion 2.0 role credentials are returned.\n\nIf the state is required, you must send a session token with any instance\nmetadata retrieval requests. In this state, retrieving the IAM role credentials\nalways returns the version 2.0 credentials; the version 1.0 credentials are\nnot available.\n\nDefault: optional",
                             "type": "string",
                             "default": "optional",
                             "enum": [
@@ -1044,7 +1118,7 @@
                             ]
                           },
                           "instanceMetadataTags": {
-                            "description": "Set to enabled to allow access to instance tags from the instance metadata.\nSet to disabled to turn off access to instance tags from the instance metadata.\nFor more information, see Work with instance tags using the instance metadata\n(https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/Using_Tags.html#work-with-tags-in-IMDS).\n\n\nDefault: disabled",
+                            "description": "Set to enabled to allow access to instance tags from the instance metadata.\nSet to disabled to turn off access to instance tags from the instance metadata.\nFor more information, see Work with instance tags using the instance metadata\n(https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/Using_Tags.html#work-with-tags-in-IMDS).\n\nDefault: disabled",
                             "type": "string",
                             "default": "disabled",
                             "enum": [
@@ -1056,6 +1130,19 @@
                       },
                       "instanceState": {
                         "description": "The current state of the instance.",
+                        "type": "string"
+                      },
+                      "marketType": {
+                        "description": "MarketType specifies the type of market for the EC2 instance. Valid values include:\n\"OnDemand\" (default): The instance runs as a standard OnDemand instance.\n\"Spot\": The instance runs as a Spot instance. When SpotMarketOptions is provided, the marketType defaults to \"Spot\".\n\"CapacityBlock\": The instance utilizes pre-purchased compute capacity (capacity blocks) with AWS Capacity Reservations.\n If this value is selected, CapacityReservationID must be specified to identify the target reservation.\nIf marketType is not specified and spotMarketOptions is provided, the marketType defaults to \"Spot\".",
+                        "type": "string",
+                        "enum": [
+                          "OnDemand",
+                          "Spot",
+                          "CapacityBlock"
+                        ]
+                      },
+                      "networkInterfaceType": {
+                        "description": "NetworkInterfaceType is the interface type of the primary network Interface.",
                         "type": "string"
                       },
                       "networkInterfaces": {
@@ -1271,19 +1358,19 @@
                           "type": "string"
                         },
                         "reason": {
-                          "description": "The reason for the condition's last transition in CamelCase.\nThe specific API may choose whether or not this field is considered a guaranteed API.\nThis field may not be empty.",
+                          "description": "The reason for the condition's last transition in CamelCase.\nThe specific API may choose whether or not this field is considered a guaranteed API.\nThis field may be empty.",
                           "type": "string"
                         },
                         "severity": {
-                          "description": "Severity provides an explicit classification of Reason code, so the users or machines can immediately\nunderstand the current situation and act accordingly.\nThe Severity field MUST be set only when Status=False.",
+                          "description": "severity provides an explicit classification of Reason code, so the users or machines can immediately\nunderstand the current situation and act accordingly.\nThe Severity field MUST be set only when Status=False.",
                           "type": "string"
                         },
                         "status": {
-                          "description": "Status of the condition, one of True, False, Unknown.",
+                          "description": "status of the condition, one of True, False, Unknown.",
                           "type": "string"
                         },
                         "type": {
-                          "description": "Type of condition in CamelCase or in foo.example.com/CamelCase.\nMany .condition.type values are consistent across resources like Available, but because arbitrary conditions\ncan be useful (see .node.status.conditions), the ability to deconflict is important.",
+                          "description": "type of condition in CamelCase or in foo.example.com/CamelCase.\nMany .condition.type values are consistent across resources like Available, but because arbitrary conditions\ncan be useful (see .node.status.conditions), the ability to deconflict is important.",
                           "type": "string"
                         }
                       }
@@ -1302,14 +1389,14 @@
                       "type": "object",
                       "properties": {
                         "attributes": {
-                          "description": "Attributes is a free form map of attributes an infrastructure provider might use or require.",
+                          "description": "attributes is a free form map of attributes an infrastructure provider might use or require.",
                           "type": "object",
                           "additionalProperties": {
                             "type": "string"
                           }
                         },
                         "controlPlane": {
-                          "description": "ControlPlane determines if this failure domain is suitable for use by control plane machines.",
+                          "description": "controlPlane determines if this failure domain is suitable for use by control plane machines.",
                           "type": "boolean"
                         }
                       }
@@ -1877,6 +1964,10 @@
                                       "type": "string"
                                     }
                                   },
+                                  "natGatewaysIPsSource": {
+                                    "description": "NatGatewaysIPsSource use the NAT gateways IPs as the source for the ingress rule.",
+                                    "type": "boolean"
+                                  },
                                   "protocol": {
                                     "description": "Protocol is the protocol for the ingress rule. Accepted values are \"-1\" (all), \"4\" (IP in IP),\"tcp\", \"udp\", \"icmp\", and \"58\" (ICMPv6), \"50\" (ESP).",
                                     "type": "string",
@@ -2102,6 +2193,11 @@
                         "type": "string"
                       }
                     }
+                  },
+                  "bootstrapSelfManagedAddons": {
+                    "description": "BootstrapSelfManagedAddons is used to set configuration options for\nbare EKS cluster without EKS default networking addons\nIf you set this value to false when creating a cluster, the default networking add-ons will not be installed",
+                    "type": "boolean",
+                    "default": true
                   },
                   "controlPlaneEndpoint": {
                     "description": "ControlPlaneEndpoint represents the endpoint used to communicate with the control plane.",
@@ -2357,6 +2453,10 @@
                                 "type": "string"
                               }
                             },
+                            "natGatewaysIPsSource": {
+                              "description": "NatGatewaysIPsSource use the NAT gateways IPs as the source for the ingress rule.",
+                              "type": "boolean"
+                            },
                             "protocol": {
                               "description": "Protocol is the protocol for the ingress rule. Accepted values are \"-1\" (all), \"4\" (IP in IP),\"tcp\", \"udp\", \"icmp\", and \"58\" (ICMPv6), \"50\" (ESP).",
                               "type": "string",
@@ -2438,6 +2538,13 @@
                           }
                         }
                       },
+                      "nodePortIngressRuleCidrBlocks": {
+                        "description": "NodePortIngressRuleCidrBlocks is an optional set of CIDR blocks to allow traffic to nodes' NodePort services.\nIf none are specified here, all IPs are allowed to connect.",
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        }
+                      },
                       "securityGroupOverrides": {
                         "description": "SecurityGroupOverrides is an optional set of security groups to use for cluster instances\nThis is optional - if not provided new security groups will be created for the cluster",
                         "type": "object",
@@ -2464,7 +2571,7 @@
                               "type": "string"
                             },
                             "id": {
-                              "description": "ID defines a unique identifier to reference this resource.\nIf you're bringing your subnet, set the AWS subnet-id here, it must start with `subnet-`.\n\n\nWhen the VPC is managed by CAPA, and you'd like the provider to create a subnet for you,\nthe id can be set to any placeholder value that does not start with `subnet-`;\nupon creation, the subnet AWS identifier will be populated in the `ResourceID` field and\nthe `id` field is going to be used as the subnet name. If you specify a tag\ncalled `Name`, it takes precedence.",
+                              "description": "ID defines a unique identifier to reference this resource.\nIf you're bringing your subnet, set the AWS subnet-id here, it must start with `subnet-`.\n\nWhen the VPC is managed by CAPA, and you'd like the provider to create a subnet for you,\nthe id can be set to any placeholder value that does not start with `subnet-`;\nupon creation, the subnet AWS identifier will be populated in the `ResourceID` field and\nthe `id` field is going to be used as the subnet name. If you specify a tag\ncalled `Name`, it takes precedence.",
                               "type": "string"
                             },
                             "ipv6CidrBlock": {
@@ -2484,7 +2591,7 @@
                               "type": "string"
                             },
                             "parentZoneName": {
-                              "description": "ParentZoneName is the zone name where the current subnet's zone is tied when\nthe zone is a Local Zone.\n\n\nThe subnets in Local Zone or Wavelength Zone locations consume the ParentZoneName\nto select the correct private route table to egress traffic to the internet.",
+                              "description": "ParentZoneName is the zone name where the current subnet's zone is tied when\nthe zone is a Local Zone.\n\nThe subnets in Local Zone or Wavelength Zone locations consume the ParentZoneName\nto select the correct private route table to egress traffic to the internet.",
                               "type": "string"
                             },
                             "resourceID": {
@@ -2503,7 +2610,7 @@
                               }
                             },
                             "zoneType": {
-                              "description": "ZoneType defines the type of the zone where the subnet is created.\n\n\nThe valid values are availability-zone, local-zone, and wavelength-zone.\n\n\nSubnet with zone type availability-zone (regular) is always selected to create cluster\nresources, like Load Balancers, NAT Gateways, Contol Plane nodes, etc.\n\n\nSubnet with zone type local-zone or wavelength-zone is not eligible to automatically create\nregular cluster resources.\n\n\nThe public subnet in availability-zone or local-zone is associated with regular public\nroute table with default route entry to a Internet Gateway.\n\n\nThe public subnet in wavelength-zone is associated with a carrier public\nroute table with default route entry to a Carrier Gateway.\n\n\nThe private subnet in the availability-zone is associated with a private route table with\nthe default route entry to a NAT Gateway created in that zone.\n\n\nThe private subnet in the local-zone or wavelength-zone is associated with a private route table with\nthe default route entry re-using the NAT Gateway in the Region (preferred from the\nparent zone, the zone type availability-zone in the region, or first table available).",
+                              "description": "ZoneType defines the type of the zone where the subnet is created.\n\nThe valid values are availability-zone, local-zone, and wavelength-zone.\n\nSubnet with zone type availability-zone (regular) is always selected to create cluster\nresources, like Load Balancers, NAT Gateways, Contol Plane nodes, etc.\n\nSubnet with zone type local-zone or wavelength-zone is not eligible to automatically create\nregular cluster resources.\n\nThe public subnet in availability-zone or local-zone is associated with regular public\nroute table with default route entry to a Internet Gateway.\n\nThe public subnet in wavelength-zone is associated with a carrier public\nroute table with default route entry to a Carrier Gateway.\n\nThe private subnet in the availability-zone is associated with a private route table with\nthe default route entry to a NAT Gateway created in that zone.\n\nThe private subnet in the local-zone or wavelength-zone is associated with a private route table with\nthe default route entry re-using the NAT Gateway in the Region (preferred from the\nparent zone, the zone type availability-zone in the region, or first table available).",
                               "type": "string",
                               "enum": [
                                 "availability-zone",
@@ -2551,8 +2658,33 @@
                             "description": "CidrBlock is the CIDR block to be used when the provider creates a managed VPC.\nDefaults to 10.0.0.0/16.\nMutually exclusive with IPAMPool.",
                             "type": "string"
                           },
+                          "elasticIpPool": {
+                            "description": "ElasticIPPool contains specific configuration to allocate Public IPv4 address (Elastic IP) from user-defined pool\nbrought to AWS for core infrastructure resources, like NAT Gateways and Public Network Load Balancers for\nthe API Server.",
+                            "type": "object",
+                            "properties": {
+                              "publicIpv4Pool": {
+                                "description": "PublicIpv4Pool sets a custom Public IPv4 Pool used to create Elastic IP address for resources\ncreated in public IPv4 subnets. Every IPv4 address, Elastic IP, will be allocated from the custom\nPublic IPv4 pool that you brought to AWS, instead of Amazon-provided pool. The public IPv4 pool\nresource ID starts with 'ipv4pool-ec2'.",
+                                "type": "string",
+                                "maxLength": 30
+                              },
+                              "publicIpv4PoolFallbackOrder": {
+                                "description": "PublicIpv4PoolFallBackOrder defines the fallback action when the Public IPv4 Pool has been exhausted,\nno more IPv4 address available in the pool.\n\nWhen set to 'amazon-pool', the controller check if the pool has available IPv4 address, when pool has reached the\nIPv4 limit, the address will be claimed from Amazon-pool (default).\n\nWhen set to 'none', the controller will fail the Elastic IP allocation when the publicIpv4Pool is exhausted.",
+                                "type": "string",
+                                "enum": [
+                                  "amazon-pool",
+                                  "none"
+                                ],
+                                "x-kubernetes-validations": [
+                                  {
+                                    "rule": "self in ['none','amazon-pool']",
+                                    "message": "allowed values are 'none' and 'amazon-pool'"
+                                  }
+                                ]
+                              }
+                            }
+                          },
                           "emptyRoutesDefaultVPCSecurityGroup": {
-                            "description": "EmptyRoutesDefaultVPCSecurityGroup specifies whether the default VPC security group ingress\nand egress rules should be removed.\n\n\nBy default, when creating a VPC, AWS creates a security group called `default` with ingress and egress\nrules that allow traffic from anywhere. The group could be used as a potential surface attack and\nit's generally suggested that the group rules are removed or modified appropriately.\n\n\nNOTE: This only applies when the VPC is managed by the Cluster API AWS controller.",
+                            "description": "EmptyRoutesDefaultVPCSecurityGroup specifies whether the default VPC security group ingress\nand egress rules should be removed.\n\nBy default, when creating a VPC, AWS creates a security group called `default` with ingress and egress\nrules that allow traffic from anywhere. The group could be used as a potential surface attack and\nit's generally suggested that the group rules are removed or modified appropriately.\n\nNOTE: This only applies when the VPC is managed by the Cluster API AWS controller.",
                             "type": "boolean"
                           },
                           "id": {
@@ -2627,6 +2759,33 @@
                               "resource-name"
                             ]
                           },
+                          "secondaryCidrBlocks": {
+                            "description": "SecondaryCidrBlocks are additional CIDR blocks to be associated when the provider creates a managed VPC.\nDefaults to none. Mutually exclusive with IPAMPool. This makes sense to use if, for example, you want to use\na separate IP range for pods (e.g. Cilium ENI mode).",
+                            "type": "array",
+                            "items": {
+                              "description": "VpcCidrBlock defines the CIDR block and settings to associate with the managed VPC. Currently, only IPv4 is supported.",
+                              "type": "object",
+                              "required": [
+                                "ipv4CidrBlock"
+                              ],
+                              "properties": {
+                                "ipv4CidrBlock": {
+                                  "description": "IPv4CidrBlock is the IPv4 CIDR block to associate with the managed VPC.",
+                                  "type": "string",
+                                  "minLength": 1
+                                }
+                              }
+                            }
+                          },
+                          "subnetSchema": {
+                            "description": "SubnetSchema specifies how CidrBlock should be divided on subnets in the VPC depending on the number of AZs.\nPreferPrivate - one private subnet for each AZ plus one other subnet that will be further sub-divided for the public subnets.\nPreferPublic - have the reverse logic of PreferPrivate, one public subnet for each AZ plus one other subnet\nthat will be further sub-divided for the private subnets.\nDefaults to PreferPrivate",
+                            "type": "string",
+                            "default": "PreferPrivate",
+                            "enum": [
+                              "PreferPrivate",
+                              "PreferPublic"
+                            ]
+                          },
                           "tags": {
                             "description": "Tags is a collection of tags describing the resource.",
                             "type": "object",
@@ -2641,6 +2800,11 @@
                   "oidcIdentityProviderConfig": {
                     "description": "IdentityProviderconfig is used to specify the oidc provider config\nto be attached with this eks cluster",
                     "type": "object",
+                    "required": [
+                      "clientId",
+                      "identityProviderConfigName",
+                      "issuerUrl"
+                    ],
                     "properties": {
                       "clientId": {
                         "description": "This is also known as audience. The ID for the client application that makes\nauthentication requests to the OpenID identity provider.",
@@ -2655,7 +2819,7 @@
                         "type": "string"
                       },
                       "identityProviderConfigName": {
-                        "description": "The name of the OIDC provider configuration.\n\n\nIdentityProviderConfigName is a required field",
+                        "description": "The name of the OIDC provider configuration.\n\nIdentityProviderConfigName is a required field",
                         "type": "string"
                       },
                       "issuerUrl": {
@@ -2693,6 +2857,11 @@
                   "region": {
                     "description": "The AWS Region the cluster lives in.",
                     "type": "string"
+                  },
+                  "restrictPrivateSubnets": {
+                    "description": "RestrictPrivateSubnets indicates that the EKS control plane should only use private subnets.",
+                    "type": "boolean",
+                    "default": false
                   },
                   "roleAdditionalPolicies": {
                     "description": "RoleAdditionalPolicies allows you to attach additional polices to\nthe control plane role. You must enable the EKSAllowAddRoles\nfeature flag to incorporate these into the created role.",
@@ -2772,8 +2941,9 @@
                                       "type": "string"
                                     },
                                     "name": {
-                                      "description": "Name of the referent.\nMore info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names\nTODO: Add other useful fields. apiVersion, kind, uid?",
-                                      "type": "string"
+                                      "description": "Name of the referent.\nThis field is effectively required, but due to backwards compatibility is\nallowed to be empty. Instances of this type with an empty value here are\nalmost certainly wrong.\nMore info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+                                      "type": "string",
+                                      "default": ""
                                     },
                                     "optional": {
                                       "description": "Specify whether the ConfigMap or its key must be defined",
@@ -2843,8 +3013,9 @@
                                       "type": "string"
                                     },
                                     "name": {
-                                      "description": "Name of the referent.\nMore info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names\nTODO: Add other useful fields. apiVersion, kind, uid?",
-                                      "type": "string"
+                                      "description": "Name of the referent.\nThis field is effectively required, but due to backwards compatibility is\nallowed to be empty. Instances of this type with an empty value here are\nalmost certainly wrong.\nMore info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+                                      "type": "string",
+                                      "default": ""
                                     },
                                     "optional": {
                                       "description": "Specify whether the Secret or its key must be defined",
@@ -2972,6 +3143,10 @@
                         "description": "Availability zone of instance",
                         "type": "string"
                       },
+                      "capacityReservationId": {
+                        "description": "CapacityReservationID specifies the target Capacity Reservation into which the instance should be launched.",
+                        "type": "string"
+                      },
                       "ebsOptimized": {
                         "description": "Indicates whether the instance is optimized for Amazon EBS I/O.",
                         "type": "boolean"
@@ -2996,7 +3171,7 @@
                         "type": "object",
                         "properties": {
                           "httpEndpoint": {
-                            "description": "Enables or disables the HTTP metadata endpoint on your instances.\n\n\nIf you specify a value of disabled, you cannot access your instance metadata.\n\n\nDefault: enabled",
+                            "description": "Enables or disables the HTTP metadata endpoint on your instances.\n\nIf you specify a value of disabled, you cannot access your instance metadata.\n\nDefault: enabled",
                             "type": "string",
                             "default": "enabled",
                             "enum": [
@@ -3005,7 +3180,7 @@
                             ]
                           },
                           "httpPutResponseHopLimit": {
-                            "description": "The desired HTTP PUT response hop limit for instance metadata requests. The\nlarger the number, the further instance metadata requests can travel.\n\n\nDefault: 1",
+                            "description": "The desired HTTP PUT response hop limit for instance metadata requests. The\nlarger the number, the further instance metadata requests can travel.\n\nDefault: 1",
                             "type": "integer",
                             "format": "int64",
                             "default": 1,
@@ -3013,7 +3188,7 @@
                             "minimum": 1
                           },
                           "httpTokens": {
-                            "description": "The state of token usage for your instance metadata requests.\n\n\nIf the state is optional, you can choose to retrieve instance metadata with\nor without a session token on your request. If you retrieve the IAM role\ncredentials without a token, the version 1.0 role credentials are returned.\nIf you retrieve the IAM role credentials using a valid session token, the\nversion 2.0 role credentials are returned.\n\n\nIf the state is required, you must send a session token with any instance\nmetadata retrieval requests. In this state, retrieving the IAM role credentials\nalways returns the version 2.0 credentials; the version 1.0 credentials are\nnot available.\n\n\nDefault: optional",
+                            "description": "The state of token usage for your instance metadata requests.\n\nIf the state is optional, you can choose to retrieve instance metadata with\nor without a session token on your request. If you retrieve the IAM role\ncredentials without a token, the version 1.0 role credentials are returned.\nIf you retrieve the IAM role credentials using a valid session token, the\nversion 2.0 role credentials are returned.\n\nIf the state is required, you must send a session token with any instance\nmetadata retrieval requests. In this state, retrieving the IAM role credentials\nalways returns the version 2.0 credentials; the version 1.0 credentials are\nnot available.\n\nDefault: optional",
                             "type": "string",
                             "default": "optional",
                             "enum": [
@@ -3022,7 +3197,7 @@
                             ]
                           },
                           "instanceMetadataTags": {
-                            "description": "Set to enabled to allow access to instance tags from the instance metadata.\nSet to disabled to turn off access to instance tags from the instance metadata.\nFor more information, see Work with instance tags using the instance metadata\n(https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/Using_Tags.html#work-with-tags-in-IMDS).\n\n\nDefault: disabled",
+                            "description": "Set to enabled to allow access to instance tags from the instance metadata.\nSet to disabled to turn off access to instance tags from the instance metadata.\nFor more information, see Work with instance tags using the instance metadata\n(https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/Using_Tags.html#work-with-tags-in-IMDS).\n\nDefault: disabled",
                             "type": "string",
                             "default": "disabled",
                             "enum": [
@@ -3034,6 +3209,19 @@
                       },
                       "instanceState": {
                         "description": "The current state of the instance.",
+                        "type": "string"
+                      },
+                      "marketType": {
+                        "description": "MarketType specifies the type of market for the EC2 instance. Valid values include:\n\"OnDemand\" (default): The instance runs as a standard OnDemand instance.\n\"Spot\": The instance runs as a Spot instance. When SpotMarketOptions is provided, the marketType defaults to \"Spot\".\n\"CapacityBlock\": The instance utilizes pre-purchased compute capacity (capacity blocks) with AWS Capacity Reservations.\n If this value is selected, CapacityReservationID must be specified to identify the target reservation.\nIf marketType is not specified and spotMarketOptions is provided, the marketType defaults to \"Spot\".",
+                        "type": "string",
+                        "enum": [
+                          "OnDemand",
+                          "Spot",
+                          "CapacityBlock"
+                        ]
+                      },
+                      "networkInterfaceType": {
+                        "description": "NetworkInterfaceType is the interface type of the primary network Interface.",
                         "type": "string"
                       },
                       "networkInterfaces": {
@@ -3249,19 +3437,19 @@
                           "type": "string"
                         },
                         "reason": {
-                          "description": "The reason for the condition's last transition in CamelCase.\nThe specific API may choose whether or not this field is considered a guaranteed API.\nThis field may not be empty.",
+                          "description": "The reason for the condition's last transition in CamelCase.\nThe specific API may choose whether or not this field is considered a guaranteed API.\nThis field may be empty.",
                           "type": "string"
                         },
                         "severity": {
-                          "description": "Severity provides an explicit classification of Reason code, so the users or machines can immediately\nunderstand the current situation and act accordingly.\nThe Severity field MUST be set only when Status=False.",
+                          "description": "severity provides an explicit classification of Reason code, so the users or machines can immediately\nunderstand the current situation and act accordingly.\nThe Severity field MUST be set only when Status=False.",
                           "type": "string"
                         },
                         "status": {
-                          "description": "Status of the condition, one of True, False, Unknown.",
+                          "description": "status of the condition, one of True, False, Unknown.",
                           "type": "string"
                         },
                         "type": {
-                          "description": "Type of condition in CamelCase or in foo.example.com/CamelCase.\nMany .condition.type values are consistent across resources like Available, but because arbitrary conditions\ncan be useful (see .node.status.conditions), the ability to deconflict is important.",
+                          "description": "type of condition in CamelCase or in foo.example.com/CamelCase.\nMany .condition.type values are consistent across resources like Available, but because arbitrary conditions\ncan be useful (see .node.status.conditions), the ability to deconflict is important.",
                           "type": "string"
                         }
                       }
@@ -3280,14 +3468,14 @@
                       "type": "object",
                       "properties": {
                         "attributes": {
-                          "description": "Attributes is a free form map of attributes an infrastructure provider might use or require.",
+                          "description": "attributes is a free form map of attributes an infrastructure provider might use or require.",
                           "type": "object",
                           "additionalProperties": {
                             "type": "string"
                           }
                         },
                         "controlPlane": {
-                          "description": "ControlPlane determines if this failure domain is suitable for use by control plane machines.",
+                          "description": "controlPlane determines if this failure domain is suitable for use by control plane machines.",
                           "type": "boolean"
                         }
                       }
@@ -3855,6 +4043,10 @@
                                       "type": "string"
                                     }
                                   },
+                                  "natGatewaysIPsSource": {
+                                    "description": "NatGatewaysIPsSource use the NAT gateways IPs as the source for the ingress rule.",
+                                    "type": "boolean"
+                                  },
                                   "protocol": {
                                     "description": "Protocol is the protocol for the ingress rule. Accepted values are \"-1\" (all), \"4\" (IP in IP),\"tcp\", \"udp\", \"icmp\", and \"58\" (ICMPv6), \"50\" (ESP).",
                                     "type": "string",
@@ -3933,6 +4125,10 @@
                     "description": "Ready denotes that the AWSManagedControlPlane API Server is ready to\nreceive requests and that the VPC infra is ready.",
                     "type": "boolean",
                     "default": false
+                  },
+                  "version": {
+                    "description": "Version represents the minimum Kubernetes version for the control plane machines\nin the cluster.",
+                    "type": "string"
                   }
                 }
               }

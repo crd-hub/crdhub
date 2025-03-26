@@ -22,7 +22,7 @@
     "ui": {
       "editor": {
         "name": "bootstrapclusterxk8sio-eksconfig-editor",
-        "version": "v0.14.0",
+        "version": "sha256:e1f051f105a2ef8fb3ad85e4998547d0baba3b172584f5c28bec0928b8fcde3f",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",

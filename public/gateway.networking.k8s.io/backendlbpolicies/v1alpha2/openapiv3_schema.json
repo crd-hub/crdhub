@@ -55,20 +55,20 @@
       ],
       "properties": {
         "sessionPersistence": {
-          "description": "SessionPersistence defines and configures session persistence\nfor the backend.\n\n\nSupport: Extended",
+          "description": "SessionPersistence defines and configures session persistence\nfor the backend.\n\nSupport: Extended",
           "type": "object",
           "properties": {
             "absoluteTimeout": {
-              "description": "AbsoluteTimeout defines the absolute timeout of the persistent\nsession. Once the AbsoluteTimeout duration has elapsed, the\nsession becomes invalid.\n\n\nSupport: Extended",
+              "description": "AbsoluteTimeout defines the absolute timeout of the persistent\nsession. Once the AbsoluteTimeout duration has elapsed, the\nsession becomes invalid.\n\nSupport: Extended",
               "type": "string",
               "pattern": "^([0-9]{1,5}(h|m|s|ms)){1,4}$"
             },
             "cookieConfig": {
-              "description": "CookieConfig provides configuration settings that are specific\nto cookie-based session persistence.\n\n\nSupport: Core",
+              "description": "CookieConfig provides configuration settings that are specific\nto cookie-based session persistence.\n\nSupport: Core",
               "type": "object",
               "properties": {
                 "lifetimeType": {
-                  "description": "LifetimeType specifies whether the cookie has a permanent or\nsession-based lifetime. A permanent cookie persists until its\nspecified expiry time, defined by the Expires or Max-Age cookie\nattributes, while a session cookie is deleted when the current\nsession ends.\n\n\nWhen set to \"Permanent\", AbsoluteTimeout indicates the\ncookie's lifetime via the Expires or Max-Age cookie attributes\nand is required.\n\n\nWhen set to \"Session\", AbsoluteTimeout indicates the\nabsolute lifetime of the cookie tracked by the gateway and\nis optional.\n\n\nSupport: Core for \"Session\" type\n\n\nSupport: Extended for \"Permanent\" type",
+                  "description": "LifetimeType specifies whether the cookie has a permanent or\nsession-based lifetime. A permanent cookie persists until its\nspecified expiry time, defined by the Expires or Max-Age cookie\nattributes, while a session cookie is deleted when the current\nsession ends.\n\nWhen set to \"Permanent\", AbsoluteTimeout indicates the\ncookie's lifetime via the Expires or Max-Age cookie attributes\nand is required.\n\nWhen set to \"Session\", AbsoluteTimeout indicates the\nabsolute lifetime of the cookie tracked by the gateway and\nis optional.\n\nSupport: Core for \"Session\" type\n\nSupport: Extended for \"Permanent\" type",
                   "type": "string",
                   "default": "Session",
                   "enum": [
@@ -79,17 +79,17 @@
               }
             },
             "idleTimeout": {
-              "description": "IdleTimeout defines the idle timeout of the persistent session.\nOnce the session has been idle for more than the specified\nIdleTimeout duration, the session becomes invalid.\n\n\nSupport: Extended",
+              "description": "IdleTimeout defines the idle timeout of the persistent session.\nOnce the session has been idle for more than the specified\nIdleTimeout duration, the session becomes invalid.\n\nSupport: Extended",
               "type": "string",
               "pattern": "^([0-9]{1,5}(h|m|s|ms)){1,4}$"
             },
             "sessionName": {
-              "description": "SessionName defines the name of the persistent session token\nwhich may be reflected in the cookie or the header. Users\nshould avoid reusing session names to prevent unintended\nconsequences, such as rejection or unpredictable behavior.\n\n\nSupport: Implementation-specific",
+              "description": "SessionName defines the name of the persistent session token\nwhich may be reflected in the cookie or the header. Users\nshould avoid reusing session names to prevent unintended\nconsequences, such as rejection or unpredictable behavior.\n\nSupport: Implementation-specific",
               "type": "string",
               "maxLength": 128
             },
             "type": {
-              "description": "Type defines the type of session persistence such as through\nthe use a header or cookie. Defaults to cookie based session\npersistence.\n\n\nSupport: Core for \"Cookie\" type\n\n\nSupport: Extended for \"Header\" type",
+              "description": "Type defines the type of session persistence such as through\nthe use a header or cookie. Defaults to cookie based session\npersistence.\n\nSupport: Core for \"Cookie\" type\n\nSupport: Extended for \"Header\" type",
               "type": "string",
               "default": "Cookie",
               "enum": [
@@ -100,7 +100,7 @@
           },
           "x-kubernetes-validations": [
             {
-              "rule": "!has(self.cookieConfig.lifetimeType) || self.cookieConfig.lifetimeType != 'Permanent' || has(self.absoluteTimeout)",
+              "rule": "!has(self.cookieConfig) || !has(self.cookieConfig.lifetimeType) || self.cookieConfig.lifetimeType != 'Permanent' || has(self.absoluteTimeout)",
               "message": "AbsoluteTimeout must be specified when cookie lifetimeType is Permanent"
             }
           ]

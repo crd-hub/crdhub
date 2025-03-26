@@ -22,7 +22,7 @@
     "ui": {
       "editor": {
         "name": "addonsclusterxk8sio-clusterresourcesetbinding-editor",
-        "version": "v0.14.0",
+        "version": "sha256:7cc03ddca45697cfb6dfc22339eb8d5818129cdeaf347833323a6e47645bf6b2",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",

@@ -5,7 +5,7 @@
     "name": "azuremanagedmachinepools.infrastructure.cluster.x-k8s.io",
     "creationTimestamp": null,
     "annotations": {
-      "controller-gen.kubebuilder.io/version": "v0.14.0"
+      "controller-gen.kubebuilder.io/version": "v0.16.1"
     }
   },
   "spec": {
@@ -74,7 +74,7 @@
                     }
                   },
                   "enableEncryptionAtHost": {
-                    "description": "EnableEncryptionAtHost indicates whether host encryption is enabled on the node pool.\nImmutable.\nSee also [AKS doc].\n\n\n[AKS doc]: https://learn.microsoft.com/en-us/azure/aks/enable-host-encryption",
+                    "description": "EnableEncryptionAtHost indicates whether host encryption is enabled on the node pool.\nImmutable.\nSee also [AKS doc].\n\n[AKS doc]: https://learn.microsoft.com/en-us/azure/aks/enable-host-encryption",
                     "type": "boolean"
                   },
                   "enableFIPS": {
@@ -159,7 +159,7 @@
                     }
                   },
                   "kubeletDiskType": {
-                    "description": "KubeletDiskType specifies the kubelet disk type. Default to OS. Possible values include: 'OS', 'Temporary'.\nRequires Microsoft.ContainerService/KubeletDisk preview feature to be set.\nImmutable.\nSee also [AKS doc].\n\n\n[AKS doc]: https://learn.microsoft.com/rest/api/aks/agent-pools/create-or-update?tabs=HTTP#kubeletdisktype",
+                    "description": "KubeletDiskType specifies the kubelet disk type. Default to OS. Possible values include: 'OS', 'Temporary'.\nRequires Microsoft.ContainerService/KubeletDisk preview feature to be set.\nImmutable.\nSee also [AKS doc].\n\n[AKS doc]: https://learn.microsoft.com/rest/api/aks/agent-pools/create-or-update?tabs=HTTP#kubeletdisktype",
                     "type": "string",
                     "enum": [
                       "OS",
@@ -171,7 +171,7 @@
                     "type": "object",
                     "properties": {
                       "swapFileSizeMB": {
-                        "description": "SwapFileSizeMB specifies size in MB of a swap file will be created on the agent nodes from this node pool.\nMax value of SwapFileSizeMB should be the size of temporary disk(/dev/sdb).\nMust be at least 1.\nSee also [AKS doc].\n\n\n[AKS doc]: https://learn.microsoft.com/azure/virtual-machines/managed-disks-overview#temporary-disk",
+                        "description": "SwapFileSizeMB specifies size in MB of a swap file will be created on the agent nodes from this node pool.\nMax value of SwapFileSizeMB should be the size of temporary disk(/dev/sdb).\nMust be at least 1.\nSee also [AKS doc].\n\n[AKS doc]: https://learn.microsoft.com/azure/virtual-machines/managed-disks-overview#temporary-disk",
                         "type": "integer",
                         "minimum": 1
                       },
@@ -346,7 +346,7 @@
                         }
                       },
                       "transparentHugePageDefrag": {
-                        "description": "TransparentHugePageDefrag specifies whether the kernel should make aggressive use of memory compaction to make more hugepages available.\nSee also [Linux doc].\n\n\n[Linux doc]: https://www.kernel.org/doc/html/latest/admin-guide/mm/transhuge.html#admin-guide-transhuge for more details.",
+                        "description": "TransparentHugePageDefrag specifies whether the kernel should make aggressive use of memory compaction to make more hugepages available.\nSee also [Linux doc].\n\n[Linux doc]: https://www.kernel.org/doc/html/latest/admin-guide/mm/transhuge.html#admin-guide-transhuge for more details.",
                         "type": "string",
                         "enum": [
                           "always",
@@ -357,7 +357,7 @@
                         ]
                       },
                       "transparentHugePageEnabled": {
-                        "description": "TransparentHugePageEnabled specifies various modes of Transparent Hugepages.\nSee also [Linux doc].\n\n\n[Linux doc]: https://www.kernel.org/doc/html/latest/admin-guide/mm/transhuge.html#admin-guide-transhuge for more details.",
+                        "description": "TransparentHugePageEnabled specifies various modes of Transparent Hugepages.\nSee also [Linux doc].\n\n[Linux doc]: https://www.kernel.org/doc/html/latest/admin-guide/mm/transhuge.html#admin-guide-transhuge for more details.",
                         "type": "string",
                         "enum": [
                           "always",
@@ -368,7 +368,7 @@
                     }
                   },
                   "maxPods": {
-                    "description": "MaxPods specifies the kubelet `--max-pods` configuration for the node pool.\nImmutable.\nSee also [AKS doc], [K8s doc].\n\n\n[AKS doc]: https://learn.microsoft.com/azure/aks/configure-azure-cni#configure-maximum---new-clusters\n[K8s doc]: https://kubernetes.io/docs/reference/command-line-tools-reference/kubelet/",
+                    "description": "MaxPods specifies the kubelet `--max-pods` configuration for the node pool.\nImmutable.\nSee also [AKS doc], [K8s doc].\n\n[AKS doc]: https://learn.microsoft.com/azure/aks/configure-azure-cni#configure-maximum---new-clusters\n[K8s doc]: https://kubernetes.io/docs/reference/command-line-tools-reference/kubelet/",
                     "type": "integer"
                   },
                   "mode": {
@@ -384,7 +384,7 @@
                     "type": "string"
                   },
                   "nodeLabels": {
-                    "description": "Node labels represent the labels for all of the nodes present in node pool.\nSee also [AKS doc].\n\n\n[AKS doc]: https://learn.microsoft.com/azure/aks/use-labels",
+                    "description": "Node labels represent the labels for all of the nodes present in node pool.\nSee also [AKS doc].\n\n[AKS doc]: https://learn.microsoft.com/azure/aks/use-labels",
                     "type": "object",
                     "additionalProperties": {
                       "type": "string"
@@ -399,7 +399,7 @@
                     "type": "integer"
                   },
                   "osDiskType": {
-                    "description": "OsDiskType specifies the OS disk type for each node in the pool. Allowed values are 'Ephemeral' and 'Managed' (default).\nImmutable.\nSee also [AKS doc].\n\n\n[AKS doc]: https://learn.microsoft.com/azure/aks/cluster-configuration#ephemeral-os",
+                    "description": "OsDiskType specifies the OS disk type for each node in the pool. Allowed values are 'Ephemeral' and 'Managed' (default).\nImmutable.\nSee also [AKS doc].\n\n[AKS doc]: https://learn.microsoft.com/azure/aks/cluster-configuration#ephemeral-os",
                     "type": "string",
                     "default": "Managed",
                     "enum": [
@@ -408,8 +408,9 @@
                     ]
                   },
                   "osType": {
-                    "description": "OSType specifies the virtual machine operating system. Default to Linux. Possible values include: 'Linux', 'Windows'.\n'Windows' requires the AzureManagedControlPlane's `spec.networkPlugin` to be `azure`.\nImmutable.\nSee also [AKS doc].\n\n\n[AKS doc]: https://learn.microsoft.com/rest/api/aks/agent-pools/create-or-update?tabs=HTTP#ostype",
+                    "description": "OSType specifies the virtual machine operating system. Default to Linux. Possible values include: 'Linux', 'Windows'.\n'Windows' requires the AzureManagedControlPlane's `spec.networkPlugin` to be `azure`.\nImmutable.\nSee also [AKS doc].\n\n[AKS doc]: https://learn.microsoft.com/rest/api/aks/agent-pools/create-or-update?tabs=HTTP#ostype",
                     "type": "string",
+                    "default": "Linux",
                     "enum": [
                       "Linux",
                       "Windows"
@@ -475,7 +476,7 @@
                     "type": "string"
                   },
                   "taints": {
-                    "description": "Taints specifies the taints for nodes present in this agent pool.\nSee also [AKS doc].\n\n\n[AKS doc]: https://learn.microsoft.com/azure/aks/use-multiple-node-pools#setting-node-pool-taints",
+                    "description": "Taints specifies the taints for nodes present in this agent pool.\nSee also [AKS doc].\n\n[AKS doc]: https://learn.microsoft.com/azure/aks/use-multiple-node-pools#setting-node-pool-taints",
                     "type": "array",
                     "items": {
                       "description": "Taint represents a Kubernetes taint.",
@@ -534,19 +535,19 @@
                           "type": "string"
                         },
                         "reason": {
-                          "description": "The reason for the condition's last transition in CamelCase.\nThe specific API may choose whether or not this field is considered a guaranteed API.\nThis field may not be empty.",
+                          "description": "The reason for the condition's last transition in CamelCase.\nThe specific API may choose whether or not this field is considered a guaranteed API.\nThis field may be empty.",
                           "type": "string"
                         },
                         "severity": {
-                          "description": "Severity provides an explicit classification of Reason code, so the users or machines can immediately\nunderstand the current situation and act accordingly.\nThe Severity field MUST be set only when Status=False.",
+                          "description": "severity provides an explicit classification of Reason code, so the users or machines can immediately\nunderstand the current situation and act accordingly.\nThe Severity field MUST be set only when Status=False.",
                           "type": "string"
                         },
                         "status": {
-                          "description": "Status of the condition, one of True, False, Unknown.",
+                          "description": "status of the condition, one of True, False, Unknown.",
                           "type": "string"
                         },
                         "type": {
-                          "description": "Type of condition in CamelCase or in foo.example.com/CamelCase.\nMany .condition.type values are consistent across resources like Available, but because arbitrary conditions\ncan be useful (see .node.status.conditions), the ability to deconflict is important.",
+                          "description": "type of condition in CamelCase or in foo.example.com/CamelCase.\nMany .condition.type values are consistent across resources like Available, but because arbitrary conditions\ncan be useful (see .node.status.conditions), the ability to deconflict is important.",
                           "type": "string"
                         }
                       }

@@ -22,7 +22,7 @@
     "ui": {
       "editor": {
         "name": "imagetoolkitfluxcdio-imageupdateautomation-editor",
-        "version": "v0.14.0",
+        "version": "sha256:0ad7af6af2a74b743b946ee00db94ef7dddc5a2077c44c59e68ef160b0ca7a87",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",

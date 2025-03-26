@@ -22,7 +22,7 @@
     "ui": {
       "options": {
         "name": "kubedbcom-kafka-editor-options",
-        "version": "v0.14.0",
+        "version": "sha256:462fbb251505f03522c83b35e17965cfe86ac5595bd4dc951daeccb9f07e7da8",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",
@@ -31,7 +31,7 @@
       },
       "editor": {
         "name": "kubedbcom-kafka-editor",
-        "version": "v0.14.0",
+        "version": "sha256:1ab282dc2a90eb78237d0837d9b2f1598a1a2aec75d5cca1797c3b28c2e8e840",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",
@@ -55,7 +55,7 @@
               "flow": "standalone-create",
               "editor": {
                 "name": "opskubedbcom-kafkaopsrequest-editor",
-                "version": "v0.14.0",
+                "version": "sha256:fe7adab0031c3df8944848eec9aced6981657fc80afcf06c53a3fdc9b86ae075",
                 "sourceRef": {
                   "apiGroup": "source.toolkit.fluxcd.io",
                   "kind": "HelmRepository",
@@ -76,7 +76,7 @@
               "flow": "standalone-create",
               "editor": {
                 "name": "opskubedbcom-kafkaopsrequest-editor",
-                "version": "v0.14.0",
+                "version": "sha256:fe7adab0031c3df8944848eec9aced6981657fc80afcf06c53a3fdc9b86ae075",
                 "sourceRef": {
                   "apiGroup": "source.toolkit.fluxcd.io",
                   "kind": "HelmRepository",
@@ -97,7 +97,7 @@
               "flow": "standalone-create",
               "editor": {
                 "name": "opskubedbcom-kafkaopsrequest-editor",
-                "version": "v0.14.0",
+                "version": "sha256:fe7adab0031c3df8944848eec9aced6981657fc80afcf06c53a3fdc9b86ae075",
                 "sourceRef": {
                   "apiGroup": "source.toolkit.fluxcd.io",
                   "kind": "HelmRepository",
@@ -124,7 +124,7 @@
               "disabledTemplate": "{{ not (or (hasKey .spec \"topology\") (gt .spec.replicas 1) )}}\n",
               "editor": {
                 "name": "opskubedbcom-kafkaopsrequest-editor",
-                "version": "v0.14.0",
+                "version": "sha256:fe7adab0031c3df8944848eec9aced6981657fc80afcf06c53a3fdc9b86ae075",
                 "sourceRef": {
                   "apiGroup": "source.toolkit.fluxcd.io",
                   "kind": "HelmRepository",
@@ -145,7 +145,7 @@
               "flow": "standalone-create",
               "editor": {
                 "name": "opskubedbcom-kafkaopsrequest-editor",
-                "version": "v0.14.0",
+                "version": "sha256:fe7adab0031c3df8944848eec9aced6981657fc80afcf06c53a3fdc9b86ae075",
                 "sourceRef": {
                   "apiGroup": "source.toolkit.fluxcd.io",
                   "kind": "HelmRepository",
@@ -166,7 +166,7 @@
               "flow": "standalone-create",
               "editor": {
                 "name": "opskubedbcom-kafkaopsrequest-editor",
-                "version": "v0.14.0",
+                "version": "sha256:fe7adab0031c3df8944848eec9aced6981657fc80afcf06c53a3fdc9b86ae075",
                 "sourceRef": {
                   "apiGroup": "source.toolkit.fluxcd.io",
                   "kind": "HelmRepository",
@@ -192,7 +192,7 @@
               "flow": "standalone-edit",
               "editor": {
                 "name": "kubedbcom-kafka-editor",
-                "version": "v0.14.0",
+                "version": "sha256:1ab282dc2a90eb78237d0837d9b2f1598a1a2aec75d5cca1797c3b28c2e8e840",
                 "sourceRef": {
                   "apiGroup": "source.toolkit.fluxcd.io",
                   "kind": "HelmRepository",
@@ -213,7 +213,7 @@
               "flow": "standalone-edit",
               "editor": {
                 "name": "kubedbcom-kafka-editor",
-                "version": "v0.14.0",
+                "version": "sha256:1ab282dc2a90eb78237d0837d9b2f1598a1a2aec75d5cca1797c3b28c2e8e840",
                 "sourceRef": {
                   "apiGroup": "source.toolkit.fluxcd.io",
                   "kind": "HelmRepository",
@@ -239,7 +239,7 @@
               "flow": "standalone-edit",
               "editor": {
                 "name": "kubedbcom-kafka-editor",
-                "version": "v0.14.0",
+                "version": "sha256:1ab282dc2a90eb78237d0837d9b2f1598a1a2aec75d5cca1797c3b28c2e8e840",
                 "sourceRef": {
                   "apiGroup": "source.toolkit.fluxcd.io",
                   "kind": "HelmRepository",
@@ -265,7 +265,7 @@
               "flow": "standalone-edit",
               "editor": {
                 "name": "kubedbcom-kafka-editor",
-                "version": "v0.14.0",
+                "version": "sha256:1ab282dc2a90eb78237d0837d9b2f1598a1a2aec75d5cca1797c3b28c2e8e840",
                 "sourceRef": {
                   "apiGroup": "source.toolkit.fluxcd.io",
                   "kind": "HelmRepository",

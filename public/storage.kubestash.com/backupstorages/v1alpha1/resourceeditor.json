@@ -22,7 +22,7 @@
     "ui": {
       "options": {
         "name": "storagekubestashcom-backupstorage-editor-options",
-        "version": "v0.14.0",
+        "version": "sha256:9deb7206f335d3d9cde9ad674b1a3e4e36675a26f2a022c97ad28f652a16e70d",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",
@@ -31,7 +31,7 @@
       },
       "editor": {
         "name": "storagekubestashcom-backupstorage-editor",
-        "version": "v0.14.0",
+        "version": "sha256:09238919e948e0261761952207acab6bd5f7cee36e82319b5556102f17ab79fd",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",

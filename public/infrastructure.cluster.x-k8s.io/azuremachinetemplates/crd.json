@@ -5,7 +5,7 @@
     "name": "azuremachinetemplates.infrastructure.cluster.x-k8s.io",
     "creationTimestamp": null,
     "annotations": {
-      "controller-gen.kubebuilder.io/version": "v0.14.0"
+      "controller-gen.kubebuilder.io/version": "v0.16.1"
     }
   },
   "spec": {
@@ -56,11 +56,11 @@
                     ],
                     "properties": {
                       "metadata": {
-                        "description": "ObjectMeta is metadata that all persisted resources must have, which includes all objects\nusers must create. This is a copy of customizable fields from metav1.ObjectMeta.\n\n\nObjectMeta is embedded in `Machine.Spec`, `MachineDeployment.Template` and `MachineSet.Template`,\nwhich are not top-level Kubernetes objects. Given that metav1.ObjectMeta has lots of special cases\nand read-only fields which end up in the generated CRD validation, having it as a subset simplifies\nthe API and some issues that can impact user experience.\n\n\nDuring the [upgrade to controller-tools@v2](https://github.com/kubernetes-sigs/cluster-api/pull/1054)\nfor v1alpha2, we noticed a failure would occur running Cluster API test suite against the new CRDs,\nspecifically `spec.metadata.creationTimestamp in body must be of type string: \"null\"`.\nThe investigation showed that `controller-tools@v2` behaves differently than its previous version\nwhen handling types from [metav1](k8s.io/apimachinery/pkg/apis/meta/v1) package.\n\n\nIn more details, we found that embedded (non-top level) types that embedded `metav1.ObjectMeta`\nhad validation properties, including for `creationTimestamp` (metav1.Time).\nThe `metav1.Time` type specifies a custom json marshaller that, when IsZero() is true, returns `null`\nwhich breaks validation because the field isn't marked as nullable.\n\n\nIn future versions, controller-tools@v2 might allow overriding the type and validation for embedded\ntypes. When that happens, this hack should be revisited.",
+                        "description": "ObjectMeta is metadata that all persisted resources must have, which includes all objects\nusers must create. This is a copy of customizable fields from metav1.ObjectMeta.\n\nObjectMeta is embedded in `Machine.Spec`, `MachineDeployment.Template` and `MachineSet.Template`,\nwhich are not top-level Kubernetes objects. Given that metav1.ObjectMeta has lots of special cases\nand read-only fields which end up in the generated CRD validation, having it as a subset simplifies\nthe API and some issues that can impact user experience.\n\nDuring the [upgrade to controller-tools@v2](https://github.com/kubernetes-sigs/cluster-api/pull/1054)\nfor v1alpha2, we noticed a failure would occur running Cluster API test suite against the new CRDs,\nspecifically `spec.metadata.creationTimestamp in body must be of type string: \"null\"`.\nThe investigation showed that `controller-tools@v2` behaves differently than its previous version\nwhen handling types from [metav1](k8s.io/apimachinery/pkg/apis/meta/v1) package.\n\nIn more details, we found that embedded (non-top level) types that embedded `metav1.ObjectMeta`\nhad validation properties, including for `creationTimestamp` (metav1.Time).\nThe `metav1.Time` type specifies a custom json marshaller that, when IsZero() is true, returns `null`\nwhich breaks validation because the field isn't marked as nullable.\n\nIn future versions, controller-tools@v2 might allow overriding the type and validation for embedded\ntypes. When that happens, this hack should be revisited.",
                         "type": "object",
                         "properties": {
                           "annotations": {
-                            "description": "Annotations is an unstructured key value map stored with a resource that may be\nset by external tools to store and retrieve arbitrary metadata. They are not\nqueryable and should be preserved when modifying objects.\nMore info: http://kubernetes.io/docs/user-guide/annotations",
+                            "description": "annotations is an unstructured key value map stored with a resource that may be\nset by external tools to store and retrieve arbitrary metadata. They are not\nqueryable and should be preserved when modifying objects.\nMore info: http://kubernetes.io/docs/user-guide/annotations",
                             "type": "object",
                             "additionalProperties": {
                               "type": "string"
@@ -261,7 +261,7 @@
                             ]
                           },
                           "image": {
-                            "description": "Image is used to provide details of an image to use during VM creation.\nIf image details are omitted the image will default the Azure Marketplace \"capi\" offer,\nwhich is based on Ubuntu.",
+                            "description": "Image is used to provide details of an image to use during VM creation.\nIf image details are omitted, the default is to use an Azure Compute Gallery Image\nfrom CAPZ's community gallery.",
                             "type": "object",
                             "properties": {
                               "computeGallery": {
@@ -449,6 +449,7 @@
                               "cachingType": {
                                 "description": "CachingType specifies the caching requirements.",
                                 "type": "string",
+                                "default": "None",
                                 "enum": [
                                   "None",
                                   "ReadOnly",
@@ -467,6 +468,15 @@
                                     "type": "string",
                                     "enum": [
                                       "Local"
+                                    ]
+                                  },
+                                  "placement": {
+                                    "description": "Placement specifies the ephemeral disk placement for operating system disk. If placement is specified, Option must be set to \"Local\".",
+                                    "type": "string",
+                                    "enum": [
+                                      "CacheDisk",
+                                      "NvmeDisk",
+                                      "ResourceDisk"
                                     ]
                                   }
                                 }
@@ -520,7 +530,8 @@
                                 }
                               },
                               "osType": {
-                                "type": "string"
+                                "type": "string",
+                                "default": "Linux"
                               }
                             }
                           },

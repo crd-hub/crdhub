@@ -22,7 +22,7 @@
     "ui": {
       "editor": {
         "name": "schemakubedbcom-mariadbdatabase-editor",
-        "version": "v0.14.0",
+        "version": "sha256:1f60567e50e4a4e8e6e210acdff51fec181196680c7d0fe61df50d831d0cbceb",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",
