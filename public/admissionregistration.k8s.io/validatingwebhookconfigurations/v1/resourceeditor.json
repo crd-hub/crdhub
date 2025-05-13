@@ -22,7 +22,7 @@
     "ui": {
       "editor": {
         "name": "admissionregistrationk8sio-validatingwebhookconfiguration-editor",
-        "version": "sha256:b248921bd7aafceb2fbe425c301e2355fba2d19e17be5b4ca3dfeab044e2be67",
+        "version": "v0.17.0",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",

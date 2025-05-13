@@ -22,7 +22,7 @@
     "ui": {
       "editor": {
         "name": "metak8sappscodecom-resourceoutline-editor",
-        "version": "sha256:61ce1430ea9c3df3bf529cde96dc630cb9cea3e864e4165d34f300cc28b2d428",
+        "version": "v0.17.0",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",

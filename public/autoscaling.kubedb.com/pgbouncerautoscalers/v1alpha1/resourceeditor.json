@@ -22,7 +22,7 @@
     "ui": {
       "editor": {
         "name": "autoscalingkubedbcom-pgbouncerautoscaler-editor",
-        "version": "sha256:ed58291e7eee141d32e777dd6918c3f1064ccf4d2e54e9fa1b2cb7abbbab3513",
+        "version": "v0.17.0",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",

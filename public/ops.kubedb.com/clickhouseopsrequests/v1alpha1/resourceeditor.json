@@ -22,7 +22,7 @@
     "ui": {
       "editor": {
         "name": "opskubedbcom-clickhouseopsrequest-editor",
-        "version": "sha256:823ce81ad805ae906ee5455725e13b7c916f0f1eb520b9155d625a4bf1f00d53",
+        "version": "v0.17.0",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",

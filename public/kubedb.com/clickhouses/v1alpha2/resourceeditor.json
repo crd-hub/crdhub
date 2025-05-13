@@ -22,7 +22,7 @@
     "ui": {
       "options": {
         "name": "kubedbcom-clickhouse-editor-options",
-        "version": "sha256:ea65f966382f7f81bbd3ef50f79fff8875f362994f3262e9df0cbc5a51848560",
+        "version": "v0.17.0",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",
@@ -31,7 +31,7 @@
       },
       "editor": {
         "name": "kubedbcom-clickhouse-editor",
-        "version": "sha256:4ab169df6fabd460402c7a5c1a32fae0b9fbf57aa3a9ba8e757a669583affd10",
+        "version": "v0.17.0",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",
@@ -55,7 +55,7 @@
               "flow": "standalone-create",
               "editor": {
                 "name": "opskubedbcom-clickhouseopsrequest-editor",
-                "version": "sha256:823ce81ad805ae906ee5455725e13b7c916f0f1eb520b9155d625a4bf1f00d53",
+                "version": "v0.17.0",
                 "sourceRef": {
                   "apiGroup": "source.toolkit.fluxcd.io",
                   "kind": "HelmRepository",
@@ -76,7 +76,7 @@
               "flow": "standalone-create",
               "editor": {
                 "name": "opskubedbcom-clickhouseopsrequest-editor",
-                "version": "sha256:823ce81ad805ae906ee5455725e13b7c916f0f1eb520b9155d625a4bf1f00d53",
+                "version": "v0.17.0",
                 "sourceRef": {
                   "apiGroup": "source.toolkit.fluxcd.io",
                   "kind": "HelmRepository",
@@ -103,7 +103,7 @@
               "disabledTemplate": "{{ not (gt .spec.replicas 1) }}\n",
               "editor": {
                 "name": "opskubedbcom-clickhouseopsrequest-editor",
-                "version": "sha256:823ce81ad805ae906ee5455725e13b7c916f0f1eb520b9155d625a4bf1f00d53",
+                "version": "v0.17.0",
                 "sourceRef": {
                   "apiGroup": "source.toolkit.fluxcd.io",
                   "kind": "HelmRepository",
@@ -124,7 +124,7 @@
               "flow": "standalone-create",
               "editor": {
                 "name": "opskubedbcom-clickhouseopsrequest-editor",
-                "version": "sha256:823ce81ad805ae906ee5455725e13b7c916f0f1eb520b9155d625a4bf1f00d53",
+                "version": "v0.17.0",
                 "sourceRef": {
                   "apiGroup": "source.toolkit.fluxcd.io",
                   "kind": "HelmRepository",
@@ -145,7 +145,7 @@
               "flow": "standalone-create",
               "editor": {
                 "name": "opskubedbcom-clickhouseopsrequest-editor",
-                "version": "sha256:823ce81ad805ae906ee5455725e13b7c916f0f1eb520b9155d625a4bf1f00d53",
+                "version": "v0.17.0",
                 "sourceRef": {
                   "apiGroup": "source.toolkit.fluxcd.io",
                   "kind": "HelmRepository",

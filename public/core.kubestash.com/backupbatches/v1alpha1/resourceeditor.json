@@ -22,7 +22,7 @@
     "ui": {
       "editor": {
         "name": "corekubestashcom-backupbatch-editor",
-        "version": "sha256:fb263c45e9d78ebb68580a908136c79a3a531e33008570f89ea7cdf60a7753a0",
+        "version": "v0.17.0",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",

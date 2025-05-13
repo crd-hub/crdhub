@@ -22,7 +22,7 @@
     "ui": {
       "options": {
         "name": "kubedbcom-ferretdb-editor-options",
-        "version": "sha256:0521d54d48a4b331f774e74068d6aea62d8b3a5e44f236206c12f591a5053dd8",
+        "version": "v0.17.0",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",
@@ -31,7 +31,7 @@
       },
       "editor": {
         "name": "kubedbcom-ferretdb-editor",
-        "version": "sha256:919d0746251c01d8227eb6166c0d88cfc2b5b8374712441bd12fb9399725bbae",
+        "version": "v0.17.0",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",
@@ -55,7 +55,7 @@
               "flow": "standalone-create",
               "editor": {
                 "name": "opskubedbcom-ferretdbopsrequest-editor",
-                "version": "sha256:45082674b19841cf1cd4c89e34bd2bf98114d01ec921469d36210d15fb939125",
+                "version": "v0.17.0",
                 "sourceRef": {
                   "apiGroup": "source.toolkit.fluxcd.io",
                   "kind": "HelmRepository",
@@ -76,7 +76,7 @@
               "flow": "standalone-create",
               "editor": {
                 "name": "opskubedbcom-ferretdbopsrequest-editor",
-                "version": "sha256:45082674b19841cf1cd4c89e34bd2bf98114d01ec921469d36210d15fb939125",
+                "version": "v0.17.0",
                 "sourceRef": {
                   "apiGroup": "source.toolkit.fluxcd.io",
                   "kind": "HelmRepository",
@@ -100,10 +100,9 @@
               ],
               "operationId": "create-opsrequest-horizontalscaling",
               "flow": "standalone-create",
-              "disabledTemplate": "{{ not (gt .spec.replicas 1) }}\n",
               "editor": {
                 "name": "opskubedbcom-ferretdbopsrequest-editor",
-                "version": "sha256:45082674b19841cf1cd4c89e34bd2bf98114d01ec921469d36210d15fb939125",
+                "version": "v0.17.0",
                 "sourceRef": {
                   "apiGroup": "source.toolkit.fluxcd.io",
                   "kind": "HelmRepository",
@@ -124,7 +123,7 @@
               "flow": "standalone-create",
               "editor": {
                 "name": "opskubedbcom-ferretdbopsrequest-editor",
-                "version": "sha256:45082674b19841cf1cd4c89e34bd2bf98114d01ec921469d36210d15fb939125",
+                "version": "v0.17.0",
                 "sourceRef": {
                   "apiGroup": "source.toolkit.fluxcd.io",
                   "kind": "HelmRepository",
@@ -150,7 +149,7 @@
               "flow": "standalone-edit",
               "editor": {
                 "name": "kubedbcom-ferretdb-editor",
-                "version": "sha256:919d0746251c01d8227eb6166c0d88cfc2b5b8374712441bd12fb9399725bbae",
+                "version": "v0.17.0",
                 "sourceRef": {
                   "apiGroup": "source.toolkit.fluxcd.io",
                   "kind": "HelmRepository",
@@ -176,7 +175,7 @@
               "flow": "standalone-create",
               "editor": {
                 "name": "opskubedbcom-ferretdbopsrequest-editor",
-                "version": "sha256:45082674b19841cf1cd4c89e34bd2bf98114d01ec921469d36210d15fb939125",
+                "version": "v0.17.0",
                 "sourceRef": {
                   "apiGroup": "source.toolkit.fluxcd.io",
                   "kind": "HelmRepository",
@@ -197,7 +196,7 @@
               "flow": "standalone-edit",
               "editor": {
                 "name": "kubedbcom-ferretdb-editor",
-                "version": "sha256:919d0746251c01d8227eb6166c0d88cfc2b5b8374712441bd12fb9399725bbae",
+                "version": "v0.17.0",
                 "sourceRef": {
                   "apiGroup": "source.toolkit.fluxcd.io",
                   "kind": "HelmRepository",

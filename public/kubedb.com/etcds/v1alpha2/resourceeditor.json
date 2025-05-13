@@ -22,7 +22,7 @@
     "ui": {
       "editor": {
         "name": "kubedbcom-etcd-editor",
-        "version": "sha256:7557bd41b286d44ac5c4e44fe9b84b60d4b9204da47ca02a2b8ef2f0b9b73623",
+        "version": "v0.17.0",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",

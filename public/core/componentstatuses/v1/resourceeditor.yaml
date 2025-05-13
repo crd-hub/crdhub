@@ -22,5 +22,5 @@ spec:
         apiGroup: source.toolkit.fluxcd.io
         kind: HelmRepository
         name: appscode-charts-oci
-      version: sha256:091bef18f4813751f550b385ff9da76d69b512ce665c762f0cb50209470acc79
+      version: v0.17.0
     enforceQuota: false

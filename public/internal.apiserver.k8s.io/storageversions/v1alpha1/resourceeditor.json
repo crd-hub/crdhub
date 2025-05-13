@@ -22,7 +22,7 @@
     "ui": {
       "editor": {
         "name": "internalapiserverk8sio-storageversion-editor",
-        "version": "sha256:232b533b69afd32b06503f730e98c15d4d324a3b7db7213f0b5c8e1142bd9811",
+        "version": "v0.17.0",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",

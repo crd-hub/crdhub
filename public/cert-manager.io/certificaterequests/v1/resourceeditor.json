@@ -22,7 +22,7 @@
     "ui": {
       "editor": {
         "name": "certmanagerio-certificaterequest-editor",
-        "version": "sha256:d45bdbaf260e62241794b4822d61129e5af4307cdbb65e0a199c9008437c7483",
+        "version": "v0.17.0",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",

@@ -5,7 +5,7 @@
     "name": "machinepools.cluster.x-k8s.io",
     "creationTimestamp": null,
     "annotations": {
-      "controller-gen.kubebuilder.io/version": "v0.15.0"
+      "controller-gen.kubebuilder.io/version": "v0.17.2"
     }
   },
   "spec": {
@@ -31,7 +31,7 @@
         "deprecated": true,
         "schema": {
           "openAPIV3Schema": {
-            "description": "MachinePool is the Schema for the machinepools API.\n\n\nDeprecated: This type will be removed in one of the next releases.",
+            "description": "MachinePool is the Schema for the machinepools API.\n\nDeprecated: This type will be removed in one of the next releases.",
             "type": "object",
             "properties": {
               "apiVersion": {
@@ -46,7 +46,7 @@
                 "type": "object"
               },
               "spec": {
-                "description": "MachinePoolSpec defines the desired state of MachinePool.",
+                "description": "spec is the desired state of MachinePool.",
                 "type": "object",
                 "required": [
                   "clusterName",
@@ -54,44 +54,44 @@
                 ],
                 "properties": {
                   "clusterName": {
-                    "description": "ClusterName is the name of the Cluster this object belongs to.",
+                    "description": "clusterName is the name of the Cluster this object belongs to.",
                     "type": "string",
                     "minLength": 1
                   },
                   "failureDomains": {
-                    "description": "FailureDomains is the list of failure domains this MachinePool should be attached to.",
+                    "description": "failureDomains is the list of failure domains this MachinePool should be attached to.",
                     "type": "array",
                     "items": {
                       "type": "string"
                     }
                   },
                   "minReadySeconds": {
-                    "description": "Minimum number of seconds for which a newly created machine instances should\nbe ready.\nDefaults to 0 (machine instance will be considered available as soon as it\nis ready)",
+                    "description": "minReadySeconds is the minimum number of seconds for which a newly created machine instances should\nbe ready.\nDefaults to 0 (machine instance will be considered available as soon as it\nis ready)",
                     "type": "integer",
                     "format": "int32"
                   },
                   "providerIDList": {
-                    "description": "ProviderIDList are the identification IDs of machine instances provided by the provider.\nThis field must match the provider IDs as seen on the node objects corresponding to a machine pool's machine instances.",
+                    "description": "providerIDList are the identification IDs of machine instances provided by the provider.\nThis field must match the provider IDs as seen on the node objects corresponding to a machine pool's machine instances.",
                     "type": "array",
                     "items": {
                       "type": "string"
                     }
                   },
                   "replicas": {
-                    "description": "Number of desired machines. Defaults to 1.\nThis is a pointer to distinguish between explicit zero and not specified.",
+                    "description": "replicas is the number of desired machines. Defaults to 1.\nThis is a pointer to distinguish between explicit zero and not specified.",
                     "type": "integer",
                     "format": "int32"
                   },
                   "strategy": {
-                    "description": "The deployment strategy to use to replace existing machine instances with\nnew ones.",
+                    "description": "strategy is the deployment strategy to use to replace existing machine instances with\nnew ones.",
                     "type": "object",
                     "properties": {
                       "rollingUpdate": {
-                        "description": "Rolling update config params. Present only if\nMachineDeploymentStrategyType = RollingUpdate.",
+                        "description": "rollingUpdate is the rolling update config params. Present only if\nMachineDeploymentStrategyType = RollingUpdate.",
                         "type": "object",
                         "properties": {
                           "maxSurge": {
-                            "description": "The maximum number of machines that can be scheduled above the\ndesired number of machines.\nValue can be an absolute number (ex: 5) or a percentage of\ndesired machines (ex: 10%).\nThis can not be 0 if MaxUnavailable is 0.\nAbsolute number is calculated from percentage by rounding up.\nDefaults to 1.\nExample: when this is set to 30%, the new MachineSet can be scaled\nup immediately when the rolling update starts, such that the total\nnumber of old and new machines do not exceed 130% of desired\nmachines. Once old machines have been killed, new MachineSet can\nbe scaled up further, ensuring that total number of machines running\nat any time during the update is at most 130% of desired machines.",
+                            "description": "maxSurge is the maximum number of machines that can be scheduled above the\ndesired number of machines.\nValue can be an absolute number (ex: 5) or a percentage of\ndesired machines (ex: 10%).\nThis can not be 0 if MaxUnavailable is 0.\nAbsolute number is calculated from percentage by rounding up.\nDefaults to 1.\nExample: when this is set to 30%, the new MachineSet can be scaled\nup immediately when the rolling update starts, such that the total\nnumber of old and new machines do not exceed 130% of desired\nmachines. Once old machines have been killed, new MachineSet can\nbe scaled up further, ensuring that total number of machines running\nat any time during the update is at most 130% of desired machines.",
                             "anyOf": [
                               {
                                 "type": "integer"
@@ -103,7 +103,7 @@
                             "x-kubernetes-int-or-string": true
                           },
                           "maxUnavailable": {
-                            "description": "The maximum number of machines that can be unavailable during the update.\nValue can be an absolute number (ex: 5) or a percentage of desired\nmachines (ex: 10%).\nAbsolute number is calculated from percentage by rounding down.\nThis can not be 0 if MaxSurge is 0.\nDefaults to 0.\nExample: when this is set to 30%, the old MachineSet can be scaled\ndown to 70% of desired machines immediately when the rolling update\nstarts. Once new machines are ready, old MachineSet can be scaled\ndown further, followed by scaling up the new MachineSet, ensuring\nthat the total number of machines available at all times\nduring the update is at least 70% of desired machines.",
+                            "description": "maxUnavailable is the maximum number of machines that can be unavailable during the update.\nValue can be an absolute number (ex: 5) or a percentage of desired\nmachines (ex: 10%).\nAbsolute number is calculated from percentage by rounding down.\nThis can not be 0 if MaxSurge is 0.\nDefaults to 0.\nExample: when this is set to 30%, the old MachineSet can be scaled\ndown to 70% of desired machines immediately when the rolling update\nstarts. Once new machines are ready, old MachineSet can be scaled\ndown further, followed by scaling up the new MachineSet, ensuring\nthat the total number of machines available at all times\nduring the update is at least 70% of desired machines.",
                             "anyOf": [
                               {
                                 "type": "integer"
@@ -117,47 +117,47 @@
                         }
                       },
                       "type": {
-                        "description": "Type of deployment. Currently the only supported strategy is\n\"RollingUpdate\".\nDefault is RollingUpdate.",
+                        "description": "type of deployment. Currently the only supported strategy is\n\"RollingUpdate\".\nDefault is RollingUpdate.",
                         "type": "string"
                       }
                     }
                   },
                   "template": {
-                    "description": "Template describes the machines that will be created.",
+                    "description": "template describes the machines that will be created.",
                     "type": "object",
                     "properties": {
                       "metadata": {
-                        "description": "Standard object's metadata.\nMore info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata",
+                        "description": "metadata is the standard object's metadata.\nMore info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata",
                         "type": "object",
                         "properties": {
                           "annotations": {
-                            "description": "Annotations is an unstructured key value map stored with a resource that may be\nset by external tools to store and retrieve arbitrary metadata. They are not\nqueryable and should be preserved when modifying objects.\nMore info: http://kubernetes.io/docs/user-guide/annotations",
+                            "description": "annotations is an unstructured key value map stored with a resource that may be\nset by external tools to store and retrieve arbitrary metadata. They are not\nqueryable and should be preserved when modifying objects.\nMore info: http://kubernetes.io/docs/user-guide/annotations",
                             "type": "object",
                             "additionalProperties": {
                               "type": "string"
                             }
                           },
                           "generateName": {
-                            "description": "GenerateName is an optional prefix, used by the server, to generate a unique\nname ONLY IF the Name field has not been provided.\nIf this field is used, the name returned to the client will be different\nthan the name passed. This value will also be combined with a unique suffix.\nThe provided value has the same validation rules as the Name field,\nand may be truncated by the length of the suffix required to make the value\nunique on the server.\n\n\nIf this field is specified and the generated name exists, the server will\nNOT return a 409 - instead, it will either return 201 Created or 500 with Reason\nServerTimeout indicating a unique name could not be found in the time allotted, and the client\nshould retry (optionally after the time indicated in the Retry-After header).\n\n\nApplied only if Name is not specified.\nMore info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#idempotency\n\n\nDeprecated: This field has no function and is going to be removed in a next release.",
+                            "description": "generateName is an optional prefix, used by the server, to generate a unique\nname ONLY IF the Name field has not been provided.\nIf this field is used, the name returned to the client will be different\nthan the name passed. This value will also be combined with a unique suffix.\nThe provided value has the same validation rules as the Name field,\nand may be truncated by the length of the suffix required to make the value\nunique on the server.\n\nIf this field is specified and the generated name exists, the server will\nNOT return a 409 - instead, it will either return 201 Created or 500 with Reason\nServerTimeout indicating a unique name could not be found in the time allotted, and the client\nshould retry (optionally after the time indicated in the Retry-After header).\n\nApplied only if Name is not specified.\nMore info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#idempotency\n\nDeprecated: This field has no function and is going to be removed in a next release.",
                             "type": "string"
                           },
                           "labels": {
-                            "description": "Map of string keys and values that can be used to organize and categorize\n(scope and select) objects. May match selectors of replication controllers\nand services.\nMore info: http://kubernetes.io/docs/user-guide/labels",
+                            "description": "labels is a map of string keys and values that can be used to organize and categorize\n(scope and select) objects. May match selectors of replication controllers\nand services.\nMore info: http://kubernetes.io/docs/user-guide/labels",
                             "type": "object",
                             "additionalProperties": {
                               "type": "string"
                             }
                           },
                           "name": {
-                            "description": "Name must be unique within a namespace. Is required when creating resources, although\nsome resources may allow a client to request the generation of an appropriate name\nautomatically. Name is primarily intended for creation idempotence and configuration\ndefinition.\nCannot be updated.\nMore info: http://kubernetes.io/docs/user-guide/identifiers#names\n\n\nDeprecated: This field has no function and is going to be removed in a next release.",
+                            "description": "name must be unique within a namespace. Is required when creating resources, although\nsome resources may allow a client to request the generation of an appropriate name\nautomatically. Name is primarily intended for creation idempotence and configuration\ndefinition.\nCannot be updated.\nMore info: http://kubernetes.io/docs/user-guide/identifiers#names\n\nDeprecated: This field has no function and is going to be removed in a next release.",
                             "type": "string"
                           },
                           "namespace": {
-                            "description": "Namespace defines the space within each name must be unique. An empty namespace is\nequivalent to the \"default\" namespace, but \"default\" is the canonical representation.\nNot all objects are required to be scoped to a namespace - the value of this field for\nthose objects will be empty.\n\n\nMust be a DNS_LABEL.\nCannot be updated.\nMore info: http://kubernetes.io/docs/user-guide/namespaces\n\n\nDeprecated: This field has no function and is going to be removed in a next release.",
+                            "description": "namespace defines the space within each name must be unique. An empty namespace is\nequivalent to the \"default\" namespace, but \"default\" is the canonical representation.\nNot all objects are required to be scoped to a namespace - the value of this field for\nthose objects will be empty.\n\nMust be a DNS_LABEL.\nCannot be updated.\nMore info: http://kubernetes.io/docs/user-guide/namespaces\n\nDeprecated: This field has no function and is going to be removed in a next release.",
                             "type": "string"
                           },
                           "ownerReferences": {
-                            "description": "List of objects depended by this object. If ALL objects in the list have\nbeen deleted, this object will be garbage collected. If this object is managed by a controller,\nthen an entry in this list will point to this controller, with the controller field set to true.\nThere cannot be more than one managing controller.\n\n\nDeprecated: This field has no function and is going to be removed in a next release.",
+                            "description": "ownerReferences is the list of objects depended by this object. If ALL objects in the list have\nbeen deleted, this object will be garbage collected. If this object is managed by a controller,\nthen an entry in this list will point to this controller, with the controller field set to true.\nThere cannot be more than one managing controller.\n\nDeprecated: This field has no function and is going to be removed in a next release.",
                             "type": "array",
                             "items": {
                               "description": "OwnerReference contains enough information to let you identify an owning\nobject. An owning object must be in the same namespace as the dependent, or\nbe cluster-scoped, so there is no namespace field.",
@@ -200,7 +200,7 @@
                         }
                       },
                       "spec": {
-                        "description": "Specification of the desired behavior of the machine.\nMore info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#spec-and-status",
+                        "description": "spec is the specification of the desired behavior of the machine.\nMore info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#spec-and-status",
                         "type": "object",
                         "required": [
                           "bootstrap",
@@ -209,11 +209,11 @@
                         ],
                         "properties": {
                           "bootstrap": {
-                            "description": "Bootstrap is a reference to a local struct which encapsulates\nfields to configure the Machine’s bootstrapping mechanism.",
+                            "description": "bootstrap is a reference to a local struct which encapsulates\nfields to configure the Machine’s bootstrapping mechanism.",
                             "type": "object",
                             "properties": {
                               "configRef": {
-                                "description": "ConfigRef is a reference to a bootstrap provider-specific resource\nthat holds configuration details. The reference is optional to\nallow users/operators to specify Bootstrap.Data without\nthe need of a controller.",
+                                "description": "configRef is a reference to a bootstrap provider-specific resource\nthat holds configuration details. The reference is optional to\nallow users/operators to specify Bootstrap.Data without\nthe need of a controller.",
                                 "type": "object",
                                 "properties": {
                                   "apiVersion": {
@@ -221,7 +221,7 @@
                                     "type": "string"
                                   },
                                   "fieldPath": {
-                                    "description": "If referring to a piece of an object instead of an entire object, this string\nshould contain a valid JSON/Go field access statement, such as desiredState.manifest.containers[2].\nFor example, if the object reference is to a container within a pod, this would take on a value like:\n\"spec.containers{name}\" (where \"name\" refers to the name of the container that triggered\nthe event) or if no container name is specified \"spec.containers[2]\" (container with\nindex 2 in this pod). This syntax is chosen only to have some well-defined way of\nreferencing a part of an object.\nTODO: this design is not final and this field is subject to change in the future.",
+                                    "description": "If referring to a piece of an object instead of an entire object, this string\nshould contain a valid JSON/Go field access statement, such as desiredState.manifest.containers[2].\nFor example, if the object reference is to a container within a pod, this would take on a value like:\n\"spec.containers{name}\" (where \"name\" refers to the name of the container that triggered\nthe event) or if no container name is specified \"spec.containers[2]\" (container with\nindex 2 in this pod). This syntax is chosen only to have some well-defined way of\nreferencing a part of an object.",
                                     "type": "string"
                                   },
                                   "kind": {
@@ -248,26 +248,26 @@
                                 "x-kubernetes-map-type": "atomic"
                               },
                               "data": {
-                                "description": "Data contains the bootstrap data, such as cloud-init details scripts.\nIf nil, the Machine should remain in the Pending state.\n\n\nDeprecated: Switch to DataSecretName.",
+                                "description": "data contains the bootstrap data, such as cloud-init details scripts.\nIf nil, the Machine should remain in the Pending state.\n\nDeprecated: Switch to DataSecretName.",
                                 "type": "string"
                               },
                               "dataSecretName": {
-                                "description": "DataSecretName is the name of the secret that stores the bootstrap data script.\nIf nil, the Machine should remain in the Pending state.",
+                                "description": "dataSecretName is the name of the secret that stores the bootstrap data script.\nIf nil, the Machine should remain in the Pending state.",
                                 "type": "string"
                               }
                             }
                           },
                           "clusterName": {
-                            "description": "ClusterName is the name of the Cluster this object belongs to.",
+                            "description": "clusterName is the name of the Cluster this object belongs to.",
                             "type": "string",
                             "minLength": 1
                           },
                           "failureDomain": {
-                            "description": "FailureDomain is the failure domain the machine will be created in.\nMust match a key in the FailureDomains map stored on the cluster object.",
+                            "description": "failureDomain is the failure domain the machine will be created in.\nMust match a key in the FailureDomains map stored on the cluster object.",
                             "type": "string"
                           },
                           "infrastructureRef": {
-                            "description": "InfrastructureRef is a required reference to a custom resource\noffered by an infrastructure provider.",
+                            "description": "infrastructureRef is a required reference to a custom resource\noffered by an infrastructure provider.",
                             "type": "object",
                             "properties": {
                               "apiVersion": {
@@ -275,7 +275,7 @@
                                 "type": "string"
                               },
                               "fieldPath": {
-                                "description": "If referring to a piece of an object instead of an entire object, this string\nshould contain a valid JSON/Go field access statement, such as desiredState.manifest.containers[2].\nFor example, if the object reference is to a container within a pod, this would take on a value like:\n\"spec.containers{name}\" (where \"name\" refers to the name of the container that triggered\nthe event) or if no container name is specified \"spec.containers[2]\" (container with\nindex 2 in this pod). This syntax is chosen only to have some well-defined way of\nreferencing a part of an object.\nTODO: this design is not final and this field is subject to change in the future.",
+                                "description": "If referring to a piece of an object instead of an entire object, this string\nshould contain a valid JSON/Go field access statement, such as desiredState.manifest.containers[2].\nFor example, if the object reference is to a container within a pod, this would take on a value like:\n\"spec.containers{name}\" (where \"name\" refers to the name of the container that triggered\nthe event) or if no container name is specified \"spec.containers[2]\" (container with\nindex 2 in this pod). This syntax is chosen only to have some well-defined way of\nreferencing a part of an object.",
                                 "type": "string"
                               },
                               "kind": {
@@ -302,15 +302,15 @@
                             "x-kubernetes-map-type": "atomic"
                           },
                           "nodeDrainTimeout": {
-                            "description": "NodeDrainTimeout is the total amount of time that the controller will spend on draining a node.\nThe default value is 0, meaning that the node can be drained without any time limitations.\nNOTE: NodeDrainTimeout is different from `kubectl drain --timeout`",
+                            "description": "nodeDrainTimeout is the total amount of time that the controller will spend on draining a node.\nThe default value is 0, meaning that the node can be drained without any time limitations.\nNOTE: NodeDrainTimeout is different from `kubectl drain --timeout`",
                             "type": "string"
                           },
                           "providerID": {
-                            "description": "ProviderID is the identification ID of the machine provided by the provider.\nThis field must match the provider ID as seen on the node object corresponding to this machine.\nThis field is required by higher level consumers of cluster-api. Example use case is cluster autoscaler\nwith cluster-api as provider. Clean-up logic in the autoscaler compares machines to nodes to find out\nmachines at provider which could not get registered as Kubernetes nodes. With cluster-api as a\ngeneric out-of-tree provider for autoscaler, this field is required by autoscaler to be\nable to have a provider view of the list of machines. Another list of nodes is queried from the k8s apiserver\nand then a comparison is done to find out unregistered machines and are marked for delete.\nThis field will be set by the actuators and consumed by higher level entities like autoscaler that will\nbe interfacing with cluster-api as generic provider.",
+                            "description": "providerID is the identification ID of the machine provided by the provider.\nThis field must match the provider ID as seen on the node object corresponding to this machine.\nThis field is required by higher level consumers of cluster-api. Example use case is cluster autoscaler\nwith cluster-api as provider. Clean-up logic in the autoscaler compares machines to nodes to find out\nmachines at provider which could not get registered as Kubernetes nodes. With cluster-api as a\ngeneric out-of-tree provider for autoscaler, this field is required by autoscaler to be\nable to have a provider view of the list of machines. Another list of nodes is queried from the k8s apiserver\nand then a comparison is done to find out unregistered machines and are marked for delete.\nThis field will be set by the actuators and consumed by higher level entities like autoscaler that will\nbe interfacing with cluster-api as generic provider.",
                             "type": "string"
                           },
                           "version": {
-                            "description": "Version defines the desired Kubernetes version.\nThis field is meant to be optionally used by bootstrap providers.",
+                            "description": "version defines the desired Kubernetes version.\nThis field is meant to be optionally used by bootstrap providers.",
                             "type": "string"
                           }
                         }
@@ -320,20 +320,20 @@
                 }
               },
               "status": {
-                "description": "MachinePoolStatus defines the observed state of MachinePool.",
+                "description": "status is the observed state of MachinePool.",
                 "type": "object",
                 "properties": {
                   "availableReplicas": {
-                    "description": "The number of available replicas (ready for at least minReadySeconds) for this MachinePool.",
+                    "description": "availableReplicas is the number of available replicas (ready for at least minReadySeconds) for this MachinePool.",
                     "type": "integer",
                     "format": "int32"
                   },
                   "bootstrapReady": {
-                    "description": "BootstrapReady is the state of the bootstrap provider.",
+                    "description": "bootstrapReady is the state of the bootstrap provider.",
                     "type": "boolean"
                   },
                   "conditions": {
-                    "description": "Conditions define the current service state of the MachinePool.",
+                    "description": "conditions define the current service state of the MachinePool.",
                     "type": "array",
                     "items": {
                       "description": "Condition defines an observation of a Cluster API resource operational state.",
@@ -344,50 +344,50 @@
                       ],
                       "properties": {
                         "lastTransitionTime": {
-                          "description": "Last time the condition transitioned from one status to another.\nThis should be when the underlying condition changed. If that is not known, then using the time when\nthe API field changed is acceptable.",
+                          "description": "lastTransitionTime is the last time the condition transitioned from one status to another.\nThis should be when the underlying condition changed. If that is not known, then using the time when\nthe API field changed is acceptable.",
                           "type": "string",
                           "format": "date-time"
                         },
                         "message": {
-                          "description": "A human readable message indicating details about the transition.\nThis field may be empty.",
+                          "description": "message is a human readable message indicating details about the transition.\nThis field may be empty.",
                           "type": "string"
                         },
                         "reason": {
-                          "description": "The reason for the condition's last transition in CamelCase.\nThe specific API may choose whether or not this field is considered a guaranteed API.\nThis field may not be empty.",
+                          "description": "reason is the reason for the condition's last transition in CamelCase.\nThe specific API may choose whether or not this field is considered a guaranteed API.\nThis field may not be empty.",
                           "type": "string"
                         },
                         "severity": {
-                          "description": "Severity provides an explicit classification of Reason code, so the users or machines can immediately\nunderstand the current situation and act accordingly.\nThe Severity field MUST be set only when Status=False.",
+                          "description": "severity provides an explicit classification of Reason code, so the users or machines can immediately\nunderstand the current situation and act accordingly.\nThe Severity field MUST be set only when Status=False.",
                           "type": "string"
                         },
                         "status": {
-                          "description": "Status of the condition, one of True, False, Unknown.",
+                          "description": "status of the condition, one of True, False, Unknown.",
                           "type": "string"
                         },
                         "type": {
-                          "description": "Type of condition in CamelCase or in foo.example.com/CamelCase.\nMany .condition.type values are consistent across resources like Available, but because arbitrary conditions\ncan be useful (see .node.status.conditions), the ability to deconflict is important.",
+                          "description": "type of condition in CamelCase or in foo.example.com/CamelCase.\nMany .condition.type values are consistent across resources like Available, but because arbitrary conditions\ncan be useful (see .node.status.conditions), the ability to deconflict is important.",
                           "type": "string"
                         }
                       }
                     }
                   },
                   "failureMessage": {
-                    "description": "FailureMessage indicates that there is a problem reconciling the state,\nand will be set to a descriptive error message.",
+                    "description": "failureMessage indicates that there is a problem reconciling the state,\nand will be set to a descriptive error message.",
                     "type": "string"
                   },
                   "failureReason": {
-                    "description": "FailureReason indicates that there is a problem reconciling the state, and\nwill be set to a token value suitable for programmatic interpretation.",
+                    "description": "failureReason indicates that there is a problem reconciling the state, and\nwill be set to a token value suitable for programmatic interpretation.",
                     "type": "string"
                   },
                   "infrastructureReady": {
-                    "description": "InfrastructureReady is the state of the infrastructure provider.",
+                    "description": "infrastructureReady is the state of the infrastructure provider.",
                     "type": "boolean"
                   },
                   "nodeRefs": {
-                    "description": "NodeRefs will point to the corresponding Nodes if it they exist.",
+                    "description": "nodeRefs will point to the corresponding Nodes if it they exist.",
                     "type": "array",
                     "items": {
-                      "description": "ObjectReference contains enough information to let you inspect or modify the referred object.\n---\nNew uses of this type are discouraged because of difficulty describing its usage when embedded in APIs.\n 1. Ignored fields.  It includes many fields which are not generally honored.  For instance, ResourceVersion and FieldPath are both very rarely valid in actual usage.\n 2. Invalid usage help.  It is impossible to add specific help for individual usage.  In most embedded usages, there are particular\n    restrictions like, \"must refer only to types A and B\" or \"UID not honored\" or \"name must be restricted\".\n    Those cannot be well described when embedded.\n 3. Inconsistent validation.  Because the usages are different, the validation rules are different by usage, which makes it hard for users to predict what will happen.\n 4. The fields are both imprecise and overly precise.  Kind is not a precise mapping to a URL. This can produce ambiguity\n    during interpretation and require a REST mapping.  In most cases, the dependency is on the group,resource tuple\n    and the version of the actual struct is irrelevant.\n 5. We cannot easily change it.  Because this type is embedded in many locations, updates to this type\n    will affect numerous schemas.  Don't make new APIs embed an underspecified API type they do not control.\n\n\nInstead of using this type, create a locally provided and used type that is well-focused on your reference.\nFor example, ServiceReferences for admission registration: https://github.com/kubernetes/api/blob/release-1.17/admissionregistration/v1/types.go#L533 .",
+                      "description": "ObjectReference contains enough information to let you inspect or modify the referred object.",
                       "type": "object",
                       "properties": {
                         "apiVersion": {
@@ -395,7 +395,7 @@
                           "type": "string"
                         },
                         "fieldPath": {
-                          "description": "If referring to a piece of an object instead of an entire object, this string\nshould contain a valid JSON/Go field access statement, such as desiredState.manifest.containers[2].\nFor example, if the object reference is to a container within a pod, this would take on a value like:\n\"spec.containers{name}\" (where \"name\" refers to the name of the container that triggered\nthe event) or if no container name is specified \"spec.containers[2]\" (container with\nindex 2 in this pod). This syntax is chosen only to have some well-defined way of\nreferencing a part of an object.\nTODO: this design is not final and this field is subject to change in the future.",
+                          "description": "If referring to a piece of an object instead of an entire object, this string\nshould contain a valid JSON/Go field access statement, such as desiredState.manifest.containers[2].\nFor example, if the object reference is to a container within a pod, this would take on a value like:\n\"spec.containers{name}\" (where \"name\" refers to the name of the container that triggered\nthe event) or if no container name is specified \"spec.containers[2]\" (container with\nindex 2 in this pod). This syntax is chosen only to have some well-defined way of\nreferencing a part of an object.",
                           "type": "string"
                         },
                         "kind": {
@@ -423,26 +423,26 @@
                     }
                   },
                   "observedGeneration": {
-                    "description": "ObservedGeneration is the latest generation observed by the controller.",
+                    "description": "observedGeneration is the latest generation observed by the controller.",
                     "type": "integer",
                     "format": "int64"
                   },
                   "phase": {
-                    "description": "Phase represents the current phase of cluster actuation.\nE.g. Pending, Running, Terminating, Failed etc.",
+                    "description": "phase represents the current phase of cluster actuation.\nE.g. Pending, Running, Terminating, Failed etc.",
                     "type": "string"
                   },
                   "readyReplicas": {
-                    "description": "The number of ready replicas for this MachinePool. A machine is considered ready when the node has been created and is \"Ready\".",
+                    "description": "readyReplicas is the number of ready replicas for this MachinePool. A machine is considered ready when the node has been created and is \"Ready\".",
                     "type": "integer",
                     "format": "int32"
                   },
                   "replicas": {
-                    "description": "Replicas is the most recently observed number of replicas.",
+                    "description": "replicas is the most recently observed number of replicas.",
                     "type": "integer",
                     "format": "int32"
                   },
                   "unavailableReplicas": {
-                    "description": "Total number of unavailable machine instances targeted by this machine pool.\nThis is the total number of machine instances that are still required for\nthe machine pool to have 100% available capacity. They may either\nbe machine instances that are running but not yet available or machine instances\nthat still have not been created.",
+                    "description": "unavailableReplicas is the total number of unavailable machine instances targeted by this machine pool.\nThis is the total number of machine instances that are still required for\nthe machine pool to have 100% available capacity. They may either\nbe machine instances that are running but not yet available or machine instances\nthat still have not been created.",
                     "type": "integer",
                     "format": "int32"
                   }
@@ -486,7 +486,7 @@
         "deprecated": true,
         "schema": {
           "openAPIV3Schema": {
-            "description": "MachinePool is the Schema for the machinepools API.\n\n\nDeprecated: This type will be removed in one of the next releases.",
+            "description": "MachinePool is the Schema for the machinepools API.\n\nDeprecated: This type will be removed in one of the next releases.",
             "type": "object",
             "properties": {
               "apiVersion": {
@@ -501,7 +501,7 @@
                 "type": "object"
               },
               "spec": {
-                "description": "MachinePoolSpec defines the desired state of MachinePool.",
+                "description": "spec is the desired state of MachinePool.",
                 "type": "object",
                 "required": [
                   "clusterName",
@@ -509,51 +509,51 @@
                 ],
                 "properties": {
                   "clusterName": {
-                    "description": "ClusterName is the name of the Cluster this object belongs to.",
+                    "description": "clusterName is the name of the Cluster this object belongs to.",
                     "type": "string",
                     "minLength": 1
                   },
                   "failureDomains": {
-                    "description": "FailureDomains is the list of failure domains this MachinePool should be attached to.",
+                    "description": "failureDomains is the list of failure domains this MachinePool should be attached to.",
                     "type": "array",
                     "items": {
                       "type": "string"
                     }
                   },
                   "minReadySeconds": {
-                    "description": "Minimum number of seconds for which a newly created machine instances should\nbe ready.\nDefaults to 0 (machine instance will be considered available as soon as it\nis ready)",
+                    "description": "minReadySeconds is the minimum number of seconds for which a newly created machine instances should\nbe ready.\nDefaults to 0 (machine instance will be considered available as soon as it\nis ready)",
                     "type": "integer",
                     "format": "int32"
                   },
                   "providerIDList": {
-                    "description": "ProviderIDList are the identification IDs of machine instances provided by the provider.\nThis field must match the provider IDs as seen on the node objects corresponding to a machine pool's machine instances.",
+                    "description": "providerIDList are the identification IDs of machine instances provided by the provider.\nThis field must match the provider IDs as seen on the node objects corresponding to a machine pool's machine instances.",
                     "type": "array",
                     "items": {
                       "type": "string"
                     }
                   },
                   "replicas": {
-                    "description": "Number of desired machines. Defaults to 1.\nThis is a pointer to distinguish between explicit zero and not specified.",
+                    "description": "replicas is the number of desired machines. Defaults to 1.\nThis is a pointer to distinguish between explicit zero and not specified.",
                     "type": "integer",
                     "format": "int32"
                   },
                   "template": {
-                    "description": "Template describes the machines that will be created.",
+                    "description": "template describes the machines that will be created.",
                     "type": "object",
                     "properties": {
                       "metadata": {
-                        "description": "Standard object's metadata.\nMore info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata",
+                        "description": "metadata is the standard object's metadata.\nMore info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata",
                         "type": "object",
                         "properties": {
                           "annotations": {
-                            "description": "Annotations is an unstructured key value map stored with a resource that may be\nset by external tools to store and retrieve arbitrary metadata. They are not\nqueryable and should be preserved when modifying objects.\nMore info: http://kubernetes.io/docs/user-guide/annotations",
+                            "description": "annotations is an unstructured key value map stored with a resource that may be\nset by external tools to store and retrieve arbitrary metadata. They are not\nqueryable and should be preserved when modifying objects.\nMore info: http://kubernetes.io/docs/user-guide/annotations",
                             "type": "object",
                             "additionalProperties": {
                               "type": "string"
                             }
                           },
                           "labels": {
-                            "description": "Map of string keys and values that can be used to organize and categorize\n(scope and select) objects. May match selectors of replication controllers\nand services.\nMore info: http://kubernetes.io/docs/user-guide/labels",
+                            "description": "labels is a map of string keys and values that can be used to organize and categorize\n(scope and select) objects. May match selectors of replication controllers\nand services.\nMore info: http://kubernetes.io/docs/user-guide/labels",
                             "type": "object",
                             "additionalProperties": {
                               "type": "string"
@@ -562,7 +562,7 @@
                         }
                       },
                       "spec": {
-                        "description": "Specification of the desired behavior of the machine.\nMore info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#spec-and-status",
+                        "description": "spec is the specification of the desired behavior of the machine.\nMore info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#spec-and-status",
                         "type": "object",
                         "required": [
                           "bootstrap",
@@ -571,11 +571,11 @@
                         ],
                         "properties": {
                           "bootstrap": {
-                            "description": "Bootstrap is a reference to a local struct which encapsulates\nfields to configure the Machine’s bootstrapping mechanism.",
+                            "description": "bootstrap is a reference to a local struct which encapsulates\nfields to configure the Machine’s bootstrapping mechanism.",
                             "type": "object",
                             "properties": {
                               "configRef": {
-                                "description": "ConfigRef is a reference to a bootstrap provider-specific resource\nthat holds configuration details. The reference is optional to\nallow users/operators to specify Bootstrap.DataSecretName without\nthe need of a controller.",
+                                "description": "configRef is a reference to a bootstrap provider-specific resource\nthat holds configuration details. The reference is optional to\nallow users/operators to specify Bootstrap.DataSecretName without\nthe need of a controller.",
                                 "type": "object",
                                 "properties": {
                                   "apiVersion": {
@@ -583,7 +583,7 @@
                                     "type": "string"
                                   },
                                   "fieldPath": {
-                                    "description": "If referring to a piece of an object instead of an entire object, this string\nshould contain a valid JSON/Go field access statement, such as desiredState.manifest.containers[2].\nFor example, if the object reference is to a container within a pod, this would take on a value like:\n\"spec.containers{name}\" (where \"name\" refers to the name of the container that triggered\nthe event) or if no container name is specified \"spec.containers[2]\" (container with\nindex 2 in this pod). This syntax is chosen only to have some well-defined way of\nreferencing a part of an object.\nTODO: this design is not final and this field is subject to change in the future.",
+                                    "description": "If referring to a piece of an object instead of an entire object, this string\nshould contain a valid JSON/Go field access statement, such as desiredState.manifest.containers[2].\nFor example, if the object reference is to a container within a pod, this would take on a value like:\n\"spec.containers{name}\" (where \"name\" refers to the name of the container that triggered\nthe event) or if no container name is specified \"spec.containers[2]\" (container with\nindex 2 in this pod). This syntax is chosen only to have some well-defined way of\nreferencing a part of an object.",
                                     "type": "string"
                                   },
                                   "kind": {
@@ -610,22 +610,22 @@
                                 "x-kubernetes-map-type": "atomic"
                               },
                               "dataSecretName": {
-                                "description": "DataSecretName is the name of the secret that stores the bootstrap data script.\nIf nil, the Machine should remain in the Pending state.",
+                                "description": "dataSecretName is the name of the secret that stores the bootstrap data script.\nIf nil, the Machine should remain in the Pending state.",
                                 "type": "string"
                               }
                             }
                           },
                           "clusterName": {
-                            "description": "ClusterName is the name of the Cluster this object belongs to.",
+                            "description": "clusterName is the name of the Cluster this object belongs to.",
                             "type": "string",
                             "minLength": 1
                           },
                           "failureDomain": {
-                            "description": "FailureDomain is the failure domain the machine will be created in.\nMust match a key in the FailureDomains map stored on the cluster object.",
+                            "description": "failureDomain is the failure domain the machine will be created in.\nMust match a key in the FailureDomains map stored on the cluster object.",
                             "type": "string"
                           },
                           "infrastructureRef": {
-                            "description": "InfrastructureRef is a required reference to a custom resource\noffered by an infrastructure provider.",
+                            "description": "infrastructureRef is a required reference to a custom resource\noffered by an infrastructure provider.",
                             "type": "object",
                             "properties": {
                               "apiVersion": {
@@ -633,7 +633,7 @@
                                 "type": "string"
                               },
                               "fieldPath": {
-                                "description": "If referring to a piece of an object instead of an entire object, this string\nshould contain a valid JSON/Go field access statement, such as desiredState.manifest.containers[2].\nFor example, if the object reference is to a container within a pod, this would take on a value like:\n\"spec.containers{name}\" (where \"name\" refers to the name of the container that triggered\nthe event) or if no container name is specified \"spec.containers[2]\" (container with\nindex 2 in this pod). This syntax is chosen only to have some well-defined way of\nreferencing a part of an object.\nTODO: this design is not final and this field is subject to change in the future.",
+                                "description": "If referring to a piece of an object instead of an entire object, this string\nshould contain a valid JSON/Go field access statement, such as desiredState.manifest.containers[2].\nFor example, if the object reference is to a container within a pod, this would take on a value like:\n\"spec.containers{name}\" (where \"name\" refers to the name of the container that triggered\nthe event) or if no container name is specified \"spec.containers[2]\" (container with\nindex 2 in this pod). This syntax is chosen only to have some well-defined way of\nreferencing a part of an object.",
                                 "type": "string"
                               },
                               "kind": {
@@ -660,15 +660,15 @@
                             "x-kubernetes-map-type": "atomic"
                           },
                           "nodeDrainTimeout": {
-                            "description": "NodeDrainTimeout is the total amount of time that the controller will spend on draining a node.\nThe default value is 0, meaning that the node can be drained without any time limitations.\nNOTE: NodeDrainTimeout is different from `kubectl drain --timeout`",
+                            "description": "nodeDrainTimeout is the total amount of time that the controller will spend on draining a node.\nThe default value is 0, meaning that the node can be drained without any time limitations.\nNOTE: NodeDrainTimeout is different from `kubectl drain --timeout`",
                             "type": "string"
                           },
                           "providerID": {
-                            "description": "ProviderID is the identification ID of the machine provided by the provider.\nThis field must match the provider ID as seen on the node object corresponding to this machine.\nThis field is required by higher level consumers of cluster-api. Example use case is cluster autoscaler\nwith cluster-api as provider. Clean-up logic in the autoscaler compares machines to nodes to find out\nmachines at provider which could not get registered as Kubernetes nodes. With cluster-api as a\ngeneric out-of-tree provider for autoscaler, this field is required by autoscaler to be\nable to have a provider view of the list of machines. Another list of nodes is queried from the k8s apiserver\nand then a comparison is done to find out unregistered machines and are marked for delete.\nThis field will be set by the actuators and consumed by higher level entities like autoscaler that will\nbe interfacing with cluster-api as generic provider.",
+                            "description": "providerID is the identification ID of the machine provided by the provider.\nThis field must match the provider ID as seen on the node object corresponding to this machine.\nThis field is required by higher level consumers of cluster-api. Example use case is cluster autoscaler\nwith cluster-api as provider. Clean-up logic in the autoscaler compares machines to nodes to find out\nmachines at provider which could not get registered as Kubernetes nodes. With cluster-api as a\ngeneric out-of-tree provider for autoscaler, this field is required by autoscaler to be\nable to have a provider view of the list of machines. Another list of nodes is queried from the k8s apiserver\nand then a comparison is done to find out unregistered machines and are marked for delete.\nThis field will be set by the actuators and consumed by higher level entities like autoscaler that will\nbe interfacing with cluster-api as generic provider.",
                             "type": "string"
                           },
                           "version": {
-                            "description": "Version defines the desired Kubernetes version.\nThis field is meant to be optionally used by bootstrap providers.",
+                            "description": "version defines the desired Kubernetes version.\nThis field is meant to be optionally used by bootstrap providers.",
                             "type": "string"
                           }
                         }
@@ -678,20 +678,20 @@
                 }
               },
               "status": {
-                "description": "MachinePoolStatus defines the observed state of MachinePool.",
+                "description": "status is the observed state of MachinePool.",
                 "type": "object",
                 "properties": {
                   "availableReplicas": {
-                    "description": "The number of available replicas (ready for at least minReadySeconds) for this MachinePool.",
+                    "description": "availableReplicas is the number of available replicas (ready for at least minReadySeconds) for this MachinePool.",
                     "type": "integer",
                     "format": "int32"
                   },
                   "bootstrapReady": {
-                    "description": "BootstrapReady is the state of the bootstrap provider.",
+                    "description": "bootstrapReady is the state of the bootstrap provider.",
                     "type": "boolean"
                   },
                   "conditions": {
-                    "description": "Conditions define the current service state of the MachinePool.",
+                    "description": "conditions define the current service state of the MachinePool.",
                     "type": "array",
                     "items": {
                       "description": "Condition defines an observation of a Cluster API resource operational state.",
@@ -702,50 +702,50 @@
                       ],
                       "properties": {
                         "lastTransitionTime": {
-                          "description": "Last time the condition transitioned from one status to another.\nThis should be when the underlying condition changed. If that is not known, then using the time when\nthe API field changed is acceptable.",
+                          "description": "lastTransitionTime is the last time the condition transitioned from one status to another.\nThis should be when the underlying condition changed. If that is not known, then using the time when\nthe API field changed is acceptable.",
                           "type": "string",
                           "format": "date-time"
                         },
                         "message": {
-                          "description": "A human readable message indicating details about the transition.\nThis field may be empty.",
+                          "description": "message is a human readable message indicating details about the transition.\nThis field may be empty.",
                           "type": "string"
                         },
                         "reason": {
-                          "description": "The reason for the condition's last transition in CamelCase.\nThe specific API may choose whether or not this field is considered a guaranteed API.\nThis field may not be empty.",
+                          "description": "reason is the reason for the condition's last transition in CamelCase.\nThe specific API may choose whether or not this field is considered a guaranteed API.\nThis field may not be empty.",
                           "type": "string"
                         },
                         "severity": {
-                          "description": "Severity provides an explicit classification of Reason code, so the users or machines can immediately\nunderstand the current situation and act accordingly.\nThe Severity field MUST be set only when Status=False.",
+                          "description": "severity provides an explicit classification of Reason code, so the users or machines can immediately\nunderstand the current situation and act accordingly.\nThe Severity field MUST be set only when Status=False.",
                           "type": "string"
                         },
                         "status": {
-                          "description": "Status of the condition, one of True, False, Unknown.",
+                          "description": "status of the condition, one of True, False, Unknown.",
                           "type": "string"
                         },
                         "type": {
-                          "description": "Type of condition in CamelCase or in foo.example.com/CamelCase.\nMany .condition.type values are consistent across resources like Available, but because arbitrary conditions\ncan be useful (see .node.status.conditions), the ability to deconflict is important.",
+                          "description": "type of condition in CamelCase or in foo.example.com/CamelCase.\nMany .condition.type values are consistent across resources like Available, but because arbitrary conditions\ncan be useful (see .node.status.conditions), the ability to deconflict is important.",
                           "type": "string"
                         }
                       }
                     }
                   },
                   "failureMessage": {
-                    "description": "FailureMessage indicates that there is a problem reconciling the state,\nand will be set to a descriptive error message.",
+                    "description": "failureMessage indicates that there is a problem reconciling the state,\nand will be set to a descriptive error message.",
                     "type": "string"
                   },
                   "failureReason": {
-                    "description": "FailureReason indicates that there is a problem reconciling the state, and\nwill be set to a token value suitable for programmatic interpretation.",
+                    "description": "failureReason indicates that there is a problem reconciling the state, and\nwill be set to a token value suitable for programmatic interpretation.",
                     "type": "string"
                   },
                   "infrastructureReady": {
-                    "description": "InfrastructureReady is the state of the infrastructure provider.",
+                    "description": "infrastructureReady is the state of the infrastructure provider.",
                     "type": "boolean"
                   },
                   "nodeRefs": {
-                    "description": "NodeRefs will point to the corresponding Nodes if it they exist.",
+                    "description": "nodeRefs will point to the corresponding Nodes if it they exist.",
                     "type": "array",
                     "items": {
-                      "description": "ObjectReference contains enough information to let you inspect or modify the referred object.\n---\nNew uses of this type are discouraged because of difficulty describing its usage when embedded in APIs.\n 1. Ignored fields.  It includes many fields which are not generally honored.  For instance, ResourceVersion and FieldPath are both very rarely valid in actual usage.\n 2. Invalid usage help.  It is impossible to add specific help for individual usage.  In most embedded usages, there are particular\n    restrictions like, \"must refer only to types A and B\" or \"UID not honored\" or \"name must be restricted\".\n    Those cannot be well described when embedded.\n 3. Inconsistent validation.  Because the usages are different, the validation rules are different by usage, which makes it hard for users to predict what will happen.\n 4. The fields are both imprecise and overly precise.  Kind is not a precise mapping to a URL. This can produce ambiguity\n    during interpretation and require a REST mapping.  In most cases, the dependency is on the group,resource tuple\n    and the version of the actual struct is irrelevant.\n 5. We cannot easily change it.  Because this type is embedded in many locations, updates to this type\n    will affect numerous schemas.  Don't make new APIs embed an underspecified API type they do not control.\n\n\nInstead of using this type, create a locally provided and used type that is well-focused on your reference.\nFor example, ServiceReferences for admission registration: https://github.com/kubernetes/api/blob/release-1.17/admissionregistration/v1/types.go#L533 .",
+                      "description": "ObjectReference contains enough information to let you inspect or modify the referred object.",
                       "type": "object",
                       "properties": {
                         "apiVersion": {
@@ -753,7 +753,7 @@
                           "type": "string"
                         },
                         "fieldPath": {
-                          "description": "If referring to a piece of an object instead of an entire object, this string\nshould contain a valid JSON/Go field access statement, such as desiredState.manifest.containers[2].\nFor example, if the object reference is to a container within a pod, this would take on a value like:\n\"spec.containers{name}\" (where \"name\" refers to the name of the container that triggered\nthe event) or if no container name is specified \"spec.containers[2]\" (container with\nindex 2 in this pod). This syntax is chosen only to have some well-defined way of\nreferencing a part of an object.\nTODO: this design is not final and this field is subject to change in the future.",
+                          "description": "If referring to a piece of an object instead of an entire object, this string\nshould contain a valid JSON/Go field access statement, such as desiredState.manifest.containers[2].\nFor example, if the object reference is to a container within a pod, this would take on a value like:\n\"spec.containers{name}\" (where \"name\" refers to the name of the container that triggered\nthe event) or if no container name is specified \"spec.containers[2]\" (container with\nindex 2 in this pod). This syntax is chosen only to have some well-defined way of\nreferencing a part of an object.",
                           "type": "string"
                         },
                         "kind": {
@@ -781,26 +781,26 @@
                     }
                   },
                   "observedGeneration": {
-                    "description": "ObservedGeneration is the latest generation observed by the controller.",
+                    "description": "observedGeneration is the latest generation observed by the controller.",
                     "type": "integer",
                     "format": "int64"
                   },
                   "phase": {
-                    "description": "Phase represents the current phase of cluster actuation.\nE.g. Pending, Running, Terminating, Failed etc.",
+                    "description": "phase represents the current phase of cluster actuation.\nE.g. Pending, Running, Terminating, Failed etc.",
                     "type": "string"
                   },
                   "readyReplicas": {
-                    "description": "The number of ready replicas for this MachinePool. A machine is considered ready when the node has been created and is \"Ready\".",
+                    "description": "readyReplicas is the number of ready replicas for this MachinePool. A machine is considered ready when the node has been created and is \"Ready\".",
                     "type": "integer",
                     "format": "int32"
                   },
                   "replicas": {
-                    "description": "Replicas is the most recently observed number of replicas.",
+                    "description": "replicas is the most recently observed number of replicas.",
                     "type": "integer",
                     "format": "int32"
                   },
                   "unavailableReplicas": {
-                    "description": "Total number of unavailable machine instances targeted by this machine pool.\nThis is the total number of machine instances that are still required for\nthe machine pool to have 100% available capacity. They may either\nbe machine instances that are running but not yet available or machine instances\nthat still have not been created.",
+                    "description": "unavailableReplicas is the total number of unavailable machine instances targeted by this machine pool.\nThis is the total number of machine instances that are still required for\nthe machine pool to have 100% available capacity. They may either\nbe machine instances that are running but not yet available or machine instances\nthat still have not been created.",
                     "type": "integer",
                     "format": "int32"
                   }
@@ -864,7 +864,7 @@
                 "type": "object"
               },
               "spec": {
-                "description": "MachinePoolSpec defines the desired state of MachinePool.",
+                "description": "spec is the desired state of MachinePool.",
                 "type": "object",
                 "required": [
                   "clusterName",
@@ -872,51 +872,58 @@
                 ],
                 "properties": {
                   "clusterName": {
-                    "description": "ClusterName is the name of the Cluster this object belongs to.",
+                    "description": "clusterName is the name of the Cluster this object belongs to.",
                     "type": "string",
+                    "maxLength": 63,
                     "minLength": 1
                   },
                   "failureDomains": {
-                    "description": "FailureDomains is the list of failure domains this MachinePool should be attached to.",
+                    "description": "failureDomains is the list of failure domains this MachinePool should be attached to.",
                     "type": "array",
+                    "maxItems": 100,
                     "items": {
-                      "type": "string"
+                      "type": "string",
+                      "maxLength": 256,
+                      "minLength": 1
                     }
                   },
                   "minReadySeconds": {
-                    "description": "Minimum number of seconds for which a newly created machine instances should\nbe ready.\nDefaults to 0 (machine instance will be considered available as soon as it\nis ready)",
+                    "description": "minReadySeconds is the minimum number of seconds for which a newly created machine instances should\nbe ready.\nDefaults to 0 (machine instance will be considered available as soon as it\nis ready)",
                     "type": "integer",
                     "format": "int32"
                   },
                   "providerIDList": {
-                    "description": "ProviderIDList are the identification IDs of machine instances provided by the provider.\nThis field must match the provider IDs as seen on the node objects corresponding to a machine pool's machine instances.",
+                    "description": "providerIDList are the identification IDs of machine instances provided by the provider.\nThis field must match the provider IDs as seen on the node objects corresponding to a machine pool's machine instances.",
                     "type": "array",
+                    "maxItems": 10000,
                     "items": {
-                      "type": "string"
+                      "type": "string",
+                      "maxLength": 512,
+                      "minLength": 1
                     }
                   },
                   "replicas": {
-                    "description": "Number of desired machines. Defaults to 1.\nThis is a pointer to distinguish between explicit zero and not specified.",
+                    "description": "replicas is the number of desired machines. Defaults to 1.\nThis is a pointer to distinguish between explicit zero and not specified.",
                     "type": "integer",
                     "format": "int32"
                   },
                   "template": {
-                    "description": "Template describes the machines that will be created.",
+                    "description": "template describes the machines that will be created.",
                     "type": "object",
                     "properties": {
                       "metadata": {
-                        "description": "Standard object's metadata.\nMore info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata",
+                        "description": "metadata is the standard object's metadata.\nMore info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata",
                         "type": "object",
                         "properties": {
                           "annotations": {
-                            "description": "Annotations is an unstructured key value map stored with a resource that may be\nset by external tools to store and retrieve arbitrary metadata. They are not\nqueryable and should be preserved when modifying objects.\nMore info: http://kubernetes.io/docs/user-guide/annotations",
+                            "description": "annotations is an unstructured key value map stored with a resource that may be\nset by external tools to store and retrieve arbitrary metadata. They are not\nqueryable and should be preserved when modifying objects.\nMore info: http://kubernetes.io/docs/user-guide/annotations",
                             "type": "object",
                             "additionalProperties": {
                               "type": "string"
                             }
                           },
                           "labels": {
-                            "description": "Map of string keys and values that can be used to organize and categorize\n(scope and select) objects. May match selectors of replication controllers\nand services.\nMore info: http://kubernetes.io/docs/user-guide/labels",
+                            "description": "labels is a map of string keys and values that can be used to organize and categorize\n(scope and select) objects. May match selectors of replication controllers\nand services.\nMore info: http://kubernetes.io/docs/user-guide/labels",
                             "type": "object",
                             "additionalProperties": {
                               "type": "string"
@@ -925,7 +932,7 @@
                         }
                       },
                       "spec": {
-                        "description": "Specification of the desired behavior of the machine.\nMore info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#spec-and-status",
+                        "description": "spec is the specification of the desired behavior of the machine.\nMore info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#spec-and-status",
                         "type": "object",
                         "required": [
                           "bootstrap",
@@ -934,11 +941,11 @@
                         ],
                         "properties": {
                           "bootstrap": {
-                            "description": "Bootstrap is a reference to a local struct which encapsulates\nfields to configure the Machine’s bootstrapping mechanism.",
+                            "description": "bootstrap is a reference to a local struct which encapsulates\nfields to configure the Machine’s bootstrapping mechanism.",
                             "type": "object",
                             "properties": {
                               "configRef": {
-                                "description": "ConfigRef is a reference to a bootstrap provider-specific resource\nthat holds configuration details. The reference is optional to\nallow users/operators to specify Bootstrap.DataSecretName without\nthe need of a controller.",
+                                "description": "configRef is a reference to a bootstrap provider-specific resource\nthat holds configuration details. The reference is optional to\nallow users/operators to specify Bootstrap.DataSecretName without\nthe need of a controller.",
                                 "type": "object",
                                 "properties": {
                                   "apiVersion": {
@@ -946,7 +953,7 @@
                                     "type": "string"
                                   },
                                   "fieldPath": {
-                                    "description": "If referring to a piece of an object instead of an entire object, this string\nshould contain a valid JSON/Go field access statement, such as desiredState.manifest.containers[2].\nFor example, if the object reference is to a container within a pod, this would take on a value like:\n\"spec.containers{name}\" (where \"name\" refers to the name of the container that triggered\nthe event) or if no container name is specified \"spec.containers[2]\" (container with\nindex 2 in this pod). This syntax is chosen only to have some well-defined way of\nreferencing a part of an object.\nTODO: this design is not final and this field is subject to change in the future.",
+                                    "description": "If referring to a piece of an object instead of an entire object, this string\nshould contain a valid JSON/Go field access statement, such as desiredState.manifest.containers[2].\nFor example, if the object reference is to a container within a pod, this would take on a value like:\n\"spec.containers{name}\" (where \"name\" refers to the name of the container that triggered\nthe event) or if no container name is specified \"spec.containers[2]\" (container with\nindex 2 in this pod). This syntax is chosen only to have some well-defined way of\nreferencing a part of an object.",
                                     "type": "string"
                                   },
                                   "kind": {
@@ -973,22 +980,27 @@
                                 "x-kubernetes-map-type": "atomic"
                               },
                               "dataSecretName": {
-                                "description": "DataSecretName is the name of the secret that stores the bootstrap data script.\nIf nil, the Machine should remain in the Pending state.",
-                                "type": "string"
+                                "description": "dataSecretName is the name of the secret that stores the bootstrap data script.\nIf nil, the Machine should remain in the Pending state.",
+                                "type": "string",
+                                "maxLength": 253,
+                                "minLength": 1
                               }
                             }
                           },
                           "clusterName": {
-                            "description": "ClusterName is the name of the Cluster this object belongs to.",
+                            "description": "clusterName is the name of the Cluster this object belongs to.",
                             "type": "string",
+                            "maxLength": 63,
                             "minLength": 1
                           },
                           "failureDomain": {
-                            "description": "FailureDomain is the failure domain the machine will be created in.\nMust match a key in the FailureDomains map stored on the cluster object.",
-                            "type": "string"
+                            "description": "failureDomain is the failure domain the machine will be created in.\nMust match a key in the FailureDomains map stored on the cluster object.",
+                            "type": "string",
+                            "maxLength": 256,
+                            "minLength": 1
                           },
                           "infrastructureRef": {
-                            "description": "InfrastructureRef is a required reference to a custom resource\noffered by an infrastructure provider.",
+                            "description": "infrastructureRef is a required reference to a custom resource\noffered by an infrastructure provider.",
                             "type": "object",
                             "properties": {
                               "apiVersion": {
@@ -996,7 +1008,7 @@
                                 "type": "string"
                               },
                               "fieldPath": {
-                                "description": "If referring to a piece of an object instead of an entire object, this string\nshould contain a valid JSON/Go field access statement, such as desiredState.manifest.containers[2].\nFor example, if the object reference is to a container within a pod, this would take on a value like:\n\"spec.containers{name}\" (where \"name\" refers to the name of the container that triggered\nthe event) or if no container name is specified \"spec.containers[2]\" (container with\nindex 2 in this pod). This syntax is chosen only to have some well-defined way of\nreferencing a part of an object.\nTODO: this design is not final and this field is subject to change in the future.",
+                                "description": "If referring to a piece of an object instead of an entire object, this string\nshould contain a valid JSON/Go field access statement, such as desiredState.manifest.containers[2].\nFor example, if the object reference is to a container within a pod, this would take on a value like:\n\"spec.containers{name}\" (where \"name\" refers to the name of the container that triggered\nthe event) or if no container name is specified \"spec.containers[2]\" (container with\nindex 2 in this pod). This syntax is chosen only to have some well-defined way of\nreferencing a part of an object.",
                                 "type": "string"
                               },
                               "kind": {
@@ -1023,24 +1035,61 @@
                             "x-kubernetes-map-type": "atomic"
                           },
                           "nodeDeletionTimeout": {
-                            "description": "NodeDeletionTimeout defines how long the controller will attempt to delete the Node that the Machine\nhosts after the Machine is marked for deletion. A duration of 0 will retry deletion indefinitely.\nDefaults to 10 seconds.",
+                            "description": "nodeDeletionTimeout defines how long the controller will attempt to delete the Node that the Machine\nhosts after the Machine is marked for deletion. A duration of 0 will retry deletion indefinitely.\nDefaults to 10 seconds.",
                             "type": "string"
                           },
                           "nodeDrainTimeout": {
-                            "description": "NodeDrainTimeout is the total amount of time that the controller will spend on draining a node.\nThe default value is 0, meaning that the node can be drained without any time limitations.\nNOTE: NodeDrainTimeout is different from `kubectl drain --timeout`",
+                            "description": "nodeDrainTimeout is the total amount of time that the controller will spend on draining a node.\nThe default value is 0, meaning that the node can be drained without any time limitations.\nNOTE: NodeDrainTimeout is different from `kubectl drain --timeout`",
                             "type": "string"
                           },
                           "nodeVolumeDetachTimeout": {
-                            "description": "NodeVolumeDetachTimeout is the total amount of time that the controller will spend on waiting for all volumes\nto be detached. The default value is 0, meaning that the volumes can be detached without any time limitations.",
+                            "description": "nodeVolumeDetachTimeout is the total amount of time that the controller will spend on waiting for all volumes\nto be detached. The default value is 0, meaning that the volumes can be detached without any time limitations.",
                             "type": "string"
                           },
                           "providerID": {
-                            "description": "ProviderID is the identification ID of the machine provided by the provider.\nThis field must match the provider ID as seen on the node object corresponding to this machine.\nThis field is required by higher level consumers of cluster-api. Example use case is cluster autoscaler\nwith cluster-api as provider. Clean-up logic in the autoscaler compares machines to nodes to find out\nmachines at provider which could not get registered as Kubernetes nodes. With cluster-api as a\ngeneric out-of-tree provider for autoscaler, this field is required by autoscaler to be\nable to have a provider view of the list of machines. Another list of nodes is queried from the k8s apiserver\nand then a comparison is done to find out unregistered machines and are marked for delete.\nThis field will be set by the actuators and consumed by higher level entities like autoscaler that will\nbe interfacing with cluster-api as generic provider.",
-                            "type": "string"
+                            "description": "providerID is the identification ID of the machine provided by the provider.\nThis field must match the provider ID as seen on the node object corresponding to this machine.\nThis field is required by higher level consumers of cluster-api. Example use case is cluster autoscaler\nwith cluster-api as provider. Clean-up logic in the autoscaler compares machines to nodes to find out\nmachines at provider which could not get registered as Kubernetes nodes. With cluster-api as a\ngeneric out-of-tree provider for autoscaler, this field is required by autoscaler to be\nable to have a provider view of the list of machines. Another list of nodes is queried from the k8s apiserver\nand then a comparison is done to find out unregistered machines and are marked for delete.\nThis field will be set by the actuators and consumed by higher level entities like autoscaler that will\nbe interfacing with cluster-api as generic provider.",
+                            "type": "string",
+                            "maxLength": 512,
+                            "minLength": 1
+                          },
+                          "readinessGates": {
+                            "description": "readinessGates specifies additional conditions to include when evaluating Machine Ready condition.\n\nThis field can be used e.g. by Cluster API control plane providers to extend the semantic of the\nReady condition for the Machine they control, like the kubeadm control provider adding ReadinessGates\nfor the APIServerPodHealthy, SchedulerPodHealthy conditions, etc.\n\nAnother example are external controllers, e.g. responsible to install special software/hardware on the Machines;\nthey can include the status of those components with a new condition and add this condition to ReadinessGates.\n\nNOTE: This field is considered only for computing v1beta2 conditions.\nNOTE: In case readinessGates conditions start with the APIServer, ControllerManager, Scheduler prefix, and all those\nreadiness gates condition are reporting the same message, when computing the Machine's Ready condition those\nreadinessGates will be replaced by a single entry reporting \"Control plane components: \" + message.\nThis helps to improve readability of conditions bubbling up to the Machine's owner resource / to the Cluster).",
+                            "type": "array",
+                            "maxItems": 32,
+                            "items": {
+                              "description": "MachineReadinessGate contains the type of a Machine condition to be used as a readiness gate.",
+                              "type": "object",
+                              "required": [
+                                "conditionType"
+                              ],
+                              "properties": {
+                                "conditionType": {
+                                  "description": "conditionType refers to a condition with matching type in the Machine's condition list.\nIf the conditions doesn't exist, it will be treated as unknown.\nNote: Both Cluster API conditions or conditions added by 3rd party controllers can be used as readiness gates.",
+                                  "type": "string",
+                                  "maxLength": 316,
+                                  "minLength": 1,
+                                  "pattern": "^([a-z0-9]([-a-z0-9]*[a-z0-9])?(\\.[a-z0-9]([-a-z0-9]*[a-z0-9])?)*/)?(([A-Za-z0-9][-A-Za-z0-9_.]*)?[A-Za-z0-9])$"
+                                },
+                                "polarity": {
+                                  "description": "polarity of the conditionType specified in this readinessGate.\nValid values are Positive, Negative and omitted.\nWhen omitted, the default behaviour will be Positive.\nA positive polarity means that the condition should report a true status under normal conditions.\nA negative polarity means that the condition should report a false status under normal conditions.",
+                                  "type": "string",
+                                  "enum": [
+                                    "Positive",
+                                    "Negative"
+                                  ]
+                                }
+                              }
+                            },
+                            "x-kubernetes-list-map-keys": [
+                              "conditionType"
+                            ],
+                            "x-kubernetes-list-type": "map"
                           },
                           "version": {
-                            "description": "Version defines the desired Kubernetes version.\nThis field is meant to be optionally used by bootstrap providers.",
-                            "type": "string"
+                            "description": "version defines the desired Kubernetes version.\nThis field is meant to be optionally used by bootstrap providers.",
+                            "type": "string",
+                            "maxLength": 256,
+                            "minLength": 1
                           }
                         }
                       }
@@ -1049,20 +1098,20 @@
                 }
               },
               "status": {
-                "description": "MachinePoolStatus defines the observed state of MachinePool.",
+                "description": "status is the observed state of MachinePool.",
                 "type": "object",
                 "properties": {
                   "availableReplicas": {
-                    "description": "The number of available replicas (ready for at least minReadySeconds) for this MachinePool.",
+                    "description": "availableReplicas is the number of available replicas (ready for at least minReadySeconds) for this MachinePool.",
                     "type": "integer",
                     "format": "int32"
                   },
                   "bootstrapReady": {
-                    "description": "BootstrapReady is the state of the bootstrap provider.",
+                    "description": "bootstrapReady is the state of the bootstrap provider.",
                     "type": "boolean"
                   },
                   "conditions": {
-                    "description": "Conditions define the current service state of the MachinePool.",
+                    "description": "conditions define the current service state of the MachinePool.",
                     "type": "array",
                     "items": {
                       "description": "Condition defines an observation of a Cluster API resource operational state.",
@@ -1074,50 +1123,60 @@
                       ],
                       "properties": {
                         "lastTransitionTime": {
-                          "description": "Last time the condition transitioned from one status to another.\nThis should be when the underlying condition changed. If that is not known, then using the time when\nthe API field changed is acceptable.",
+                          "description": "lastTransitionTime is the last time the condition transitioned from one status to another.\nThis should be when the underlying condition changed. If that is not known, then using the time when\nthe API field changed is acceptable.",
                           "type": "string",
                           "format": "date-time"
                         },
                         "message": {
-                          "description": "A human readable message indicating details about the transition.\nThis field may be empty.",
-                          "type": "string"
+                          "description": "message is a human readable message indicating details about the transition.\nThis field may be empty.",
+                          "type": "string",
+                          "maxLength": 10240,
+                          "minLength": 1
                         },
                         "reason": {
-                          "description": "The reason for the condition's last transition in CamelCase.\nThe specific API may choose whether or not this field is considered a guaranteed API.\nThis field may not be empty.",
-                          "type": "string"
+                          "description": "reason is the reason for the condition's last transition in CamelCase.\nThe specific API may choose whether or not this field is considered a guaranteed API.\nThis field may be empty.",
+                          "type": "string",
+                          "maxLength": 256,
+                          "minLength": 1
                         },
                         "severity": {
-                          "description": "Severity provides an explicit classification of Reason code, so the users or machines can immediately\nunderstand the current situation and act accordingly.\nThe Severity field MUST be set only when Status=False.",
-                          "type": "string"
+                          "description": "severity provides an explicit classification of Reason code, so the users or machines can immediately\nunderstand the current situation and act accordingly.\nThe Severity field MUST be set only when Status=False.",
+                          "type": "string",
+                          "maxLength": 32
                         },
                         "status": {
-                          "description": "Status of the condition, one of True, False, Unknown.",
+                          "description": "status of the condition, one of True, False, Unknown.",
                           "type": "string"
                         },
                         "type": {
-                          "description": "Type of condition in CamelCase or in foo.example.com/CamelCase.\nMany .condition.type values are consistent across resources like Available, but because arbitrary conditions\ncan be useful (see .node.status.conditions), the ability to deconflict is important.",
-                          "type": "string"
+                          "description": "type of condition in CamelCase or in foo.example.com/CamelCase.\nMany .condition.type values are consistent across resources like Available, but because arbitrary conditions\ncan be useful (see .node.status.conditions), the ability to deconflict is important.",
+                          "type": "string",
+                          "maxLength": 256,
+                          "minLength": 1
                         }
                       }
                     }
                   },
                   "failureMessage": {
-                    "description": "FailureMessage indicates that there is a problem reconciling the state,\nand will be set to a descriptive error message.",
-                    "type": "string"
+                    "description": "failureMessage indicates that there is a problem reconciling the state,\nand will be set to a descriptive error message.\n\nDeprecated: This field is deprecated and is going to be removed in the next apiVersion. Please see https://github.com/kubernetes-sigs/cluster-api/blob/main/docs/proposals/20240916-improve-status-in-CAPI-resources.md for more details.",
+                    "type": "string",
+                    "maxLength": 10240,
+                    "minLength": 1
                   },
                   "failureReason": {
-                    "description": "FailureReason indicates that there is a problem reconciling the state, and\nwill be set to a token value suitable for programmatic interpretation.",
+                    "description": "failureReason indicates that there is a problem reconciling the state, and\nwill be set to a token value suitable for programmatic interpretation.\n\nDeprecated: This field is deprecated and is going to be removed in the next apiVersion. Please see https://github.com/kubernetes-sigs/cluster-api/blob/main/docs/proposals/20240916-improve-status-in-CAPI-resources.md for more details.",
                     "type": "string"
                   },
                   "infrastructureReady": {
-                    "description": "InfrastructureReady is the state of the infrastructure provider.",
+                    "description": "infrastructureReady is the state of the infrastructure provider.",
                     "type": "boolean"
                   },
                   "nodeRefs": {
-                    "description": "NodeRefs will point to the corresponding Nodes if it they exist.",
+                    "description": "nodeRefs will point to the corresponding Nodes if it they exist.",
                     "type": "array",
+                    "maxItems": 10000,
                     "items": {
-                      "description": "ObjectReference contains enough information to let you inspect or modify the referred object.\n---\nNew uses of this type are discouraged because of difficulty describing its usage when embedded in APIs.\n 1. Ignored fields.  It includes many fields which are not generally honored.  For instance, ResourceVersion and FieldPath are both very rarely valid in actual usage.\n 2. Invalid usage help.  It is impossible to add specific help for individual usage.  In most embedded usages, there are particular\n    restrictions like, \"must refer only to types A and B\" or \"UID not honored\" or \"name must be restricted\".\n    Those cannot be well described when embedded.\n 3. Inconsistent validation.  Because the usages are different, the validation rules are different by usage, which makes it hard for users to predict what will happen.\n 4. The fields are both imprecise and overly precise.  Kind is not a precise mapping to a URL. This can produce ambiguity\n    during interpretation and require a REST mapping.  In most cases, the dependency is on the group,resource tuple\n    and the version of the actual struct is irrelevant.\n 5. We cannot easily change it.  Because this type is embedded in many locations, updates to this type\n    will affect numerous schemas.  Don't make new APIs embed an underspecified API type they do not control.\n\n\nInstead of using this type, create a locally provided and used type that is well-focused on your reference.\nFor example, ServiceReferences for admission registration: https://github.com/kubernetes/api/blob/release-1.17/admissionregistration/v1/types.go#L533 .",
+                      "description": "ObjectReference contains enough information to let you inspect or modify the referred object.",
                       "type": "object",
                       "properties": {
                         "apiVersion": {
@@ -1125,7 +1184,7 @@
                           "type": "string"
                         },
                         "fieldPath": {
-                          "description": "If referring to a piece of an object instead of an entire object, this string\nshould contain a valid JSON/Go field access statement, such as desiredState.manifest.containers[2].\nFor example, if the object reference is to a container within a pod, this would take on a value like:\n\"spec.containers{name}\" (where \"name\" refers to the name of the container that triggered\nthe event) or if no container name is specified \"spec.containers[2]\" (container with\nindex 2 in this pod). This syntax is chosen only to have some well-defined way of\nreferencing a part of an object.\nTODO: this design is not final and this field is subject to change in the future.",
+                          "description": "If referring to a piece of an object instead of an entire object, this string\nshould contain a valid JSON/Go field access statement, such as desiredState.manifest.containers[2].\nFor example, if the object reference is to a container within a pod, this would take on a value like:\n\"spec.containers{name}\" (where \"name\" refers to the name of the container that triggered\nthe event) or if no container name is specified \"spec.containers[2]\" (container with\nindex 2 in this pod). This syntax is chosen only to have some well-defined way of\nreferencing a part of an object.",
                           "type": "string"
                         },
                         "kind": {
@@ -1153,28 +1212,121 @@
                     }
                   },
                   "observedGeneration": {
-                    "description": "ObservedGeneration is the latest generation observed by the controller.",
+                    "description": "observedGeneration is the latest generation observed by the controller.",
                     "type": "integer",
                     "format": "int64"
                   },
                   "phase": {
-                    "description": "Phase represents the current phase of cluster actuation.\nE.g. Pending, Running, Terminating, Failed etc.",
-                    "type": "string"
+                    "description": "phase represents the current phase of cluster actuation.",
+                    "type": "string",
+                    "enum": [
+                      "Pending",
+                      "Provisioning",
+                      "Provisioned",
+                      "Running",
+                      "ScalingUp",
+                      "ScalingDown",
+                      "Scaling",
+                      "Deleting",
+                      "Failed",
+                      "Unknown"
+                    ]
                   },
                   "readyReplicas": {
-                    "description": "The number of ready replicas for this MachinePool. A machine is considered ready when the node has been created and is \"Ready\".",
+                    "description": "readyReplicas is the number of ready replicas for this MachinePool. A machine is considered ready when the node has been created and is \"Ready\".",
                     "type": "integer",
                     "format": "int32"
                   },
                   "replicas": {
-                    "description": "Replicas is the most recently observed number of replicas.",
+                    "description": "replicas is the most recently observed number of replicas.",
                     "type": "integer",
                     "format": "int32"
                   },
                   "unavailableReplicas": {
-                    "description": "Total number of unavailable machine instances targeted by this machine pool.\nThis is the total number of machine instances that are still required for\nthe machine pool to have 100% available capacity. They may either\nbe machine instances that are running but not yet available or machine instances\nthat still have not been created.",
+                    "description": "unavailableReplicas is the total number of unavailable machine instances targeted by this machine pool.\nThis is the total number of machine instances that are still required for\nthe machine pool to have 100% available capacity. They may either\nbe machine instances that are running but not yet available or machine instances\nthat still have not been created.\n\nDeprecated: This field is deprecated and is going to be removed in the next apiVersion. Please see https://github.com/kubernetes-sigs/cluster-api/blob/main/docs/proposals/20240916-improve-status-in-CAPI-resources.md for more details.",
                     "type": "integer",
                     "format": "int32"
+                  },
+                  "v1beta2": {
+                    "description": "v1beta2 groups all the fields that will be added or modified in MachinePool's status with the V1Beta2 version.",
+                    "type": "object",
+                    "properties": {
+                      "availableReplicas": {
+                        "description": "availableReplicas is the number of available replicas for this MachinePool. A machine is considered available when Machine's Available condition is true.",
+                        "type": "integer",
+                        "format": "int32"
+                      },
+                      "conditions": {
+                        "description": "conditions represents the observations of a MachinePool's current state.\nKnown condition types are Available, BootstrapConfigReady, InfrastructureReady, MachinesReady, MachinesUpToDate,\nScalingUp, ScalingDown, Remediating, Deleting, Paused.",
+                        "type": "array",
+                        "maxItems": 32,
+                        "items": {
+                          "description": "Condition contains details for one aspect of the current state of this API Resource.",
+                          "type": "object",
+                          "required": [
+                            "lastTransitionTime",
+                            "message",
+                            "reason",
+                            "status",
+                            "type"
+                          ],
+                          "properties": {
+                            "lastTransitionTime": {
+                              "description": "lastTransitionTime is the last time the condition transitioned from one status to another.\nThis should be when the underlying condition changed.  If that is not known, then using the time when the API field changed is acceptable.",
+                              "type": "string",
+                              "format": "date-time"
+                            },
+                            "message": {
+                              "description": "message is a human readable message indicating details about the transition.\nThis may be an empty string.",
+                              "type": "string",
+                              "maxLength": 32768
+                            },
+                            "observedGeneration": {
+                              "description": "observedGeneration represents the .metadata.generation that the condition was set based upon.\nFor instance, if .metadata.generation is currently 12, but the .status.conditions[x].observedGeneration is 9, the condition is out of date\nwith respect to the current state of the instance.",
+                              "type": "integer",
+                              "format": "int64",
+                              "minimum": 0
+                            },
+                            "reason": {
+                              "description": "reason contains a programmatic identifier indicating the reason for the condition's last transition.\nProducers of specific condition types may define expected values and meanings for this field,\nand whether the values are considered a guaranteed API.\nThe value should be a CamelCase string.\nThis field may not be empty.",
+                              "type": "string",
+                              "maxLength": 1024,
+                              "minLength": 1,
+                              "pattern": "^[A-Za-z]([A-Za-z0-9_,:]*[A-Za-z0-9_])?$"
+                            },
+                            "status": {
+                              "description": "status of the condition, one of True, False, Unknown.",
+                              "type": "string",
+                              "enum": [
+                                "True",
+                                "False",
+                                "Unknown"
+                              ]
+                            },
+                            "type": {
+                              "description": "type of condition in CamelCase or in foo.example.com/CamelCase.",
+                              "type": "string",
+                              "maxLength": 316,
+                              "pattern": "^([a-z0-9]([-a-z0-9]*[a-z0-9])?(\\.[a-z0-9]([-a-z0-9]*[a-z0-9])?)*/)?(([A-Za-z0-9][-A-Za-z0-9_.]*)?[A-Za-z0-9])$"
+                            }
+                          }
+                        },
+                        "x-kubernetes-list-map-keys": [
+                          "type"
+                        ],
+                        "x-kubernetes-list-type": "map"
+                      },
+                      "readyReplicas": {
+                        "description": "readyReplicas is the number of ready replicas for this MachinePool. A machine is considered ready when Machine's Ready condition is true.",
+                        "type": "integer",
+                        "format": "int32"
+                      },
+                      "upToDateReplicas": {
+                        "description": "upToDateReplicas is the number of up-to-date replicas targeted by this MachinePool. A machine is considered up-to-date when Machine's UpToDate condition is true.",
+                        "type": "integer",
+                        "format": "int32"
+                      }
+                    }
                   }
                 }
               }

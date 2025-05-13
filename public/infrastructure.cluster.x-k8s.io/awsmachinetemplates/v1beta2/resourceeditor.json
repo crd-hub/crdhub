@@ -22,7 +22,7 @@
     "ui": {
       "editor": {
         "name": "infrastructureclusterxk8sio-awsmachinetemplate-editor",
-        "version": "sha256:87e0ea9d9f3a4b7c731a3619b51abd4f9042ebb04b7e42e10aa362712a41999e",
+        "version": "v0.17.0",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",

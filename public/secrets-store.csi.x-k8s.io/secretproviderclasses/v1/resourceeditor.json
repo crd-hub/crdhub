@@ -22,7 +22,7 @@
     "ui": {
       "editor": {
         "name": "secretsstorecsixk8sio-secretproviderclass-editor",
-        "version": "sha256:e3a2fe9a79bb6371c4c2b3f4ba6b4b9cc313e6ea4e9b2a1fe6a26006c96b9a1d",
+        "version": "v0.17.0",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",

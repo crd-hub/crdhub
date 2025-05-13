@@ -22,7 +22,7 @@
     "ui": {
       "editor": {
         "name": "opskubedbcom-elasticsearchopsrequest-editor",
-        "version": "sha256:f4d5a5143f663739f1c3855a5f31c043a44f95e7014920b4965e06c43e708acd",
+        "version": "v0.17.0",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",

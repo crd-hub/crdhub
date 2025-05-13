@@ -5,7 +5,7 @@
     "name": "gcpclustertemplates.infrastructure.cluster.x-k8s.io",
     "creationTimestamp": null,
     "annotations": {
-      "controller-gen.kubebuilder.io/version": "v0.14.0"
+      "controller-gen.kubebuilder.io/version": "v0.17.3"
     }
   },
   "spec": {
@@ -63,14 +63,14 @@
                         "type": "object",
                         "properties": {
                           "annotations": {
-                            "description": "Annotations is an unstructured key value map stored with a resource that may be\nset by external tools to store and retrieve arbitrary metadata. They are not\nqueryable and should be preserved when modifying objects.\nMore info: http://kubernetes.io/docs/user-guide/annotations",
+                            "description": "annotations is an unstructured key value map stored with a resource that may be\nset by external tools to store and retrieve arbitrary metadata. They are not\nqueryable and should be preserved when modifying objects.\nMore info: http://kubernetes.io/docs/user-guide/annotations",
                             "type": "object",
                             "additionalProperties": {
                               "type": "string"
                             }
                           },
                           "labels": {
-                            "description": "Map of string keys and values that can be used to organize and categorize\n(scope and select) objects. May match selectors of replication controllers\nand services.\nMore info: http://kubernetes.io/docs/user-guide/labels",
+                            "description": "labels is a map of string keys and values that can be used to organize and categorize\n(scope and select) objects. May match selectors of replication controllers\nand services.\nMore info: http://kubernetes.io/docs/user-guide/labels",
                             "type": "object",
                             "additionalProperties": {
                               "type": "string"
@@ -102,11 +102,12 @@
                             ],
                             "properties": {
                               "host": {
-                                "description": "The hostname on which the API server is serving.",
-                                "type": "string"
+                                "description": "host is the hostname on which the API server is serving.",
+                                "type": "string",
+                                "maxLength": 512
                               },
                               "port": {
-                                "description": "The port on which the API server is serving.",
+                                "description": "port is the port on which the API server is serving.",
                                 "type": "integer",
                                 "format": "int32"
                               }
@@ -151,6 +152,15 @@
                                 "description": "InternalLoadBalancer is the configuration for an Internal Passthrough Network Load Balancer.",
                                 "type": "object",
                                 "properties": {
+                                  "internalAccess": {
+                                    "description": "InternalAccess defines the access for the Internal Passthrough Load Balancer.\nIt determines whether the load balancer allows global access,\nor restricts traffic to clients within the same region as the load balancer.\nIf unspecified, the value defaults to \"Regional\".\n\nPossible values:\n  \"Regional\" - Only clients in the same region as the load balancer can access it.\n  \"Global\" - Clients from any region can access the load balancer.",
+                                    "type": "string",
+                                    "default": "Regional",
+                                    "enum": [
+                                      "Regional",
+                                      "Global"
+                                    ]
+                                  },
                                   "name": {
                                     "description": "Name is the name of the Load Balancer. If not set a default name\nwill be used. For an Internal Load Balancer service the default\nname is \"api-internal\".",
                                     "type": "string",
@@ -173,13 +183,25 @@
                             "type": "object",
                             "properties": {
                               "autoCreateSubnetworks": {
-                                "description": "AutoCreateSubnetworks: When set to true, the VPC network is created\nin \"auto\" mode. When set to false, the VPC network is created in\n\"custom\" mode.\n\n\nAn auto mode VPC network starts with one subnet per region. Each\nsubnet has a predetermined range as described in Auto mode VPC\nnetwork IP ranges.\n\n\nDefaults to true.",
+                                "description": "AutoCreateSubnetworks: When set to true, the VPC network is created\nin \"auto\" mode. When set to false, the VPC network is created in\n\"custom\" mode.\n\nAn auto mode VPC network starts with one subnet per region. Each\nsubnet has a predetermined range as described in Auto mode VPC\nnetwork IP ranges.\n\nDefaults to true.",
                                 "type": "boolean"
+                              },
+                              "hostProject": {
+                                "description": "HostProject is the name of the project hosting the shared VPC network resources.",
+                                "type": "string"
                               },
                               "loadBalancerBackendPort": {
                                 "description": "Allow for configuration of load balancer backend (useful for changing apiserver port)",
                                 "type": "integer",
                                 "format": "int32"
+                              },
+                              "mtu": {
+                                "description": "Mtu: Maximum Transmission Unit in bytes. The minimum value for this field is\n1300 and the maximum value is 8896. The suggested value is 1500, which is\nthe default MTU used on the Internet, or 8896 if you want to use Jumbo\nframes. If unspecified, the value defaults to 1460.\nMore info: https://pkg.go.dev/google.golang.org/api/compute/v1#Network",
+                                "type": "integer",
+                                "format": "int64",
+                                "default": 1460,
+                                "maximum": 8896,
+                                "minimum": 1300
                               },
                               "name": {
                                 "description": "Name is the name of the network to be used.",
@@ -213,7 +235,7 @@
                                       "type": "boolean"
                                     },
                                     "purpose": {
-                                      "description": "Purpose: The purpose of the resource.\nIf unspecified, the purpose defaults to PRIVATE_RFC_1918.\nThe enableFlowLogs field isn't supported with the purpose field set to INTERNAL_HTTPS_LOAD_BALANCER.\n\n\nPossible values:\n  \"INTERNAL_HTTPS_LOAD_BALANCER\" - Subnet reserved for Internal\nHTTP(S) Load Balancing.\n  \"PRIVATE\" - Regular user created or automatically created subnet.\n  \"PRIVATE_RFC_1918\" - Regular user created or automatically created\nsubnet.\n  \"PRIVATE_SERVICE_CONNECT\" - Subnetworks created for Private Service\nConnect in the producer network.\n  \"REGIONAL_MANAGED_PROXY\" - Subnetwork used for Regional\nInternal/External HTTP(S) Load Balancing.",
+                                      "description": "Purpose: The purpose of the resource.\nIf unspecified, the purpose defaults to PRIVATE_RFC_1918.\nThe enableFlowLogs field isn't supported with the purpose field set to INTERNAL_HTTPS_LOAD_BALANCER.\n\nPossible values:\n  \"INTERNAL_HTTPS_LOAD_BALANCER\" - Subnet reserved for Internal\nHTTP(S) Load Balancing.\n  \"PRIVATE\" - Regular user created or automatically created subnet.\n  \"PRIVATE_RFC_1918\" - Regular user created or automatically created\nsubnet.\n  \"PRIVATE_SERVICE_CONNECT\" - Subnetworks created for Private Service\nConnect in the producer network.\n  \"REGIONAL_MANAGED_PROXY\" - Subnetwork used for Regional\nInternal/External HTTP(S) Load Balancing.",
                                       "type": "string",
                                       "default": "PRIVATE_RFC_1918",
                                       "enum": [
@@ -234,6 +256,16 @@
                                       "additionalProperties": {
                                         "type": "string"
                                       }
+                                    },
+                                    "stackType": {
+                                      "description": "StackType: The stack type for the subnet. If set to IPV4_ONLY, new VMs in\nthe subnet are assigned IPv4 addresses only. If set to IPV4_IPV6, new VMs in\nthe subnet can be assigned both IPv4 and IPv6 addresses. If not specified,\nIPV4_ONLY is used. This field can be both set at resource creation time and\nupdated using patch.\n\nPossible values:\n  \"IPV4_IPV6\" - New VMs in this subnet can have both IPv4 and IPv6\naddresses.\n  \"IPV4_ONLY\" - New VMs in this subnet will only be assigned IPv4 addresses.\n  \"IPV6_ONLY\" - New VMs in this subnet will only be assigned IPv6 addresses.",
+                                      "type": "string",
+                                      "default": "IPV4_ONLY",
+                                      "enum": [
+                                        "IPV4_ONLY",
+                                        "IPV4_IPV6",
+                                        "IPV6_ONLY"
+                                      ]
                                     }
                                   }
                                 }
@@ -281,6 +313,36 @@
                                   "minLength": 1,
                                   "pattern": "^[a-zA-Z0-9]([0-9A-Za-z_.@%=+:,*#\u0026()\\[\\]{}\\-\\s]{0,61}[a-zA-Z0-9])?$"
                                 }
+                              }
+                            }
+                          },
+                          "serviceEndpoints": {
+                            "description": "ServiceEndpoints contains the custom GCP Service Endpoint urls for each applicable service.\nFor instance, the user can specify a new endpoint for the compute service.",
+                            "type": "object",
+                            "properties": {
+                              "compute": {
+                                "description": "ComputeServiceEndpoint is the custom endpoint url for the Compute Service",
+                                "type": "string",
+                                "format": "uri",
+                                "pattern": "^https://"
+                              },
+                              "container": {
+                                "description": "ContainerServiceEndpoint is the custom endpoint url for the Container Service",
+                                "type": "string",
+                                "format": "uri",
+                                "pattern": "^https://"
+                              },
+                              "iam": {
+                                "description": "IAMServiceEndpoint is the custom endpoint url for the IAM Service",
+                                "type": "string",
+                                "format": "uri",
+                                "pattern": "^https://"
+                              },
+                              "resourceManager": {
+                                "description": "ResourceManagerServiceEndpoint is the custom endpoint url for the Resource Manager Service",
+                                "type": "string",
+                                "format": "uri",
+                                "pattern": "^https://"
                               }
                             }
                           }

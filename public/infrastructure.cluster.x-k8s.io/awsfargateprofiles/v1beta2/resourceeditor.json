@@ -22,7 +22,7 @@
     "ui": {
       "editor": {
         "name": "infrastructureclusterxk8sio-awsfargateprofile-editor",
-        "version": "sha256:dd69ad2ae13dff89ce3c0d6f8f13d3ae1289e7de54fe270bd26b4c3e09a1c09c",
+        "version": "v0.17.0",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",

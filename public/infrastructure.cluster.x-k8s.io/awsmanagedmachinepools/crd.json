@@ -5,7 +5,7 @@
     "name": "awsmanagedmachinepools.infrastructure.cluster.x-k8s.io",
     "creationTimestamp": null,
     "annotations": {
-      "controller-gen.kubebuilder.io/version": "v0.16.5"
+      "controller-gen.kubebuilder.io/version": "v0.17.3"
     }
   },
   "spec": {
@@ -388,21 +388,26 @@
                       ],
                       "properties": {
                         "lastTransitionTime": {
-                          "description": "Last time the condition transitioned from one status to another.\nThis should be when the underlying condition changed. If that is not known, then using the time when\nthe API field changed is acceptable.",
+                          "description": "lastTransitionTime is the last time the condition transitioned from one status to another.\nThis should be when the underlying condition changed. If that is not known, then using the time when\nthe API field changed is acceptable.",
                           "type": "string",
                           "format": "date-time"
                         },
                         "message": {
-                          "description": "A human readable message indicating details about the transition.\nThis field may be empty.",
-                          "type": "string"
+                          "description": "message is a human readable message indicating details about the transition.\nThis field may be empty.",
+                          "type": "string",
+                          "maxLength": 10240,
+                          "minLength": 1
                         },
                         "reason": {
-                          "description": "The reason for the condition's last transition in CamelCase.\nThe specific API may choose whether or not this field is considered a guaranteed API.\nThis field may be empty.",
-                          "type": "string"
+                          "description": "reason is the reason for the condition's last transition in CamelCase.\nThe specific API may choose whether or not this field is considered a guaranteed API.\nThis field may be empty.",
+                          "type": "string",
+                          "maxLength": 256,
+                          "minLength": 1
                         },
                         "severity": {
                           "description": "severity provides an explicit classification of Reason code, so the users or machines can immediately\nunderstand the current situation and act accordingly.\nThe Severity field MUST be set only when Status=False.",
-                          "type": "string"
+                          "type": "string",
+                          "maxLength": 32
                         },
                         "status": {
                           "description": "status of the condition, one of True, False, Unknown.",
@@ -410,7 +415,9 @@
                         },
                         "type": {
                           "description": "type of condition in CamelCase or in foo.example.com/CamelCase.\nMany .condition.type values are consistent across resources like Available, but because arbitrary conditions\ncan be useful (see .node.status.conditions), the ability to deconflict is important.",
-                          "type": "string"
+                          "type": "string",
+                          "maxLength": 256,
+                          "minLength": 1
                         }
                       }
                     }
@@ -826,6 +833,57 @@
                       "type": "string"
                     }
                   },
+                  "lifecycleHooks": {
+                    "description": "AWSLifecycleHooks specifies lifecycle hooks for the managed node group.",
+                    "type": "array",
+                    "items": {
+                      "description": "AWSLifecycleHook describes an AWS lifecycle hook",
+                      "type": "object",
+                      "required": [
+                        "lifecycleTransition",
+                        "name"
+                      ],
+                      "properties": {
+                        "defaultResult": {
+                          "description": "The default result for the lifecycle hook. The possible values are CONTINUE and ABANDON.",
+                          "type": "string",
+                          "enum": [
+                            "CONTINUE",
+                            "ABANDON"
+                          ]
+                        },
+                        "heartbeatTimeout": {
+                          "description": "The maximum time, in seconds, that an instance can remain in a Pending:Wait or\nTerminating:Wait state. The maximum is 172800 seconds (48 hours) or 100 times\nHeartbeatTimeout, whichever is smaller.",
+                          "type": "string",
+                          "format": "duration"
+                        },
+                        "lifecycleTransition": {
+                          "description": "The state of the EC2 instance to which to attach the lifecycle hook.",
+                          "type": "string",
+                          "enum": [
+                            "autoscaling:EC2_INSTANCE_LAUNCHING",
+                            "autoscaling:EC2_INSTANCE_TERMINATING"
+                          ]
+                        },
+                        "name": {
+                          "description": "The name of the lifecycle hook.",
+                          "type": "string"
+                        },
+                        "notificationMetadata": {
+                          "description": "Contains additional metadata that will be passed to the notification target.",
+                          "type": "string"
+                        },
+                        "notificationTargetARN": {
+                          "description": "The ARN of the notification target that Amazon EC2 Auto Scaling uses to\nnotify you when an instance is in the transition state for the lifecycle hook.",
+                          "type": "string"
+                        },
+                        "roleARN": {
+                          "description": "The ARN of the IAM role that allows the Auto Scaling group to publish to the\nspecified notification target.",
+                          "type": "string"
+                        }
+                      }
+                    }
+                  },
                   "providerIDList": {
                     "description": "ProviderIDList are the provider IDs of instances in the\nautoscaling group corresponding to the nodegroup represented by this\nmachine pool",
                     "type": "array",
@@ -863,6 +921,14 @@
                   },
                   "roleName": {
                     "description": "RoleName specifies the name of IAM role for the node group.\nIf the role is pre-existing we will treat it as unmanaged\nand not delete it on deletion. If the EKSEnableIAM feature\nflag is true and no name is supplied then a role is created.",
+                    "type": "string"
+                  },
+                  "rolePath": {
+                    "description": "RolePath sets the path to the role. For more information about paths, see IAM Identifiers\n(https://docs.aws.amazon.com/IAM/latest/UserGuide/Using_Identifiers.html)\nin the IAM User Guide.\n\nThis parameter is optional. If it is not included, it defaults to a slash\n(/).",
+                    "type": "string"
+                  },
+                  "rolePermissionsBoundary": {
+                    "description": "RolePermissionsBoundary sets the ARN of the managed policy that is used\nto set the permissions boundary for the role.\n\nA permissions boundary policy defines the maximum permissions that identity-based\npolicies can grant to an entity, but does not grant permissions. Permissions\nboundaries do not define the maximum permissions that a resource-based policy\ncan grant to an entity. To learn more, see Permissions boundaries for IAM\nentities (https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_boundaries.html)\nin the IAM User Guide.\n\nFor more information about policy types, see Policy types (https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies.html#access_policy-types)\nin the IAM User Guide.",
                     "type": "string"
                   },
                   "scaling": {
@@ -958,21 +1024,26 @@
                       ],
                       "properties": {
                         "lastTransitionTime": {
-                          "description": "Last time the condition transitioned from one status to another.\nThis should be when the underlying condition changed. If that is not known, then using the time when\nthe API field changed is acceptable.",
+                          "description": "lastTransitionTime is the last time the condition transitioned from one status to another.\nThis should be when the underlying condition changed. If that is not known, then using the time when\nthe API field changed is acceptable.",
                           "type": "string",
                           "format": "date-time"
                         },
                         "message": {
-                          "description": "A human readable message indicating details about the transition.\nThis field may be empty.",
-                          "type": "string"
+                          "description": "message is a human readable message indicating details about the transition.\nThis field may be empty.",
+                          "type": "string",
+                          "maxLength": 10240,
+                          "minLength": 1
                         },
                         "reason": {
-                          "description": "The reason for the condition's last transition in CamelCase.\nThe specific API may choose whether or not this field is considered a guaranteed API.\nThis field may be empty.",
-                          "type": "string"
+                          "description": "reason is the reason for the condition's last transition in CamelCase.\nThe specific API may choose whether or not this field is considered a guaranteed API.\nThis field may be empty.",
+                          "type": "string",
+                          "maxLength": 256,
+                          "minLength": 1
                         },
                         "severity": {
                           "description": "severity provides an explicit classification of Reason code, so the users or machines can immediately\nunderstand the current situation and act accordingly.\nThe Severity field MUST be set only when Status=False.",
-                          "type": "string"
+                          "type": "string",
+                          "maxLength": 32
                         },
                         "status": {
                           "description": "status of the condition, one of True, False, Unknown.",
@@ -980,7 +1051,9 @@
                         },
                         "type": {
                           "description": "type of condition in CamelCase or in foo.example.com/CamelCase.\nMany .condition.type values are consistent across resources like Available, but because arbitrary conditions\ncan be useful (see .node.status.conditions), the ability to deconflict is important.",
-                          "type": "string"
+                          "type": "string",
+                          "maxLength": 256,
+                          "minLength": 1
                         }
                       }
                     }

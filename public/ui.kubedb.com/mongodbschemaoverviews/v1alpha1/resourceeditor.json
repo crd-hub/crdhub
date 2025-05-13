@@ -22,7 +22,7 @@
     "ui": {
       "editor": {
         "name": "uikubedbcom-mongodbschemaoverview-editor",
-        "version": "sha256:a1ad101db66bd883d6f9a27c059379fadb44f45e8be85177226afb36bf4623c6",
+        "version": "v0.17.0",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",

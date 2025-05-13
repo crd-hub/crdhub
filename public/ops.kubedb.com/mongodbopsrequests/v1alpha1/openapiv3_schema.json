@@ -284,6 +284,23 @@
           },
           "x-kubernetes-map-type": "atomic"
         },
+        "horizons": {
+          "type": "object",
+          "required": [
+            "dns"
+          ],
+          "properties": {
+            "dns": {
+              "type": "string"
+            },
+            "pods": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          }
+        },
         "horizontalScaling": {
           "type": "object",
           "properties": {
@@ -528,7 +545,8 @@
             "Reconfigure",
             "ReconfigureTLS",
             "Reprovision",
-            "RotateAuth"
+            "RotateAuth",
+            "Horizons"
           ]
         },
         "updateVersion": {

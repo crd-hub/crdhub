@@ -22,7 +22,7 @@
     "ui": {
       "editor": {
         "name": "autoscalingkubedbcom-zookeeperautoscaler-editor",
-        "version": "sha256:2fb39c5ba4703b6737dd29f7708c81fc37c39de3d68e0ce34aa22dd800787629",
+        "version": "v0.17.0",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",

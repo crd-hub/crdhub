@@ -22,7 +22,7 @@
     "ui": {
       "editor": {
         "name": "externaldnsappscodecom-externaldns-editor",
-        "version": "sha256:108bef8eff21dc8789b22d5efda39d9f599a6b89e6bcaba259ded3655197bfc1",
+        "version": "v0.17.0",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",

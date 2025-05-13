@@ -22,7 +22,7 @@
     "ui": {
       "editor": {
         "name": "stashappscodecom-backupconfiguration-editor",
-        "version": "sha256:b0816b70ef656b60121cf040bb0d713523b552f07cc7ca9f0c2a2568bc1ea875",
+        "version": "v0.17.0",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",

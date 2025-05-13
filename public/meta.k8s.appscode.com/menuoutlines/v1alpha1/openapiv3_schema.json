@@ -3,14 +3,14 @@
   "type": "object",
   "properties": {
     "apiVersion": {
-      "description": "APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources",
+      "description": "APIVersion defines the versioned schema of this representation of an object.\nServers should convert recognized schemas to the latest internal value, and\nmay reject unrecognized values.\nMore info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources",
       "type": "string",
       "enum": [
         "meta.k8s.appscode.com/v1alpha1"
       ]
     },
     "kind": {
-      "description": "Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds",
+      "description": "Kind is a string value representing the REST resource this object represents.\nServers may infer this from the endpoint the client submits requests to.\nCannot be updated.\nIn CamelCase.\nMore info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds",
       "type": "string",
       "enum": [
         "MenuOutline"
@@ -49,7 +49,7 @@
               "type": "string"
             },
             "icons": {
-              "description": "Icons is an optional list of icons for an application. Icon information includes the source, size, and mime type.",
+              "description": "Icons is an optional list of icons for an application. Icon information includes the source, size,\nand mime type.",
               "type": "array",
               "items": {
                 "description": "ImageSpec contains information about an image used as an icon.",
@@ -63,7 +63,7 @@
                     "type": "string"
                   },
                   "src": {
-                    "description": "The source for image represented as either an absolute URL to the image or a Data URL containing the image. Data URLs are defined in RFC 2397.",
+                    "description": "The source for image represented as either an absolute URL to the image or a Data URL containing\nthe image. Data URLs are defined in RFC 2397.",
                     "type": "string"
                   },
                   "type": {
@@ -96,7 +96,7 @@
                 "type": "string"
               },
               "icons": {
-                "description": "Icons is an optional list of icons for an application. Icon information includes the source, size, and mime type.",
+                "description": "Icons is an optional list of icons for an application. Icon information includes the source, size,\nand mime type.",
                 "type": "array",
                 "items": {
                   "description": "ImageSpec contains information about an image used as an icon.",
@@ -110,7 +110,7 @@
                       "type": "string"
                     },
                     "src": {
-                      "description": "The source for image represented as either an absolute URL to the image or a Data URL containing the image. Data URLs are defined in RFC 2397.",
+                      "description": "The source for image represented as either an absolute URL to the image or a Data URL containing\nthe image. Data URLs are defined in RFC 2397.",
                       "type": "string"
                     },
                     "type": {
@@ -150,7 +150,7 @@
                             "type": "string"
                           },
                           "src": {
-                            "description": "The source for image represented as either an absolute URL to the image or a Data URL containing the image. Data URLs are defined in RFC 2397.",
+                            "description": "The source for image represented as either an absolute URL to the image or a Data URL containing\nthe image. Data URLs are defined in RFC 2397.",
                             "type": "string"
                           },
                           "type": {
@@ -173,7 +173,7 @@
                       "type": "boolean"
                     },
                     "type": {
-                      "description": "GroupKind specifies a Group and a Kind, but does not force a version.  This is useful for identifying concepts during lookup stages without having partially valid types",
+                      "description": "GroupKind specifies a Group and a Kind, but does not force a version.  This is useful for identifying\nconcepts during lookup stages without having partially valid types",
                       "type": "object",
                       "required": [
                         "group",

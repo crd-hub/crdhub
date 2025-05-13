@@ -5,7 +5,7 @@
     "name": "gcpmachinetemplates.infrastructure.cluster.x-k8s.io",
     "creationTimestamp": null,
     "annotations": {
-      "controller-gen.kubebuilder.io/version": "v0.14.0"
+      "controller-gen.kubebuilder.io/version": "v0.17.3"
     }
   },
   "spec": {
@@ -60,14 +60,14 @@
                         "type": "object",
                         "properties": {
                           "annotations": {
-                            "description": "Annotations is an unstructured key value map stored with a resource that may be\nset by external tools to store and retrieve arbitrary metadata. They are not\nqueryable and should be preserved when modifying objects.\nMore info: http://kubernetes.io/docs/user-guide/annotations",
+                            "description": "annotations is an unstructured key value map stored with a resource that may be\nset by external tools to store and retrieve arbitrary metadata. They are not\nqueryable and should be preserved when modifying objects.\nMore info: http://kubernetes.io/docs/user-guide/annotations",
                             "type": "object",
                             "additionalProperties": {
                               "type": "string"
                             }
                           },
                           "labels": {
-                            "description": "Map of string keys and values that can be used to organize and categorize\n(scope and select) objects. May match selectors of replication controllers\nand services.\nMore info: http://kubernetes.io/docs/user-guide/labels",
+                            "description": "labels is a map of string keys and values that can be used to organize and categorize\n(scope and select) objects. May match selectors of replication controllers\nand services.\nMore info: http://kubernetes.io/docs/user-guide/labels",
                             "type": "object",
                             "additionalProperties": {
                               "type": "string"
@@ -90,7 +90,7 @@
                               "type": "object",
                               "properties": {
                                 "deviceType": {
-                                  "description": "DeviceType is a device type of the attached disk.\nSupported types of non-root attached volumes:\n1. \"pd-standard\" - Standard (HDD) persistent disk\n2. \"pd-ssd\" - SSD persistent disk\n3. \"local-ssd\" - Local SSD disk (https://cloud.google.com/compute/docs/disks/local-ssd).\nDefault is \"pd-standard\".",
+                                  "description": "DeviceType is a device type of the attached disk.\nSupported types of non-root attached volumes:\n1. \"pd-standard\" - Standard (HDD) persistent disk\n2. \"pd-ssd\" - SSD persistent disk\n3. \"local-ssd\" - Local SSD disk (https://cloud.google.com/compute/docs/disks/local-ssd).\n4. \"pd-balanced\" - Balanced Persistent Disk\n5. \"hyperdisk-balanced\" - Hyperdisk Balanced\nDefault is \"pd-standard\".",
                                   "type": "string"
                                 },
                                 "encryptionKey": {
@@ -117,6 +117,9 @@
                                     "managedKey": {
                                       "description": "ManagedKey references keys managed by the Cloud Key Management Service. This should be set when KeyType is Managed.",
                                       "type": "object",
+                                      "required": [
+                                        "kmsKeyName"
+                                      ],
                                       "properties": {
                                         "kmsKeyName": {
                                           "description": "KMSKeyName is the name of the encryption key that is stored in Google Cloud KMS. For example:\n\"kmsKeyName\": \"projects/kms_project_id/locations/region/keyRings/key_region/cryptoKeys/key",
@@ -194,11 +197,14 @@
                             }
                           },
                           "confidentialCompute": {
-                            "description": "ConfidentialCompute Defines whether the instance should have confidential compute enabled.\nIf enabled OnHostMaintenance is required to be set to \"Terminate\".\nIf omitted, the platform chooses a default, which is subject to change over time, currently that default is false.",
+                            "description": "ConfidentialCompute Defines whether the instance should have confidential compute enabled or not, and the confidential computing technology of choice.\nIf Disabled, the machine will not be configured to be a confidential computing instance.\nIf Enabled, confidential computing will be configured and AMD Secure Encrypted Virtualization will be configured by default. That is subject to change over time. If using AMD Secure Encrypted Virtualization is vital, use AMDEncryptedVirtualization explicitly instead.\nIf AMDEncryptedVirtualization, it will configure AMD Secure Encrypted Virtualization (AMD SEV) as the confidential computing technology.\nIf AMDEncryptedVirtualizationNestedPaging, it will configure AMD Secure Encrypted Virtualization Secure Nested Paging (AMD SEV-SNP) as the confidential computing technology.\nIf IntelTrustedDomainExtensions, it will configure Intel TDX as the confidential computing technology.\nIf enabled (any value other than Disabled) OnHostMaintenance is required to be set to \"Terminate\".\nIf omitted, the platform chooses a default, which is subject to change over time, currently that default is false.",
                             "type": "string",
                             "enum": [
                               "Enabled",
-                              "Disabled"
+                              "Disabled",
+                              "AMDEncryptedVirtualization",
+                              "AMDEncryptedVirtualizationNestedPaging",
+                              "IntelTrustedDomainExtensions"
                             ]
                           },
                           "image": {
@@ -237,6 +243,14 @@
                           "providerID": {
                             "description": "ProviderID is the unique identifier as specified by the cloud provider.",
                             "type": "string"
+                          },
+                          "provisioningModel": {
+                            "description": "ProvisioningModel defines if instance is spot.\nIf set to \"Standard\" while preemptible is true, then the VM will be of type \"Preemptible\".\nIf \"Spot\", VM type is \"Spot\". When unspecified, defaults to \"Standard\".",
+                            "type": "string",
+                            "enum": [
+                              "Standard",
+                              "Spot"
+                            ]
                           },
                           "publicIP": {
                             "description": "PublicIP specifies whether the instance should get a public IP.\nSet this to true if you don't have a NAT instances or Cloud Nat setup.",
@@ -284,7 +298,7 @@
                             "format": "int64"
                           },
                           "rootDeviceType": {
-                            "description": "RootDeviceType is the type of the root volume.\nSupported types of root volumes:\n1. \"pd-standard\" - Standard (HDD) persistent disk\n2. \"pd-ssd\" - SSD persistent disk\nDefault is \"pd-standard\".",
+                            "description": "RootDeviceType is the type of the root volume.\nSupported types of root volumes:\n1. \"pd-standard\" - Standard (HDD) persistent disk\n2. \"pd-ssd\" - SSD persistent disk\n3. \"pd-balanced\" - Balanced Persistent Disk\n4. \"hyperdisk-balanced\" - Hyperdisk Balanced\nDefault is \"pd-standard\".",
                             "type": "string"
                           },
                           "rootDiskEncryptionKey": {
@@ -311,6 +325,9 @@
                               "managedKey": {
                                 "description": "ManagedKey references keys managed by the Cloud Key Management Service. This should be set when KeyType is Managed.",
                                 "type": "object",
+                                "required": [
+                                  "kmsKeyName"
+                                ],
                                 "properties": {
                                   "kmsKeyName": {
                                     "description": "KMSKeyName is the name of the encryption key that is stored in Google Cloud KMS. For example:\n\"kmsKeyName\": \"projects/kms_project_id/locations/region/keyRings/key_region/cryptoKeys/key",

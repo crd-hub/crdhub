@@ -5,7 +5,7 @@
     "name": "clusterresourcesets.addons.cluster.x-k8s.io",
     "creationTimestamp": null,
     "annotations": {
-      "controller-gen.kubebuilder.io/version": "v0.15.0"
+      "controller-gen.kubebuilder.io/version": "v0.17.2"
     }
   },
   "spec": {
@@ -28,7 +28,7 @@
         "deprecated": true,
         "schema": {
           "openAPIV3Schema": {
-            "description": "ClusterResourceSet is the Schema for the clusterresourcesets API.\n\n\nDeprecated: This type will be removed in one of the next releases.",
+            "description": "ClusterResourceSet is the Schema for the clusterresourcesets API.\n\nDeprecated: This type will be removed in one of the next releases.",
             "type": "object",
             "properties": {
               "apiVersion": {
@@ -43,14 +43,14 @@
                 "type": "object"
               },
               "spec": {
-                "description": "ClusterResourceSetSpec defines the desired state of ClusterResourceSet.",
+                "description": "spec is the desired state of ClusterResourceSet.",
                 "type": "object",
                 "required": [
                   "clusterSelector"
                 ],
                 "properties": {
                   "clusterSelector": {
-                    "description": "Label selector for Clusters. The Clusters that are\nselected by this will be the ones affected by this ClusterResourceSet.\nIt must match the Cluster labels. This field is immutable.",
+                    "description": "clusterSelector is the label selector for Clusters. The Clusters that are\nselected by this will be the ones affected by this ClusterResourceSet.\nIt must match the Cluster labels. This field is immutable.",
                     "type": "object",
                     "properties": {
                       "matchExpressions": {
@@ -95,7 +95,7 @@
                     "x-kubernetes-map-type": "atomic"
                   },
                   "resources": {
-                    "description": "Resources is a list of Secrets/ConfigMaps where each contains 1 or more resources to be applied to remote clusters.",
+                    "description": "resources is a list of Secrets/ConfigMaps where each contains 1 or more resources to be applied to remote clusters.",
                     "type": "array",
                     "items": {
                       "description": "ResourceRef specifies a resource.",
@@ -106,7 +106,7 @@
                       ],
                       "properties": {
                         "kind": {
-                          "description": "Kind of the resource. Supported kinds are: Secrets and ConfigMaps.",
+                          "description": "kind of the resource. Supported kinds are: Secrets and ConfigMaps.",
                           "type": "string",
                           "enum": [
                             "Secret",
@@ -114,7 +114,7 @@
                           ]
                         },
                         "name": {
-                          "description": "Name of the resource that is in the same namespace with ClusterResourceSet object.",
+                          "description": "name of the resource that is in the same namespace with ClusterResourceSet object.",
                           "type": "string",
                           "minLength": 1
                         }
@@ -122,7 +122,7 @@
                     }
                   },
                   "strategy": {
-                    "description": "Strategy is the strategy to be used during applying resources. Defaults to ApplyOnce. This field is immutable.",
+                    "description": "strategy is the strategy to be used during applying resources. Defaults to ApplyOnce. This field is immutable.",
                     "type": "string",
                     "enum": [
                       "ApplyOnce"
@@ -131,11 +131,11 @@
                 }
               },
               "status": {
-                "description": "ClusterResourceSetStatus defines the observed state of ClusterResourceSet.",
+                "description": "status is the observed state of ClusterResourceSet.",
                 "type": "object",
                 "properties": {
                   "conditions": {
-                    "description": "Conditions defines current state of the ClusterResourceSet.",
+                    "description": "conditions defines current state of the ClusterResourceSet.",
                     "type": "array",
                     "items": {
                       "description": "Condition defines an observation of a Cluster API resource operational state.",
@@ -146,35 +146,35 @@
                       ],
                       "properties": {
                         "lastTransitionTime": {
-                          "description": "Last time the condition transitioned from one status to another.\nThis should be when the underlying condition changed. If that is not known, then using the time when\nthe API field changed is acceptable.",
+                          "description": "lastTransitionTime is the last time the condition transitioned from one status to another.\nThis should be when the underlying condition changed. If that is not known, then using the time when\nthe API field changed is acceptable.",
                           "type": "string",
                           "format": "date-time"
                         },
                         "message": {
-                          "description": "A human readable message indicating details about the transition.\nThis field may be empty.",
+                          "description": "message is a human readable message indicating details about the transition.\nThis field may be empty.",
                           "type": "string"
                         },
                         "reason": {
-                          "description": "The reason for the condition's last transition in CamelCase.\nThe specific API may choose whether or not this field is considered a guaranteed API.\nThis field may not be empty.",
+                          "description": "reason is the reason for the condition's last transition in CamelCase.\nThe specific API may choose whether or not this field is considered a guaranteed API.\nThis field may not be empty.",
                           "type": "string"
                         },
                         "severity": {
-                          "description": "Severity provides an explicit classification of Reason code, so the users or machines can immediately\nunderstand the current situation and act accordingly.\nThe Severity field MUST be set only when Status=False.",
+                          "description": "severity provides an explicit classification of Reason code, so the users or machines can immediately\nunderstand the current situation and act accordingly.\nThe Severity field MUST be set only when Status=False.",
                           "type": "string"
                         },
                         "status": {
-                          "description": "Status of the condition, one of True, False, Unknown.",
+                          "description": "status of the condition, one of True, False, Unknown.",
                           "type": "string"
                         },
                         "type": {
-                          "description": "Type of condition in CamelCase or in foo.example.com/CamelCase.\nMany .condition.type values are consistent across resources like Available, but because arbitrary conditions\ncan be useful (see .node.status.conditions), the ability to deconflict is important.",
+                          "description": "type of condition in CamelCase or in foo.example.com/CamelCase.\nMany .condition.type values are consistent across resources like Available, but because arbitrary conditions\ncan be useful (see .node.status.conditions), the ability to deconflict is important.",
                           "type": "string"
                         }
                       }
                     }
                   },
                   "observedGeneration": {
-                    "description": "ObservedGeneration reflects the generation of the most recently observed ClusterResourceSet.",
+                    "description": "observedGeneration reflects the generation of the most recently observed ClusterResourceSet.",
                     "type": "integer",
                     "format": "int64"
                   }
@@ -194,7 +194,7 @@
         "deprecated": true,
         "schema": {
           "openAPIV3Schema": {
-            "description": "ClusterResourceSet is the Schema for the clusterresourcesets API.\n\n\nDeprecated: This type will be removed in one of the next releases.",
+            "description": "ClusterResourceSet is the Schema for the clusterresourcesets API.\n\nDeprecated: This type will be removed in one of the next releases.",
             "type": "object",
             "properties": {
               "apiVersion": {
@@ -209,14 +209,14 @@
                 "type": "object"
               },
               "spec": {
-                "description": "ClusterResourceSetSpec defines the desired state of ClusterResourceSet.",
+                "description": "spec is the desired state of ClusterResourceSet.",
                 "type": "object",
                 "required": [
                   "clusterSelector"
                 ],
                 "properties": {
                   "clusterSelector": {
-                    "description": "Label selector for Clusters. The Clusters that are\nselected by this will be the ones affected by this ClusterResourceSet.\nIt must match the Cluster labels. This field is immutable.\nLabel selector cannot be empty.",
+                    "description": "clusterSelector is the label selector for Clusters. The Clusters that are\nselected by this will be the ones affected by this ClusterResourceSet.\nIt must match the Cluster labels. This field is immutable.\nLabel selector cannot be empty.",
                     "type": "object",
                     "properties": {
                       "matchExpressions": {
@@ -261,7 +261,7 @@
                     "x-kubernetes-map-type": "atomic"
                   },
                   "resources": {
-                    "description": "Resources is a list of Secrets/ConfigMaps where each contains 1 or more resources to be applied to remote clusters.",
+                    "description": "resources is a list of Secrets/ConfigMaps where each contains 1 or more resources to be applied to remote clusters.",
                     "type": "array",
                     "items": {
                       "description": "ResourceRef specifies a resource.",
@@ -272,7 +272,7 @@
                       ],
                       "properties": {
                         "kind": {
-                          "description": "Kind of the resource. Supported kinds are: Secrets and ConfigMaps.",
+                          "description": "kind of the resource. Supported kinds are: Secrets and ConfigMaps.",
                           "type": "string",
                           "enum": [
                             "Secret",
@@ -280,7 +280,7 @@
                           ]
                         },
                         "name": {
-                          "description": "Name of the resource that is in the same namespace with ClusterResourceSet object.",
+                          "description": "name of the resource that is in the same namespace with ClusterResourceSet object.",
                           "type": "string",
                           "minLength": 1
                         }
@@ -288,7 +288,7 @@
                     }
                   },
                   "strategy": {
-                    "description": "Strategy is the strategy to be used during applying resources. Defaults to ApplyOnce. This field is immutable.",
+                    "description": "strategy is the strategy to be used during applying resources. Defaults to ApplyOnce. This field is immutable.",
                     "type": "string",
                     "enum": [
                       "ApplyOnce"
@@ -297,11 +297,11 @@
                 }
               },
               "status": {
-                "description": "ClusterResourceSetStatus defines the observed state of ClusterResourceSet.",
+                "description": "status is the observed state of ClusterResourceSet.",
                 "type": "object",
                 "properties": {
                   "conditions": {
-                    "description": "Conditions defines current state of the ClusterResourceSet.",
+                    "description": "conditions defines current state of the ClusterResourceSet.",
                     "type": "array",
                     "items": {
                       "description": "Condition defines an observation of a Cluster API resource operational state.",
@@ -312,35 +312,35 @@
                       ],
                       "properties": {
                         "lastTransitionTime": {
-                          "description": "Last time the condition transitioned from one status to another.\nThis should be when the underlying condition changed. If that is not known, then using the time when\nthe API field changed is acceptable.",
+                          "description": "lastTransitionTime is the last time the condition transitioned from one status to another.\nThis should be when the underlying condition changed. If that is not known, then using the time when\nthe API field changed is acceptable.",
                           "type": "string",
                           "format": "date-time"
                         },
                         "message": {
-                          "description": "A human readable message indicating details about the transition.\nThis field may be empty.",
+                          "description": "message is a human readable message indicating details about the transition.\nThis field may be empty.",
                           "type": "string"
                         },
                         "reason": {
-                          "description": "The reason for the condition's last transition in CamelCase.\nThe specific API may choose whether or not this field is considered a guaranteed API.\nThis field may not be empty.",
+                          "description": "reason is the reason for the condition's last transition in CamelCase.\nThe specific API may choose whether or not this field is considered a guaranteed API.\nThis field may not be empty.",
                           "type": "string"
                         },
                         "severity": {
-                          "description": "Severity provides an explicit classification of Reason code, so the users or machines can immediately\nunderstand the current situation and act accordingly.\nThe Severity field MUST be set only when Status=False.",
+                          "description": "severity provides an explicit classification of Reason code, so the users or machines can immediately\nunderstand the current situation and act accordingly.\nThe Severity field MUST be set only when Status=False.",
                           "type": "string"
                         },
                         "status": {
-                          "description": "Status of the condition, one of True, False, Unknown.",
+                          "description": "status of the condition, one of True, False, Unknown.",
                           "type": "string"
                         },
                         "type": {
-                          "description": "Type of condition in CamelCase or in foo.example.com/CamelCase.\nMany .condition.type values are consistent across resources like Available, but because arbitrary conditions\ncan be useful (see .node.status.conditions), the ability to deconflict is important.",
+                          "description": "type of condition in CamelCase or in foo.example.com/CamelCase.\nMany .condition.type values are consistent across resources like Available, but because arbitrary conditions\ncan be useful (see .node.status.conditions), the ability to deconflict is important.",
                           "type": "string"
                         }
                       }
                     }
                   },
                   "observedGeneration": {
-                    "description": "ObservedGeneration reflects the generation of the most recently observed ClusterResourceSet.",
+                    "description": "observedGeneration reflects the generation of the most recently observed ClusterResourceSet.",
                     "type": "integer",
                     "format": "int64"
                   }
@@ -367,7 +367,7 @@
         "storage": true,
         "schema": {
           "openAPIV3Schema": {
-            "description": "ClusterResourceSet is the Schema for the clusterresourcesets API.",
+            "description": "ClusterResourceSet is the Schema for the clusterresourcesets API.\nFor advanced use cases an add-on provider should be used instead.",
             "type": "object",
             "properties": {
               "apiVersion": {
@@ -382,14 +382,14 @@
                 "type": "object"
               },
               "spec": {
-                "description": "ClusterResourceSetSpec defines the desired state of ClusterResourceSet.",
+                "description": "spec is the desired state of ClusterResourceSet.",
                 "type": "object",
                 "required": [
                   "clusterSelector"
                 ],
                 "properties": {
                   "clusterSelector": {
-                    "description": "Label selector for Clusters. The Clusters that are\nselected by this will be the ones affected by this ClusterResourceSet.\nIt must match the Cluster labels. This field is immutable.\nLabel selector cannot be empty.",
+                    "description": "clusterSelector is the label selector for Clusters. The Clusters that are\nselected by this will be the ones affected by this ClusterResourceSet.\nIt must match the Cluster labels. This field is immutable.\nLabel selector cannot be empty.",
                     "type": "object",
                     "properties": {
                       "matchExpressions": {
@@ -434,8 +434,9 @@
                     "x-kubernetes-map-type": "atomic"
                   },
                   "resources": {
-                    "description": "Resources is a list of Secrets/ConfigMaps where each contains 1 or more resources to be applied to remote clusters.",
+                    "description": "resources is a list of Secrets/ConfigMaps where each contains 1 or more resources to be applied to remote clusters.",
                     "type": "array",
+                    "maxItems": 100,
                     "items": {
                       "description": "ResourceRef specifies a resource.",
                       "type": "object",
@@ -445,7 +446,7 @@
                       ],
                       "properties": {
                         "kind": {
-                          "description": "Kind of the resource. Supported kinds are: Secrets and ConfigMaps.",
+                          "description": "kind of the resource. Supported kinds are: Secrets and ConfigMaps.",
                           "type": "string",
                           "enum": [
                             "Secret",
@@ -453,15 +454,16 @@
                           ]
                         },
                         "name": {
-                          "description": "Name of the resource that is in the same namespace with ClusterResourceSet object.",
+                          "description": "name of the resource that is in the same namespace with ClusterResourceSet object.",
                           "type": "string",
+                          "maxLength": 253,
                           "minLength": 1
                         }
                       }
                     }
                   },
                   "strategy": {
-                    "description": "Strategy is the strategy to be used during applying resources. Defaults to ApplyOnce. This field is immutable.",
+                    "description": "strategy is the strategy to be used during applying resources. Defaults to ApplyOnce. This field is immutable.",
                     "type": "string",
                     "enum": [
                       "ApplyOnce",
@@ -471,11 +473,11 @@
                 }
               },
               "status": {
-                "description": "ClusterResourceSetStatus defines the observed state of ClusterResourceSet.",
+                "description": "status is the observed state of ClusterResourceSet.",
                 "type": "object",
                 "properties": {
                   "conditions": {
-                    "description": "Conditions defines current state of the ClusterResourceSet.",
+                    "description": "conditions defines current state of the ClusterResourceSet.",
                     "type": "array",
                     "items": {
                       "description": "Condition defines an observation of a Cluster API resource operational state.",
@@ -487,37 +489,110 @@
                       ],
                       "properties": {
                         "lastTransitionTime": {
-                          "description": "Last time the condition transitioned from one status to another.\nThis should be when the underlying condition changed. If that is not known, then using the time when\nthe API field changed is acceptable.",
+                          "description": "lastTransitionTime is the last time the condition transitioned from one status to another.\nThis should be when the underlying condition changed. If that is not known, then using the time when\nthe API field changed is acceptable.",
                           "type": "string",
                           "format": "date-time"
                         },
                         "message": {
-                          "description": "A human readable message indicating details about the transition.\nThis field may be empty.",
-                          "type": "string"
+                          "description": "message is a human readable message indicating details about the transition.\nThis field may be empty.",
+                          "type": "string",
+                          "maxLength": 10240,
+                          "minLength": 1
                         },
                         "reason": {
-                          "description": "The reason for the condition's last transition in CamelCase.\nThe specific API may choose whether or not this field is considered a guaranteed API.\nThis field may not be empty.",
-                          "type": "string"
+                          "description": "reason is the reason for the condition's last transition in CamelCase.\nThe specific API may choose whether or not this field is considered a guaranteed API.\nThis field may be empty.",
+                          "type": "string",
+                          "maxLength": 256,
+                          "minLength": 1
                         },
                         "severity": {
-                          "description": "Severity provides an explicit classification of Reason code, so the users or machines can immediately\nunderstand the current situation and act accordingly.\nThe Severity field MUST be set only when Status=False.",
-                          "type": "string"
+                          "description": "severity provides an explicit classification of Reason code, so the users or machines can immediately\nunderstand the current situation and act accordingly.\nThe Severity field MUST be set only when Status=False.",
+                          "type": "string",
+                          "maxLength": 32
                         },
                         "status": {
-                          "description": "Status of the condition, one of True, False, Unknown.",
+                          "description": "status of the condition, one of True, False, Unknown.",
                           "type": "string"
                         },
                         "type": {
-                          "description": "Type of condition in CamelCase or in foo.example.com/CamelCase.\nMany .condition.type values are consistent across resources like Available, but because arbitrary conditions\ncan be useful (see .node.status.conditions), the ability to deconflict is important.",
-                          "type": "string"
+                          "description": "type of condition in CamelCase or in foo.example.com/CamelCase.\nMany .condition.type values are consistent across resources like Available, but because arbitrary conditions\ncan be useful (see .node.status.conditions), the ability to deconflict is important.",
+                          "type": "string",
+                          "maxLength": 256,
+                          "minLength": 1
                         }
                       }
                     }
                   },
                   "observedGeneration": {
-                    "description": "ObservedGeneration reflects the generation of the most recently observed ClusterResourceSet.",
+                    "description": "observedGeneration reflects the generation of the most recently observed ClusterResourceSet.",
                     "type": "integer",
                     "format": "int64"
+                  },
+                  "v1beta2": {
+                    "description": "v1beta2 groups all the fields that will be added or modified in ClusterResourceSet's status with the V1Beta2 version.",
+                    "type": "object",
+                    "properties": {
+                      "conditions": {
+                        "description": "conditions represents the observations of a ClusterResourceSet's current state.\nKnown condition types are ResourceSetApplied, Deleting.",
+                        "type": "array",
+                        "maxItems": 32,
+                        "items": {
+                          "description": "Condition contains details for one aspect of the current state of this API Resource.",
+                          "type": "object",
+                          "required": [
+                            "lastTransitionTime",
+                            "message",
+                            "reason",
+                            "status",
+                            "type"
+                          ],
+                          "properties": {
+                            "lastTransitionTime": {
+                              "description": "lastTransitionTime is the last time the condition transitioned from one status to another.\nThis should be when the underlying condition changed.  If that is not known, then using the time when the API field changed is acceptable.",
+                              "type": "string",
+                              "format": "date-time"
+                            },
+                            "message": {
+                              "description": "message is a human readable message indicating details about the transition.\nThis may be an empty string.",
+                              "type": "string",
+                              "maxLength": 32768
+                            },
+                            "observedGeneration": {
+                              "description": "observedGeneration represents the .metadata.generation that the condition was set based upon.\nFor instance, if .metadata.generation is currently 12, but the .status.conditions[x].observedGeneration is 9, the condition is out of date\nwith respect to the current state of the instance.",
+                              "type": "integer",
+                              "format": "int64",
+                              "minimum": 0
+                            },
+                            "reason": {
+                              "description": "reason contains a programmatic identifier indicating the reason for the condition's last transition.\nProducers of specific condition types may define expected values and meanings for this field,\nand whether the values are considered a guaranteed API.\nThe value should be a CamelCase string.\nThis field may not be empty.",
+                              "type": "string",
+                              "maxLength": 1024,
+                              "minLength": 1,
+                              "pattern": "^[A-Za-z]([A-Za-z0-9_,:]*[A-Za-z0-9_])?$"
+                            },
+                            "status": {
+                              "description": "status of the condition, one of True, False, Unknown.",
+                              "type": "string",
+                              "enum": [
+                                "True",
+                                "False",
+                                "Unknown"
+                              ]
+                            },
+                            "type": {
+                              "description": "type of condition in CamelCase or in foo.example.com/CamelCase.",
+                              "type": "string",
+                              "maxLength": 316,
+                              "pattern": "^([a-z0-9]([-a-z0-9]*[a-z0-9])?(\\.[a-z0-9]([-a-z0-9]*[a-z0-9])?)*/)?(([A-Za-z0-9][-A-Za-z0-9_.]*)?[A-Za-z0-9])$"
+                            }
+                          }
+                        },
+                        "x-kubernetes-list-map-keys": [
+                          "type"
+                        ],
+                        "x-kubernetes-list-type": "map"
+                      }
+                    }
                   }
                 }
               }

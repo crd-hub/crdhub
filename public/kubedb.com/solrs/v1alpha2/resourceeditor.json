@@ -22,7 +22,7 @@
     "ui": {
       "options": {
         "name": "kubedbcom-solr-editor-options",
-        "version": "sha256:a9290b3cb43e4256a6beb833e3fa5b0a0eef4ce087b84cafb169f975f1bcce46",
+        "version": "v0.17.0",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",
@@ -31,7 +31,7 @@
       },
       "editor": {
         "name": "kubedbcom-solr-editor",
-        "version": "sha256:851e43f6e8d18b9203c0a5d312e3bcfb5d5b623bfce94f7520102f1b38bb7d5e",
+        "version": "v0.17.0",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",
@@ -55,7 +55,7 @@
               "flow": "standalone-edit",
               "editor": {
                 "name": "kubedbcom-solr-editor",
-                "version": "sha256:851e43f6e8d18b9203c0a5d312e3bcfb5d5b623bfce94f7520102f1b38bb7d5e",
+                "version": "v0.17.0",
                 "sourceRef": {
                   "apiGroup": "source.toolkit.fluxcd.io",
                   "kind": "HelmRepository",
@@ -76,7 +76,7 @@
               "flow": "standalone-create",
               "editor": {
                 "name": "corekubestashcom-backupsession-editor",
-                "version": "sha256:bc7ccb75de5004d3f4e9b7b49c8ae0a17e6009c7ccb608b35afb5deacd6c9b5d",
+                "version": "v0.17.0",
                 "sourceRef": {
                   "apiGroup": "source.toolkit.fluxcd.io",
                   "kind": "HelmRepository",
@@ -97,7 +97,7 @@
               "flow": "standalone-create",
               "editor": {
                 "name": "corekubestashcom-restoresession-editor-options",
-                "version": "sha256:66fb1eb161d84a80029bac82e3dcae40b657a434a5656fb329fc84748a72e19a",
+                "version": "v0.17.0",
                 "sourceRef": {
                   "apiGroup": "source.toolkit.fluxcd.io",
                   "kind": "HelmRepository",
@@ -123,7 +123,7 @@
               "flow": "standalone-create",
               "editor": {
                 "name": "opskubedbcom-solropsrequest-editor",
-                "version": "sha256:3848488b577294a6a8ed8f9790e4247180f4d6972515368c538cffceb9219398",
+                "version": "v0.17.0",
                 "sourceRef": {
                   "apiGroup": "source.toolkit.fluxcd.io",
                   "kind": "HelmRepository",
@@ -144,7 +144,7 @@
               "flow": "standalone-create",
               "editor": {
                 "name": "opskubedbcom-solropsrequest-editor",
-                "version": "sha256:3848488b577294a6a8ed8f9790e4247180f4d6972515368c538cffceb9219398",
+                "version": "v0.17.0",
                 "sourceRef": {
                   "apiGroup": "source.toolkit.fluxcd.io",
                   "kind": "HelmRepository",
@@ -165,7 +165,7 @@
               "flow": "standalone-create",
               "editor": {
                 "name": "opskubedbcom-solropsrequest-editor",
-                "version": "sha256:3848488b577294a6a8ed8f9790e4247180f4d6972515368c538cffceb9219398",
+                "version": "v0.17.0",
                 "sourceRef": {
                   "apiGroup": "source.toolkit.fluxcd.io",
                   "kind": "HelmRepository",
@@ -192,7 +192,7 @@
               "disabledTemplate": "{{ not (or (hasKey .spec \"topology\") (gt .spec.replicas 1) )}}\n",
               "editor": {
                 "name": "opskubedbcom-solropsrequest-editor",
-                "version": "sha256:3848488b577294a6a8ed8f9790e4247180f4d6972515368c538cffceb9219398",
+                "version": "v0.17.0",
                 "sourceRef": {
                   "apiGroup": "source.toolkit.fluxcd.io",
                   "kind": "HelmRepository",
@@ -213,7 +213,7 @@
               "flow": "standalone-create",
               "editor": {
                 "name": "opskubedbcom-solropsrequest-editor",
-                "version": "sha256:3848488b577294a6a8ed8f9790e4247180f4d6972515368c538cffceb9219398",
+                "version": "v0.17.0",
                 "sourceRef": {
                   "apiGroup": "source.toolkit.fluxcd.io",
                   "kind": "HelmRepository",
@@ -234,7 +234,7 @@
               "flow": "standalone-create",
               "editor": {
                 "name": "opskubedbcom-solropsrequest-editor",
-                "version": "sha256:3848488b577294a6a8ed8f9790e4247180f4d6972515368c538cffceb9219398",
+                "version": "v0.17.0",
                 "sourceRef": {
                   "apiGroup": "source.toolkit.fluxcd.io",
                   "kind": "HelmRepository",
@@ -260,7 +260,7 @@
               "flow": "standalone-edit",
               "editor": {
                 "name": "kubedbcom-solr-editor",
-                "version": "sha256:851e43f6e8d18b9203c0a5d312e3bcfb5d5b623bfce94f7520102f1b38bb7d5e",
+                "version": "v0.17.0",
                 "sourceRef": {
                   "apiGroup": "source.toolkit.fluxcd.io",
                   "kind": "HelmRepository",
@@ -281,7 +281,7 @@
               "flow": "standalone-edit",
               "editor": {
                 "name": "kubedbcom-solr-editor",
-                "version": "sha256:851e43f6e8d18b9203c0a5d312e3bcfb5d5b623bfce94f7520102f1b38bb7d5e",
+                "version": "v0.17.0",
                 "sourceRef": {
                   "apiGroup": "source.toolkit.fluxcd.io",
                   "kind": "HelmRepository",
@@ -307,7 +307,7 @@
               "flow": "standalone-edit",
               "editor": {
                 "name": "kubedbcom-solr-editor",
-                "version": "sha256:851e43f6e8d18b9203c0a5d312e3bcfb5d5b623bfce94f7520102f1b38bb7d5e",
+                "version": "v0.17.0",
                 "sourceRef": {
                   "apiGroup": "source.toolkit.fluxcd.io",
                   "kind": "HelmRepository",

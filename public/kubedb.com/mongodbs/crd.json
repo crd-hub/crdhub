@@ -16628,6 +16628,23 @@
                       "name"
                     ],
                     "properties": {
+                      "horizons": {
+                        "type": "object",
+                        "required": [
+                          "dns"
+                        ],
+                        "properties": {
+                          "dns": {
+                            "type": "string"
+                          },
+                          "pods": {
+                            "type": "array",
+                            "items": {
+                              "type": "string"
+                            }
+                          }
+                        }
+                      },
                       "name": {
                         "type": "string"
                       }

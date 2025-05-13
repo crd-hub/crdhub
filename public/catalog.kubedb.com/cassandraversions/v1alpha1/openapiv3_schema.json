@@ -43,6 +43,7 @@
         "db",
         "exporter",
         "initContainer",
+        "medusa",
         "version"
       ],
       "properties": {
@@ -76,6 +77,29 @@
           "properties": {
             "image": {
               "type": "string"
+            }
+          }
+        },
+        "medusa": {
+          "type": "object",
+          "required": [
+            "image",
+            "init"
+          ],
+          "properties": {
+            "image": {
+              "type": "string"
+            },
+            "init": {
+              "type": "object",
+              "required": [
+                "image"
+              ],
+              "properties": {
+                "image": {
+                  "type": "string"
+                }
+              }
             }
           }
         },

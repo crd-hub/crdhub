@@ -22,7 +22,7 @@
     "ui": {
       "editor": {
         "name": "configgatekeepersh-config-editor",
-        "version": "sha256:51b1d9b9b9f3ec3d598ddb2d6b1bc0620583c3d16d99b22ac234356449672aeb",
+        "version": "v0.17.0",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",

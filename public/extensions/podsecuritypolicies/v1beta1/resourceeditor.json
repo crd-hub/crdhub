@@ -22,7 +22,7 @@
     "ui": {
       "editor": {
         "name": "extensions-podsecuritypolicy-editor",
-        "version": "sha256:71d7ee5cb6d84cf7cf7cf04c2ceaa4f3990afbe773819d13434522d83cf27cd4",
+        "version": "v0.17.0",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",

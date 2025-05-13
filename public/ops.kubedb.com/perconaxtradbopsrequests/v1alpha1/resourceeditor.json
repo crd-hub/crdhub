@@ -22,7 +22,7 @@
     "ui": {
       "editor": {
         "name": "opskubedbcom-perconaxtradbopsrequest-editor",
-        "version": "sha256:19353dc65db619aa1f3328556f89671f0a5484a93058099ce9b14329b0b53000",
+        "version": "v0.17.0",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",

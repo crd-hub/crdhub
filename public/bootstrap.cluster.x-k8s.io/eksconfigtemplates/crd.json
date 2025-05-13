@@ -5,7 +5,7 @@
     "name": "eksconfigtemplates.bootstrap.cluster.x-k8s.io",
     "creationTimestamp": null,
     "annotations": {
-      "controller-gen.kubebuilder.io/version": "v0.16.5"
+      "controller-gen.kubebuilder.io/version": "v0.17.3"
     }
   },
   "spec": {

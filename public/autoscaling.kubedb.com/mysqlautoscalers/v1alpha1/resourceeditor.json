@@ -22,7 +22,7 @@
     "ui": {
       "editor": {
         "name": "autoscalingkubedbcom-mysqlautoscaler-editor",
-        "version": "sha256:e1e34bde50cb1b4e83bc87281524bbb262203b0fc7f48c065143dc7ee77c5e9a",
+        "version": "v0.17.0",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",

@@ -5,7 +5,7 @@
     "name": "awsclusters.infrastructure.cluster.x-k8s.io",
     "creationTimestamp": null,
     "annotations": {
-      "controller-gen.kubebuilder.io/version": "v0.16.5"
+      "controller-gen.kubebuilder.io/version": "v0.17.3"
     }
   },
   "spec": {
@@ -93,11 +93,12 @@
                     ],
                     "properties": {
                       "host": {
-                        "description": "The hostname on which the API server is serving.",
-                        "type": "string"
+                        "description": "host is the hostname on which the API server is serving.",
+                        "type": "string",
+                        "maxLength": 512
                       },
                       "port": {
-                        "description": "The port on which the API server is serving.",
+                        "description": "port is the port on which the API server is serving.",
                         "type": "integer",
                         "format": "int32"
                       }
@@ -404,12 +405,21 @@
                           ],
                           "properties": {
                             "address": {
-                              "description": "The machine address.",
-                              "type": "string"
+                              "description": "address is the machine address.",
+                              "type": "string",
+                              "maxLength": 256,
+                              "minLength": 1
                             },
                             "type": {
-                              "description": "Machine address type, one of Hostname, ExternalIP, InternalIP, ExternalDNS or InternalDNS.",
-                              "type": "string"
+                              "description": "type is the machine address type, one of Hostname, ExternalIP, InternalIP, ExternalDNS or InternalDNS.",
+                              "type": "string",
+                              "enum": [
+                                "Hostname",
+                                "ExternalIP",
+                                "InternalIP",
+                                "ExternalDNS",
+                                "InternalDNS"
+                              ]
                             }
                           }
                         }
@@ -608,21 +618,26 @@
                       ],
                       "properties": {
                         "lastTransitionTime": {
-                          "description": "Last time the condition transitioned from one status to another.\nThis should be when the underlying condition changed. If that is not known, then using the time when\nthe API field changed is acceptable.",
+                          "description": "lastTransitionTime is the last time the condition transitioned from one status to another.\nThis should be when the underlying condition changed. If that is not known, then using the time when\nthe API field changed is acceptable.",
                           "type": "string",
                           "format": "date-time"
                         },
                         "message": {
-                          "description": "A human readable message indicating details about the transition.\nThis field may be empty.",
-                          "type": "string"
+                          "description": "message is a human readable message indicating details about the transition.\nThis field may be empty.",
+                          "type": "string",
+                          "maxLength": 10240,
+                          "minLength": 1
                         },
                         "reason": {
-                          "description": "The reason for the condition's last transition in CamelCase.\nThe specific API may choose whether or not this field is considered a guaranteed API.\nThis field may be empty.",
-                          "type": "string"
+                          "description": "reason is the reason for the condition's last transition in CamelCase.\nThe specific API may choose whether or not this field is considered a guaranteed API.\nThis field may be empty.",
+                          "type": "string",
+                          "maxLength": 256,
+                          "minLength": 1
                         },
                         "severity": {
                           "description": "severity provides an explicit classification of Reason code, so the users or machines can immediately\nunderstand the current situation and act accordingly.\nThe Severity field MUST be set only when Status=False.",
-                          "type": "string"
+                          "type": "string",
+                          "maxLength": 32
                         },
                         "status": {
                           "description": "status of the condition, one of True, False, Unknown.",
@@ -630,7 +645,9 @@
                         },
                         "type": {
                           "description": "type of condition in CamelCase or in foo.example.com/CamelCase.\nMany .condition.type values are consistent across resources like Available, but because arbitrary conditions\ncan be useful (see .node.status.conditions), the ability to deconflict is important.",
-                          "type": "string"
+                          "type": "string",
+                          "maxLength": 256,
+                          "minLength": 1
                         }
                       }
                     }
@@ -985,11 +1002,12 @@
                     ],
                     "properties": {
                       "host": {
-                        "description": "The hostname on which the API server is serving.",
-                        "type": "string"
+                        "description": "host is the hostname on which the API server is serving.",
+                        "type": "string",
+                        "maxLength": 512
                       },
                       "port": {
-                        "description": "The port on which the API server is serving.",
+                        "description": "port is the port on which the API server is serving.",
                         "type": "integer",
                         "format": "int32"
                       }
@@ -1309,6 +1327,90 @@
                     "properties": {
                       "additionalControlPlaneIngressRules": {
                         "description": "AdditionalControlPlaneIngressRules is an optional set of ingress rules to add to the control plane",
+                        "type": "array",
+                        "items": {
+                          "description": "IngressRule defines an AWS ingress rule for security groups.",
+                          "type": "object",
+                          "required": [
+                            "description",
+                            "fromPort",
+                            "protocol",
+                            "toPort"
+                          ],
+                          "properties": {
+                            "cidrBlocks": {
+                              "description": "List of CIDR blocks to allow access from. Cannot be specified with SourceSecurityGroupID.",
+                              "type": "array",
+                              "items": {
+                                "type": "string"
+                              }
+                            },
+                            "description": {
+                              "description": "Description provides extended information about the ingress rule.",
+                              "type": "string"
+                            },
+                            "fromPort": {
+                              "description": "FromPort is the start of port range.",
+                              "type": "integer",
+                              "format": "int64"
+                            },
+                            "ipv6CidrBlocks": {
+                              "description": "List of IPv6 CIDR blocks to allow access from. Cannot be specified with SourceSecurityGroupID.",
+                              "type": "array",
+                              "items": {
+                                "type": "string"
+                              }
+                            },
+                            "natGatewaysIPsSource": {
+                              "description": "NatGatewaysIPsSource use the NAT gateways IPs as the source for the ingress rule.",
+                              "type": "boolean"
+                            },
+                            "protocol": {
+                              "description": "Protocol is the protocol for the ingress rule. Accepted values are \"-1\" (all), \"4\" (IP in IP),\"tcp\", \"udp\", \"icmp\", and \"58\" (ICMPv6), \"50\" (ESP).",
+                              "type": "string",
+                              "enum": [
+                                "-1",
+                                "4",
+                                "tcp",
+                                "udp",
+                                "icmp",
+                                "58",
+                                "50"
+                              ]
+                            },
+                            "sourceSecurityGroupIds": {
+                              "description": "The security group id to allow access from. Cannot be specified with CidrBlocks.",
+                              "type": "array",
+                              "items": {
+                                "type": "string"
+                              }
+                            },
+                            "sourceSecurityGroupRoles": {
+                              "description": "The security group role to allow access from. Cannot be specified with CidrBlocks.\nThe field will be combined with source security group IDs if specified.",
+                              "type": "array",
+                              "items": {
+                                "description": "SecurityGroupRole defines the unique role of a security group.",
+                                "type": "string",
+                                "enum": [
+                                  "bastion",
+                                  "node",
+                                  "controlplane",
+                                  "apiserver-lb",
+                                  "lb",
+                                  "node-eks-additional"
+                                ]
+                              }
+                            },
+                            "toPort": {
+                              "description": "ToPort is the end of port range.",
+                              "type": "integer",
+                              "format": "int64"
+                            }
+                          }
+                        }
+                      },
+                      "additionalNodeIngressRules": {
+                        "description": "AdditionalNodeIngressRules is an optional set of ingress rules to add to every node",
                         "type": "array",
                         "items": {
                           "description": "IngressRule defines an AWS ingress rule for security groups.",
@@ -2034,12 +2136,21 @@
                           ],
                           "properties": {
                             "address": {
-                              "description": "The machine address.",
-                              "type": "string"
+                              "description": "address is the machine address.",
+                              "type": "string",
+                              "maxLength": 256,
+                              "minLength": 1
                             },
                             "type": {
-                              "description": "Machine address type, one of Hostname, ExternalIP, InternalIP, ExternalDNS or InternalDNS.",
-                              "type": "string"
+                              "description": "type is the machine address type, one of Hostname, ExternalIP, InternalIP, ExternalDNS or InternalDNS.",
+                              "type": "string",
+                              "enum": [
+                                "Hostname",
+                                "ExternalIP",
+                                "InternalIP",
+                                "ExternalDNS",
+                                "InternalDNS"
+                              ]
                             }
                           }
                         }
@@ -2333,21 +2444,26 @@
                       ],
                       "properties": {
                         "lastTransitionTime": {
-                          "description": "Last time the condition transitioned from one status to another.\nThis should be when the underlying condition changed. If that is not known, then using the time when\nthe API field changed is acceptable.",
+                          "description": "lastTransitionTime is the last time the condition transitioned from one status to another.\nThis should be when the underlying condition changed. If that is not known, then using the time when\nthe API field changed is acceptable.",
                           "type": "string",
                           "format": "date-time"
                         },
                         "message": {
-                          "description": "A human readable message indicating details about the transition.\nThis field may be empty.",
-                          "type": "string"
+                          "description": "message is a human readable message indicating details about the transition.\nThis field may be empty.",
+                          "type": "string",
+                          "maxLength": 10240,
+                          "minLength": 1
                         },
                         "reason": {
-                          "description": "The reason for the condition's last transition in CamelCase.\nThe specific API may choose whether or not this field is considered a guaranteed API.\nThis field may be empty.",
-                          "type": "string"
+                          "description": "reason is the reason for the condition's last transition in CamelCase.\nThe specific API may choose whether or not this field is considered a guaranteed API.\nThis field may be empty.",
+                          "type": "string",
+                          "maxLength": 256,
+                          "minLength": 1
                         },
                         "severity": {
                           "description": "severity provides an explicit classification of Reason code, so the users or machines can immediately\nunderstand the current situation and act accordingly.\nThe Severity field MUST be set only when Status=False.",
-                          "type": "string"
+                          "type": "string",
+                          "maxLength": 32
                         },
                         "status": {
                           "description": "status of the condition, one of True, False, Unknown.",
@@ -2355,7 +2471,9 @@
                         },
                         "type": {
                           "description": "type of condition in CamelCase or in foo.example.com/CamelCase.\nMany .condition.type values are consistent across resources like Available, but because arbitrary conditions\ncan be useful (see .node.status.conditions), the ability to deconflict is important.",
-                          "type": "string"
+                          "type": "string",
+                          "maxLength": 256,
+                          "minLength": 1
                         }
                       }
                     }

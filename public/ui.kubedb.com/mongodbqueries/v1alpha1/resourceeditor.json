@@ -22,7 +22,7 @@
     "ui": {
       "editor": {
         "name": "uikubedbcom-mongodbqueries-editor",
-        "version": "sha256:dbe93d73e8bb5e21f94105eac14975c78ab38b17942d5e4da520c56cff96f744",
+        "version": "v0.17.0",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",

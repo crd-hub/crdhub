@@ -22,7 +22,7 @@
     "ui": {
       "editor": {
         "name": "opskubedbcom-singlestoreopsrequest-editor",
-        "version": "sha256:f1c243bc76b2c08c171444780cfbc0e7d072a116044414e1226861f14b3ae053",
+        "version": "v0.17.0",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",

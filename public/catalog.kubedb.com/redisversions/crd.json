@@ -80,7 +80,7 @@
                   "distribution": {
                     "type": "string",
                     "enum": [
-                      "Redis",
+                      "Official",
                       "Valkey"
                     ]
                   },

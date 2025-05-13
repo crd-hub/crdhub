@@ -5,7 +5,7 @@
     "name": "clusterresourcesetbindings.addons.cluster.x-k8s.io",
     "creationTimestamp": null,
     "annotations": {
-      "controller-gen.kubebuilder.io/version": "v0.15.0"
+      "controller-gen.kubebuilder.io/version": "v0.17.2"
     }
   },
   "spec": {
@@ -28,7 +28,7 @@
         "deprecated": true,
         "schema": {
           "openAPIV3Schema": {
-            "description": "ClusterResourceSetBinding lists all matching ClusterResourceSets with the cluster it belongs to.\n\n\nDeprecated: This type will be removed in one of the next releases.",
+            "description": "ClusterResourceSetBinding lists all matching ClusterResourceSets with the cluster it belongs to.\n\nDeprecated: This type will be removed in one of the next releases.",
             "type": "object",
             "properties": {
               "apiVersion": {
@@ -43,11 +43,11 @@
                 "type": "object"
               },
               "spec": {
-                "description": "ClusterResourceSetBindingSpec defines the desired state of ClusterResourceSetBinding.",
+                "description": "spec is the desired state of ClusterResourceSetBinding.",
                 "type": "object",
                 "properties": {
                   "bindings": {
-                    "description": "Bindings is a list of ClusterResourceSets and their resources.",
+                    "description": "bindings is a list of ClusterResourceSets and their resources.",
                     "type": "array",
                     "items": {
                       "description": "ResourceSetBinding keeps info on all of the resources in a ClusterResourceSet.",
@@ -57,11 +57,11 @@
                       ],
                       "properties": {
                         "clusterResourceSetName": {
-                          "description": "ClusterResourceSetName is the name of the ClusterResourceSet that is applied to the owner cluster of the binding.",
+                          "description": "clusterResourceSetName is the name of the ClusterResourceSet that is applied to the owner cluster of the binding.",
                           "type": "string"
                         },
                         "resources": {
-                          "description": "Resources is a list of resources that the ClusterResourceSet has.",
+                          "description": "resources is a list of resources that the ClusterResourceSet has.",
                           "type": "array",
                           "items": {
                             "description": "ResourceBinding shows the status of a resource that belongs to a ClusterResourceSet matched by the owner cluster of the ClusterResourceSetBinding object.",
@@ -73,15 +73,15 @@
                             ],
                             "properties": {
                               "applied": {
-                                "description": "Applied is to track if a resource is applied to the cluster or not.",
+                                "description": "applied is to track if a resource is applied to the cluster or not.",
                                 "type": "boolean"
                               },
                               "hash": {
-                                "description": "Hash is the hash of a resource's data. This can be used to decide if a resource is changed.\nFor \"ApplyOnce\" ClusterResourceSet.spec.strategy, this is no-op as that strategy does not act on change.",
+                                "description": "hash is the hash of a resource's data. This can be used to decide if a resource is changed.\nFor \"ApplyOnce\" ClusterResourceSet.spec.strategy, this is no-op as that strategy does not act on change.",
                                 "type": "string"
                               },
                               "kind": {
-                                "description": "Kind of the resource. Supported kinds are: Secrets and ConfigMaps.",
+                                "description": "kind of the resource. Supported kinds are: Secrets and ConfigMaps.",
                                 "type": "string",
                                 "enum": [
                                   "Secret",
@@ -89,12 +89,12 @@
                                 ]
                               },
                               "lastAppliedTime": {
-                                "description": "LastAppliedTime identifies when this resource was last applied to the cluster.",
+                                "description": "lastAppliedTime identifies when this resource was last applied to the cluster.",
                                 "type": "string",
                                 "format": "date-time"
                               },
                               "name": {
-                                "description": "Name of the resource that is in the same namespace with ClusterResourceSet object.",
+                                "description": "name of the resource that is in the same namespace with ClusterResourceSet object.",
                                 "type": "string",
                                 "minLength": 1
                               }
@@ -120,7 +120,7 @@
         "deprecated": true,
         "schema": {
           "openAPIV3Schema": {
-            "description": "ClusterResourceSetBinding lists all matching ClusterResourceSets with the cluster it belongs to.\n\n\nDeprecated: This type will be removed in one of the next releases.",
+            "description": "ClusterResourceSetBinding lists all matching ClusterResourceSets with the cluster it belongs to.\n\nDeprecated: This type will be removed in one of the next releases.",
             "type": "object",
             "properties": {
               "apiVersion": {
@@ -135,11 +135,11 @@
                 "type": "object"
               },
               "spec": {
-                "description": "ClusterResourceSetBindingSpec defines the desired state of ClusterResourceSetBinding.",
+                "description": "spec is the desired state of ClusterResourceSetBinding.",
                 "type": "object",
                 "properties": {
                   "bindings": {
-                    "description": "Bindings is a list of ClusterResourceSets and their resources.",
+                    "description": "bindings is a list of ClusterResourceSets and their resources.",
                     "type": "array",
                     "items": {
                       "description": "ResourceSetBinding keeps info on all of the resources in a ClusterResourceSet.",
@@ -149,11 +149,11 @@
                       ],
                       "properties": {
                         "clusterResourceSetName": {
-                          "description": "ClusterResourceSetName is the name of the ClusterResourceSet that is applied to the owner cluster of the binding.",
+                          "description": "clusterResourceSetName is the name of the ClusterResourceSet that is applied to the owner cluster of the binding.",
                           "type": "string"
                         },
                         "resources": {
-                          "description": "Resources is a list of resources that the ClusterResourceSet has.",
+                          "description": "resources is a list of resources that the ClusterResourceSet has.",
                           "type": "array",
                           "items": {
                             "description": "ResourceBinding shows the status of a resource that belongs to a ClusterResourceSet matched by the owner cluster of the ClusterResourceSetBinding object.",
@@ -165,15 +165,15 @@
                             ],
                             "properties": {
                               "applied": {
-                                "description": "Applied is to track if a resource is applied to the cluster or not.",
+                                "description": "applied is to track if a resource is applied to the cluster or not.",
                                 "type": "boolean"
                               },
                               "hash": {
-                                "description": "Hash is the hash of a resource's data. This can be used to decide if a resource is changed.\nFor \"ApplyOnce\" ClusterResourceSet.spec.strategy, this is no-op as that strategy does not act on change.",
+                                "description": "hash is the hash of a resource's data. This can be used to decide if a resource is changed.\nFor \"ApplyOnce\" ClusterResourceSet.spec.strategy, this is no-op as that strategy does not act on change.",
                                 "type": "string"
                               },
                               "kind": {
-                                "description": "Kind of the resource. Supported kinds are: Secrets and ConfigMaps.",
+                                "description": "kind of the resource. Supported kinds are: Secrets and ConfigMaps.",
                                 "type": "string",
                                 "enum": [
                                   "Secret",
@@ -181,12 +181,12 @@
                                 ]
                               },
                               "lastAppliedTime": {
-                                "description": "LastAppliedTime identifies when this resource was last applied to the cluster.",
+                                "description": "lastAppliedTime identifies when this resource was last applied to the cluster.",
                                 "type": "string",
                                 "format": "date-time"
                               },
                               "name": {
-                                "description": "Name of the resource that is in the same namespace with ClusterResourceSet object.",
+                                "description": "name of the resource that is in the same namespace with ClusterResourceSet object.",
                                 "type": "string",
                                 "minLength": 1
                               }
@@ -234,12 +234,13 @@
                 "type": "object"
               },
               "spec": {
-                "description": "ClusterResourceSetBindingSpec defines the desired state of ClusterResourceSetBinding.",
+                "description": "spec is the desired state of ClusterResourceSetBinding.",
                 "type": "object",
                 "properties": {
                   "bindings": {
-                    "description": "Bindings is a list of ClusterResourceSets and their resources.",
+                    "description": "bindings is a list of ClusterResourceSets and their resources.",
                     "type": "array",
+                    "maxItems": 100,
                     "items": {
                       "description": "ResourceSetBinding keeps info on all of the resources in a ClusterResourceSet.",
                       "type": "object",
@@ -248,12 +249,15 @@
                       ],
                       "properties": {
                         "clusterResourceSetName": {
-                          "description": "ClusterResourceSetName is the name of the ClusterResourceSet that is applied to the owner cluster of the binding.",
-                          "type": "string"
+                          "description": "clusterResourceSetName is the name of the ClusterResourceSet that is applied to the owner cluster of the binding.",
+                          "type": "string",
+                          "maxLength": 253,
+                          "minLength": 1
                         },
                         "resources": {
-                          "description": "Resources is a list of resources that the ClusterResourceSet has.",
+                          "description": "resources is a list of resources that the ClusterResourceSet has.",
                           "type": "array",
+                          "maxItems": 100,
                           "items": {
                             "description": "ResourceBinding shows the status of a resource that belongs to a ClusterResourceSet matched by the owner cluster of the ClusterResourceSetBinding object.",
                             "type": "object",
@@ -264,15 +268,17 @@
                             ],
                             "properties": {
                               "applied": {
-                                "description": "Applied is to track if a resource is applied to the cluster or not.",
+                                "description": "applied is to track if a resource is applied to the cluster or not.",
                                 "type": "boolean"
                               },
                               "hash": {
-                                "description": "Hash is the hash of a resource's data. This can be used to decide if a resource is changed.\nFor \"ApplyOnce\" ClusterResourceSet.spec.strategy, this is no-op as that strategy does not act on change.",
-                                "type": "string"
+                                "description": "hash is the hash of a resource's data. This can be used to decide if a resource is changed.\nFor \"ApplyOnce\" ClusterResourceSet.spec.strategy, this is no-op as that strategy does not act on change.",
+                                "type": "string",
+                                "maxLength": 256,
+                                "minLength": 1
                               },
                               "kind": {
-                                "description": "Kind of the resource. Supported kinds are: Secrets and ConfigMaps.",
+                                "description": "kind of the resource. Supported kinds are: Secrets and ConfigMaps.",
                                 "type": "string",
                                 "enum": [
                                   "Secret",
@@ -280,13 +286,14 @@
                                 ]
                               },
                               "lastAppliedTime": {
-                                "description": "LastAppliedTime identifies when this resource was last applied to the cluster.",
+                                "description": "lastAppliedTime identifies when this resource was last applied to the cluster.",
                                 "type": "string",
                                 "format": "date-time"
                               },
                               "name": {
-                                "description": "Name of the resource that is in the same namespace with ClusterResourceSet object.",
+                                "description": "name of the resource that is in the same namespace with ClusterResourceSet object.",
                                 "type": "string",
+                                "maxLength": 253,
                                 "minLength": 1
                               }
                             }
@@ -296,8 +303,10 @@
                     }
                   },
                   "clusterName": {
-                    "description": "ClusterName is the name of the Cluster this binding applies to.\nNote: this field mandatory in v1beta2.",
-                    "type": "string"
+                    "description": "clusterName is the name of the Cluster this binding applies to.\nNote: this field mandatory in v1beta2.",
+                    "type": "string",
+                    "maxLength": 63,
+                    "minLength": 1
                   }
                 }
               }

@@ -47,6 +47,21 @@ properties:
         required:
         - image
         type: object
+      medusa:
+        properties:
+          image:
+            type: string
+          init:
+            properties:
+              image:
+                type: string
+            required:
+            - image
+            type: object
+        required:
+        - image
+        - init
+        type: object
       securityContext:
         properties:
           runAsUser:
@@ -74,6 +89,7 @@ properties:
     - db
     - exporter
     - initContainer
+    - medusa
     - version
     type: object
 type: object

@@ -22,7 +22,7 @@
     "ui": {
       "editor": {
         "name": "mutationsgatekeepersh-assignmetadata-editor",
-        "version": "sha256:d99a4b4e553def70b900e0f3a93da1e66800e09a19ccbcf7e7c31032ed518172",
+        "version": "v0.17.0",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",

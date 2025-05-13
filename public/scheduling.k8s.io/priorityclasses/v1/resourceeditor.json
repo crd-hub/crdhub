@@ -22,7 +22,7 @@
     "ui": {
       "editor": {
         "name": "schedulingk8sio-priorityclass-editor",
-        "version": "sha256:e925801522e17020aa864b2c5247217c5a081e433d89f192ac51d1f70009e738",
+        "version": "v0.17.0",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",

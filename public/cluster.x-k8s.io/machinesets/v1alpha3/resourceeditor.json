@@ -22,7 +22,7 @@
     "ui": {
       "editor": {
         "name": "clusterxk8sio-machineset-editor",
-        "version": "sha256:992400a10fa69fdcaf47f0d3863507cfefd7982760388e9c2a9872933cbe0015",
+        "version": "v0.17.0",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",

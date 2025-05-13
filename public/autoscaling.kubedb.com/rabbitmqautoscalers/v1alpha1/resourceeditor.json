@@ -22,7 +22,7 @@
     "ui": {
       "editor": {
         "name": "autoscalingkubedbcom-rabbitmqautoscaler-editor",
-        "version": "sha256:ed5a02d092ec74f83cda909fcc68aac6f802d07be40467a2feab2bee2654c940",
+        "version": "v0.17.0",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",

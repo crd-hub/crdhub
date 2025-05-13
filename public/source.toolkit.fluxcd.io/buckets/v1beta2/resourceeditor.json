@@ -22,7 +22,7 @@
     "ui": {
       "editor": {
         "name": "sourcetoolkitfluxcdio-bucket-editor",
-        "version": "sha256:aa08bcb2aeb2e62b05a09d5c43db482be6b2c76e501552895bcdf4b6946bee08",
+        "version": "v0.17.0",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",

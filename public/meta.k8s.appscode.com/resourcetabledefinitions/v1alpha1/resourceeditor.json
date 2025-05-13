@@ -22,7 +22,7 @@
     "ui": {
       "editor": {
         "name": "metak8sappscodecom-resourcetabledefinition-editor",
-        "version": "sha256:2e1ea30c13fdc37f2356b405b1aacadcd2ed351c72cb19208802348d0ea65248",
+        "version": "v0.17.0",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",

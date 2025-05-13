@@ -210,6 +210,17 @@ spec:
                   type: string
               type: object
               x-kubernetes-map-type: atomic
+            horizons:
+              properties:
+                dns:
+                  type: string
+                pods:
+                  items:
+                    type: string
+                  type: array
+              required:
+              - dns
+              type: object
             horizontalScaling:
               properties:
                 configServer:
@@ -378,6 +389,7 @@ spec:
               - ReconfigureTLS
               - Reprovision
               - RotateAuth
+              - Horizons
               type: string
             updateVersion:
               properties:

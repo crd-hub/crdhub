@@ -2,7 +2,7 @@ apiVersion: apiextensions.k8s.io/v1
 kind: CustomResourceDefinition
 metadata:
   annotations:
-    controller-gen.kubebuilder.io/version: v0.14.0
+    controller-gen.kubebuilder.io/version: v0.17.3
   creationTimestamp: null
   name: gcpmachinetemplates.infrastructure.cluster.x-k8s.io
 spec:
@@ -53,7 +53,7 @@ spec:
                         additionalProperties:
                           type: string
                         description: |-
-                          Annotations is an unstructured key value map stored with a resource that may be
+                          annotations is an unstructured key value map stored with a resource that may be
                           set by external tools to store and retrieve arbitrary metadata. They are not
                           queryable and should be preserved when modifying objects.
                           More info: http://kubernetes.io/docs/user-guide/annotations
@@ -62,7 +62,7 @@ spec:
                         additionalProperties:
                           type: string
                         description: |-
-                          Map of string keys and values that can be used to organize and categorize
+                          labels is a map of string keys and values that can be used to organize and categorize
                           (scope and select) objects. May match selectors of replication controllers
                           and services.
                           More info: http://kubernetes.io/docs/user-guide/labels
@@ -83,6 +83,8 @@ spec:
                                 1. "pd-standard" - Standard (HDD) persistent disk
                                 2. "pd-ssd" - SSD persistent disk
                                 3. "local-ssd" - Local SSD disk (https://cloud.google.com/compute/docs/disks/local-ssd).
+                                4. "pd-balanced" - Balanced Persistent Disk
+                                5. "hyperdisk-balanced" - Hyperdisk Balanced
                                 Default is "pd-standard".
                               type: string
                             encryptionKey:
@@ -116,6 +118,8 @@ spec:
                                       maxLength: 160
                                       pattern: projects\/[-_[A-Za-z0-9]+\/locations\/[-_[A-Za-z0-9]+\/keyRings\/[-_[A-Za-z0-9]+\/cryptoKeys\/[-_[A-Za-z0-9]+
                                       type: string
+                                  required:
+                                  - kmsKeyName
                                   type: object
                                 suppliedKey:
                                   description: SuppliedKey provides the key used to create or manage a disk. This should be set when KeyType is Managed.
@@ -193,12 +197,20 @@ spec:
                         type: array
                       confidentialCompute:
                         description: |-
-                          ConfidentialCompute Defines whether the instance should have confidential compute enabled.
-                          If enabled OnHostMaintenance is required to be set to "Terminate".
+                          ConfidentialCompute Defines whether the instance should have confidential compute enabled or not, and the confidential computing technology of choice.
+                          If Disabled, the machine will not be configured to be a confidential computing instance.
+                          If Enabled, confidential computing will be configured and AMD Secure Encrypted Virtualization will be configured by default. That is subject to change over time. If using AMD Secure Encrypted Virtualization is vital, use AMDEncryptedVirtualization explicitly instead.
+                          If AMDEncryptedVirtualization, it will configure AMD Secure Encrypted Virtualization (AMD SEV) as the confidential computing technology.
+                          If AMDEncryptedVirtualizationNestedPaging, it will configure AMD Secure Encrypted Virtualization Secure Nested Paging (AMD SEV-SNP) as the confidential computing technology.
+                          If IntelTrustedDomainExtensions, it will configure Intel TDX as the confidential computing technology.
+                          If enabled (any value other than Disabled) OnHostMaintenance is required to be set to "Terminate".
                           If omitted, the platform chooses a default, which is subject to change over time, currently that default is false.
                         enum:
                         - Enabled
                         - Disabled
+                        - AMDEncryptedVirtualization
+                        - AMDEncryptedVirtualizationNestedPaging
+                        - IntelTrustedDomainExtensions
                         type: string
                       image:
                         description: |-
@@ -233,6 +245,15 @@ spec:
                         type: boolean
                       providerID:
                         description: ProviderID is the unique identifier as specified by the cloud provider.
+                        type: string
+                      provisioningModel:
+                        description: |-
+                          ProvisioningModel defines if instance is spot.
+                          If set to "Standard" while preemptible is true, then the VM will be of type "Preemptible".
+                          If "Spot", VM type is "Spot". When unspecified, defaults to "Standard".
+                        enum:
+                        - Standard
+                        - Spot
                         type: string
                       publicIP:
                         description: |-
@@ -297,6 +318,8 @@ spec:
                           Supported types of root volumes:
                           1. "pd-standard" - Standard (HDD) persistent disk
                           2. "pd-ssd" - SSD persistent disk
+                          3. "pd-balanced" - Balanced Persistent Disk
+                          4. "hyperdisk-balanced" - Hyperdisk Balanced
                           Default is "pd-standard".
                         type: string
                       rootDiskEncryptionKey:
@@ -330,6 +353,8 @@ spec:
                                 maxLength: 160
                                 pattern: projects\/[-_[A-Za-z0-9]+\/locations\/[-_[A-Za-z0-9]+\/keyRings\/[-_[A-Za-z0-9]+\/cryptoKeys\/[-_[A-Za-z0-9]+
                                 type: string
+                            required:
+                            - kmsKeyName
                             type: object
                           suppliedKey:
                             description: SuppliedKey provides the key used to create or manage a disk. This should be set when KeyType is Managed.

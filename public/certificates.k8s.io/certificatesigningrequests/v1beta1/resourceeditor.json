@@ -22,7 +22,7 @@
     "ui": {
       "editor": {
         "name": "certificatesk8sio-certificatesigningrequest-editor",
-        "version": "sha256:6233bdb2c867ef9962c61d673f77981f6044adc548881b8ad47d41bb22eb30a1",
+        "version": "v0.17.0",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",

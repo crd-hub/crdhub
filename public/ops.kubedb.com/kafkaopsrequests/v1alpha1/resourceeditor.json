@@ -22,7 +22,7 @@
     "ui": {
       "editor": {
         "name": "opskubedbcom-kafkaopsrequest-editor",
-        "version": "sha256:fe7adab0031c3df8944848eec9aced6981657fc80afcf06c53a3fdc9b86ae075",
+        "version": "v0.17.0",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",

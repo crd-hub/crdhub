@@ -22,7 +22,7 @@
     "ui": {
       "editor": {
         "name": "monitoringcoreoscom-prometheusrule-editor",
-        "version": "sha256:423c3b78390d39a36c3b9ea52df49785d4da798fff184e92ce7ad8edf26fe292",
+        "version": "v0.17.0",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",

@@ -22,7 +22,7 @@
     "ui": {
       "editor": {
         "name": "storagekubestashcom-snapshot-editor",
-        "version": "sha256:eca35ef689274a026c710245369847aa77eafeac3bd096bbf8d5ce1b51ccef53",
+        "version": "v0.17.0",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",

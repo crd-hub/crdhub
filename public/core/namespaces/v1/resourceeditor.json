@@ -22,7 +22,7 @@
     "ui": {
       "editor": {
         "name": "core-namespace-editor",
-        "version": "sha256:fba560c96c68b29ac672868b7d11905fc5a692921d663bc25f4bee4c5cfc00b1",
+        "version": "v0.17.0",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",

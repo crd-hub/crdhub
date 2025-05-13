@@ -5,7 +5,7 @@
     "name": "gcpmanagedcontrolplanes.infrastructure.cluster.x-k8s.io",
     "creationTimestamp": null,
     "annotations": {
-      "controller-gen.kubebuilder.io/version": "v0.14.0"
+      "controller-gen.kubebuilder.io/version": "v0.17.3"
     }
   },
   "spec": {
@@ -56,12 +56,76 @@
                     "description": "ClusterName allows you to specify the name of the GKE cluster.\nIf you don't specify a name then a default name will be created\nbased on the namespace and name of the managed control plane.",
                     "type": "string"
                   },
+                  "clusterNetwork": {
+                    "description": "ClusterNetwork define the cluster network.",
+                    "type": "object",
+                    "properties": {
+                      "pod": {
+                        "description": "Pod defines the range of CIDRBlock list from where it gets the IP address.",
+                        "type": "object",
+                        "properties": {
+                          "cidrBlock": {
+                            "description": "CidrBlock is where all pods in the cluster are assigned an IP address from this range. Enter a range\n(in CIDR notation) within a network range, a mask, or leave this field blank to use a default range.\nThis setting is permanent.",
+                            "type": "string"
+                          }
+                        }
+                      },
+                      "privateCluster": {
+                        "description": "PrivateCluster defines the private cluster spec.",
+                        "type": "object",
+                        "properties": {
+                          "controlPlaneCidrBlock": {
+                            "description": "ControlPlaneCidrBlock is the IP range in CIDR notation to use for the hosted master network. This range must not\noverlap with any other ranges in use within the cluster's network. Honored when enabled is true.",
+                            "type": "string"
+                          },
+                          "controlPlaneGlobalAccess": {
+                            "description": "ControlPlaneGlobalAccess is whenever master is accessible globally or not. Honored when enabled is true.",
+                            "type": "boolean"
+                          },
+                          "disableDefaultSNAT": {
+                            "description": "DisableDefaultSNAT disables cluster default sNAT rules. Honored when enabled is true.",
+                            "type": "boolean"
+                          },
+                          "enablePrivateEndpoint": {
+                            "description": "EnablePrivateEndpoint: Whether the master's internal IP\naddress is used as the cluster endpoint.",
+                            "type": "boolean"
+                          },
+                          "enablePrivateNodes": {
+                            "description": "EnablePrivateNodes: Whether nodes have internal IP\naddresses only. If enabled, all nodes are given only RFC\n1918 private addresses and communicate with the master via\nprivate networking.",
+                            "type": "boolean"
+                          }
+                        }
+                      },
+                      "service": {
+                        "description": "Service defines the range of CIDRBlock list from where it gets the IP address.",
+                        "type": "object",
+                        "properties": {
+                          "cidrBlock": {
+                            "description": "CidrBlock is where cluster services will be assigned an IP address from this IP address range. Enter a range\n(in CIDR notation) within a network range, a mask, or leave this field blank to use a default range.\nThis setting is permanent.",
+                            "type": "string"
+                          }
+                        }
+                      },
+                      "useIPAliases": {
+                        "description": "UseIPAliases is whether alias IPs will be used for pod IPs in the cluster. If false, routes will be used for\npod IPs in the cluster.",
+                        "type": "boolean"
+                      }
+                    }
+                  },
                   "controlPlaneVersion": {
-                    "description": "ControlPlaneVersion represents the control plane version of the GKE cluster.\nIf not specified, the default version currently supported by GKE will be\nused.",
+                    "description": "ControlPlaneVersion represents the control plane version of the GKE cluster.\nIf not specified, the default version currently supported by GKE will be\nused.\n\nDeprecated: This field will soon be removed and you are expected to use Version instead.",
+                    "type": "string"
+                  },
+                  "description": {
+                    "description": "Description describe the cluster.",
                     "type": "string"
                   },
                   "enableAutopilot": {
                     "description": "EnableAutopilot indicates whether to enable autopilot for this GKE cluster.",
+                    "type": "boolean"
+                  },
+                  "enableIdentityService": {
+                    "description": "EnableIdentityService indicates whether to enable Identity Service component for this GKE cluster.",
                     "type": "boolean"
                   },
                   "endpoint": {
@@ -73,11 +137,12 @@
                     ],
                     "properties": {
                       "host": {
-                        "description": "The hostname on which the API server is serving.",
-                        "type": "string"
+                        "description": "host is the hostname on which the API server is serving.",
+                        "type": "string",
+                        "maxLength": 512
                       },
                       "port": {
-                        "description": "The port on which the API server is serving.",
+                        "description": "port is the port on which the API server is serving.",
                         "type": "integer",
                         "format": "int32"
                       }
@@ -85,6 +150,10 @@
                   },
                   "location": {
                     "description": "Location represents the location (region or zone) in which the GKE cluster\nwill be created.",
+                    "type": "string"
+                  },
+                  "loggingService": {
+                    "description": "LoggingService represents configuration of logging service feature of the GKE cluster.\nPossible values: none, logging.googleapis.com/kubernetes (default).\nValue is ignored when enableAutopilot = true.",
                     "type": "string"
                   },
                   "master_authorized_networks_config": {
@@ -116,6 +185,10 @@
                       }
                     }
                   },
+                  "monitoringService": {
+                    "description": "MonitoringService represents configuration of monitoring service feature of the GKE cluster.\nPossible values: none, monitoring.googleapis.com/kubernetes (default).\nValue is ignored when enableAutopilot = true.",
+                    "type": "string"
+                  },
                   "project": {
                     "description": "Project is the name of the project to deploy the cluster to.",
                     "type": "string"
@@ -128,6 +201,10 @@
                       "regular",
                       "stable"
                     ]
+                  },
+                  "version": {
+                    "description": "Version represents the control plane version of the GKE cluster.\nIf not specified, the default version currently supported by GKE will be\nused.",
+                    "type": "string"
                   }
                 }
               },
@@ -151,35 +228,42 @@
                       ],
                       "properties": {
                         "lastTransitionTime": {
-                          "description": "Last time the condition transitioned from one status to another.\nThis should be when the underlying condition changed. If that is not known, then using the time when\nthe API field changed is acceptable.",
+                          "description": "lastTransitionTime is the last time the condition transitioned from one status to another.\nThis should be when the underlying condition changed. If that is not known, then using the time when\nthe API field changed is acceptable.",
                           "type": "string",
                           "format": "date-time"
                         },
                         "message": {
-                          "description": "A human readable message indicating details about the transition.\nThis field may be empty.",
-                          "type": "string"
+                          "description": "message is a human readable message indicating details about the transition.\nThis field may be empty.",
+                          "type": "string",
+                          "maxLength": 10240,
+                          "minLength": 1
                         },
                         "reason": {
-                          "description": "The reason for the condition's last transition in CamelCase.\nThe specific API may choose whether or not this field is considered a guaranteed API.\nThis field may not be empty.",
-                          "type": "string"
+                          "description": "reason is the reason for the condition's last transition in CamelCase.\nThe specific API may choose whether or not this field is considered a guaranteed API.\nThis field may be empty.",
+                          "type": "string",
+                          "maxLength": 256,
+                          "minLength": 1
                         },
                         "severity": {
-                          "description": "Severity provides an explicit classification of Reason code, so the users or machines can immediately\nunderstand the current situation and act accordingly.\nThe Severity field MUST be set only when Status=False.",
-                          "type": "string"
+                          "description": "severity provides an explicit classification of Reason code, so the users or machines can immediately\nunderstand the current situation and act accordingly.\nThe Severity field MUST be set only when Status=False.",
+                          "type": "string",
+                          "maxLength": 32
                         },
                         "status": {
-                          "description": "Status of the condition, one of True, False, Unknown.",
+                          "description": "status of the condition, one of True, False, Unknown.",
                           "type": "string"
                         },
                         "type": {
-                          "description": "Type of condition in CamelCase or in foo.example.com/CamelCase.\nMany .condition.type values are consistent across resources like Available, but because arbitrary conditions\ncan be useful (see .node.status.conditions), the ability to deconflict is important.",
-                          "type": "string"
+                          "description": "type of condition in CamelCase or in foo.example.com/CamelCase.\nMany .condition.type values are consistent across resources like Available, but because arbitrary conditions\ncan be useful (see .node.status.conditions), the ability to deconflict is important.",
+                          "type": "string",
+                          "maxLength": 256,
+                          "minLength": 1
                         }
                       }
                     }
                   },
                   "currentVersion": {
-                    "description": "CurrentVersion shows the current version of the GKE control plane.",
+                    "description": "CurrentVersion shows the current version of the GKE control plane.\n\nDeprecated: This field will soon be removed and you are expected to use Version instead.",
                     "type": "string"
                   },
                   "initialized": {
@@ -190,6 +274,10 @@
                     "description": "Ready denotes that the GCPManagedControlPlane API Server is ready to\nreceive requests.",
                     "type": "boolean",
                     "default": false
+                  },
+                  "version": {
+                    "description": "Version represents the version of the GKE control plane.",
+                    "type": "string"
                   }
                 }
               }
@@ -217,6 +305,12 @@
             "type": "string",
             "description": "The current Kubernetes version",
             "jsonPath": ".status.currentVersion"
+          },
+          {
+            "name": "Version",
+            "type": "string",
+            "description": "The Kubernetes version of the GKE control plane",
+            "jsonPath": ".status.version"
           },
           {
             "name": "Endpoint",

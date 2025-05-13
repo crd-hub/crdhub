@@ -34,10 +34,12 @@ properties:
               - enum:
                 - Restic
                 - WalG
+                - Medusa
                 - VolumeSnapshotter
               - enum:
                 - Restic
                 - WalG
+                - Medusa
                 - VolumeSnapshotter
               type: string
             executor:
@@ -1035,10 +1037,12 @@ properties:
               - enum:
                 - Restic
                 - WalG
+                - Medusa
                 - VolumeSnapshotter
               - enum:
                 - Restic
                 - WalG
+                - Medusa
                 - VolumeSnapshotter
               type: string
             executor:

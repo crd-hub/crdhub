@@ -22,7 +22,7 @@
     "ui": {
       "editor": {
         "name": "core-persistentvolume-editor",
-        "version": "sha256:20ae4718399b803e10caac427dd979789f01f316f9055cd2c374031b02c41a36",
+        "version": "v0.17.0",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",

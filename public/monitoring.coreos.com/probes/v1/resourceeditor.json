@@ -22,7 +22,7 @@
     "ui": {
       "editor": {
         "name": "monitoringcoreoscom-probe-editor",
-        "version": "sha256:a3fa51b7dab29dbb9b5e167cc0943b5f3e051d6b39653f62e02b6706fa78df96",
+        "version": "v0.17.0",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",

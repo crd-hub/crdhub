@@ -22,7 +22,7 @@
     "ui": {
       "editor": {
         "name": "storagek8sio-volumeattachment-editor",
-        "version": "sha256:747f7f4f2358c15aa2c796f071728e4ab9e4f73bb411a4d31d245dbc823e5302",
+        "version": "v0.17.0",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",

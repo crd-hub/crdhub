@@ -7329,6 +7329,15 @@
                                 "default": "60s"
                               }
                             }
+                          },
+                          "secondaryAccessMode": {
+                            "type": "string",
+                            "default": "Passive",
+                            "enum": [
+                              "Passive",
+                              "ReadOnly",
+                              "All"
+                            ]
                           }
                         }
                       },

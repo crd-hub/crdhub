@@ -22,7 +22,7 @@
     "ui": {
       "editor": {
         "name": "autoscalingkubedbcom-mssqlserverautoscaler-editor",
-        "version": "sha256:37694214eb40e584a6e7c55d70f8a32d9ce4e53850c3b62d6012b6b39e40a686",
+        "version": "v0.17.0",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",
