@@ -134,6 +134,14 @@ properties:
             type: string
           managerID:
             type: string
+          mode:
+            description: ENUM(prod,qa,staging,dev)
+            enum:
+            - prod
+            - qa
+            - staging
+            - dev
+            type: string
           name:
             type: string
           ownerID:
@@ -174,10 +182,10 @@ properties:
           creationTimestamp:
             format: date-time
             type: string
+          enableResourceTrial:
+            type: boolean
           name:
             type: string
-          skipBilling:
-            type: boolean
           uid:
             description: |-
               UID is a type that holds unique ID values, including UUIDs.  Because we

@@ -35,11 +35,11 @@
             "type": "object",
             "properties": {
               "apiVersion": {
-                "description": "APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources",
+                "description": "APIVersion defines the versioned schema of this representation of an object.\nServers should convert recognized schemas to the latest internal value, and\nmay reject unrecognized values.\nMore info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources",
                 "type": "string"
               },
               "kind": {
-                "description": "Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds",
+                "description": "Kind is a string value representing the REST resource this object represents.\nServers may infer this from the endpoint the client submits requests to.\nCannot be updated.\nIn CamelCase.\nMore info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds",
                 "type": "string"
               },
               "metadata": {
@@ -61,11 +61,11 @@
                       "type": "object",
                       "properties": {
                         "name": {
-                          "description": "Name is a Vault server policy name. This name should be returned by `vault read sys/policy` command. More info: https://www.vaultproject.io/docs/concepts/policies.html#listing-policies",
+                          "description": "Name is a Vault server policy name. This name should be returned by `vault read sys/policy` command.\nMore info: https://www.vaultproject.io/docs/concepts/policies.html#listing-policies",
                           "type": "string"
                         },
                         "ref": {
-                          "description": "Ref is name of a VaultPolicy crd object. Actual vault policy name is spec.vaultRoleName field. More info: https://www.vaultproject.io/docs/concepts/policies.html#listing-policies",
+                          "description": "Ref is name of a VaultPolicy crd object. Actual vault policy name is spec.vaultRoleName field.\nMore info: https://www.vaultproject.io/docs/concepts/policies.html#listing-policies",
                           "type": "string"
                         }
                       }
@@ -91,11 +91,11 @@
                             "type": "boolean"
                           },
                           "path": {
-                            "description": "Specifies the path where approle auth is enabled default : approle",
+                            "description": "Specifies the path where approle auth is enabled\ndefault : approle",
                             "type": "string"
                           },
                           "roleName": {
-                            "description": "RoleName is the Name of the AppRole This defaults to following format: k8s.${cluster}.${metadata.namespace}.${metadata.name}",
+                            "description": "RoleName is the Name of the AppRole\nThis defaults to following format: k8s.${cluster}.${metadata.namespace}.${metadata.name}",
                             "type": "string"
                           },
                           "secretIdBoundCidrs": {
@@ -213,7 +213,7 @@
                             "type": "string"
                           },
                           "name": {
-                            "description": "Name of the role. This defaults to following format: k8s.${cluster}.${metadata.namespace}.${metadata.name}",
+                            "description": "Name of the role.\nThis defaults to following format: k8s.${cluster}.${metadata.namespace}.${metadata.name}",
                             "type": "string"
                           },
                           "oidcScopes": {
@@ -284,7 +284,7 @@
                         }
                       },
                       "kubernetes": {
-                        "description": "Kubernetes refers to Vault users who are authenticated via Kubernetes auth method More info: https://www.vaultproject.io/docs/auth/kubernetes.html#configuration",
+                        "description": "Kubernetes refers to Vault users who are authenticated via Kubernetes auth method\nMore info: https://www.vaultproject.io/docs/auth/kubernetes.html#configuration",
                         "type": "object",
                         "required": [
                           "serviceAccountNames",
@@ -304,11 +304,11 @@
                             "type": "string"
                           },
                           "path": {
-                            "description": "Specifies the path where kubernetes auth is enabled default : kubernetes",
+                            "description": "Specifies the path where kubernetes auth is enabled\ndefault : kubernetes",
                             "type": "string"
                           },
                           "period": {
-                            "description": "If set, indicates that the token generated using this role should never expire. The token should be renewed within the duration specified by this value. At each renewal, the token's TTL will be set to the value of this parameter.",
+                            "description": "If set, indicates that the token generated using this role should never expire.\nThe token should be renewed within the duration specified by this value.\nAt each renewal, the token's TTL will be set to the value of this parameter.",
                             "type": "string"
                           },
                           "serviceAccountNames": {
@@ -343,7 +343,7 @@
                             "type": "string"
                           },
                           "path": {
-                            "description": "Specifies the path where ldap groups auth is enabled default : ldap/groups",
+                            "description": "Specifies the path where ldap groups auth is enabled\ndefault : ldap/groups",
                             "type": "string"
                           },
                           "policies": {
@@ -370,7 +370,7 @@
                             }
                           },
                           "path": {
-                            "description": "Specifies the path where ldap groups auth is enabled default : ldap/users",
+                            "description": "Specifies the path where ldap groups auth is enabled\ndefault : ldap/users",
                             "type": "string"
                           },
                           "policies": {
@@ -436,7 +436,7 @@
                             "type": "string"
                           },
                           "name": {
-                            "description": "Name of the role. This defaults to following format: k8s.${cluster}.${metadata.namespace}.${metadata.name}",
+                            "description": "Name of the role.\nThis defaults to following format: k8s.${cluster}.${metadata.namespace}.${metadata.name}",
                             "type": "string"
                           },
                           "oidcScopes": {
@@ -513,7 +513,7 @@
                     "type": "object",
                     "properties": {
                       "name": {
-                        "description": "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop `kubebuilder:default` when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+                        "description": "Name of the referent.\nThis field is effectively required, but due to backwards compatibility is\nallowed to be empty. Instances of this type with an empty value here are\nalmost certainly wrong.\nMore info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
                         "type": "string",
                         "default": ""
                       }
@@ -521,7 +521,7 @@
                     "x-kubernetes-map-type": "atomic"
                   },
                   "vaultRoleName": {
-                    "description": "VaultRoleName is the role name which will be bound of the policies This defaults to following format: k8s.${cluster}.${metadata.namespace}.${metadata.name} xref: https://www.vaultproject.io/api/auth/kubernetes/index.html#create-role",
+                    "description": "VaultRoleName is the role name which will be bound of the policies\nThis defaults to following format: k8s.${cluster}.${metadata.namespace}.${metadata.name}\nxref: https://www.vaultproject.io/api/auth/kubernetes/index.html#create-role",
                     "type": "string"
                   }
                 }
@@ -542,25 +542,25 @@
                       ],
                       "properties": {
                         "lastTransitionTime": {
-                          "description": "Last time the condition transitioned from one status to another. This should be when the underlying condition changed. If that is not known, then using the time when the API field changed is acceptable.",
+                          "description": "Last time the condition transitioned from one status to another.\nThis should be when the underlying condition changed. If that is not known, then using the time when\nthe API field changed is acceptable.",
                           "type": "string",
                           "format": "date-time"
                         },
                         "message": {
-                          "description": "A human-readable message indicating details about the transition. This field may be empty.",
+                          "description": "A human-readable message indicating details about the transition.\nThis field may be empty.",
                           "type": "string"
                         },
                         "observedGeneration": {
-                          "description": "If set, this represents the .metadata.generation that the condition was set based upon. For instance, if .metadata.generation is currently 12, but the .status.condition[x].observedGeneration is 9, the condition is out of date with respect to the current state of the instance.",
+                          "description": "If set, this represents the .metadata.generation that the condition was set based upon.\nFor instance, if .metadata.generation is currently 12, but the .status.condition[x].observedGeneration is 9, the condition is out of date\nwith respect to the current state of the instance.",
                           "type": "integer",
                           "format": "int64"
                         },
                         "reason": {
-                          "description": "The reason for the condition's last transition in CamelCase. The specific API may choose whether this field is considered a guaranteed API. This field may not be empty.",
+                          "description": "The reason for the condition's last transition in CamelCase.\nThe specific API may choose whether this field is considered a guaranteed API.\nThis field may not be empty.",
                           "type": "string"
                         },
                         "severity": {
-                          "description": "Severity provides an explicit classification of Reason code, so the users or machines can immediately understand the current situation and act accordingly. The Severity field MUST be set only when Status=False.",
+                          "description": "Severity provides an explicit classification of Reason code, so the users or machines can immediately\nunderstand the current situation and act accordingly.\nThe Severity field MUST be set only when Status=False.",
                           "type": "string"
                         },
                         "status": {
@@ -568,14 +568,14 @@
                           "type": "string"
                         },
                         "type": {
-                          "description": "Type of condition in CamelCase or in foo.example.com/CamelCase. Many .condition.type values are consistent across resources like Available, but because arbitrary util can be useful (see .node.status.util), the ability to deconflict is important.",
+                          "description": "Type of condition in CamelCase or in foo.example.com/CamelCase.\nMany .condition.type values are consistent across resources like Available, but because arbitrary util\ncan be useful (see .node.status.util), the ability to deconflict is important.",
                           "type": "string"
                         }
                       }
                     }
                   },
                   "observedGeneration": {
-                    "description": "ObservedGeneration is the most recent generation observed for this resource. It corresponds to the resource's generation, which is updated on mutation by the API Server.",
+                    "description": "ObservedGeneration is the most recent generation observed for this resource. It corresponds to the\nresource's generation, which is updated on mutation by the API Server.",
                     "type": "integer",
                     "format": "int64"
                   },

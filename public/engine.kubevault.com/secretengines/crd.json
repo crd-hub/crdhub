@@ -32,11 +32,11 @@
             "type": "object",
             "properties": {
               "apiVersion": {
-                "description": "APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources",
+                "description": "APIVersion defines the versioned schema of this representation of an object.\nServers should convert recognized schemas to the latest internal value, and\nmay reject unrecognized values.\nMore info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources",
                 "type": "string"
               },
               "kind": {
-                "description": "Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds",
+                "description": "Kind is a string value representing the REST resource this object represents.\nServers may infer this from the endpoint the client submits requests to.\nCannot be updated.\nIn CamelCase.\nMore info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds",
                 "type": "string"
               },
               "metadata": {
@@ -49,7 +49,7 @@
                 ],
                 "properties": {
                   "aws": {
-                    "description": "https://www.vaultproject.io/api/secret/aws/index.html#configure-root-iam-credentials AWSConfiguration contains information to communicate with AWS",
+                    "description": "https://www.vaultproject.io/api/secret/aws/index.html#configure-root-iam-credentials\nAWSConfiguration contains information to communicate with AWS",
                     "type": "object",
                     "required": [
                       "credentialSecret",
@@ -57,7 +57,7 @@
                     ],
                     "properties": {
                       "credentialSecret": {
-                        "description": "Specifies the secret containing AWS access key ID and secret access key secret.Data: - access_key=\u003cvalue\u003e - secret_key=\u003cvalue\u003e",
+                        "description": "Specifies the secret containing AWS access key ID and secret access key\nsecret.Data:\n\t- access_key=\u003cvalue\u003e\n - secret_key=\u003cvalue\u003e",
                         "type": "string"
                       },
                       "iamEndpoint": {
@@ -65,7 +65,7 @@
                         "type": "string"
                       },
                       "leaseConfig": {
-                        "description": "https://www.vaultproject.io/api/secret/aws/index.html#configure-lease LeaseConfig contains lease configuration",
+                        "description": "https://www.vaultproject.io/api/secret/aws/index.html#configure-lease\nLeaseConfig contains lease configuration",
                         "type": "object",
                         "required": [
                           "lease",
@@ -73,17 +73,17 @@
                         ],
                         "properties": {
                           "lease": {
-                            "description": "Specifies the lease value provided as a string duration with time suffix. \"h\" (hour) is the largest suffix.",
+                            "description": "Specifies the lease value provided as a string duration with time suffix.\n\"h\" (hour) is the largest suffix.",
                             "type": "string"
                           },
                           "leaseMax": {
-                            "description": "Specifies the maximum lease value provided as a string duration with time suffix. \"h\" (hour) is the largest suffix",
+                            "description": "Specifies the maximum lease value provided as a string duration with time suffix.\n\"h\" (hour) is the largest suffix",
                             "type": "string"
                           }
                         }
                       },
                       "maxRetries": {
-                        "description": "Number of max retries the client should use for recoverable errors. The default (-1) falls back to the AWS SDK's default behavior",
+                        "description": "Number of max retries the client should use for recoverable errors.\nThe default (-1) falls back to the AWS SDK's default behavior",
                         "type": "integer",
                         "format": "int64"
                       },
@@ -105,11 +105,11 @@
                     ],
                     "properties": {
                       "credentialSecret": {
-                        "description": "Specifies the secret name containing Azure credentials secret.Data: - subscription-id: \u003cvalue\u003e, The subscription id for the Azure Active Directory. - tenant-id: \u003cvalue\u003e, The tenant id for the Azure Active Directory. - client-id: \u003cvalue\u003e, The OAuth2 client id to connect to Azure. - client-secret: \u003cvalue\u003e, The OAuth2 client secret to connect to Azure.",
+                        "description": "Specifies the secret name containing Azure credentials\nsecret.Data:\n\t- subscription-id: \u003cvalue\u003e, The subscription id for the Azure Active Directory.\n\t- tenant-id: \u003cvalue\u003e, The tenant id for the Azure Active Directory.\n\t- client-id: \u003cvalue\u003e, The OAuth2 client id to connect to Azure.\n\t- client-secret: \u003cvalue\u003e, The OAuth2 client secret to connect to Azure.",
                         "type": "string"
                       },
                       "environment": {
-                        "description": "The Azure environment. If not specified, Vault will use Azure Public Cloud.",
+                        "description": "The Azure environment.\nIf not specified, Vault will use Azure Public Cloud.",
                         "type": "string"
                       }
                     }
@@ -118,14 +118,14 @@
                     "type": "string"
                   },
                   "elasticsearch": {
-                    "description": "ElasticsearchConfiguration defines a Elasticsearch app configuration. https://www.vaultproject.io/api-docs/secret/databases/elasticdb TODO: Fill in the fields",
+                    "description": "ElasticsearchConfiguration defines a Elasticsearch app configuration.\nhttps://www.vaultproject.io/api-docs/secret/databases/elasticdb",
                     "type": "object",
                     "required": [
                       "databaseRef"
                     ],
                     "properties": {
                       "allowedRoles": {
-                        "description": "List of the roles allowed to use this connection. Defaults to empty (no roles), if contains a \"*\" any role can use this connection.",
+                        "description": "List of the roles allowed to use this connection.\nDefaults to empty (no roles), if contains a \"*\" any role can use this connection.",
                         "type": "array",
                         "items": {
                           "type": "string"
@@ -156,15 +156,15 @@
                         ],
                         "properties": {
                           "name": {
-                            "description": "`name` is the name of the app. Required",
+                            "description": "`name` is the name of the app.\nRequired",
                             "type": "string"
                           },
                           "namespace": {
-                            "description": "`namespace` is the namespace of the app. Required",
+                            "description": "`namespace` is the namespace of the app.\nRequired",
                             "type": "string"
                           },
                           "parameters": {
-                            "description": "Parameters is a set of the parameters to be used to override default parameters. The inline YAML/JSON payload to be translated into equivalent JSON object. \n The Parameters field is NOT secret or secured in any way and should NEVER be used to hold sensitive information.",
+                            "description": "Parameters is a set of the parameters to be used to override default\nparameters. The inline YAML/JSON payload to be translated into equivalent\nJSON object.\n\nThe Parameters field is NOT secret or secured in any way and should\nNEVER be used to hold sensitive information.",
                             "type": "object",
                             "x-kubernetes-preserve-unknown-fields": true,
                             "x-kubernetes-embedded-resource": true
@@ -176,63 +176,51 @@
                         "type": "boolean",
                         "default": false
                       },
-                      "password": {
-                        "description": "The password to be used in the connection URL (\"pa55w0rd\").",
-                        "type": "string"
-                      },
                       "pluginName": {
-                        "description": "Specifies the name of the plugin to use for this connection. Default plugin: - for elasticsearch: elasticsearch-database-plugin",
+                        "description": "Specifies the name of the plugin to use for this connection.\nDefault plugin:\n - for elasticsearch: elasticsearch-database-plugin",
                         "type": "string"
                       },
                       "tlsServerName": {
                         "description": "This, if set, is used to set the SNI host when connecting via 1TLS.",
                         "type": "string"
-                      },
-                      "url": {
-                        "description": "The URL for Elasticsearch's API (\"http://localhost:9200\").",
-                        "type": "string"
-                      },
-                      "username": {
-                        "description": "The username to be used in the connection URL (\"vault\").",
-                        "type": "string"
                       }
                     }
                   },
                   "gcp": {
-                    "description": "https://www.vaultproject.io/api/secret/gcp/index.html#write-config GCPConfiguration contains information to communicate with GCP",
+                    "description": "https://www.vaultproject.io/api/secret/gcp/index.html#write-config\nGCPConfiguration contains information to communicate with GCP",
                     "type": "object",
                     "required": [
                       "credentialSecret"
                     ],
                     "properties": {
                       "credentialSecret": {
-                        "description": "Specifies the secret containing GCP credentials secret.Data: - sa.json",
+                        "description": "Specifies the secret containing GCP credentials\nsecret.Data:\n\t- sa.json",
                         "type": "string"
                       },
                       "maxTTL": {
-                        "description": "Specifies the maximum config TTL for long-lived credentials (i.e. service account keys).",
+                        "description": "Specifies the maximum config TTL for long-lived\ncredentials (i.e. service account keys).",
                         "type": "string"
                       },
                       "ttl": {
-                        "description": "Specifies default config TTL for long-lived credentials (i.e. service account keys).",
+                        "description": "Specifies default config TTL for long-lived credentials\n(i.e. service account keys).",
                         "type": "string"
                       }
                     }
                   },
                   "kv": {
-                    "description": "KVConfiguration defines a Key-Value engine configuration TODO: fill in doc links",
+                    "description": "KVConfiguration defines a Key-Value engine configuration",
                     "type": "object",
                     "properties": {
                       "casRequired": {
-                        "description": "If true, then all operations on the KV store require the cas (Compare-and-Swap) parameter to be set. https://www.vaultproject.io/api-docs/secret/kv/kv-v2#cas_required https://www.vaultproject.io/docs/secrets/kv/kv-v2#usage",
+                        "description": "If true, then all operations on the KV store require the cas (Compare-and-Swap) parameter to be set.\nhttps://www.vaultproject.io/api-docs/secret/kv/kv-v2#cas_required\nhttps://www.vaultproject.io/docs/secrets/kv/kv-v2#usage",
                         "type": "boolean"
                       },
                       "deleteVersionsAfter": {
-                        "description": "If set, keys will be automatically deleted after this length of time. Accepts a Go duration format string. https://golang.org/pkg/time/#ParseDuration",
+                        "description": "If set, keys will be automatically deleted after this length of time. Accepts a Go duration format\nstring.\nhttps://golang.org/pkg/time/#ParseDuration",
                         "type": "string"
                       },
                       "maxVersions": {
-                        "description": "The maximum number of versions to keep for any given key. Defaults to 0, which indicates that the Vault default (10) should be used.",
+                        "description": "The maximum number of versions to keep for any given key. Defaults to 0, which indicates that the Vault default (10) should be\nused.",
                         "type": "integer",
                         "format": "int64"
                       },
@@ -244,14 +232,14 @@
                     }
                   },
                   "mariadb": {
-                    "description": "MariaDBConfiguration defines a MariaDB app configuration. https://www.vaultproject.io/api/secret/databases/index.html https://www.vaultproject.io/api/secret/databases/mysql-maria.html#configure-connection",
+                    "description": "MariaDBConfiguration defines a MariaDB app configuration.\nhttps://www.vaultproject.io/api/secret/databases/index.html\nhttps://www.vaultproject.io/api/secret/databases/mysql-maria.html#configure-connection",
                     "type": "object",
                     "required": [
                       "databaseRef"
                     ],
                     "properties": {
                       "allowedRoles": {
-                        "description": "List of the roles allowed to use this connection. Defaults to empty (no roles), if contains a \"*\" any role can use this connection.",
+                        "description": "List of the roles allowed to use this connection.\nDefaults to empty (no roles), if contains a \"*\" any role can use this connection.",
                         "type": "array",
                         "items": {
                           "type": "string"
@@ -266,15 +254,15 @@
                         ],
                         "properties": {
                           "name": {
-                            "description": "`name` is the name of the app. Required",
+                            "description": "`name` is the name of the app.\nRequired",
                             "type": "string"
                           },
                           "namespace": {
-                            "description": "`namespace` is the namespace of the app. Required",
+                            "description": "`namespace` is the namespace of the app.\nRequired",
                             "type": "string"
                           },
                           "parameters": {
-                            "description": "Parameters is a set of the parameters to be used to override default parameters. The inline YAML/JSON payload to be translated into equivalent JSON object. \n The Parameters field is NOT secret or secured in any way and should NEVER be used to hold sensitive information.",
+                            "description": "Parameters is a set of the parameters to be used to override default\nparameters. The inline YAML/JSON payload to be translated into equivalent\nJSON object.\n\nThe Parameters field is NOT secret or secured in any way and should\nNEVER be used to hold sensitive information.",
                             "type": "object",
                             "x-kubernetes-preserve-unknown-fields": true,
                             "x-kubernetes-embedded-resource": true
@@ -282,11 +270,11 @@
                         }
                       },
                       "maxConnectionLifetime": {
-                        "description": "Specifies the maximum amount of time a connection may be reused. If \u003c= 0s connections are reused forever.",
+                        "description": "Specifies the maximum amount of time a connection may be reused.\nIf \u003c= 0s connections are reused forever.",
                         "type": "string"
                       },
                       "maxIdleConnections": {
-                        "description": "Specifies the maximum number of idle connections to the database. A zero uses the value of max_open_connections and a negative value disables idle connections. If larger than max_open_connections it will be reduced to be equal.",
+                        "description": "Specifies the maximum number of idle connections to the database.\nA zero uses the value of max_open_connections and a negative value disables idle connections.\nIf larger than max_open_connections it will be reduced to be equal.",
                         "type": "integer",
                         "format": "int64"
                       },
@@ -296,7 +284,7 @@
                         "format": "int64"
                       },
                       "pluginName": {
-                        "description": "Specifies the name of the plugin to use for this connection. Default plugin: - for mysql: mysql-database-plugin",
+                        "description": "Specifies the name of the plugin to use for this connection.\nDefault plugin:\n - for mysql: mysql-database-plugin",
                         "type": "string"
                       }
                     }
@@ -305,14 +293,14 @@
                     "type": "string"
                   },
                   "mongodb": {
-                    "description": "MongoDBConfiguration defines a MongoDB app configuration. https://www.vaultproject.io/api/secret/databases/index.html https://www.vaultproject.io/api/secret/databases/mongodb.html#configure-connection",
+                    "description": "MongoDBConfiguration defines a MongoDB app configuration.\nhttps://www.vaultproject.io/api/secret/databases/index.html\nhttps://www.vaultproject.io/api/secret/databases/mongodb.html#configure-connection",
                     "type": "object",
                     "required": [
                       "databaseRef"
                     ],
                     "properties": {
                       "allowedRoles": {
-                        "description": "List of the roles allowed to use this connection. Defaults to empty (no roles), if contains a \"*\" any role can use this connection.",
+                        "description": "List of the roles allowed to use this connection.\nDefaults to empty (no roles), if contains a \"*\" any role can use this connection.",
                         "type": "array",
                         "items": {
                           "type": "string"
@@ -327,15 +315,15 @@
                         ],
                         "properties": {
                           "name": {
-                            "description": "`name` is the name of the app. Required",
+                            "description": "`name` is the name of the app.\nRequired",
                             "type": "string"
                           },
                           "namespace": {
-                            "description": "`namespace` is the namespace of the app. Required",
+                            "description": "`namespace` is the namespace of the app.\nRequired",
                             "type": "string"
                           },
                           "parameters": {
-                            "description": "Parameters is a set of the parameters to be used to override default parameters. The inline YAML/JSON payload to be translated into equivalent JSON object. \n The Parameters field is NOT secret or secured in any way and should NEVER be used to hold sensitive information.",
+                            "description": "Parameters is a set of the parameters to be used to override default\nparameters. The inline YAML/JSON payload to be translated into equivalent\nJSON object.\n\nThe Parameters field is NOT secret or secured in any way and should\nNEVER be used to hold sensitive information.",
                             "type": "object",
                             "x-kubernetes-preserve-unknown-fields": true,
                             "x-kubernetes-embedded-resource": true
@@ -343,24 +331,24 @@
                         }
                       },
                       "pluginName": {
-                        "description": "Specifies the name of the plugin to use for this connection. Default plugin: - for mongodb: mongodb-database-plugin",
+                        "description": "Specifies the name of the plugin to use for this connection.\nDefault plugin:\n - for mongodb: mongodb-database-plugin",
                         "type": "string"
                       },
                       "writeConcern": {
-                        "description": "Specifies the MongoDB write concern. This is set for the entirety of the session, maintained for the lifecycle of the plugin process.",
+                        "description": "Specifies the MongoDB write concern. This is set for the entirety\nof the session, maintained for the lifecycle of the plugin process.",
                         "type": "string"
                       }
                     }
                   },
                   "mysql": {
-                    "description": "MySQLConfiguration defines a MySQL app configuration. https://www.vaultproject.io/api/secret/databases/index.html https://www.vaultproject.io/api/secret/databases/mysql-maria.html#configure-connection",
+                    "description": "MySQLConfiguration defines a MySQL app configuration.\nhttps://www.vaultproject.io/api/secret/databases/index.html\nhttps://www.vaultproject.io/api/secret/databases/mysql-maria.html#configure-connection",
                     "type": "object",
                     "required": [
                       "databaseRef"
                     ],
                     "properties": {
                       "allowedRoles": {
-                        "description": "List of the roles allowed to use this connection. Defaults to empty (no roles), if contains a \"*\" any role can use this connection.",
+                        "description": "List of the roles allowed to use this connection.\nDefaults to empty (no roles), if contains a \"*\" any role can use this connection.",
                         "type": "array",
                         "items": {
                           "type": "string"
@@ -375,15 +363,15 @@
                         ],
                         "properties": {
                           "name": {
-                            "description": "`name` is the name of the app. Required",
+                            "description": "`name` is the name of the app.\nRequired",
                             "type": "string"
                           },
                           "namespace": {
-                            "description": "`namespace` is the namespace of the app. Required",
+                            "description": "`namespace` is the namespace of the app.\nRequired",
                             "type": "string"
                           },
                           "parameters": {
-                            "description": "Parameters is a set of the parameters to be used to override default parameters. The inline YAML/JSON payload to be translated into equivalent JSON object. \n The Parameters field is NOT secret or secured in any way and should NEVER be used to hold sensitive information.",
+                            "description": "Parameters is a set of the parameters to be used to override default\nparameters. The inline YAML/JSON payload to be translated into equivalent\nJSON object.\n\nThe Parameters field is NOT secret or secured in any way and should\nNEVER be used to hold sensitive information.",
                             "type": "object",
                             "x-kubernetes-preserve-unknown-fields": true,
                             "x-kubernetes-embedded-resource": true
@@ -391,11 +379,11 @@
                         }
                       },
                       "maxConnectionLifetime": {
-                        "description": "Specifies the maximum amount of time a connection may be reused. If \u003c= 0s connections are reused forever.",
+                        "description": "Specifies the maximum amount of time a connection may be reused.\nIf \u003c= 0s connections are reused forever.",
                         "type": "string"
                       },
                       "maxIdleConnections": {
-                        "description": "Specifies the maximum number of idle connections to the database. A zero uses the value of max_open_connections and a negative value disables idle connections. If larger than max_open_connections it will be reduced to be equal.",
+                        "description": "Specifies the maximum number of idle connections to the database.\nA zero uses the value of max_open_connections and a negative value disables idle connections.\nIf larger than max_open_connections it will be reduced to be equal.",
                         "type": "integer",
                         "format": "int64"
                       },
@@ -405,13 +393,13 @@
                         "format": "int64"
                       },
                       "pluginName": {
-                        "description": "Specifies the name of the plugin to use for this connection. Default plugin: - for mysql: mysql-database-plugin",
+                        "description": "Specifies the name of the plugin to use for this connection.\nDefault plugin:\n - for mysql: mysql-database-plugin",
                         "type": "string"
                       }
                     }
                   },
                   "pki": {
-                    "description": "https://developer.hashicorp.com/vault/api-docs/secret/pki#generate-root PKIConfiguration contains information about PKI Secret Engine",
+                    "description": "https://developer.hashicorp.com/vault/api-docs/secret/pki#generate-root\nPKIConfiguration contains information about PKI Secret Engine",
                     "type": "object",
                     "required": [
                       "isRootCA"
@@ -455,11 +443,11 @@
                         ],
                         "properties": {
                           "name": {
-                            "description": "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+                            "description": "Name of the referent.\nMore info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
                             "type": "string"
                           },
                           "namespace": {
-                            "description": "Namespace of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/",
+                            "description": "Namespace of the referent.\nMore info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/",
                             "type": "string"
                           }
                         }
@@ -499,14 +487,14 @@
                     }
                   },
                   "postgres": {
-                    "description": "PostgresConfiguration defines a PostgreSQL app configuration. https://www.vaultproject.io/api/secret/databases/index.html https://www.vaultproject.io/api/secret/databases/postgresql.html#configure-connection",
+                    "description": "PostgresConfiguration defines a PostgreSQL app configuration.\nhttps://www.vaultproject.io/api/secret/databases/index.html\nhttps://www.vaultproject.io/api/secret/databases/postgresql.html#configure-connection",
                     "type": "object",
                     "required": [
                       "databaseRef"
                     ],
                     "properties": {
                       "allowedRoles": {
-                        "description": "List of the roles allowed to use this connection. Defaults to empty (no roles), if contains a \"*\" any role can use this connection.",
+                        "description": "List of the roles allowed to use this connection.\nDefaults to empty (no roles), if contains a \"*\" any role can use this connection.",
                         "type": "array",
                         "items": {
                           "type": "string"
@@ -521,15 +509,15 @@
                         ],
                         "properties": {
                           "name": {
-                            "description": "`name` is the name of the app. Required",
+                            "description": "`name` is the name of the app.\nRequired",
                             "type": "string"
                           },
                           "namespace": {
-                            "description": "`namespace` is the namespace of the app. Required",
+                            "description": "`namespace` is the namespace of the app.\nRequired",
                             "type": "string"
                           },
                           "parameters": {
-                            "description": "Parameters is a set of the parameters to be used to override default parameters. The inline YAML/JSON payload to be translated into equivalent JSON object. \n The Parameters field is NOT secret or secured in any way and should NEVER be used to hold sensitive information.",
+                            "description": "Parameters is a set of the parameters to be used to override default\nparameters. The inline YAML/JSON payload to be translated into equivalent\nJSON object.\n\nThe Parameters field is NOT secret or secured in any way and should\nNEVER be used to hold sensitive information.",
                             "type": "object",
                             "x-kubernetes-preserve-unknown-fields": true,
                             "x-kubernetes-embedded-resource": true
@@ -537,11 +525,11 @@
                         }
                       },
                       "maxConnectionLifetime": {
-                        "description": "Specifies the maximum amount of time a connection may be reused. If \u003c= 0s connections are reused forever.",
+                        "description": "Specifies the maximum amount of time a connection may be reused.\nIf \u003c= 0s connections are reused forever.",
                         "type": "string"
                       },
                       "maxIdleConnections": {
-                        "description": "Specifies the maximum number of idle connections to the database. A zero uses the value of max_open_connections and a negative value disables idle connections. If larger than max_open_connections it will be reduced to be equal.",
+                        "description": "Specifies the maximum number of idle connections to the database.\nA zero uses the value of max_open_connections and a negative value disables idle connections.\nIf larger than max_open_connections it will be reduced to be equal.",
                         "type": "integer",
                         "format": "int64"
                       },
@@ -551,20 +539,20 @@
                         "format": "int64"
                       },
                       "pluginName": {
-                        "description": "Specifies the name of the plugin to use for this connection. Default plugin: - for postgres: postgresql-database-plugin",
+                        "description": "Specifies the name of the plugin to use for this connection.\nDefault plugin:\n\t- for postgres: postgresql-database-plugin",
                         "type": "string"
                       }
                     }
                   },
                   "redis": {
-                    "description": "RedisConfiguration defines a Redis app configuration. https://www.vaultproject.io/api/secret/databases/index.html https://developer.hashicorp.com/vault/api-docs/secret/databases/redis#configure-connection",
+                    "description": "RedisConfiguration defines a Redis app configuration.\nhttps://www.vaultproject.io/api/secret/databases/index.html\nhttps://developer.hashicorp.com/vault/api-docs/secret/databases/redis#configure-connection",
                     "type": "object",
                     "required": [
                       "databaseRef"
                     ],
                     "properties": {
                       "allowedRoles": {
-                        "description": "List of the roles allowed to use this connection. Defaults to empty (no roles), if contains a \"*\" any role can use this connection.",
+                        "description": "List of the roles allowed to use this connection.\nDefaults to empty (no roles), if contains a \"*\" any role can use this connection.",
                         "type": "array",
                         "items": {
                           "type": "string"
@@ -579,15 +567,15 @@
                         ],
                         "properties": {
                           "name": {
-                            "description": "`name` is the name of the app. Required",
+                            "description": "`name` is the name of the app.\nRequired",
                             "type": "string"
                           },
                           "namespace": {
-                            "description": "`namespace` is the namespace of the app. Required",
+                            "description": "`namespace` is the namespace of the app.\nRequired",
                             "type": "string"
                           },
                           "parameters": {
-                            "description": "Parameters is a set of the parameters to be used to override default parameters. The inline YAML/JSON payload to be translated into equivalent JSON object. \n The Parameters field is NOT secret or secured in any way and should NEVER be used to hold sensitive information.",
+                            "description": "Parameters is a set of the parameters to be used to override default\nparameters. The inline YAML/JSON payload to be translated into equivalent\nJSON object.\n\nThe Parameters field is NOT secret or secured in any way and should\nNEVER be used to hold sensitive information.",
                             "type": "object",
                             "x-kubernetes-preserve-unknown-fields": true,
                             "x-kubernetes-embedded-resource": true
@@ -595,7 +583,7 @@
                         }
                       },
                       "pluginName": {
-                        "description": "Specifies the name of the plugin to use for this connection. Default plugin: - for redis: redis-database-plugin",
+                        "description": "Specifies the name of the plugin to use for this connection.\nDefault plugin:\n - for redis: redis-database-plugin",
                         "type": "string"
                       }
                     }
@@ -608,11 +596,11 @@
                     ],
                     "properties": {
                       "name": {
-                        "description": "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+                        "description": "Name of the referent.\nMore info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
                         "type": "string"
                       },
                       "namespace": {
-                        "description": "Namespace of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/",
+                        "description": "Namespace of the referent.\nMore info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/",
                         "type": "string"
                       }
                     }
@@ -634,25 +622,25 @@
                       ],
                       "properties": {
                         "lastTransitionTime": {
-                          "description": "Last time the condition transitioned from one status to another. This should be when the underlying condition changed. If that is not known, then using the time when the API field changed is acceptable.",
+                          "description": "Last time the condition transitioned from one status to another.\nThis should be when the underlying condition changed. If that is not known, then using the time when\nthe API field changed is acceptable.",
                           "type": "string",
                           "format": "date-time"
                         },
                         "message": {
-                          "description": "A human-readable message indicating details about the transition. This field may be empty.",
+                          "description": "A human-readable message indicating details about the transition.\nThis field may be empty.",
                           "type": "string"
                         },
                         "observedGeneration": {
-                          "description": "If set, this represents the .metadata.generation that the condition was set based upon. For instance, if .metadata.generation is currently 12, but the .status.condition[x].observedGeneration is 9, the condition is out of date with respect to the current state of the instance.",
+                          "description": "If set, this represents the .metadata.generation that the condition was set based upon.\nFor instance, if .metadata.generation is currently 12, but the .status.condition[x].observedGeneration is 9, the condition is out of date\nwith respect to the current state of the instance.",
                           "type": "integer",
                           "format": "int64"
                         },
                         "reason": {
-                          "description": "The reason for the condition's last transition in CamelCase. The specific API may choose whether this field is considered a guaranteed API. This field may not be empty.",
+                          "description": "The reason for the condition's last transition in CamelCase.\nThe specific API may choose whether this field is considered a guaranteed API.\nThis field may not be empty.",
                           "type": "string"
                         },
                         "severity": {
-                          "description": "Severity provides an explicit classification of Reason code, so the users or machines can immediately understand the current situation and act accordingly. The Severity field MUST be set only when Status=False.",
+                          "description": "Severity provides an explicit classification of Reason code, so the users or machines can immediately\nunderstand the current situation and act accordingly.\nThe Severity field MUST be set only when Status=False.",
                           "type": "string"
                         },
                         "status": {
@@ -660,7 +648,7 @@
                           "type": "string"
                         },
                         "type": {
-                          "description": "Type of condition in CamelCase or in foo.example.com/CamelCase. Many .condition.type values are consistent across resources like Available, but because arbitrary util can be useful (see .node.status.util), the ability to deconflict is important.",
+                          "description": "Type of condition in CamelCase or in foo.example.com/CamelCase.\nMany .condition.type values are consistent across resources like Available, but because arbitrary util\ncan be useful (see .node.status.util), the ability to deconflict is important.",
                           "type": "string"
                         }
                       }
@@ -671,7 +659,7 @@
                     "format": "int64"
                   },
                   "path": {
-                    "description": "Path defines the path used to enable this secret engine Visible to user but immutable",
+                    "description": "Path defines the path used to enable this secret engine\nVisible to user but immutable",
                     "type": "string"
                   },
                   "phase": {

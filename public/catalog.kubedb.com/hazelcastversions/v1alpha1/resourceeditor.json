@@ -1,0 +1,35 @@
+{
+  "kind": "ResourceEditor",
+  "apiVersion": "ui.k8s.appscode.com/v1alpha1",
+  "metadata": {
+    "name": "catalog.kubedb.com-v1alpha1-hazelcastversions",
+    "creationTimestamp": null,
+    "labels": {
+      "k8s.io/group": "catalog.kubedb.com",
+      "k8s.io/kind": "HazelcastVersion",
+      "k8s.io/resource": "hazelcastversions",
+      "k8s.io/version": "v1alpha1"
+    }
+  },
+  "spec": {
+    "resource": {
+      "group": "catalog.kubedb.com",
+      "version": "v1alpha1",
+      "name": "hazelcastversions",
+      "kind": "HazelcastVersion",
+      "scope": "Cluster"
+    },
+    "ui": {
+      "editor": {
+        "name": "catalogkubedbcom-hazelcastversion-editor",
+        "version": "v0.18.0",
+        "sourceRef": {
+          "apiGroup": "source.toolkit.fluxcd.io",
+          "kind": "HelmRepository",
+          "name": "appscode-charts-oci"
+        }
+      },
+      "enforceQuota": false
+    }
+  }
+}

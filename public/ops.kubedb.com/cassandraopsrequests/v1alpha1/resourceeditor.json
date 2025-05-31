@@ -1,0 +1,35 @@
+{
+  "kind": "ResourceEditor",
+  "apiVersion": "ui.k8s.appscode.com/v1alpha1",
+  "metadata": {
+    "name": "ops.kubedb.com-v1alpha1-cassandraopsrequests",
+    "creationTimestamp": null,
+    "labels": {
+      "k8s.io/group": "ops.kubedb.com",
+      "k8s.io/kind": "CassandraOpsRequest",
+      "k8s.io/resource": "cassandraopsrequests",
+      "k8s.io/version": "v1alpha1"
+    }
+  },
+  "spec": {
+    "resource": {
+      "group": "ops.kubedb.com",
+      "version": "v1alpha1",
+      "name": "cassandraopsrequests",
+      "kind": "CassandraOpsRequest",
+      "scope": "Namespaced"
+    },
+    "ui": {
+      "editor": {
+        "name": "opskubedbcom-cassandraopsrequest-editor",
+        "version": "v0.18.0",
+        "sourceRef": {
+          "apiGroup": "source.toolkit.fluxcd.io",
+          "kind": "HelmRepository",
+          "name": "appscode-charts-oci"
+        }
+      },
+      "enforceQuota": false
+    }
+  }
+}

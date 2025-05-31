@@ -18,6 +18,18 @@
       "name": "mssqlservers",
       "kind": "MSSQLServer",
       "scope": "Namespaced"
+    },
+    "ui": {
+      "editor": {
+        "name": "gitopskubedbcom-mssqlserver-editor",
+        "version": "v0.18.0",
+        "sourceRef": {
+          "apiGroup": "source.toolkit.fluxcd.io",
+          "kind": "HelmRepository",
+          "name": "appscode-charts-oci"
+        }
+      },
+      "enforceQuota": false
     }
   }
 }

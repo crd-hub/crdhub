@@ -22,7 +22,7 @@
     "ui": {
       "options": {
         "name": "kubedbcom-proxysql-editor-options",
-        "version": "v0.17.0",
+        "version": "v0.18.0",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",
@@ -31,7 +31,7 @@
       },
       "editor": {
         "name": "kubedbcom-proxysql-editor",
-        "version": "v0.17.0",
+        "version": "v0.18.0",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",
@@ -55,7 +55,7 @@
               "flow": "standalone-create",
               "editor": {
                 "name": "opskubedbcom-proxysqlopsrequest-editor",
-                "version": "v0.17.0",
+                "version": "v0.18.0",
                 "sourceRef": {
                   "apiGroup": "source.toolkit.fluxcd.io",
                   "kind": "HelmRepository",
@@ -76,7 +76,7 @@
               "flow": "standalone-create",
               "editor": {
                 "name": "opskubedbcom-proxysqlopsrequest-editor",
-                "version": "v0.17.0",
+                "version": "v0.18.0",
                 "sourceRef": {
                   "apiGroup": "source.toolkit.fluxcd.io",
                   "kind": "HelmRepository",
@@ -97,7 +97,7 @@
               "flow": "standalone-create",
               "editor": {
                 "name": "opskubedbcom-proxysqlopsrequest-editor",
-                "version": "v0.17.0",
+                "version": "v0.18.0",
                 "sourceRef": {
                   "apiGroup": "source.toolkit.fluxcd.io",
                   "kind": "HelmRepository",
@@ -123,7 +123,7 @@
               "flow": "standalone-create",
               "editor": {
                 "name": "opskubedbcom-proxysqlopsrequest-editor",
-                "version": "v0.17.0",
+                "version": "v0.18.0",
                 "sourceRef": {
                   "apiGroup": "source.toolkit.fluxcd.io",
                   "kind": "HelmRepository",
@@ -144,7 +144,7 @@
               "flow": "standalone-create",
               "editor": {
                 "name": "opskubedbcom-proxysqlopsrequest-editor",
-                "version": "v0.17.0",
+                "version": "v0.18.0",
                 "sourceRef": {
                   "apiGroup": "source.toolkit.fluxcd.io",
                   "kind": "HelmRepository",
@@ -170,7 +170,7 @@
               "flow": "standalone-edit",
               "editor": {
                 "name": "kubedbcom-proxysql-editor",
-                "version": "v0.17.0",
+                "version": "v0.18.0",
                 "sourceRef": {
                   "apiGroup": "source.toolkit.fluxcd.io",
                   "kind": "HelmRepository",
@@ -196,7 +196,7 @@
               "flow": "standalone-create",
               "editor": {
                 "name": "opskubedbcom-proxysqlopsrequest-editor",
-                "version": "v0.17.0",
+                "version": "v0.18.0",
                 "sourceRef": {
                   "apiGroup": "source.toolkit.fluxcd.io",
                   "kind": "HelmRepository",
@@ -217,7 +217,7 @@
               "flow": "standalone-edit",
               "editor": {
                 "name": "kubedbcom-proxysql-editor",
-                "version": "v0.17.0",
+                "version": "v0.18.0",
                 "sourceRef": {
                   "apiGroup": "source.toolkit.fluxcd.io",
                   "kind": "HelmRepository",

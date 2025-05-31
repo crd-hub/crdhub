@@ -163,6 +163,16 @@
             "managerID": {
               "type": "string"
             },
+            "mode": {
+              "description": "ENUM(prod,qa,staging,dev)",
+              "type": "string",
+              "enum": [
+                "prod",
+                "qa",
+                "staging",
+                "dev"
+              ]
+            },
             "name": {
               "type": "string"
             },

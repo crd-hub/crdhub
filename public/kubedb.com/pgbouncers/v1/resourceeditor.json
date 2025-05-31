@@ -22,7 +22,7 @@
     "ui": {
       "options": {
         "name": "kubedbcom-pgbouncer-editor-options",
-        "version": "v0.17.0",
+        "version": "v0.18.0",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",
@@ -31,7 +31,7 @@
       },
       "editor": {
         "name": "kubedbcom-pgbouncer-editor",
-        "version": "v0.17.0",
+        "version": "v0.18.0",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",
@@ -55,7 +55,7 @@
               "flow": "standalone-create",
               "editor": {
                 "name": "opskubedbcom-pgbounceropsrequest-editor",
-                "version": "v0.17.0",
+                "version": "v0.18.0",
                 "sourceRef": {
                   "apiGroup": "source.toolkit.fluxcd.io",
                   "kind": "HelmRepository",
@@ -76,7 +76,7 @@
               "flow": "standalone-create",
               "editor": {
                 "name": "opskubedbcom-pgbounceropsrequest-editor",
-                "version": "v0.17.0",
+                "version": "v0.18.0",
                 "sourceRef": {
                   "apiGroup": "source.toolkit.fluxcd.io",
                   "kind": "HelmRepository",
@@ -103,7 +103,7 @@
               "disabledTemplate": "{{ not (gt .spec.replicas 1) }}\n",
               "editor": {
                 "name": "opskubedbcom-pgbounceropsrequest-editor",
-                "version": "v0.17.0",
+                "version": "v0.18.0",
                 "sourceRef": {
                   "apiGroup": "source.toolkit.fluxcd.io",
                   "kind": "HelmRepository",
@@ -124,7 +124,7 @@
               "flow": "standalone-create",
               "editor": {
                 "name": "opskubedbcom-pgbounceropsrequest-editor",
-                "version": "v0.17.0",
+                "version": "v0.18.0",
                 "sourceRef": {
                   "apiGroup": "source.toolkit.fluxcd.io",
                   "kind": "HelmRepository",
@@ -150,7 +150,7 @@
               "flow": "standalone-edit",
               "editor": {
                 "name": "kubedbcom-pgbouncer-editor",
-                "version": "v0.17.0",
+                "version": "v0.18.0",
                 "sourceRef": {
                   "apiGroup": "source.toolkit.fluxcd.io",
                   "kind": "HelmRepository",
@@ -176,7 +176,7 @@
               "flow": "standalone-edit",
               "editor": {
                 "name": "kubedbcom-pgbouncer-editor",
-                "version": "v0.17.0",
+                "version": "v0.18.0",
                 "sourceRef": {
                   "apiGroup": "source.toolkit.fluxcd.io",
                   "kind": "HelmRepository",
