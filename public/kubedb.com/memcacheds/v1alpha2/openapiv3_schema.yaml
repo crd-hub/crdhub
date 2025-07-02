@@ -29,6 +29,11 @@ properties:
     type: object
   spec:
     properties:
+      autoOps:
+        properties:
+          disabled:
+            type: boolean
+        type: object
       configSecret:
         properties:
           name:

@@ -50,6 +50,33 @@
                   "type"
                 ],
                 "properties": {
+                  "announce": {
+                    "type": "object",
+                    "properties": {
+                      "shards": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "properties": {
+                            "endpoints": {
+                              "type": "array",
+                              "items": {
+                                "type": "string"
+                              }
+                            }
+                          }
+                        }
+                      },
+                      "type": {
+                        "type": "string",
+                        "default": "hostname",
+                        "enum": [
+                          "ip",
+                          "hostname"
+                        ]
+                      }
+                    }
+                  },
                   "apply": {
                     "type": "string",
                     "default": "IfReady",
@@ -339,7 +366,8 @@
                       "Reconfigure",
                       "ReconfigureTLS",
                       "ReplaceSentinel",
-                      "RotateAuth"
+                      "RotateAuth",
+                      "Announce"
                     ]
                   },
                   "updateVersion": {

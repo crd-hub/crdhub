@@ -5,7 +5,7 @@
     "name": "envoyextensionpolicies.gateway.envoyproxy.io",
     "creationTimestamp": null,
     "annotations": {
-      "controller-gen.kubebuilder.io/version": "v0.16.1"
+      "controller-gen.kubebuilder.io/version": "v0.17.3"
     }
   },
   "spec": {
@@ -211,6 +211,20 @@
                                   "format": "int64",
                                   "maximum": 4294967295,
                                   "minimum": 0
+                                },
+                                "perEndpoint": {
+                                  "description": "PerEndpoint defines Circuit Breakers that will apply per-endpoint for an upstream cluster",
+                                  "type": "object",
+                                  "properties": {
+                                    "maxConnections": {
+                                      "description": "MaxConnections configures the maximum number of connections that Envoy will establish per-endpoint to the referenced backend defined within a xRoute rule.",
+                                      "type": "integer",
+                                      "format": "int64",
+                                      "default": 1024,
+                                      "maximum": 4294967295,
+                                      "minimum": 0
+                                    }
+                                  }
                                 }
                               }
                             },
@@ -267,6 +281,17 @@
                                 "dnsRefreshRate": {
                                   "description": "DNSRefreshRate specifies the rate at which DNS records should be refreshed.\nDefaults to 30 seconds.",
                                   "type": "string"
+                                },
+                                "lookupFamily": {
+                                  "description": "LookupFamily determines how Envoy would resolve DNS for Routes where the backend is specified as a fully qualified domain name (FQDN).\nIf set, this configuration overrides other defaults.",
+                                  "type": "string",
+                                  "enum": [
+                                    "IPv4",
+                                    "IPv6",
+                                    "IPv4Preferred",
+                                    "IPv6Preferred",
+                                    "IPv4AndIPv6"
+                                  ]
                                 },
                                 "respectDnsTtl": {
                                   "description": "RespectDNSTTL indicates whether the DNS Time-To-Live (TTL) should be respected.\nIf the value is set to true, the DNS refresh rate will be set to the resource record’s TTL.\nDefaults to true.",
@@ -530,6 +555,13 @@
                                       "message": "The grpc field can only be set if the Health Checker type is GRPC."
                                     }
                                   ]
+                                },
+                                "panicThreshold": {
+                                  "description": "When number of unhealthy endpoints for a backend reaches this threshold\nEnvoy will disregard health status and balance across all endpoints.\nIt's designed to prevent a situation in which host failures cascade throughout the cluster\nas load increases. If not set, the default value is 50%. To disable panic mode, set value to `0`.",
+                                  "type": "integer",
+                                  "format": "int32",
+                                  "maximum": 100,
+                                  "minimum": 0
                                 },
                                 "passive": {
                                   "description": "Passive passive check configuration",
@@ -971,7 +1003,8 @@
                                   "enum": [
                                     "Streamed",
                                     "Buffered",
-                                    "BufferedPartial"
+                                    "BufferedPartial",
+                                    "FullDuplexStreamed"
                                   ]
                                 }
                               }
@@ -994,7 +1027,8 @@
                                   "enum": [
                                     "Streamed",
                                     "Buffered",
-                                    "BufferedPartial"
+                                    "BufferedPartial",
+                                    "FullDuplexStreamed"
                                   ]
                                 }
                               }
@@ -1073,8 +1107,8 @@
                           },
                           "x-kubernetes-validations": [
                             {
-                              "rule": "self.kind == 'ConfigMap' \u0026\u0026 (!has(self.group) || self.group == '')",
-                              "message": "Only a reference to an object of kind ConfigMap belonging to default core API group is supported."
+                              "rule": "self.kind == 'ConfigMap' \u0026\u0026 (self.group == 'v1' || self.group == '')",
+                              "message": "Only a reference to an object of kind ConfigMap belonging to default v1 API group is supported."
                             }
                           ]
                         }
@@ -1171,8 +1205,7 @@
                     "items": {
                       "type": "object",
                       "required": [
-                        "kind",
-                        "matchLabels"
+                        "kind"
                       ],
                       "properties": {
                         "group": {
@@ -1188,6 +1221,37 @@
                           "maxLength": 63,
                           "minLength": 1,
                           "pattern": "^[a-zA-Z]([-a-zA-Z0-9]*[a-zA-Z0-9])?$"
+                        },
+                        "matchExpressions": {
+                          "description": "MatchExpressions is a list of label selector requirements. The requirements are ANDed.",
+                          "type": "array",
+                          "items": {
+                            "description": "A label selector requirement is a selector that contains values, a key, and an operator that\nrelates the key and values.",
+                            "type": "object",
+                            "required": [
+                              "key",
+                              "operator"
+                            ],
+                            "properties": {
+                              "key": {
+                                "description": "key is the label key that the selector applies to.",
+                                "type": "string"
+                              },
+                              "operator": {
+                                "description": "operator represents a key's relationship to a set of values.\nValid operators are In, NotIn, Exists and DoesNotExist.",
+                                "type": "string"
+                              },
+                              "values": {
+                                "description": "values is an array of string values. If the operator is In or NotIn,\nthe values array must be non-empty. If the operator is Exists or DoesNotExist,\nthe values array must be empty. This array is replaced during a strategic\nmerge patch.",
+                                "type": "array",
+                                "items": {
+                                  "type": "string"
+                                },
+                                "x-kubernetes-list-type": "atomic"
+                              }
+                            }
+                          },
+                          "x-kubernetes-list-type": "atomic"
                         },
                         "matchLabels": {
                           "description": "MatchLabels are the set of label selectors for identifying the targeted resource",
@@ -1233,6 +1297,52 @@
                                 "sha256": {
                                   "description": "SHA256 checksum that will be used to verify the Wasm code.\n\nIf not specified, Envoy Gateway will not verify the downloaded Wasm code.\nkubebuilder:validation:Pattern=`^[a-f0-9]{64}$`",
                                   "type": "string"
+                                },
+                                "tls": {
+                                  "description": "TLS configuration when connecting to the Wasm code source.",
+                                  "type": "object",
+                                  "required": [
+                                    "caCertificateRef"
+                                  ],
+                                  "properties": {
+                                    "caCertificateRef": {
+                                      "description": "CACertificateRef contains a references to\nKubernetes objects that contain TLS certificates of\nthe Certificate Authorities that can be used\nas a trust anchor to validate the certificates presented by the Wasm code source.\n\nKubernetes ConfigMap and Kubernetes Secret are supported.\nNote: The ConfigMap or Secret must be in the same namespace as the EnvoyExtensionPolicy.",
+                                      "type": "object",
+                                      "required": [
+                                        "name"
+                                      ],
+                                      "properties": {
+                                        "group": {
+                                          "description": "Group is the group of the referent. For example, \"gateway.networking.k8s.io\".\nWhen unspecified or empty string, core API group is inferred.",
+                                          "type": "string",
+                                          "default": "",
+                                          "maxLength": 253,
+                                          "pattern": "^$|^[a-z0-9]([-a-z0-9]*[a-z0-9])?(\\.[a-z0-9]([-a-z0-9]*[a-z0-9])?)*$"
+                                        },
+                                        "kind": {
+                                          "description": "Kind is kind of the referent. For example \"Secret\".",
+                                          "type": "string",
+                                          "default": "Secret",
+                                          "maxLength": 63,
+                                          "minLength": 1,
+                                          "pattern": "^[a-zA-Z]([-a-zA-Z0-9]*[a-zA-Z0-9])?$"
+                                        },
+                                        "name": {
+                                          "description": "Name is the name of the referent.",
+                                          "type": "string",
+                                          "maxLength": 253,
+                                          "minLength": 1
+                                        },
+                                        "namespace": {
+                                          "description": "Namespace is the namespace of the referenced object. When unspecified, the local\nnamespace is inferred.\n\nNote that when a namespace different than the local namespace is specified,\na ReferenceGrant object is required in the referent namespace to allow that\nnamespace's owner to accept the reference. See the ReferenceGrant\ndocumentation for details.\n\nSupport: Core",
+                                          "type": "string",
+                                          "maxLength": 63,
+                                          "minLength": 1,
+                                          "pattern": "^[a-z0-9]([-a-z0-9]*[a-z0-9])?$"
+                                        }
+                                      }
+                                    }
+                                  }
                                 },
                                 "url": {
                                   "description": "URL is the URL containing the Wasm code.",
@@ -1294,6 +1404,52 @@
                                 "sha256": {
                                   "description": "SHA256 checksum that will be used to verify the OCI image.\n\nIt must match the digest of the OCI image.\n\nIf not specified, Envoy Gateway will not verify the downloaded OCI image.\nkubebuilder:validation:Pattern=`^[a-f0-9]{64}$`",
                                   "type": "string"
+                                },
+                                "tls": {
+                                  "description": "TLS configuration when connecting to the Wasm code source.",
+                                  "type": "object",
+                                  "required": [
+                                    "caCertificateRef"
+                                  ],
+                                  "properties": {
+                                    "caCertificateRef": {
+                                      "description": "CACertificateRef contains a references to\nKubernetes objects that contain TLS certificates of\nthe Certificate Authorities that can be used\nas a trust anchor to validate the certificates presented by the Wasm code source.\n\nKubernetes ConfigMap and Kubernetes Secret are supported.\nNote: The ConfigMap or Secret must be in the same namespace as the EnvoyExtensionPolicy.",
+                                      "type": "object",
+                                      "required": [
+                                        "name"
+                                      ],
+                                      "properties": {
+                                        "group": {
+                                          "description": "Group is the group of the referent. For example, \"gateway.networking.k8s.io\".\nWhen unspecified or empty string, core API group is inferred.",
+                                          "type": "string",
+                                          "default": "",
+                                          "maxLength": 253,
+                                          "pattern": "^$|^[a-z0-9]([-a-z0-9]*[a-z0-9])?(\\.[a-z0-9]([-a-z0-9]*[a-z0-9])?)*$"
+                                        },
+                                        "kind": {
+                                          "description": "Kind is kind of the referent. For example \"Secret\".",
+                                          "type": "string",
+                                          "default": "Secret",
+                                          "maxLength": 63,
+                                          "minLength": 1,
+                                          "pattern": "^[a-zA-Z]([-a-zA-Z0-9]*[a-zA-Z0-9])?$"
+                                        },
+                                        "name": {
+                                          "description": "Name is the name of the referent.",
+                                          "type": "string",
+                                          "maxLength": 253,
+                                          "minLength": 1
+                                        },
+                                        "namespace": {
+                                          "description": "Namespace is the namespace of the referenced object. When unspecified, the local\nnamespace is inferred.\n\nNote that when a namespace different than the local namespace is specified,\na ReferenceGrant object is required in the referent namespace to allow that\nnamespace's owner to accept the reference. See the ReferenceGrant\ndocumentation for details.\n\nSupport: Core",
+                                          "type": "string",
+                                          "maxLength": 63,
+                                          "minLength": 1,
+                                          "pattern": "^[a-z0-9]([-a-z0-9]*[a-z0-9])?$"
+                                        }
+                                      }
+                                    }
+                                  }
                                 },
                                 "url": {
                                   "description": "URL is the URL of the OCI image.\nURL can be in the format of `registry/image:tag` or `registry/image@sha256:digest`.",

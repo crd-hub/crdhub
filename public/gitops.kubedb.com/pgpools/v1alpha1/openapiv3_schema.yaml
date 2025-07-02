@@ -47,6 +47,11 @@ properties:
             type: string
         type: object
         x-kubernetes-map-type: atomic
+      autoOps:
+        properties:
+          disabled:
+            type: boolean
+        type: object
       clientAuthMode:
         default: md5
         enum:

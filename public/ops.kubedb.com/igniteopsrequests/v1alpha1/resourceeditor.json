@@ -1,0 +1,23 @@
+{
+  "kind": "ResourceEditor",
+  "apiVersion": "ui.k8s.appscode.com/v1alpha1",
+  "metadata": {
+    "name": "ops.kubedb.com-v1alpha1-igniteopsrequests",
+    "creationTimestamp": null,
+    "labels": {
+      "k8s.io/group": "ops.kubedb.com",
+      "k8s.io/kind": "IgniteOpsRequest",
+      "k8s.io/resource": "igniteopsrequests",
+      "k8s.io/version": "v1alpha1"
+    }
+  },
+  "spec": {
+    "resource": {
+      "group": "ops.kubedb.com",
+      "version": "v1alpha1",
+      "name": "igniteopsrequests",
+      "kind": "IgniteOpsRequest",
+      "scope": "Namespaced"
+    }
+  }
+}

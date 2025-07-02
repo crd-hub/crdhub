@@ -108,7 +108,7 @@
         "horizontalScaling": {
           "type": "object",
           "properties": {
-            "node": {
+            "hazelcast": {
               "type": "integer",
               "format": "int32"
             }
@@ -281,13 +281,12 @@
         "type": {
           "type": "string",
           "enum": [
-            "Upgrade",
             "UpdateVersion",
             "HorizontalScaling",
             "VerticalScaling",
             "VolumeExpansion",
-            "Restart",
             "Reconfigure",
+            "Restart",
             "ReconfigureTLS",
             "RotateAuth"
           ]
@@ -303,7 +302,7 @@
         "verticalScaling": {
           "type": "object",
           "properties": {
-            "node": {
+            "hazelcast": {
               "type": "object",
               "properties": {
                 "nodeSelectionPolicy": {
@@ -390,14 +389,7 @@
             "mode"
           ],
           "properties": {
-            "mode": {
-              "type": "string",
-              "enum": [
-                "Offline",
-                "Online"
-              ]
-            },
-            "node": {
+            "hazelcast": {
               "pattern": "^(\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))(([KMGTPE]i)|[numkMGTPE]|([eE](\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))))?$",
               "anyOf": [
                 {
@@ -408,6 +400,13 @@
                 }
               ],
               "x-kubernetes-int-or-string": true
+            },
+            "mode": {
+              "type": "string",
+              "enum": [
+                "Offline",
+                "Online"
+              ]
             }
           }
         }

@@ -5,7 +5,7 @@
     "name": "envoypatchpolicies.gateway.envoyproxy.io",
     "creationTimestamp": null,
     "annotations": {
-      "controller-gen.kubebuilder.io/version": "v0.16.1"
+      "controller-gen.kubebuilder.io/version": "v0.17.3"
     }
   },
   "spec": {

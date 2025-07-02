@@ -83,6 +83,14 @@
                     },
                     "x-kubernetes-map-type": "atomic"
                   },
+                  "autoOps": {
+                    "type": "object",
+                    "properties": {
+                      "disabled": {
+                        "type": "boolean"
+                      }
+                    }
+                  },
                   "clusterTopology": {
                     "type": "object",
                     "properties": {
@@ -15137,6 +15145,15 @@
                         }
                       }
                     }
+                  },
+                  "sslVerificationMode": {
+                    "type": "string",
+                    "enum": [
+                      "none",
+                      "relaxed",
+                      "strict",
+                      "once"
+                    ]
                   },
                   "storage": {
                     "type": "object",

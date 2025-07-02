@@ -5,7 +5,7 @@
     "name": "securitypolicies.gateway.envoyproxy.io",
     "creationTimestamp": null,
     "annotations": {
-      "controller-gen.kubebuilder.io/version": "v0.16.1"
+      "controller-gen.kubebuilder.io/version": "v0.17.3"
     }
   },
   "spec": {
@@ -170,6 +170,36 @@
                               "maxLength": 253,
                               "minLength": 1
                             },
+                            "operation": {
+                              "description": "Operation specifies the operation of a request, such as HTTP methods.\nIf not specified, all operations are matched on.",
+                              "type": "object",
+                              "required": [
+                                "methods"
+                              ],
+                              "properties": {
+                                "methods": {
+                                  "description": "Methods are the HTTP methods of the request.\nIf multiple methods are specified, all specified methods are allowed or denied, based on the action of the rule.",
+                                  "type": "array",
+                                  "maxItems": 16,
+                                  "minItems": 1,
+                                  "items": {
+                                    "description": "HTTPMethod describes how to select a HTTP route by matching the HTTP\nmethod as defined by\n[RFC 7231](https://datatracker.ietf.org/doc/html/rfc7231#section-4) and\n[RFC 5789](https://datatracker.ietf.org/doc/html/rfc5789#section-2).\nThe value is expected in upper case.\n\nNote that values may be added to this enum, implementations\nmust ensure that unknown values will not cause a crash.\n\nUnknown values here must result in the implementation setting the\nAccepted Condition for the Route to `status: False`, with a\nReason of `UnsupportedValue`.",
+                                    "type": "string",
+                                    "enum": [
+                                      "GET",
+                                      "HEAD",
+                                      "POST",
+                                      "PUT",
+                                      "DELETE",
+                                      "CONNECT",
+                                      "OPTIONS",
+                                      "TRACE",
+                                      "PATCH"
+                                    ]
+                                  }
+                                }
+                              }
+                            },
                             "principal": {
                               "description": "Principal specifies the client identity of a request.\nIf there are multiple principal types, all principals must match for the rule to match.\nFor example, if there are two principals: one for client IP and one for JWT claim,\nthe rule will match only if both the client IP and the JWT claim match.",
                               "type": "object",
@@ -182,6 +212,37 @@
                                     "description": "CIDR defines a CIDR Address range.\nA CIDR can be an IPv4 address range such as \"192.168.1.0/24\" or an IPv6 address range such as \"2001:0db8:11a3:09d7::/64\".",
                                     "type": "string",
                                     "pattern": "((25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\/([0-9]+))|((([0-9a-fA-F]{1,4}:){7,7}[0-9a-fA-F]{1,4}|([0-9a-fA-F]{1,4}:){1,7}:|([0-9a-fA-F]{1,4}:){1,6}:[0-9a-fA-F]{1,4}|([0-9a-fA-F]{1,4}:){1,5}(:[0-9a-fA-F]{1,4}){1,2}|([0-9a-fA-F]{1,4}:){1,4}(:[0-9a-fA-F]{1,4}){1,3}|([0-9a-fA-F]{1,4}:){1,3}(:[0-9a-fA-F]{1,4}){1,4}|([0-9a-fA-F]{1,4}:){1,2}(:[0-9a-fA-F]{1,4}){1,5}|[0-9a-fA-F]{1,4}:((:[0-9a-fA-F]{1,4}){1,6})|:((:[0-9a-fA-F]{1,4}){1,7}|:)|fe80:(:[0-9a-fA-F]{0,4}){0,4}%[0-9a-zA-Z]{1,}|::(ffff(:0{1,4}){0,1}:){0,1}((25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])\\.){3,3}(25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])|([0-9a-fA-F]{1,4}:){1,4}:((25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])\\.){3,3}(25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9]))\\/([0-9]+))"
+                                  }
+                                },
+                                "headers": {
+                                  "description": "Headers authorize the request based on user identity extracted from custom headers.\nIf multiple headers are specified, all headers must match for the rule to match.",
+                                  "type": "array",
+                                  "maxItems": 256,
+                                  "minItems": 1,
+                                  "items": {
+                                    "description": "AuthorizationHeaderMatch specifies how to match against the value of an HTTP header within a authorization rule.",
+                                    "type": "object",
+                                    "required": [
+                                      "name",
+                                      "values"
+                                    ],
+                                    "properties": {
+                                      "name": {
+                                        "description": "Name of the HTTP header.\nThe header name is case-insensitive unless PreserveHeaderCase is set to true.\nFor example, \"Foo\" and \"foo\" are considered the same header.",
+                                        "type": "string",
+                                        "maxLength": 256,
+                                        "minLength": 1
+                                      },
+                                      "values": {
+                                        "description": "Values are the values that the header must match.\nIf multiple values are specified, the rule will match if any of the values match.",
+                                        "type": "array",
+                                        "maxItems": 256,
+                                        "minItems": 1,
+                                        "items": {
+                                          "type": "string"
+                                        }
+                                      }
+                                    }
                                   }
                                 },
                                 "jwt": {
@@ -259,8 +320,8 @@
                               },
                               "x-kubernetes-validations": [
                                 {
-                                  "rule": "(has(self.clientCIDRs) || has(self.jwt))",
-                                  "message": "at least one of clientCIDRs or jwt must be specified"
+                                  "rule": "(has(self.clientCIDRs) || has(self.jwt) || has(self.headers))",
+                                  "message": "at least one of clientCIDRs, jwt, or headers must be specified"
                                 }
                               ]
                             }
@@ -276,6 +337,10 @@
                       "users"
                     ],
                     "properties": {
+                      "forwardUsernameHeader": {
+                        "description": "This field specifies the header name to forward a successfully authenticated user to\nthe backend. The header will be added to the request with the username as the value.\n\nIf it is not specified, the username will not be forwarded.",
+                        "type": "string"
+                      },
                       "users": {
                         "description": "The Kubernetes secret which contains the username-password pairs in\nhtpasswd format, used to verify user credentials in the \"Authorization\"\nheader.\n\nThis is an Opaque secret. The username-password pairs should be stored in\nthe key \".htpasswd\". As the key name indicates, the value needs to be the\nhtpasswd format, for example: \"user1:{SHA}hashed_user1_password\".\nRight now, only SHA hash algorithm is supported.\nReference to https://httpd.apache.org/docs/2.4/programs/htpasswd.html\nfor more details.\n\nNote: The secret must be in the same namespace as the SecurityPolicy.",
                         "type": "object",
@@ -544,6 +609,20 @@
                                     "format": "int64",
                                     "maximum": 4294967295,
                                     "minimum": 0
+                                  },
+                                  "perEndpoint": {
+                                    "description": "PerEndpoint defines Circuit Breakers that will apply per-endpoint for an upstream cluster",
+                                    "type": "object",
+                                    "properties": {
+                                      "maxConnections": {
+                                        "description": "MaxConnections configures the maximum number of connections that Envoy will establish per-endpoint to the referenced backend defined within a xRoute rule.",
+                                        "type": "integer",
+                                        "format": "int64",
+                                        "default": 1024,
+                                        "maximum": 4294967295,
+                                        "minimum": 0
+                                      }
+                                    }
                                   }
                                 }
                               },
@@ -600,6 +679,17 @@
                                   "dnsRefreshRate": {
                                     "description": "DNSRefreshRate specifies the rate at which DNS records should be refreshed.\nDefaults to 30 seconds.",
                                     "type": "string"
+                                  },
+                                  "lookupFamily": {
+                                    "description": "LookupFamily determines how Envoy would resolve DNS for Routes where the backend is specified as a fully qualified domain name (FQDN).\nIf set, this configuration overrides other defaults.",
+                                    "type": "string",
+                                    "enum": [
+                                      "IPv4",
+                                      "IPv6",
+                                      "IPv4Preferred",
+                                      "IPv6Preferred",
+                                      "IPv4AndIPv6"
+                                    ]
                                   },
                                   "respectDnsTtl": {
                                     "description": "RespectDNSTTL indicates whether the DNS Time-To-Live (TTL) should be respected.\nIf the value is set to true, the DNS refresh rate will be set to the resource record’s TTL.\nDefaults to true.",
@@ -863,6 +953,13 @@
                                         "message": "The grpc field can only be set if the Health Checker type is GRPC."
                                       }
                                     ]
+                                  },
+                                  "panicThreshold": {
+                                    "description": "When number of unhealthy endpoints for a backend reaches this threshold\nEnvoy will disregard health status and balance across all endpoints.\nIt's designed to prevent a situation in which host failures cascade throughout the cluster\nas load increases. If not set, the default value is 50%. To disable panic mode, set value to `0`.",
+                                    "type": "integer",
+                                    "format": "int32",
+                                    "maximum": 100,
+                                    "minimum": 0
                                   },
                                   "passive": {
                                     "description": "Passive passive check configuration",
@@ -1424,6 +1521,20 @@
                                     "format": "int64",
                                     "maximum": 4294967295,
                                     "minimum": 0
+                                  },
+                                  "perEndpoint": {
+                                    "description": "PerEndpoint defines Circuit Breakers that will apply per-endpoint for an upstream cluster",
+                                    "type": "object",
+                                    "properties": {
+                                      "maxConnections": {
+                                        "description": "MaxConnections configures the maximum number of connections that Envoy will establish per-endpoint to the referenced backend defined within a xRoute rule.",
+                                        "type": "integer",
+                                        "format": "int64",
+                                        "default": 1024,
+                                        "maximum": 4294967295,
+                                        "minimum": 0
+                                      }
+                                    }
                                   }
                                 }
                               },
@@ -1480,6 +1591,17 @@
                                   "dnsRefreshRate": {
                                     "description": "DNSRefreshRate specifies the rate at which DNS records should be refreshed.\nDefaults to 30 seconds.",
                                     "type": "string"
+                                  },
+                                  "lookupFamily": {
+                                    "description": "LookupFamily determines how Envoy would resolve DNS for Routes where the backend is specified as a fully qualified domain name (FQDN).\nIf set, this configuration overrides other defaults.",
+                                    "type": "string",
+                                    "enum": [
+                                      "IPv4",
+                                      "IPv6",
+                                      "IPv4Preferred",
+                                      "IPv6Preferred",
+                                      "IPv4AndIPv6"
+                                    ]
                                   },
                                   "respectDnsTtl": {
                                     "description": "RespectDNSTTL indicates whether the DNS Time-To-Live (TTL) should be respected.\nIf the value is set to true, the DNS refresh rate will be set to the resource record’s TTL.\nDefaults to true.",
@@ -1743,6 +1865,13 @@
                                         "message": "The grpc field can only be set if the Health Checker type is GRPC."
                                       }
                                     ]
+                                  },
+                                  "panicThreshold": {
+                                    "description": "When number of unhealthy endpoints for a backend reaches this threshold\nEnvoy will disregard health status and balance across all endpoints.\nIt's designed to prevent a situation in which host failures cascade throughout the cluster\nas load increases. If not set, the default value is 50%. To disable panic mode, set value to `0`.",
+                                    "type": "integer",
+                                    "format": "int32",
+                                    "maximum": 100,
+                                    "minimum": 0
                                   },
                                   "passive": {
                                     "description": "Passive passive check configuration",
@@ -2130,7 +2259,7 @@
                             }
                           },
                           "path": {
-                            "description": "Path is the path of the HTTP External Authorization service.\nIf path is specified, the authorization request will be sent to that path,\nor else the authorization request will be sent to the root path.",
+                            "description": "Path is the path of the HTTP External Authorization service.\nIf path is specified, the authorization request will be sent to that path,\nor else the authorization request will use the path of the original request.\n\nPlease note that the original request path will be appended to the path specified here.\nFor example, if the original request path is \"/hello\", and the path specified here is \"/auth\",\nthen the path of the authorization request will be \"/auth/hello\". If the path is not specified,\nthe path of the authorization request will be \"/hello\".",
                             "type": "string"
                           }
                         },
@@ -2185,8 +2314,7 @@
                           "description": "JWTProvider defines how a JSON Web Token (JWT) can be verified.",
                           "type": "object",
                           "required": [
-                            "name",
-                            "remoteJWKS"
+                            "name"
                           ],
                           "properties": {
                             "audiences": {
@@ -2264,6 +2392,64 @@
                               "description": "Issuer is the principal that issued the JWT and takes the form of a URL or email address.\nFor additional details, see https://tools.ietf.org/html/rfc7519#section-4.1.1 for\nURL format and https://rfc-editor.org/rfc/rfc5322.html for email format. If not provided,\nthe JWT issuer is not checked.",
                               "type": "string",
                               "maxLength": 253
+                            },
+                            "localJWKS": {
+                              "description": "LocalJWKS defines how to get the JSON Web Key Sets (JWKS) from a local source.",
+                              "type": "object",
+                              "required": [
+                                "type"
+                              ],
+                              "properties": {
+                                "inline": {
+                                  "description": "Inline contains the value as an inline string.",
+                                  "type": "string"
+                                },
+                                "type": {
+                                  "description": "Type is the type of method to use to read the body value.\nValid values are Inline and ValueRef, default is Inline.",
+                                  "type": "string",
+                                  "default": "Inline",
+                                  "enum": [
+                                    "Inline",
+                                    "ValueRef"
+                                  ]
+                                },
+                                "valueRef": {
+                                  "description": "ValueRef is a reference to a local ConfigMap that contains the JSON Web Key Sets (JWKS).\n\nThe value of key `jwks` in the ConfigMap will be used.\nIf the key is not found, the first value in the ConfigMap will be used.",
+                                  "type": "object",
+                                  "required": [
+                                    "group",
+                                    "kind",
+                                    "name"
+                                  ],
+                                  "properties": {
+                                    "group": {
+                                      "description": "Group is the group of the referent. For example, \"gateway.networking.k8s.io\".\nWhen unspecified or empty string, core API group is inferred.",
+                                      "type": "string",
+                                      "maxLength": 253,
+                                      "pattern": "^$|^[a-z0-9]([-a-z0-9]*[a-z0-9])?(\\.[a-z0-9]([-a-z0-9]*[a-z0-9])?)*$"
+                                    },
+                                    "kind": {
+                                      "description": "Kind is kind of the referent. For example \"HTTPRoute\" or \"Service\".",
+                                      "type": "string",
+                                      "maxLength": 63,
+                                      "minLength": 1,
+                                      "pattern": "^[a-zA-Z]([-a-zA-Z0-9]*[a-zA-Z0-9])?$"
+                                    },
+                                    "name": {
+                                      "description": "Name is the name of the referent.",
+                                      "type": "string",
+                                      "maxLength": 253,
+                                      "minLength": 1
+                                    }
+                                  }
+                                }
+                              },
+                              "x-kubernetes-validations": [
+                                {
+                                  "rule": "(self.type == 'Inline' \u0026\u0026 has(self.inline) \u0026\u0026 !has(self.valueRef)) || (self.type == 'ValueRef' \u0026\u0026 !has(self.inline) \u0026\u0026 has(self.valueRef))",
+                                  "message": "Exactly one of inline or valueRef must be set with correct type."
+                                }
+                              ]
                             },
                             "name": {
                               "description": "Name defines a unique name for the JWT provider. A name can have a variety of forms,\nincluding RFC1123 subdomains, RFC 1123 labels, or RFC 1035 labels.",
@@ -2437,6 +2623,20 @@
                                           "format": "int64",
                                           "maximum": 4294967295,
                                           "minimum": 0
+                                        },
+                                        "perEndpoint": {
+                                          "description": "PerEndpoint defines Circuit Breakers that will apply per-endpoint for an upstream cluster",
+                                          "type": "object",
+                                          "properties": {
+                                            "maxConnections": {
+                                              "description": "MaxConnections configures the maximum number of connections that Envoy will establish per-endpoint to the referenced backend defined within a xRoute rule.",
+                                              "type": "integer",
+                                              "format": "int64",
+                                              "default": 1024,
+                                              "maximum": 4294967295,
+                                              "minimum": 0
+                                            }
+                                          }
                                         }
                                       }
                                     },
@@ -2493,6 +2693,17 @@
                                         "dnsRefreshRate": {
                                           "description": "DNSRefreshRate specifies the rate at which DNS records should be refreshed.\nDefaults to 30 seconds.",
                                           "type": "string"
+                                        },
+                                        "lookupFamily": {
+                                          "description": "LookupFamily determines how Envoy would resolve DNS for Routes where the backend is specified as a fully qualified domain name (FQDN).\nIf set, this configuration overrides other defaults.",
+                                          "type": "string",
+                                          "enum": [
+                                            "IPv4",
+                                            "IPv6",
+                                            "IPv4Preferred",
+                                            "IPv6Preferred",
+                                            "IPv4AndIPv6"
+                                          ]
                                         },
                                         "respectDnsTtl": {
                                           "description": "RespectDNSTTL indicates whether the DNS Time-To-Live (TTL) should be respected.\nIf the value is set to true, the DNS refresh rate will be set to the resource record’s TTL.\nDefaults to true.",
@@ -2756,6 +2967,13 @@
                                               "message": "The grpc field can only be set if the Health Checker type is GRPC."
                                             }
                                           ]
+                                        },
+                                        "panicThreshold": {
+                                          "description": "When number of unhealthy endpoints for a backend reaches this threshold\nEnvoy will disregard health status and balance across all endpoints.\nIt's designed to prevent a situation in which host failures cascade throughout the cluster\nas load increases. If not set, the default value is 50%. To disable panic mode, set value to `0`.",
+                                          "type": "integer",
+                                          "format": "int32",
+                                          "maximum": 100,
+                                          "minimum": 0
                                         },
                                         "passive": {
                                           "description": "Passive passive check configuration",
@@ -3161,7 +3379,15 @@
                           "x-kubernetes-validations": [
                             {
                               "rule": "(has(self.recomputeRoute) \u0026\u0026 self.recomputeRoute) ? size(self.claimToHeaders) \u003e 0 : true",
-                              "message": "claimToHeaders must be specified if recomputeRoute is enabled"
+                              "message": "claimToHeaders must be specified if recomputeRoute is enabled."
+                            },
+                            {
+                              "rule": "has(self.remoteJWKS) || has(self.localJWKS)",
+                              "message": "either remoteJWKS or localJWKS must be specified."
+                            },
+                            {
+                              "rule": "!(has(self.remoteJWKS) \u0026\u0026 has(self.localJWKS))",
+                              "message": "remoteJWKS and localJWKS cannot both be specified."
                             }
                           ]
                         }
@@ -3420,6 +3646,20 @@
                                     "format": "int64",
                                     "maximum": 4294967295,
                                     "minimum": 0
+                                  },
+                                  "perEndpoint": {
+                                    "description": "PerEndpoint defines Circuit Breakers that will apply per-endpoint for an upstream cluster",
+                                    "type": "object",
+                                    "properties": {
+                                      "maxConnections": {
+                                        "description": "MaxConnections configures the maximum number of connections that Envoy will establish per-endpoint to the referenced backend defined within a xRoute rule.",
+                                        "type": "integer",
+                                        "format": "int64",
+                                        "default": 1024,
+                                        "maximum": 4294967295,
+                                        "minimum": 0
+                                      }
+                                    }
                                   }
                                 }
                               },
@@ -3476,6 +3716,17 @@
                                   "dnsRefreshRate": {
                                     "description": "DNSRefreshRate specifies the rate at which DNS records should be refreshed.\nDefaults to 30 seconds.",
                                     "type": "string"
+                                  },
+                                  "lookupFamily": {
+                                    "description": "LookupFamily determines how Envoy would resolve DNS for Routes where the backend is specified as a fully qualified domain name (FQDN).\nIf set, this configuration overrides other defaults.",
+                                    "type": "string",
+                                    "enum": [
+                                      "IPv4",
+                                      "IPv6",
+                                      "IPv4Preferred",
+                                      "IPv6Preferred",
+                                      "IPv4AndIPv6"
+                                    ]
                                   },
                                   "respectDnsTtl": {
                                     "description": "RespectDNSTTL indicates whether the DNS Time-To-Live (TTL) should be respected.\nIf the value is set to true, the DNS refresh rate will be set to the resource record’s TTL.\nDefaults to true.",
@@ -3739,6 +3990,13 @@
                                         "message": "The grpc field can only be set if the Health Checker type is GRPC."
                                       }
                                     ]
+                                  },
+                                  "panicThreshold": {
+                                    "description": "When number of unhealthy endpoints for a backend reaches this threshold\nEnvoy will disregard health status and balance across all endpoints.\nIt's designed to prevent a situation in which host failures cascade throughout the cluster\nas load increases. If not set, the default value is 50%. To disable panic mode, set value to `0`.",
+                                    "type": "integer",
+                                    "format": "int32",
+                                    "maximum": 100,
+                                    "minimum": 0
                                   },
                                   "passive": {
                                     "description": "Passive passive check configuration",
@@ -4251,8 +4509,7 @@
                     "items": {
                       "type": "object",
                       "required": [
-                        "kind",
-                        "matchLabels"
+                        "kind"
                       ],
                       "properties": {
                         "group": {
@@ -4268,6 +4525,37 @@
                           "maxLength": 63,
                           "minLength": 1,
                           "pattern": "^[a-zA-Z]([-a-zA-Z0-9]*[a-zA-Z0-9])?$"
+                        },
+                        "matchExpressions": {
+                          "description": "MatchExpressions is a list of label selector requirements. The requirements are ANDed.",
+                          "type": "array",
+                          "items": {
+                            "description": "A label selector requirement is a selector that contains values, a key, and an operator that\nrelates the key and values.",
+                            "type": "object",
+                            "required": [
+                              "key",
+                              "operator"
+                            ],
+                            "properties": {
+                              "key": {
+                                "description": "key is the label key that the selector applies to.",
+                                "type": "string"
+                              },
+                              "operator": {
+                                "description": "operator represents a key's relationship to a set of values.\nValid operators are In, NotIn, Exists and DoesNotExist.",
+                                "type": "string"
+                              },
+                              "values": {
+                                "description": "values is an array of string values. If the operator is In or NotIn,\nthe values array must be non-empty. If the operator is Exists or DoesNotExist,\nthe values array must be empty. This array is replaced during a strategic\nmerge patch.",
+                                "type": "array",
+                                "items": {
+                                  "type": "string"
+                                },
+                                "x-kubernetes-list-type": "atomic"
+                              }
+                            }
+                          },
+                          "x-kubernetes-list-type": "atomic"
                         },
                         "matchLabels": {
                           "description": "MatchLabels are the set of label selectors for identifying the targeted resource",

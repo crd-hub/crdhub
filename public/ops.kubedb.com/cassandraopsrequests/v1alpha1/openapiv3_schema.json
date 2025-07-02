@@ -56,6 +56,30 @@
             "Always"
           ]
         },
+        "configuration": {
+          "type": "object",
+          "properties": {
+            "applyConfig": {
+              "type": "object",
+              "additionalProperties": {
+                "type": "string"
+              }
+            },
+            "configSecret": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string",
+                  "default": ""
+                }
+              },
+              "x-kubernetes-map-type": "atomic"
+            },
+            "removeCustomConfig": {
+              "type": "boolean"
+            }
+          }
+        },
         "databaseRef": {
           "type": "object",
           "properties": {
@@ -66,18 +90,215 @@
           },
           "x-kubernetes-map-type": "atomic"
         },
+        "horizontalScaling": {
+          "type": "object",
+          "properties": {
+            "node": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        },
+        "keystoreCredSecret": {
+          "type": "object",
+          "properties": {
+            "activeFrom": {
+              "type": "string",
+              "format": "date-time"
+            },
+            "apiGroup": {
+              "type": "string"
+            },
+            "externallyManaged": {
+              "type": "boolean"
+            },
+            "name": {
+              "type": "string",
+              "default": ""
+            },
+            "rotateAfter": {
+              "type": "string"
+            },
+            "secretStoreName": {
+              "type": "string"
+            }
+          },
+          "x-kubernetes-map-type": "atomic"
+        },
         "restart": {
           "type": "object"
         },
         "timeout": {
           "type": "string"
         },
+        "tls": {
+          "type": "object",
+          "properties": {
+            "certificates": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "required": [
+                  "alias"
+                ],
+                "properties": {
+                  "alias": {
+                    "type": "string"
+                  },
+                  "dnsNames": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  },
+                  "duration": {
+                    "type": "string"
+                  },
+                  "emailAddresses": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  },
+                  "ipAddresses": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  },
+                  "issuerRef": {
+                    "type": "object",
+                    "required": [
+                      "kind",
+                      "name"
+                    ],
+                    "properties": {
+                      "apiGroup": {
+                        "type": "string"
+                      },
+                      "kind": {
+                        "type": "string"
+                      },
+                      "name": {
+                        "type": "string"
+                      }
+                    },
+                    "x-kubernetes-map-type": "atomic"
+                  },
+                  "privateKey": {
+                    "type": "object",
+                    "properties": {
+                      "encoding": {
+                        "type": "string",
+                        "enum": [
+                          "PKCS1",
+                          "PKCS8"
+                        ]
+                      }
+                    }
+                  },
+                  "renewBefore": {
+                    "type": "string"
+                  },
+                  "secretName": {
+                    "type": "string"
+                  },
+                  "subject": {
+                    "type": "object",
+                    "properties": {
+                      "countries": {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        }
+                      },
+                      "localities": {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        }
+                      },
+                      "organizationalUnits": {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        }
+                      },
+                      "organizations": {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        }
+                      },
+                      "postalCodes": {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        }
+                      },
+                      "provinces": {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        }
+                      },
+                      "serialNumber": {
+                        "type": "string"
+                      },
+                      "streetAddresses": {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  },
+                  "uris": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            },
+            "issuerRef": {
+              "type": "object",
+              "required": [
+                "kind",
+                "name"
+              ],
+              "properties": {
+                "apiGroup": {
+                  "type": "string"
+                },
+                "kind": {
+                  "type": "string"
+                },
+                "name": {
+                  "type": "string"
+                }
+              },
+              "x-kubernetes-map-type": "atomic"
+            },
+            "remove": {
+              "type": "boolean"
+            },
+            "rotateCertificates": {
+              "type": "boolean"
+            }
+          }
+        },
         "type": {
           "type": "string",
           "enum": [
             "UpdateVersion",
             "VerticalScaling",
-            "Restart"
+            "Restart",
+            "VolumeExpansion",
+            "HorizontalScaling",
+            "Reconfigure",
+            "ReconfigureTLS"
           ]
         },
         "updateVersion": {
@@ -169,6 +390,33 @@
                   }
                 }
               }
+            }
+          }
+        },
+        "volumeExpansion": {
+          "type": "object",
+          "required": [
+            "mode"
+          ],
+          "properties": {
+            "mode": {
+              "type": "string",
+              "enum": [
+                "Offline",
+                "Online"
+              ]
+            },
+            "node": {
+              "pattern": "^(\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))(([KMGTPE]i)|[numkMGTPE]|([eE](\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))))?$",
+              "anyOf": [
+                {
+                  "type": "integer"
+                },
+                {
+                  "type": "string"
+                }
+              ],
+              "x-kubernetes-int-or-string": true
             }
           }
         }

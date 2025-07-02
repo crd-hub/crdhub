@@ -22,7 +22,7 @@
     "ui": {
       "options": {
         "name": "kubedbcom-mongodb-editor-options",
-        "version": "v0.18.0",
+        "version": "v0.19.0",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",
@@ -31,7 +31,7 @@
       },
       "editor": {
         "name": "kubedbcom-mongodb-editor",
-        "version": "v0.18.0",
+        "version": "v0.19.0",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",
@@ -55,7 +55,7 @@
               "flow": "standalone-edit",
               "editor": {
                 "name": "kubedbcom-mongodb-editor",
-                "version": "v0.18.0",
+                "version": "v0.19.0",
                 "sourceRef": {
                   "apiGroup": "source.toolkit.fluxcd.io",
                   "kind": "HelmRepository",
@@ -76,7 +76,7 @@
               "flow": "standalone-create",
               "editor": {
                 "name": "corekubestashcom-backupsession-editor",
-                "version": "v0.18.0",
+                "version": "v0.19.0",
                 "sourceRef": {
                   "apiGroup": "source.toolkit.fluxcd.io",
                   "kind": "HelmRepository",
@@ -97,7 +97,7 @@
               "flow": "standalone-create",
               "editor": {
                 "name": "corekubestashcom-restoresession-editor-options",
-                "version": "v0.18.0",
+                "version": "v0.19.0",
                 "sourceRef": {
                   "apiGroup": "source.toolkit.fluxcd.io",
                   "kind": "HelmRepository",
@@ -123,7 +123,7 @@
               "flow": "standalone-create",
               "editor": {
                 "name": "opskubedbcom-mongodbopsrequest-editor",
-                "version": "v0.18.0",
+                "version": "v0.19.0",
                 "sourceRef": {
                   "apiGroup": "source.toolkit.fluxcd.io",
                   "kind": "HelmRepository",
@@ -144,7 +144,7 @@
               "flow": "standalone-create",
               "editor": {
                 "name": "opskubedbcom-mongodbopsrequest-editor",
-                "version": "v0.18.0",
+                "version": "v0.19.0",
                 "sourceRef": {
                   "apiGroup": "source.toolkit.fluxcd.io",
                   "kind": "HelmRepository",
@@ -165,7 +165,7 @@
               "flow": "standalone-create",
               "editor": {
                 "name": "opskubedbcom-mongodbopsrequest-editor",
-                "version": "v0.18.0",
+                "version": "v0.19.0",
                 "sourceRef": {
                   "apiGroup": "source.toolkit.fluxcd.io",
                   "kind": "HelmRepository",
@@ -192,7 +192,7 @@
               "disabledTemplate": "{{ not (or (hasKey .spec \"shardTopology\") ( hasKey .spec \"replicaSet\"))}}\n",
               "editor": {
                 "name": "opskubedbcom-mongodbopsrequest-editor",
-                "version": "v0.18.0",
+                "version": "v0.19.0",
                 "sourceRef": {
                   "apiGroup": "source.toolkit.fluxcd.io",
                   "kind": "HelmRepository",
@@ -213,7 +213,7 @@
               "flow": "standalone-create",
               "editor": {
                 "name": "opskubedbcom-mongodbopsrequest-editor",
-                "version": "v0.18.0",
+                "version": "v0.19.0",
                 "sourceRef": {
                   "apiGroup": "source.toolkit.fluxcd.io",
                   "kind": "HelmRepository",
@@ -234,7 +234,7 @@
               "flow": "standalone-create",
               "editor": {
                 "name": "opskubedbcom-mongodbopsrequest-editor",
-                "version": "v0.18.0",
+                "version": "v0.19.0",
                 "sourceRef": {
                   "apiGroup": "source.toolkit.fluxcd.io",
                   "kind": "HelmRepository",
@@ -260,7 +260,7 @@
               "flow": "standalone-edit",
               "editor": {
                 "name": "kubedbcom-mongodb-editor",
-                "version": "v0.18.0",
+                "version": "v0.19.0",
                 "sourceRef": {
                   "apiGroup": "source.toolkit.fluxcd.io",
                   "kind": "HelmRepository",
@@ -281,7 +281,7 @@
               "flow": "standalone-edit",
               "editor": {
                 "name": "kubedbcom-mongodb-editor",
-                "version": "v0.18.0",
+                "version": "v0.19.0",
                 "sourceRef": {
                   "apiGroup": "source.toolkit.fluxcd.io",
                   "kind": "HelmRepository",
@@ -307,7 +307,7 @@
               "flow": "standalone-create",
               "editor": {
                 "name": "opskubedbcom-mongodbopsrequest-editor",
-                "version": "v0.18.0",
+                "version": "v0.19.0",
                 "sourceRef": {
                   "apiGroup": "source.toolkit.fluxcd.io",
                   "kind": "HelmRepository",
@@ -328,7 +328,7 @@
               "flow": "standalone-edit",
               "editor": {
                 "name": "kubedbcom-mongodb-editor",
-                "version": "v0.18.0",
+                "version": "v0.19.0",
                 "sourceRef": {
                   "apiGroup": "source.toolkit.fluxcd.io",
                   "kind": "HelmRepository",
@@ -354,7 +354,7 @@
               "flow": "standalone-edit",
               "editor": {
                 "name": "kubedbcom-mongodb-editor",
-                "version": "v0.18.0",
+                "version": "v0.19.0",
                 "sourceRef": {
                   "apiGroup": "source.toolkit.fluxcd.io",
                   "kind": "HelmRepository",

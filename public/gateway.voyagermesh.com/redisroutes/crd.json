@@ -51,10 +51,80 @@
               "spec": {
                 "description": "Spec defines the desired state of RedisRoute.",
                 "type": "object",
-                "required": [
-                  "rules"
-                ],
                 "properties": {
+                  "announce": {
+                    "description": "Announce specifies the information about redis cluster backend reference.\nThis field will create tcproute for all redis cluster replicas for\ncreating a redis cluster using `cluster-announce-ip/hostname/port/tls-port/bus-port`",
+                    "type": "object",
+                    "required": [
+                      "backendRef",
+                      "shardReplicas"
+                    ],
+                    "properties": {
+                      "backendRef": {
+                        "description": "BackendRef is the reference to the redis cluster governing service.",
+                        "type": "object",
+                        "required": [
+                          "name"
+                        ],
+                        "properties": {
+                          "group": {
+                            "description": "Group is the group of the referent. For example, \"gateway.networking.k8s.io\".\nWhen unspecified or empty string, core API group is inferred.",
+                            "type": "string",
+                            "default": "",
+                            "maxLength": 253,
+                            "pattern": "^$|^[a-z0-9]([-a-z0-9]*[a-z0-9])?(\\.[a-z0-9]([-a-z0-9]*[a-z0-9])?)*$"
+                          },
+                          "kind": {
+                            "description": "Kind is the Kubernetes resource kind of the referent. For example\n\"Service\".\n\nDefaults to \"Service\" when not specified.\n\nExternalName services can refer to CNAME DNS records that may live\noutside of the cluster and as such are difficult to reason about in\nterms of conformance. They also may not be safe to forward to (see\nCVE-2021-25740 for more information). Implementations SHOULD NOT\nsupport ExternalName Services.\n\nSupport: Core (Services with a type other than ExternalName)\n\nSupport: Implementation-specific (Services with type ExternalName)",
+                            "type": "string",
+                            "default": "Service",
+                            "maxLength": 63,
+                            "minLength": 1,
+                            "pattern": "^[a-zA-Z]([-a-zA-Z0-9]*[a-zA-Z0-9])?$"
+                          },
+                          "name": {
+                            "description": "Name is the name of the referent.",
+                            "type": "string",
+                            "maxLength": 253,
+                            "minLength": 1
+                          },
+                          "namespace": {
+                            "description": "Namespace is the namespace of the backend. When unspecified, the local\nnamespace is inferred.\n\nNote that when a namespace different than the local namespace is specified,\na ReferenceGrant object is required in the referent namespace to allow that\nnamespace's owner to accept the reference. See the ReferenceGrant\ndocumentation for details.\n\nSupport: Core",
+                            "type": "string",
+                            "maxLength": 63,
+                            "minLength": 1,
+                            "pattern": "^[a-z0-9]([-a-z0-9]*[a-z0-9])?$"
+                          },
+                          "port": {
+                            "description": "Port specifies the destination port number to use for this resource.\nPort is required when the referent is a Kubernetes Service. In this\ncase, the port number is the service port number, not the target port.\nFor other resources, destination port might be derived from the referent\nresource or this field.",
+                            "type": "integer",
+                            "format": "int32",
+                            "maximum": 65535,
+                            "minimum": 1
+                          },
+                          "weight": {
+                            "description": "Weight specifies the proportion of requests forwarded to the referenced\nbackend. This is computed as weight/(sum of all weights in this\nBackendRefs list). For non-zero values, there may be some epsilon from\nthe exact proportion defined here depending on the precision an\nimplementation supports. Weight is not a percentage and the sum of\nweights does not need to equal 100.\n\nIf only one backend is specified and it has a weight greater than 0, 100%\nof the traffic is forwarded to that backend. If weight is set to 0, no\ntraffic should be forwarded for this entry. If unspecified, weight\ndefaults to 1.\n\nSupport for this field varies based on the context where used.",
+                            "type": "integer",
+                            "format": "int32",
+                            "default": 1,
+                            "maximum": 1000000,
+                            "minimum": 0
+                          }
+                        },
+                        "x-kubernetes-validations": [
+                          {
+                            "rule": "(size(self.group) == 0 \u0026\u0026 self.kind == 'Service') ? has(self.port) : true",
+                            "message": "Must have port for Service reference"
+                          }
+                        ]
+                      },
+                      "shardReplicas": {
+                        "description": "ShardReplicas is the number of replicas per shard.\nThis field helps to bind gateway listeners with redis replicas.\nExample: (\u003cname\u003e\u003cshard-number\u003e-\u003creplica-number\u003e)\nFind the listener using (shard-number*shardReplicas + replica-number)",
+                        "type": "integer",
+                        "format": "int32"
+                      }
+                    }
+                  },
                   "authSecret": {
                     "description": "AuthSecret is used for downstream and upstream authentication",
                     "type": "object",

@@ -5,7 +5,7 @@
     "name": "clienttrafficpolicies.gateway.envoyproxy.io",
     "creationTimestamp": null,
     "annotations": {
-      "controller-gen.kubebuilder.io/version": "v0.16.1"
+      "controller-gen.kubebuilder.io/version": "v0.17.3"
     }
   },
   "spec": {
@@ -205,7 +205,7 @@
                               ],
                               "properties": {
                                 "name": {
-                                  "description": "Name is the name of the HTTP Header to be matched. Name matching MUST be\ncase insensitive. (See https://tools.ietf.org/html/rfc7230#section-3.2).\n\nIf multiple entries specify equivalent header names, the first entry with\nan equivalent name MUST be considered for a match. Subsequent entries\nwith an equivalent header name MUST be ignored. Due to the\ncase-insensitivity of header names, \"foo\" and \"Foo\" are considered\nequivalent.",
+                                  "description": "Name is the name of the HTTP Header to be matched. Name matching MUST be\ncase-insensitive. (See https://tools.ietf.org/html/rfc7230#section-3.2).\n\nIf multiple entries specify equivalent header names, the first entry with\nan equivalent name MUST be considered for a match. Subsequent entries\nwith an equivalent header name MUST be ignored. Due to the\ncase-insensitivity of header names, \"foo\" and \"Foo\" are considered\nequivalent.",
                                   "type": "string",
                                   "maxLength": 256,
                                   "minLength": 1,
@@ -246,7 +246,7 @@
                               ],
                               "properties": {
                                 "name": {
-                                  "description": "Name is the name of the HTTP Header to be matched. Name matching MUST be\ncase insensitive. (See https://tools.ietf.org/html/rfc7230#section-3.2).\n\nIf multiple entries specify equivalent header names, the first entry with\nan equivalent name MUST be considered for a match. Subsequent entries\nwith an equivalent header name MUST be ignored. Due to the\ncase-insensitivity of header names, \"foo\" and \"Foo\" are considered\nequivalent.",
+                                  "description": "Name is the name of the HTTP Header to be matched. Name matching MUST be\ncase-insensitive. (See https://tools.ietf.org/html/rfc7230#section-3.2).\n\nIf multiple entries specify equivalent header names, the first entry with\nan equivalent name MUST be considered for a match. Subsequent entries\nwith an equivalent header name MUST be ignored. Due to the\ncase-insensitivity of header names, \"foo\" and \"Foo\" are considered\nequivalent.",
                                   "type": "string",
                                   "maxLength": 256,
                                   "minLength": 1,
@@ -272,8 +272,18 @@
                         "type": "boolean"
                       },
                       "preserveXRequestID": {
-                        "description": "PreserveXRequestID configures Envoy to keep the X-Request-ID header if passed for a request that is edge\n(Edge request is the request from external clients to front Envoy) and not reset it, which is the current Envoy behaviour.\nIt defaults to false.",
+                        "description": "PreserveXRequestID configures Envoy to keep the X-Request-ID header if passed for a request that is edge\n(Edge request is the request from external clients to front Envoy) and not reset it, which is the current Envoy behaviour.\nDefaults to false and cannot be combined with RequestID.\nDeprecated: use RequestID=Preserve instead",
                         "type": "boolean"
+                      },
+                      "requestID": {
+                        "description": "RequestID configures Envoy's behavior for handling the `X-Request-ID` header.\nDefaults to `Generate` and builds the `X-Request-ID` for every request and ignores pre-existing values from the edge.\n(An \"edge request\" refers to a request from an external client to the Envoy entrypoint.)",
+                        "type": "string",
+                        "enum": [
+                          "PreserveOrGenerate",
+                          "Preserve",
+                          "Generate",
+                          "Disable"
+                        ]
                       },
                       "withUnderscoresAction": {
                         "description": "WithUnderscoresAction configures the action to take when an HTTP header with underscores\nis encountered. The default action is to reject the request.",
@@ -323,7 +333,13 @@
                           }
                         ]
                       }
-                    }
+                    },
+                    "x-kubernetes-validations": [
+                      {
+                        "rule": "!(has(self.preserveXRequestID) \u0026\u0026 has(self.requestID))",
+                        "message": "preserveXRequestID and requestID cannot both be set."
+                      }
+                    ]
                   },
                   "healthCheck": {
                     "description": "HealthCheck provides configuration for determining whether the HTTP/HTTPS listener is healthy.",
@@ -529,8 +545,7 @@
                     "items": {
                       "type": "object",
                       "required": [
-                        "kind",
-                        "matchLabels"
+                        "kind"
                       ],
                       "properties": {
                         "group": {
@@ -546,6 +561,37 @@
                           "maxLength": 63,
                           "minLength": 1,
                           "pattern": "^[a-zA-Z]([-a-zA-Z0-9]*[a-zA-Z0-9])?$"
+                        },
+                        "matchExpressions": {
+                          "description": "MatchExpressions is a list of label selector requirements. The requirements are ANDed.",
+                          "type": "array",
+                          "items": {
+                            "description": "A label selector requirement is a selector that contains values, a key, and an operator that\nrelates the key and values.",
+                            "type": "object",
+                            "required": [
+                              "key",
+                              "operator"
+                            ],
+                            "properties": {
+                              "key": {
+                                "description": "key is the label key that the selector applies to.",
+                                "type": "string"
+                              },
+                              "operator": {
+                                "description": "operator represents a key's relationship to a set of values.\nValid operators are In, NotIn, Exists and DoesNotExist.",
+                                "type": "string"
+                              },
+                              "values": {
+                                "description": "values is an array of string values. If the operator is In or NotIn,\nthe values array must be non-empty. If the operator is Exists or DoesNotExist,\nthe values array must be empty. This array is replaced during a strategic\nmerge patch.",
+                                "type": "array",
+                                "items": {
+                                  "type": "string"
+                                },
+                                "x-kubernetes-list-type": "atomic"
+                              }
+                            }
+                          },
+                          "x-kubernetes-list-type": "atomic"
                         },
                         "matchLabels": {
                           "description": "MatchLabels are the set of label selectors for identifying the targeted resource",

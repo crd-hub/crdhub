@@ -5,7 +5,7 @@
     "name": "backendtrafficpolicies.gateway.envoyproxy.io",
     "creationTimestamp": null,
     "annotations": {
-      "controller-gen.kubebuilder.io/version": "v0.16.1"
+      "controller-gen.kubebuilder.io/version": "v0.17.3"
     }
   },
   "spec": {
@@ -93,6 +93,20 @@
                         "format": "int64",
                         "maximum": 4294967295,
                         "minimum": 0
+                      },
+                      "perEndpoint": {
+                        "description": "PerEndpoint defines Circuit Breakers that will apply per-endpoint for an upstream cluster",
+                        "type": "object",
+                        "properties": {
+                          "maxConnections": {
+                            "description": "MaxConnections configures the maximum number of connections that Envoy will establish per-endpoint to the referenced backend defined within a xRoute rule.",
+                            "type": "integer",
+                            "format": "int64",
+                            "default": 1024,
+                            "maximum": 4294967295,
+                            "minimum": 0
+                          }
+                        }
                       }
                     }
                   },
@@ -178,6 +192,17 @@
                       "dnsRefreshRate": {
                         "description": "DNSRefreshRate specifies the rate at which DNS records should be refreshed.\nDefaults to 30 seconds.",
                         "type": "string"
+                      },
+                      "lookupFamily": {
+                        "description": "LookupFamily determines how Envoy would resolve DNS for Routes where the backend is specified as a fully qualified domain name (FQDN).\nIf set, this configuration overrides other defaults.",
+                        "type": "string",
+                        "enum": [
+                          "IPv4",
+                          "IPv6",
+                          "IPv4Preferred",
+                          "IPv6Preferred",
+                          "IPv4AndIPv6"
+                        ]
                       },
                       "respectDnsTtl": {
                         "description": "RespectDNSTTL indicates whether the DNS Time-To-Live (TTL) should be respected.\nIf the value is set to true, the DNS refresh rate will be set to the resource record’s TTL.\nDefaults to true.",
@@ -505,6 +530,13 @@
                           }
                         ]
                       },
+                      "panicThreshold": {
+                        "description": "When number of unhealthy endpoints for a backend reaches this threshold\nEnvoy will disregard health status and balance across all endpoints.\nIt's designed to prevent a situation in which host failures cascade throughout the cluster\nas load increases. If not set, the default value is 50%. To disable panic mode, set value to `0`.",
+                        "type": "integer",
+                        "format": "int32",
+                        "maximum": 100,
+                        "minimum": 0
+                      },
                       "passive": {
                         "description": "Passive passive check configuration",
                         "type": "object",
@@ -608,6 +640,22 @@
                       "onInvalidMessage": {
                         "description": "OnInvalidMessage determines if Envoy will terminate the connection or just the offending stream in the event of HTTP messaging error\nIt's recommended for L2 Envoy deployments to set this value to TerminateStream.\nhttps://www.envoyproxy.io/docs/envoy/latest/configuration/best_practices/level_two\nDefault: TerminateConnection",
                         "type": "string"
+                      }
+                    }
+                  },
+                  "httpUpgrade": {
+                    "description": "HTTPUpgrade defines the configuration for HTTP protocol upgrades.\nIf not specified, the default upgrade configuration(websocket) will be used.",
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "required": [
+                        "type"
+                      ],
+                      "properties": {
+                        "type": {
+                          "description": "Type is the case-insensitive type of protocol upgrade.\ne.g. `websocket`, `CONNECT`, `spdy/3.1` etc.",
+                          "type": "string"
+                        }
                       }
                     }
                   },
@@ -726,6 +774,10 @@
                       }
                     ]
                   },
+                  "mergeType": {
+                    "description": "MergeType determines how this configuration is merged with existing BackendTrafficPolicy\nconfigurations targeting a parent resource. When set, this configuration will be merged\ninto a parent BackendTrafficPolicy (i.e. the one targeting a Gateway or Listener).\nThis field cannot be set when targeting a parent resource (Gateway).\nIf unset, no merging occurs, and only the most specific configuration takes effect.",
+                    "type": "string"
+                  },
                   "proxyProtocol": {
                     "description": "ProxyProtocol enables the Proxy Protocol when communicating with the backend.",
                     "type": "object",
@@ -793,7 +845,7 @@
                                               "default": false
                                             },
                                             "name": {
-                                              "description": "Name of the HTTP header.",
+                                              "description": "Name of the HTTP header.\nThe header name is case-insensitive unless PreserveHeaderCase is set to true.\nFor example, \"Foo\" and \"foo\" are considered the same header.",
                                               "type": "string",
                                               "maxLength": 256,
                                               "minLength": 1
@@ -809,7 +861,7 @@
                                               ]
                                             },
                                             "value": {
-                                              "description": "Value within the HTTP header. Due to the\ncase-insensitivity of header names, \"foo\" and \"Foo\" are considered equivalent.\nDo not set this field when Type=\"Distinct\", implying matching on any/all unique\nvalues within the header.",
+                                              "description": "Value within the HTTP header.\nDo not set this field when Type=\"Distinct\", implying matching on any/all unique\nvalues within the header.",
                                               "type": "string",
                                               "maxLength": 1024
                                             }
@@ -962,6 +1014,10 @@
                                       ]
                                     }
                                   }
+                                },
+                                "shared": {
+                                  "description": "Shared determines whether this rate limit rule applies across all the policy targets.\nIf set to true, the rule is treated as a common bucket and is shared across all policy targets (xRoutes).\nDefault: false.",
+                                  "type": "boolean"
                                 }
                               }
                             }
@@ -1008,7 +1064,7 @@
                                               "default": false
                                             },
                                             "name": {
-                                              "description": "Name of the HTTP header.",
+                                              "description": "Name of the HTTP header.\nThe header name is case-insensitive unless PreserveHeaderCase is set to true.\nFor example, \"Foo\" and \"foo\" are considered the same header.",
                                               "type": "string",
                                               "maxLength": 256,
                                               "minLength": 1
@@ -1024,7 +1080,7 @@
                                               ]
                                             },
                                             "value": {
-                                              "description": "Value within the HTTP header. Due to the\ncase-insensitivity of header names, \"foo\" and \"Foo\" are considered equivalent.\nDo not set this field when Type=\"Distinct\", implying matching on any/all unique\nvalues within the header.",
+                                              "description": "Value within the HTTP header.\nDo not set this field when Type=\"Distinct\", implying matching on any/all unique\nvalues within the header.",
                                               "type": "string",
                                               "maxLength": 1024
                                             }
@@ -1177,6 +1233,10 @@
                                       ]
                                     }
                                   }
+                                },
+                                "shared": {
+                                  "description": "Shared determines whether this rate limit rule applies across all the policy targets.\nIf set to true, the rule is treated as a common bucket and is shared across all policy targets (xRoutes).\nDefault: false.",
+                                  "type": "boolean"
                                 }
                               }
                             },
@@ -1196,6 +1256,32 @@
                           "Global",
                           "Local"
                         ]
+                      }
+                    }
+                  },
+                  "requestBuffer": {
+                    "description": "RequestBuffer allows the gateway to buffer and fully receive each request from a client before continuing to send the request\nupstream to the backends. This can be helpful to shield your backend servers from slow clients, and also to enforce a maximum size per request\nas any requests larger than the buffer size will be rejected.\n\nThis can have a negative performance impact so should only be enabled when necessary.\n\nWhen enabling this option, you should also configure your connection buffer size to account for these request buffers. There will also be an\nincrease in memory usage for Envoy that should be accounted for in your deployment settings.",
+                    "type": "object",
+                    "properties": {
+                      "limit": {
+                        "description": "Limit specifies the maximum allowed size in bytes for each incoming request buffer.\nIf exceeded, the request will be rejected with HTTP 413 Content Too Large.\n\nAccepts values in resource.Quantity format (e.g., \"10Mi\", \"500Ki\").",
+                        "allOf": [
+                          {
+                            "pattern": "^(\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))(([KMGTPE]i)|[numkMGTPE]|([eE](\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))))?$"
+                          },
+                          {
+                            "pattern": "^[1-9]+[0-9]*([EPTGMK]i|[EPTGMk])?$"
+                          }
+                        ],
+                        "anyOf": [
+                          {
+                            "type": "integer"
+                          },
+                          {
+                            "type": "string"
+                          }
+                        ],
+                        "x-kubernetes-int-or-string": true
                       }
                     }
                   },
@@ -1547,8 +1633,7 @@
                     "items": {
                       "type": "object",
                       "required": [
-                        "kind",
-                        "matchLabels"
+                        "kind"
                       ],
                       "properties": {
                         "group": {
@@ -1564,6 +1649,37 @@
                           "maxLength": 63,
                           "minLength": 1,
                           "pattern": "^[a-zA-Z]([-a-zA-Z0-9]*[a-zA-Z0-9])?$"
+                        },
+                        "matchExpressions": {
+                          "description": "MatchExpressions is a list of label selector requirements. The requirements are ANDed.",
+                          "type": "array",
+                          "items": {
+                            "description": "A label selector requirement is a selector that contains values, a key, and an operator that\nrelates the key and values.",
+                            "type": "object",
+                            "required": [
+                              "key",
+                              "operator"
+                            ],
+                            "properties": {
+                              "key": {
+                                "description": "key is the label key that the selector applies to.",
+                                "type": "string"
+                              },
+                              "operator": {
+                                "description": "operator represents a key's relationship to a set of values.\nValid operators are In, NotIn, Exists and DoesNotExist.",
+                                "type": "string"
+                              },
+                              "values": {
+                                "description": "values is an array of string values. If the operator is In or NotIn,\nthe values array must be non-empty. If the operator is Exists or DoesNotExist,\nthe values array must be empty. This array is replaced during a strategic\nmerge patch.",
+                                "type": "array",
+                                "items": {
+                                  "type": "string"
+                                },
+                                "x-kubernetes-list-type": "atomic"
+                              }
+                            }
+                          },
+                          "x-kubernetes-list-type": "atomic"
                         },
                         "matchLabels": {
                           "description": "MatchLabels are the set of label selectors for identifying the targeted resource",
@@ -1599,6 +1715,113 @@
                         "description": "The total number of unacknowledged probes to send before deciding\nthe connection is dead.\nDefaults to 9.",
                         "type": "integer",
                         "format": "int32"
+                      }
+                    }
+                  },
+                  "telemetry": {
+                    "description": "Telemetry configures the telemetry settings for the policy target (Gateway or xRoute).\nThis will override the telemetry settings in the EnvoyProxy resource.",
+                    "type": "object",
+                    "properties": {
+                      "tracing": {
+                        "description": "Tracing configures the tracing settings for the backend or HTTPRoute.",
+                        "type": "object",
+                        "properties": {
+                          "customTags": {
+                            "description": "CustomTags defines the custom tags to add to each span.\nIf provider is kubernetes, pod name and namespace are added by default.",
+                            "type": "object",
+                            "additionalProperties": {
+                              "type": "object",
+                              "required": [
+                                "type"
+                              ],
+                              "properties": {
+                                "environment": {
+                                  "description": "Environment adds value from environment variable to each span.\nIt's required when the type is \"Environment\".",
+                                  "type": "object",
+                                  "required": [
+                                    "name"
+                                  ],
+                                  "properties": {
+                                    "defaultValue": {
+                                      "description": "DefaultValue defines the default value to use if the environment variable is not set.",
+                                      "type": "string"
+                                    },
+                                    "name": {
+                                      "description": "Name defines the name of the environment variable which to extract the value from.",
+                                      "type": "string"
+                                    }
+                                  }
+                                },
+                                "literal": {
+                                  "description": "Literal adds hard-coded value to each span.\nIt's required when the type is \"Literal\".",
+                                  "type": "object",
+                                  "required": [
+                                    "value"
+                                  ],
+                                  "properties": {
+                                    "value": {
+                                      "description": "Value defines the hard-coded value to add to each span.",
+                                      "type": "string"
+                                    }
+                                  }
+                                },
+                                "requestHeader": {
+                                  "description": "RequestHeader adds value from request header to each span.\nIt's required when the type is \"RequestHeader\".",
+                                  "type": "object",
+                                  "required": [
+                                    "name"
+                                  ],
+                                  "properties": {
+                                    "defaultValue": {
+                                      "description": "DefaultValue defines the default value to use if the request header is not set.",
+                                      "type": "string"
+                                    },
+                                    "name": {
+                                      "description": "Name defines the name of the request header which to extract the value from.",
+                                      "type": "string"
+                                    }
+                                  }
+                                },
+                                "type": {
+                                  "description": "Type defines the type of custom tag.",
+                                  "type": "string",
+                                  "default": "Literal",
+                                  "enum": [
+                                    "Literal",
+                                    "Environment",
+                                    "RequestHeader"
+                                  ]
+                                }
+                              }
+                            }
+                          },
+                          "samplingFraction": {
+                            "description": "SamplingFraction represents the fraction of requests that should be\nselected for tracing if no prior sampling decision has been made.\n\nThis will take precedence over sampling fraction on EnvoyProxy if set.",
+                            "type": "object",
+                            "required": [
+                              "numerator"
+                            ],
+                            "properties": {
+                              "denominator": {
+                                "type": "integer",
+                                "format": "int32",
+                                "default": 100,
+                                "minimum": 1
+                              },
+                              "numerator": {
+                                "type": "integer",
+                                "format": "int32",
+                                "minimum": 0
+                              }
+                            },
+                            "x-kubernetes-validations": [
+                              {
+                                "rule": "self.numerator \u003c= self.denominator",
+                                "message": "numerator must be less than or equal to denominator"
+                              }
+                            ]
+                          }
+                        }
                       }
                     }
                   },

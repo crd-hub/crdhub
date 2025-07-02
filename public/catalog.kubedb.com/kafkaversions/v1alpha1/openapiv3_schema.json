@@ -82,6 +82,17 @@
         "deprecated": {
           "type": "boolean"
         },
+        "initContainer": {
+          "type": "object",
+          "required": [
+            "image"
+          ],
+          "properties": {
+            "image": {
+              "type": "string"
+            }
+          }
+        },
         "podSecurityPolicies": {
           "type": "object",
           "required": [

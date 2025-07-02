@@ -5,7 +5,7 @@
     "name": "httproutefilters.gateway.envoyproxy.io",
     "creationTimestamp": null,
     "annotations": {
-      "controller-gen.kubebuilder.io/version": "v0.16.1"
+      "controller-gen.kubebuilder.io/version": "v0.17.3"
     }
   },
   "spec": {
@@ -51,6 +51,69 @@
                 "description": "Spec defines the desired state of HTTPRouteFilter.",
                 "type": "object",
                 "properties": {
+                  "credentialInjection": {
+                    "description": "HTTPCredentialInjectionFilter defines the configuration to inject credentials into the request.\nThis is useful when the backend service requires credentials in the request, and the original\nrequest does not contain them. The filter can inject credentials into the request before forwarding\nit to the backend service.",
+                    "type": "object",
+                    "required": [
+                      "credential"
+                    ],
+                    "properties": {
+                      "credential": {
+                        "description": "Credential is the credential to be injected.",
+                        "type": "object",
+                        "required": [
+                          "valueRef"
+                        ],
+                        "properties": {
+                          "valueRef": {
+                            "description": "ValueRef is a reference to the secret containing the credentials to be injected.\nThis is an Opaque secret. The credential should be stored in the key\n\"credential\", and the value should be the credential to be injected.\nFor example, for basic authentication, the value should be \"Basic \u003cbase64 encoded username:password\u003e\".\nfor bearer token, the value should be \"Bearer \u003ctoken\u003e\".\nNote: The secret must be in the same namespace as the HTTPRouteFilter.",
+                            "type": "object",
+                            "required": [
+                              "name"
+                            ],
+                            "properties": {
+                              "group": {
+                                "description": "Group is the group of the referent. For example, \"gateway.networking.k8s.io\".\nWhen unspecified or empty string, core API group is inferred.",
+                                "type": "string",
+                                "default": "",
+                                "maxLength": 253,
+                                "pattern": "^$|^[a-z0-9]([-a-z0-9]*[a-z0-9])?(\\.[a-z0-9]([-a-z0-9]*[a-z0-9])?)*$"
+                              },
+                              "kind": {
+                                "description": "Kind is kind of the referent. For example \"Secret\".",
+                                "type": "string",
+                                "default": "Secret",
+                                "maxLength": 63,
+                                "minLength": 1,
+                                "pattern": "^[a-zA-Z]([-a-zA-Z0-9]*[a-zA-Z0-9])?$"
+                              },
+                              "name": {
+                                "description": "Name is the name of the referent.",
+                                "type": "string",
+                                "maxLength": 253,
+                                "minLength": 1
+                              },
+                              "namespace": {
+                                "description": "Namespace is the namespace of the referenced object. When unspecified, the local\nnamespace is inferred.\n\nNote that when a namespace different than the local namespace is specified,\na ReferenceGrant object is required in the referent namespace to allow that\nnamespace's owner to accept the reference. See the ReferenceGrant\ndocumentation for details.\n\nSupport: Core",
+                                "type": "string",
+                                "maxLength": 63,
+                                "minLength": 1,
+                                "pattern": "^[a-z0-9]([-a-z0-9]*[a-z0-9])?$"
+                              }
+                            }
+                          }
+                        }
+                      },
+                      "header": {
+                        "description": "Header is the name of the header where the credentials are injected.\nIf not specified, the credentials are injected into the Authorization header.",
+                        "type": "string"
+                      },
+                      "overwrite": {
+                        "description": "Whether to overwrite the value or not if the injected headers already exist.\nIf not specified, the default value is false.",
+                        "type": "boolean"
+                      }
+                    }
+                  },
                   "directResponse": {
                     "description": "HTTPDirectResponseFilter defines the configuration to return a fixed response.",
                     "type": "object",

@@ -74,6 +74,14 @@
           },
           "x-kubernetes-map-type": "atomic"
         },
+        "autoOps": {
+          "type": "object",
+          "properties": {
+            "disabled": {
+              "type": "boolean"
+            }
+          }
+        },
         "configSecret": {
           "type": "object",
           "properties": {

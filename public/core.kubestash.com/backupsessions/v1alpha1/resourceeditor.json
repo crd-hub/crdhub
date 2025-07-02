@@ -22,7 +22,7 @@
     "ui": {
       "options": {
         "name": "corekubestashcom-backupsession-editor-options",
-        "version": "v0.18.0",
+        "version": "v0.19.0",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",
@@ -31,7 +31,7 @@
       },
       "editor": {
         "name": "corekubestashcom-backupsession-editor",
-        "version": "v0.18.0",
+        "version": "v0.19.0",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",

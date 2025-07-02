@@ -47,6 +47,14 @@
         "version"
       ],
       "properties": {
+        "autoOps": {
+          "type": "object",
+          "properties": {
+            "disabled": {
+              "type": "boolean"
+            }
+          }
+        },
         "configSecret": {
           "type": "object",
           "properties": {

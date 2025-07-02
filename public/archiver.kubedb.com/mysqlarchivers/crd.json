@@ -987,6 +987,7 @@
                         "enum": [
                           "Restic",
                           "WalG",
+                          "Medusa",
                           "VolumeSnapshotter"
                         ]
                       },

@@ -645,6 +645,7 @@ spec:
                   enum:
                   - Restic
                   - WalG
+                  - Medusa
                   - VolumeSnapshotter
                   type: string
                 jobTemplate:

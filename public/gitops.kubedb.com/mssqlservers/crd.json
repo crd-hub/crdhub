@@ -184,6 +184,14 @@
                     },
                     "x-kubernetes-map-type": "atomic"
                   },
+                  "autoOps": {
+                    "type": "object",
+                    "properties": {
+                      "disabled": {
+                        "type": "boolean"
+                      }
+                    }
+                  },
                   "configSecret": {
                     "type": "object",
                     "properties": {
@@ -7303,6 +7311,9 @@
                               "type": "string"
                             }
                           },
+                          "endpointCertSecretName": {
+                            "type": "string"
+                          },
                           "leaderElection": {
                             "type": "object",
                             "properties": {
@@ -7330,6 +7341,12 @@
                               }
                             }
                           },
+                          "loginSecretName": {
+                            "type": "string"
+                          },
+                          "masterKeySecretName": {
+                            "type": "string"
+                          },
                           "secondaryAccessMode": {
                             "type": "string",
                             "default": "Passive",
@@ -7341,11 +7358,54 @@
                           }
                         }
                       },
+                      "distributedAG": {
+                        "type": "object",
+                        "required": [
+                          "remote",
+                          "self"
+                        ],
+                        "properties": {
+                          "remote": {
+                            "type": "object",
+                            "required": [
+                              "name",
+                              "url"
+                            ],
+                            "properties": {
+                              "name": {
+                                "type": "string"
+                              },
+                              "url": {
+                                "type": "string"
+                              }
+                            }
+                          },
+                          "self": {
+                            "type": "object",
+                            "required": [
+                              "role",
+                              "url"
+                            ],
+                            "properties": {
+                              "role": {
+                                "type": "string",
+                                "enum": [
+                                  "Primary",
+                                  "Secondary"
+                                ]
+                              },
+                              "url": {
+                                "type": "string"
+                              }
+                            }
+                          }
+                        }
+                      },
                       "mode": {
                         "type": "string",
                         "enum": [
                           "AvailabilityGroup",
-                          "RemoteReplica"
+                          "DistributedAG"
                         ]
                       }
                     }

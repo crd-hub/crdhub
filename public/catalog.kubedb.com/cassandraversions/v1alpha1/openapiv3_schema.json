@@ -135,6 +135,23 @@
             }
           }
         },
+        "updateConstraints": {
+          "type": "object",
+          "properties": {
+            "allowlist": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "denylist": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          }
+        },
         "version": {
           "type": "string"
         }
