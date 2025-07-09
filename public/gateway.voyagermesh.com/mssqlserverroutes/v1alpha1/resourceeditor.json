@@ -22,7 +22,7 @@
     "ui": {
       "editor": {
         "name": "gatewayvoyagermeshcom-mssqlserverroute-editor",
-        "version": "v0.19.0",
+        "version": "sha256:b16dc25901b412b1aaac816fcd3bc77b0509816d0df9eb7fe609db4de57a5438",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",

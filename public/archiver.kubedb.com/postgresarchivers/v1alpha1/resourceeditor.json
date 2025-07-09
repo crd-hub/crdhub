@@ -22,7 +22,7 @@
     "ui": {
       "editor": {
         "name": "archiverkubedbcom-postgresarchiver-editor",
-        "version": "v0.19.0",
+        "version": "sha256:2b17963a6008e8544387f0a8df8f3f9ead38608b9527d3df52a416ab885d57ae",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",

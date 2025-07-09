@@ -22,7 +22,7 @@
     "ui": {
       "editor": {
         "name": "apiextensionscrossplaneio-compositeresourcedefinition-editor",
-        "version": "v0.19.0",
+        "version": "sha256:f92d77f371f305bdaa5f1d82d140b8e37f41577ddef57ebc8ef8f69878c9a4de",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",

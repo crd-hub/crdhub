@@ -22,7 +22,7 @@
     "ui": {
       "editor": {
         "name": "gitopskubedbcom-zookeeper-editor",
-        "version": "v0.19.0",
+        "version": "sha256:756744c650afb61036a4da02ba976061ca095286a33d0dd84e88ab81d009dfea",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",

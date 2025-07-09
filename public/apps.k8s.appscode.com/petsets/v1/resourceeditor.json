@@ -22,7 +22,7 @@
     "ui": {
       "editor": {
         "name": "appsk8sappscodecom-petset-editor",
-        "version": "v0.19.0",
+        "version": "sha256:203020bb23e19b59c4439835f2020abddb01d9e425413496c00634b28fc0c73a",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",

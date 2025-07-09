@@ -22,7 +22,7 @@
     "ui": {
       "editor": {
         "name": "networkingk8sio-ingressclass-editor",
-        "version": "v0.19.0",
+        "version": "sha256:6da5c619ae63b1a022ca43d2297fc975a2fd600948b0621a079231c720ddadaa",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",

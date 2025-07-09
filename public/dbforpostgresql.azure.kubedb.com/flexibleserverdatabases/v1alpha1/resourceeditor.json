@@ -22,7 +22,7 @@
     "ui": {
       "editor": {
         "name": "dbforpostgresqlazurekubedbcom-flexibleserverdatabase-editor",
-        "version": "v0.19.0",
+        "version": "sha256:b170778f7c21e7f8e2464c2e772dfcc810769d67dbabca8dc47d66f20cba04ff",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",

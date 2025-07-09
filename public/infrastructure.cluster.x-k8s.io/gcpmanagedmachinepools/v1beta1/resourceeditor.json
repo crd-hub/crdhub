@@ -22,7 +22,7 @@
     "ui": {
       "editor": {
         "name": "infrastructureclusterxk8sio-gcpmanagedmachinepool-editor",
-        "version": "v0.19.0",
+        "version": "sha256:cf59a1f114fa4758d265809df81079434685bfe721ca60ac96e899d340a4c252",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",

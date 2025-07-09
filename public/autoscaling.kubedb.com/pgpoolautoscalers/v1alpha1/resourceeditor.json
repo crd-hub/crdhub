@@ -22,7 +22,7 @@
     "ui": {
       "editor": {
         "name": "autoscalingkubedbcom-pgpoolautoscaler-editor",
-        "version": "v0.19.0",
+        "version": "sha256:f66295d81b0747fad2141cf1eeb140dfa0afe00aa7328b1129a2a57cd4ad9bcc",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",

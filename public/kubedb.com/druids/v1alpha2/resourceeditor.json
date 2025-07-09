@@ -22,7 +22,7 @@
     "ui": {
       "options": {
         "name": "kubedbcom-druid-editor-options",
-        "version": "v0.19.0",
+        "version": "sha256:02cacd7e11925a8c534ee9727b72c683311e6c57b4f1138fb8cfa15e6c92d379",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",
@@ -31,7 +31,7 @@
       },
       "editor": {
         "name": "kubedbcom-druid-editor",
-        "version": "v0.19.0",
+        "version": "sha256:da53b572719c0a5d2e678b6786a4cca1f53901a3914ec036037ce63b2f32d832",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",
@@ -55,7 +55,7 @@
               "flow": "standalone-create",
               "editor": {
                 "name": "opskubedbcom-druidopsrequest-editor",
-                "version": "v0.19.0",
+                "version": "sha256:3774741be949937a6e591f2c6f812188d80df7873ceac7eb85132f84d50b0bbf",
                 "sourceRef": {
                   "apiGroup": "source.toolkit.fluxcd.io",
                   "kind": "HelmRepository",
@@ -76,7 +76,7 @@
               "flow": "standalone-create",
               "editor": {
                 "name": "opskubedbcom-druidopsrequest-editor",
-                "version": "v0.19.0",
+                "version": "sha256:3774741be949937a6e591f2c6f812188d80df7873ceac7eb85132f84d50b0bbf",
                 "sourceRef": {
                   "apiGroup": "source.toolkit.fluxcd.io",
                   "kind": "HelmRepository",
@@ -102,7 +102,7 @@
               "flow": "standalone-create",
               "editor": {
                 "name": "opskubedbcom-druidopsrequest-editor",
-                "version": "v0.19.0",
+                "version": "sha256:3774741be949937a6e591f2c6f812188d80df7873ceac7eb85132f84d50b0bbf",
                 "sourceRef": {
                   "apiGroup": "source.toolkit.fluxcd.io",
                   "kind": "HelmRepository",
@@ -123,7 +123,7 @@
               "flow": "standalone-create",
               "editor": {
                 "name": "opskubedbcom-druidopsrequest-editor",
-                "version": "v0.19.0",
+                "version": "sha256:3774741be949937a6e591f2c6f812188d80df7873ceac7eb85132f84d50b0bbf",
                 "sourceRef": {
                   "apiGroup": "source.toolkit.fluxcd.io",
                   "kind": "HelmRepository",
@@ -149,7 +149,7 @@
               "flow": "standalone-edit",
               "editor": {
                 "name": "kubedbcom-druid-editor",
-                "version": "v0.19.0",
+                "version": "sha256:da53b572719c0a5d2e678b6786a4cca1f53901a3914ec036037ce63b2f32d832",
                 "sourceRef": {
                   "apiGroup": "source.toolkit.fluxcd.io",
                   "kind": "HelmRepository",
@@ -170,7 +170,7 @@
               "flow": "standalone-edit",
               "editor": {
                 "name": "kubedbcom-druid-editor",
-                "version": "v0.19.0",
+                "version": "sha256:da53b572719c0a5d2e678b6786a4cca1f53901a3914ec036037ce63b2f32d832",
                 "sourceRef": {
                   "apiGroup": "source.toolkit.fluxcd.io",
                   "kind": "HelmRepository",
@@ -196,7 +196,7 @@
               "flow": "standalone-edit",
               "editor": {
                 "name": "kubedbcom-druid-editor",
-                "version": "v0.19.0",
+                "version": "sha256:da53b572719c0a5d2e678b6786a4cca1f53901a3914ec036037ce63b2f32d832",
                 "sourceRef": {
                   "apiGroup": "source.toolkit.fluxcd.io",
                   "kind": "HelmRepository",

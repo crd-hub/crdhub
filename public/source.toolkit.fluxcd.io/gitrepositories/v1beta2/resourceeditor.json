@@ -22,7 +22,7 @@
     "ui": {
       "editor": {
         "name": "sourcetoolkitfluxcdio-gitrepository-editor",
-        "version": "v0.19.0",
+        "version": "sha256:d770bd529a52fcba4260852d53e49a1f5e688a063aaeeeb1facc0d92af356668",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",

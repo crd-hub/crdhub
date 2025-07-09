@@ -22,7 +22,7 @@
     "ui": {
       "editor": {
         "name": "kubebindappscodecom-apiserviceexportrequest-editor",
-        "version": "v0.19.0",
+        "version": "sha256:e5720cc9da0ae9569a59d946c0ee23e627158330964a88355c8794c54e7ff83b",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",

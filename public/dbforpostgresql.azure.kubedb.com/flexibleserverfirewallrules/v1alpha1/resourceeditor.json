@@ -22,7 +22,7 @@
     "ui": {
       "editor": {
         "name": "dbforpostgresqlazurekubedbcom-flexibleserverfirewallrule-editor",
-        "version": "v0.19.0",
+        "version": "sha256:1837260f8816c30ad418381aac343ebdd21fdda045ac7577238b115548ca6bb8",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",

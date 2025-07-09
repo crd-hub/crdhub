@@ -22,7 +22,7 @@
     "ui": {
       "editor": {
         "name": "sqlgcpkubedbcom-sourcerepresentationinstance-editor",
-        "version": "v0.19.0",
+        "version": "sha256:b844324a797e189c5c82322a5119d4eb7813a9f681cf501e3b7ae91444c7a98c",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",

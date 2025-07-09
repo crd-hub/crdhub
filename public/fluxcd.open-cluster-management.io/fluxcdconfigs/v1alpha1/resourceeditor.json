@@ -22,7 +22,7 @@
     "ui": {
       "editor": {
         "name": "fluxcdopenclustermanagementio-fluxcdconfig-editor",
-        "version": "v0.19.0",
+        "version": "sha256:96a59c4fca40f013bcdbad8b36f7a9dbea8b9e8e8310733a9fc31f716fe9f63b",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",

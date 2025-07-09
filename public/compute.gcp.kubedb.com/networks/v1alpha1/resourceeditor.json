@@ -22,7 +22,7 @@
     "ui": {
       "editor": {
         "name": "computegcpkubedbcom-network-editor",
-        "version": "v0.19.0",
+        "version": "sha256:8d0102750011f9f10a6c9ff2770f3848f4971014ba82fc57221dff85a875dba5",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",

@@ -22,7 +22,7 @@
     "ui": {
       "options": {
         "name": "kubedbcom-pgbouncer-editor-options",
-        "version": "v0.19.0",
+        "version": "sha256:a7c638339fc7b7cc5735e4b5d126e1f3d938604d11f216ed38def30b378b4228",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",
@@ -31,7 +31,7 @@
       },
       "editor": {
         "name": "kubedbcom-pgbouncer-editor",
-        "version": "v0.19.0",
+        "version": "sha256:5b271327e8ad2cb657450ac8b4706f0a8f0ac085e0ebda96ac2c573cdc7d575f",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",

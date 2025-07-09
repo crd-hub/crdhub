@@ -22,7 +22,7 @@
     "ui": {
       "editor": {
         "name": "gatewayvoyagermeshcom-postgresroute-editor",
-        "version": "v0.19.0",
+        "version": "sha256:6043c6e3672f8b7cd36ffbec31eca4aa110de042c90df126b58ce3890b8c7c78",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",

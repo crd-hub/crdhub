@@ -22,7 +22,7 @@
     "ui": {
       "editor": {
         "name": "opskubedbcom-etcdopsrequest-editor",
-        "version": "v0.19.0",
+        "version": "sha256:98797203cc9d2126e224e75e55ebd8c0d53112e2c95b4591d9f233eac278fe2b",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",

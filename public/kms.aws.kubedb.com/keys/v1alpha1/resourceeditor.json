@@ -22,7 +22,7 @@
     "ui": {
       "editor": {
         "name": "kmsawskubedbcom-key-editor",
-        "version": "v0.19.0",
+        "version": "sha256:6236e3219eb56ccc92537a7159814f1d3545afce7043ab8e2e8c9de58024611f",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",

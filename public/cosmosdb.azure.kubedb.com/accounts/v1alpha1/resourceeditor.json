@@ -22,7 +22,7 @@
     "ui": {
       "editor": {
         "name": "cosmosdbazurekubedbcom-account-editor",
-        "version": "v0.19.0",
+        "version": "sha256:8d8946ed09058a84347a3d2b50efa4bb3bdf065703548b0a10b948b28976b5be",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",

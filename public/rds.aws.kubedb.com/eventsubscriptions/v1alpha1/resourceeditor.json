@@ -22,7 +22,7 @@
     "ui": {
       "editor": {
         "name": "rdsawskubedbcom-eventsubscription-editor",
-        "version": "v0.19.0",
+        "version": "sha256:0074fc464c18f2a62f78e43c0c0921c7e9f876981974a4ed0e45ea3bf4e2caf9",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",

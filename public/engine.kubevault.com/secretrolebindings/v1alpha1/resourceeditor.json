@@ -22,7 +22,7 @@
     "ui": {
       "editor": {
         "name": "enginekubevaultcom-secretrolebinding-editor",
-        "version": "v0.19.0",
+        "version": "sha256:2b8506fe5de3e5430176cfafd09d0870a24e2686f2f278d3e1703d4e592012f6",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",

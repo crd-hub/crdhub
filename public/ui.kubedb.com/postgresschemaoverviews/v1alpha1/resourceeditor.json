@@ -22,7 +22,7 @@
     "ui": {
       "editor": {
         "name": "uikubedbcom-postgresschemaoverview-editor",
-        "version": "v0.19.0",
+        "version": "sha256:38f21ccddffae77e006654cc43201f0bc835f07f547a7520ed4890e013894e85",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",

@@ -20,16 +20,170 @@
       "scope": "Namespaced"
     },
     "ui": {
-      "editor": {
-        "name": "kubedbcom-hazelcast-editor",
-        "version": "v0.19.0",
+      "options": {
+        "name": "kubedbcom-hazelcast-editor-options",
+        "version": "sha256:3b035de9b2281504633de675f5f39a66c7a5337739632db9c53c7297157e1f34",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",
           "name": "appscode-charts-oci"
         }
       },
-      "enforceQuota": false
-    }
+      "editor": {
+        "name": "kubedbcom-hazelcast-editor",
+        "version": "sha256:f7061c8d4e5c19d6d3561c34c52a07d76f73abade68c318726dd405a53adaa05",
+        "sourceRef": {
+          "apiGroup": "source.toolkit.fluxcd.io",
+          "kind": "HelmRepository",
+          "name": "appscode-charts-oci"
+        }
+      },
+      "enforceQuota": true,
+      "actions": [
+        {
+          "name": "Operations",
+          "items": [
+            {
+              "name": "Restart",
+              "icons": [
+                {
+                  "src": "https://cdn.appscode.com/k8s/icons/action-icons/restart.svg",
+                  "type": "image/svg+xml"
+                }
+              ],
+              "operationId": "create-opsrequest-restart",
+              "flow": "standalone-create",
+              "editor": {
+                "name": "opskubedbcom-hazelcastopsrequest-editor",
+                "version": "sha256:76e7f2649fad481eb08f19c3c9c20a6a5b14c466bb211fde05fec454d80ee2e2",
+                "sourceRef": {
+                  "apiGroup": "source.toolkit.fluxcd.io",
+                  "kind": "HelmRepository",
+                  "name": "appscode-charts-oci"
+                }
+              },
+              "enforceQuota": false
+            },
+            {
+              "name": "Reconfigure",
+              "icons": [
+                {
+                  "src": "https://cdn.appscode.com/k8s/icons/action-icons/reconfigure.svg",
+                  "type": "image/svg+xml"
+                }
+              ],
+              "operationId": "create-opsrequest-reconfigure",
+              "flow": "standalone-create",
+              "editor": {
+                "name": "opskubedbcom-hazelcastopsrequest-editor",
+                "version": "sha256:76e7f2649fad481eb08f19c3c9c20a6a5b14c466bb211fde05fec454d80ee2e2",
+                "sourceRef": {
+                  "apiGroup": "source.toolkit.fluxcd.io",
+                  "kind": "HelmRepository",
+                  "name": "appscode-charts-oci"
+                }
+              },
+              "enforceQuota": false
+            }
+          ]
+        },
+        {
+          "name": "Scaling",
+          "items": [
+            {
+              "name": "Horizontal Scale",
+              "icons": [
+                {
+                  "src": "https://cdn.appscode.com/k8s/icons/action-icons/horizontal_scale.svg",
+                  "type": "image/svg+xml"
+                }
+              ],
+              "operationId": "create-opsrequest-horizontalscaling",
+              "flow": "standalone-create",
+              "disabledTemplate": "{{ not (gt .spec.replicas 1) }}\n",
+              "editor": {
+                "name": "opskubedbcom-hazelcastopsrequest-editor",
+                "version": "sha256:76e7f2649fad481eb08f19c3c9c20a6a5b14c466bb211fde05fec454d80ee2e2",
+                "sourceRef": {
+                  "apiGroup": "source.toolkit.fluxcd.io",
+                  "kind": "HelmRepository",
+                  "name": "appscode-charts-oci"
+                }
+              },
+              "enforceQuota": true
+            },
+            {
+              "name": "Vertical Scale",
+              "icons": [
+                {
+                  "src": "https://cdn.appscode.com/k8s/icons/action-icons/vertical_scale.svg",
+                  "type": "image/svg+xml"
+                }
+              ],
+              "operationId": "create-opsrequest-verticalscaling",
+              "flow": "standalone-create",
+              "editor": {
+                "name": "opskubedbcom-hazelcastopsrequest-editor",
+                "version": "sha256:76e7f2649fad481eb08f19c3c9c20a6a5b14c466bb211fde05fec454d80ee2e2",
+                "sourceRef": {
+                  "apiGroup": "source.toolkit.fluxcd.io",
+                  "kind": "HelmRepository",
+                  "name": "appscode-charts-oci"
+                }
+              },
+              "enforceQuota": true
+            },
+            {
+              "name": "Expand Volume",
+              "icons": [
+                {
+                  "src": "https://cdn.appscode.com/k8s/icons/action-icons/expand.svg",
+                  "type": "image/svg+xml"
+                }
+              ],
+              "operationId": "create-opsrequest-volumeexpansion",
+              "flow": "standalone-create",
+              "editor": {
+                "name": "opskubedbcom-hazelcastopsrequest-editor",
+                "version": "sha256:76e7f2649fad481eb08f19c3c9c20a6a5b14c466bb211fde05fec454d80ee2e2",
+                "sourceRef": {
+                  "apiGroup": "source.toolkit.fluxcd.io",
+                  "kind": "HelmRepository",
+                  "name": "appscode-charts-oci"
+                }
+              },
+              "enforceQuota": true
+            }
+          ]
+        }
+      ]
+    },
+    "icons": [
+      {
+        "src": "https://cdn.appscode.com/k8s/icons/kubedb.com/hazelcasts.svg",
+        "type": "image/svg+xml"
+      },
+      {
+        "src": "https://cdn.appscode.com/k8s/icons/kubedb.com/hazelcasts.png",
+        "type": "image/png"
+      }
+    ],
+    "variants": [
+      {
+        "name": "default",
+        "selector": {
+          "matchExpressions": [
+            {
+              "key": "charts.x-helm.dev/is-default-preset",
+              "operator": "In",
+              "values": [
+                "true",
+                "kubedb"
+              ]
+            }
+          ]
+        }
+      }
+    ]
   }
 }

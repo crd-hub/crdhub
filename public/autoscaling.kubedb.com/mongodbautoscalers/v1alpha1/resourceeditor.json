@@ -22,7 +22,7 @@
     "ui": {
       "editor": {
         "name": "autoscalingkubedbcom-mongodbautoscaler-editor",
-        "version": "v0.19.0",
+        "version": "sha256:87acd59f70cbfa99c5428f35047fa23559f5519cdc860eabbc3746b21cd1fa34",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",

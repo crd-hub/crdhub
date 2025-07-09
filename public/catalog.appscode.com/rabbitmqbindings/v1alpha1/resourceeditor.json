@@ -22,7 +22,7 @@
     "ui": {
       "editor": {
         "name": "catalogappscodecom-rabbitmqbinding-editor",
-        "version": "v0.19.0",
+        "version": "sha256:77f7e69008bfeeedb1515d9bbe3c3d8537f8592744c046e0fb251939ccb27e42",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",

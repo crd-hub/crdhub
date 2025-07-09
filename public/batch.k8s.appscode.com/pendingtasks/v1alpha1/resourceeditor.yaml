@@ -15,3 +15,12 @@ spec:
     name: pendingtasks
     scope: Cluster
     version: v1alpha1
+  ui:
+    editor:
+      name: batchk8sappscodecom-pendingtask-editor
+      sourceRef:
+        apiGroup: source.toolkit.fluxcd.io
+        kind: HelmRepository
+        name: appscode-charts-oci
+      version: sha256:913f5f3457d9fcc0d399b78f02397c00423c905328535008aba2b68ce762e380
+    enforceQuota: false

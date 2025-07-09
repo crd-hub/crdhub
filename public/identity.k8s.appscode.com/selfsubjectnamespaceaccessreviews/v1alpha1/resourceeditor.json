@@ -22,7 +22,7 @@
     "ui": {
       "editor": {
         "name": "identityk8sappscodecom-selfsubjectnamespaceaccessreview-editor",
-        "version": "v0.19.0",
+        "version": "sha256:eab5150388180a232489b850ebc2a52b47e1ac8d52049a8ed54d094dc1c9c8e3",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",

@@ -22,7 +22,7 @@
     "ui": {
       "editor": {
         "name": "policykubevaultcom-vaultpolicy-editor",
-        "version": "v0.19.0",
+        "version": "sha256:cd0246226774d4777c0f4a97214c8f73d3fc983dd4616d1d76004beb301ca5f4",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",

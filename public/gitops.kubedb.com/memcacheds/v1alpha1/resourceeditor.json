@@ -22,7 +22,7 @@
     "ui": {
       "editor": {
         "name": "gitopskubedbcom-memcached-editor",
-        "version": "v0.19.0",
+        "version": "sha256:eb357b2d0a8ae3ed83dc08b56c4b01a4c34e2fc72636da383cfb4ee0601b907a",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",

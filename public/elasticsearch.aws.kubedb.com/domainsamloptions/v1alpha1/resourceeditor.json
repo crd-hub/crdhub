@@ -22,7 +22,7 @@
     "ui": {
       "editor": {
         "name": "elasticsearchawskubedbcom-domainsamloptions-editor",
-        "version": "v0.19.0",
+        "version": "sha256:9369108c6716eb90d701f0732891ad5217e12c9de6a3d3c697852d8cc29bcbd4",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",

@@ -22,7 +22,7 @@
     "ui": {
       "editor": {
         "name": "storagek8sio-storageclass-editor",
-        "version": "v0.19.0",
+        "version": "sha256:ae528a1a4e87fad7be91e9356fd0013d674606d19c9f8984cf9b9be476aa4a25",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",

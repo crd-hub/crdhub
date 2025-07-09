@@ -22,7 +22,7 @@
     "ui": {
       "editor": {
         "name": "gitopskubedbcom-perconaxtradb-editor",
-        "version": "v0.19.0",
+        "version": "sha256:37f1d35f3831bc7c67b098af3c2c03c3f5a5a93dc96e4654180cf9486ad98826",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",

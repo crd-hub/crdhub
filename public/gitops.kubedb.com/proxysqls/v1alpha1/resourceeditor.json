@@ -22,7 +22,7 @@
     "ui": {
       "editor": {
         "name": "gitopskubedbcom-proxysql-editor",
-        "version": "v0.19.0",
+        "version": "sha256:1008eb7e3dea2a2da7b1e03ebe312f30fcfb765b8658a375aebb0fe3730c20ba",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",

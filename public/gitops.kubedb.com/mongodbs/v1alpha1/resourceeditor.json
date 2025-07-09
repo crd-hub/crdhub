@@ -22,7 +22,7 @@
     "ui": {
       "editor": {
         "name": "gitopskubedbcom-mongodb-editor",
-        "version": "v0.19.0",
+        "version": "sha256:bb2e99869b07ca95204fa23da9e56e0d475dc246328124f0f576355db53129c6",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",

@@ -22,7 +22,7 @@
     "ui": {
       "editor": {
         "name": "catalogkubewaredev-mysqlbinding-editor",
-        "version": "v0.19.0",
+        "version": "sha256:ad817d186abc0ac4a947f828ac43f113aa0a8c28e0b2e1e64bda68b811058a2e",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",

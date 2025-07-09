@@ -22,7 +22,7 @@
     "ui": {
       "editor": {
         "name": "gitopskubedbcom-kafka-editor",
-        "version": "v0.19.0",
+        "version": "sha256:fd2938a9275dd494964da3df8a33bff3fb60af3664cacc39bb836850713717bb",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",

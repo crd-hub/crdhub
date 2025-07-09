@@ -22,7 +22,7 @@
     "ui": {
       "editor": {
         "name": "networkazurekubedbcom-virtualnetworkpeering-editor",
-        "version": "v0.19.0",
+        "version": "sha256:a44a717505d95ee6728f2936e8861abc05f9be9ddb05ad6ce7b62655d61debfb",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",

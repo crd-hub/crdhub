@@ -22,7 +22,7 @@
     "ui": {
       "editor": {
         "name": "uikubedbcom-mariadbschemaoverview-editor",
-        "version": "v0.19.0",
+        "version": "sha256:7ec7da77e8149555ad99d7dacc1c43fcd4e4987c6169e1072264768fb9298d9e",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",

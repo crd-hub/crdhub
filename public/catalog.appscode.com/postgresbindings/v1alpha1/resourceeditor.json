@@ -22,7 +22,7 @@
     "ui": {
       "editor": {
         "name": "catalogappscodecom-postgresbinding-editor",
-        "version": "v0.19.0",
+        "version": "sha256:e22849d1d3b734667fa2eaef1ead626d8b1efc6301c7cc706c9973cccaddd965",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",

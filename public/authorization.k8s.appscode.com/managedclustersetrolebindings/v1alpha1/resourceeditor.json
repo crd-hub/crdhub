@@ -22,7 +22,7 @@
     "ui": {
       "editor": {
         "name": "authorizationk8sappscodecom-managedclustersetrolebinding-editor",
-        "version": "v0.19.0",
+        "version": "sha256:24bb29705b082f31a39b41edbbb6e2af1a9ce82d7fad346596d84e9a7a09fc05",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",

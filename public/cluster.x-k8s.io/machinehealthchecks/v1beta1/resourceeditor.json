@@ -22,7 +22,7 @@
     "ui": {
       "editor": {
         "name": "clusterxk8sio-machinehealthcheck-editor",
-        "version": "v0.19.0",
+        "version": "sha256:c661c8a791ccc7f7ed3635390e69ce9d11725aa9efccbf521eab8506b5f96bf8",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",

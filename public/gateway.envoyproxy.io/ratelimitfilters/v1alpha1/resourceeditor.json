@@ -22,7 +22,7 @@
     "ui": {
       "editor": {
         "name": "gatewayenvoyproxyio-ratelimitfilter-editor",
-        "version": "v0.19.0",
+        "version": "sha256:03d48e61933f75a230991d11ee79aa243cf68f49cdb3c5ecb26db0a920bc5039",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",

@@ -22,7 +22,7 @@
     "ui": {
       "editor": {
         "name": "cacheazurekubedbcom-redisfirewallrule-editor",
-        "version": "v0.19.0",
+        "version": "sha256:357eabc421788ba2e4b2208f9726fda98c09af3b1b237993e31fdc97cdc86b81",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",

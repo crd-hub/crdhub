@@ -22,7 +22,7 @@
     "ui": {
       "editor": {
         "name": "gatewayopenclustermanagementio-clustergateway-editor",
-        "version": "v0.19.0",
+        "version": "sha256:bed502856c8b1d13927be1dbdbc0d8fb2cffbe2b051ed70617faa7a1671ff499",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",

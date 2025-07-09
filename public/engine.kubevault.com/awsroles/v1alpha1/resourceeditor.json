@@ -22,7 +22,7 @@
     "ui": {
       "editor": {
         "name": "enginekubevaultcom-awsrole-editor",
-        "version": "v0.19.0",
+        "version": "sha256:9e9d9cc578a0ea02d2b399b07a946d4517716fcb65942339a56f3578855bb725",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",

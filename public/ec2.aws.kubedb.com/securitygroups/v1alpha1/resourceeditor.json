@@ -22,7 +22,7 @@
     "ui": {
       "editor": {
         "name": "ec2awskubedbcom-securitygroup-editor",
-        "version": "v0.19.0",
+        "version": "sha256:194a329274a0683095e57521d1a12ecbe031cdec0dc949d79c42f7ddf2ba16fa",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",

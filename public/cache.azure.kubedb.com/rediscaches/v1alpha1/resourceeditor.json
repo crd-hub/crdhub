@@ -22,7 +22,7 @@
     "ui": {
       "editor": {
         "name": "cacheazurekubedbcom-rediscache-editor",
-        "version": "v0.19.0",
+        "version": "sha256:247ebe5c8116c864841bb2d63720c8a42f249d2f066a979ae761cb69042434aa",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",

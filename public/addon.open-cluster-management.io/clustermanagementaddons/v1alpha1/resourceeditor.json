@@ -22,7 +22,7 @@
     "ui": {
       "editor": {
         "name": "addonopenclustermanagementio-clustermanagementaddon-editor",
-        "version": "v0.19.0",
+        "version": "sha256:3d7a7027a1c0d13d17294a54b535d489ec384af701a8def2b47295837aa911bf",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",

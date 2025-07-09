@@ -22,7 +22,7 @@
     "ui": {
       "editor": {
         "name": "nodek8sappscodecom-nodetopology-editor",
-        "version": "v0.19.0",
+        "version": "sha256:61f31ce87936ae30c84e103b4c96f2ddf016d98a5bb4db0bb208f414c3acc506",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",

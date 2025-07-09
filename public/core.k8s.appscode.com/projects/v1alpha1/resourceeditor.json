@@ -22,7 +22,7 @@
     "ui": {
       "editor": {
         "name": "corek8sappscodecom-project-editor",
-        "version": "v0.19.0",
+        "version": "sha256:7ba1a7d4de300ba1f1b85b7f4eb5561c7969873939287a8ce36554b6ecad39a7",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",

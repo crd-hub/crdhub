@@ -22,7 +22,7 @@
     "ui": {
       "editor": {
         "name": "uikubedbcom-mariadbinsight-editor",
-        "version": "v0.19.0",
+        "version": "sha256:69b31102d55cd31537f1136a6efd422913003de513edab4c328790c553700876",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",

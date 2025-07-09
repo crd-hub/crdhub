@@ -18,6 +18,18 @@
       "name": "taskqueues",
       "kind": "TaskQueue",
       "scope": "Cluster"
+    },
+    "ui": {
+      "editor": {
+        "name": "batchk8sappscodecom-taskqueue-editor",
+        "version": "sha256:6cea1e09bb7cbd2d3673f26cf2a93a0ce5aeb9a82162b10b634d406c85f8d8d1",
+        "sourceRef": {
+          "apiGroup": "source.toolkit.fluxcd.io",
+          "kind": "HelmRepository",
+          "name": "appscode-charts-oci"
+        }
+      },
+      "enforceQuota": false
     }
   }
 }

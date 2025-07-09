@@ -18,6 +18,18 @@
       "name": "igniteopsrequests",
       "kind": "IgniteOpsRequest",
       "scope": "Namespaced"
+    },
+    "ui": {
+      "editor": {
+        "name": "opskubedbcom-igniteopsrequest-editor",
+        "version": "sha256:cb1f69e4a4657a95d4d107d9a19df0348b6cfe55de1b75a081d27fa6369c1734",
+        "sourceRef": {
+          "apiGroup": "source.toolkit.fluxcd.io",
+          "kind": "HelmRepository",
+          "name": "appscode-charts-oci"
+        }
+      },
+      "enforceQuota": false
     }
   }
 }

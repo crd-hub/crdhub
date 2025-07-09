@@ -22,7 +22,7 @@
     "ui": {
       "editor": {
         "name": "gatewaynetworkingk8sio-referencegrant-editor",
-        "version": "v0.19.0",
+        "version": "sha256:e1aed814447f400490b5e331c302f0a0a1e157eaafde1693efe4a1060400dac2",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",

@@ -22,7 +22,7 @@
     "ui": {
       "editor": {
         "name": "catalogkubedbcom-mysqlversion-editor",
-        "version": "v0.19.0",
+        "version": "sha256:5273ad7f69e2544f7f64acb5714e6d7afb4e3f1221fe538d2cce73dfc47e529a",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",
