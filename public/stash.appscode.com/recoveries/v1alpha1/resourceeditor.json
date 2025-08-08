@@ -22,7 +22,7 @@
     "ui": {
       "editor": {
         "name": "stashappscodecom-recovery-editor",
-        "version": "sha256:25abe6d6ba9056d851a97a7ed0ef6025215570e5c960671691410e020fc0f1eb",
+        "version": "sha256:994557bc22199a030b915197e8cbfbd67137f80016a9fa8e0b4f9ac52888b284",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",

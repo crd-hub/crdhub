@@ -22,7 +22,7 @@
     "ui": {
       "editor": {
         "name": "gatewaynetworkingk8sio-backendtlspolicy-editor",
-        "version": "sha256:a1e1ac81f42efc7ca5d9e80aec5cf1a5774c81263717b2d98f1eeac05cca86d2",
+        "version": "sha256:37b801dec782592544ac78fb225ac3036533403610f3101364f1647f598909b4",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",

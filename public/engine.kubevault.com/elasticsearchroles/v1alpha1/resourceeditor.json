@@ -22,7 +22,7 @@
     "ui": {
       "editor": {
         "name": "enginekubevaultcom-elasticsearchrole-editor",
-        "version": "sha256:fb25ffd4feeaa8d450b7c2925a8d315dea9973b77349eac57a92c369855c2587",
+        "version": "sha256:246c4a8ce8bf973e9b9f8982d7700f6c1a1b0829af0569b22b983f3788fc4021",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",

@@ -322,6 +322,9 @@
                       "DoNotTerminate"
                     ]
                   },
+                  "distributed": {
+                    "type": "boolean"
+                  },
                   "enforceFsGroup": {
                     "type": "boolean"
                   },

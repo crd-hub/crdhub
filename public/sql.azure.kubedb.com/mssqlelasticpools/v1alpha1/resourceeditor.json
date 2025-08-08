@@ -22,7 +22,7 @@
     "ui": {
       "editor": {
         "name": "sqlazurekubedbcom-mssqlelasticpool-editor",
-        "version": "sha256:5cf42e27aa90978388f3f4d5e244245e48fbd5e4bc0253e45be9203aa71e2cd7",
+        "version": "sha256:62be98c1d7c7ee2c8ebc522a1ec87d08654d040abb6ebf0389c26da42f31982d",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",

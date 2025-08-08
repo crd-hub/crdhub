@@ -22,7 +22,7 @@
     "ui": {
       "editor": {
         "name": "dbforpostgresqlazurekubedbcom-virtualnetworkrule-editor",
-        "version": "sha256:6a3b8c79b7b89206bffd7886693263716e7253ee4525fbd5033385e617801c33",
+        "version": "sha256:828502775cc70392a564689f3b56b2a8451ffad5ba880e630240c19477b2e104",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",

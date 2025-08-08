@@ -22,7 +22,7 @@
     "ui": {
       "editor": {
         "name": "corek8sappscodecom-podview-editor",
-        "version": "sha256:87969b4915dde9fd4c83b6c16311b3c693230fa11bcfefee6c0df46fec442bba",
+        "version": "sha256:2332ad86f47e2c19e840a1107ca815911cdc9fa54b686795a89bd4db39b07aae",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",

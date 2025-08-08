@@ -22,7 +22,7 @@
     "ui": {
       "editor": {
         "name": "opskubedbcom-mariadbopsrequest-editor",
-        "version": "sha256:1c74d98d8716eeb45864c3396669dcb3610020cadc6765ecc1c0dc585e6f8e8e",
+        "version": "sha256:4b93909221414ef9044082bd79ef9720cd4ff11950de9771e97c404fd1f33e92",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",

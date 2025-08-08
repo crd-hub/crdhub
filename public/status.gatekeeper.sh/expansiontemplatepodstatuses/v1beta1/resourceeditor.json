@@ -22,7 +22,7 @@
     "ui": {
       "editor": {
         "name": "statusgatekeepersh-expansiontemplatepodstatus-editor",
-        "version": "sha256:7fbff3c35d5f0d2bbd44dd9e5bbabcfef41608d5c5113175fd567064e04deaa3",
+        "version": "sha256:edc15c19e984458adceffb6038165cc0c4d61de688ed805cc4f73b5c95d466db",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",

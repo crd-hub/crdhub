@@ -22,7 +22,7 @@
     "ui": {
       "editor": {
         "name": "cosmosdbazurekubedbcom-mongocollection-editor",
-        "version": "sha256:2790a8c79cff9fa227c0a5332277939295ed0d9c782d95607361d477c3f456b5",
+        "version": "sha256:2dbe46d15ac7c1e8c818818642f3a0621acd9d29899d2e16e628ea319aa0512c",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",

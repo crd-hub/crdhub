@@ -22,7 +22,7 @@
     "ui": {
       "editor": {
         "name": "ec2awskubedbcom-subnet-editor",
-        "version": "sha256:d2c5bbcb6cb0d9e6b7ab0ffdddba9d87d19c752ac90b56041616d3f5b88e7677",
+        "version": "sha256:eb6f579a2dccb1ffbadb6f3d137749c580ce09c85b8b7e75fdb89e31275c5cbd",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",

@@ -22,7 +22,7 @@
     "ui": {
       "options": {
         "name": "kubedbcom-memcached-editor-options",
-        "version": "sha256:0da2be0236742e2c568c407a2d3ae902cfb52e933aa210e1419a7ce40e99294a",
+        "version": "sha256:0c0a5b532314adc7227d5efd831780b6f0cf15eb07713b2aa5f04ffd8e3b0ffc",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",
@@ -31,7 +31,7 @@
       },
       "editor": {
         "name": "kubedbcom-memcached-editor",
-        "version": "sha256:131e92d06432f78a13f145b00bd4c4fb6e972d799304c761098dd34c9d798a79",
+        "version": "sha256:2e13338253c123cff9c33708863d785f32e7800d96cf9df0df95ea2cb0146648",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",
@@ -55,7 +55,7 @@
               "flow": "standalone-create",
               "editor": {
                 "name": "opskubedbcom-memcachedopsrequest-editor",
-                "version": "sha256:0f7bf34435b53472f270c632de3cc1c56ed55e7f7eb950e80f6fe660295a5bee",
+                "version": "sha256:61de0c8a5f616692a06c121f861a00c675c24bb5276bb08dc785adfd6b657f8f",
                 "sourceRef": {
                   "apiGroup": "source.toolkit.fluxcd.io",
                   "kind": "HelmRepository",
@@ -76,7 +76,7 @@
               "flow": "standalone-create",
               "editor": {
                 "name": "opskubedbcom-memcachedopsrequest-editor",
-                "version": "sha256:0f7bf34435b53472f270c632de3cc1c56ed55e7f7eb950e80f6fe660295a5bee",
+                "version": "sha256:61de0c8a5f616692a06c121f861a00c675c24bb5276bb08dc785adfd6b657f8f",
                 "sourceRef": {
                   "apiGroup": "source.toolkit.fluxcd.io",
                   "kind": "HelmRepository",
@@ -97,7 +97,7 @@
               "flow": "standalone-create",
               "editor": {
                 "name": "opskubedbcom-memcachedopsrequest-editor",
-                "version": "sha256:0f7bf34435b53472f270c632de3cc1c56ed55e7f7eb950e80f6fe660295a5bee",
+                "version": "sha256:61de0c8a5f616692a06c121f861a00c675c24bb5276bb08dc785adfd6b657f8f",
                 "sourceRef": {
                   "apiGroup": "source.toolkit.fluxcd.io",
                   "kind": "HelmRepository",
@@ -124,7 +124,7 @@
               "disabledTemplate": "{{ not (gt .spec.replicas 1) }}\n",
               "editor": {
                 "name": "opskubedbcom-memcachedopsrequest-editor",
-                "version": "sha256:0f7bf34435b53472f270c632de3cc1c56ed55e7f7eb950e80f6fe660295a5bee",
+                "version": "sha256:61de0c8a5f616692a06c121f861a00c675c24bb5276bb08dc785adfd6b657f8f",
                 "sourceRef": {
                   "apiGroup": "source.toolkit.fluxcd.io",
                   "kind": "HelmRepository",
@@ -145,7 +145,7 @@
               "flow": "standalone-create",
               "editor": {
                 "name": "opskubedbcom-memcachedopsrequest-editor",
-                "version": "sha256:0f7bf34435b53472f270c632de3cc1c56ed55e7f7eb950e80f6fe660295a5bee",
+                "version": "sha256:61de0c8a5f616692a06c121f861a00c675c24bb5276bb08dc785adfd6b657f8f",
                 "sourceRef": {
                   "apiGroup": "source.toolkit.fluxcd.io",
                   "kind": "HelmRepository",
@@ -171,7 +171,7 @@
               "flow": "standalone-edit",
               "editor": {
                 "name": "kubedbcom-memcached-editor",
-                "version": "sha256:131e92d06432f78a13f145b00bd4c4fb6e972d799304c761098dd34c9d798a79",
+                "version": "sha256:2e13338253c123cff9c33708863d785f32e7800d96cf9df0df95ea2cb0146648",
                 "sourceRef": {
                   "apiGroup": "source.toolkit.fluxcd.io",
                   "kind": "HelmRepository",
@@ -197,7 +197,7 @@
               "flow": "standalone-create",
               "editor": {
                 "name": "opskubedbcom-memcachedopsrequest-editor",
-                "version": "sha256:0f7bf34435b53472f270c632de3cc1c56ed55e7f7eb950e80f6fe660295a5bee",
+                "version": "sha256:61de0c8a5f616692a06c121f861a00c675c24bb5276bb08dc785adfd6b657f8f",
                 "sourceRef": {
                   "apiGroup": "source.toolkit.fluxcd.io",
                   "kind": "HelmRepository",
@@ -218,7 +218,7 @@
               "flow": "standalone-edit",
               "editor": {
                 "name": "kubedbcom-memcached-editor",
-                "version": "sha256:131e92d06432f78a13f145b00bd4c4fb6e972d799304c761098dd34c9d798a79",
+                "version": "sha256:2e13338253c123cff9c33708863d785f32e7800d96cf9df0df95ea2cb0146648",
                 "sourceRef": {
                   "apiGroup": "source.toolkit.fluxcd.io",
                   "kind": "HelmRepository",

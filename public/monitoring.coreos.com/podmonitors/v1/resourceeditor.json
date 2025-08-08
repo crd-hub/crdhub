@@ -22,7 +22,7 @@
     "ui": {
       "editor": {
         "name": "monitoringcoreoscom-podmonitor-editor",
-        "version": "sha256:5146cba38523f8e79cb20dd8c7ff49a7b44d879f3fe0f4ad34437b0e9c11f8cf",
+        "version": "sha256:ca95699d535ea7a8402932217b04dbbdb5ca09293152639130714b7ac69e9874",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",

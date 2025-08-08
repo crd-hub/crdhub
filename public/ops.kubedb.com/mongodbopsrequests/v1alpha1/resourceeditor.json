@@ -22,7 +22,7 @@
     "ui": {
       "editor": {
         "name": "opskubedbcom-mongodbopsrequest-editor",
-        "version": "sha256:571a50e56b9ed502b5dfc23b6e935219dbc9d00405a92385ca446b12c7101c48",
+        "version": "sha256:c7b0893e16db0229b9becd9c16c2e65d6cd514e85c748ca8fd6a97a21caa71a6",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",

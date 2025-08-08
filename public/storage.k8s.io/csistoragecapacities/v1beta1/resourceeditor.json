@@ -22,7 +22,7 @@
     "ui": {
       "editor": {
         "name": "storagek8sio-csistoragecapacity-editor",
-        "version": "sha256:7615ee5b7ca45c72c8c62321262ab86c2647ba85446eb78ad13c7adcad7ec226",
+        "version": "sha256:ff68d785abfdbc8c90a9ff93eb5478ce78144e80dcde545764bae4dd00c25e22",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",

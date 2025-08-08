@@ -22,7 +22,7 @@
     "ui": {
       "editor": {
         "name": "catalogkubewaredev-memcachedbinding-editor",
-        "version": "sha256:4dcd10200617d8a9ece4bc1bf9ae540d6fc84dcf312f0245d1aadea44e13329f",
+        "version": "sha256:3eca9b0c0155059b639e5fc34a3a2de267b427de3f4968a5a4c2e116e8b56b20",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",

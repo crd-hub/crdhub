@@ -22,7 +22,7 @@
     "ui": {
       "editor": {
         "name": "falcoappscodecom-falcoevent-editor",
-        "version": "sha256:696a69926bbc006ae61d2cd679ca2c72207b132bbb36ced942cfe3da3f2ed071",
+        "version": "sha256:3d09a7aa74934731238fed1f9dcc9331474b967d08cf42348b158fdb7a46634e",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",

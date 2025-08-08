@@ -258,6 +258,16 @@ spec:
                           - type
                           type: object
                         type: array
+                      sort:
+                        properties:
+                          fieldName:
+                            type: string
+                          order:
+                            enum:
+                            - Ascending
+                            - Descending
+                            type: string
+                        type: object
                     type: object
                   width:
                     type: integer
@@ -502,6 +512,16 @@ spec:
                                         - type
                                         type: object
                                       type: array
+                                    sort:
+                                      properties:
+                                        fieldName:
+                                          type: string
+                                        order:
+                                          enum:
+                                          - Ascending
+                                          - Descending
+                                          type: string
+                                      type: object
                                   type: object
                                 width:
                                   type: integer
@@ -751,6 +771,16 @@ spec:
                                       - type
                                       type: object
                                     type: array
+                                  sort:
+                                    properties:
+                                      fieldName:
+                                        type: string
+                                      order:
+                                        enum:
+                                        - Ascending
+                                        - Descending
+                                        type: string
+                                    type: object
                                 type: object
                               width:
                                 type: integer
@@ -980,6 +1010,16 @@ spec:
                                       - type
                                       type: object
                                     type: array
+                                  sort:
+                                    properties:
+                                      fieldName:
+                                        type: string
+                                      order:
+                                        enum:
+                                        - Ascending
+                                        - Descending
+                                        type: string
+                                    type: object
                                 type: object
                               width:
                                 type: integer
@@ -1244,6 +1284,16 @@ spec:
                           - type
                           type: object
                         type: array
+                      sort:
+                        properties:
+                          fieldName:
+                            type: string
+                          order:
+                            enum:
+                            - Ascending
+                            - Descending
+                            type: string
+                        type: object
                     type: object
                   width:
                     type: integer

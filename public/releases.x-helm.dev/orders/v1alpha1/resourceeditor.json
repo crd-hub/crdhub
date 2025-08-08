@@ -22,7 +22,7 @@
     "ui": {
       "editor": {
         "name": "releasesxhelmdev-order-editor",
-        "version": "sha256:1a6c5ffe8bc395c3751accaacf4db5c652de5f44f57c6a49b05b925a6387f9ca",
+        "version": "sha256:3d123826a44e0a26ffaadf00079dcb58aea2c5004999c7684102f1ef40e3ee77",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",

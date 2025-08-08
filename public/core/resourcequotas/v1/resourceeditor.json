@@ -22,7 +22,7 @@
     "ui": {
       "editor": {
         "name": "core-resourcequota-editor",
-        "version": "sha256:044e29a906049625603aee14cedc90fc4e84c9a84188ee519fa640b087aa7be7",
+        "version": "sha256:8ad02f902fa11a9a2160561d3fd9b46a817de490b0573ada6047c79285ca5fca",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",

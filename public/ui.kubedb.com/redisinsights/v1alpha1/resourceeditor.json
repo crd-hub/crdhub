@@ -22,7 +22,7 @@
     "ui": {
       "editor": {
         "name": "uikubedbcom-redisinsight-editor",
-        "version": "sha256:59ff5d03c5dc5985bbe3a6bf49f619a80772ee41c4dff2bcc55ac8223d56e05e",
+        "version": "sha256:8b993491d26e643ff10bad97a359d9987080ca00a0dbda25c4724223c20ac2e2",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",

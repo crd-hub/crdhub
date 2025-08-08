@@ -987,8 +987,9 @@
                         "enum": [
                           "Restic",
                           "WalG",
-                          "Medusa",
-                          "VolumeSnapshotter"
+                          "VolumeSnapshotter",
+                          "Solr",
+                          "Medusa"
                         ]
                       },
                       "jobTemplate": {

@@ -22,7 +22,7 @@
     "ui": {
       "editor": {
         "name": "sqlazurekubedbcom-mssqlserver-editor",
-        "version": "sha256:9f14da3df780f4ca882d756a382b626403af7ca553139d6bef7a0739f66a6e25",
+        "version": "sha256:981b10d742af1966f2e671ddc5a0fabc47829ee9b39556b13ebd0e990581c59a",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",

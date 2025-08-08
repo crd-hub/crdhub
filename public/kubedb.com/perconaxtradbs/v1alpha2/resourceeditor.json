@@ -22,7 +22,7 @@
     "ui": {
       "options": {
         "name": "kubedbcom-perconaxtradb-editor-options",
-        "version": "sha256:4dfbf2733bd3881bda54b9c82ccd4c90c5903a5cad4358f699fe98efea359bd0",
+        "version": "sha256:e755cff60dd3c562e039675105f62dbfb340f8da3238e062a37eba5c25badb21",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",
@@ -31,7 +31,7 @@
       },
       "editor": {
         "name": "kubedbcom-perconaxtradb-editor",
-        "version": "sha256:d03813b6d8d322448d92552d6a62bfd5b85de4a0eb315eda3bcd6c936b74fa0f",
+        "version": "sha256:35e4cfb6f5d484f12c78d1c9e9271efe66830c107d5721b02cdeb00385e2554f",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",

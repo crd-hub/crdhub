@@ -22,7 +22,7 @@
     "ui": {
       "editor": {
         "name": "catalogkubedbcom-perconaxtradbversion-editor",
-        "version": "sha256:f0d52b77e368da9799e4d45425a4e2cc8aea15adbd0973ea4011a96083deeb71",
+        "version": "sha256:2e0a991f4abc7ff39a29b58fefd9acac26d8301c1d8fc3e420d1b601ca4a0a5a",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",

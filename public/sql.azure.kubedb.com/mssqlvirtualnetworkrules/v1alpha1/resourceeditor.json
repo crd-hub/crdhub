@@ -22,7 +22,7 @@
     "ui": {
       "editor": {
         "name": "sqlazurekubedbcom-mssqlvirtualnetworkrule-editor",
-        "version": "sha256:58416ea1965fb4fbb1e99a4ac2edaa7a3ea21f3837b33c5fe677b794cc8d78ed",
+        "version": "sha256:813061f383268fb503766fb7c46d014e8e149eb6c8f0939ee49da2820c7d8e9c",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",

@@ -22,7 +22,7 @@
     "ui": {
       "editor": {
         "name": "infrastructureclusterxk8sio-azureuserassignedidentity-editor",
-        "version": "sha256:191b648999a1fef867e63450a842b100a306a1da0672ca04c530a06f23c1c806",
+        "version": "sha256:1122e61f36ad7ca94b1e96e77e4f5fa9e97230e64e2a1ea8d33064dd0d5b7fec",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",

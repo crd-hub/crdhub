@@ -22,7 +22,7 @@
     "ui": {
       "editor": {
         "name": "core-replicationcontroller-editor",
-        "version": "sha256:741a1e4e19f594b17847032226b65fbc125e666ce9c077938d506c368e6129d7",
+        "version": "sha256:92f8f2ed7e7e165876d875ddc5bd01bc466148246baed2fd515061f5038cc508",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",

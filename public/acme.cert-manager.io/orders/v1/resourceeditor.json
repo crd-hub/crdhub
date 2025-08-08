@@ -22,7 +22,7 @@
     "ui": {
       "editor": {
         "name": "acmecertmanagerio-order-editor",
-        "version": "sha256:189e18b3fcb3c9dd29563644ddf9c34c59d801e02527006e4f6c0a28185d8a33",
+        "version": "sha256:e0ce192540716bdca94c14122c724531d6aafabd5aab2829a25c65a29dddc46d",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",

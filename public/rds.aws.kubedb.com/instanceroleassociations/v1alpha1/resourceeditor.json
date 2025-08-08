@@ -22,7 +22,7 @@
     "ui": {
       "editor": {
         "name": "rdsawskubedbcom-instanceroleassociation-editor",
-        "version": "sha256:8525edadafd5c8d3ecd6515652fa902898f356d7dab22176753d9a562d4829f6",
+        "version": "sha256:03f6b03ffa71d65277ac2622b8314c697d15066a60e753d312a746bf01ea86c7",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",

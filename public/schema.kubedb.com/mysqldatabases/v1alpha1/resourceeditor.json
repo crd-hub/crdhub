@@ -22,7 +22,7 @@
     "ui": {
       "editor": {
         "name": "schemakubedbcom-mysqldatabase-editor",
-        "version": "sha256:73f0e4ea45d3746f3f120d865a7c98622a7d20ce28a9e2bc2f7797451cad506b",
+        "version": "sha256:9a44a6c16b92f9f3565e532f8a0c33b6452a30b8bbcd52c874bdd009a10d9a98",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",

@@ -22,7 +22,7 @@
     "ui": {
       "editor": {
         "name": "appcatalogappscodecom-appbinding-editor",
-        "version": "sha256:3e73378ccbbd43fe69afaf5c2932d296fc151592d10da099ef414ba69bc96273",
+        "version": "sha256:17f520c0157081fa91ac2a458e9435d1aa9da6bcc5e7b527f2c9fd3c771145d4",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",

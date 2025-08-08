@@ -228,6 +228,9 @@
             "DoNotTerminate"
           ]
         },
+        "distributed": {
+          "type": "boolean"
+        },
         "halted": {
           "type": "boolean"
         },
@@ -7320,6 +7323,16 @@
             "maxscale": {
               "type": "object",
               "properties": {
+                "configSecret": {
+                  "type": "object",
+                  "properties": {
+                    "name": {
+                      "type": "string",
+                      "default": ""
+                    }
+                  },
+                  "x-kubernetes-map-type": "atomic"
+                },
                 "enableUI": {
                   "type": "boolean"
                 },

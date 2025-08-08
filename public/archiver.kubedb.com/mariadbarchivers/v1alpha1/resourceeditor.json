@@ -22,7 +22,7 @@
     "ui": {
       "editor": {
         "name": "archiverkubedbcom-mariadbarchiver-editor",
-        "version": "sha256:90bf9f812524d75900fe4c4fdb3f7ee267a8f9f58931819fbe8dd2f6de21fa75",
+        "version": "sha256:cbff13aade1fc53b674fe594d459f636969db3ba71ead1366c90bd7331e1f158",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",

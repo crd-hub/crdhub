@@ -22,7 +22,7 @@
     "ui": {
       "editor": {
         "name": "clusteropenclustermanagementio-managedclustersetbinding-editor",
-        "version": "sha256:ffe753ce5357f1e80b34741755bd92325ce05b5503564560492234af0591f5b4",
+        "version": "sha256:5372c4560d30e461c13c776539ff301a5517cadfe1af917acb0fc038381df556",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",

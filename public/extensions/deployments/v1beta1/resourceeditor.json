@@ -22,7 +22,7 @@
     "ui": {
       "editor": {
         "name": "extensions-deployment-editor",
-        "version": "sha256:6176fc61129215a0108599470ec2e573e5cb2d3a7647d0197c705bf46bf0ab94",
+        "version": "sha256:5d370575127c2e40a08e7c00ccc9f470214fb14391aafdc77cc58306cd5f4ad9",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",

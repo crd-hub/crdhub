@@ -22,7 +22,7 @@
     "ui": {
       "editor": {
         "name": "kustomizetoolkitfluxcdio-kustomization-editor",
-        "version": "sha256:f5716b284290a3220f0eab8c68682c9145d5d701dfe51331058e828d2d9916fc",
+        "version": "sha256:aff1a19b874b0afe97e0d7976258c1dac1aedc01378372a3d0a709be5ae2f517",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",

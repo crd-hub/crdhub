@@ -22,7 +22,7 @@
     "ui": {
       "editor": {
         "name": "configvirtualsecretsdev-secretmetadata-editor",
-        "version": "sha256:59d3fcc8e858b941c6d7d29542a8494a79d668016490e31d33a04d68594580e9",
+        "version": "sha256:7314cf340220b55b1511e3f3dd9126b8635df1ec71f6f92ac495b3e26ddd746e",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",

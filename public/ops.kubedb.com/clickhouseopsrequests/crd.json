@@ -73,6 +73,30 @@
                       }
                     }
                   },
+                  "configuration": {
+                    "type": "object",
+                    "properties": {
+                      "applyConfig": {
+                        "type": "object",
+                        "additionalProperties": {
+                          "type": "string"
+                        }
+                      },
+                      "configSecret": {
+                        "type": "object",
+                        "properties": {
+                          "name": {
+                            "type": "string",
+                            "default": ""
+                          }
+                        },
+                        "x-kubernetes-map-type": "atomic"
+                      },
+                      "removeCustomConfig": {
+                        "type": "boolean"
+                      }
+                    }
+                  },
                   "databaseRef": {
                     "type": "object",
                     "properties": {
@@ -82,6 +106,26 @@
                       }
                     },
                     "x-kubernetes-map-type": "atomic"
+                  },
+                  "horizontalScaling": {
+                    "type": "object",
+                    "properties": {
+                      "cluster": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "properties": {
+                            "clusterName": {
+                              "type": "string"
+                            },
+                            "replicas": {
+                              "type": "integer",
+                              "format": "int32"
+                            }
+                          }
+                        }
+                      }
+                    }
                   },
                   "restart": {
                     "type": "object"
@@ -93,8 +137,20 @@
                     "type": "string",
                     "enum": [
                       "Restart",
-                      "VerticalScaling"
+                      "VerticalScaling",
+                      "HorizontalScaling",
+                      "UpdateVersion",
+                      "VolumeExpansion",
+                      "Reconfigure"
                     ]
+                  },
+                  "updateVersion": {
+                    "type": "object",
+                    "properties": {
+                      "targetVersion": {
+                        "type": "string"
+                      }
+                    }
                   },
                   "verticalScaling": {
                     "type": "object",
@@ -267,6 +323,33 @@
                             }
                           }
                         }
+                      }
+                    }
+                  },
+                  "volumeExpansion": {
+                    "type": "object",
+                    "required": [
+                      "mode"
+                    ],
+                    "properties": {
+                      "mode": {
+                        "type": "string",
+                        "enum": [
+                          "Offline",
+                          "Online"
+                        ]
+                      },
+                      "node": {
+                        "pattern": "^(\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))(([KMGTPE]i)|[numkMGTPE]|([eE](\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))))?$",
+                        "anyOf": [
+                          {
+                            "type": "integer"
+                          },
+                          {
+                            "type": "string"
+                          }
+                        ],
+                        "x-kubernetes-int-or-string": true
                       }
                     }
                   }

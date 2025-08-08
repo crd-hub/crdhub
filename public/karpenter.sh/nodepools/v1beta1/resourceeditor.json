@@ -22,7 +22,7 @@
     "ui": {
       "editor": {
         "name": "karpentersh-nodepool-editor",
-        "version": "sha256:371dbc462b3f86bf3a4b8f03e1031436737ef8ad483e8c0f9a106c91877106b9",
+        "version": "sha256:7ccc94ed87474a2bdfca5b5da05b6e7f8394736f5f99fdf25df9bc8e8a65b222",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",

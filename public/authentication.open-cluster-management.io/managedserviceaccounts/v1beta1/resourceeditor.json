@@ -22,7 +22,7 @@
     "ui": {
       "editor": {
         "name": "authenticationopenclustermanagementio-managedserviceaccount-editor",
-        "version": "sha256:82333041deb24197fa7db46c585d91f06b04237c7c4e6503d3a574b02a09c75f",
+        "version": "sha256:fac303bd637cccf7ba5d385d1120569f414902d4a6dd1fbb1b23b49016f59aa9",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",

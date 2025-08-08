@@ -22,7 +22,7 @@
     "ui": {
       "editor": {
         "name": "kubedbcom-redissentinel-editor",
-        "version": "sha256:3f95afcecc516af67978d6a1051a70ec5092d9a35014e504b1672aa6915d6a65",
+        "version": "sha256:cdaac2ebfbf4f251a63cc1dd2243ca4fd679699559841ae951bfbfaa000f57db",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",

@@ -22,7 +22,7 @@
     "ui": {
       "editor": {
         "name": "networkingk8sio-networkpolicy-editor",
-        "version": "sha256:c007d4389e8daf837cee865bdd795b4bfad303e0cca6a6892dce70143435538b",
+        "version": "sha256:a838ee899779c92a59ab11c5ff57e096a476786e82074ea9ba33db73095cf57e",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",

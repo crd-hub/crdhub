@@ -22,7 +22,7 @@
     "ui": {
       "editor": {
         "name": "gcpkubedbcom-providerconfigusage-editor",
-        "version": "sha256:f86a868f95b81663ecfff3f721bdfaa45207d3eec2358d326a1e54af761a5fc8",
+        "version": "sha256:04474fb2adb7eb0efc8347b3b58b57021206a5f8c57824357a00b43eecda90f5",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",

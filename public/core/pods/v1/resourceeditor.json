@@ -22,7 +22,7 @@
     "ui": {
       "editor": {
         "name": "core-pod-editor",
-        "version": "sha256:560a3e0b0d8b40039b5a8f9e6f721ca7cea44138ac59ef4d60187af10cfb77e0",
+        "version": "sha256:3732b0dc2d27f034de1d4b37f059977a55ec342a6870fd897fd427936812e73f",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",

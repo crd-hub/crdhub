@@ -22,7 +22,7 @@
     "ui": {
       "editor": {
         "name": "catalogkubevaultcom-vaultserverversion-editor",
-        "version": "sha256:38fb995efe4cd0ca6a723927c65f1f5d2fbc9ea8d33217902a9d6ca37cf36b51",
+        "version": "sha256:c5f4c3411d4fd16e314da821698b538842241341ff9ed9b00c31dfca796d0985",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",

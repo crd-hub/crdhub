@@ -22,7 +22,7 @@
     "ui": {
       "editor": {
         "name": "autoscalingkubedbcom-postgresautoscaler-editor",
-        "version": "sha256:dca00a925be27ec418955fe00206ce76aeefbd4b959b612dac5d66835ce0c387",
+        "version": "sha256:fec277e4e8a42436a6c0a15595aa8cc8510fcb921026ca3b8e6b61a127fa6440",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",

@@ -22,7 +22,7 @@
     "ui": {
       "editor": {
         "name": "opskubedbcom-rabbitmqopsrequest-editor",
-        "version": "sha256:170847d52ec9a0d8c79c41b746a6d2a7878ab2d51c5cf9c7e2bb94214b4f6a8b",
+        "version": "sha256:4e5484c28fcbe117570b363a6c57102824db1e9477833600af486977d50275ed",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",

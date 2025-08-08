@@ -22,7 +22,7 @@
     "ui": {
       "editor": {
         "name": "gitopskubedbcom-rabbitmq-editor",
-        "version": "sha256:f8964cbcb3952970f3f1f4ecaefa0b0c6b9915393770984a0d3c0255231b74d6",
+        "version": "sha256:213a67f60fbeccfa329d62fe46818feac0c0b623b2920eea58f9e3856662ad37",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",

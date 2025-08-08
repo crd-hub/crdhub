@@ -22,7 +22,7 @@
     "ui": {
       "editor": {
         "name": "dynamodbawskubedbcom-table-editor",
-        "version": "sha256:449eeca1178087cc4cc8142edf2d7186af90f921bfd6657347f66ecc97f2ce13",
+        "version": "sha256:f3026dde7e52a626d3cb4c04a6cc9bd954d4891b68cc22574a285d0c8561ed05",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",

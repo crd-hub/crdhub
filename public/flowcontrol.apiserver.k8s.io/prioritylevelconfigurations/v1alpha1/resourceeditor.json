@@ -22,7 +22,7 @@
     "ui": {
       "editor": {
         "name": "flowcontrolapiserverk8sio-prioritylevelconfiguration-editor",
-        "version": "sha256:556e8a31916d52b3847b72cec22b86f2e5285781911841922a5dd9a1e1bff06a",
+        "version": "sha256:f3d529e49e141dd08b9d40e34dc80c4fd58a9336c50a7676446eb1a9531f6223",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",

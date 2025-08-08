@@ -22,7 +22,7 @@
     "ui": {
       "editor": {
         "name": "uikubedbcom-mysqlqueries-editor",
-        "version": "sha256:afaef1839b77668b4b4f74febae1e59bb22d189f07f2298446fab450742ffa29",
+        "version": "sha256:0b866d98f11a210f10e1f0a56051a84ac162a66a1122ed7bab4fc0a2922d9c3c",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",

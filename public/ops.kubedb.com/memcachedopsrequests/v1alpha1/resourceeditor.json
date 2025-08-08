@@ -22,7 +22,7 @@
     "ui": {
       "editor": {
         "name": "opskubedbcom-memcachedopsrequest-editor",
-        "version": "sha256:0f7bf34435b53472f270c632de3cc1c56ed55e7f7eb950e80f6fe660295a5bee",
+        "version": "sha256:61de0c8a5f616692a06c121f861a00c675c24bb5276bb08dc785adfd6b657f8f",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",

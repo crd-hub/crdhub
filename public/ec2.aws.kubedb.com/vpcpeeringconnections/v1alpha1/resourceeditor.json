@@ -22,7 +22,7 @@
     "ui": {
       "editor": {
         "name": "ec2awskubedbcom-vpcpeeringconnection-editor",
-        "version": "sha256:3dc1c7d6eecbdaaf7905a37065b22ebfd2d4488c2a76f0c802a731144840bf4b",
+        "version": "sha256:10def746ab2c916ae48fd358071fb3c10feb02b7e2681050e29327aacdd56fb9",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",

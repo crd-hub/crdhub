@@ -22,7 +22,7 @@
     "ui": {
       "editor": {
         "name": "dynamodbawskubedbcom-tag-editor",
-        "version": "sha256:50ee6791544c1d661d5a776d4f74f70d721798f68afbd585811c2b44852614b5",
+        "version": "sha256:93c15734b26601fe4827c6fe44060f3509b2e06d049996a9fdea94c43e99b18d",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",

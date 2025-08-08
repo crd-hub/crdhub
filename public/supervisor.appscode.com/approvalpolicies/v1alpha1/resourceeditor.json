@@ -22,7 +22,7 @@
     "ui": {
       "editor": {
         "name": "supervisorappscodecom-approvalpolicy-editor",
-        "version": "sha256:a1b260f0e082155c23a12fe72f76b96bcd60bd88a4ac0aa7cec10fe673c5a374",
+        "version": "sha256:f0af9588c872b427e0041b91592aaf01563a65e96d5a02295b58ffd8b7d56e73",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",

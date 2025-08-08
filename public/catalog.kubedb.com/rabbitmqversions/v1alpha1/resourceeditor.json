@@ -22,7 +22,7 @@
     "ui": {
       "editor": {
         "name": "catalogkubedbcom-rabbitmqversion-editor",
-        "version": "sha256:ac8e4754a929786fcc18d34e860f4ebd55d4ff5629eeecb50de62ba5b7390fb3",
+        "version": "sha256:d8a7cbb652c15be39262f7e86f9b365e4248d502e8d7814785c765f716912fa6",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",

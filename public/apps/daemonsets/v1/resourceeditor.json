@@ -22,7 +22,7 @@
     "ui": {
       "editor": {
         "name": "apps-daemonset-editor",
-        "version": "sha256:86b0a8f52ab1107f6bf85b080dbdd4e20e4b36a27a4bdb747f4cf9d27eda7fa9",
+        "version": "sha256:9419b0c72ce173bb94efc271ca4a17deecb3fca5906f6b552c9016eadfbea8a8",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",

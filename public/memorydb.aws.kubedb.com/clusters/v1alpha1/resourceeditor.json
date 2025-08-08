@@ -22,7 +22,7 @@
     "ui": {
       "editor": {
         "name": "memorydbawskubedbcom-cluster-editor",
-        "version": "sha256:e2374e881375118a64225dc5a5e1a2376d04b9fb76d037c9e225659f97b02f75",
+        "version": "sha256:b28d35d32034bacf7c2cc9476c6b481151deb5619b17869e7043cff589b52a9a",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",

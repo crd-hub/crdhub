@@ -22,7 +22,7 @@
     "ui": {
       "editor": {
         "name": "extensions-scale-editor",
-        "version": "sha256:01bafe43fa1aef5e87b55758ab35020e15b84dc6e7fa3bac7128095d74519961",
+        "version": "sha256:934860cffc2375bb47927b8ba49f2bce23ba6d3faff73e8f1a84e361d8001176",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",

@@ -22,7 +22,7 @@
     "ui": {
       "editor": {
         "name": "catalogappscodecom-kafkabinding-editor",
-        "version": "sha256:e663896363553e3fa787d5cd4adbaaee102251fc8e3f88ae01a35f847e98ba49",
+        "version": "sha256:064ea4ea121c9a015f65bbd2d6b78252bcd09903915c74b78f68f3eb6ec153a1",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",

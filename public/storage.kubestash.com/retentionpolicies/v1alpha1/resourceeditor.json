@@ -22,7 +22,7 @@
     "ui": {
       "editor": {
         "name": "storagekubestashcom-retentionpolicy-editor",
-        "version": "sha256:548f9d16834cbc4eaa807f01557451b087093b5dfadbaf2c6e04412ca5acb0ed",
+        "version": "sha256:8194660819544060126519d7cb089e7a6c3b9179732474f932eaa75198759c1f",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",

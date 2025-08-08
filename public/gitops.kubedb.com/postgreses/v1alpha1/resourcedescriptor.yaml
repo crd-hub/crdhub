@@ -229,6 +229,8 @@ spec:
               - WipeOut
               - DoNotTerminate
               type: string
+            distributed:
+              type: boolean
             enforceFsGroup:
               type: boolean
             halted:

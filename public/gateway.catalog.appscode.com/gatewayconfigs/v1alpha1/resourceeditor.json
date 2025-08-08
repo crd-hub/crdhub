@@ -22,7 +22,7 @@
     "ui": {
       "editor": {
         "name": "gatewaycatalogappscodecom-gatewayconfig-editor",
-        "version": "sha256:bbabea6fcbc781a954b2548427f71ce20d79790e50a69fa3f098ff8d2f8fd187",
+        "version": "sha256:e7c28a02e0e49014fa4f52ce6d62edcd783391b63cd73c63741d064bcaada1f3",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",

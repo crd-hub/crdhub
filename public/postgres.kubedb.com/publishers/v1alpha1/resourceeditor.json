@@ -22,7 +22,7 @@
     "ui": {
       "editor": {
         "name": "postgreskubedbcom-publisher-editor",
-        "version": "sha256:d97c211e388af4fe4fc9ca93479b5933ca2141e95cd8137191f7508df974a572",
+        "version": "sha256:09cbd8d7a9bf2c2030f802221a95590f99317fa1d84d05a778efaed6a8813797",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",

@@ -22,7 +22,7 @@
     "ui": {
       "options": {
         "name": "kubedbcom-oracle-editor-options",
-        "version": "sha256:ab52977f995ae7f8b9e98fedd72587fbdff2d22fcbca39e4d47ca4838cce23af",
+        "version": "sha256:4a7b1c351c519384f21654e3544eb02daf79952e40b2826c3af53ffeb2e502a2",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",
@@ -31,7 +31,7 @@
       },
       "editor": {
         "name": "kubedbcom-oracle-editor",
-        "version": "sha256:34a6c0a4eb42c15c2d33b70e9a6ad45d5578e60be9b1d52dd43222b600d68352",
+        "version": "sha256:812baf637f5f83f3c18864e232dbc12bbbdf86e4d1cc037c352f7f21cf2b96cc",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",
@@ -55,7 +55,7 @@
               "flow": "standalone-create",
               "editor": {
                 "name": "opskubedbcom-oracleopsrequest-editor",
-                "version": "v0.19.0",
+                "version": "sha256:da1bd8680f5a12d419502d7463f4616be8f46831e25ff25e62a473bfc092aa92",
                 "sourceRef": {
                   "apiGroup": "source.toolkit.fluxcd.io",
                   "kind": "HelmRepository",
@@ -76,7 +76,7 @@
               "flow": "standalone-create",
               "editor": {
                 "name": "opskubedbcom-oracleopsrequest-editor",
-                "version": "v0.19.0",
+                "version": "sha256:da1bd8680f5a12d419502d7463f4616be8f46831e25ff25e62a473bfc092aa92",
                 "sourceRef": {
                   "apiGroup": "source.toolkit.fluxcd.io",
                   "kind": "HelmRepository",
@@ -103,7 +103,7 @@
               "disabledTemplate": "{{ not (gt .spec.replicas 1) }}\n",
               "editor": {
                 "name": "opskubedbcom-oracleopsrequest-editor",
-                "version": "v0.19.0",
+                "version": "sha256:da1bd8680f5a12d419502d7463f4616be8f46831e25ff25e62a473bfc092aa92",
                 "sourceRef": {
                   "apiGroup": "source.toolkit.fluxcd.io",
                   "kind": "HelmRepository",
@@ -124,7 +124,7 @@
               "flow": "standalone-create",
               "editor": {
                 "name": "opskubedbcom-oracleopsrequest-editor",
-                "version": "v0.19.0",
+                "version": "sha256:da1bd8680f5a12d419502d7463f4616be8f46831e25ff25e62a473bfc092aa92",
                 "sourceRef": {
                   "apiGroup": "source.toolkit.fluxcd.io",
                   "kind": "HelmRepository",
@@ -145,7 +145,7 @@
               "flow": "standalone-create",
               "editor": {
                 "name": "opskubedbcom-oracleopsrequest-editor",
-                "version": "v0.19.0",
+                "version": "sha256:da1bd8680f5a12d419502d7463f4616be8f46831e25ff25e62a473bfc092aa92",
                 "sourceRef": {
                   "apiGroup": "source.toolkit.fluxcd.io",
                   "kind": "HelmRepository",

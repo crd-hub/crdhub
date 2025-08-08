@@ -22,7 +22,7 @@
     "ui": {
       "editor": {
         "name": "extensions-networkpolicy-editor",
-        "version": "sha256:368c62233a00384ca5d3919ba238d820286d5c5beb0b1612ef74a5f41ac55a79",
+        "version": "sha256:84a32fd4cb3cb47e29788016fa6d1c190775c11b1c623a6ad7570f126c8101eb",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",

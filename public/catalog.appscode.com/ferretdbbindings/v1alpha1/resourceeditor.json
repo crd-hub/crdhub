@@ -22,7 +22,7 @@
     "ui": {
       "editor": {
         "name": "catalogappscodecom-ferretdbbinding-editor",
-        "version": "sha256:13f68fdce434307fd6f0788cd663936b3d9cc05fabae4631f3674097052f0991",
+        "version": "sha256:f8b8ad3b8e414821065fb8adac36c2ef02ba1fdf7028977b4a7f11a2bdf08128",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",

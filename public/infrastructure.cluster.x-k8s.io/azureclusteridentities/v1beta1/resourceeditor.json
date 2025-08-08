@@ -22,7 +22,7 @@
     "ui": {
       "editor": {
         "name": "infrastructureclusterxk8sio-azureclusteridentity-editor",
-        "version": "sha256:957b6312704e7aaa3ebdfa0c5e122aad500d9c5cf368ccbfeb81e85fc3497626",
+        "version": "sha256:5cbaf5f6702c5156f3af5d4b1e147a0e30e7e79e4419df7b044e786756f3d74c",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",

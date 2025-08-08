@@ -22,7 +22,7 @@
     "ui": {
       "editor": {
         "name": "opskubedbcom-pgpoolopsrequest-editor",
-        "version": "sha256:462be27e7a9a882fd7a693eb9f2996c5a6515e212e0d65ca5b369abbf333157b",
+        "version": "sha256:484f8d7fc73f0d4e5c6e12ddbd7206290d818923bece63a6fcd79e0dc30e3a20",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",

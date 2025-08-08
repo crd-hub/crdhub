@@ -22,7 +22,7 @@
     "ui": {
       "editor": {
         "name": "opskubedbcom-proxysqlopsrequest-editor",
-        "version": "sha256:2a8ef7563d8b348c8c4898b524ef1153b5ef3b2a37b3f9cded0ac65b1ca89694",
+        "version": "sha256:52ce4ef5a884ebcbaff06aaf937666daf93e9907e8b08516d0d7935349ede992",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",

@@ -22,7 +22,7 @@
     "ui": {
       "editor": {
         "name": "cosmosdbazurekubedbcom-gremlindatabase-editor",
-        "version": "sha256:e169585af4b658f84962a80d0878363e2f0a239f574ebb912489c060f35cc3cb",
+        "version": "sha256:9ad6068efae899f59ac3011ec3518ef14d8f5c1fcc76302d47cfb0f31887638c",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",

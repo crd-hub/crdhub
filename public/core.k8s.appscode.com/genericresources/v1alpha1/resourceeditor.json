@@ -22,7 +22,7 @@
     "ui": {
       "editor": {
         "name": "corek8sappscodecom-genericresource-editor",
-        "version": "sha256:5c7943d8c7a74f6e2ee21cf02f1911b219bfc2f2c1e499cccc70653124a92e6c",
+        "version": "sha256:3854dac51b08fb0ce29333138e5a5d55e67fdede9d57797774c0d39684506740",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",

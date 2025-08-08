@@ -22,7 +22,7 @@
     "ui": {
       "editor": {
         "name": "docdbawskubedbcom-eventsubscription-editor",
-        "version": "sha256:55c92cb205f8d838a955900bb8507d088a00efc0bfba5d3e5c683508c0a99da6",
+        "version": "sha256:ab939c9ef93a633c832f6b0c2d173851e7ecabac94dd241d844fcffdc9f38862",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",

@@ -22,7 +22,7 @@
     "ui": {
       "editor": {
         "name": "catalogappscodecom-druidbinding-editor",
-        "version": "sha256:5341963a072512498904d90bd5c6f4fec52eeb8da6bbd05c6370f9c6b29aedf6",
+        "version": "sha256:8a026613763e9a448c026f149ba067e0262e610d8d6f2344e507e8807af62ef6",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",

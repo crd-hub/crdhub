@@ -22,7 +22,7 @@
     "ui": {
       "editor": {
         "name": "corekubestashcom-backupblueprint-editor",
-        "version": "sha256:26989d697fad2fc5aa747e669882eb16d680b4881011a3668f00378710557c69",
+        "version": "sha256:29a4c58a49fe53dbd7688ecdc3363a946d0a80223e96d9fa9fa50caca06517b6",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",

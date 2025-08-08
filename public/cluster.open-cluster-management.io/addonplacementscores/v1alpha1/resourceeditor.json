@@ -22,7 +22,7 @@
     "ui": {
       "editor": {
         "name": "clusteropenclustermanagementio-addonplacementscore-editor",
-        "version": "sha256:733e017742eee22c87294dc21574c92330b57c13769af8e4e11019140b3b7d94",
+        "version": "sha256:41c6374a191bdbbe61176471b74ceac82cd853f299ef8e364ceada47561990e5",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",

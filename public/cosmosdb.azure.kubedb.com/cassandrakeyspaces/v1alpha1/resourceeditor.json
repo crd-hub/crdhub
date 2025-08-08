@@ -22,7 +22,7 @@
     "ui": {
       "editor": {
         "name": "cosmosdbazurekubedbcom-cassandrakeyspace-editor",
-        "version": "sha256:d09c7756a15afa68ae3caf9e650f37e777795d560a58ea89a9f90dd3e951bd4d",
+        "version": "sha256:61dc7ed0e38cd6cff5f7d2fc23dc6ca260714d9bbf8a414194997ab894de1973",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",

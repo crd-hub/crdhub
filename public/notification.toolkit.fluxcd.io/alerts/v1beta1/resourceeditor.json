@@ -22,7 +22,7 @@
     "ui": {
       "editor": {
         "name": "notificationtoolkitfluxcdio-alert-editor",
-        "version": "sha256:862887aedb022648b2190c4110483da16f72936d664302dfa5238aa175475510",
+        "version": "sha256:0056f41f45b95d1bd909f679c0a36be8999e700c0c586d13101ef9ff04f342fc",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",

@@ -22,7 +22,7 @@
     "ui": {
       "editor": {
         "name": "kubebindappscodecom-apiservicebinding-editor",
-        "version": "sha256:0853c26d9273daac29f672caaca11831007b4657e664dfab3ca2022fb188e7e7",
+        "version": "sha256:5c402a21c5a52ca5f9bf63d2b905d1596753c9b8a05142c1dea6b545ef9e1496",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",

@@ -22,7 +22,7 @@
     "ui": {
       "editor": {
         "name": "enginekubevaultcom-redisrole-editor",
-        "version": "sha256:1df84cbf24c85dc9930cd269b2ffa6b75effd311944fee8d2fa65e77e5982839",
+        "version": "sha256:78e8d0712d384586a3243770487a37c76f21fa66ab056df0f055fc3f49962f20",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",

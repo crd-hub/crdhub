@@ -22,7 +22,7 @@
     "ui": {
       "options": {
         "name": "kubedbcom-zookeeper-editor-options",
-        "version": "sha256:1746ffe33b049b7ede77f3a33b3b4837c70cadeb2156be92e778b4aad2941c8f",
+        "version": "sha256:82e53a745e90b0c6862870f265c5894d11f52a5d5878bd6a8ee3c3a9c44ed399",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",
@@ -31,7 +31,7 @@
       },
       "editor": {
         "name": "kubedbcom-zookeeper-editor",
-        "version": "sha256:c113443ec95aae31872e91d4a7fceb4d074470fea12bdf33d9933a435b4728d2",
+        "version": "sha256:3c0684958bc2d6337223e91cbadde3082520cce19b415251033f9fa942903cb0",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",
@@ -55,7 +55,7 @@
               "flow": "standalone-edit",
               "editor": {
                 "name": "kubedbcom-zookeeper-editor",
-                "version": "sha256:c113443ec95aae31872e91d4a7fceb4d074470fea12bdf33d9933a435b4728d2",
+                "version": "sha256:3c0684958bc2d6337223e91cbadde3082520cce19b415251033f9fa942903cb0",
                 "sourceRef": {
                   "apiGroup": "source.toolkit.fluxcd.io",
                   "kind": "HelmRepository",
@@ -76,7 +76,7 @@
               "flow": "standalone-create",
               "editor": {
                 "name": "corekubestashcom-backupsession-editor",
-                "version": "sha256:c75663ce85cd5954d1e009443e3c0c83c2139ad41cfc7625906caa5448138464",
+                "version": "sha256:4647ae40d9f3649863aed136146da50a05e5aa668d57b5dfebc32b60fcd3a441",
                 "sourceRef": {
                   "apiGroup": "source.toolkit.fluxcd.io",
                   "kind": "HelmRepository",
@@ -97,7 +97,7 @@
               "flow": "standalone-create",
               "editor": {
                 "name": "corekubestashcom-restoresession-editor-options",
-                "version": "sha256:9f9f6f709a8d8ae9377c5823f226e043fa0aaf87ee1b27c323d110df00da2570",
+                "version": "sha256:eb67a703da855f17c35caf6e2853a361757398962e7ba91d7fc8001c41323789",
                 "sourceRef": {
                   "apiGroup": "source.toolkit.fluxcd.io",
                   "kind": "HelmRepository",
@@ -123,7 +123,7 @@
               "flow": "standalone-create",
               "editor": {
                 "name": "opskubedbcom-zookeeperopsrequest-editor",
-                "version": "sha256:a52d511cecb91f291bb99b4378c6960dba8fd405523c77fd1d65ce15812a718e",
+                "version": "sha256:067ecf480313f845281ae50ef08b332af0fba65bb37cfbcbf386de48852ae7d5",
                 "sourceRef": {
                   "apiGroup": "source.toolkit.fluxcd.io",
                   "kind": "HelmRepository",
@@ -144,7 +144,7 @@
               "flow": "standalone-create",
               "editor": {
                 "name": "opskubedbcom-zookeeperopsrequest-editor",
-                "version": "sha256:a52d511cecb91f291bb99b4378c6960dba8fd405523c77fd1d65ce15812a718e",
+                "version": "sha256:067ecf480313f845281ae50ef08b332af0fba65bb37cfbcbf386de48852ae7d5",
                 "sourceRef": {
                   "apiGroup": "source.toolkit.fluxcd.io",
                   "kind": "HelmRepository",
@@ -165,7 +165,7 @@
               "flow": "standalone-create",
               "editor": {
                 "name": "opskubedbcom-zookeeperopsrequest-editor",
-                "version": "sha256:a52d511cecb91f291bb99b4378c6960dba8fd405523c77fd1d65ce15812a718e",
+                "version": "sha256:067ecf480313f845281ae50ef08b332af0fba65bb37cfbcbf386de48852ae7d5",
                 "sourceRef": {
                   "apiGroup": "source.toolkit.fluxcd.io",
                   "kind": "HelmRepository",
@@ -191,7 +191,7 @@
               "flow": "standalone-create",
               "editor": {
                 "name": "opskubedbcom-zookeeperopsrequest-editor",
-                "version": "sha256:a52d511cecb91f291bb99b4378c6960dba8fd405523c77fd1d65ce15812a718e",
+                "version": "sha256:067ecf480313f845281ae50ef08b332af0fba65bb37cfbcbf386de48852ae7d5",
                 "sourceRef": {
                   "apiGroup": "source.toolkit.fluxcd.io",
                   "kind": "HelmRepository",
@@ -212,7 +212,7 @@
               "flow": "standalone-create",
               "editor": {
                 "name": "opskubedbcom-zookeeperopsrequest-editor",
-                "version": "sha256:a52d511cecb91f291bb99b4378c6960dba8fd405523c77fd1d65ce15812a718e",
+                "version": "sha256:067ecf480313f845281ae50ef08b332af0fba65bb37cfbcbf386de48852ae7d5",
                 "sourceRef": {
                   "apiGroup": "source.toolkit.fluxcd.io",
                   "kind": "HelmRepository",
@@ -233,7 +233,7 @@
               "flow": "standalone-create",
               "editor": {
                 "name": "opskubedbcom-zookeeperopsrequest-editor",
-                "version": "sha256:a52d511cecb91f291bb99b4378c6960dba8fd405523c77fd1d65ce15812a718e",
+                "version": "sha256:067ecf480313f845281ae50ef08b332af0fba65bb37cfbcbf386de48852ae7d5",
                 "sourceRef": {
                   "apiGroup": "source.toolkit.fluxcd.io",
                   "kind": "HelmRepository",
@@ -259,7 +259,7 @@
               "flow": "standalone-create",
               "editor": {
                 "name": "opskubedbcom-zookeeperopsrequest-editor",
-                "version": "sha256:a52d511cecb91f291bb99b4378c6960dba8fd405523c77fd1d65ce15812a718e",
+                "version": "sha256:067ecf480313f845281ae50ef08b332af0fba65bb37cfbcbf386de48852ae7d5",
                 "sourceRef": {
                   "apiGroup": "source.toolkit.fluxcd.io",
                   "kind": "HelmRepository",
@@ -280,7 +280,7 @@
               "flow": "standalone-edit",
               "editor": {
                 "name": "kubedbcom-zookeeper-editor",
-                "version": "sha256:c113443ec95aae31872e91d4a7fceb4d074470fea12bdf33d9933a435b4728d2",
+                "version": "sha256:3c0684958bc2d6337223e91cbadde3082520cce19b415251033f9fa942903cb0",
                 "sourceRef": {
                   "apiGroup": "source.toolkit.fluxcd.io",
                   "kind": "HelmRepository",

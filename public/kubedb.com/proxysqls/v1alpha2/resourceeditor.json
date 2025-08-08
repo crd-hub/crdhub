@@ -22,7 +22,7 @@
     "ui": {
       "options": {
         "name": "kubedbcom-proxysql-editor-options",
-        "version": "sha256:89be7965c9316cd2ad657b011bf0a097081c7f94d23278dbfb764193cf5def91",
+        "version": "sha256:b1b0b945aa66273e4daa4d48f779ec52f2bedaee4f18816f1ea6eafe6dedea5d",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",
@@ -31,7 +31,7 @@
       },
       "editor": {
         "name": "kubedbcom-proxysql-editor",
-        "version": "sha256:4ed1648db9c4261513a0d10217554c19e156e590025cabf83c8c4c0b3528cf4b",
+        "version": "sha256:213bef885c894199590cdcb37c6ec30508710444bda6fa3eeb829c3de05f26c6",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",
@@ -55,7 +55,7 @@
               "flow": "standalone-create",
               "editor": {
                 "name": "opskubedbcom-proxysqlopsrequest-editor",
-                "version": "sha256:2a8ef7563d8b348c8c4898b524ef1153b5ef3b2a37b3f9cded0ac65b1ca89694",
+                "version": "sha256:52ce4ef5a884ebcbaff06aaf937666daf93e9907e8b08516d0d7935349ede992",
                 "sourceRef": {
                   "apiGroup": "source.toolkit.fluxcd.io",
                   "kind": "HelmRepository",
@@ -76,7 +76,7 @@
               "flow": "standalone-create",
               "editor": {
                 "name": "opskubedbcom-proxysqlopsrequest-editor",
-                "version": "sha256:2a8ef7563d8b348c8c4898b524ef1153b5ef3b2a37b3f9cded0ac65b1ca89694",
+                "version": "sha256:52ce4ef5a884ebcbaff06aaf937666daf93e9907e8b08516d0d7935349ede992",
                 "sourceRef": {
                   "apiGroup": "source.toolkit.fluxcd.io",
                   "kind": "HelmRepository",
@@ -97,7 +97,7 @@
               "flow": "standalone-create",
               "editor": {
                 "name": "opskubedbcom-proxysqlopsrequest-editor",
-                "version": "sha256:2a8ef7563d8b348c8c4898b524ef1153b5ef3b2a37b3f9cded0ac65b1ca89694",
+                "version": "sha256:52ce4ef5a884ebcbaff06aaf937666daf93e9907e8b08516d0d7935349ede992",
                 "sourceRef": {
                   "apiGroup": "source.toolkit.fluxcd.io",
                   "kind": "HelmRepository",
@@ -123,7 +123,7 @@
               "flow": "standalone-create",
               "editor": {
                 "name": "opskubedbcom-proxysqlopsrequest-editor",
-                "version": "sha256:2a8ef7563d8b348c8c4898b524ef1153b5ef3b2a37b3f9cded0ac65b1ca89694",
+                "version": "sha256:52ce4ef5a884ebcbaff06aaf937666daf93e9907e8b08516d0d7935349ede992",
                 "sourceRef": {
                   "apiGroup": "source.toolkit.fluxcd.io",
                   "kind": "HelmRepository",
@@ -144,7 +144,7 @@
               "flow": "standalone-create",
               "editor": {
                 "name": "opskubedbcom-proxysqlopsrequest-editor",
-                "version": "sha256:2a8ef7563d8b348c8c4898b524ef1153b5ef3b2a37b3f9cded0ac65b1ca89694",
+                "version": "sha256:52ce4ef5a884ebcbaff06aaf937666daf93e9907e8b08516d0d7935349ede992",
                 "sourceRef": {
                   "apiGroup": "source.toolkit.fluxcd.io",
                   "kind": "HelmRepository",
@@ -170,7 +170,7 @@
               "flow": "standalone-create",
               "editor": {
                 "name": "opskubedbcom-proxysqlopsrequest-editor",
-                "version": "sha256:2a8ef7563d8b348c8c4898b524ef1153b5ef3b2a37b3f9cded0ac65b1ca89694",
+                "version": "sha256:52ce4ef5a884ebcbaff06aaf937666daf93e9907e8b08516d0d7935349ede992",
                 "sourceRef": {
                   "apiGroup": "source.toolkit.fluxcd.io",
                   "kind": "HelmRepository",
@@ -191,7 +191,7 @@
               "flow": "standalone-edit",
               "editor": {
                 "name": "kubedbcom-proxysql-editor",
-                "version": "sha256:4ed1648db9c4261513a0d10217554c19e156e590025cabf83c8c4c0b3528cf4b",
+                "version": "sha256:213bef885c894199590cdcb37c6ec30508710444bda6fa3eeb829c3de05f26c6",
                 "sourceRef": {
                   "apiGroup": "source.toolkit.fluxcd.io",
                   "kind": "HelmRepository",

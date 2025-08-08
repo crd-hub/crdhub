@@ -22,7 +22,7 @@
     "ui": {
       "editor": {
         "name": "uikubedbcom-elasticsearchschemaoverview-editor",
-        "version": "sha256:633c5fcce3198783b0bf50f3a7ec6db7acf991ca61acc6c9681d830318cbabeb",
+        "version": "sha256:1439c7ac74559724db4df7823c5c083b69819ad03ff5fbe63d928b383b657243",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",

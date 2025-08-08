@@ -22,7 +22,7 @@
     "ui": {
       "editor": {
         "name": "karpenterazurecom-aksnodeclass-editor",
-        "version": "sha256:e16c3236c20a717ca71755f3b1be989690a0bcc386073e4956a8c8a6b828afd5",
+        "version": "sha256:ad60a812b40c4db2e423e7e28895cc15d4d60e013d67be9eb35df4c91f7baaa7",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",

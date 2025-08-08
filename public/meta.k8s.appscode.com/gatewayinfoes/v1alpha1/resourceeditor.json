@@ -22,7 +22,7 @@
     "ui": {
       "editor": {
         "name": "metak8sappscodecom-gatewayinfo-editor",
-        "version": "sha256:8398501c617fe238b8683cbe26d17f764cdf129fe58314556cfbd1d904067dff",
+        "version": "sha256:2377f74a6cddb9a34291a3cb0efcd9c36b22a580cc0c54c3204cdbf661121b71",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",

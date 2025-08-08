@@ -22,7 +22,7 @@
     "ui": {
       "editor": {
         "name": "spannergcpkubedbcom-database-editor",
-        "version": "sha256:d5dd281efc60ef30fc7d32b72869d5d3b7e81dfbc8e11ecc7bee7df12828c469",
+        "version": "sha256:314f0ff4cb2465c8bc8957800f857df73300368c35f5fe316095fc64779ba9a2",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",

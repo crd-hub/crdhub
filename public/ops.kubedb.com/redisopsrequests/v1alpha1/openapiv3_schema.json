@@ -135,6 +135,33 @@
         "horizontalScaling": {
           "type": "object",
           "properties": {
+            "announce": {
+              "type": "object",
+              "properties": {
+                "shards": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "endpoints": {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  }
+                },
+                "type": {
+                  "type": "string",
+                  "default": "hostname",
+                  "enum": [
+                    "ip",
+                    "hostname"
+                  ]
+                }
+              }
+            },
             "replicas": {
               "type": "integer",
               "format": "int32"

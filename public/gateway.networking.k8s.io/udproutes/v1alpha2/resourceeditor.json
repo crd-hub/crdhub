@@ -22,7 +22,7 @@
     "ui": {
       "editor": {
         "name": "gatewaynetworkingk8sio-udproute-editor",
-        "version": "sha256:023bc0cea8da8227c6e36b26f988c5dac980c4d9a2dd93dcc1df286e38742089",
+        "version": "sha256:ce38335ec533c2e0c205bdf7fdf38873deb07e94f36edb7aaf1bdf9f3904ae36",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",

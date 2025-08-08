@@ -22,7 +22,7 @@
     "ui": {
       "editor": {
         "name": "catalogkubewaredev-redisbinding-editor",
-        "version": "sha256:89fb34d6e4115ebddf73941ed7b5ead12fd303591d146b8bd933b6138381efe8",
+        "version": "sha256:8c1a89a6090b0adda223a3ea83b649c1c62a422837e05599781de80213506e24",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",

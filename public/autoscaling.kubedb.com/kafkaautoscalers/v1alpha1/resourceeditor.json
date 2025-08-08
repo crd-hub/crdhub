@@ -22,7 +22,7 @@
     "ui": {
       "editor": {
         "name": "autoscalingkubedbcom-kafkaautoscaler-editor",
-        "version": "sha256:5b04ba4f02d6fe794232661f95745ebb837d46add78f52ff64f94e18ab161629",
+        "version": "sha256:368ff817a2a88434572446f7a7b23dd27d9266bf30f2978819131b228f916a4f",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",

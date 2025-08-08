@@ -52,8 +52,9 @@
                     "enum": [
                       "Restic",
                       "WalG",
-                      "Medusa",
-                      "VolumeSnapshotter"
+                      "VolumeSnapshotter",
+                      "Solr",
+                      "Medusa"
                     ]
                   },
                   {
@@ -61,7 +62,8 @@
                       "Restic",
                       "WalG",
                       "Medusa",
-                      "VolumeSnapshotter"
+                      "VolumeSnapshotter",
+                      "Solr"
                     ]
                   }
                 ]
@@ -1564,8 +1566,9 @@
                     "enum": [
                       "Restic",
                       "WalG",
-                      "Medusa",
-                      "VolumeSnapshotter"
+                      "VolumeSnapshotter",
+                      "Solr",
+                      "Medusa"
                     ]
                   },
                   {
@@ -1573,7 +1576,8 @@
                       "Restic",
                       "WalG",
                       "Medusa",
-                      "VolumeSnapshotter"
+                      "VolumeSnapshotter",
+                      "Solr"
                     ]
                   }
                 ]
