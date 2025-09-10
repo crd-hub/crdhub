@@ -22,7 +22,7 @@
     "ui": {
       "editor": {
         "name": "core-componentstatus-editor",
-        "version": "sha256:4a30720394a1c52c6ecc8a6aafa0ea0f673f63ba48548adedeb2fbace3448b7c",
+        "version": "v0.24.0",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",

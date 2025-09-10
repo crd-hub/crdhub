@@ -22,7 +22,7 @@
     "ui": {
       "editor": {
         "name": "expansiongatekeepersh-expansiontemplate-editor",
-        "version": "sha256:197d77581a4e625c27e047b1bab83d5f39033b05a3685ab1ecd92ac82dff74ca",
+        "version": "v0.24.0",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",

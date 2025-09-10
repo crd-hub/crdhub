@@ -22,7 +22,7 @@
     "ui": {
       "editor": {
         "name": "storageazurekubedbcom-account-editor",
-        "version": "sha256:aa43f44734b95d3671f4f9d509d051be3efcd4ec62f603bcaab3966c5239eec0",
+        "version": "v0.24.0",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",

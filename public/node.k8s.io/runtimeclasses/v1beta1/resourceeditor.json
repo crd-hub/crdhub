@@ -22,7 +22,7 @@
     "ui": {
       "editor": {
         "name": "nodek8sio-runtimeclass-editor",
-        "version": "sha256:171b4b910fe900f5cd743e55cbbf2bad101ec1274c936503397a31249ca7a2e2",
+        "version": "v0.24.0",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",

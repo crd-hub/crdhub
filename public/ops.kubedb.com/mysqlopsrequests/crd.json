@@ -116,6 +116,20 @@
                       }
                     }
                   },
+                  "migration": {
+                    "type": "object",
+                    "required": [
+                      "storageClassName"
+                    ],
+                    "properties": {
+                      "oldPVReclaimPolicy": {
+                        "type": "string"
+                      },
+                      "storageClassName": {
+                        "type": "string"
+                      }
+                    }
+                  },
                   "replicationModeTransformation": {
                     "type": "object",
                     "required": [
@@ -461,7 +475,8 @@
                       "Reconfigure",
                       "ReconfigureTLS",
                       "RotateAuth",
-                      "ReplicationModeTransformation"
+                      "ReplicationModeTransformation",
+                      "StorageMigration"
                     ]
                   },
                   "updateVersion": {

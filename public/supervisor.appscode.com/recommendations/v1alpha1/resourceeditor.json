@@ -22,7 +22,7 @@
     "ui": {
       "editor": {
         "name": "supervisorappscodecom-recommendation-editor",
-        "version": "sha256:89acdc719ae035029b803b8465e4db35bfc7fad40415667db33d4b5e9b1c64e5",
+        "version": "v0.24.0",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",

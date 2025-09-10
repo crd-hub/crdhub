@@ -65,6 +65,17 @@
                       }
                     }
                   },
+                  "gitSyncer": {
+                    "type": "object",
+                    "required": [
+                      "image"
+                    ],
+                    "properties": {
+                      "image": {
+                        "type": "string"
+                      }
+                    }
+                  },
                   "pgBouncer": {
                     "type": "object",
                     "required": [

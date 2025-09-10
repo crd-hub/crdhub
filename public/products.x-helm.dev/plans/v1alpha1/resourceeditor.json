@@ -22,7 +22,7 @@
     "ui": {
       "editor": {
         "name": "productsxhelmdev-plan-editor",
-        "version": "sha256:3769b8320aeb84644ffbe554824906837cf39982f7e045b7d1202b6ecefbf597",
+        "version": "v0.24.0",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",

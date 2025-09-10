@@ -22,7 +22,7 @@
     "ui": {
       "editor": {
         "name": "dbformariadbazurekubedbcom-virtualnetworkrule-editor",
-        "version": "sha256:d2e6b80414773e5a5b6ab541c58dcf77ff8a43f63d338aa96503d5bd928c06ff",
+        "version": "v0.24.0",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",

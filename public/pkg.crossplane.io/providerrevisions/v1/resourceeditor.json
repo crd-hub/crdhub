@@ -22,7 +22,7 @@
     "ui": {
       "editor": {
         "name": "pkgcrossplaneio-providerrevision-editor",
-        "version": "sha256:2893939440e012dd708c50fad807a6688f047f4e1210eca392ff87c0c1f8afba",
+        "version": "v0.24.0",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",

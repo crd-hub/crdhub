@@ -22,7 +22,7 @@
     "ui": {
       "editor": {
         "name": "memorydbawskubedbcom-snapshot-editor",
-        "version": "sha256:52d12ffa69898811e2ce39b8950fea536355cd96fd905a7b41871260e721c8f9",
+        "version": "v0.24.0",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",

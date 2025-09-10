@@ -22,7 +22,7 @@
     "ui": {
       "editor": {
         "name": "core-rangeallocation-editor",
-        "version": "sha256:017e3216e5f259499c0b079acfe5c452453376181c0eb3c61546d63f77f2bb99",
+        "version": "v0.24.0",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",

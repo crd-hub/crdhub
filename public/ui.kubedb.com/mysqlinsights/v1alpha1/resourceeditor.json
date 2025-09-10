@@ -22,7 +22,7 @@
     "ui": {
       "editor": {
         "name": "uikubedbcom-mysqlinsight-editor",
-        "version": "sha256:bc5bd5c314cb71331a161cb816aadc8b9109c7ee6776aca4545d12b6daf8035a",
+        "version": "v0.24.0",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",

@@ -22,7 +22,7 @@
     "ui": {
       "editor": {
         "name": "cosmosdbazurekubedbcom-table-editor",
-        "version": "sha256:3a47f80984304c2ec0508b7cac41ae918fa2a03451f83716cfe0cc052df99533",
+        "version": "v0.24.0",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",

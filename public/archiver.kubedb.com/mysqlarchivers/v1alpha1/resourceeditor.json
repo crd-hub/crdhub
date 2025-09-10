@@ -22,7 +22,7 @@
     "ui": {
       "editor": {
         "name": "archiverkubedbcom-mysqlarchiver-editor",
-        "version": "sha256:15d7bcfb99d6170829197bb9e64233c8465e62b282156689024ffcd3be68619e",
+        "version": "v0.24.0",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",

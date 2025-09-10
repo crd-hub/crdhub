@@ -22,7 +22,7 @@
     "ui": {
       "editor": {
         "name": "catalogkubedbcom-memcachedversion-editor",
-        "version": "sha256:1998af570e32f6e87e7fce346edc4b618784805a003c9a3f835101e060aeba47",
+        "version": "v0.24.0",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",

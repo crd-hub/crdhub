@@ -22,7 +22,7 @@
     "ui": {
       "editor": {
         "name": "catalogkubewaredev-postgresbinding-editor",
-        "version": "sha256:0d341f63e1085c87bb3866aa53e1295a7cad89fc4c6986b9e3a50868fb8680ea",
+        "version": "v0.24.0",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",

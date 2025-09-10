@@ -22,7 +22,7 @@
     "ui": {
       "editor": {
         "name": "infrastructureclusterxk8sio-azureasomanagedcontrolplane-editor",
-        "version": "sha256:97feaeede4b6c84385823b84c34f4235a7d71622334281dcde586cddc95563e3",
+        "version": "v0.24.0",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",

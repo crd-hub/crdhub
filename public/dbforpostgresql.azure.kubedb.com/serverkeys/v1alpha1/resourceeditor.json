@@ -22,7 +22,7 @@
     "ui": {
       "editor": {
         "name": "dbforpostgresqlazurekubedbcom-serverkey-editor",
-        "version": "sha256:c163d629c3fc7aabaf815b5fce6b56da7161470ff5778f6cb31da78048a56995",
+        "version": "v0.24.0",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",

@@ -64,6 +64,17 @@
                       }
                     }
                   },
+                  "gitSyncer": {
+                    "type": "object",
+                    "required": [
+                      "image"
+                    ],
+                    "properties": {
+                      "image": {
+                        "type": "string"
+                      }
+                    }
+                  },
                   "pgpool": {
                     "type": "object",
                     "required": [

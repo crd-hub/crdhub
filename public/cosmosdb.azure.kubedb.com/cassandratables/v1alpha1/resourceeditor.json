@@ -22,7 +22,7 @@
     "ui": {
       "editor": {
         "name": "cosmosdbazurekubedbcom-cassandratable-editor",
-        "version": "sha256:8e0fb95072ac21fb1f61c4bb4a9be37254e6bacf244827dca14902fa3dec4bf7",
+        "version": "v0.24.0",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",

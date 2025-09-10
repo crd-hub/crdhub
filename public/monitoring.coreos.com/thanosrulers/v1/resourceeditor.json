@@ -22,7 +22,7 @@
     "ui": {
       "editor": {
         "name": "monitoringcoreoscom-thanosruler-editor",
-        "version": "sha256:9ef4de78a7676b1debeea6394dd1fed48e42ebbfe15ad98ddad297000ec413f6",
+        "version": "v0.24.0",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",

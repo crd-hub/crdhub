@@ -22,7 +22,7 @@
     "ui": {
       "editor": {
         "name": "dbformariadbazurekubedbcom-server-editor",
-        "version": "sha256:6fb110e2c35082db5e9fa927f4659b30f0ff31ee10be898b4c8090dd47947812",
+        "version": "v0.24.0",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",

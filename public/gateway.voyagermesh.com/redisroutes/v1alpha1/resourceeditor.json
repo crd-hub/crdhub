@@ -22,7 +22,7 @@
     "ui": {
       "editor": {
         "name": "gatewayvoyagermeshcom-redisroute-editor",
-        "version": "sha256:b72ead711ec9a8a8f375861963801d994f19ee118ba92e9b76d4ebc9e353ca62",
+        "version": "v0.24.0",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",

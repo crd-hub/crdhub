@@ -22,7 +22,7 @@
     "ui": {
       "options": {
         "name": "kubedbcom-hazelcast-editor-options",
-        "version": "sha256:9807ae2ebbfe6cd8c91379ea1581a03950369a0a86e92135e59dbbeac21c60ed",
+        "version": "v0.24.0",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",
@@ -31,7 +31,7 @@
       },
       "editor": {
         "name": "kubedbcom-hazelcast-editor",
-        "version": "sha256:23da6cb2861e3ce7c431f1c306d7309bb82ad6ac640eb19733540f7e2ef61621",
+        "version": "v0.24.0",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",
@@ -55,7 +55,7 @@
               "flow": "standalone-create",
               "editor": {
                 "name": "opskubedbcom-hazelcastopsrequest-editor",
-                "version": "sha256:b25227b11c9cd0b09547ada6a3566f4d4c6a50b6e19077a832fcb65c18cddadc",
+                "version": "v0.24.0",
                 "sourceRef": {
                   "apiGroup": "source.toolkit.fluxcd.io",
                   "kind": "HelmRepository",
@@ -76,7 +76,7 @@
               "flow": "standalone-create",
               "editor": {
                 "name": "opskubedbcom-hazelcastopsrequest-editor",
-                "version": "sha256:b25227b11c9cd0b09547ada6a3566f4d4c6a50b6e19077a832fcb65c18cddadc",
+                "version": "v0.24.0",
                 "sourceRef": {
                   "apiGroup": "source.toolkit.fluxcd.io",
                   "kind": "HelmRepository",
@@ -103,7 +103,7 @@
               "disabledTemplate": "{{ not (gt .spec.replicas 1) }}\n",
               "editor": {
                 "name": "opskubedbcom-hazelcastopsrequest-editor",
-                "version": "sha256:b25227b11c9cd0b09547ada6a3566f4d4c6a50b6e19077a832fcb65c18cddadc",
+                "version": "v0.24.0",
                 "sourceRef": {
                   "apiGroup": "source.toolkit.fluxcd.io",
                   "kind": "HelmRepository",
@@ -124,7 +124,7 @@
               "flow": "standalone-create",
               "editor": {
                 "name": "opskubedbcom-hazelcastopsrequest-editor",
-                "version": "sha256:b25227b11c9cd0b09547ada6a3566f4d4c6a50b6e19077a832fcb65c18cddadc",
+                "version": "v0.24.0",
                 "sourceRef": {
                   "apiGroup": "source.toolkit.fluxcd.io",
                   "kind": "HelmRepository",
@@ -145,7 +145,7 @@
               "flow": "standalone-create",
               "editor": {
                 "name": "opskubedbcom-hazelcastopsrequest-editor",
-                "version": "sha256:b25227b11c9cd0b09547ada6a3566f4d4c6a50b6e19077a832fcb65c18cddadc",
+                "version": "v0.24.0",
                 "sourceRef": {
                   "apiGroup": "source.toolkit.fluxcd.io",
                   "kind": "HelmRepository",

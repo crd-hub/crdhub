@@ -22,7 +22,7 @@
     "ui": {
       "editor": {
         "name": "gatewayenvoyproxyio-httproutefilter-editor",
-        "version": "sha256:87e7728c4cad87cee4829f21c3b4888e39be9dcddd45225de84399ac7d1cc7ee",
+        "version": "v0.24.0",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",

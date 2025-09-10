@@ -22,7 +22,7 @@
     "ui": {
       "editor": {
         "name": "catalogappscodecom-clickhousebinding-editor",
-        "version": "sha256:9508afa1cc4d4cb3eb48e68820242175044159d3c5a47e70449198e8872bdd5a",
+        "version": "v0.24.0",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",

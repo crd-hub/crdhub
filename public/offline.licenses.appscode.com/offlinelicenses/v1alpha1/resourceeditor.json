@@ -22,7 +22,7 @@
     "ui": {
       "editor": {
         "name": "offlinelicensesappscodecom-offlinelicense-editor",
-        "version": "sha256:f1ec584abd12752bc6a45ec16bf21053ac37d4df2ba0f07c2ffaa67ee1248cac",
+        "version": "v0.24.0",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",

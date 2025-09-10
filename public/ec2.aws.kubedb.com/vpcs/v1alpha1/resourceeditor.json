@@ -22,7 +22,7 @@
     "ui": {
       "editor": {
         "name": "ec2awskubedbcom-vpc-editor",
-        "version": "sha256:4b331b6a2c5c147a31cd5402cf752dd775d3cf327c370cc46fd8086570e9cbb7",
+        "version": "v0.24.0",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",

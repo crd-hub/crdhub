@@ -22,7 +22,7 @@
     "ui": {
       "editor": {
         "name": "appk8sio-application-editor",
-        "version": "sha256:7c36af3b58fa135000ee23342ab4845f07a14e3ab30dddb9a6c38954d9a85e17",
+        "version": "v0.24.0",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",

@@ -22,7 +22,7 @@
     "ui": {
       "editor": {
         "name": "gatewaynetworkingk8sio-backendlbpolicy-editor",
-        "version": "sha256:b21bf1829f7d1145a08c1127d2e65edb4b2c9a1b9650371731afa745619619db",
+        "version": "v0.24.0",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",

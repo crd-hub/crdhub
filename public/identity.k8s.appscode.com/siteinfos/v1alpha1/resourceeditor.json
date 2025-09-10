@@ -22,7 +22,7 @@
     "ui": {
       "editor": {
         "name": "identityk8sappscodecom-siteinfo-editor",
-        "version": "sha256:146f4e8720490a7a0d8ba0055409fa07194848b20f979967720525d5bd74be97",
+        "version": "v0.24.0",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",

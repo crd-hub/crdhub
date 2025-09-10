@@ -22,7 +22,7 @@
     "ui": {
       "editor": {
         "name": "sqlazurekubedbcom-mssqlserverdnsalias-editor",
-        "version": "sha256:2bdda0b379f42042aabcf9ed62fbb9d0279641ceb177dbc706cad7f76c88c373",
+        "version": "v0.24.0",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",

@@ -22,7 +22,7 @@
     "ui": {
       "editor": {
         "name": "networkazurekubedbcom-virtualnetwork-editor",
-        "version": "sha256:9ec32fec38ab6199bb39898909f49b1dec1edee5249613ae05e57f490c36eff9",
+        "version": "v0.24.0",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",

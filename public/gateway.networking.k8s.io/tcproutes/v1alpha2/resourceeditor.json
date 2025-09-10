@@ -22,7 +22,7 @@
     "ui": {
       "editor": {
         "name": "gatewaynetworkingk8sio-tcproute-editor",
-        "version": "sha256:7e9b709cf23683458a06621dbd400dfc69673855111580a0d16ed912a0ef3645",
+        "version": "v0.24.0",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",

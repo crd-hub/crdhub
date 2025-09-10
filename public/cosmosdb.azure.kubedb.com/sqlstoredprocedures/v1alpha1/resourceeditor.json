@@ -22,7 +22,7 @@
     "ui": {
       "editor": {
         "name": "cosmosdbazurekubedbcom-sqlstoredprocedure-editor",
-        "version": "sha256:3b4ea9a32284089c13acc14c427a96da5ee72bd841494b26fbb825508328e664",
+        "version": "v0.24.0",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",

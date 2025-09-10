@@ -22,7 +22,7 @@
     "ui": {
       "editor": {
         "name": "catalogappscodecom-mssqlserverbinding-editor",
-        "version": "sha256:0664eaec92702fd52da5b809775c38c323a6128289d9213d014e49cb779d830d",
+        "version": "v0.24.0",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",

@@ -22,7 +22,7 @@
     "ui": {
       "editor": {
         "name": "ec2awskubedbcom-route-editor",
-        "version": "sha256:a898c369e43d4b93de9cac79620baf0e8c2c30f9ed9e5fd2a9ed4f54d05ddafc",
+        "version": "v0.24.0",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",

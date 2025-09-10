@@ -22,7 +22,7 @@
     "ui": {
       "editor": {
         "name": "catalogkubedbcom-schemaregistryversion-editor",
-        "version": "sha256:78b68f2faa4e7cc2f026b9d690f1ae9028e0ed63e36a14f5d6fddbfc4619eaff",
+        "version": "v0.24.0",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",

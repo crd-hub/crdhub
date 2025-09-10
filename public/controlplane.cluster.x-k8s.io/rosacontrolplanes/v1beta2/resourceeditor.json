@@ -22,7 +22,7 @@
     "ui": {
       "editor": {
         "name": "controlplaneclusterxk8sio-rosacontrolplane-editor",
-        "version": "sha256:bfebe10c9cf61402520eef15c94b161915408881522e31318ad6948cb39cb0cd",
+        "version": "v0.24.0",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",

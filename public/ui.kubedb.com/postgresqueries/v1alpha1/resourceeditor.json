@@ -22,7 +22,7 @@
     "ui": {
       "editor": {
         "name": "uikubedbcom-postgresqueries-editor",
-        "version": "sha256:f7c95c4056dce881d6c31db84dfc44b886a1f2b84b74946ab984c4220d09fba0",
+        "version": "v0.24.0",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",

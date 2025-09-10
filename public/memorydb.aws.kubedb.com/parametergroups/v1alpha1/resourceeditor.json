@@ -22,7 +22,7 @@
     "ui": {
       "editor": {
         "name": "memorydbawskubedbcom-parametergroup-editor",
-        "version": "sha256:c1b2456da794ef126489e436add805103c3417ac4dd651fd4c2204c7d6b97a55",
+        "version": "v0.24.0",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",

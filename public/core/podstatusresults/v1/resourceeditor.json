@@ -22,7 +22,7 @@
     "ui": {
       "editor": {
         "name": "core-podstatusresult-editor",
-        "version": "sha256:d50eb0223a981750c056bb257f65f0c3fafc978a4951e11ae517a4e929d67538",
+        "version": "v0.24.0",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",

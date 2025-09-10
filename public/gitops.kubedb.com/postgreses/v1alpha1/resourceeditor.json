@@ -22,7 +22,7 @@
     "ui": {
       "editor": {
         "name": "gitopskubedbcom-postgres-editor",
-        "version": "sha256:dd4549f902a7ad145530ed36e67e1758077176b9e816626c3dc76c6ab5295da5",
+        "version": "v0.24.0",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",

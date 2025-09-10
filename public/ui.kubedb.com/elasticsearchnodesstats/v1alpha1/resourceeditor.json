@@ -22,7 +22,7 @@
     "ui": {
       "editor": {
         "name": "uikubedbcom-elasticsearchnodesstats-editor",
-        "version": "sha256:6d45e537d2b2fcb863f6ee28ce43f84c2273d34b7283bd0cbfdbc7400a2d98a0",
+        "version": "v0.24.0",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",

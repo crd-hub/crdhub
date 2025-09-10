@@ -74,6 +74,15 @@ properties:
             format: int32
             type: integer
         type: object
+      migration:
+        properties:
+          oldPVReclaimPolicy:
+            type: string
+          storageClassName:
+            type: string
+        required:
+        - storageClassName
+        type: object
       replicationModeTransformation:
         properties:
           certificates:
@@ -308,6 +317,7 @@ properties:
         - ReconfigureTLS
         - RotateAuth
         - ReplicationModeTransformation
+        - StorageMigration
         type: string
       updateVersion:
         properties:

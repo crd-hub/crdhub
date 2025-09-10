@@ -22,7 +22,7 @@
     "ui": {
       "editor": {
         "name": "computegcpkubedbcom-firewall-editor",
-        "version": "sha256:35c42bf869623dbb944de5caf72d578180b36c295b0f2bc382d73c2c4967d3d9",
+        "version": "v0.24.0",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",

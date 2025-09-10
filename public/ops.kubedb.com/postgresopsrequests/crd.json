@@ -143,6 +143,20 @@
                       }
                     }
                   },
+                  "migration": {
+                    "type": "object",
+                    "required": [
+                      "storageClassName"
+                    ],
+                    "properties": {
+                      "oldPVReclaimPolicy": {
+                        "type": "string"
+                      },
+                      "storageClassName": {
+                        "type": "string"
+                      }
+                    }
+                  },
                   "reconnectStandby": {
                     "type": "object",
                     "properties": {
@@ -359,7 +373,8 @@
                       "RotateAuth",
                       "ReconnectStandby",
                       "ForceFailOver",
-                      "SetRaftKeyPair"
+                      "SetRaftKeyPair",
+                      "StorageMigration"
                     ]
                   },
                   "updateVersion": {

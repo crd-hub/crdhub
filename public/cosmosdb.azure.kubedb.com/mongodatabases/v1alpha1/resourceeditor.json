@@ -22,7 +22,7 @@
     "ui": {
       "editor": {
         "name": "cosmosdbazurekubedbcom-mongodatabase-editor",
-        "version": "sha256:1490a5ef3b1f26df7ee683a7ea8c4f16fc391a9b54982513973768c4d552356d",
+        "version": "v0.24.0",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",

@@ -22,7 +22,7 @@
     "ui": {
       "editor": {
         "name": "workopenclustermanagementio-appliedmanifestwork-editor",
-        "version": "sha256:396c6b17edd33c475e686e9875ec928449eaa62cac4a6c5560bfd6f5042f7770",
+        "version": "v0.24.0",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",

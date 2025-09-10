@@ -22,7 +22,7 @@
     "ui": {
       "editor": {
         "name": "apiregistrationk8sio-apiservice-editor",
-        "version": "sha256:de478f6f2471d3b140834285bcdc1c8d649101a95a085e9643cbe02861a9c205",
+        "version": "v0.24.0",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",

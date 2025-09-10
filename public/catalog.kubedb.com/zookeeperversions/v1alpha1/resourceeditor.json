@@ -22,7 +22,7 @@
     "ui": {
       "editor": {
         "name": "catalogkubedbcom-zookeeperversion-editor",
-        "version": "sha256:5d23441a7544a260593f8bd677b728a6122288913b33d2d0ca24d1e55a09e8f6",
+        "version": "v0.24.0",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",

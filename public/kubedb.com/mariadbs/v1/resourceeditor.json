@@ -22,7 +22,7 @@
     "ui": {
       "options": {
         "name": "kubedbcom-mariadb-editor-options",
-        "version": "sha256:d6f20fe4c2fd8a55611363a21a41ce462334e75f0f4b7f33b9759f182ba52c0d",
+        "version": "v0.24.0",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",
@@ -31,7 +31,7 @@
       },
       "editor": {
         "name": "kubedbcom-mariadb-editor",
-        "version": "sha256:27f2e6accee3e8e8c52fb05371ea2772dd82ffb3c48ac0bb163a24da8bb5268b",
+        "version": "v0.24.0",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",
@@ -55,7 +55,7 @@
               "flow": "standalone-edit",
               "editor": {
                 "name": "kubedbcom-mariadb-editor",
-                "version": "sha256:27f2e6accee3e8e8c52fb05371ea2772dd82ffb3c48ac0bb163a24da8bb5268b",
+                "version": "v0.24.0",
                 "sourceRef": {
                   "apiGroup": "source.toolkit.fluxcd.io",
                   "kind": "HelmRepository",
@@ -76,7 +76,7 @@
               "flow": "standalone-create",
               "editor": {
                 "name": "corekubestashcom-backupsession-editor",
-                "version": "sha256:4647ae40d9f3649863aed136146da50a05e5aa668d57b5dfebc32b60fcd3a441",
+                "version": "v0.24.0",
                 "sourceRef": {
                   "apiGroup": "source.toolkit.fluxcd.io",
                   "kind": "HelmRepository",
@@ -97,7 +97,7 @@
               "flow": "standalone-create",
               "editor": {
                 "name": "corekubestashcom-restoresession-editor-options",
-                "version": "sha256:eb67a703da855f17c35caf6e2853a361757398962e7ba91d7fc8001c41323789",
+                "version": "v0.24.0",
                 "sourceRef": {
                   "apiGroup": "source.toolkit.fluxcd.io",
                   "kind": "HelmRepository",
@@ -123,7 +123,7 @@
               "flow": "standalone-create",
               "editor": {
                 "name": "opskubedbcom-mariadbopsrequest-editor",
-                "version": "sha256:4b93909221414ef9044082bd79ef9720cd4ff11950de9771e97c404fd1f33e92",
+                "version": "v0.24.0",
                 "sourceRef": {
                   "apiGroup": "source.toolkit.fluxcd.io",
                   "kind": "HelmRepository",
@@ -144,7 +144,7 @@
               "flow": "standalone-create",
               "editor": {
                 "name": "opskubedbcom-mariadbopsrequest-editor",
-                "version": "sha256:4b93909221414ef9044082bd79ef9720cd4ff11950de9771e97c404fd1f33e92",
+                "version": "v0.24.0",
                 "sourceRef": {
                   "apiGroup": "source.toolkit.fluxcd.io",
                   "kind": "HelmRepository",
@@ -165,7 +165,7 @@
               "flow": "standalone-create",
               "editor": {
                 "name": "opskubedbcom-mariadbopsrequest-editor",
-                "version": "sha256:4b93909221414ef9044082bd79ef9720cd4ff11950de9771e97c404fd1f33e92",
+                "version": "v0.24.0",
                 "sourceRef": {
                   "apiGroup": "source.toolkit.fluxcd.io",
                   "kind": "HelmRepository",
@@ -192,7 +192,7 @@
               "disabledTemplate": "{{ not (gt .spec.replicas 1) }}\n",
               "editor": {
                 "name": "opskubedbcom-mariadbopsrequest-editor",
-                "version": "sha256:4b93909221414ef9044082bd79ef9720cd4ff11950de9771e97c404fd1f33e92",
+                "version": "v0.24.0",
                 "sourceRef": {
                   "apiGroup": "source.toolkit.fluxcd.io",
                   "kind": "HelmRepository",
@@ -213,7 +213,7 @@
               "flow": "standalone-create",
               "editor": {
                 "name": "opskubedbcom-mariadbopsrequest-editor",
-                "version": "sha256:4b93909221414ef9044082bd79ef9720cd4ff11950de9771e97c404fd1f33e92",
+                "version": "v0.24.0",
                 "sourceRef": {
                   "apiGroup": "source.toolkit.fluxcd.io",
                   "kind": "HelmRepository",
@@ -234,7 +234,7 @@
               "flow": "standalone-create",
               "editor": {
                 "name": "opskubedbcom-mariadbopsrequest-editor",
-                "version": "sha256:4b93909221414ef9044082bd79ef9720cd4ff11950de9771e97c404fd1f33e92",
+                "version": "v0.24.0",
                 "sourceRef": {
                   "apiGroup": "source.toolkit.fluxcd.io",
                   "kind": "HelmRepository",
@@ -260,7 +260,7 @@
               "flow": "standalone-edit",
               "editor": {
                 "name": "kubedbcom-mariadb-editor",
-                "version": "sha256:27f2e6accee3e8e8c52fb05371ea2772dd82ffb3c48ac0bb163a24da8bb5268b",
+                "version": "v0.24.0",
                 "sourceRef": {
                   "apiGroup": "source.toolkit.fluxcd.io",
                   "kind": "HelmRepository",
@@ -281,7 +281,7 @@
               "flow": "standalone-edit",
               "editor": {
                 "name": "kubedbcom-mariadb-editor",
-                "version": "sha256:27f2e6accee3e8e8c52fb05371ea2772dd82ffb3c48ac0bb163a24da8bb5268b",
+                "version": "v0.24.0",
                 "sourceRef": {
                   "apiGroup": "source.toolkit.fluxcd.io",
                   "kind": "HelmRepository",
@@ -307,7 +307,7 @@
               "flow": "standalone-create",
               "editor": {
                 "name": "opskubedbcom-mariadbopsrequest-editor",
-                "version": "sha256:4b93909221414ef9044082bd79ef9720cd4ff11950de9771e97c404fd1f33e92",
+                "version": "v0.24.0",
                 "sourceRef": {
                   "apiGroup": "source.toolkit.fluxcd.io",
                   "kind": "HelmRepository",
@@ -328,7 +328,7 @@
               "flow": "standalone-edit",
               "editor": {
                 "name": "kubedbcom-mariadb-editor",
-                "version": "sha256:27f2e6accee3e8e8c52fb05371ea2772dd82ffb3c48ac0bb163a24da8bb5268b",
+                "version": "v0.24.0",
                 "sourceRef": {
                   "apiGroup": "source.toolkit.fluxcd.io",
                   "kind": "HelmRepository",
@@ -354,7 +354,7 @@
               "flow": "standalone-edit",
               "editor": {
                 "name": "kubedbcom-mariadb-editor",
-                "version": "sha256:27f2e6accee3e8e8c52fb05371ea2772dd82ffb3c48ac0bb163a24da8bb5268b",
+                "version": "v0.24.0",
                 "sourceRef": {
                   "apiGroup": "source.toolkit.fluxcd.io",
                   "kind": "HelmRepository",

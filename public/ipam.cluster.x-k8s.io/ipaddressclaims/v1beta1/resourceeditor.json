@@ -22,7 +22,7 @@
     "ui": {
       "editor": {
         "name": "ipamclusterxk8sio-ipaddressclaim-editor",
-        "version": "sha256:d468d6e88b557a6a6af32afc96beb804ea78645b430954b7938f625d86df03ce",
+        "version": "v0.24.0",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",

@@ -22,7 +22,7 @@
     "ui": {
       "editor": {
         "name": "catalogappscodecom-singlestorebinding-editor",
-        "version": "sha256:9b7665aabfcde8878754fa0e0965ca87548f1ae451e3b88280cb800501096e53",
+        "version": "v0.24.0",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",

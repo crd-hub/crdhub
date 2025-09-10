@@ -22,7 +22,7 @@
     "ui": {
       "editor": {
         "name": "authorizationazurekubedbcom-roleassignment-editor",
-        "version": "sha256:4b26f04b3b9acbc311d95dc460b075dc9da10fb341e62e22b6f344bb6bf522ba",
+        "version": "v0.24.0",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",

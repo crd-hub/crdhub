@@ -22,7 +22,7 @@
     "ui": {
       "editor": {
         "name": "opskubedbcom-redisopsrequest-editor",
-        "version": "sha256:b513b215527e330201ebfd8d4e9aa9635e411be966d10c6f1716ecd3c92ce86d",
+        "version": "v0.24.0",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",

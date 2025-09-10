@@ -22,7 +22,7 @@
     "ui": {
       "editor": {
         "name": "networkazurekubedbcom-securitygroup-editor",
-        "version": "sha256:56c72bba0f13e6c4b01cdd8220eb3886bd3bda365f84d64bc9c710616b822872",
+        "version": "v0.24.0",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",

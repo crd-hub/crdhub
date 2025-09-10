@@ -22,7 +22,7 @@
     "ui": {
       "options": {
         "name": "kubedbcom-perconaxtradb-editor-options",
-        "version": "sha256:e755cff60dd3c562e039675105f62dbfb340f8da3238e062a37eba5c25badb21",
+        "version": "v0.24.0",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",
@@ -31,7 +31,7 @@
       },
       "editor": {
         "name": "kubedbcom-perconaxtradb-editor",
-        "version": "sha256:35e4cfb6f5d484f12c78d1c9e9271efe66830c107d5721b02cdeb00385e2554f",
+        "version": "v0.24.0",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",
@@ -55,7 +55,7 @@
               "flow": "standalone-create",
               "editor": {
                 "name": "opskubedbcom-perconaxtradbopsrequest-editor",
-                "version": "sha256:0bf1c9e3099ebb81f9642e0a4ca3e73dca9071107277877b718f647fef42b66a",
+                "version": "v0.24.0",
                 "sourceRef": {
                   "apiGroup": "source.toolkit.fluxcd.io",
                   "kind": "HelmRepository",
@@ -76,7 +76,7 @@
               "flow": "standalone-create",
               "editor": {
                 "name": "opskubedbcom-perconaxtradbopsrequest-editor",
-                "version": "sha256:0bf1c9e3099ebb81f9642e0a4ca3e73dca9071107277877b718f647fef42b66a",
+                "version": "v0.24.0",
                 "sourceRef": {
                   "apiGroup": "source.toolkit.fluxcd.io",
                   "kind": "HelmRepository",
@@ -103,7 +103,7 @@
               "disabledTemplate": "{{ not (gt .spec.replicas 1) }}\n",
               "editor": {
                 "name": "opskubedbcom-perconaxtradbopsrequest-editor",
-                "version": "sha256:0bf1c9e3099ebb81f9642e0a4ca3e73dca9071107277877b718f647fef42b66a",
+                "version": "v0.24.0",
                 "sourceRef": {
                   "apiGroup": "source.toolkit.fluxcd.io",
                   "kind": "HelmRepository",
@@ -124,7 +124,7 @@
               "flow": "standalone-create",
               "editor": {
                 "name": "opskubedbcom-perconaxtradbopsrequest-editor",
-                "version": "sha256:0bf1c9e3099ebb81f9642e0a4ca3e73dca9071107277877b718f647fef42b66a",
+                "version": "v0.24.0",
                 "sourceRef": {
                   "apiGroup": "source.toolkit.fluxcd.io",
                   "kind": "HelmRepository",
@@ -145,7 +145,7 @@
               "flow": "standalone-create",
               "editor": {
                 "name": "opskubedbcom-perconaxtradbopsrequest-editor",
-                "version": "sha256:0bf1c9e3099ebb81f9642e0a4ca3e73dca9071107277877b718f647fef42b66a",
+                "version": "v0.24.0",
                 "sourceRef": {
                   "apiGroup": "source.toolkit.fluxcd.io",
                   "kind": "HelmRepository",
@@ -171,7 +171,7 @@
               "flow": "standalone-edit",
               "editor": {
                 "name": "kubedbcom-perconaxtradb-editor",
-                "version": "sha256:35e4cfb6f5d484f12c78d1c9e9271efe66830c107d5721b02cdeb00385e2554f",
+                "version": "v0.24.0",
                 "sourceRef": {
                   "apiGroup": "source.toolkit.fluxcd.io",
                   "kind": "HelmRepository",
@@ -192,7 +192,7 @@
               "flow": "standalone-edit",
               "editor": {
                 "name": "kubedbcom-perconaxtradb-editor",
-                "version": "sha256:35e4cfb6f5d484f12c78d1c9e9271efe66830c107d5721b02cdeb00385e2554f",
+                "version": "v0.24.0",
                 "sourceRef": {
                   "apiGroup": "source.toolkit.fluxcd.io",
                   "kind": "HelmRepository",
@@ -218,7 +218,7 @@
               "flow": "standalone-create",
               "editor": {
                 "name": "opskubedbcom-perconaxtradbopsrequest-editor",
-                "version": "sha256:0bf1c9e3099ebb81f9642e0a4ca3e73dca9071107277877b718f647fef42b66a",
+                "version": "v0.24.0",
                 "sourceRef": {
                   "apiGroup": "source.toolkit.fluxcd.io",
                   "kind": "HelmRepository",
@@ -239,7 +239,7 @@
               "flow": "standalone-edit",
               "editor": {
                 "name": "kubedbcom-perconaxtradb-editor",
-                "version": "sha256:35e4cfb6f5d484f12c78d1c9e9271efe66830c107d5721b02cdeb00385e2554f",
+                "version": "v0.24.0",
                 "sourceRef": {
                   "apiGroup": "source.toolkit.fluxcd.io",
                   "kind": "HelmRepository",

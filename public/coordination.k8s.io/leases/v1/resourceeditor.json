@@ -22,7 +22,7 @@
     "ui": {
       "editor": {
         "name": "coordinationk8sio-lease-editor",
-        "version": "sha256:63debb7b49a88cfcf823ad71b106bcfe5511874550dc62f98949e7497ef63da8",
+        "version": "v0.24.0",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",

@@ -22,7 +22,7 @@
     "ui": {
       "editor": {
         "name": "catalogappscodecom-solrbinding-editor",
-        "version": "sha256:1c1596bcd4d9d05f3175d9fe72b4fe1e9b7777101c3abdedeee2efae2d26e322",
+        "version": "v0.24.0",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",

@@ -22,7 +22,7 @@
     "ui": {
       "editor": {
         "name": "rdsawskubedbcom-clustersnapshot-editor",
-        "version": "sha256:b0189f2c65e67548846ca57a3d3118dbb9a840f5a671db6b3e025eef43c1ebf7",
+        "version": "v0.24.0",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",

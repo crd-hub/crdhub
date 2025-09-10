@@ -22,7 +22,7 @@
     "ui": {
       "editor": {
         "name": "elasticacheawskubedbcom-replicationgroup-editor",
-        "version": "sha256:017b12f9138e392740515aaf1d71f726b55bd8949df13aff3ac971ece068d6dc",
+        "version": "v0.24.0",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",

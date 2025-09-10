@@ -22,7 +22,7 @@
     "ui": {
       "editor": {
         "name": "catalogappscodecom-pgbouncerbinding-editor",
-        "version": "sha256:171b7896a0010b778b07b6f36978b6892a39d951a18029ea0ccfd177e34722d9",
+        "version": "v0.24.0",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",

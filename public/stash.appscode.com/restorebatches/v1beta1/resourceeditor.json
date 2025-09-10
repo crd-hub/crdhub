@@ -22,7 +22,7 @@
     "ui": {
       "editor": {
         "name": "stashappscodecom-restorebatch-editor",
-        "version": "sha256:f7819ccab821b394cd570b769935b21d8a557759848bf26a940b52208f82730b",
+        "version": "v0.24.0",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",

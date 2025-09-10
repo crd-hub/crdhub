@@ -22,7 +22,7 @@
     "ui": {
       "editor": {
         "name": "extensions-replicaset-editor",
-        "version": "sha256:4ee02fab60a94f95c3e528d53a3dec95a61fdd4e44cf2252995ce6bcc3a33b5d",
+        "version": "v0.24.0",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",

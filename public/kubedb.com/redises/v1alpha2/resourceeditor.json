@@ -22,7 +22,7 @@
     "ui": {
       "options": {
         "name": "kubedbcom-redis-editor-options",
-        "version": "sha256:6c5d3e00c8b6ab6e0a1a75a1c90b183f2a848fc739d25ca24cc9260789e58702",
+        "version": "v0.24.0",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",
@@ -31,7 +31,7 @@
       },
       "editor": {
         "name": "kubedbcom-redis-editor",
-        "version": "sha256:cbdeff778add6b89d0cd1c8bd0f2ab9ea23f56506bfdee13ac1b68af9a149183",
+        "version": "v0.24.0",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",
@@ -55,7 +55,7 @@
               "flow": "standalone-edit",
               "editor": {
                 "name": "kubedbcom-redis-editor",
-                "version": "sha256:cbdeff778add6b89d0cd1c8bd0f2ab9ea23f56506bfdee13ac1b68af9a149183",
+                "version": "v0.24.0",
                 "sourceRef": {
                   "apiGroup": "source.toolkit.fluxcd.io",
                   "kind": "HelmRepository",
@@ -76,7 +76,7 @@
               "flow": "standalone-create",
               "editor": {
                 "name": "corekubestashcom-restoresession-editor-options",
-                "version": "sha256:eb67a703da855f17c35caf6e2853a361757398962e7ba91d7fc8001c41323789",
+                "version": "v0.24.0",
                 "sourceRef": {
                   "apiGroup": "source.toolkit.fluxcd.io",
                   "kind": "HelmRepository",
@@ -102,7 +102,7 @@
               "flow": "standalone-create",
               "editor": {
                 "name": "opskubedbcom-redisopsrequest-editor",
-                "version": "sha256:b513b215527e330201ebfd8d4e9aa9635e411be966d10c6f1716ecd3c92ce86d",
+                "version": "v0.24.0",
                 "sourceRef": {
                   "apiGroup": "source.toolkit.fluxcd.io",
                   "kind": "HelmRepository",
@@ -123,7 +123,7 @@
               "flow": "standalone-create",
               "editor": {
                 "name": "opskubedbcom-redisopsrequest-editor",
-                "version": "sha256:b513b215527e330201ebfd8d4e9aa9635e411be966d10c6f1716ecd3c92ce86d",
+                "version": "v0.24.0",
                 "sourceRef": {
                   "apiGroup": "source.toolkit.fluxcd.io",
                   "kind": "HelmRepository",
@@ -144,7 +144,7 @@
               "flow": "standalone-create",
               "editor": {
                 "name": "opskubedbcom-redisopsrequest-editor",
-                "version": "sha256:b513b215527e330201ebfd8d4e9aa9635e411be966d10c6f1716ecd3c92ce86d",
+                "version": "v0.24.0",
                 "sourceRef": {
                   "apiGroup": "source.toolkit.fluxcd.io",
                   "kind": "HelmRepository",
@@ -171,7 +171,7 @@
               "disabledTemplate": "{{ or (not (hasKey .spec \"mode\")) (eq .spec.mode \"Standalone\") }}\n",
               "editor": {
                 "name": "opskubedbcom-redisopsrequest-editor",
-                "version": "sha256:b513b215527e330201ebfd8d4e9aa9635e411be966d10c6f1716ecd3c92ce86d",
+                "version": "v0.24.0",
                 "sourceRef": {
                   "apiGroup": "source.toolkit.fluxcd.io",
                   "kind": "HelmRepository",
@@ -192,7 +192,7 @@
               "flow": "standalone-create",
               "editor": {
                 "name": "opskubedbcom-redisopsrequest-editor",
-                "version": "sha256:b513b215527e330201ebfd8d4e9aa9635e411be966d10c6f1716ecd3c92ce86d",
+                "version": "v0.24.0",
                 "sourceRef": {
                   "apiGroup": "source.toolkit.fluxcd.io",
                   "kind": "HelmRepository",
@@ -213,7 +213,7 @@
               "flow": "standalone-create",
               "editor": {
                 "name": "opskubedbcom-redisopsrequest-editor",
-                "version": "sha256:b513b215527e330201ebfd8d4e9aa9635e411be966d10c6f1716ecd3c92ce86d",
+                "version": "v0.24.0",
                 "sourceRef": {
                   "apiGroup": "source.toolkit.fluxcd.io",
                   "kind": "HelmRepository",
@@ -239,7 +239,7 @@
               "flow": "standalone-create",
               "editor": {
                 "name": "opskubedbcom-redisopsrequest-editor",
-                "version": "sha256:b513b215527e330201ebfd8d4e9aa9635e411be966d10c6f1716ecd3c92ce86d",
+                "version": "v0.24.0",
                 "sourceRef": {
                   "apiGroup": "source.toolkit.fluxcd.io",
                   "kind": "HelmRepository",
@@ -260,7 +260,7 @@
               "flow": "standalone-edit",
               "editor": {
                 "name": "kubedbcom-redis-editor",
-                "version": "sha256:cbdeff778add6b89d0cd1c8bd0f2ab9ea23f56506bfdee13ac1b68af9a149183",
+                "version": "v0.24.0",
                 "sourceRef": {
                   "apiGroup": "source.toolkit.fluxcd.io",
                   "kind": "HelmRepository",

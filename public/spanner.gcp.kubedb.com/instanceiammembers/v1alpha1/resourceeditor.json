@@ -22,7 +22,7 @@
     "ui": {
       "editor": {
         "name": "spannergcpkubedbcom-instanceiammember-editor",
-        "version": "sha256:da97cefe9d2bd6cf6e88dedc72cf64d7fcd31eaa54cd575a3262fc25f4c9f49e",
+        "version": "v0.24.0",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",

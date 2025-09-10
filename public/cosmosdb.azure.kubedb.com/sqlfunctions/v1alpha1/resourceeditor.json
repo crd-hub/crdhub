@@ -22,7 +22,7 @@
     "ui": {
       "editor": {
         "name": "cosmosdbazurekubedbcom-sqlfunction-editor",
-        "version": "sha256:5412982583df895186cc1c54e8861bd2dab00928201ff7b91f11fe76f1afa2aa",
+        "version": "v0.24.0",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",

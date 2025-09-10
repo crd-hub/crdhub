@@ -22,7 +22,7 @@
     "ui": {
       "editor": {
         "name": "matchgatekeepersh-dummycrd-editor",
-        "version": "sha256:427024b0f38eef0250cfd03e4cf84a2bbe32ecebe5c5bdc8817e27f2cd048dc4",
+        "version": "v0.24.0",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",

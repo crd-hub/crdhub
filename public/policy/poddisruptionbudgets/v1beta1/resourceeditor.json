@@ -22,7 +22,7 @@
     "ui": {
       "editor": {
         "name": "policy-poddisruptionbudget-editor",
-        "version": "sha256:96d113bd7e51125424dc0e8a72c396eab1cbef1c47d31f3b2c510afa54afe509",
+        "version": "v0.24.0",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",

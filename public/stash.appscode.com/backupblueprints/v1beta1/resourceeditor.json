@@ -22,7 +22,7 @@
     "ui": {
       "editor": {
         "name": "stashappscodecom-backupblueprint-editor",
-        "version": "sha256:e8827b8bfdfcce1992ceb01d6d1c91d7cbc15adfc9d37d134119fe60953ff0c1",
+        "version": "v0.24.0",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",

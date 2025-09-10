@@ -22,7 +22,7 @@
     "ui": {
       "editor": {
         "name": "catalogkubedbcom-igniteversion-editor",
-        "version": "sha256:07d8a601bfee54cd5e794aecc1989ad9ef5f0b3986680f9cc61ad3557beb685d",
+        "version": "v0.24.0",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",

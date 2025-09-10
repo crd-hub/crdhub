@@ -509,6 +509,11 @@
                   "gateway": {
                     "description": "VoyagerGatewaySpec is the schema for Operator Operator values file",
                     "type": "object",
+                    "required": [
+                      "hpa",
+                      "service",
+                      "topologyInjector"
+                    ],
                     "properties": {
                       "certgen": {
                         "type": "object",
@@ -519,7 +524,774 @@
                           "job": {
                             "type": "object",
                             "properties": {
+                              "affinity": {
+                                "description": "Affinity is a group of affinity scheduling rules.",
+                                "type": "object",
+                                "properties": {
+                                  "nodeAffinity": {
+                                    "description": "Describes node affinity scheduling rules for the pod.",
+                                    "type": "object",
+                                    "properties": {
+                                      "preferredDuringSchedulingIgnoredDuringExecution": {
+                                        "description": "The scheduler will prefer to schedule pods to nodes that satisfy\nthe affinity expressions specified by this field, but it may choose\na node that violates one or more of the expressions. The node that is\nmost preferred is the one with the greatest sum of weights, i.e.\nfor each node that meets all of the scheduling requirements (resource\nrequest, requiredDuringScheduling affinity expressions, etc.),\ncompute a sum by iterating through the elements of this field and adding\n\"weight\" to the sum if the node matches the corresponding matchExpressions; the\nnode(s) with the highest sum are the most preferred.",
+                                        "type": "array",
+                                        "items": {
+                                          "description": "An empty preferred scheduling term matches all objects with implicit weight 0\n(i.e. it's a no-op). A null preferred scheduling term matches no objects (i.e. is also a no-op).",
+                                          "type": "object",
+                                          "required": [
+                                            "preference",
+                                            "weight"
+                                          ],
+                                          "properties": {
+                                            "preference": {
+                                              "description": "A node selector term, associated with the corresponding weight.",
+                                              "type": "object",
+                                              "properties": {
+                                                "matchExpressions": {
+                                                  "description": "A list of node selector requirements by node's labels.",
+                                                  "type": "array",
+                                                  "items": {
+                                                    "description": "A node selector requirement is a selector that contains values, a key, and an operator\nthat relates the key and values.",
+                                                    "type": "object",
+                                                    "required": [
+                                                      "key",
+                                                      "operator"
+                                                    ],
+                                                    "properties": {
+                                                      "key": {
+                                                        "description": "The label key that the selector applies to.",
+                                                        "type": "string"
+                                                      },
+                                                      "operator": {
+                                                        "description": "Represents a key's relationship to a set of values.\nValid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.",
+                                                        "type": "string"
+                                                      },
+                                                      "values": {
+                                                        "description": "An array of string values. If the operator is In or NotIn,\nthe values array must be non-empty. If the operator is Exists or DoesNotExist,\nthe values array must be empty. If the operator is Gt or Lt, the values\narray must have a single element, which will be interpreted as an integer.\nThis array is replaced during a strategic merge patch.",
+                                                        "type": "array",
+                                                        "items": {
+                                                          "type": "string"
+                                                        },
+                                                        "x-kubernetes-list-type": "atomic"
+                                                      }
+                                                    }
+                                                  },
+                                                  "x-kubernetes-list-type": "atomic"
+                                                },
+                                                "matchFields": {
+                                                  "description": "A list of node selector requirements by node's fields.",
+                                                  "type": "array",
+                                                  "items": {
+                                                    "description": "A node selector requirement is a selector that contains values, a key, and an operator\nthat relates the key and values.",
+                                                    "type": "object",
+                                                    "required": [
+                                                      "key",
+                                                      "operator"
+                                                    ],
+                                                    "properties": {
+                                                      "key": {
+                                                        "description": "The label key that the selector applies to.",
+                                                        "type": "string"
+                                                      },
+                                                      "operator": {
+                                                        "description": "Represents a key's relationship to a set of values.\nValid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.",
+                                                        "type": "string"
+                                                      },
+                                                      "values": {
+                                                        "description": "An array of string values. If the operator is In or NotIn,\nthe values array must be non-empty. If the operator is Exists or DoesNotExist,\nthe values array must be empty. If the operator is Gt or Lt, the values\narray must have a single element, which will be interpreted as an integer.\nThis array is replaced during a strategic merge patch.",
+                                                        "type": "array",
+                                                        "items": {
+                                                          "type": "string"
+                                                        },
+                                                        "x-kubernetes-list-type": "atomic"
+                                                      }
+                                                    }
+                                                  },
+                                                  "x-kubernetes-list-type": "atomic"
+                                                }
+                                              },
+                                              "x-kubernetes-map-type": "atomic"
+                                            },
+                                            "weight": {
+                                              "description": "Weight associated with matching the corresponding nodeSelectorTerm, in the range 1-100.",
+                                              "type": "integer",
+                                              "format": "int32"
+                                            }
+                                          }
+                                        },
+                                        "x-kubernetes-list-type": "atomic"
+                                      },
+                                      "requiredDuringSchedulingIgnoredDuringExecution": {
+                                        "description": "If the affinity requirements specified by this field are not met at\nscheduling time, the pod will not be scheduled onto the node.\nIf the affinity requirements specified by this field cease to be met\nat some point during pod execution (e.g. due to an update), the system\nmay or may not try to eventually evict the pod from its node.",
+                                        "type": "object",
+                                        "required": [
+                                          "nodeSelectorTerms"
+                                        ],
+                                        "properties": {
+                                          "nodeSelectorTerms": {
+                                            "description": "Required. A list of node selector terms. The terms are ORed.",
+                                            "type": "array",
+                                            "items": {
+                                              "description": "A null or empty node selector term matches no objects. The requirements of\nthem are ANDed.\nThe TopologySelectorTerm type implements a subset of the NodeSelectorTerm.",
+                                              "type": "object",
+                                              "properties": {
+                                                "matchExpressions": {
+                                                  "description": "A list of node selector requirements by node's labels.",
+                                                  "type": "array",
+                                                  "items": {
+                                                    "description": "A node selector requirement is a selector that contains values, a key, and an operator\nthat relates the key and values.",
+                                                    "type": "object",
+                                                    "required": [
+                                                      "key",
+                                                      "operator"
+                                                    ],
+                                                    "properties": {
+                                                      "key": {
+                                                        "description": "The label key that the selector applies to.",
+                                                        "type": "string"
+                                                      },
+                                                      "operator": {
+                                                        "description": "Represents a key's relationship to a set of values.\nValid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.",
+                                                        "type": "string"
+                                                      },
+                                                      "values": {
+                                                        "description": "An array of string values. If the operator is In or NotIn,\nthe values array must be non-empty. If the operator is Exists or DoesNotExist,\nthe values array must be empty. If the operator is Gt or Lt, the values\narray must have a single element, which will be interpreted as an integer.\nThis array is replaced during a strategic merge patch.",
+                                                        "type": "array",
+                                                        "items": {
+                                                          "type": "string"
+                                                        },
+                                                        "x-kubernetes-list-type": "atomic"
+                                                      }
+                                                    }
+                                                  },
+                                                  "x-kubernetes-list-type": "atomic"
+                                                },
+                                                "matchFields": {
+                                                  "description": "A list of node selector requirements by node's fields.",
+                                                  "type": "array",
+                                                  "items": {
+                                                    "description": "A node selector requirement is a selector that contains values, a key, and an operator\nthat relates the key and values.",
+                                                    "type": "object",
+                                                    "required": [
+                                                      "key",
+                                                      "operator"
+                                                    ],
+                                                    "properties": {
+                                                      "key": {
+                                                        "description": "The label key that the selector applies to.",
+                                                        "type": "string"
+                                                      },
+                                                      "operator": {
+                                                        "description": "Represents a key's relationship to a set of values.\nValid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.",
+                                                        "type": "string"
+                                                      },
+                                                      "values": {
+                                                        "description": "An array of string values. If the operator is In or NotIn,\nthe values array must be non-empty. If the operator is Exists or DoesNotExist,\nthe values array must be empty. If the operator is Gt or Lt, the values\narray must have a single element, which will be interpreted as an integer.\nThis array is replaced during a strategic merge patch.",
+                                                        "type": "array",
+                                                        "items": {
+                                                          "type": "string"
+                                                        },
+                                                        "x-kubernetes-list-type": "atomic"
+                                                      }
+                                                    }
+                                                  },
+                                                  "x-kubernetes-list-type": "atomic"
+                                                }
+                                              },
+                                              "x-kubernetes-map-type": "atomic"
+                                            },
+                                            "x-kubernetes-list-type": "atomic"
+                                          }
+                                        },
+                                        "x-kubernetes-map-type": "atomic"
+                                      }
+                                    }
+                                  },
+                                  "podAffinity": {
+                                    "description": "Describes pod affinity scheduling rules (e.g. co-locate this pod in the same node, zone, etc. as some other pod(s)).",
+                                    "type": "object",
+                                    "properties": {
+                                      "preferredDuringSchedulingIgnoredDuringExecution": {
+                                        "description": "The scheduler will prefer to schedule pods to nodes that satisfy\nthe affinity expressions specified by this field, but it may choose\na node that violates one or more of the expressions. The node that is\nmost preferred is the one with the greatest sum of weights, i.e.\nfor each node that meets all of the scheduling requirements (resource\nrequest, requiredDuringScheduling affinity expressions, etc.),\ncompute a sum by iterating through the elements of this field and adding\n\"weight\" to the sum if the node has pods which matches the corresponding podAffinityTerm; the\nnode(s) with the highest sum are the most preferred.",
+                                        "type": "array",
+                                        "items": {
+                                          "description": "The weights of all of the matched WeightedPodAffinityTerm fields are added per-node to find the most preferred node(s)",
+                                          "type": "object",
+                                          "required": [
+                                            "podAffinityTerm",
+                                            "weight"
+                                          ],
+                                          "properties": {
+                                            "podAffinityTerm": {
+                                              "description": "Required. A pod affinity term, associated with the corresponding weight.",
+                                              "type": "object",
+                                              "required": [
+                                                "topologyKey"
+                                              ],
+                                              "properties": {
+                                                "labelSelector": {
+                                                  "description": "A label query over a set of resources, in this case pods.\nIf it's null, this PodAffinityTerm matches with no Pods.",
+                                                  "type": "object",
+                                                  "properties": {
+                                                    "matchExpressions": {
+                                                      "description": "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
+                                                      "type": "array",
+                                                      "items": {
+                                                        "description": "A label selector requirement is a selector that contains values, a key, and an operator that\nrelates the key and values.",
+                                                        "type": "object",
+                                                        "required": [
+                                                          "key",
+                                                          "operator"
+                                                        ],
+                                                        "properties": {
+                                                          "key": {
+                                                            "description": "key is the label key that the selector applies to.",
+                                                            "type": "string"
+                                                          },
+                                                          "operator": {
+                                                            "description": "operator represents a key's relationship to a set of values.\nValid operators are In, NotIn, Exists and DoesNotExist.",
+                                                            "type": "string"
+                                                          },
+                                                          "values": {
+                                                            "description": "values is an array of string values. If the operator is In or NotIn,\nthe values array must be non-empty. If the operator is Exists or DoesNotExist,\nthe values array must be empty. This array is replaced during a strategic\nmerge patch.",
+                                                            "type": "array",
+                                                            "items": {
+                                                              "type": "string"
+                                                            },
+                                                            "x-kubernetes-list-type": "atomic"
+                                                          }
+                                                        }
+                                                      },
+                                                      "x-kubernetes-list-type": "atomic"
+                                                    },
+                                                    "matchLabels": {
+                                                      "description": "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels\nmap is equivalent to an element of matchExpressions, whose key field is \"key\", the\noperator is \"In\", and the values array contains only \"value\". The requirements are ANDed.",
+                                                      "type": "object",
+                                                      "additionalProperties": {
+                                                        "type": "string"
+                                                      }
+                                                    }
+                                                  },
+                                                  "x-kubernetes-map-type": "atomic"
+                                                },
+                                                "matchLabelKeys": {
+                                                  "description": "MatchLabelKeys is a set of pod label keys to select which pods will\nbe taken into consideration. The keys are used to lookup values from the\nincoming pod labels, those key-value labels are merged with `labelSelector` as `key in (value)`\nto select the group of existing pods which pods will be taken into consideration\nfor the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming\npod labels will be ignored. The default value is empty.\nThe same key is forbidden to exist in both matchLabelKeys and labelSelector.\nAlso, matchLabelKeys cannot be set when labelSelector isn't set.\nThis is a beta field and requires enabling MatchLabelKeysInPodAffinity feature gate (enabled by default).",
+                                                  "type": "array",
+                                                  "items": {
+                                                    "type": "string"
+                                                  },
+                                                  "x-kubernetes-list-type": "atomic"
+                                                },
+                                                "mismatchLabelKeys": {
+                                                  "description": "MismatchLabelKeys is a set of pod label keys to select which pods will\nbe taken into consideration. The keys are used to lookup values from the\nincoming pod labels, those key-value labels are merged with `labelSelector` as `key notin (value)`\nto select the group of existing pods which pods will be taken into consideration\nfor the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming\npod labels will be ignored. The default value is empty.\nThe same key is forbidden to exist in both mismatchLabelKeys and labelSelector.\nAlso, mismatchLabelKeys cannot be set when labelSelector isn't set.\nThis is a beta field and requires enabling MatchLabelKeysInPodAffinity feature gate (enabled by default).",
+                                                  "type": "array",
+                                                  "items": {
+                                                    "type": "string"
+                                                  },
+                                                  "x-kubernetes-list-type": "atomic"
+                                                },
+                                                "namespaceSelector": {
+                                                  "description": "A label query over the set of namespaces that the term applies to.\nThe term is applied to the union of the namespaces selected by this field\nand the ones listed in the namespaces field.\nnull selector and null or empty namespaces list means \"this pod's namespace\".\nAn empty selector ({}) matches all namespaces.",
+                                                  "type": "object",
+                                                  "properties": {
+                                                    "matchExpressions": {
+                                                      "description": "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
+                                                      "type": "array",
+                                                      "items": {
+                                                        "description": "A label selector requirement is a selector that contains values, a key, and an operator that\nrelates the key and values.",
+                                                        "type": "object",
+                                                        "required": [
+                                                          "key",
+                                                          "operator"
+                                                        ],
+                                                        "properties": {
+                                                          "key": {
+                                                            "description": "key is the label key that the selector applies to.",
+                                                            "type": "string"
+                                                          },
+                                                          "operator": {
+                                                            "description": "operator represents a key's relationship to a set of values.\nValid operators are In, NotIn, Exists and DoesNotExist.",
+                                                            "type": "string"
+                                                          },
+                                                          "values": {
+                                                            "description": "values is an array of string values. If the operator is In or NotIn,\nthe values array must be non-empty. If the operator is Exists or DoesNotExist,\nthe values array must be empty. This array is replaced during a strategic\nmerge patch.",
+                                                            "type": "array",
+                                                            "items": {
+                                                              "type": "string"
+                                                            },
+                                                            "x-kubernetes-list-type": "atomic"
+                                                          }
+                                                        }
+                                                      },
+                                                      "x-kubernetes-list-type": "atomic"
+                                                    },
+                                                    "matchLabels": {
+                                                      "description": "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels\nmap is equivalent to an element of matchExpressions, whose key field is \"key\", the\noperator is \"In\", and the values array contains only \"value\". The requirements are ANDed.",
+                                                      "type": "object",
+                                                      "additionalProperties": {
+                                                        "type": "string"
+                                                      }
+                                                    }
+                                                  },
+                                                  "x-kubernetes-map-type": "atomic"
+                                                },
+                                                "namespaces": {
+                                                  "description": "namespaces specifies a static list of namespace names that the term applies to.\nThe term is applied to the union of the namespaces listed in this field\nand the ones selected by namespaceSelector.\nnull or empty namespaces list and null namespaceSelector means \"this pod's namespace\".",
+                                                  "type": "array",
+                                                  "items": {
+                                                    "type": "string"
+                                                  },
+                                                  "x-kubernetes-list-type": "atomic"
+                                                },
+                                                "topologyKey": {
+                                                  "description": "This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matching\nthe labelSelector in the specified namespaces, where co-located is defined as running on a node\nwhose value of the label with key topologyKey matches that of any node on which any of the\nselected pods is running.\nEmpty topologyKey is not allowed.",
+                                                  "type": "string"
+                                                }
+                                              }
+                                            },
+                                            "weight": {
+                                              "description": "weight associated with matching the corresponding podAffinityTerm,\nin the range 1-100.",
+                                              "type": "integer",
+                                              "format": "int32"
+                                            }
+                                          }
+                                        },
+                                        "x-kubernetes-list-type": "atomic"
+                                      },
+                                      "requiredDuringSchedulingIgnoredDuringExecution": {
+                                        "description": "If the affinity requirements specified by this field are not met at\nscheduling time, the pod will not be scheduled onto the node.\nIf the affinity requirements specified by this field cease to be met\nat some point during pod execution (e.g. due to a pod label update), the\nsystem may or may not try to eventually evict the pod from its node.\nWhen there are multiple elements, the lists of nodes corresponding to each\npodAffinityTerm are intersected, i.e. all terms must be satisfied.",
+                                        "type": "array",
+                                        "items": {
+                                          "description": "Defines a set of pods (namely those matching the labelSelector\nrelative to the given namespace(s)) that this pod should be\nco-located (affinity) or not co-located (anti-affinity) with,\nwhere co-located is defined as running on a node whose value of\nthe label with key \u003ctopologyKey\u003e matches that of any node on which\na pod of the set of pods is running",
+                                          "type": "object",
+                                          "required": [
+                                            "topologyKey"
+                                          ],
+                                          "properties": {
+                                            "labelSelector": {
+                                              "description": "A label query over a set of resources, in this case pods.\nIf it's null, this PodAffinityTerm matches with no Pods.",
+                                              "type": "object",
+                                              "properties": {
+                                                "matchExpressions": {
+                                                  "description": "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
+                                                  "type": "array",
+                                                  "items": {
+                                                    "description": "A label selector requirement is a selector that contains values, a key, and an operator that\nrelates the key and values.",
+                                                    "type": "object",
+                                                    "required": [
+                                                      "key",
+                                                      "operator"
+                                                    ],
+                                                    "properties": {
+                                                      "key": {
+                                                        "description": "key is the label key that the selector applies to.",
+                                                        "type": "string"
+                                                      },
+                                                      "operator": {
+                                                        "description": "operator represents a key's relationship to a set of values.\nValid operators are In, NotIn, Exists and DoesNotExist.",
+                                                        "type": "string"
+                                                      },
+                                                      "values": {
+                                                        "description": "values is an array of string values. If the operator is In or NotIn,\nthe values array must be non-empty. If the operator is Exists or DoesNotExist,\nthe values array must be empty. This array is replaced during a strategic\nmerge patch.",
+                                                        "type": "array",
+                                                        "items": {
+                                                          "type": "string"
+                                                        },
+                                                        "x-kubernetes-list-type": "atomic"
+                                                      }
+                                                    }
+                                                  },
+                                                  "x-kubernetes-list-type": "atomic"
+                                                },
+                                                "matchLabels": {
+                                                  "description": "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels\nmap is equivalent to an element of matchExpressions, whose key field is \"key\", the\noperator is \"In\", and the values array contains only \"value\". The requirements are ANDed.",
+                                                  "type": "object",
+                                                  "additionalProperties": {
+                                                    "type": "string"
+                                                  }
+                                                }
+                                              },
+                                              "x-kubernetes-map-type": "atomic"
+                                            },
+                                            "matchLabelKeys": {
+                                              "description": "MatchLabelKeys is a set of pod label keys to select which pods will\nbe taken into consideration. The keys are used to lookup values from the\nincoming pod labels, those key-value labels are merged with `labelSelector` as `key in (value)`\nto select the group of existing pods which pods will be taken into consideration\nfor the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming\npod labels will be ignored. The default value is empty.\nThe same key is forbidden to exist in both matchLabelKeys and labelSelector.\nAlso, matchLabelKeys cannot be set when labelSelector isn't set.\nThis is a beta field and requires enabling MatchLabelKeysInPodAffinity feature gate (enabled by default).",
+                                              "type": "array",
+                                              "items": {
+                                                "type": "string"
+                                              },
+                                              "x-kubernetes-list-type": "atomic"
+                                            },
+                                            "mismatchLabelKeys": {
+                                              "description": "MismatchLabelKeys is a set of pod label keys to select which pods will\nbe taken into consideration. The keys are used to lookup values from the\nincoming pod labels, those key-value labels are merged with `labelSelector` as `key notin (value)`\nto select the group of existing pods which pods will be taken into consideration\nfor the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming\npod labels will be ignored. The default value is empty.\nThe same key is forbidden to exist in both mismatchLabelKeys and labelSelector.\nAlso, mismatchLabelKeys cannot be set when labelSelector isn't set.\nThis is a beta field and requires enabling MatchLabelKeysInPodAffinity feature gate (enabled by default).",
+                                              "type": "array",
+                                              "items": {
+                                                "type": "string"
+                                              },
+                                              "x-kubernetes-list-type": "atomic"
+                                            },
+                                            "namespaceSelector": {
+                                              "description": "A label query over the set of namespaces that the term applies to.\nThe term is applied to the union of the namespaces selected by this field\nand the ones listed in the namespaces field.\nnull selector and null or empty namespaces list means \"this pod's namespace\".\nAn empty selector ({}) matches all namespaces.",
+                                              "type": "object",
+                                              "properties": {
+                                                "matchExpressions": {
+                                                  "description": "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
+                                                  "type": "array",
+                                                  "items": {
+                                                    "description": "A label selector requirement is a selector that contains values, a key, and an operator that\nrelates the key and values.",
+                                                    "type": "object",
+                                                    "required": [
+                                                      "key",
+                                                      "operator"
+                                                    ],
+                                                    "properties": {
+                                                      "key": {
+                                                        "description": "key is the label key that the selector applies to.",
+                                                        "type": "string"
+                                                      },
+                                                      "operator": {
+                                                        "description": "operator represents a key's relationship to a set of values.\nValid operators are In, NotIn, Exists and DoesNotExist.",
+                                                        "type": "string"
+                                                      },
+                                                      "values": {
+                                                        "description": "values is an array of string values. If the operator is In or NotIn,\nthe values array must be non-empty. If the operator is Exists or DoesNotExist,\nthe values array must be empty. This array is replaced during a strategic\nmerge patch.",
+                                                        "type": "array",
+                                                        "items": {
+                                                          "type": "string"
+                                                        },
+                                                        "x-kubernetes-list-type": "atomic"
+                                                      }
+                                                    }
+                                                  },
+                                                  "x-kubernetes-list-type": "atomic"
+                                                },
+                                                "matchLabels": {
+                                                  "description": "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels\nmap is equivalent to an element of matchExpressions, whose key field is \"key\", the\noperator is \"In\", and the values array contains only \"value\". The requirements are ANDed.",
+                                                  "type": "object",
+                                                  "additionalProperties": {
+                                                    "type": "string"
+                                                  }
+                                                }
+                                              },
+                                              "x-kubernetes-map-type": "atomic"
+                                            },
+                                            "namespaces": {
+                                              "description": "namespaces specifies a static list of namespace names that the term applies to.\nThe term is applied to the union of the namespaces listed in this field\nand the ones selected by namespaceSelector.\nnull or empty namespaces list and null namespaceSelector means \"this pod's namespace\".",
+                                              "type": "array",
+                                              "items": {
+                                                "type": "string"
+                                              },
+                                              "x-kubernetes-list-type": "atomic"
+                                            },
+                                            "topologyKey": {
+                                              "description": "This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matching\nthe labelSelector in the specified namespaces, where co-located is defined as running on a node\nwhose value of the label with key topologyKey matches that of any node on which any of the\nselected pods is running.\nEmpty topologyKey is not allowed.",
+                                              "type": "string"
+                                            }
+                                          }
+                                        },
+                                        "x-kubernetes-list-type": "atomic"
+                                      }
+                                    }
+                                  },
+                                  "podAntiAffinity": {
+                                    "description": "Describes pod anti-affinity scheduling rules (e.g. avoid putting this pod in the same node, zone, etc. as some other pod(s)).",
+                                    "type": "object",
+                                    "properties": {
+                                      "preferredDuringSchedulingIgnoredDuringExecution": {
+                                        "description": "The scheduler will prefer to schedule pods to nodes that satisfy\nthe anti-affinity expressions specified by this field, but it may choose\na node that violates one or more of the expressions. The node that is\nmost preferred is the one with the greatest sum of weights, i.e.\nfor each node that meets all of the scheduling requirements (resource\nrequest, requiredDuringScheduling anti-affinity expressions, etc.),\ncompute a sum by iterating through the elements of this field and adding\n\"weight\" to the sum if the node has pods which matches the corresponding podAffinityTerm; the\nnode(s) with the highest sum are the most preferred.",
+                                        "type": "array",
+                                        "items": {
+                                          "description": "The weights of all of the matched WeightedPodAffinityTerm fields are added per-node to find the most preferred node(s)",
+                                          "type": "object",
+                                          "required": [
+                                            "podAffinityTerm",
+                                            "weight"
+                                          ],
+                                          "properties": {
+                                            "podAffinityTerm": {
+                                              "description": "Required. A pod affinity term, associated with the corresponding weight.",
+                                              "type": "object",
+                                              "required": [
+                                                "topologyKey"
+                                              ],
+                                              "properties": {
+                                                "labelSelector": {
+                                                  "description": "A label query over a set of resources, in this case pods.\nIf it's null, this PodAffinityTerm matches with no Pods.",
+                                                  "type": "object",
+                                                  "properties": {
+                                                    "matchExpressions": {
+                                                      "description": "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
+                                                      "type": "array",
+                                                      "items": {
+                                                        "description": "A label selector requirement is a selector that contains values, a key, and an operator that\nrelates the key and values.",
+                                                        "type": "object",
+                                                        "required": [
+                                                          "key",
+                                                          "operator"
+                                                        ],
+                                                        "properties": {
+                                                          "key": {
+                                                            "description": "key is the label key that the selector applies to.",
+                                                            "type": "string"
+                                                          },
+                                                          "operator": {
+                                                            "description": "operator represents a key's relationship to a set of values.\nValid operators are In, NotIn, Exists and DoesNotExist.",
+                                                            "type": "string"
+                                                          },
+                                                          "values": {
+                                                            "description": "values is an array of string values. If the operator is In or NotIn,\nthe values array must be non-empty. If the operator is Exists or DoesNotExist,\nthe values array must be empty. This array is replaced during a strategic\nmerge patch.",
+                                                            "type": "array",
+                                                            "items": {
+                                                              "type": "string"
+                                                            },
+                                                            "x-kubernetes-list-type": "atomic"
+                                                          }
+                                                        }
+                                                      },
+                                                      "x-kubernetes-list-type": "atomic"
+                                                    },
+                                                    "matchLabels": {
+                                                      "description": "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels\nmap is equivalent to an element of matchExpressions, whose key field is \"key\", the\noperator is \"In\", and the values array contains only \"value\". The requirements are ANDed.",
+                                                      "type": "object",
+                                                      "additionalProperties": {
+                                                        "type": "string"
+                                                      }
+                                                    }
+                                                  },
+                                                  "x-kubernetes-map-type": "atomic"
+                                                },
+                                                "matchLabelKeys": {
+                                                  "description": "MatchLabelKeys is a set of pod label keys to select which pods will\nbe taken into consideration. The keys are used to lookup values from the\nincoming pod labels, those key-value labels are merged with `labelSelector` as `key in (value)`\nto select the group of existing pods which pods will be taken into consideration\nfor the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming\npod labels will be ignored. The default value is empty.\nThe same key is forbidden to exist in both matchLabelKeys and labelSelector.\nAlso, matchLabelKeys cannot be set when labelSelector isn't set.\nThis is a beta field and requires enabling MatchLabelKeysInPodAffinity feature gate (enabled by default).",
+                                                  "type": "array",
+                                                  "items": {
+                                                    "type": "string"
+                                                  },
+                                                  "x-kubernetes-list-type": "atomic"
+                                                },
+                                                "mismatchLabelKeys": {
+                                                  "description": "MismatchLabelKeys is a set of pod label keys to select which pods will\nbe taken into consideration. The keys are used to lookup values from the\nincoming pod labels, those key-value labels are merged with `labelSelector` as `key notin (value)`\nto select the group of existing pods which pods will be taken into consideration\nfor the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming\npod labels will be ignored. The default value is empty.\nThe same key is forbidden to exist in both mismatchLabelKeys and labelSelector.\nAlso, mismatchLabelKeys cannot be set when labelSelector isn't set.\nThis is a beta field and requires enabling MatchLabelKeysInPodAffinity feature gate (enabled by default).",
+                                                  "type": "array",
+                                                  "items": {
+                                                    "type": "string"
+                                                  },
+                                                  "x-kubernetes-list-type": "atomic"
+                                                },
+                                                "namespaceSelector": {
+                                                  "description": "A label query over the set of namespaces that the term applies to.\nThe term is applied to the union of the namespaces selected by this field\nand the ones listed in the namespaces field.\nnull selector and null or empty namespaces list means \"this pod's namespace\".\nAn empty selector ({}) matches all namespaces.",
+                                                  "type": "object",
+                                                  "properties": {
+                                                    "matchExpressions": {
+                                                      "description": "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
+                                                      "type": "array",
+                                                      "items": {
+                                                        "description": "A label selector requirement is a selector that contains values, a key, and an operator that\nrelates the key and values.",
+                                                        "type": "object",
+                                                        "required": [
+                                                          "key",
+                                                          "operator"
+                                                        ],
+                                                        "properties": {
+                                                          "key": {
+                                                            "description": "key is the label key that the selector applies to.",
+                                                            "type": "string"
+                                                          },
+                                                          "operator": {
+                                                            "description": "operator represents a key's relationship to a set of values.\nValid operators are In, NotIn, Exists and DoesNotExist.",
+                                                            "type": "string"
+                                                          },
+                                                          "values": {
+                                                            "description": "values is an array of string values. If the operator is In or NotIn,\nthe values array must be non-empty. If the operator is Exists or DoesNotExist,\nthe values array must be empty. This array is replaced during a strategic\nmerge patch.",
+                                                            "type": "array",
+                                                            "items": {
+                                                              "type": "string"
+                                                            },
+                                                            "x-kubernetes-list-type": "atomic"
+                                                          }
+                                                        }
+                                                      },
+                                                      "x-kubernetes-list-type": "atomic"
+                                                    },
+                                                    "matchLabels": {
+                                                      "description": "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels\nmap is equivalent to an element of matchExpressions, whose key field is \"key\", the\noperator is \"In\", and the values array contains only \"value\". The requirements are ANDed.",
+                                                      "type": "object",
+                                                      "additionalProperties": {
+                                                        "type": "string"
+                                                      }
+                                                    }
+                                                  },
+                                                  "x-kubernetes-map-type": "atomic"
+                                                },
+                                                "namespaces": {
+                                                  "description": "namespaces specifies a static list of namespace names that the term applies to.\nThe term is applied to the union of the namespaces listed in this field\nand the ones selected by namespaceSelector.\nnull or empty namespaces list and null namespaceSelector means \"this pod's namespace\".",
+                                                  "type": "array",
+                                                  "items": {
+                                                    "type": "string"
+                                                  },
+                                                  "x-kubernetes-list-type": "atomic"
+                                                },
+                                                "topologyKey": {
+                                                  "description": "This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matching\nthe labelSelector in the specified namespaces, where co-located is defined as running on a node\nwhose value of the label with key topologyKey matches that of any node on which any of the\nselected pods is running.\nEmpty topologyKey is not allowed.",
+                                                  "type": "string"
+                                                }
+                                              }
+                                            },
+                                            "weight": {
+                                              "description": "weight associated with matching the corresponding podAffinityTerm,\nin the range 1-100.",
+                                              "type": "integer",
+                                              "format": "int32"
+                                            }
+                                          }
+                                        },
+                                        "x-kubernetes-list-type": "atomic"
+                                      },
+                                      "requiredDuringSchedulingIgnoredDuringExecution": {
+                                        "description": "If the anti-affinity requirements specified by this field are not met at\nscheduling time, the pod will not be scheduled onto the node.\nIf the anti-affinity requirements specified by this field cease to be met\nat some point during pod execution (e.g. due to a pod label update), the\nsystem may or may not try to eventually evict the pod from its node.\nWhen there are multiple elements, the lists of nodes corresponding to each\npodAffinityTerm are intersected, i.e. all terms must be satisfied.",
+                                        "type": "array",
+                                        "items": {
+                                          "description": "Defines a set of pods (namely those matching the labelSelector\nrelative to the given namespace(s)) that this pod should be\nco-located (affinity) or not co-located (anti-affinity) with,\nwhere co-located is defined as running on a node whose value of\nthe label with key \u003ctopologyKey\u003e matches that of any node on which\na pod of the set of pods is running",
+                                          "type": "object",
+                                          "required": [
+                                            "topologyKey"
+                                          ],
+                                          "properties": {
+                                            "labelSelector": {
+                                              "description": "A label query over a set of resources, in this case pods.\nIf it's null, this PodAffinityTerm matches with no Pods.",
+                                              "type": "object",
+                                              "properties": {
+                                                "matchExpressions": {
+                                                  "description": "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
+                                                  "type": "array",
+                                                  "items": {
+                                                    "description": "A label selector requirement is a selector that contains values, a key, and an operator that\nrelates the key and values.",
+                                                    "type": "object",
+                                                    "required": [
+                                                      "key",
+                                                      "operator"
+                                                    ],
+                                                    "properties": {
+                                                      "key": {
+                                                        "description": "key is the label key that the selector applies to.",
+                                                        "type": "string"
+                                                      },
+                                                      "operator": {
+                                                        "description": "operator represents a key's relationship to a set of values.\nValid operators are In, NotIn, Exists and DoesNotExist.",
+                                                        "type": "string"
+                                                      },
+                                                      "values": {
+                                                        "description": "values is an array of string values. If the operator is In or NotIn,\nthe values array must be non-empty. If the operator is Exists or DoesNotExist,\nthe values array must be empty. This array is replaced during a strategic\nmerge patch.",
+                                                        "type": "array",
+                                                        "items": {
+                                                          "type": "string"
+                                                        },
+                                                        "x-kubernetes-list-type": "atomic"
+                                                      }
+                                                    }
+                                                  },
+                                                  "x-kubernetes-list-type": "atomic"
+                                                },
+                                                "matchLabels": {
+                                                  "description": "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels\nmap is equivalent to an element of matchExpressions, whose key field is \"key\", the\noperator is \"In\", and the values array contains only \"value\". The requirements are ANDed.",
+                                                  "type": "object",
+                                                  "additionalProperties": {
+                                                    "type": "string"
+                                                  }
+                                                }
+                                              },
+                                              "x-kubernetes-map-type": "atomic"
+                                            },
+                                            "matchLabelKeys": {
+                                              "description": "MatchLabelKeys is a set of pod label keys to select which pods will\nbe taken into consideration. The keys are used to lookup values from the\nincoming pod labels, those key-value labels are merged with `labelSelector` as `key in (value)`\nto select the group of existing pods which pods will be taken into consideration\nfor the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming\npod labels will be ignored. The default value is empty.\nThe same key is forbidden to exist in both matchLabelKeys and labelSelector.\nAlso, matchLabelKeys cannot be set when labelSelector isn't set.\nThis is a beta field and requires enabling MatchLabelKeysInPodAffinity feature gate (enabled by default).",
+                                              "type": "array",
+                                              "items": {
+                                                "type": "string"
+                                              },
+                                              "x-kubernetes-list-type": "atomic"
+                                            },
+                                            "mismatchLabelKeys": {
+                                              "description": "MismatchLabelKeys is a set of pod label keys to select which pods will\nbe taken into consideration. The keys are used to lookup values from the\nincoming pod labels, those key-value labels are merged with `labelSelector` as `key notin (value)`\nto select the group of existing pods which pods will be taken into consideration\nfor the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming\npod labels will be ignored. The default value is empty.\nThe same key is forbidden to exist in both mismatchLabelKeys and labelSelector.\nAlso, mismatchLabelKeys cannot be set when labelSelector isn't set.\nThis is a beta field and requires enabling MatchLabelKeysInPodAffinity feature gate (enabled by default).",
+                                              "type": "array",
+                                              "items": {
+                                                "type": "string"
+                                              },
+                                              "x-kubernetes-list-type": "atomic"
+                                            },
+                                            "namespaceSelector": {
+                                              "description": "A label query over the set of namespaces that the term applies to.\nThe term is applied to the union of the namespaces selected by this field\nand the ones listed in the namespaces field.\nnull selector and null or empty namespaces list means \"this pod's namespace\".\nAn empty selector ({}) matches all namespaces.",
+                                              "type": "object",
+                                              "properties": {
+                                                "matchExpressions": {
+                                                  "description": "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
+                                                  "type": "array",
+                                                  "items": {
+                                                    "description": "A label selector requirement is a selector that contains values, a key, and an operator that\nrelates the key and values.",
+                                                    "type": "object",
+                                                    "required": [
+                                                      "key",
+                                                      "operator"
+                                                    ],
+                                                    "properties": {
+                                                      "key": {
+                                                        "description": "key is the label key that the selector applies to.",
+                                                        "type": "string"
+                                                      },
+                                                      "operator": {
+                                                        "description": "operator represents a key's relationship to a set of values.\nValid operators are In, NotIn, Exists and DoesNotExist.",
+                                                        "type": "string"
+                                                      },
+                                                      "values": {
+                                                        "description": "values is an array of string values. If the operator is In or NotIn,\nthe values array must be non-empty. If the operator is Exists or DoesNotExist,\nthe values array must be empty. This array is replaced during a strategic\nmerge patch.",
+                                                        "type": "array",
+                                                        "items": {
+                                                          "type": "string"
+                                                        },
+                                                        "x-kubernetes-list-type": "atomic"
+                                                      }
+                                                    }
+                                                  },
+                                                  "x-kubernetes-list-type": "atomic"
+                                                },
+                                                "matchLabels": {
+                                                  "description": "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels\nmap is equivalent to an element of matchExpressions, whose key field is \"key\", the\noperator is \"In\", and the values array contains only \"value\". The requirements are ANDed.",
+                                                  "type": "object",
+                                                  "additionalProperties": {
+                                                    "type": "string"
+                                                  }
+                                                }
+                                              },
+                                              "x-kubernetes-map-type": "atomic"
+                                            },
+                                            "namespaces": {
+                                              "description": "namespaces specifies a static list of namespace names that the term applies to.\nThe term is applied to the union of the namespaces listed in this field\nand the ones selected by namespaceSelector.\nnull or empty namespaces list and null namespaceSelector means \"this pod's namespace\".",
+                                              "type": "array",
+                                              "items": {
+                                                "type": "string"
+                                              },
+                                              "x-kubernetes-list-type": "atomic"
+                                            },
+                                            "topologyKey": {
+                                              "description": "This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matching\nthe labelSelector in the specified namespaces, where co-located is defined as running on a node\nwhose value of the label with key topologyKey matches that of any node on which any of the\nselected pods is running.\nEmpty topologyKey is not allowed.",
+                                              "type": "string"
+                                            }
+                                          }
+                                        },
+                                        "x-kubernetes-list-type": "atomic"
+                                      }
+                                    }
+                                  }
+                                }
+                              },
                               "annotations": {
+                                "type": "object",
+                                "additionalProperties": {
+                                  "type": "string"
+                                }
+                              },
+                              "args": {
+                                "type": "array",
+                                "items": {
+                                  "type": "string"
+                                }
+                              },
+                              "nodeSelector": {
                                 "type": "object",
                                 "additionalProperties": {
                                   "type": "string"
@@ -726,6 +1498,36 @@
                                   }
                                 }
                               },
+                              "tolerations": {
+                                "type": "array",
+                                "items": {
+                                  "description": "The pod this Toleration is attached to tolerates any taint that matches\nthe triple \u003ckey,value,effect\u003e using the matching operator \u003coperator\u003e.",
+                                  "type": "object",
+                                  "properties": {
+                                    "effect": {
+                                      "description": "Effect indicates the taint effect to match. Empty means match all taint effects.\nWhen specified, allowed values are NoSchedule, PreferNoSchedule and NoExecute.",
+                                      "type": "string"
+                                    },
+                                    "key": {
+                                      "description": "Key is the taint key that the toleration applies to. Empty means match all taint keys.\nIf the key is empty, operator must be Exists; this combination means to match all values and all keys.",
+                                      "type": "string"
+                                    },
+                                    "operator": {
+                                      "description": "Operator represents a key's relationship to the value.\nValid operators are Exists and Equal. Defaults to Equal.\nExists is equivalent to wildcard for value, so that a pod can\ntolerate all taints of a particular category.",
+                                      "type": "string"
+                                    },
+                                    "tolerationSeconds": {
+                                      "description": "TolerationSeconds represents the period of time the toleration (which must be\nof effect NoExecute, otherwise this field is ignored) tolerates the taint. By default,\nit is not set, which means tolerate the taint forever (do not evict). Zero and\nnegative values will be treated as 0 (evict immediately) by the system.",
+                                      "type": "integer",
+                                      "format": "int64"
+                                    },
+                                    "value": {
+                                      "description": "Value is the taint value the toleration matches to.\nIf the operator is Exists, the value should be empty, otherwise just a regular string.",
+                                      "type": "string"
+                                    }
+                                  }
+                                }
+                              },
                               "ttlSecondsAfterFinished": {
                                 "type": "integer"
                               }
@@ -762,7 +1564,14 @@
                         "properties": {
                           "envoyGateway": {
                             "type": "object",
+                            "required": [
+                              "extensionApis"
+                            ],
                             "properties": {
+                              "extensionApis": {
+                                "type": "object",
+                                "x-kubernetes-preserve-unknown-fields": true
+                              },
                               "gateway": {
                                 "type": "object",
                                 "required": [
@@ -813,6 +1622,9 @@
                       },
                       "deployment": {
                         "type": "object",
+                        "required": [
+                          "priorityClassName"
+                        ],
                         "properties": {
                           "envoyGateway": {
                             "type": "object",
@@ -1819,6 +2631,12 @@
                                   "type": "string"
                                 }
                               },
+                              "nodeSelector": {
+                                "type": "object",
+                                "additionalProperties": {
+                                  "type": "string"
+                                }
+                              },
                               "tolerations": {
                                 "type": "array",
                                 "items": {
@@ -1965,6 +2783,9 @@
                                 }
                               }
                             }
+                          },
+                          "priorityClassName": {
+                            "type": "string"
                           },
                           "replicas": {
                             "type": "integer"
@@ -3274,9 +4095,20 @@
                       "global": {
                         "type": "object",
                         "required": [
+                          "imagePullSecrets",
+                          "imageRegistry",
                           "images"
                         ],
                         "properties": {
+                          "imagePullSecrets": {
+                            "type": "array",
+                            "items": {
+                              "type": "string"
+                            }
+                          },
+                          "imageRegistry": {
+                            "type": "string"
+                          },
                           "images": {
                             "type": "object",
                             "required": [
@@ -3350,6 +4182,619 @@
                           }
                         }
                       },
+                      "hpa": {
+                        "type": "object",
+                        "required": [
+                          "behavior",
+                          "enabled",
+                          "maxReplicas",
+                          "metrics",
+                          "minReplicas"
+                        ],
+                        "properties": {
+                          "behavior": {
+                            "description": "HorizontalPodAutoscalerBehavior configures the scaling behavior of the target\nin both Up and Down directions (scaleUp and scaleDown fields respectively).",
+                            "type": "object",
+                            "properties": {
+                              "scaleDown": {
+                                "description": "scaleDown is scaling policy for scaling Down.\nIf not set, the default value is to allow to scale down to minReplicas pods, with a\n300 second stabilization window (i.e., the highest recommendation for\nthe last 300sec is used).",
+                                "type": "object",
+                                "properties": {
+                                  "policies": {
+                                    "description": "policies is a list of potential scaling polices which can be used during scaling.\nAt least one policy must be specified, otherwise the HPAScalingRules will be discarded as invalid",
+                                    "type": "array",
+                                    "items": {
+                                      "description": "HPAScalingPolicy is a single policy which must hold true for a specified past interval.",
+                                      "type": "object",
+                                      "required": [
+                                        "periodSeconds",
+                                        "type",
+                                        "value"
+                                      ],
+                                      "properties": {
+                                        "periodSeconds": {
+                                          "description": "periodSeconds specifies the window of time for which the policy should hold true.\nPeriodSeconds must be greater than zero and less than or equal to 1800 (30 min).",
+                                          "type": "integer",
+                                          "format": "int32"
+                                        },
+                                        "type": {
+                                          "description": "type is used to specify the scaling policy.",
+                                          "type": "string"
+                                        },
+                                        "value": {
+                                          "description": "value contains the amount of change which is permitted by the policy.\nIt must be greater than zero",
+                                          "type": "integer",
+                                          "format": "int32"
+                                        }
+                                      }
+                                    },
+                                    "x-kubernetes-list-type": "atomic"
+                                  },
+                                  "selectPolicy": {
+                                    "description": "selectPolicy is used to specify which policy should be used.\nIf not set, the default value Max is used.",
+                                    "type": "string"
+                                  },
+                                  "stabilizationWindowSeconds": {
+                                    "description": "stabilizationWindowSeconds is the number of seconds for which past recommendations should be\nconsidered while scaling up or scaling down.\nStabilizationWindowSeconds must be greater than or equal to zero and less than or equal to 3600 (one hour).\nIf not set, use the default values:\n- For scale up: 0 (i.e. no stabilization is done).\n- For scale down: 300 (i.e. the stabilization window is 300 seconds long).",
+                                    "type": "integer",
+                                    "format": "int32"
+                                  }
+                                }
+                              },
+                              "scaleUp": {
+                                "description": "scaleUp is scaling policy for scaling Up.\nIf not set, the default value is the higher of:\n  * increase no more than 4 pods per 60 seconds\n  * double the number of pods per 60 seconds\nNo stabilization is used.",
+                                "type": "object",
+                                "properties": {
+                                  "policies": {
+                                    "description": "policies is a list of potential scaling polices which can be used during scaling.\nAt least one policy must be specified, otherwise the HPAScalingRules will be discarded as invalid",
+                                    "type": "array",
+                                    "items": {
+                                      "description": "HPAScalingPolicy is a single policy which must hold true for a specified past interval.",
+                                      "type": "object",
+                                      "required": [
+                                        "periodSeconds",
+                                        "type",
+                                        "value"
+                                      ],
+                                      "properties": {
+                                        "periodSeconds": {
+                                          "description": "periodSeconds specifies the window of time for which the policy should hold true.\nPeriodSeconds must be greater than zero and less than or equal to 1800 (30 min).",
+                                          "type": "integer",
+                                          "format": "int32"
+                                        },
+                                        "type": {
+                                          "description": "type is used to specify the scaling policy.",
+                                          "type": "string"
+                                        },
+                                        "value": {
+                                          "description": "value contains the amount of change which is permitted by the policy.\nIt must be greater than zero",
+                                          "type": "integer",
+                                          "format": "int32"
+                                        }
+                                      }
+                                    },
+                                    "x-kubernetes-list-type": "atomic"
+                                  },
+                                  "selectPolicy": {
+                                    "description": "selectPolicy is used to specify which policy should be used.\nIf not set, the default value Max is used.",
+                                    "type": "string"
+                                  },
+                                  "stabilizationWindowSeconds": {
+                                    "description": "stabilizationWindowSeconds is the number of seconds for which past recommendations should be\nconsidered while scaling up or scaling down.\nStabilizationWindowSeconds must be greater than or equal to zero and less than or equal to 3600 (one hour).\nIf not set, use the default values:\n- For scale up: 0 (i.e. no stabilization is done).\n- For scale down: 300 (i.e. the stabilization window is 300 seconds long).",
+                                    "type": "integer",
+                                    "format": "int32"
+                                  }
+                                }
+                              }
+                            }
+                          },
+                          "enabled": {
+                            "type": "boolean"
+                          },
+                          "maxReplicas": {
+                            "type": "integer"
+                          },
+                          "metrics": {
+                            "type": "array",
+                            "items": {
+                              "description": "MetricSpec specifies how to scale based on a single metric\n(only `type` and one other matching field should be set at once).",
+                              "type": "object",
+                              "required": [
+                                "type"
+                              ],
+                              "properties": {
+                                "containerResource": {
+                                  "description": "containerResource refers to a resource metric (such as those specified in\nrequests and limits) known to Kubernetes describing a single container in\neach pod of the current scale target (e.g. CPU or memory). Such metrics are\nbuilt in to Kubernetes, and have special scaling options on top of those\navailable to normal per-pod metrics using the \"pods\" source.",
+                                  "type": "object",
+                                  "required": [
+                                    "container",
+                                    "name",
+                                    "target"
+                                  ],
+                                  "properties": {
+                                    "container": {
+                                      "description": "container is the name of the container in the pods of the scaling target",
+                                      "type": "string"
+                                    },
+                                    "name": {
+                                      "description": "name is the name of the resource in question.",
+                                      "type": "string"
+                                    },
+                                    "target": {
+                                      "description": "target specifies the target value for the given metric",
+                                      "type": "object",
+                                      "required": [
+                                        "type"
+                                      ],
+                                      "properties": {
+                                        "averageUtilization": {
+                                          "description": "averageUtilization is the target value of the average of the\nresource metric across all relevant pods, represented as a percentage of\nthe requested value of the resource for the pods.\nCurrently only valid for Resource metric source type",
+                                          "type": "integer",
+                                          "format": "int32"
+                                        },
+                                        "averageValue": {
+                                          "description": "averageValue is the target value of the average of the\nmetric across all relevant pods (as a quantity)",
+                                          "pattern": "^(\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))(([KMGTPE]i)|[numkMGTPE]|([eE](\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))))?$",
+                                          "anyOf": [
+                                            {
+                                              "type": "integer"
+                                            },
+                                            {
+                                              "type": "string"
+                                            }
+                                          ],
+                                          "x-kubernetes-int-or-string": true
+                                        },
+                                        "type": {
+                                          "description": "type represents whether the metric type is Utilization, Value, or AverageValue",
+                                          "type": "string"
+                                        },
+                                        "value": {
+                                          "description": "value is the target value of the metric (as a quantity).",
+                                          "pattern": "^(\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))(([KMGTPE]i)|[numkMGTPE]|([eE](\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))))?$",
+                                          "anyOf": [
+                                            {
+                                              "type": "integer"
+                                            },
+                                            {
+                                              "type": "string"
+                                            }
+                                          ],
+                                          "x-kubernetes-int-or-string": true
+                                        }
+                                      }
+                                    }
+                                  }
+                                },
+                                "external": {
+                                  "description": "external refers to a global metric that is not associated\nwith any Kubernetes object. It allows autoscaling based on information\ncoming from components running outside of cluster\n(for example length of queue in cloud messaging service, or\nQPS from loadbalancer running outside of cluster).",
+                                  "type": "object",
+                                  "required": [
+                                    "metric",
+                                    "target"
+                                  ],
+                                  "properties": {
+                                    "metric": {
+                                      "description": "metric identifies the target metric by name and selector",
+                                      "type": "object",
+                                      "required": [
+                                        "name"
+                                      ],
+                                      "properties": {
+                                        "name": {
+                                          "description": "name is the name of the given metric",
+                                          "type": "string"
+                                        },
+                                        "selector": {
+                                          "description": "selector is the string-encoded form of a standard kubernetes label selector for the given metric\nWhen set, it is passed as an additional parameter to the metrics server for more specific metrics scoping.\nWhen unset, just the metricName will be used to gather metrics.",
+                                          "type": "object",
+                                          "properties": {
+                                            "matchExpressions": {
+                                              "description": "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
+                                              "type": "array",
+                                              "items": {
+                                                "description": "A label selector requirement is a selector that contains values, a key, and an operator that\nrelates the key and values.",
+                                                "type": "object",
+                                                "required": [
+                                                  "key",
+                                                  "operator"
+                                                ],
+                                                "properties": {
+                                                  "key": {
+                                                    "description": "key is the label key that the selector applies to.",
+                                                    "type": "string"
+                                                  },
+                                                  "operator": {
+                                                    "description": "operator represents a key's relationship to a set of values.\nValid operators are In, NotIn, Exists and DoesNotExist.",
+                                                    "type": "string"
+                                                  },
+                                                  "values": {
+                                                    "description": "values is an array of string values. If the operator is In or NotIn,\nthe values array must be non-empty. If the operator is Exists or DoesNotExist,\nthe values array must be empty. This array is replaced during a strategic\nmerge patch.",
+                                                    "type": "array",
+                                                    "items": {
+                                                      "type": "string"
+                                                    },
+                                                    "x-kubernetes-list-type": "atomic"
+                                                  }
+                                                }
+                                              },
+                                              "x-kubernetes-list-type": "atomic"
+                                            },
+                                            "matchLabels": {
+                                              "description": "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels\nmap is equivalent to an element of matchExpressions, whose key field is \"key\", the\noperator is \"In\", and the values array contains only \"value\". The requirements are ANDed.",
+                                              "type": "object",
+                                              "additionalProperties": {
+                                                "type": "string"
+                                              }
+                                            }
+                                          },
+                                          "x-kubernetes-map-type": "atomic"
+                                        }
+                                      }
+                                    },
+                                    "target": {
+                                      "description": "target specifies the target value for the given metric",
+                                      "type": "object",
+                                      "required": [
+                                        "type"
+                                      ],
+                                      "properties": {
+                                        "averageUtilization": {
+                                          "description": "averageUtilization is the target value of the average of the\nresource metric across all relevant pods, represented as a percentage of\nthe requested value of the resource for the pods.\nCurrently only valid for Resource metric source type",
+                                          "type": "integer",
+                                          "format": "int32"
+                                        },
+                                        "averageValue": {
+                                          "description": "averageValue is the target value of the average of the\nmetric across all relevant pods (as a quantity)",
+                                          "pattern": "^(\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))(([KMGTPE]i)|[numkMGTPE]|([eE](\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))))?$",
+                                          "anyOf": [
+                                            {
+                                              "type": "integer"
+                                            },
+                                            {
+                                              "type": "string"
+                                            }
+                                          ],
+                                          "x-kubernetes-int-or-string": true
+                                        },
+                                        "type": {
+                                          "description": "type represents whether the metric type is Utilization, Value, or AverageValue",
+                                          "type": "string"
+                                        },
+                                        "value": {
+                                          "description": "value is the target value of the metric (as a quantity).",
+                                          "pattern": "^(\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))(([KMGTPE]i)|[numkMGTPE]|([eE](\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))))?$",
+                                          "anyOf": [
+                                            {
+                                              "type": "integer"
+                                            },
+                                            {
+                                              "type": "string"
+                                            }
+                                          ],
+                                          "x-kubernetes-int-or-string": true
+                                        }
+                                      }
+                                    }
+                                  }
+                                },
+                                "object": {
+                                  "description": "object refers to a metric describing a single kubernetes object\n(for example, hits-per-second on an Ingress object).",
+                                  "type": "object",
+                                  "required": [
+                                    "describedObject",
+                                    "metric",
+                                    "target"
+                                  ],
+                                  "properties": {
+                                    "describedObject": {
+                                      "description": "describedObject specifies the descriptions of a object,such as kind,name apiVersion",
+                                      "type": "object",
+                                      "required": [
+                                        "kind",
+                                        "name"
+                                      ],
+                                      "properties": {
+                                        "apiVersion": {
+                                          "description": "apiVersion is the API version of the referent",
+                                          "type": "string"
+                                        },
+                                        "kind": {
+                                          "description": "kind is the kind of the referent; More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds",
+                                          "type": "string"
+                                        },
+                                        "name": {
+                                          "description": "name is the name of the referent; More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+                                          "type": "string"
+                                        }
+                                      }
+                                    },
+                                    "metric": {
+                                      "description": "metric identifies the target metric by name and selector",
+                                      "type": "object",
+                                      "required": [
+                                        "name"
+                                      ],
+                                      "properties": {
+                                        "name": {
+                                          "description": "name is the name of the given metric",
+                                          "type": "string"
+                                        },
+                                        "selector": {
+                                          "description": "selector is the string-encoded form of a standard kubernetes label selector for the given metric\nWhen set, it is passed as an additional parameter to the metrics server for more specific metrics scoping.\nWhen unset, just the metricName will be used to gather metrics.",
+                                          "type": "object",
+                                          "properties": {
+                                            "matchExpressions": {
+                                              "description": "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
+                                              "type": "array",
+                                              "items": {
+                                                "description": "A label selector requirement is a selector that contains values, a key, and an operator that\nrelates the key and values.",
+                                                "type": "object",
+                                                "required": [
+                                                  "key",
+                                                  "operator"
+                                                ],
+                                                "properties": {
+                                                  "key": {
+                                                    "description": "key is the label key that the selector applies to.",
+                                                    "type": "string"
+                                                  },
+                                                  "operator": {
+                                                    "description": "operator represents a key's relationship to a set of values.\nValid operators are In, NotIn, Exists and DoesNotExist.",
+                                                    "type": "string"
+                                                  },
+                                                  "values": {
+                                                    "description": "values is an array of string values. If the operator is In or NotIn,\nthe values array must be non-empty. If the operator is Exists or DoesNotExist,\nthe values array must be empty. This array is replaced during a strategic\nmerge patch.",
+                                                    "type": "array",
+                                                    "items": {
+                                                      "type": "string"
+                                                    },
+                                                    "x-kubernetes-list-type": "atomic"
+                                                  }
+                                                }
+                                              },
+                                              "x-kubernetes-list-type": "atomic"
+                                            },
+                                            "matchLabels": {
+                                              "description": "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels\nmap is equivalent to an element of matchExpressions, whose key field is \"key\", the\noperator is \"In\", and the values array contains only \"value\". The requirements are ANDed.",
+                                              "type": "object",
+                                              "additionalProperties": {
+                                                "type": "string"
+                                              }
+                                            }
+                                          },
+                                          "x-kubernetes-map-type": "atomic"
+                                        }
+                                      }
+                                    },
+                                    "target": {
+                                      "description": "target specifies the target value for the given metric",
+                                      "type": "object",
+                                      "required": [
+                                        "type"
+                                      ],
+                                      "properties": {
+                                        "averageUtilization": {
+                                          "description": "averageUtilization is the target value of the average of the\nresource metric across all relevant pods, represented as a percentage of\nthe requested value of the resource for the pods.\nCurrently only valid for Resource metric source type",
+                                          "type": "integer",
+                                          "format": "int32"
+                                        },
+                                        "averageValue": {
+                                          "description": "averageValue is the target value of the average of the\nmetric across all relevant pods (as a quantity)",
+                                          "pattern": "^(\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))(([KMGTPE]i)|[numkMGTPE]|([eE](\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))))?$",
+                                          "anyOf": [
+                                            {
+                                              "type": "integer"
+                                            },
+                                            {
+                                              "type": "string"
+                                            }
+                                          ],
+                                          "x-kubernetes-int-or-string": true
+                                        },
+                                        "type": {
+                                          "description": "type represents whether the metric type is Utilization, Value, or AverageValue",
+                                          "type": "string"
+                                        },
+                                        "value": {
+                                          "description": "value is the target value of the metric (as a quantity).",
+                                          "pattern": "^(\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))(([KMGTPE]i)|[numkMGTPE]|([eE](\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))))?$",
+                                          "anyOf": [
+                                            {
+                                              "type": "integer"
+                                            },
+                                            {
+                                              "type": "string"
+                                            }
+                                          ],
+                                          "x-kubernetes-int-or-string": true
+                                        }
+                                      }
+                                    }
+                                  }
+                                },
+                                "pods": {
+                                  "description": "pods refers to a metric describing each pod in the current scale target\n(for example, transactions-processed-per-second).  The values will be\naveraged together before being compared to the target value.",
+                                  "type": "object",
+                                  "required": [
+                                    "metric",
+                                    "target"
+                                  ],
+                                  "properties": {
+                                    "metric": {
+                                      "description": "metric identifies the target metric by name and selector",
+                                      "type": "object",
+                                      "required": [
+                                        "name"
+                                      ],
+                                      "properties": {
+                                        "name": {
+                                          "description": "name is the name of the given metric",
+                                          "type": "string"
+                                        },
+                                        "selector": {
+                                          "description": "selector is the string-encoded form of a standard kubernetes label selector for the given metric\nWhen set, it is passed as an additional parameter to the metrics server for more specific metrics scoping.\nWhen unset, just the metricName will be used to gather metrics.",
+                                          "type": "object",
+                                          "properties": {
+                                            "matchExpressions": {
+                                              "description": "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
+                                              "type": "array",
+                                              "items": {
+                                                "description": "A label selector requirement is a selector that contains values, a key, and an operator that\nrelates the key and values.",
+                                                "type": "object",
+                                                "required": [
+                                                  "key",
+                                                  "operator"
+                                                ],
+                                                "properties": {
+                                                  "key": {
+                                                    "description": "key is the label key that the selector applies to.",
+                                                    "type": "string"
+                                                  },
+                                                  "operator": {
+                                                    "description": "operator represents a key's relationship to a set of values.\nValid operators are In, NotIn, Exists and DoesNotExist.",
+                                                    "type": "string"
+                                                  },
+                                                  "values": {
+                                                    "description": "values is an array of string values. If the operator is In or NotIn,\nthe values array must be non-empty. If the operator is Exists or DoesNotExist,\nthe values array must be empty. This array is replaced during a strategic\nmerge patch.",
+                                                    "type": "array",
+                                                    "items": {
+                                                      "type": "string"
+                                                    },
+                                                    "x-kubernetes-list-type": "atomic"
+                                                  }
+                                                }
+                                              },
+                                              "x-kubernetes-list-type": "atomic"
+                                            },
+                                            "matchLabels": {
+                                              "description": "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels\nmap is equivalent to an element of matchExpressions, whose key field is \"key\", the\noperator is \"In\", and the values array contains only \"value\". The requirements are ANDed.",
+                                              "type": "object",
+                                              "additionalProperties": {
+                                                "type": "string"
+                                              }
+                                            }
+                                          },
+                                          "x-kubernetes-map-type": "atomic"
+                                        }
+                                      }
+                                    },
+                                    "target": {
+                                      "description": "target specifies the target value for the given metric",
+                                      "type": "object",
+                                      "required": [
+                                        "type"
+                                      ],
+                                      "properties": {
+                                        "averageUtilization": {
+                                          "description": "averageUtilization is the target value of the average of the\nresource metric across all relevant pods, represented as a percentage of\nthe requested value of the resource for the pods.\nCurrently only valid for Resource metric source type",
+                                          "type": "integer",
+                                          "format": "int32"
+                                        },
+                                        "averageValue": {
+                                          "description": "averageValue is the target value of the average of the\nmetric across all relevant pods (as a quantity)",
+                                          "pattern": "^(\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))(([KMGTPE]i)|[numkMGTPE]|([eE](\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))))?$",
+                                          "anyOf": [
+                                            {
+                                              "type": "integer"
+                                            },
+                                            {
+                                              "type": "string"
+                                            }
+                                          ],
+                                          "x-kubernetes-int-or-string": true
+                                        },
+                                        "type": {
+                                          "description": "type represents whether the metric type is Utilization, Value, or AverageValue",
+                                          "type": "string"
+                                        },
+                                        "value": {
+                                          "description": "value is the target value of the metric (as a quantity).",
+                                          "pattern": "^(\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))(([KMGTPE]i)|[numkMGTPE]|([eE](\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))))?$",
+                                          "anyOf": [
+                                            {
+                                              "type": "integer"
+                                            },
+                                            {
+                                              "type": "string"
+                                            }
+                                          ],
+                                          "x-kubernetes-int-or-string": true
+                                        }
+                                      }
+                                    }
+                                  }
+                                },
+                                "resource": {
+                                  "description": "resource refers to a resource metric (such as those specified in\nrequests and limits) known to Kubernetes describing each pod in the\ncurrent scale target (e.g. CPU or memory). Such metrics are built in to\nKubernetes, and have special scaling options on top of those available\nto normal per-pod metrics using the \"pods\" source.",
+                                  "type": "object",
+                                  "required": [
+                                    "name",
+                                    "target"
+                                  ],
+                                  "properties": {
+                                    "name": {
+                                      "description": "name is the name of the resource in question.",
+                                      "type": "string"
+                                    },
+                                    "target": {
+                                      "description": "target specifies the target value for the given metric",
+                                      "type": "object",
+                                      "required": [
+                                        "type"
+                                      ],
+                                      "properties": {
+                                        "averageUtilization": {
+                                          "description": "averageUtilization is the target value of the average of the\nresource metric across all relevant pods, represented as a percentage of\nthe requested value of the resource for the pods.\nCurrently only valid for Resource metric source type",
+                                          "type": "integer",
+                                          "format": "int32"
+                                        },
+                                        "averageValue": {
+                                          "description": "averageValue is the target value of the average of the\nmetric across all relevant pods (as a quantity)",
+                                          "pattern": "^(\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))(([KMGTPE]i)|[numkMGTPE]|([eE](\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))))?$",
+                                          "anyOf": [
+                                            {
+                                              "type": "integer"
+                                            },
+                                            {
+                                              "type": "string"
+                                            }
+                                          ],
+                                          "x-kubernetes-int-or-string": true
+                                        },
+                                        "type": {
+                                          "description": "type represents whether the metric type is Utilization, Value, or AverageValue",
+                                          "type": "string"
+                                        },
+                                        "value": {
+                                          "description": "value is the target value of the metric (as a quantity).",
+                                          "pattern": "^(\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))(([KMGTPE]i)|[numkMGTPE]|([eE](\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))))?$",
+                                          "anyOf": [
+                                            {
+                                              "type": "integer"
+                                            },
+                                            {
+                                              "type": "string"
+                                            }
+                                          ],
+                                          "x-kubernetes-int-or-string": true
+                                        }
+                                      }
+                                    }
+                                  }
+                                },
+                                "type": {
+                                  "description": "type is the type of metric source.  It should be one of \"ContainerResource\", \"External\",\n\"Object\", \"Pods\" or \"Resource\", each mapping to a matching field in the object.",
+                                  "type": "string"
+                                }
+                              }
+                            }
+                          },
+                          "minReplicas": {
+                            "type": "integer"
+                          }
+                        }
+                      },
                       "kubernetesClusterDomain": {
                         "type": "string"
                       },
@@ -3361,6 +4806,42 @@
                         "properties": {
                           "minAvailable": {
                             "type": "integer"
+                          }
+                        }
+                      },
+                      "service": {
+                        "type": "object",
+                        "required": [
+                          "annotations",
+                          "trafficDistribution"
+                        ],
+                        "properties": {
+                          "annotations": {
+                            "type": "object",
+                            "additionalProperties": {
+                              "type": "string"
+                            }
+                          },
+                          "trafficDistribution": {
+                            "type": "string"
+                          }
+                        }
+                      },
+                      "topologyInjector": {
+                        "type": "object",
+                        "required": [
+                          "annotations",
+                          "enabled"
+                        ],
+                        "properties": {
+                          "annotations": {
+                            "type": "object",
+                            "additionalProperties": {
+                              "type": "string"
+                            }
+                          },
+                          "enabled": {
+                            "type": "boolean"
                           }
                         }
                       }

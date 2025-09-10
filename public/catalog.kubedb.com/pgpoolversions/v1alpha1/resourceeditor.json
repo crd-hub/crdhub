@@ -22,7 +22,7 @@
     "ui": {
       "editor": {
         "name": "catalogkubedbcom-pgpoolversion-editor",
-        "version": "sha256:fd0c0e481d2006baf31fd78db73c6e1051c94aa5e824767777d6905d0164e174",
+        "version": "v0.24.0",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",

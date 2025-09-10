@@ -22,7 +22,7 @@
     "ui": {
       "editor": {
         "name": "metak8sappscodecom-menu-editor",
-        "version": "sha256:d04af7f4a27f7a607e6a68d9d7def61e00d4cef827aa131d9908a30df7c0dcbc",
+        "version": "v0.24.0",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",

@@ -22,7 +22,7 @@
     "ui": {
       "options": {
         "name": "kubedbcom-mysql-editor-options",
-        "version": "sha256:46afccd60f23602a713c1f668b088c8583fe09df08258b40db9e43a2e36b027a",
+        "version": "v0.24.0",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",
@@ -31,7 +31,7 @@
       },
       "editor": {
         "name": "kubedbcom-mysql-editor",
-        "version": "sha256:1f4bd549df7e500d856595db7a2e1e8c06499e53af00f7533ef9b5fef3e98e1d",
+        "version": "v0.24.0",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",
@@ -55,7 +55,7 @@
               "flow": "standalone-edit",
               "editor": {
                 "name": "kubedbcom-mysql-editor",
-                "version": "sha256:1f4bd549df7e500d856595db7a2e1e8c06499e53af00f7533ef9b5fef3e98e1d",
+                "version": "v0.24.0",
                 "sourceRef": {
                   "apiGroup": "source.toolkit.fluxcd.io",
                   "kind": "HelmRepository",
@@ -76,7 +76,7 @@
               "flow": "standalone-create",
               "editor": {
                 "name": "corekubestashcom-restoresession-editor-options",
-                "version": "sha256:eb67a703da855f17c35caf6e2853a361757398962e7ba91d7fc8001c41323789",
+                "version": "v0.24.0",
                 "sourceRef": {
                   "apiGroup": "source.toolkit.fluxcd.io",
                   "kind": "HelmRepository",
@@ -102,7 +102,7 @@
               "flow": "standalone-create",
               "editor": {
                 "name": "opskubedbcom-mysqlopsrequest-editor",
-                "version": "sha256:74f37db40d8abf9cbff8a262bca986edd7739ef9acf84c4125b3ea3a5d0528aa",
+                "version": "v0.24.0",
                 "sourceRef": {
                   "apiGroup": "source.toolkit.fluxcd.io",
                   "kind": "HelmRepository",
@@ -123,7 +123,7 @@
               "flow": "standalone-create",
               "editor": {
                 "name": "opskubedbcom-mysqlopsrequest-editor",
-                "version": "sha256:74f37db40d8abf9cbff8a262bca986edd7739ef9acf84c4125b3ea3a5d0528aa",
+                "version": "v0.24.0",
                 "sourceRef": {
                   "apiGroup": "source.toolkit.fluxcd.io",
                   "kind": "HelmRepository",
@@ -144,7 +144,7 @@
               "flow": "standalone-create",
               "editor": {
                 "name": "opskubedbcom-mysqlopsrequest-editor",
-                "version": "sha256:74f37db40d8abf9cbff8a262bca986edd7739ef9acf84c4125b3ea3a5d0528aa",
+                "version": "v0.24.0",
                 "sourceRef": {
                   "apiGroup": "source.toolkit.fluxcd.io",
                   "kind": "HelmRepository",
@@ -171,7 +171,7 @@
               "disabledTemplate": "{{ not (and (hasKey .spec \"topology\") (hasKey .spec.topology \"mode\")) }}\n",
               "editor": {
                 "name": "opskubedbcom-mysqlopsrequest-editor",
-                "version": "sha256:74f37db40d8abf9cbff8a262bca986edd7739ef9acf84c4125b3ea3a5d0528aa",
+                "version": "v0.24.0",
                 "sourceRef": {
                   "apiGroup": "source.toolkit.fluxcd.io",
                   "kind": "HelmRepository",
@@ -192,7 +192,7 @@
               "flow": "standalone-create",
               "editor": {
                 "name": "opskubedbcom-mysqlopsrequest-editor",
-                "version": "sha256:74f37db40d8abf9cbff8a262bca986edd7739ef9acf84c4125b3ea3a5d0528aa",
+                "version": "v0.24.0",
                 "sourceRef": {
                   "apiGroup": "source.toolkit.fluxcd.io",
                   "kind": "HelmRepository",
@@ -213,7 +213,7 @@
               "flow": "standalone-create",
               "editor": {
                 "name": "opskubedbcom-mysqlopsrequest-editor",
-                "version": "sha256:74f37db40d8abf9cbff8a262bca986edd7739ef9acf84c4125b3ea3a5d0528aa",
+                "version": "v0.24.0",
                 "sourceRef": {
                   "apiGroup": "source.toolkit.fluxcd.io",
                   "kind": "HelmRepository",
@@ -239,7 +239,7 @@
               "flow": "standalone-create",
               "editor": {
                 "name": "opskubedbcom-mysqlopsrequest-editor",
-                "version": "sha256:74f37db40d8abf9cbff8a262bca986edd7739ef9acf84c4125b3ea3a5d0528aa",
+                "version": "v0.24.0",
                 "sourceRef": {
                   "apiGroup": "source.toolkit.fluxcd.io",
                   "kind": "HelmRepository",
@@ -260,7 +260,7 @@
               "flow": "standalone-edit",
               "editor": {
                 "name": "kubedbcom-mysql-editor",
-                "version": "sha256:1f4bd549df7e500d856595db7a2e1e8c06499e53af00f7533ef9b5fef3e98e1d",
+                "version": "v0.24.0",
                 "sourceRef": {
                   "apiGroup": "source.toolkit.fluxcd.io",
                   "kind": "HelmRepository",

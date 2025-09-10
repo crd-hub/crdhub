@@ -22,7 +22,7 @@
     "ui": {
       "editor": {
         "name": "elasticacheawskubedbcom-cluster-editor",
-        "version": "sha256:51a3994e27a4f5db9115bcbe195fd78e9a6ef0bc7dc29f0e593dcd2db267cdb0",
+        "version": "v0.24.0",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",

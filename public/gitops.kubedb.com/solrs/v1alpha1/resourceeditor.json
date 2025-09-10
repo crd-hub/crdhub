@@ -22,7 +22,7 @@
     "ui": {
       "editor": {
         "name": "gitopskubedbcom-solr-editor",
-        "version": "sha256:1cf34720b2432693bf60a212e9c9b722b493d9deb0f6500dfad99d137c258cae",
+        "version": "v0.24.0",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",

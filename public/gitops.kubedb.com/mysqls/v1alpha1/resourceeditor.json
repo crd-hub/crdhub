@@ -22,7 +22,7 @@
     "ui": {
       "editor": {
         "name": "gitopskubedbcom-mysql-editor",
-        "version": "sha256:a97255b6169043d31ef0697869717b381f366e1619122e68dac740e1a25b4f62",
+        "version": "v0.24.0",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",

@@ -22,7 +22,7 @@
     "ui": {
       "options": {
         "name": "kubedbcom-postgres-editor-options",
-        "version": "sha256:99549991c4f7aa7c8df0091d577e54ad0d0fb5c87979bad53959f67272af886a",
+        "version": "v0.24.0",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",
@@ -31,7 +31,7 @@
       },
       "editor": {
         "name": "kubedbcom-postgres-editor",
-        "version": "sha256:a527c2e298f6077fae162a98373a96f7e96c8637317227eb5165fe98331fc029",
+        "version": "v0.24.0",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",
@@ -55,7 +55,7 @@
               "flow": "standalone-edit",
               "editor": {
                 "name": "kubedbcom-postgres-editor",
-                "version": "sha256:a527c2e298f6077fae162a98373a96f7e96c8637317227eb5165fe98331fc029",
+                "version": "v0.24.0",
                 "sourceRef": {
                   "apiGroup": "source.toolkit.fluxcd.io",
                   "kind": "HelmRepository",
@@ -76,7 +76,7 @@
               "flow": "standalone-create",
               "editor": {
                 "name": "corekubestashcom-restoresession-editor-options",
-                "version": "sha256:eb67a703da855f17c35caf6e2853a361757398962e7ba91d7fc8001c41323789",
+                "version": "v0.24.0",
                 "sourceRef": {
                   "apiGroup": "source.toolkit.fluxcd.io",
                   "kind": "HelmRepository",
@@ -102,7 +102,7 @@
               "flow": "standalone-create",
               "editor": {
                 "name": "opskubedbcom-postgresopsrequest-editor",
-                "version": "sha256:4433ddd0e9acf5f9b1a36b0c1d706467671133ef9663049f615743ef44de8ddd",
+                "version": "v0.24.0",
                 "sourceRef": {
                   "apiGroup": "source.toolkit.fluxcd.io",
                   "kind": "HelmRepository",
@@ -123,7 +123,7 @@
               "flow": "standalone-create",
               "editor": {
                 "name": "opskubedbcom-postgresopsrequest-editor",
-                "version": "sha256:4433ddd0e9acf5f9b1a36b0c1d706467671133ef9663049f615743ef44de8ddd",
+                "version": "v0.24.0",
                 "sourceRef": {
                   "apiGroup": "source.toolkit.fluxcd.io",
                   "kind": "HelmRepository",
@@ -144,7 +144,7 @@
               "flow": "standalone-create",
               "editor": {
                 "name": "opskubedbcom-postgresopsrequest-editor",
-                "version": "sha256:4433ddd0e9acf5f9b1a36b0c1d706467671133ef9663049f615743ef44de8ddd",
+                "version": "v0.24.0",
                 "sourceRef": {
                   "apiGroup": "source.toolkit.fluxcd.io",
                   "kind": "HelmRepository",
@@ -171,7 +171,7 @@
               "disabledTemplate": "{{ not (hasKey .spec \"standbyMode\") }}\n",
               "editor": {
                 "name": "opskubedbcom-postgresopsrequest-editor",
-                "version": "sha256:4433ddd0e9acf5f9b1a36b0c1d706467671133ef9663049f615743ef44de8ddd",
+                "version": "v0.24.0",
                 "sourceRef": {
                   "apiGroup": "source.toolkit.fluxcd.io",
                   "kind": "HelmRepository",
@@ -192,7 +192,7 @@
               "flow": "standalone-create",
               "editor": {
                 "name": "opskubedbcom-postgresopsrequest-editor",
-                "version": "sha256:4433ddd0e9acf5f9b1a36b0c1d706467671133ef9663049f615743ef44de8ddd",
+                "version": "v0.24.0",
                 "sourceRef": {
                   "apiGroup": "source.toolkit.fluxcd.io",
                   "kind": "HelmRepository",
@@ -213,7 +213,7 @@
               "flow": "standalone-create",
               "editor": {
                 "name": "opskubedbcom-postgresopsrequest-editor",
-                "version": "sha256:4433ddd0e9acf5f9b1a36b0c1d706467671133ef9663049f615743ef44de8ddd",
+                "version": "v0.24.0",
                 "sourceRef": {
                   "apiGroup": "source.toolkit.fluxcd.io",
                   "kind": "HelmRepository",
@@ -239,7 +239,7 @@
               "flow": "standalone-create",
               "editor": {
                 "name": "opskubedbcom-postgresopsrequest-editor",
-                "version": "sha256:4433ddd0e9acf5f9b1a36b0c1d706467671133ef9663049f615743ef44de8ddd",
+                "version": "v0.24.0",
                 "sourceRef": {
                   "apiGroup": "source.toolkit.fluxcd.io",
                   "kind": "HelmRepository",
@@ -260,7 +260,7 @@
               "flow": "standalone-edit",
               "editor": {
                 "name": "kubedbcom-postgres-editor",
-                "version": "sha256:a527c2e298f6077fae162a98373a96f7e96c8637317227eb5165fe98331fc029",
+                "version": "v0.24.0",
                 "sourceRef": {
                   "apiGroup": "source.toolkit.fluxcd.io",
                   "kind": "HelmRepository",

@@ -22,7 +22,7 @@
     "ui": {
       "editor": {
         "name": "operatoropenclustermanagementio-clustermanager-editor",
-        "version": "sha256:611c0c9b9e0fa09e9b77db1019a15cb5d1273bbb16d3a36c94a68e982b2ce850",
+        "version": "v0.24.0",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",

@@ -22,7 +22,7 @@
     "ui": {
       "editor": {
         "name": "gitopskubedbcom-pgpool-editor",
-        "version": "sha256:b309794da7c7e3cc8a127d8b11e6863fb7f8ba3f1a20bba28071b60911079663",
+        "version": "v0.24.0",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",

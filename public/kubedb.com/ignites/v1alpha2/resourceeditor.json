@@ -22,7 +22,7 @@
     "ui": {
       "options": {
         "name": "kubedbcom-ignite-editor-options",
-        "version": "sha256:5be6b7d4efa300947362be8523fa3bd360fc94e396ca038f27079c846426d636",
+        "version": "v0.24.0",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",
@@ -31,7 +31,7 @@
       },
       "editor": {
         "name": "kubedbcom-ignite-editor",
-        "version": "sha256:d3bfb607a7048fbd166edab2b37773a6ec231ed8201cae85da7d3c9941f57c48",
+        "version": "v0.24.0",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",
@@ -55,7 +55,7 @@
               "flow": "standalone-create",
               "editor": {
                 "name": "opskubedbcom-igniteopsrequest-editor",
-                "version": "sha256:6ce55434f0ace4b89bbe153268fe92c7b1bdb4f1f84a476f9994a2dd30520541",
+                "version": "v0.24.0",
                 "sourceRef": {
                   "apiGroup": "source.toolkit.fluxcd.io",
                   "kind": "HelmRepository",
@@ -76,7 +76,7 @@
               "flow": "standalone-create",
               "editor": {
                 "name": "opskubedbcom-igniteopsrequest-editor",
-                "version": "sha256:6ce55434f0ace4b89bbe153268fe92c7b1bdb4f1f84a476f9994a2dd30520541",
+                "version": "v0.24.0",
                 "sourceRef": {
                   "apiGroup": "source.toolkit.fluxcd.io",
                   "kind": "HelmRepository",
@@ -103,7 +103,7 @@
               "disabledTemplate": "{{ not (gt .spec.replicas 1) }}\n",
               "editor": {
                 "name": "opskubedbcom-igniteopsrequest-editor",
-                "version": "sha256:6ce55434f0ace4b89bbe153268fe92c7b1bdb4f1f84a476f9994a2dd30520541",
+                "version": "v0.24.0",
                 "sourceRef": {
                   "apiGroup": "source.toolkit.fluxcd.io",
                   "kind": "HelmRepository",
@@ -124,7 +124,7 @@
               "flow": "standalone-create",
               "editor": {
                 "name": "opskubedbcom-igniteopsrequest-editor",
-                "version": "sha256:6ce55434f0ace4b89bbe153268fe92c7b1bdb4f1f84a476f9994a2dd30520541",
+                "version": "v0.24.0",
                 "sourceRef": {
                   "apiGroup": "source.toolkit.fluxcd.io",
                   "kind": "HelmRepository",
@@ -145,7 +145,7 @@
               "flow": "standalone-create",
               "editor": {
                 "name": "opskubedbcom-igniteopsrequest-editor",
-                "version": "sha256:6ce55434f0ace4b89bbe153268fe92c7b1bdb4f1f84a476f9994a2dd30520541",
+                "version": "v0.24.0",
                 "sourceRef": {
                   "apiGroup": "source.toolkit.fluxcd.io",
                   "kind": "HelmRepository",
