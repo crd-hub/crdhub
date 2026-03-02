@@ -3,7 +3,6 @@
   "apiVersion": "apiextensions.k8s.io/v1",
   "metadata": {
     "name": "postgresdatabases.schema.kubedb.com",
-    "creationTimestamp": null,
     "labels": {
       "app.kubernetes.io/name": "kubedb"
     }
@@ -1650,6 +1649,30 @@
                                                     },
                                                     "x-kubernetes-map-type": "atomic"
                                                   },
+                                                  "fileKeyRef": {
+                                                    "type": "object",
+                                                    "required": [
+                                                      "key",
+                                                      "path",
+                                                      "volumeName"
+                                                    ],
+                                                    "properties": {
+                                                      "key": {
+                                                        "type": "string"
+                                                      },
+                                                      "optional": {
+                                                        "type": "boolean",
+                                                        "default": false
+                                                      },
+                                                      "path": {
+                                                        "type": "string"
+                                                      },
+                                                      "volumeName": {
+                                                        "type": "string"
+                                                      }
+                                                    },
+                                                    "x-kubernetes-map-type": "atomic"
+                                                  },
                                                   "resourceFieldRef": {
                                                     "type": "object",
                                                     "required": [
@@ -1947,6 +1970,9 @@
                                                   }
                                                 }
                                               }
+                                            },
+                                            "stopSignal": {
+                                              "type": "string"
                                             }
                                           }
                                         },
@@ -2316,6 +2342,40 @@
                                         },
                                         "restartPolicy": {
                                           "type": "string"
+                                        },
+                                        "restartPolicyRules": {
+                                          "type": "array",
+                                          "items": {
+                                            "type": "object",
+                                            "required": [
+                                              "action"
+                                            ],
+                                            "properties": {
+                                              "action": {
+                                                "type": "string"
+                                              },
+                                              "exitCodes": {
+                                                "type": "object",
+                                                "required": [
+                                                  "operator"
+                                                ],
+                                                "properties": {
+                                                  "operator": {
+                                                    "type": "string"
+                                                  },
+                                                  "values": {
+                                                    "type": "array",
+                                                    "items": {
+                                                      "type": "integer",
+                                                      "format": "int32"
+                                                    },
+                                                    "x-kubernetes-list-type": "set"
+                                                  }
+                                                }
+                                              }
+                                            }
+                                          },
+                                          "x-kubernetes-list-type": "atomic"
                                         },
                                         "securityContext": {
                                           "type": "object",
@@ -2749,6 +2809,30 @@
                                                     },
                                                     "x-kubernetes-map-type": "atomic"
                                                   },
+                                                  "fileKeyRef": {
+                                                    "type": "object",
+                                                    "required": [
+                                                      "key",
+                                                      "path",
+                                                      "volumeName"
+                                                    ],
+                                                    "properties": {
+                                                      "key": {
+                                                        "type": "string"
+                                                      },
+                                                      "optional": {
+                                                        "type": "boolean",
+                                                        "default": false
+                                                      },
+                                                      "path": {
+                                                        "type": "string"
+                                                      },
+                                                      "volumeName": {
+                                                        "type": "string"
+                                                      }
+                                                    },
+                                                    "x-kubernetes-map-type": "atomic"
+                                                  },
                                                   "resourceFieldRef": {
                                                     "type": "object",
                                                     "required": [
@@ -3046,6 +3130,9 @@
                                                   }
                                                 }
                                               }
+                                            },
+                                            "stopSignal": {
+                                              "type": "string"
                                             }
                                           }
                                         },
@@ -3415,6 +3502,40 @@
                                         },
                                         "restartPolicy": {
                                           "type": "string"
+                                        },
+                                        "restartPolicyRules": {
+                                          "type": "array",
+                                          "items": {
+                                            "type": "object",
+                                            "required": [
+                                              "action"
+                                            ],
+                                            "properties": {
+                                              "action": {
+                                                "type": "string"
+                                              },
+                                              "exitCodes": {
+                                                "type": "object",
+                                                "required": [
+                                                  "operator"
+                                                ],
+                                                "properties": {
+                                                  "operator": {
+                                                    "type": "string"
+                                                  },
+                                                  "values": {
+                                                    "type": "array",
+                                                    "items": {
+                                                      "type": "integer",
+                                                      "format": "int32"
+                                                    },
+                                                    "x-kubernetes-list-type": "set"
+                                                  }
+                                                }
+                                              }
+                                            }
+                                          },
+                                          "x-kubernetes-list-type": "atomic"
                                         },
                                         "securityContext": {
                                           "type": "object",
@@ -3778,6 +3899,9 @@
                                   "hostname": {
                                     "type": "string"
                                   },
+                                  "hostnameOverride": {
+                                    "type": "string"
+                                  },
                                   "imagePullSecrets": {
                                     "type": "array",
                                     "items": {
@@ -3863,6 +3987,30 @@
                                                         "type": "string"
                                                       },
                                                       "fieldPath": {
+                                                        "type": "string"
+                                                      }
+                                                    },
+                                                    "x-kubernetes-map-type": "atomic"
+                                                  },
+                                                  "fileKeyRef": {
+                                                    "type": "object",
+                                                    "required": [
+                                                      "key",
+                                                      "path",
+                                                      "volumeName"
+                                                    ],
+                                                    "properties": {
+                                                      "key": {
+                                                        "type": "string"
+                                                      },
+                                                      "optional": {
+                                                        "type": "boolean",
+                                                        "default": false
+                                                      },
+                                                      "path": {
+                                                        "type": "string"
+                                                      },
+                                                      "volumeName": {
                                                         "type": "string"
                                                       }
                                                     },
@@ -4165,6 +4313,9 @@
                                                   }
                                                 }
                                               }
+                                            },
+                                            "stopSignal": {
+                                              "type": "string"
                                             }
                                           }
                                         },
@@ -4534,6 +4685,40 @@
                                         },
                                         "restartPolicy": {
                                           "type": "string"
+                                        },
+                                        "restartPolicyRules": {
+                                          "type": "array",
+                                          "items": {
+                                            "type": "object",
+                                            "required": [
+                                              "action"
+                                            ],
+                                            "properties": {
+                                              "action": {
+                                                "type": "string"
+                                              },
+                                              "exitCodes": {
+                                                "type": "object",
+                                                "required": [
+                                                  "operator"
+                                                ],
+                                                "properties": {
+                                                  "operator": {
+                                                    "type": "string"
+                                                  },
+                                                  "values": {
+                                                    "type": "array",
+                                                    "items": {
+                                                      "type": "integer",
+                                                      "format": "int32"
+                                                    },
+                                                    "x-kubernetes-list-type": "set"
+                                                  }
+                                                }
+                                              }
+                                            }
+                                          },
+                                          "x-kubernetes-list-type": "atomic"
                                         },
                                         "securityContext": {
                                           "type": "object",
@@ -6197,6 +6382,34 @@
                                                       }
                                                     }
                                                   },
+                                                  "podCertificate": {
+                                                    "type": "object",
+                                                    "required": [
+                                                      "keyType",
+                                                      "signerName"
+                                                    ],
+                                                    "properties": {
+                                                      "certificateChainPath": {
+                                                        "type": "string"
+                                                      },
+                                                      "credentialBundlePath": {
+                                                        "type": "string"
+                                                      },
+                                                      "keyPath": {
+                                                        "type": "string"
+                                                      },
+                                                      "keyType": {
+                                                        "type": "string"
+                                                      },
+                                                      "maxExpirationSeconds": {
+                                                        "type": "integer",
+                                                        "format": "int32"
+                                                      },
+                                                      "signerName": {
+                                                        "type": "string"
+                                                      }
+                                                    }
+                                                  },
                                                   "secret": {
                                                     "type": "object",
                                                     "properties": {
@@ -6662,6 +6875,34 @@
                                             }
                                           },
                                           "x-kubernetes-list-type": "atomic"
+                                        }
+                                      }
+                                    },
+                                    "podCertificate": {
+                                      "type": "object",
+                                      "required": [
+                                        "keyType",
+                                        "signerName"
+                                      ],
+                                      "properties": {
+                                        "certificateChainPath": {
+                                          "type": "string"
+                                        },
+                                        "credentialBundlePath": {
+                                          "type": "string"
+                                        },
+                                        "keyPath": {
+                                          "type": "string"
+                                        },
+                                        "keyType": {
+                                          "type": "string"
+                                        },
+                                        "maxExpirationSeconds": {
+                                          "type": "integer",
+                                          "format": "int32"
+                                        },
+                                        "signerName": {
+                                          "type": "string"
                                         }
                                       }
                                     },

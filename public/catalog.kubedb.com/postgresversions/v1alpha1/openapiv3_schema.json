@@ -40,6 +40,7 @@
     "spec": {
       "type": "object",
       "required": [
+        "coordinator",
         "db",
         "exporter",
         "podSecurityPolicies",
@@ -173,8 +174,12 @@
             "PostGIS",
             "KubeDB",
             "DocumentDB",
-            "PostgreSQL"
+            "PostgreSQL",
+            "Percona"
           ]
+        },
+        "endOfLife": {
+          "type": "boolean"
         },
         "exporter": {
           "type": "object",
@@ -206,6 +211,33 @@
           "properties": {
             "image": {
               "type": "string"
+            }
+          }
+        },
+        "migrator": {
+          "type": "object",
+          "properties": {
+            "cli": {
+              "type": "object",
+              "required": [
+                "image"
+              ],
+              "properties": {
+                "image": {
+                  "type": "string"
+                }
+              }
+            },
+            "statusReporter": {
+              "type": "object",
+              "required": [
+                "image"
+              ],
+              "properties": {
+                "image": {
+                  "type": "string"
+                }
+              }
             }
           }
         },

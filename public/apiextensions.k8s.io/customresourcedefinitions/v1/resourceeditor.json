@@ -3,7 +3,6 @@
   "apiVersion": "ui.k8s.appscode.com/v1alpha1",
   "metadata": {
     "name": "apiextensions.k8s.io-v1-customresourcedefinitions",
-    "creationTimestamp": null,
     "labels": {
       "k8s.io/group": "apiextensions.k8s.io",
       "k8s.io/kind": "CustomResourceDefinition",
@@ -22,7 +21,7 @@
     "ui": {
       "editor": {
         "name": "apiextensionsk8sio-customresourcedefinition-editor",
-        "version": "v0.24.0",
+        "version": "v0.30.0",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",

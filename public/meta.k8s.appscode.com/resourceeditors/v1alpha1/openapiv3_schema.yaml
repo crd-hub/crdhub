@@ -126,6 +126,8 @@ properties:
               properties:
                 description:
                   type: string
+                icon:
+                  type: string
                 items:
                   items:
                     properties:
@@ -169,6 +171,8 @@ properties:
                         type: boolean
                       flow:
                         type: string
+                      icon:
+                        type: string
                       icons:
                         items:
                           description: ImageSpec contains information about an image used as an icon.
@@ -191,6 +195,8 @@ properties:
                       name:
                         type: string
                       operationId:
+                        type: string
+                      partOf:
                         type: string
                     required:
                     - enforceQuota

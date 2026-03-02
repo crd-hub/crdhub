@@ -52,6 +52,14 @@
           "description": "Deprecated versions usable but regarded as obsolete and best avoided, typically due to having been superseded.",
           "type": "boolean"
         },
+        "distribution": {
+          "description": "Distribution",
+          "type": "string",
+          "enum": [
+            "Vault",
+            "OpenBao"
+          ]
+        },
         "exporter": {
           "description": "Exporter Image",
           "type": "object",

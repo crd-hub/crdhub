@@ -2,8 +2,7 @@
   "kind": "CustomResourceDefinition",
   "apiVersion": "apiextensions.k8s.io/v1",
   "metadata": {
-    "name": "rangeallocations.core",
-    "creationTimestamp": null
+    "name": "rangeallocations.core"
   },
   "spec": {
     "group": "core",

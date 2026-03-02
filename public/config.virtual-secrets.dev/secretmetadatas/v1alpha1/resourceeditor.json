@@ -3,7 +3,6 @@
   "apiVersion": "ui.k8s.appscode.com/v1alpha1",
   "metadata": {
     "name": "config.virtual-secrets.dev-v1alpha1-secretmetadatas",
-    "creationTimestamp": null,
     "labels": {
       "k8s.io/group": "config.virtual-secrets.dev",
       "k8s.io/kind": "SecretMetadata",
@@ -22,7 +21,7 @@
     "ui": {
       "editor": {
         "name": "configvirtualsecretsdev-secretmetadata-editor",
-        "version": "v0.24.0",
+        "version": "v0.30.0",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",

@@ -3,7 +3,6 @@ kind: CustomResourceDefinition
 metadata:
   annotations:
     controller-gen.kubebuilder.io/version: v0.14.0
-  creationTimestamp: null
   name: configs.config.gatekeeper.sh
 spec:
   group: config.gatekeeper.sh

@@ -1,7 +1,6 @@
 apiVersion: meta.k8s.appscode.com/v1alpha1
 kind: ResourceDescriptor
 metadata:
-  creationTimestamp: null
   labels:
     k8s.io/group: ops.kubedb.com
     k8s.io/kind: PgBouncerOpsRequest
@@ -62,32 +61,42 @@ spec:
               properties:
                 secretRef:
                   properties:
-                    name:
+                    apiGroup:
                       default: ""
                       type: string
+                    kind:
+                      default: Secret
+                      type: string
+                    name:
+                      type: string
+                  required:
+                  - kind
+                  - name
                   type: object
                   x-kubernetes-map-type: atomic
               type: object
             configuration:
               properties:
-                pgbouncer:
-                  properties:
-                    applyConfig:
-                      additionalProperties:
-                        type: string
-                      type: object
-                    configSecret:
-                      properties:
-                        name:
-                          default: ""
-                          type: string
-                      type: object
-                      x-kubernetes-map-type: atomic
-                    removeCustomConfig:
-                      type: boolean
+                applyConfig:
+                  additionalProperties:
+                    type: string
                   type: object
-              required:
-              - pgbouncer
+                configSecret:
+                  properties:
+                    name:
+                      default: ""
+                      type: string
+                  type: object
+                  x-kubernetes-map-type: atomic
+                removeCustomConfig:
+                  type: boolean
+                restart:
+                  default: auto
+                  enum:
+                  - auto
+                  - "true"
+                  - "false"
+                  type: string
               type: object
             databaseRef:
               properties:
@@ -102,6 +111,10 @@ spec:
                   format: int32
                   type: integer
               type: object
+            maxRetries:
+              default: 1
+              format: int32
+              type: integer
             restart:
               type: object
             timeout:

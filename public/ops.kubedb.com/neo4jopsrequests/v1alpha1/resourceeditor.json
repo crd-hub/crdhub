@@ -1,0 +1,22 @@
+{
+  "kind": "ResourceEditor",
+  "apiVersion": "ui.k8s.appscode.com/v1alpha1",
+  "metadata": {
+    "name": "ops.kubedb.com-v1alpha1-neo4jopsrequests",
+    "labels": {
+      "k8s.io/group": "ops.kubedb.com",
+      "k8s.io/kind": "Neo4jOpsRequest",
+      "k8s.io/resource": "neo4jopsrequests",
+      "k8s.io/version": "v1alpha1"
+    }
+  },
+  "spec": {
+    "resource": {
+      "group": "ops.kubedb.com",
+      "version": "v1alpha1",
+      "name": "neo4jopsrequests",
+      "kind": "Neo4jOpsRequest",
+      "scope": "Namespaced"
+    }
+  }
+}

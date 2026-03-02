@@ -58,6 +58,9 @@
         "deprecated": {
           "type": "boolean"
         },
+        "endOfLife": {
+          "type": "boolean"
+        },
         "initContainer": {
           "type": "object",
           "required": [

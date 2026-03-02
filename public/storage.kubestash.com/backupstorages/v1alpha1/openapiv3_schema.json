@@ -112,6 +112,30 @@
                             },
                             "x-kubernetes-map-type": "atomic"
                           },
+                          "fileKeyRef": {
+                            "type": "object",
+                            "required": [
+                              "key",
+                              "path",
+                              "volumeName"
+                            ],
+                            "properties": {
+                              "key": {
+                                "type": "string"
+                              },
+                              "optional": {
+                                "type": "boolean",
+                                "default": false
+                              },
+                              "path": {
+                                "type": "string"
+                              },
+                              "volumeName": {
+                                "type": "string"
+                              }
+                            },
+                            "x-kubernetes-map-type": "atomic"
+                          },
                           "resourceFieldRef": {
                             "type": "object",
                             "required": [
@@ -411,6 +435,9 @@
                           }
                         }
                       }
+                    },
+                    "stopSignal": {
+                      "type": "string"
                     }
                   }
                 },
@@ -2521,6 +2548,10 @@
                     }
                   }
                 },
+                "maxConnections": {
+                  "type": "integer",
+                  "format": "int64"
+                },
                 "mountPath": {
                   "type": "string"
                 },
@@ -2756,6 +2787,34 @@
                                   }
                                 },
                                 "x-kubernetes-list-type": "atomic"
+                              }
+                            }
+                          },
+                          "podCertificate": {
+                            "type": "object",
+                            "required": [
+                              "keyType",
+                              "signerName"
+                            ],
+                            "properties": {
+                              "certificateChainPath": {
+                                "type": "string"
+                              },
+                              "credentialBundlePath": {
+                                "type": "string"
+                              },
+                              "keyPath": {
+                                "type": "string"
+                              },
+                              "keyType": {
+                                "type": "string"
+                              },
+                              "maxExpirationSeconds": {
+                                "type": "integer",
+                                "format": "int32"
+                              },
+                              "signerName": {
+                                "type": "string"
                               }
                             }
                           },
@@ -3046,6 +3105,10 @@
                 },
                 "insecureTLS": {
                   "type": "boolean"
+                },
+                "maxConnections": {
+                  "type": "integer",
+                  "format": "int64"
                 },
                 "prefix": {
                   "type": "string"

@@ -3,11 +3,10 @@
   "apiVersion": "apiextensions.k8s.io/v1",
   "metadata": {
     "name": "referencegrants.gateway.networking.k8s.io",
-    "creationTimestamp": null,
     "annotations": {
       "api-approved.kubernetes.io": "https://github.com/kubernetes-sigs/gateway-api/pull/3328",
-      "gateway.networking.k8s.io/bundle-version": "v1.3.0",
-      "gateway.networking.k8s.io/channel": "experimental"
+      "gateway.networking.k8s.io/bundle-version": "v1.4.1",
+      "gateway.networking.k8s.io/channel": "standard"
     }
   },
   "spec": {
@@ -89,7 +88,8 @@
                           "pattern": "^[a-z0-9]([-a-z0-9]*[a-z0-9])?$"
                         }
                       }
-                    }
+                    },
+                    "x-kubernetes-list-type": "atomic"
                   },
                   "to": {
                     "description": "To describes the resources that may be referenced by the resources\ndescribed in \"From\". Each entry in this list MUST be considered to be an\nadditional place that references can be valid to, or to put this another\nway, entries MUST be combined using OR.\n\nSupport: Core",
@@ -124,7 +124,8 @@
                           "minLength": 1
                         }
                       }
-                    }
+                    },
+                    "x-kubernetes-list-type": "atomic"
                   }
                 }
               }

@@ -2,8 +2,7 @@
   "kind": "CustomResourceDefinition",
   "apiVersion": "apiextensions.k8s.io/v1",
   "metadata": {
-    "name": "plans.products.x-helm.dev",
-    "creationTimestamp": null
+    "name": "plans.products.x-helm.dev"
   },
   "spec": {
     "group": "products.x-helm.dev",
@@ -71,7 +70,7 @@
                         "type": "string"
                       },
                       "sourceRef": {
-                        "description": "TypedObjectReference represents an typed namespaced object.",
+                        "description": "TypedObjectReference represents a typed namespaced object.",
                         "type": "object",
                         "required": [
                           "name"

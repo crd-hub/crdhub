@@ -3,7 +3,6 @@
   "apiVersion": "ui.k8s.appscode.com/v1alpha1",
   "metadata": {
     "name": "addons.kubestash.com-v1alpha1-addons",
-    "creationTimestamp": null,
     "labels": {
       "k8s.io/group": "addons.kubestash.com",
       "k8s.io/kind": "Addon",
@@ -22,7 +21,7 @@
     "ui": {
       "editor": {
         "name": "addonskubestashcom-addon-editor",
-        "version": "v0.24.0",
+        "version": "v0.30.0",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",

@@ -3,7 +3,6 @@
   "apiVersion": "ui.k8s.appscode.com/v1alpha1",
   "metadata": {
     "name": "apiextensions.crossplane.io-v1beta1-compositionrevisions",
-    "creationTimestamp": null,
     "labels": {
       "k8s.io/group": "apiextensions.crossplane.io",
       "k8s.io/kind": "CompositionRevision",

@@ -3,7 +3,6 @@
   "apiVersion": "ui.k8s.appscode.com/v1alpha1",
   "metadata": {
     "name": "authentication.open-cluster-management.io-v1alpha1-managedserviceaccounts",
-    "creationTimestamp": null,
     "labels": {
       "k8s.io/group": "authentication.open-cluster-management.io",
       "k8s.io/kind": "ManagedServiceAccount",

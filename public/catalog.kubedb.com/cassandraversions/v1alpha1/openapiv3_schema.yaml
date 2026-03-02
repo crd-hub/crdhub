@@ -33,6 +33,8 @@ properties:
         required:
         - image
         type: object
+      endOfLife:
+        type: boolean
       exporter:
         properties:
           image:

@@ -3,7 +3,6 @@ kind: CustomResourceDefinition
 metadata:
   annotations:
     controller-gen.kubebuilder.io/version: v0.17.2
-  creationTimestamp: null
   name: machinedrainrules.cluster.x-k8s.io
 spec:
   group: cluster.x-k8s.io

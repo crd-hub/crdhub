@@ -82,6 +82,9 @@
         "deprecated": {
           "type": "boolean"
         },
+        "endOfLife": {
+          "type": "boolean"
+        },
         "initContainer": {
           "type": "object",
           "required": [
@@ -110,78 +113,6 @@
             "runAsUser": {
               "type": "integer",
               "format": "int64"
-            }
-          }
-        },
-        "stash": {
-          "type": "object",
-          "properties": {
-            "addon": {
-              "type": "object",
-              "required": [
-                "backupTask",
-                "restoreTask"
-              ],
-              "properties": {
-                "backupTask": {
-                  "type": "object",
-                  "required": [
-                    "name"
-                  ],
-                  "properties": {
-                    "name": {
-                      "type": "string"
-                    },
-                    "params": {
-                      "type": "array",
-                      "items": {
-                        "type": "object",
-                        "required": [
-                          "name",
-                          "value"
-                        ],
-                        "properties": {
-                          "name": {
-                            "type": "string"
-                          },
-                          "value": {
-                            "type": "string"
-                          }
-                        }
-                      }
-                    }
-                  }
-                },
-                "restoreTask": {
-                  "type": "object",
-                  "required": [
-                    "name"
-                  ],
-                  "properties": {
-                    "name": {
-                      "type": "string"
-                    },
-                    "params": {
-                      "type": "array",
-                      "items": {
-                        "type": "object",
-                        "required": [
-                          "name",
-                          "value"
-                        ],
-                        "properties": {
-                          "name": {
-                            "type": "string"
-                          },
-                          "value": {
-                            "type": "string"
-                          }
-                        }
-                      }
-                    }
-                  }
-                }
-              }
             }
           }
         },

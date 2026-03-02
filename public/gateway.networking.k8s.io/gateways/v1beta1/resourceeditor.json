@@ -3,7 +3,6 @@
   "apiVersion": "ui.k8s.appscode.com/v1alpha1",
   "metadata": {
     "name": "gateway.networking.k8s.io-v1beta1-gateways",
-    "creationTimestamp": null,
     "labels": {
       "k8s.io/group": "gateway.networking.k8s.io",
       "k8s.io/kind": "Gateway",
@@ -22,7 +21,7 @@
     "ui": {
       "editor": {
         "name": "gatewaynetworkingk8sio-gateway-editor",
-        "version": "v0.24.0",
+        "version": "v0.30.0",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",

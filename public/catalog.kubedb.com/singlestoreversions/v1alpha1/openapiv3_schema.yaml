@@ -42,6 +42,8 @@ properties:
         type: object
       deprecated:
         type: boolean
+      endOfLife:
+        type: boolean
       initContainer:
         properties:
           image:
@@ -126,6 +128,7 @@ properties:
       version:
         type: string
     required:
+    - coordinator
     - db
     - version
     type: object

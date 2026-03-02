@@ -2,8 +2,7 @@
   "kind": "CustomResourceDefinition",
   "apiVersion": "apiextensions.k8s.io/v1",
   "metadata": {
-    "name": "subjectaccessreviews.authorization.k8s.io",
-    "creationTimestamp": null
+    "name": "subjectaccessreviews.authorization.k8s.io"
   },
   "spec": {
     "group": "authorization.k8s.io",

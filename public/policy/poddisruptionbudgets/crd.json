@@ -2,8 +2,7 @@
   "kind": "CustomResourceDefinition",
   "apiVersion": "apiextensions.k8s.io/v1",
   "metadata": {
-    "name": "poddisruptionbudgets.policy",
-    "creationTimestamp": null
+    "name": "poddisruptionbudgets.policy"
   },
   "spec": {
     "group": "policy",

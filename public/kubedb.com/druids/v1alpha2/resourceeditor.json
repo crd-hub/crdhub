@@ -3,7 +3,6 @@
   "apiVersion": "ui.k8s.appscode.com/v1alpha1",
   "metadata": {
     "name": "kubedb.com-v1alpha2-druids",
-    "creationTimestamp": null,
     "labels": {
       "k8s.io/group": "kubedb.com",
       "k8s.io/kind": "Druid",
@@ -22,7 +21,7 @@
     "ui": {
       "options": {
         "name": "kubedbcom-druid-editor-options",
-        "version": "v0.24.0",
+        "version": "v0.30.0",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",
@@ -31,7 +30,7 @@
       },
       "editor": {
         "name": "kubedbcom-druid-editor",
-        "version": "v0.24.0",
+        "version": "v0.30.0",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",
@@ -41,10 +40,104 @@
       "enforceQuota": true,
       "actions": [
         {
+          "name": "Backups",
+          "items": [
+            {
+              "name": "Configure Backup",
+              "icon": "material-symbols-light:backup-outline",
+              "icons": [
+                {
+                  "src": "https://cdn.appscode.com/k8s/icons/action-icons/configure-backup.svg",
+                  "type": "image/svg+xml"
+                }
+              ],
+              "operationId": "edit-self-backupconfiguration",
+              "flow": "standalone-edit",
+              "editor": {
+                "name": "kubedbcom-druid-editor",
+                "version": "v0.30.0",
+                "sourceRef": {
+                  "apiGroup": "source.toolkit.fluxcd.io",
+                  "kind": "HelmRepository",
+                  "name": "appscode-charts-oci"
+                }
+              },
+              "enforceQuota": false
+            },
+            {
+              "name": "Instant Backup",
+              "icon": "carbon:ibm-cloud-backup-and-recovery",
+              "icons": [
+                {
+                  "src": "https://cdn.appscode.com/k8s/icons/action-icons/instant-backup.svg",
+                  "type": "image/svg+xml"
+                }
+              ],
+              "operationId": "create-instant-backup",
+              "flow": "standalone-create",
+              "editor": {
+                "name": "corekubestashcom-backupsession-editor",
+                "version": "v0.30.0",
+                "sourceRef": {
+                  "apiGroup": "source.toolkit.fluxcd.io",
+                  "kind": "HelmRepository",
+                  "name": "appscode-charts-oci"
+                }
+              },
+              "enforceQuota": false
+            },
+            {
+              "name": "Restore",
+              "icon": "mdi:backup-restore",
+              "icons": [
+                {
+                  "src": "https://cdn.appscode.com/k8s/icons/action-icons/restore.svg",
+                  "type": "image/svg+xml"
+                }
+              ],
+              "operationId": "create-restoresession",
+              "flow": "standalone-create",
+              "editor": {
+                "name": "corekubestashcom-restoresession-editor-options",
+                "version": "v0.30.0",
+                "sourceRef": {
+                  "apiGroup": "source.toolkit.fluxcd.io",
+                  "kind": "HelmRepository",
+                  "name": "appscode-charts-oci"
+                }
+              },
+              "enforceQuota": false
+            }
+          ]
+        },
+        {
           "name": "Operations",
           "items": [
             {
+              "name": "Update Version",
+              "icon": "qlementine-icons:version-control-16",
+              "icons": [
+                {
+                  "src": "https://cdn.appscode.com/k8s/icons/action-icons/version.svg",
+                  "type": "image/svg+xml"
+                }
+              ],
+              "operationId": "create-opsrequest-upgrade",
+              "flow": "standalone-create",
+              "editor": {
+                "name": "opskubedbcom-druidopsrequest-editor",
+                "version": "v0.30.0",
+                "sourceRef": {
+                  "apiGroup": "source.toolkit.fluxcd.io",
+                  "kind": "HelmRepository",
+                  "name": "appscode-charts-oci"
+                }
+              },
+              "enforceQuota": false
+            },
+            {
               "name": "Restart",
+              "icon": "hugeicons:redo",
               "icons": [
                 {
                   "src": "https://cdn.appscode.com/k8s/icons/action-icons/restart.svg",
@@ -55,7 +148,7 @@
               "flow": "standalone-create",
               "editor": {
                 "name": "opskubedbcom-druidopsrequest-editor",
-                "version": "v0.24.0",
+                "version": "v0.30.0",
                 "sourceRef": {
                   "apiGroup": "source.toolkit.fluxcd.io",
                   "kind": "HelmRepository",
@@ -66,6 +159,7 @@
             },
             {
               "name": "Reconfigure",
+              "icon": "hugeicons:settings-05",
               "icons": [
                 {
                   "src": "https://cdn.appscode.com/k8s/icons/action-icons/reconfigure.svg",
@@ -76,7 +170,7 @@
               "flow": "standalone-create",
               "editor": {
                 "name": "opskubedbcom-druidopsrequest-editor",
-                "version": "v0.24.0",
+                "version": "v0.30.0",
                 "sourceRef": {
                   "apiGroup": "source.toolkit.fluxcd.io",
                   "kind": "HelmRepository",
@@ -91,6 +185,42 @@
           "name": "Scaling",
           "items": [
             {
+              "name": "Scale Vertically",
+              "icon": "hugeicons:vertical-resize",
+              "operationId": "scale-vertically",
+              "flow": "",
+              "enforceQuota": false
+            },
+            {
+              "name": "Scale Storage",
+              "icon": "hugeicons:arrow-expand",
+              "operationId": "scale-storage",
+              "flow": "",
+              "enforceQuota": false
+            },
+            {
+              "name": "Horizontal Scale",
+              "icon": "hugeicons:horizontal-resize",
+              "icons": [
+                {
+                  "src": "https://cdn.appscode.com/k8s/icons/action-icons/horizontal_scale.svg",
+                  "type": "image/svg+xml"
+                }
+              ],
+              "operationId": "create-opsrequest-horizontalscaling",
+              "flow": "standalone-create",
+              "editor": {
+                "name": "opskubedbcom-druidopsrequest-editor",
+                "version": "v0.30.0",
+                "sourceRef": {
+                  "apiGroup": "source.toolkit.fluxcd.io",
+                  "kind": "HelmRepository",
+                  "name": "appscode-charts-oci"
+                }
+              },
+              "enforceQuota": true
+            },
+            {
               "name": "Vertical Scale",
               "icons": [
                 {
@@ -102,14 +232,15 @@
               "flow": "standalone-create",
               "editor": {
                 "name": "opskubedbcom-druidopsrequest-editor",
-                "version": "v0.24.0",
+                "version": "v0.30.0",
                 "sourceRef": {
                   "apiGroup": "source.toolkit.fluxcd.io",
                   "kind": "HelmRepository",
                   "name": "appscode-charts-oci"
                 }
               },
-              "enforceQuota": true
+              "enforceQuota": true,
+              "partOf": "Scale Vertically"
             },
             {
               "name": "Expand Volume",
@@ -123,14 +254,15 @@
               "flow": "standalone-create",
               "editor": {
                 "name": "opskubedbcom-druidopsrequest-editor",
-                "version": "v0.24.0",
+                "version": "v0.30.0",
                 "sourceRef": {
                   "apiGroup": "source.toolkit.fluxcd.io",
                   "kind": "HelmRepository",
                   "name": "appscode-charts-oci"
                 }
               },
-              "enforceQuota": true
+              "enforceQuota": true,
+              "partOf": "Scale Storage"
             }
           ]
         },
@@ -149,14 +281,15 @@
               "flow": "standalone-edit",
               "editor": {
                 "name": "kubedbcom-druid-editor",
-                "version": "v0.24.0",
+                "version": "v0.30.0",
                 "sourceRef": {
                   "apiGroup": "source.toolkit.fluxcd.io",
                   "kind": "HelmRepository",
                   "name": "appscode-charts-oci"
                 }
               },
-              "enforceQuota": true
+              "enforceQuota": true,
+              "partOf": "Scale Vertically"
             },
             {
               "name": "Storage",
@@ -170,14 +303,15 @@
               "flow": "standalone-edit",
               "editor": {
                 "name": "kubedbcom-druid-editor",
-                "version": "v0.24.0",
+                "version": "v0.30.0",
                 "sourceRef": {
                   "apiGroup": "source.toolkit.fluxcd.io",
                   "kind": "HelmRepository",
                   "name": "appscode-charts-oci"
                 }
               },
-              "enforceQuota": true
+              "enforceQuota": true,
+              "partOf": "Scale Storage"
             }
           ]
         },
@@ -185,7 +319,30 @@
           "name": "Security \u0026 Monitoring",
           "items": [
             {
+              "name": "TLS Configure",
+              "icon": "hugeicons:security-check",
+              "icons": [
+                {
+                  "src": "https://cdn.appscode.com/k8s/icons/action-icons/configure.svg",
+                  "type": "image/svg+xml"
+                }
+              ],
+              "operationId": "create-opsrequest-reconfiguretls",
+              "flow": "standalone-create",
+              "editor": {
+                "name": "opskubedbcom-druidopsrequest-editor",
+                "version": "v0.30.0",
+                "sourceRef": {
+                  "apiGroup": "source.toolkit.fluxcd.io",
+                  "kind": "HelmRepository",
+                  "name": "appscode-charts-oci"
+                }
+              },
+              "enforceQuota": false
+            },
+            {
               "name": "Monitoring",
+              "icon": "hugeicons:presentation-line-chart-01",
               "icons": [
                 {
                   "src": "https://cdn.appscode.com/k8s/icons/action-icons/monitor.svg",
@@ -196,7 +353,34 @@
               "flow": "standalone-edit",
               "editor": {
                 "name": "kubedbcom-druid-editor",
-                "version": "v0.24.0",
+                "version": "v0.30.0",
+                "sourceRef": {
+                  "apiGroup": "source.toolkit.fluxcd.io",
+                  "kind": "HelmRepository",
+                  "name": "appscode-charts-oci"
+                }
+              },
+              "enforceQuota": false
+            }
+          ]
+        },
+        {
+          "name": "Extras",
+          "items": [
+            {
+              "name": "Expose via Gateway",
+              "icon": "streamline-ultimate:server-share",
+              "icons": [
+                {
+                  "src": "https://cdn.appscode.com/k8s/icons/action-icons/configure.svg",
+                  "type": "image/svg+xml"
+                }
+              ],
+              "operationId": "edit-self-binding",
+              "flow": "standalone-edit",
+              "editor": {
+                "name": "kubedbcom-druid-editor",
+                "version": "v0.30.0",
                 "sourceRef": {
                   "apiGroup": "source.toolkit.fluxcd.io",
                   "kind": "HelmRepository",

@@ -3,7 +3,6 @@
   "apiVersion": "ui.k8s.appscode.com/v1alpha1",
   "metadata": {
     "name": "gitops.kubedb.com-v1alpha1-perconaxtradbs",
-    "creationTimestamp": null,
     "labels": {
       "k8s.io/group": "gitops.kubedb.com",
       "k8s.io/kind": "PerconaXtraDB",
@@ -22,7 +21,7 @@
     "ui": {
       "editor": {
         "name": "gitopskubedbcom-perconaxtradb-editor",
-        "version": "v0.24.0",
+        "version": "v0.30.0",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",

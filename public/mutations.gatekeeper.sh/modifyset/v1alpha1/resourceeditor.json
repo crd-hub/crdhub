@@ -3,7 +3,6 @@
   "apiVersion": "ui.k8s.appscode.com/v1alpha1",
   "metadata": {
     "name": "mutations.gatekeeper.sh-v1alpha1-modifyset",
-    "creationTimestamp": null,
     "labels": {
       "k8s.io/group": "mutations.gatekeeper.sh",
       "k8s.io/kind": "ModifySet",

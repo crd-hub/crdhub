@@ -399,6 +399,10 @@
             }
           }
         },
+        "namespace": {
+          "description": "Namespace specifies the OpenBao namespace for this SecretEngine.\nOnly applicable when using OpenBao distribution.\nIf specified, overrides the namespace from VaultServer.\nEmpty string means use VaultServer's namespace (or root if VaultServer has none).\nSupports hierarchical namespaces (e.g., \"tenant-1/project-a\").",
+          "type": "string"
+        },
         "pki": {
           "description": "https://developer.hashicorp.com/vault/api-docs/secret/pki#generate-root\nPKIConfiguration contains information about PKI Secret Engine",
           "type": "object",

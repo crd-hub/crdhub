@@ -3,7 +3,6 @@ kind: CustomResourceDefinition
 metadata:
   annotations:
     controller-gen.kubebuilder.io/version: v0.13.0
-  creationTimestamp: null
   name: accounts.storage.azure.kubedb.com
 spec:
   group: storage.azure.kubedb.com

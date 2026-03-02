@@ -3,7 +3,6 @@
   "apiVersion": "ui.k8s.appscode.com/v1alpha1",
   "metadata": {
     "name": "ops.kubedb.com-v1alpha1-ferretdbopsrequests",
-    "creationTimestamp": null,
     "labels": {
       "k8s.io/group": "ops.kubedb.com",
       "k8s.io/kind": "FerretDBOpsRequest",
@@ -22,7 +21,7 @@
     "ui": {
       "editor": {
         "name": "opskubedbcom-ferretdbopsrequest-editor",
-        "version": "v0.24.0",
+        "version": "v0.30.0",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",

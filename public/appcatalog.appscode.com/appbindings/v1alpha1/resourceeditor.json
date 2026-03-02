@@ -3,7 +3,6 @@
   "apiVersion": "ui.k8s.appscode.com/v1alpha1",
   "metadata": {
     "name": "appcatalog.appscode.com-v1alpha1-appbindings",
-    "creationTimestamp": null,
     "labels": {
       "k8s.io/group": "appcatalog.appscode.com",
       "k8s.io/kind": "AppBinding",
@@ -22,7 +21,7 @@
     "ui": {
       "editor": {
         "name": "appcatalogappscodecom-appbinding-editor",
-        "version": "v0.24.0",
+        "version": "v0.30.0",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",

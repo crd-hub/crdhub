@@ -3,7 +3,6 @@
   "apiVersion": "apiextensions.k8s.io/v1",
   "metadata": {
     "name": "schemaregistryversions.catalog.kubedb.com",
-    "creationTimestamp": null,
     "labels": {
       "app.kubernetes.io/name": "kubedb"
     }
@@ -60,6 +59,9 @@
                       "Apicurio",
                       "Aiven"
                     ]
+                  },
+                  "endOfLife": {
+                    "type": "boolean"
                   },
                   "inMemory": {
                     "type": "object",

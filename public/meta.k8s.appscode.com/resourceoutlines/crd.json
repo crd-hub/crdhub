@@ -2,8 +2,7 @@
   "kind": "CustomResourceDefinition",
   "apiVersion": "apiextensions.k8s.io/v1",
   "metadata": {
-    "name": "resourceoutlines.meta.k8s.appscode.com",
-    "creationTimestamp": null
+    "name": "resourceoutlines.meta.k8s.appscode.com"
   },
   "spec": {
     "group": "meta.k8s.appscode.com",
@@ -50,6 +49,9 @@
                       ],
                       "properties": {
                         "description": {
+                          "type": "string"
+                        },
+                        "icon": {
                           "type": "string"
                         },
                         "items": {
@@ -114,6 +116,9 @@
                               "flow": {
                                 "type": "string"
                               },
+                              "icon": {
+                                "type": "string"
+                              },
                               "icons": {
                                 "type": "array",
                                 "items": {
@@ -142,6 +147,9 @@
                                 "type": "string"
                               },
                               "operationId": {
+                                "type": "string"
+                              },
+                              "partOf": {
                                 "type": "string"
                               }
                             }
@@ -467,6 +475,9 @@
                         "name"
                       ],
                       "properties": {
+                        "icon": {
+                          "type": "string"
+                        },
                         "name": {
                           "type": "string"
                         },

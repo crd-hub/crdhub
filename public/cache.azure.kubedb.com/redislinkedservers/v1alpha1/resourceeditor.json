@@ -3,7 +3,6 @@
   "apiVersion": "ui.k8s.appscode.com/v1alpha1",
   "metadata": {
     "name": "cache.azure.kubedb.com-v1alpha1-redislinkedservers",
-    "creationTimestamp": null,
     "labels": {
       "k8s.io/group": "cache.azure.kubedb.com",
       "k8s.io/kind": "RedisLinkedServer",
@@ -22,7 +21,7 @@
     "ui": {
       "editor": {
         "name": "cacheazurekubedbcom-redislinkedserver-editor",
-        "version": "v0.24.0",
+        "version": "v0.30.0",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",

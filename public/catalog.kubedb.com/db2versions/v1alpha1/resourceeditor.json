@@ -1,0 +1,22 @@
+{
+  "kind": "ResourceEditor",
+  "apiVersion": "ui.k8s.appscode.com/v1alpha1",
+  "metadata": {
+    "name": "catalog.kubedb.com-v1alpha1-db2versions",
+    "labels": {
+      "k8s.io/group": "catalog.kubedb.com",
+      "k8s.io/kind": "DB2Version",
+      "k8s.io/resource": "db2versions",
+      "k8s.io/version": "v1alpha1"
+    }
+  },
+  "spec": {
+    "resource": {
+      "group": "catalog.kubedb.com",
+      "version": "v1alpha1",
+      "name": "db2versions",
+      "kind": "DB2Version",
+      "scope": "Cluster"
+    }
+  }
+}

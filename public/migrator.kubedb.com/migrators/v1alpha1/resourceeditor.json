@@ -1,0 +1,22 @@
+{
+  "kind": "ResourceEditor",
+  "apiVersion": "ui.k8s.appscode.com/v1alpha1",
+  "metadata": {
+    "name": "migrator.kubedb.com-v1alpha1-migrators",
+    "labels": {
+      "k8s.io/group": "migrator.kubedb.com",
+      "k8s.io/kind": "Migrator",
+      "k8s.io/resource": "migrators",
+      "k8s.io/version": "v1alpha1"
+    }
+  },
+  "spec": {
+    "resource": {
+      "group": "migrator.kubedb.com",
+      "version": "v1alpha1",
+      "name": "migrators",
+      "kind": "Migrator",
+      "scope": "Namespaced"
+    }
+  }
+}

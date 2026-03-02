@@ -1,7 +1,6 @@
 {
   "metadata": {
     "name": "verticalpodautoscalers.autoscaling.k8s.io",
-    "creationTimestamp": null,
     "annotations": {
       "api-approved.kubernetes.io": "https://github.com/kubernetes/kubernetes/pull/63797"
     }

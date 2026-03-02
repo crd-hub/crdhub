@@ -2,8 +2,7 @@
   "kind": "CustomResourceDefinition",
   "apiVersion": "apiextensions.k8s.io/v1",
   "metadata": {
-    "name": "endpoints.core",
-    "creationTimestamp": null
+    "name": "endpoints.core"
   },
   "spec": {
     "group": "core",

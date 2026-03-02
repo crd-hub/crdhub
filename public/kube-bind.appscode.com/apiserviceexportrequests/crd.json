@@ -2,8 +2,7 @@
   "kind": "CustomResourceDefinition",
   "apiVersion": "apiextensions.k8s.io/v1",
   "metadata": {
-    "name": "apiserviceexportrequests.kube-bind.appscode.com",
-    "creationTimestamp": null
+    "name": "apiserviceexportrequests.kube-bind.appscode.com"
   },
   "spec": {
     "group": "kube-bind.appscode.com",
@@ -24,32 +23,32 @@
         "storage": true,
         "schema": {
           "openAPIV3Schema": {
-            "description": "APIServiceExportRequest is represents a request session of kubectl-bind-apiservice. \n The service provider can prune these objects after some time.",
+            "description": "APIServiceExportRequest is represents a request session of kubectl-bind-apiservice.\n\nThe service provider can prune these objects after some time.",
             "type": "object",
             "required": [
               "spec"
             ],
             "properties": {
               "apiVersion": {
-                "description": "APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources",
+                "description": "APIVersion defines the versioned schema of this representation of an object.\nServers should convert recognized schemas to the latest internal value, and\nmay reject unrecognized values.\nMore info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources",
                 "type": "string"
               },
               "kind": {
-                "description": "Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds",
+                "description": "Kind is a string value representing the REST resource this object represents.\nServers may infer this from the endpoint the client submits requests to.\nCannot be updated.\nIn CamelCase.\nMore info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds",
                 "type": "string"
               },
               "metadata": {
                 "type": "object"
               },
               "spec": {
-                "description": "spec specifies how an API service from a service provider should be bound in the local consumer cluster.",
+                "description": "spec specifies how an API service from a service provider should be bound in the\nlocal consumer cluster.",
                 "type": "object",
                 "required": [
                   "resources"
                 ],
                 "properties": {
                   "parameters": {
-                    "description": "parameters holds service provider specific parameters for this binding request.",
+                    "description": "parameters holds service provider specific parameters for this binding\nrequest.",
                     "type": "object",
                     "x-kubernetes-preserve-unknown-fields": true,
                     "x-kubernetes-validations": [
@@ -70,18 +69,18 @@
                       ],
                       "properties": {
                         "group": {
-                          "description": "group is the name of an API group. For core groups this is the empty string '\"\"'.",
+                          "description": "group is the name of an API group.\nFor core groups this is the empty string '\"\"'.",
                           "type": "string",
                           "default": "",
                           "pattern": "^(|[a-z0-9]([-a-z0-9]*[a-z0-9](\\.[a-z0-9]([-a-z0-9]*[a-z0-9])?)*)?)$"
                         },
                         "resource": {
-                          "description": "resource is the name of the resource. Note: it is worth noting that you can not ask for permissions for resource provided by a CRD not provided by an service binding export.",
+                          "description": "resource is the name of the resource.\nNote: it is worth noting that you can not ask for permissions for resource provided by a CRD\nnot provided by an service binding export.",
                           "type": "string",
                           "pattern": "^[a-z][-a-z0-9]*[a-z0-9]$"
                         },
                         "versions": {
-                          "description": "versions is a list of versions that should be exported. If this is empty a sensible default is chosen by the service provider.",
+                          "description": "versions is a list of versions that should be exported. If this is empty\na sensible default is chosen by the service provider.",
                           "type": "array",
                           "items": {
                             "type": "string"
@@ -104,7 +103,7 @@
                 "default": {},
                 "properties": {
                   "conditions": {
-                    "description": "conditions is a list of conditions that apply to the ClusterBinding. It is updated by the konnector and the service provider.",
+                    "description": "conditions is a list of conditions that apply to the ClusterBinding. It is\nupdated by the konnector and the service provider.",
                     "type": "array",
                     "items": {
                       "description": "Condition defines an observation of a object operational state.",
@@ -116,25 +115,25 @@
                       ],
                       "properties": {
                         "lastTransitionTime": {
-                          "description": "Last time the condition transitioned from one status to another. This should be when the underlying condition changed. If that is not known, then using the time when the API field changed is acceptable.",
+                          "description": "Last time the condition transitioned from one status to another.\nThis should be when the underlying condition changed. If that is not known, then using the time when\nthe API field changed is acceptable.",
                           "type": "string",
                           "format": "date-time"
                         },
                         "message": {
-                          "description": "A human-readable message indicating details about the transition. This field may be empty.",
+                          "description": "A human-readable message indicating details about the transition.\nThis field may be empty.",
                           "type": "string"
                         },
                         "observedGeneration": {
-                          "description": "If set, this represents the .metadata.generation that the condition was set based upon. For instance, if .metadata.generation is currently 12, but the .status.condition[x].observedGeneration is 9, the condition is out of date with respect to the current state of the instance.",
+                          "description": "If set, this represents the .metadata.generation that the condition was set based upon.\nFor instance, if .metadata.generation is currently 12, but the .status.condition[x].observedGeneration is 9, the condition is out of date\nwith respect to the current state of the instance.",
                           "type": "integer",
                           "format": "int64"
                         },
                         "reason": {
-                          "description": "The reason for the condition's last transition in CamelCase. The specific API may choose whether this field is considered a guaranteed API. This field may not be empty.",
+                          "description": "The reason for the condition's last transition in CamelCase.\nThe specific API may choose whether this field is considered a guaranteed API.\nThis field may not be empty.",
                           "type": "string"
                         },
                         "severity": {
-                          "description": "Severity provides an explicit classification of Reason code, so the users or machines can immediately understand the current situation and act accordingly. The Severity field MUST be set only when Status=False.",
+                          "description": "Severity provides an explicit classification of Reason code, so the users or machines can immediately\nunderstand the current situation and act accordingly.\nThe Severity field MUST be set only when Status=False.",
                           "type": "string"
                         },
                         "status": {
@@ -142,14 +141,14 @@
                           "type": "string"
                         },
                         "type": {
-                          "description": "Type of condition in CamelCase or in foo.example.com/CamelCase. Many .condition.type values are consistent across resources like Available, but because arbitrary util can be useful (see .node.status.util), the ability to deconflict is important.",
+                          "description": "Type of condition in CamelCase or in foo.example.com/CamelCase.\nMany .condition.type values are consistent across resources like Available, but because arbitrary util\ncan be useful (see .node.status.util), the ability to deconflict is important.",
                           "type": "string"
                         }
                       }
                     }
                   },
                   "phase": {
-                    "description": "phase is the current phase of the binding request. It starts in Pending and transitions to Succeeded or Failed. See the condition for detailed information.",
+                    "description": "phase is the current phase of the binding request. It starts in Pending\nand transitions to Succeeded or Failed. See the condition for detailed\ninformation.",
                     "type": "string",
                     "default": "Pending",
                     "enum": [
@@ -159,7 +158,7 @@
                     ]
                   },
                   "terminalMessage": {
-                    "description": "terminalMessage is a human readable message that describes the reason for the current phase.",
+                    "description": "terminalMessage is a human readable message that describes the reason\nfor the current phase.",
                     "type": "string"
                   }
                 }

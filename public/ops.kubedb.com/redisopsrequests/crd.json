@@ -3,7 +3,6 @@
   "apiVersion": "apiextensions.k8s.io/v1",
   "metadata": {
     "name": "redisopsrequests.ops.kubedb.com",
-    "creationTimestamp": null,
     "labels": {
       "app.kubernetes.io/name": "kubedb"
     }
@@ -90,10 +89,21 @@
                     "properties": {
                       "secretRef": {
                         "type": "object",
+                        "required": [
+                          "kind",
+                          "name"
+                        ],
                         "properties": {
-                          "name": {
+                          "apiGroup": {
                             "type": "string",
                             "default": ""
+                          },
+                          "kind": {
+                            "type": "string",
+                            "default": "Secret"
+                          },
+                          "name": {
+                            "type": "string"
                           }
                         },
                         "x-kubernetes-map-type": "atomic"
@@ -109,6 +119,33 @@
                           "type": "string"
                         }
                       },
+                      "auth": {
+                        "type": "object",
+                        "properties": {
+                          "deleteUsers": {
+                            "type": "array",
+                            "items": {
+                              "type": "string"
+                            }
+                          },
+                          "secretRef": {
+                            "type": "object",
+                            "properties": {
+                              "name": {
+                                "type": "string",
+                                "default": ""
+                              }
+                            },
+                            "x-kubernetes-map-type": "atomic"
+                          },
+                          "syncACL": {
+                            "type": "array",
+                            "items": {
+                              "type": "string"
+                            }
+                          }
+                        }
+                      },
                       "configSecret": {
                         "type": "object",
                         "properties": {
@@ -121,6 +158,15 @@
                       },
                       "removeCustomConfig": {
                         "type": "boolean"
+                      },
+                      "restart": {
+                        "type": "string",
+                        "default": "auto",
+                        "enum": [
+                          "auto",
+                          "true",
+                          "false"
+                        ]
                       }
                     }
                   },
@@ -173,6 +219,11 @@
                         "format": "int32"
                       }
                     }
+                  },
+                  "maxRetries": {
+                    "type": "integer",
+                    "format": "int32",
+                    "default": 1
                   },
                   "restart": {
                     "type": "object"

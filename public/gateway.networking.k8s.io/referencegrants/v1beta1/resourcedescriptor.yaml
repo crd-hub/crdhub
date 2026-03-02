@@ -1,7 +1,6 @@
 apiVersion: meta.k8s.appscode.com/v1alpha1
 kind: ResourceDescriptor
 metadata:
-  creationTimestamp: null
   labels:
     k8s.io/group: gateway.networking.k8s.io
     k8s.io/kind: ReferenceGrant
@@ -130,6 +129,7 @@ spec:
               maxItems: 16
               minItems: 1
               type: array
+              x-kubernetes-list-type: atomic
             to:
               description: |-
                 To describes the resources that may be referenced by the resources
@@ -179,6 +179,7 @@ spec:
               maxItems: 16
               minItems: 1
               type: array
+              x-kubernetes-list-type: atomic
           required:
           - from
           - to

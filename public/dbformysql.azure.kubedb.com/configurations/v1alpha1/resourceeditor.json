@@ -3,7 +3,6 @@
   "apiVersion": "ui.k8s.appscode.com/v1alpha1",
   "metadata": {
     "name": "dbformysql.azure.kubedb.com-v1alpha1-configurations",
-    "creationTimestamp": null,
     "labels": {
       "k8s.io/group": "dbformysql.azure.kubedb.com",
       "k8s.io/kind": "Configuration",
@@ -22,7 +21,7 @@
     "ui": {
       "editor": {
         "name": "dbformysqlazurekubedbcom-configuration-editor",
-        "version": "v0.24.0",
+        "version": "v0.30.0",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",

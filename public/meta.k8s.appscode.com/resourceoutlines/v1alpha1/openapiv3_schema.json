@@ -57,6 +57,9 @@
               "description": {
                 "type": "string"
               },
+              "icon": {
+                "type": "string"
+              },
               "items": {
                 "type": "array",
                 "items": {
@@ -119,6 +122,9 @@
                     "flow": {
                       "type": "string"
                     },
+                    "icon": {
+                      "type": "string"
+                    },
                     "icons": {
                       "type": "array",
                       "items": {
@@ -147,6 +153,9 @@
                       "type": "string"
                     },
                     "operationId": {
+                      "type": "string"
+                    },
+                    "partOf": {
                       "type": "string"
                     }
                   }
@@ -441,6 +450,21 @@
                 },
                 "name": {
                   "type": "string"
+                },
+                "sort": {
+                  "type": "object",
+                  "properties": {
+                    "fieldName": {
+                      "type": "string"
+                    },
+                    "order": {
+                      "type": "string",
+                      "enum": [
+                        "Ascending",
+                        "Descending"
+                      ]
+                    }
+                  }
                 }
               }
             },
@@ -457,6 +481,9 @@
               "name"
             ],
             "properties": {
+              "icon": {
+                "type": "string"
+              },
               "name": {
                 "type": "string"
               },
@@ -756,6 +783,21 @@
                               },
                               "name": {
                                 "type": "string"
+                              },
+                              "sort": {
+                                "type": "object",
+                                "properties": {
+                                  "fieldName": {
+                                    "type": "string"
+                                  },
+                                  "order": {
+                                    "type": "string",
+                                    "enum": [
+                                      "Ascending",
+                                      "Descending"
+                                    ]
+                                  }
+                                }
                               }
                             }
                           },
@@ -1069,6 +1111,21 @@
                             },
                             "name": {
                               "type": "string"
+                            },
+                            "sort": {
+                              "type": "object",
+                              "properties": {
+                                "fieldName": {
+                                  "type": "string"
+                                },
+                                "order": {
+                                  "type": "string",
+                                  "enum": [
+                                    "Ascending",
+                                    "Descending"
+                                  ]
+                                }
+                              }
                             }
                           }
                         },
@@ -1357,6 +1414,21 @@
                             },
                             "name": {
                               "type": "string"
+                            },
+                            "sort": {
+                              "type": "object",
+                              "properties": {
+                                "fieldName": {
+                                  "type": "string"
+                                },
+                                "order": {
+                                  "type": "string",
+                                  "enum": [
+                                    "Ascending",
+                                    "Descending"
+                                  ]
+                                }
+                              }
                             }
                           }
                         },
@@ -1690,6 +1762,21 @@
                 },
                 "name": {
                   "type": "string"
+                },
+                "sort": {
+                  "type": "object",
+                  "properties": {
+                    "fieldName": {
+                      "type": "string"
+                    },
+                    "order": {
+                      "type": "string",
+                      "enum": [
+                        "Ascending",
+                        "Descending"
+                      ]
+                    }
+                  }
                 }
               }
             },

@@ -3,7 +3,6 @@ kind: CustomResourceDefinition
 metadata:
   annotations:
     controller-gen.kubebuilder.io/version: v0.11.4
-  creationTimestamp: null
   name: secretproviderclasses.secrets-store.csi.x-k8s.io
 spec:
   group: secrets-store.csi.x-k8s.io

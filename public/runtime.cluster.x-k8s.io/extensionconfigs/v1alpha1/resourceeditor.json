@@ -3,7 +3,6 @@
   "apiVersion": "ui.k8s.appscode.com/v1alpha1",
   "metadata": {
     "name": "runtime.cluster.x-k8s.io-v1alpha1-extensionconfigs",
-    "creationTimestamp": null,
     "labels": {
       "k8s.io/group": "runtime.cluster.x-k8s.io",
       "k8s.io/kind": "ExtensionConfig",
@@ -22,7 +21,7 @@
     "ui": {
       "editor": {
         "name": "runtimeclusterxk8sio-extensionconfig-editor",
-        "version": "v0.24.0",
+        "version": "v0.30.0",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",

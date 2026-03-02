@@ -3,7 +3,6 @@
   "apiVersion": "apiextensions.k8s.io/v1",
   "metadata": {
     "name": "elasticsearchversions.catalog.kubedb.com",
-    "creationTimestamp": null,
     "labels": {
       "app.kubernetes.io/name": "kubedb"
     }
@@ -109,18 +108,10 @@
                       "KubeDB"
                     ]
                   },
-                  "exporter": {
-                    "type": "object",
-                    "required": [
-                      "image"
-                    ],
-                    "properties": {
-                      "image": {
-                        "type": "string"
-                      }
-                    }
+                  "endOfLife": {
+                    "type": "boolean"
                   },
-                  "gitSyncer": {
+                  "exporter": {
                     "type": "object",
                     "required": [
                       "image"

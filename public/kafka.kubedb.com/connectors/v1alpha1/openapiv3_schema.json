@@ -44,7 +44,7 @@
     "spec": {
       "type": "object",
       "required": [
-        "configSecret",
+        "configuration",
         "connectClusterRef"
       ],
       "properties": {
@@ -57,6 +57,20 @@
             }
           },
           "x-kubernetes-map-type": "atomic"
+        },
+        "configuration": {
+          "type": "object",
+          "properties": {
+            "inline": {
+              "type": "object",
+              "additionalProperties": {
+                "type": "string"
+              }
+            },
+            "secretName": {
+              "type": "string"
+            }
+          }
         },
         "connectClusterRef": {
           "type": "object",

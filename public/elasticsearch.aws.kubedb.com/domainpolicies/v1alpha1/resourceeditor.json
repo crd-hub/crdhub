@@ -3,7 +3,6 @@
   "apiVersion": "ui.k8s.appscode.com/v1alpha1",
   "metadata": {
     "name": "elasticsearch.aws.kubedb.com-v1alpha1-domainpolicies",
-    "creationTimestamp": null,
     "labels": {
       "k8s.io/group": "elasticsearch.aws.kubedb.com",
       "k8s.io/kind": "DomainPolicy",
@@ -22,7 +21,7 @@
     "ui": {
       "editor": {
         "name": "elasticsearchawskubedbcom-domainpolicy-editor",
-        "version": "v0.24.0",
+        "version": "v0.30.0",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",

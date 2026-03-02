@@ -39,9 +39,17 @@ properties:
         properties:
           secretRef:
             properties:
-              name:
+              apiGroup:
                 default: ""
                 type: string
+              kind:
+                default: Secret
+                type: string
+              name:
+                type: string
+            required:
+            - kind
+            - name
             type: object
             x-kubernetes-map-type: atomic
         type: object
@@ -62,6 +70,13 @@ properties:
                 x-kubernetes-map-type: atomic
               removeCustomConfig:
                 type: boolean
+              restart:
+                default: auto
+                enum:
+                - auto
+                - "true"
+                - "false"
+                type: string
             type: object
           leaf:
             properties:
@@ -78,6 +93,13 @@ properties:
                 x-kubernetes-map-type: atomic
               removeCustomConfig:
                 type: boolean
+              restart:
+                default: auto
+                enum:
+                - auto
+                - "true"
+                - "false"
+                type: string
             type: object
           node:
             properties:
@@ -94,6 +116,13 @@ properties:
                 x-kubernetes-map-type: atomic
               removeCustomConfig:
                 type: boolean
+              restart:
+                default: auto
+                enum:
+                - auto
+                - "true"
+                - "false"
+                type: string
             type: object
         type: object
       databaseRef:
@@ -112,6 +141,10 @@ properties:
             format: int32
             type: integer
         type: object
+      maxRetries:
+        default: 1
+        format: int32
+        type: integer
       restart:
         type: object
       timeout:

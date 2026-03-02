@@ -1,0 +1,22 @@
+{
+  "kind": "ResourceEditor",
+  "apiVersion": "ui.k8s.appscode.com/v1alpha1",
+  "metadata": {
+    "name": "catalog.kubedb.com-v1alpha1-qdrantversions",
+    "labels": {
+      "k8s.io/group": "catalog.kubedb.com",
+      "k8s.io/kind": "QdrantVersion",
+      "k8s.io/resource": "qdrantversions",
+      "k8s.io/version": "v1alpha1"
+    }
+  },
+  "spec": {
+    "resource": {
+      "group": "catalog.kubedb.com",
+      "version": "v1alpha1",
+      "name": "qdrantversions",
+      "kind": "QdrantVersion",
+      "scope": "Cluster"
+    }
+  }
+}

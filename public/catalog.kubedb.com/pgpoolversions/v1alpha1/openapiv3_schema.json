@@ -47,6 +47,9 @@
         "deprecated": {
           "type": "boolean"
         },
+        "endOfLife": {
+          "type": "boolean"
+        },
         "exporter": {
           "type": "object",
           "required": [

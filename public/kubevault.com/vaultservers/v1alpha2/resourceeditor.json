@@ -3,7 +3,6 @@
   "apiVersion": "ui.k8s.appscode.com/v1alpha1",
   "metadata": {
     "name": "kubevault.com-v1alpha2-vaultservers",
-    "creationTimestamp": null,
     "labels": {
       "k8s.io/group": "kubevault.com",
       "k8s.io/kind": "VaultServer",
@@ -22,7 +21,7 @@
     "ui": {
       "options": {
         "name": "kubevaultcom-vaultserver-editor-options",
-        "version": "v0.24.0",
+        "version": "v0.30.0",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",
@@ -31,7 +30,7 @@
       },
       "editor": {
         "name": "kubevaultcom-vaultserver-editor",
-        "version": "v0.24.0",
+        "version": "v0.30.0",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",

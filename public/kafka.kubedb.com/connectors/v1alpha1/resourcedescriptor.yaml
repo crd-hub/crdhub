@@ -1,7 +1,6 @@
 apiVersion: meta.k8s.appscode.com/v1alpha1
 kind: ResourceDescriptor
 metadata:
-  creationTimestamp: null
   labels:
     k8s.io/group: kafka.kubedb.com
     k8s.io/kind: Connector
@@ -50,6 +49,15 @@ spec:
                   type: string
               type: object
               x-kubernetes-map-type: atomic
+            configuration:
+              properties:
+                inline:
+                  additionalProperties:
+                    type: string
+                  type: object
+                secretName:
+                  type: string
+              type: object
             connectClusterRef:
               properties:
                 name:
@@ -67,7 +75,7 @@ spec:
               - DoNotTerminate
               type: string
           required:
-          - configSecret
+          - configuration
           - connectClusterRef
           type: object
       type: object

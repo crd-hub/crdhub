@@ -40,6 +40,7 @@
     "spec": {
       "type": "object",
       "required": [
+        "coordinator",
         "db",
         "exporter",
         "initContainer",
@@ -172,6 +173,9 @@
             "KubeDB",
             "MySQL"
           ]
+        },
+        "endOfLife": {
+          "type": "boolean"
         },
         "exporter": {
           "type": "object",

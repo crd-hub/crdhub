@@ -49,20 +49,28 @@
       "properties": {
         "authSecret": {
           "type": "object",
+          "required": [
+            "kind",
+            "name"
+          ],
           "properties": {
             "activeFrom": {
               "type": "string",
               "format": "date-time"
             },
             "apiGroup": {
-              "type": "string"
+              "type": "string",
+              "default": ""
             },
             "externallyManaged": {
               "type": "boolean"
             },
-            "name": {
+            "kind": {
               "type": "string",
-              "default": ""
+              "default": "Secret"
+            },
+            "name": {
+              "type": "string"
             },
             "rotateAfter": {
               "type": "string"
@@ -81,6 +89,14 @@
             }
           }
         },
+        "brokerRack": {
+          "type": "object",
+          "properties": {
+            "topologyKey": {
+              "type": "string"
+            }
+          }
+        },
         "configSecret": {
           "type": "object",
           "properties": {
@@ -90,6 +106,20 @@
             }
           },
           "x-kubernetes-map-type": "atomic"
+        },
+        "configuration": {
+          "type": "object",
+          "properties": {
+            "inline": {
+              "type": "object",
+              "additionalProperties": {
+                "type": "string"
+              }
+            },
+            "secretName": {
+              "type": "string"
+            }
+          }
         },
         "cruiseControl": {
           "type": "object",
@@ -105,31 +135,19 @@
                 }
               }
             },
-            "configSecret": {
+            "configuration": {
               "type": "object",
               "properties": {
-                "activeFrom": {
-                  "type": "string",
-                  "format": "date-time"
+                "inline": {
+                  "type": "object",
+                  "additionalProperties": {
+                    "type": "string"
+                  }
                 },
-                "apiGroup": {
-                  "type": "string"
-                },
-                "externallyManaged": {
-                  "type": "boolean"
-                },
-                "name": {
-                  "type": "string",
-                  "default": ""
-                },
-                "rotateAfter": {
-                  "type": "string"
-                },
-                "secretStoreName": {
+                "secretName": {
                   "type": "string"
                 }
-              },
-              "x-kubernetes-map-type": "atomic"
+              }
             },
             "podTemplate": {
               "type": "object",
@@ -246,6 +264,30 @@
                                           "type": "string"
                                         },
                                         "fieldPath": {
+                                          "type": "string"
+                                        }
+                                      },
+                                      "x-kubernetes-map-type": "atomic"
+                                    },
+                                    "fileKeyRef": {
+                                      "type": "object",
+                                      "required": [
+                                        "key",
+                                        "path",
+                                        "volumeName"
+                                      ],
+                                      "properties": {
+                                        "key": {
+                                          "type": "string"
+                                        },
+                                        "optional": {
+                                          "type": "boolean",
+                                          "default": false
+                                        },
+                                        "path": {
+                                          "type": "string"
+                                        },
+                                        "volumeName": {
                                           "type": "string"
                                         }
                                       },
@@ -548,6 +590,9 @@
                                     }
                                   }
                                 }
+                              },
+                              "stopSignal": {
+                                "type": "string"
                               }
                             }
                           },
@@ -917,6 +962,40 @@
                           },
                           "restartPolicy": {
                             "type": "string"
+                          },
+                          "restartPolicyRules": {
+                            "type": "array",
+                            "items": {
+                              "type": "object",
+                              "required": [
+                                "action"
+                              ],
+                              "properties": {
+                                "action": {
+                                  "type": "string"
+                                },
+                                "exitCodes": {
+                                  "type": "object",
+                                  "required": [
+                                    "operator"
+                                  ],
+                                  "properties": {
+                                    "operator": {
+                                      "type": "string"
+                                    },
+                                    "values": {
+                                      "type": "array",
+                                      "items": {
+                                        "type": "integer",
+                                        "format": "int32"
+                                      },
+                                      "x-kubernetes-list-type": "set"
+                                    }
+                                  }
+                                }
+                              }
+                            },
+                            "x-kubernetes-list-type": "atomic"
                           },
                           "securityContext": {
                             "type": "object",
@@ -1346,6 +1425,30 @@
                                       },
                                       "x-kubernetes-map-type": "atomic"
                                     },
+                                    "fileKeyRef": {
+                                      "type": "object",
+                                      "required": [
+                                        "key",
+                                        "path",
+                                        "volumeName"
+                                      ],
+                                      "properties": {
+                                        "key": {
+                                          "type": "string"
+                                        },
+                                        "optional": {
+                                          "type": "boolean",
+                                          "default": false
+                                        },
+                                        "path": {
+                                          "type": "string"
+                                        },
+                                        "volumeName": {
+                                          "type": "string"
+                                        }
+                                      },
+                                      "x-kubernetes-map-type": "atomic"
+                                    },
                                     "resourceFieldRef": {
                                       "type": "object",
                                       "required": [
@@ -1643,6 +1746,9 @@
                                     }
                                   }
                                 }
+                              },
+                              "stopSignal": {
+                                "type": "string"
                               }
                             }
                           },
@@ -2012,6 +2118,40 @@
                           },
                           "restartPolicy": {
                             "type": "string"
+                          },
+                          "restartPolicyRules": {
+                            "type": "array",
+                            "items": {
+                              "type": "object",
+                              "required": [
+                                "action"
+                              ],
+                              "properties": {
+                                "action": {
+                                  "type": "string"
+                                },
+                                "exitCodes": {
+                                  "type": "object",
+                                  "required": [
+                                    "operator"
+                                  ],
+                                  "properties": {
+                                    "operator": {
+                                      "type": "string"
+                                    },
+                                    "values": {
+                                      "type": "array",
+                                      "items": {
+                                        "type": "integer",
+                                        "format": "int32"
+                                      },
+                                      "x-kubernetes-list-type": "set"
+                                    }
+                                  }
+                                }
+                              }
+                            },
+                            "x-kubernetes-list-type": "atomic"
                           },
                           "securityContext": {
                             "type": "object",
@@ -2450,6 +2590,30 @@
                                       },
                                       "x-kubernetes-map-type": "atomic"
                                     },
+                                    "fileKeyRef": {
+                                      "type": "object",
+                                      "required": [
+                                        "key",
+                                        "path",
+                                        "volumeName"
+                                      ],
+                                      "properties": {
+                                        "key": {
+                                          "type": "string"
+                                        },
+                                        "optional": {
+                                          "type": "boolean",
+                                          "default": false
+                                        },
+                                        "path": {
+                                          "type": "string"
+                                        },
+                                        "volumeName": {
+                                          "type": "string"
+                                        }
+                                      },
+                                      "x-kubernetes-map-type": "atomic"
+                                    },
                                     "resourceFieldRef": {
                                       "type": "object",
                                       "required": [
@@ -2747,6 +2911,9 @@
                                     }
                                   }
                                 }
+                              },
+                              "stopSignal": {
+                                "type": "string"
                               }
                             }
                           },
@@ -3116,6 +3283,40 @@
                           },
                           "restartPolicy": {
                             "type": "string"
+                          },
+                          "restartPolicyRules": {
+                            "type": "array",
+                            "items": {
+                              "type": "object",
+                              "required": [
+                                "action"
+                              ],
+                              "properties": {
+                                "action": {
+                                  "type": "string"
+                                },
+                                "exitCodes": {
+                                  "type": "object",
+                                  "required": [
+                                    "operator"
+                                  ],
+                                  "properties": {
+                                    "operator": {
+                                      "type": "string"
+                                    },
+                                    "values": {
+                                      "type": "array",
+                                      "items": {
+                                        "type": "integer",
+                                        "format": "int32"
+                                      },
+                                      "x-kubernetes-list-type": "set"
+                                    }
+                                  }
+                                }
+                              }
+                            },
+                            "x-kubernetes-list-type": "atomic"
                           },
                           "securityContext": {
                             "type": "object",
@@ -4601,6 +4802,34 @@
                                         }
                                       }
                                     },
+                                    "podCertificate": {
+                                      "type": "object",
+                                      "required": [
+                                        "keyType",
+                                        "signerName"
+                                      ],
+                                      "properties": {
+                                        "certificateChainPath": {
+                                          "type": "string"
+                                        },
+                                        "credentialBundlePath": {
+                                          "type": "string"
+                                        },
+                                        "keyPath": {
+                                          "type": "string"
+                                        },
+                                        "keyType": {
+                                          "type": "string"
+                                        },
+                                        "maxExpirationSeconds": {
+                                          "type": "integer",
+                                          "format": "int32"
+                                        },
+                                        "signerName": {
+                                          "type": "string"
+                                        }
+                                      }
+                                    },
                                     "secret": {
                                       "type": "object",
                                       "properties": {
@@ -4880,62 +5109,6 @@
               "type": "integer",
               "format": "int32"
             },
-            "resources": {
-              "type": "object",
-              "properties": {
-                "claims": {
-                  "type": "array",
-                  "items": {
-                    "type": "object",
-                    "required": [
-                      "name"
-                    ],
-                    "properties": {
-                      "name": {
-                        "type": "string"
-                      },
-                      "request": {
-                        "type": "string"
-                      }
-                    }
-                  },
-                  "x-kubernetes-list-map-keys": [
-                    "name"
-                  ],
-                  "x-kubernetes-list-type": "map"
-                },
-                "limits": {
-                  "type": "object",
-                  "additionalProperties": {
-                    "pattern": "^(\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))(([KMGTPE]i)|[numkMGTPE]|([eE](\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))))?$",
-                    "anyOf": [
-                      {
-                        "type": "integer"
-                      },
-                      {
-                        "type": "string"
-                      }
-                    ],
-                    "x-kubernetes-int-or-string": true
-                  }
-                },
-                "requests": {
-                  "type": "object",
-                  "additionalProperties": {
-                    "pattern": "^(\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))(([KMGTPE]i)|[numkMGTPE]|([eE](\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))))?$",
-                    "anyOf": [
-                      {
-                        "type": "integer"
-                      },
-                      {
-                        "type": "string"
-                      }
-                    ],
-                    "x-kubernetes-int-or-string": true
-                  }
-                }
-              }
-            },
             "suffix": {
               "type": "string"
             }
@@ -4989,20 +5162,28 @@
         },
         "keystoreCredSecret": {
           "type": "object",
+          "required": [
+            "kind",
+            "name"
+          ],
           "properties": {
             "activeFrom": {
               "type": "string",
               "format": "date-time"
             },
             "apiGroup": {
-              "type": "string"
+              "type": "string",
+              "default": ""
             },
             "externallyManaged": {
               "type": "boolean"
             },
-            "name": {
+            "kind": {
               "type": "string",
-              "default": ""
+              "default": "Secret"
+            },
+            "name": {
+              "type": "string"
             },
             "rotateAfter": {
               "type": "string"
@@ -5082,6 +5263,30 @@
                                     "type": "string"
                                   },
                                   "fieldPath": {
+                                    "type": "string"
+                                  }
+                                },
+                                "x-kubernetes-map-type": "atomic"
+                              },
+                              "fileKeyRef": {
+                                "type": "object",
+                                "required": [
+                                  "key",
+                                  "path",
+                                  "volumeName"
+                                ],
+                                "properties": {
+                                  "key": {
+                                    "type": "string"
+                                  },
+                                  "optional": {
+                                    "type": "boolean",
+                                    "default": false
+                                  },
+                                  "path": {
+                                    "type": "string"
+                                  },
+                                  "volumeName": {
                                     "type": "string"
                                   }
                                 },
@@ -5313,12 +5518,151 @@
                 "serviceMonitor": {
                   "type": "object",
                   "properties": {
+                    "endpoints": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "metricRelabelings": {
+                            "type": "array",
+                            "items": {
+                              "type": "object",
+                              "properties": {
+                                "action": {
+                                  "type": "string",
+                                  "default": "replace",
+                                  "enum": [
+                                    "replace",
+                                    "Replace",
+                                    "keep",
+                                    "Keep",
+                                    "drop",
+                                    "Drop",
+                                    "hashmod",
+                                    "HashMod",
+                                    "labelmap",
+                                    "LabelMap",
+                                    "labeldrop",
+                                    "LabelDrop",
+                                    "labelkeep",
+                                    "LabelKeep",
+                                    "lowercase",
+                                    "Lowercase",
+                                    "uppercase",
+                                    "Uppercase",
+                                    "keepequal",
+                                    "KeepEqual",
+                                    "dropequal",
+                                    "DropEqual"
+                                  ]
+                                },
+                                "modulus": {
+                                  "type": "integer",
+                                  "format": "int64"
+                                },
+                                "regex": {
+                                  "type": "string"
+                                },
+                                "replacement": {
+                                  "type": "string"
+                                },
+                                "separator": {
+                                  "type": "string"
+                                },
+                                "sourceLabels": {
+                                  "type": "array",
+                                  "items": {
+                                    "type": "string"
+                                  }
+                                },
+                                "targetLabel": {
+                                  "type": "string"
+                                }
+                              }
+                            }
+                          },
+                          "port": {
+                            "type": "string"
+                          },
+                          "relabelings": {
+                            "type": "array",
+                            "items": {
+                              "type": "object",
+                              "properties": {
+                                "action": {
+                                  "type": "string",
+                                  "default": "replace",
+                                  "enum": [
+                                    "replace",
+                                    "Replace",
+                                    "keep",
+                                    "Keep",
+                                    "drop",
+                                    "Drop",
+                                    "hashmod",
+                                    "HashMod",
+                                    "labelmap",
+                                    "LabelMap",
+                                    "labeldrop",
+                                    "LabelDrop",
+                                    "labelkeep",
+                                    "LabelKeep",
+                                    "lowercase",
+                                    "Lowercase",
+                                    "uppercase",
+                                    "Uppercase",
+                                    "keepequal",
+                                    "KeepEqual",
+                                    "dropequal",
+                                    "DropEqual"
+                                  ]
+                                },
+                                "modulus": {
+                                  "type": "integer",
+                                  "format": "int64"
+                                },
+                                "regex": {
+                                  "type": "string"
+                                },
+                                "replacement": {
+                                  "type": "string"
+                                },
+                                "separator": {
+                                  "type": "string"
+                                },
+                                "sourceLabels": {
+                                  "type": "array",
+                                  "items": {
+                                    "type": "string"
+                                  }
+                                },
+                                "targetLabel": {
+                                  "type": "string"
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    },
                     "interval": {
                       "type": "string"
                     },
                     "labels": {
                       "type": "object",
                       "additionalProperties": {
+                        "type": "string"
+                      }
+                    },
+                    "podTargetLabels": {
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      }
+                    },
+                    "targetLabels": {
+                      "type": "array",
+                      "items": {
                         "type": "string"
                       }
                     }
@@ -5443,6 +5787,30 @@
                                       "type": "string"
                                     },
                                     "fieldPath": {
+                                      "type": "string"
+                                    }
+                                  },
+                                  "x-kubernetes-map-type": "atomic"
+                                },
+                                "fileKeyRef": {
+                                  "type": "object",
+                                  "required": [
+                                    "key",
+                                    "path",
+                                    "volumeName"
+                                  ],
+                                  "properties": {
+                                    "key": {
+                                      "type": "string"
+                                    },
+                                    "optional": {
+                                      "type": "boolean",
+                                      "default": false
+                                    },
+                                    "path": {
+                                      "type": "string"
+                                    },
+                                    "volumeName": {
                                       "type": "string"
                                     }
                                   },
@@ -5745,6 +6113,9 @@
                                 }
                               }
                             }
+                          },
+                          "stopSignal": {
+                            "type": "string"
                           }
                         }
                       },
@@ -6114,6 +6485,40 @@
                       },
                       "restartPolicy": {
                         "type": "string"
+                      },
+                      "restartPolicyRules": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "required": [
+                            "action"
+                          ],
+                          "properties": {
+                            "action": {
+                              "type": "string"
+                            },
+                            "exitCodes": {
+                              "type": "object",
+                              "required": [
+                                "operator"
+                              ],
+                              "properties": {
+                                "operator": {
+                                  "type": "string"
+                                },
+                                "values": {
+                                  "type": "array",
+                                  "items": {
+                                    "type": "integer",
+                                    "format": "int32"
+                                  },
+                                  "x-kubernetes-list-type": "set"
+                                }
+                              }
+                            }
+                          }
+                        },
+                        "x-kubernetes-list-type": "atomic"
                       },
                       "securityContext": {
                         "type": "object",
@@ -6543,6 +6948,30 @@
                                   },
                                   "x-kubernetes-map-type": "atomic"
                                 },
+                                "fileKeyRef": {
+                                  "type": "object",
+                                  "required": [
+                                    "key",
+                                    "path",
+                                    "volumeName"
+                                  ],
+                                  "properties": {
+                                    "key": {
+                                      "type": "string"
+                                    },
+                                    "optional": {
+                                      "type": "boolean",
+                                      "default": false
+                                    },
+                                    "path": {
+                                      "type": "string"
+                                    },
+                                    "volumeName": {
+                                      "type": "string"
+                                    }
+                                  },
+                                  "x-kubernetes-map-type": "atomic"
+                                },
                                 "resourceFieldRef": {
                                   "type": "object",
                                   "required": [
@@ -6840,6 +7269,9 @@
                                 }
                               }
                             }
+                          },
+                          "stopSignal": {
+                            "type": "string"
                           }
                         }
                       },
@@ -7209,6 +7641,40 @@
                       },
                       "restartPolicy": {
                         "type": "string"
+                      },
+                      "restartPolicyRules": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "required": [
+                            "action"
+                          ],
+                          "properties": {
+                            "action": {
+                              "type": "string"
+                            },
+                            "exitCodes": {
+                              "type": "object",
+                              "required": [
+                                "operator"
+                              ],
+                              "properties": {
+                                "operator": {
+                                  "type": "string"
+                                },
+                                "values": {
+                                  "type": "array",
+                                  "items": {
+                                    "type": "integer",
+                                    "format": "int32"
+                                  },
+                                  "x-kubernetes-list-type": "set"
+                                }
+                              }
+                            }
+                          }
+                        },
+                        "x-kubernetes-list-type": "atomic"
                       },
                       "securityContext": {
                         "type": "object",
@@ -7647,6 +8113,30 @@
                                   },
                                   "x-kubernetes-map-type": "atomic"
                                 },
+                                "fileKeyRef": {
+                                  "type": "object",
+                                  "required": [
+                                    "key",
+                                    "path",
+                                    "volumeName"
+                                  ],
+                                  "properties": {
+                                    "key": {
+                                      "type": "string"
+                                    },
+                                    "optional": {
+                                      "type": "boolean",
+                                      "default": false
+                                    },
+                                    "path": {
+                                      "type": "string"
+                                    },
+                                    "volumeName": {
+                                      "type": "string"
+                                    }
+                                  },
+                                  "x-kubernetes-map-type": "atomic"
+                                },
                                 "resourceFieldRef": {
                                   "type": "object",
                                   "required": [
@@ -7944,6 +8434,9 @@
                                 }
                               }
                             }
+                          },
+                          "stopSignal": {
+                            "type": "string"
                           }
                         }
                       },
@@ -8313,6 +8806,40 @@
                       },
                       "restartPolicy": {
                         "type": "string"
+                      },
+                      "restartPolicyRules": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "required": [
+                            "action"
+                          ],
+                          "properties": {
+                            "action": {
+                              "type": "string"
+                            },
+                            "exitCodes": {
+                              "type": "object",
+                              "required": [
+                                "operator"
+                              ],
+                              "properties": {
+                                "operator": {
+                                  "type": "string"
+                                },
+                                "values": {
+                                  "type": "array",
+                                  "items": {
+                                    "type": "integer",
+                                    "format": "int32"
+                                  },
+                                  "x-kubernetes-list-type": "set"
+                                }
+                              }
+                            }
+                          }
+                        },
+                        "x-kubernetes-list-type": "atomic"
                       },
                       "securityContext": {
                         "type": "object",
@@ -9798,6 +10325,34 @@
                                     }
                                   }
                                 },
+                                "podCertificate": {
+                                  "type": "object",
+                                  "required": [
+                                    "keyType",
+                                    "signerName"
+                                  ],
+                                  "properties": {
+                                    "certificateChainPath": {
+                                      "type": "string"
+                                    },
+                                    "credentialBundlePath": {
+                                      "type": "string"
+                                    },
+                                    "keyPath": {
+                                      "type": "string"
+                                    },
+                                    "keyType": {
+                                      "type": "string"
+                                    },
+                                    "maxExpirationSeconds": {
+                                      "type": "integer",
+                                      "format": "int32"
+                                    },
+                                    "signerName": {
+                                      "type": "string"
+                                    }
+                                  }
+                                },
                                 "secret": {
                                   "type": "object",
                                   "properties": {
@@ -10326,6 +10881,1318 @@
             "Ephemeral"
           ]
         },
+        "tieredStorage": {
+          "type": "object",
+          "properties": {
+            "azure": {
+              "type": "object",
+              "properties": {
+                "container": {
+                  "type": "string"
+                },
+                "maxConnections": {
+                  "type": "integer",
+                  "format": "int64"
+                },
+                "prefix": {
+                  "type": "string"
+                },
+                "secretName": {
+                  "type": "string"
+                },
+                "storageAccount": {
+                  "type": "string"
+                }
+              }
+            },
+            "gcs": {
+              "type": "object",
+              "properties": {
+                "bucket": {
+                  "type": "string"
+                },
+                "maxConnections": {
+                  "type": "integer",
+                  "format": "int64"
+                },
+                "prefix": {
+                  "type": "string"
+                },
+                "secretName": {
+                  "type": "string"
+                }
+              }
+            },
+            "local": {
+              "type": "object",
+              "properties": {
+                "awsElasticBlockStore": {
+                  "type": "object",
+                  "required": [
+                    "volumeID"
+                  ],
+                  "properties": {
+                    "fsType": {
+                      "type": "string"
+                    },
+                    "partition": {
+                      "type": "integer",
+                      "format": "int32"
+                    },
+                    "readOnly": {
+                      "type": "boolean"
+                    },
+                    "volumeID": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "azureDisk": {
+                  "type": "object",
+                  "required": [
+                    "diskName",
+                    "diskURI"
+                  ],
+                  "properties": {
+                    "cachingMode": {
+                      "type": "string"
+                    },
+                    "diskName": {
+                      "type": "string"
+                    },
+                    "diskURI": {
+                      "type": "string"
+                    },
+                    "fsType": {
+                      "type": "string",
+                      "default": "ext4"
+                    },
+                    "kind": {
+                      "type": "string"
+                    },
+                    "readOnly": {
+                      "type": "boolean",
+                      "default": false
+                    }
+                  }
+                },
+                "azureFile": {
+                  "type": "object",
+                  "required": [
+                    "secretName",
+                    "shareName"
+                  ],
+                  "properties": {
+                    "readOnly": {
+                      "type": "boolean"
+                    },
+                    "secretName": {
+                      "type": "string"
+                    },
+                    "shareName": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "cephfs": {
+                  "type": "object",
+                  "required": [
+                    "monitors"
+                  ],
+                  "properties": {
+                    "monitors": {
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      },
+                      "x-kubernetes-list-type": "atomic"
+                    },
+                    "path": {
+                      "type": "string"
+                    },
+                    "readOnly": {
+                      "type": "boolean"
+                    },
+                    "secretFile": {
+                      "type": "string"
+                    },
+                    "secretRef": {
+                      "type": "object",
+                      "properties": {
+                        "name": {
+                          "type": "string",
+                          "default": ""
+                        }
+                      },
+                      "x-kubernetes-map-type": "atomic"
+                    },
+                    "user": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "cinder": {
+                  "type": "object",
+                  "required": [
+                    "volumeID"
+                  ],
+                  "properties": {
+                    "fsType": {
+                      "type": "string"
+                    },
+                    "readOnly": {
+                      "type": "boolean"
+                    },
+                    "secretRef": {
+                      "type": "object",
+                      "properties": {
+                        "name": {
+                          "type": "string",
+                          "default": ""
+                        }
+                      },
+                      "x-kubernetes-map-type": "atomic"
+                    },
+                    "volumeID": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "configMap": {
+                  "type": "object",
+                  "properties": {
+                    "defaultMode": {
+                      "type": "integer",
+                      "format": "int32"
+                    },
+                    "items": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "required": [
+                          "key",
+                          "path"
+                        ],
+                        "properties": {
+                          "key": {
+                            "type": "string"
+                          },
+                          "mode": {
+                            "type": "integer",
+                            "format": "int32"
+                          },
+                          "path": {
+                            "type": "string"
+                          }
+                        }
+                      },
+                      "x-kubernetes-list-type": "atomic"
+                    },
+                    "name": {
+                      "type": "string",
+                      "default": ""
+                    },
+                    "optional": {
+                      "type": "boolean"
+                    }
+                  },
+                  "x-kubernetes-map-type": "atomic"
+                },
+                "csi": {
+                  "type": "object",
+                  "required": [
+                    "driver"
+                  ],
+                  "properties": {
+                    "driver": {
+                      "type": "string"
+                    },
+                    "fsType": {
+                      "type": "string"
+                    },
+                    "nodePublishSecretRef": {
+                      "type": "object",
+                      "properties": {
+                        "name": {
+                          "type": "string",
+                          "default": ""
+                        }
+                      },
+                      "x-kubernetes-map-type": "atomic"
+                    },
+                    "readOnly": {
+                      "type": "boolean"
+                    },
+                    "volumeAttributes": {
+                      "type": "object",
+                      "additionalProperties": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                },
+                "downwardAPI": {
+                  "type": "object",
+                  "properties": {
+                    "defaultMode": {
+                      "type": "integer",
+                      "format": "int32"
+                    },
+                    "items": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "required": [
+                          "path"
+                        ],
+                        "properties": {
+                          "fieldRef": {
+                            "type": "object",
+                            "required": [
+                              "fieldPath"
+                            ],
+                            "properties": {
+                              "apiVersion": {
+                                "type": "string"
+                              },
+                              "fieldPath": {
+                                "type": "string"
+                              }
+                            },
+                            "x-kubernetes-map-type": "atomic"
+                          },
+                          "mode": {
+                            "type": "integer",
+                            "format": "int32"
+                          },
+                          "path": {
+                            "type": "string"
+                          },
+                          "resourceFieldRef": {
+                            "type": "object",
+                            "required": [
+                              "resource"
+                            ],
+                            "properties": {
+                              "containerName": {
+                                "type": "string"
+                              },
+                              "divisor": {
+                                "pattern": "^(\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))(([KMGTPE]i)|[numkMGTPE]|([eE](\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))))?$",
+                                "anyOf": [
+                                  {
+                                    "type": "integer"
+                                  },
+                                  {
+                                    "type": "string"
+                                  }
+                                ],
+                                "x-kubernetes-int-or-string": true
+                              },
+                              "resource": {
+                                "type": "string"
+                              }
+                            },
+                            "x-kubernetes-map-type": "atomic"
+                          }
+                        }
+                      },
+                      "x-kubernetes-list-type": "atomic"
+                    }
+                  }
+                },
+                "emptyDir": {
+                  "type": "object",
+                  "properties": {
+                    "medium": {
+                      "type": "string"
+                    },
+                    "sizeLimit": {
+                      "pattern": "^(\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))(([KMGTPE]i)|[numkMGTPE]|([eE](\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))))?$",
+                      "anyOf": [
+                        {
+                          "type": "integer"
+                        },
+                        {
+                          "type": "string"
+                        }
+                      ],
+                      "x-kubernetes-int-or-string": true
+                    }
+                  }
+                },
+                "ephemeral": {
+                  "type": "object",
+                  "properties": {
+                    "volumeClaimTemplate": {
+                      "type": "object",
+                      "required": [
+                        "spec"
+                      ],
+                      "properties": {
+                        "metadata": {
+                          "type": "object",
+                          "properties": {
+                            "annotations": {
+                              "type": "object",
+                              "additionalProperties": {
+                                "type": "string"
+                              }
+                            },
+                            "generateName": {
+                              "type": "string"
+                            },
+                            "labels": {
+                              "type": "object",
+                              "additionalProperties": {
+                                "type": "string"
+                              }
+                            },
+                            "name": {
+                              "type": "string"
+                            },
+                            "namespace": {
+                              "type": "string"
+                            },
+                            "ownerReferences": {
+                              "type": "array",
+                              "items": {
+                                "type": "object",
+                                "required": [
+                                  "apiVersion",
+                                  "kind",
+                                  "name",
+                                  "uid"
+                                ],
+                                "properties": {
+                                  "apiVersion": {
+                                    "type": "string"
+                                  },
+                                  "blockOwnerDeletion": {
+                                    "type": "boolean"
+                                  },
+                                  "controller": {
+                                    "type": "boolean"
+                                  },
+                                  "kind": {
+                                    "type": "string"
+                                  },
+                                  "name": {
+                                    "type": "string"
+                                  },
+                                  "uid": {
+                                    "type": "string"
+                                  }
+                                },
+                                "x-kubernetes-map-type": "atomic"
+                              }
+                            }
+                          }
+                        },
+                        "spec": {
+                          "type": "object",
+                          "properties": {
+                            "accessModes": {
+                              "type": "array",
+                              "items": {
+                                "type": "string"
+                              },
+                              "x-kubernetes-list-type": "atomic"
+                            },
+                            "dataSource": {
+                              "type": "object",
+                              "required": [
+                                "kind",
+                                "name"
+                              ],
+                              "properties": {
+                                "apiGroup": {
+                                  "type": "string"
+                                },
+                                "kind": {
+                                  "type": "string"
+                                },
+                                "name": {
+                                  "type": "string"
+                                }
+                              },
+                              "x-kubernetes-map-type": "atomic"
+                            },
+                            "dataSourceRef": {
+                              "type": "object",
+                              "required": [
+                                "kind",
+                                "name"
+                              ],
+                              "properties": {
+                                "apiGroup": {
+                                  "type": "string"
+                                },
+                                "kind": {
+                                  "type": "string"
+                                },
+                                "name": {
+                                  "type": "string"
+                                },
+                                "namespace": {
+                                  "type": "string"
+                                }
+                              }
+                            },
+                            "resources": {
+                              "type": "object",
+                              "properties": {
+                                "limits": {
+                                  "type": "object",
+                                  "additionalProperties": {
+                                    "pattern": "^(\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))(([KMGTPE]i)|[numkMGTPE]|([eE](\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))))?$",
+                                    "anyOf": [
+                                      {
+                                        "type": "integer"
+                                      },
+                                      {
+                                        "type": "string"
+                                      }
+                                    ],
+                                    "x-kubernetes-int-or-string": true
+                                  }
+                                },
+                                "requests": {
+                                  "type": "object",
+                                  "additionalProperties": {
+                                    "pattern": "^(\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))(([KMGTPE]i)|[numkMGTPE]|([eE](\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))))?$",
+                                    "anyOf": [
+                                      {
+                                        "type": "integer"
+                                      },
+                                      {
+                                        "type": "string"
+                                      }
+                                    ],
+                                    "x-kubernetes-int-or-string": true
+                                  }
+                                }
+                              }
+                            },
+                            "selector": {
+                              "type": "object",
+                              "properties": {
+                                "matchExpressions": {
+                                  "type": "array",
+                                  "items": {
+                                    "type": "object",
+                                    "required": [
+                                      "key",
+                                      "operator"
+                                    ],
+                                    "properties": {
+                                      "key": {
+                                        "type": "string"
+                                      },
+                                      "operator": {
+                                        "type": "string"
+                                      },
+                                      "values": {
+                                        "type": "array",
+                                        "items": {
+                                          "type": "string"
+                                        },
+                                        "x-kubernetes-list-type": "atomic"
+                                      }
+                                    }
+                                  },
+                                  "x-kubernetes-list-type": "atomic"
+                                },
+                                "matchLabels": {
+                                  "type": "object",
+                                  "additionalProperties": {
+                                    "type": "string"
+                                  }
+                                }
+                              },
+                              "x-kubernetes-map-type": "atomic"
+                            },
+                            "storageClassName": {
+                              "type": "string"
+                            },
+                            "volumeAttributesClassName": {
+                              "type": "string"
+                            },
+                            "volumeMode": {
+                              "type": "string"
+                            },
+                            "volumeName": {
+                              "type": "string"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                },
+                "fc": {
+                  "type": "object",
+                  "properties": {
+                    "fsType": {
+                      "type": "string"
+                    },
+                    "lun": {
+                      "type": "integer",
+                      "format": "int32"
+                    },
+                    "readOnly": {
+                      "type": "boolean"
+                    },
+                    "targetWWNs": {
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      },
+                      "x-kubernetes-list-type": "atomic"
+                    },
+                    "wwids": {
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      },
+                      "x-kubernetes-list-type": "atomic"
+                    }
+                  }
+                },
+                "flexVolume": {
+                  "type": "object",
+                  "required": [
+                    "driver"
+                  ],
+                  "properties": {
+                    "driver": {
+                      "type": "string"
+                    },
+                    "fsType": {
+                      "type": "string"
+                    },
+                    "options": {
+                      "type": "object",
+                      "additionalProperties": {
+                        "type": "string"
+                      }
+                    },
+                    "readOnly": {
+                      "type": "boolean"
+                    },
+                    "secretRef": {
+                      "type": "object",
+                      "properties": {
+                        "name": {
+                          "type": "string",
+                          "default": ""
+                        }
+                      },
+                      "x-kubernetes-map-type": "atomic"
+                    }
+                  }
+                },
+                "flocker": {
+                  "type": "object",
+                  "properties": {
+                    "datasetName": {
+                      "type": "string"
+                    },
+                    "datasetUUID": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "gcePersistentDisk": {
+                  "type": "object",
+                  "required": [
+                    "pdName"
+                  ],
+                  "properties": {
+                    "fsType": {
+                      "type": "string"
+                    },
+                    "partition": {
+                      "type": "integer",
+                      "format": "int32"
+                    },
+                    "pdName": {
+                      "type": "string"
+                    },
+                    "readOnly": {
+                      "type": "boolean"
+                    }
+                  }
+                },
+                "glusterfs": {
+                  "type": "object",
+                  "required": [
+                    "endpoints",
+                    "path"
+                  ],
+                  "properties": {
+                    "endpoints": {
+                      "type": "string"
+                    },
+                    "path": {
+                      "type": "string"
+                    },
+                    "readOnly": {
+                      "type": "boolean"
+                    }
+                  }
+                },
+                "hostPath": {
+                  "type": "object",
+                  "required": [
+                    "path"
+                  ],
+                  "properties": {
+                    "path": {
+                      "type": "string"
+                    },
+                    "type": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "iscsi": {
+                  "type": "object",
+                  "required": [
+                    "iqn",
+                    "lun",
+                    "targetPortal"
+                  ],
+                  "properties": {
+                    "chapAuthDiscovery": {
+                      "type": "boolean"
+                    },
+                    "chapAuthSession": {
+                      "type": "boolean"
+                    },
+                    "fsType": {
+                      "type": "string"
+                    },
+                    "initiatorName": {
+                      "type": "string"
+                    },
+                    "iqn": {
+                      "type": "string"
+                    },
+                    "iscsiInterface": {
+                      "type": "string",
+                      "default": "default"
+                    },
+                    "lun": {
+                      "type": "integer",
+                      "format": "int32"
+                    },
+                    "portals": {
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      },
+                      "x-kubernetes-list-type": "atomic"
+                    },
+                    "readOnly": {
+                      "type": "boolean"
+                    },
+                    "secretRef": {
+                      "type": "object",
+                      "properties": {
+                        "name": {
+                          "type": "string",
+                          "default": ""
+                        }
+                      },
+                      "x-kubernetes-map-type": "atomic"
+                    },
+                    "targetPortal": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "maxConnections": {
+                  "type": "integer",
+                  "format": "int64"
+                },
+                "mountPath": {
+                  "type": "string"
+                },
+                "nfs": {
+                  "type": "object",
+                  "required": [
+                    "path",
+                    "server"
+                  ],
+                  "properties": {
+                    "path": {
+                      "type": "string"
+                    },
+                    "readOnly": {
+                      "type": "boolean"
+                    },
+                    "server": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "persistentVolumeClaim": {
+                  "type": "object",
+                  "required": [
+                    "claimName"
+                  ],
+                  "properties": {
+                    "claimName": {
+                      "type": "string"
+                    },
+                    "readOnly": {
+                      "type": "boolean"
+                    }
+                  }
+                },
+                "photonPersistentDisk": {
+                  "type": "object",
+                  "required": [
+                    "pdID"
+                  ],
+                  "properties": {
+                    "fsType": {
+                      "type": "string"
+                    },
+                    "pdID": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "portworxVolume": {
+                  "type": "object",
+                  "required": [
+                    "volumeID"
+                  ],
+                  "properties": {
+                    "fsType": {
+                      "type": "string"
+                    },
+                    "readOnly": {
+                      "type": "boolean"
+                    },
+                    "volumeID": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "projected": {
+                  "type": "object",
+                  "properties": {
+                    "defaultMode": {
+                      "type": "integer",
+                      "format": "int32"
+                    },
+                    "sources": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "clusterTrustBundle": {
+                            "type": "object",
+                            "required": [
+                              "path"
+                            ],
+                            "properties": {
+                              "labelSelector": {
+                                "type": "object",
+                                "properties": {
+                                  "matchExpressions": {
+                                    "type": "array",
+                                    "items": {
+                                      "type": "object",
+                                      "required": [
+                                        "key",
+                                        "operator"
+                                      ],
+                                      "properties": {
+                                        "key": {
+                                          "type": "string"
+                                        },
+                                        "operator": {
+                                          "type": "string"
+                                        },
+                                        "values": {
+                                          "type": "array",
+                                          "items": {
+                                            "type": "string"
+                                          },
+                                          "x-kubernetes-list-type": "atomic"
+                                        }
+                                      }
+                                    },
+                                    "x-kubernetes-list-type": "atomic"
+                                  },
+                                  "matchLabels": {
+                                    "type": "object",
+                                    "additionalProperties": {
+                                      "type": "string"
+                                    }
+                                  }
+                                },
+                                "x-kubernetes-map-type": "atomic"
+                              },
+                              "name": {
+                                "type": "string"
+                              },
+                              "optional": {
+                                "type": "boolean"
+                              },
+                              "path": {
+                                "type": "string"
+                              },
+                              "signerName": {
+                                "type": "string"
+                              }
+                            }
+                          },
+                          "configMap": {
+                            "type": "object",
+                            "properties": {
+                              "items": {
+                                "type": "array",
+                                "items": {
+                                  "type": "object",
+                                  "required": [
+                                    "key",
+                                    "path"
+                                  ],
+                                  "properties": {
+                                    "key": {
+                                      "type": "string"
+                                    },
+                                    "mode": {
+                                      "type": "integer",
+                                      "format": "int32"
+                                    },
+                                    "path": {
+                                      "type": "string"
+                                    }
+                                  }
+                                },
+                                "x-kubernetes-list-type": "atomic"
+                              },
+                              "name": {
+                                "type": "string",
+                                "default": ""
+                              },
+                              "optional": {
+                                "type": "boolean"
+                              }
+                            },
+                            "x-kubernetes-map-type": "atomic"
+                          },
+                          "downwardAPI": {
+                            "type": "object",
+                            "properties": {
+                              "items": {
+                                "type": "array",
+                                "items": {
+                                  "type": "object",
+                                  "required": [
+                                    "path"
+                                  ],
+                                  "properties": {
+                                    "fieldRef": {
+                                      "type": "object",
+                                      "required": [
+                                        "fieldPath"
+                                      ],
+                                      "properties": {
+                                        "apiVersion": {
+                                          "type": "string"
+                                        },
+                                        "fieldPath": {
+                                          "type": "string"
+                                        }
+                                      },
+                                      "x-kubernetes-map-type": "atomic"
+                                    },
+                                    "mode": {
+                                      "type": "integer",
+                                      "format": "int32"
+                                    },
+                                    "path": {
+                                      "type": "string"
+                                    },
+                                    "resourceFieldRef": {
+                                      "type": "object",
+                                      "required": [
+                                        "resource"
+                                      ],
+                                      "properties": {
+                                        "containerName": {
+                                          "type": "string"
+                                        },
+                                        "divisor": {
+                                          "pattern": "^(\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))(([KMGTPE]i)|[numkMGTPE]|([eE](\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))))?$",
+                                          "anyOf": [
+                                            {
+                                              "type": "integer"
+                                            },
+                                            {
+                                              "type": "string"
+                                            }
+                                          ],
+                                          "x-kubernetes-int-or-string": true
+                                        },
+                                        "resource": {
+                                          "type": "string"
+                                        }
+                                      },
+                                      "x-kubernetes-map-type": "atomic"
+                                    }
+                                  }
+                                },
+                                "x-kubernetes-list-type": "atomic"
+                              }
+                            }
+                          },
+                          "podCertificate": {
+                            "type": "object",
+                            "required": [
+                              "keyType",
+                              "signerName"
+                            ],
+                            "properties": {
+                              "certificateChainPath": {
+                                "type": "string"
+                              },
+                              "credentialBundlePath": {
+                                "type": "string"
+                              },
+                              "keyPath": {
+                                "type": "string"
+                              },
+                              "keyType": {
+                                "type": "string"
+                              },
+                              "maxExpirationSeconds": {
+                                "type": "integer",
+                                "format": "int32"
+                              },
+                              "signerName": {
+                                "type": "string"
+                              }
+                            }
+                          },
+                          "secret": {
+                            "type": "object",
+                            "properties": {
+                              "items": {
+                                "type": "array",
+                                "items": {
+                                  "type": "object",
+                                  "required": [
+                                    "key",
+                                    "path"
+                                  ],
+                                  "properties": {
+                                    "key": {
+                                      "type": "string"
+                                    },
+                                    "mode": {
+                                      "type": "integer",
+                                      "format": "int32"
+                                    },
+                                    "path": {
+                                      "type": "string"
+                                    }
+                                  }
+                                },
+                                "x-kubernetes-list-type": "atomic"
+                              },
+                              "name": {
+                                "type": "string",
+                                "default": ""
+                              },
+                              "optional": {
+                                "type": "boolean"
+                              }
+                            },
+                            "x-kubernetes-map-type": "atomic"
+                          },
+                          "serviceAccountToken": {
+                            "type": "object",
+                            "required": [
+                              "path"
+                            ],
+                            "properties": {
+                              "audience": {
+                                "type": "string"
+                              },
+                              "expirationSeconds": {
+                                "type": "integer",
+                                "format": "int64"
+                              },
+                              "path": {
+                                "type": "string"
+                              }
+                            }
+                          }
+                        }
+                      },
+                      "x-kubernetes-list-type": "atomic"
+                    }
+                  }
+                },
+                "quobyte": {
+                  "type": "object",
+                  "required": [
+                    "registry",
+                    "volume"
+                  ],
+                  "properties": {
+                    "group": {
+                      "type": "string"
+                    },
+                    "readOnly": {
+                      "type": "boolean"
+                    },
+                    "registry": {
+                      "type": "string"
+                    },
+                    "tenant": {
+                      "type": "string"
+                    },
+                    "user": {
+                      "type": "string"
+                    },
+                    "volume": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "rbd": {
+                  "type": "object",
+                  "required": [
+                    "image",
+                    "monitors"
+                  ],
+                  "properties": {
+                    "fsType": {
+                      "type": "string"
+                    },
+                    "image": {
+                      "type": "string"
+                    },
+                    "keyring": {
+                      "type": "string",
+                      "default": "/etc/ceph/keyring"
+                    },
+                    "monitors": {
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      },
+                      "x-kubernetes-list-type": "atomic"
+                    },
+                    "pool": {
+                      "type": "string",
+                      "default": "rbd"
+                    },
+                    "readOnly": {
+                      "type": "boolean"
+                    },
+                    "secretRef": {
+                      "type": "object",
+                      "properties": {
+                        "name": {
+                          "type": "string",
+                          "default": ""
+                        }
+                      },
+                      "x-kubernetes-map-type": "atomic"
+                    },
+                    "user": {
+                      "type": "string",
+                      "default": "admin"
+                    }
+                  }
+                },
+                "scaleIO": {
+                  "type": "object",
+                  "required": [
+                    "gateway",
+                    "secretRef",
+                    "system"
+                  ],
+                  "properties": {
+                    "fsType": {
+                      "type": "string",
+                      "default": "xfs"
+                    },
+                    "gateway": {
+                      "type": "string"
+                    },
+                    "protectionDomain": {
+                      "type": "string"
+                    },
+                    "readOnly": {
+                      "type": "boolean"
+                    },
+                    "secretRef": {
+                      "type": "object",
+                      "properties": {
+                        "name": {
+                          "type": "string",
+                          "default": ""
+                        }
+                      },
+                      "x-kubernetes-map-type": "atomic"
+                    },
+                    "sslEnabled": {
+                      "type": "boolean"
+                    },
+                    "storageMode": {
+                      "type": "string",
+                      "default": "ThinProvisioned"
+                    },
+                    "storagePool": {
+                      "type": "string"
+                    },
+                    "system": {
+                      "type": "string"
+                    },
+                    "volumeName": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "secret": {
+                  "type": "object",
+                  "properties": {
+                    "defaultMode": {
+                      "type": "integer",
+                      "format": "int32"
+                    },
+                    "items": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "required": [
+                          "key",
+                          "path"
+                        ],
+                        "properties": {
+                          "key": {
+                            "type": "string"
+                          },
+                          "mode": {
+                            "type": "integer",
+                            "format": "int32"
+                          },
+                          "path": {
+                            "type": "string"
+                          }
+                        }
+                      },
+                      "x-kubernetes-list-type": "atomic"
+                    },
+                    "optional": {
+                      "type": "boolean"
+                    },
+                    "secretName": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "storageos": {
+                  "type": "object",
+                  "properties": {
+                    "fsType": {
+                      "type": "string"
+                    },
+                    "readOnly": {
+                      "type": "boolean"
+                    },
+                    "secretRef": {
+                      "type": "object",
+                      "properties": {
+                        "name": {
+                          "type": "string",
+                          "default": ""
+                        }
+                      },
+                      "x-kubernetes-map-type": "atomic"
+                    },
+                    "volumeName": {
+                      "type": "string"
+                    },
+                    "volumeNamespace": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "subPath": {
+                  "type": "string"
+                },
+                "vsphereVolume": {
+                  "type": "object",
+                  "required": [
+                    "volumePath"
+                  ],
+                  "properties": {
+                    "fsType": {
+                      "type": "string"
+                    },
+                    "storagePolicyID": {
+                      "type": "string"
+                    },
+                    "storagePolicyName": {
+                      "type": "string"
+                    },
+                    "volumePath": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            },
+            "provider": {
+              "type": "string"
+            },
+            "s3": {
+              "type": "object",
+              "properties": {
+                "bucket": {
+                  "type": "string"
+                },
+                "endpoint": {
+                  "type": "string"
+                },
+                "insecureTLS": {
+                  "type": "boolean"
+                },
+                "maxConnections": {
+                  "type": "integer",
+                  "format": "int64"
+                },
+                "prefix": {
+                  "type": "string"
+                },
+                "region": {
+                  "type": "string"
+                },
+                "secretName": {
+                  "type": "string"
+                }
+              }
+            },
+            "storageManagerClassName": {
+              "type": "string"
+            },
+            "storageManagerClassPath": {
+              "type": "string"
+            }
+          }
+        },
         "tls": {
           "type": "object",
           "properties": {
@@ -10599,6 +12466,30 @@
                                               "type": "string"
                                             },
                                             "fieldPath": {
+                                              "type": "string"
+                                            }
+                                          },
+                                          "x-kubernetes-map-type": "atomic"
+                                        },
+                                        "fileKeyRef": {
+                                          "type": "object",
+                                          "required": [
+                                            "key",
+                                            "path",
+                                            "volumeName"
+                                          ],
+                                          "properties": {
+                                            "key": {
+                                              "type": "string"
+                                            },
+                                            "optional": {
+                                              "type": "boolean",
+                                              "default": false
+                                            },
+                                            "path": {
+                                              "type": "string"
+                                            },
+                                            "volumeName": {
                                               "type": "string"
                                             }
                                           },
@@ -10901,6 +12792,9 @@
                                         }
                                       }
                                     }
+                                  },
+                                  "stopSignal": {
+                                    "type": "string"
                                   }
                                 }
                               },
@@ -11270,6 +13164,40 @@
                               },
                               "restartPolicy": {
                                 "type": "string"
+                              },
+                              "restartPolicyRules": {
+                                "type": "array",
+                                "items": {
+                                  "type": "object",
+                                  "required": [
+                                    "action"
+                                  ],
+                                  "properties": {
+                                    "action": {
+                                      "type": "string"
+                                    },
+                                    "exitCodes": {
+                                      "type": "object",
+                                      "required": [
+                                        "operator"
+                                      ],
+                                      "properties": {
+                                        "operator": {
+                                          "type": "string"
+                                        },
+                                        "values": {
+                                          "type": "array",
+                                          "items": {
+                                            "type": "integer",
+                                            "format": "int32"
+                                          },
+                                          "x-kubernetes-list-type": "set"
+                                        }
+                                      }
+                                    }
+                                  }
+                                },
+                                "x-kubernetes-list-type": "atomic"
                               },
                               "securityContext": {
                                 "type": "object",
@@ -11699,6 +13627,30 @@
                                           },
                                           "x-kubernetes-map-type": "atomic"
                                         },
+                                        "fileKeyRef": {
+                                          "type": "object",
+                                          "required": [
+                                            "key",
+                                            "path",
+                                            "volumeName"
+                                          ],
+                                          "properties": {
+                                            "key": {
+                                              "type": "string"
+                                            },
+                                            "optional": {
+                                              "type": "boolean",
+                                              "default": false
+                                            },
+                                            "path": {
+                                              "type": "string"
+                                            },
+                                            "volumeName": {
+                                              "type": "string"
+                                            }
+                                          },
+                                          "x-kubernetes-map-type": "atomic"
+                                        },
                                         "resourceFieldRef": {
                                           "type": "object",
                                           "required": [
@@ -11996,6 +13948,9 @@
                                         }
                                       }
                                     }
+                                  },
+                                  "stopSignal": {
+                                    "type": "string"
                                   }
                                 }
                               },
@@ -12365,6 +14320,40 @@
                               },
                               "restartPolicy": {
                                 "type": "string"
+                              },
+                              "restartPolicyRules": {
+                                "type": "array",
+                                "items": {
+                                  "type": "object",
+                                  "required": [
+                                    "action"
+                                  ],
+                                  "properties": {
+                                    "action": {
+                                      "type": "string"
+                                    },
+                                    "exitCodes": {
+                                      "type": "object",
+                                      "required": [
+                                        "operator"
+                                      ],
+                                      "properties": {
+                                        "operator": {
+                                          "type": "string"
+                                        },
+                                        "values": {
+                                          "type": "array",
+                                          "items": {
+                                            "type": "integer",
+                                            "format": "int32"
+                                          },
+                                          "x-kubernetes-list-type": "set"
+                                        }
+                                      }
+                                    }
+                                  }
+                                },
+                                "x-kubernetes-list-type": "atomic"
                               },
                               "securityContext": {
                                 "type": "object",
@@ -12803,6 +14792,30 @@
                                           },
                                           "x-kubernetes-map-type": "atomic"
                                         },
+                                        "fileKeyRef": {
+                                          "type": "object",
+                                          "required": [
+                                            "key",
+                                            "path",
+                                            "volumeName"
+                                          ],
+                                          "properties": {
+                                            "key": {
+                                              "type": "string"
+                                            },
+                                            "optional": {
+                                              "type": "boolean",
+                                              "default": false
+                                            },
+                                            "path": {
+                                              "type": "string"
+                                            },
+                                            "volumeName": {
+                                              "type": "string"
+                                            }
+                                          },
+                                          "x-kubernetes-map-type": "atomic"
+                                        },
                                         "resourceFieldRef": {
                                           "type": "object",
                                           "required": [
@@ -13100,6 +15113,9 @@
                                         }
                                       }
                                     }
+                                  },
+                                  "stopSignal": {
+                                    "type": "string"
                                   }
                                 }
                               },
@@ -13469,6 +15485,40 @@
                               },
                               "restartPolicy": {
                                 "type": "string"
+                              },
+                              "restartPolicyRules": {
+                                "type": "array",
+                                "items": {
+                                  "type": "object",
+                                  "required": [
+                                    "action"
+                                  ],
+                                  "properties": {
+                                    "action": {
+                                      "type": "string"
+                                    },
+                                    "exitCodes": {
+                                      "type": "object",
+                                      "required": [
+                                        "operator"
+                                      ],
+                                      "properties": {
+                                        "operator": {
+                                          "type": "string"
+                                        },
+                                        "values": {
+                                          "type": "array",
+                                          "items": {
+                                            "type": "integer",
+                                            "format": "int32"
+                                          },
+                                          "x-kubernetes-list-type": "set"
+                                        }
+                                      }
+                                    }
+                                  }
+                                },
+                                "x-kubernetes-list-type": "atomic"
                               },
                               "securityContext": {
                                 "type": "object",
@@ -14951,6 +17001,34 @@
                                                 }
                                               },
                                               "x-kubernetes-list-type": "atomic"
+                                            }
+                                          }
+                                        },
+                                        "podCertificate": {
+                                          "type": "object",
+                                          "required": [
+                                            "keyType",
+                                            "signerName"
+                                          ],
+                                          "properties": {
+                                            "certificateChainPath": {
+                                              "type": "string"
+                                            },
+                                            "credentialBundlePath": {
+                                              "type": "string"
+                                            },
+                                            "keyPath": {
+                                              "type": "string"
+                                            },
+                                            "keyType": {
+                                              "type": "string"
+                                            },
+                                            "maxExpirationSeconds": {
+                                              "type": "integer",
+                                              "format": "int32"
+                                            },
+                                            "signerName": {
+                                              "type": "string"
                                             }
                                           }
                                         },
@@ -15498,6 +17576,30 @@
                                           },
                                           "x-kubernetes-map-type": "atomic"
                                         },
+                                        "fileKeyRef": {
+                                          "type": "object",
+                                          "required": [
+                                            "key",
+                                            "path",
+                                            "volumeName"
+                                          ],
+                                          "properties": {
+                                            "key": {
+                                              "type": "string"
+                                            },
+                                            "optional": {
+                                              "type": "boolean",
+                                              "default": false
+                                            },
+                                            "path": {
+                                              "type": "string"
+                                            },
+                                            "volumeName": {
+                                              "type": "string"
+                                            }
+                                          },
+                                          "x-kubernetes-map-type": "atomic"
+                                        },
                                         "resourceFieldRef": {
                                           "type": "object",
                                           "required": [
@@ -15795,6 +17897,9 @@
                                         }
                                       }
                                     }
+                                  },
+                                  "stopSignal": {
+                                    "type": "string"
                                   }
                                 }
                               },
@@ -16164,6 +18269,40 @@
                               },
                               "restartPolicy": {
                                 "type": "string"
+                              },
+                              "restartPolicyRules": {
+                                "type": "array",
+                                "items": {
+                                  "type": "object",
+                                  "required": [
+                                    "action"
+                                  ],
+                                  "properties": {
+                                    "action": {
+                                      "type": "string"
+                                    },
+                                    "exitCodes": {
+                                      "type": "object",
+                                      "required": [
+                                        "operator"
+                                      ],
+                                      "properties": {
+                                        "operator": {
+                                          "type": "string"
+                                        },
+                                        "values": {
+                                          "type": "array",
+                                          "items": {
+                                            "type": "integer",
+                                            "format": "int32"
+                                          },
+                                          "x-kubernetes-list-type": "set"
+                                        }
+                                      }
+                                    }
+                                  }
+                                },
+                                "x-kubernetes-list-type": "atomic"
                               },
                               "securityContext": {
                                 "type": "object",
@@ -16593,6 +18732,30 @@
                                           },
                                           "x-kubernetes-map-type": "atomic"
                                         },
+                                        "fileKeyRef": {
+                                          "type": "object",
+                                          "required": [
+                                            "key",
+                                            "path",
+                                            "volumeName"
+                                          ],
+                                          "properties": {
+                                            "key": {
+                                              "type": "string"
+                                            },
+                                            "optional": {
+                                              "type": "boolean",
+                                              "default": false
+                                            },
+                                            "path": {
+                                              "type": "string"
+                                            },
+                                            "volumeName": {
+                                              "type": "string"
+                                            }
+                                          },
+                                          "x-kubernetes-map-type": "atomic"
+                                        },
                                         "resourceFieldRef": {
                                           "type": "object",
                                           "required": [
@@ -16890,6 +19053,9 @@
                                         }
                                       }
                                     }
+                                  },
+                                  "stopSignal": {
+                                    "type": "string"
                                   }
                                 }
                               },
@@ -17259,6 +19425,40 @@
                               },
                               "restartPolicy": {
                                 "type": "string"
+                              },
+                              "restartPolicyRules": {
+                                "type": "array",
+                                "items": {
+                                  "type": "object",
+                                  "required": [
+                                    "action"
+                                  ],
+                                  "properties": {
+                                    "action": {
+                                      "type": "string"
+                                    },
+                                    "exitCodes": {
+                                      "type": "object",
+                                      "required": [
+                                        "operator"
+                                      ],
+                                      "properties": {
+                                        "operator": {
+                                          "type": "string"
+                                        },
+                                        "values": {
+                                          "type": "array",
+                                          "items": {
+                                            "type": "integer",
+                                            "format": "int32"
+                                          },
+                                          "x-kubernetes-list-type": "set"
+                                        }
+                                      }
+                                    }
+                                  }
+                                },
+                                "x-kubernetes-list-type": "atomic"
                               },
                               "securityContext": {
                                 "type": "object",
@@ -17697,6 +19897,30 @@
                                           },
                                           "x-kubernetes-map-type": "atomic"
                                         },
+                                        "fileKeyRef": {
+                                          "type": "object",
+                                          "required": [
+                                            "key",
+                                            "path",
+                                            "volumeName"
+                                          ],
+                                          "properties": {
+                                            "key": {
+                                              "type": "string"
+                                            },
+                                            "optional": {
+                                              "type": "boolean",
+                                              "default": false
+                                            },
+                                            "path": {
+                                              "type": "string"
+                                            },
+                                            "volumeName": {
+                                              "type": "string"
+                                            }
+                                          },
+                                          "x-kubernetes-map-type": "atomic"
+                                        },
                                         "resourceFieldRef": {
                                           "type": "object",
                                           "required": [
@@ -17994,6 +20218,9 @@
                                         }
                                       }
                                     }
+                                  },
+                                  "stopSignal": {
+                                    "type": "string"
                                   }
                                 }
                               },
@@ -18363,6 +20590,40 @@
                               },
                               "restartPolicy": {
                                 "type": "string"
+                              },
+                              "restartPolicyRules": {
+                                "type": "array",
+                                "items": {
+                                  "type": "object",
+                                  "required": [
+                                    "action"
+                                  ],
+                                  "properties": {
+                                    "action": {
+                                      "type": "string"
+                                    },
+                                    "exitCodes": {
+                                      "type": "object",
+                                      "required": [
+                                        "operator"
+                                      ],
+                                      "properties": {
+                                        "operator": {
+                                          "type": "string"
+                                        },
+                                        "values": {
+                                          "type": "array",
+                                          "items": {
+                                            "type": "integer",
+                                            "format": "int32"
+                                          },
+                                          "x-kubernetes-list-type": "set"
+                                        }
+                                      }
+                                    }
+                                  }
+                                },
+                                "x-kubernetes-list-type": "atomic"
                               },
                               "securityContext": {
                                 "type": "object",
@@ -19845,6 +22106,34 @@
                                                 }
                                               },
                                               "x-kubernetes-list-type": "atomic"
+                                            }
+                                          }
+                                        },
+                                        "podCertificate": {
+                                          "type": "object",
+                                          "required": [
+                                            "keyType",
+                                            "signerName"
+                                          ],
+                                          "properties": {
+                                            "certificateChainPath": {
+                                              "type": "string"
+                                            },
+                                            "credentialBundlePath": {
+                                              "type": "string"
+                                            },
+                                            "keyPath": {
+                                              "type": "string"
+                                            },
+                                            "keyType": {
+                                              "type": "string"
+                                            },
+                                            "maxExpirationSeconds": {
+                                              "type": "integer",
+                                              "format": "int32"
+                                            },
+                                            "signerName": {
+                                              "type": "string"
                                             }
                                           }
                                         },

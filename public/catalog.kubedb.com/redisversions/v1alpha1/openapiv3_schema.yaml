@@ -47,6 +47,8 @@ properties:
         - Official
         - Valkey
         type: string
+      endOfLife:
+        type: boolean
       exporter:
         properties:
           image:
@@ -157,6 +159,7 @@ properties:
       version:
         type: string
     required:
+    - coordinator
     - db
     - exporter
     - podSecurityPolicies

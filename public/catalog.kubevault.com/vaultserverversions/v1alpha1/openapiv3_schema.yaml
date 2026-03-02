@@ -41,6 +41,12 @@ properties:
       deprecated:
         description: Deprecated versions usable but regarded as obsolete and best avoided, typically due to having been superseded.
         type: boolean
+      distribution:
+        description: Distribution
+        enum:
+        - Vault
+        - OpenBao
+        type: string
       exporter:
         description: Exporter Image
         properties:

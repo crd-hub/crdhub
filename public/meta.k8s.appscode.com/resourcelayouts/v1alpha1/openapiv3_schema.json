@@ -332,6 +332,21 @@
                       }
                     }
                   }
+                },
+                "sort": {
+                  "type": "object",
+                  "properties": {
+                    "fieldName": {
+                      "type": "string"
+                    },
+                    "order": {
+                      "type": "string",
+                      "enum": [
+                        "Ascending",
+                        "Descending"
+                      ]
+                    }
+                  }
                 }
               }
             },
@@ -348,6 +363,9 @@
               "name"
             ],
             "properties": {
+              "icon": {
+                "type": "string"
+              },
               "name": {
                 "type": "string"
               },
@@ -648,6 +666,21 @@
                                       "description": "type is an OpenAPI type definition for this column.\nSee https://github.com/OAI/OpenAPI-Specification/blob/master/versions/2.0.md#data-types for more.",
                                       "type": "string"
                                     }
+                                  }
+                                }
+                              },
+                              "sort": {
+                                "type": "object",
+                                "properties": {
+                                  "fieldName": {
+                                    "type": "string"
+                                  },
+                                  "order": {
+                                    "type": "string",
+                                    "enum": [
+                                      "Ascending",
+                                      "Descending"
+                                    ]
                                   }
                                 }
                               }
@@ -966,6 +999,21 @@
                                   }
                                 }
                               }
+                            },
+                            "sort": {
+                              "type": "object",
+                              "properties": {
+                                "fieldName": {
+                                  "type": "string"
+                                },
+                                "order": {
+                                  "type": "string",
+                                  "enum": [
+                                    "Ascending",
+                                    "Descending"
+                                  ]
+                                }
+                              }
                             }
                           }
                         },
@@ -1255,6 +1303,21 @@
                                     "description": "type is an OpenAPI type definition for this column.\nSee https://github.com/OAI/OpenAPI-Specification/blob/master/versions/2.0.md#data-types for more.",
                                     "type": "string"
                                   }
+                                }
+                              }
+                            },
+                            "sort": {
+                              "type": "object",
+                              "properties": {
+                                "fieldName": {
+                                  "type": "string"
+                                },
+                                "order": {
+                                  "type": "string",
+                                  "enum": [
+                                    "Ascending",
+                                    "Descending"
+                                  ]
                                 }
                               }
                             }
@@ -1593,6 +1656,21 @@
                       }
                     }
                   }
+                },
+                "sort": {
+                  "type": "object",
+                  "properties": {
+                    "fieldName": {
+                      "type": "string"
+                    },
+                    "order": {
+                      "type": "string",
+                      "enum": [
+                        "Ascending",
+                        "Descending"
+                      ]
+                    }
+                  }
                 }
               }
             },
@@ -1616,6 +1694,9 @@
                 ],
                 "properties": {
                   "description": {
+                    "type": "string"
+                  },
+                  "icon": {
                     "type": "string"
                   },
                   "items": {
@@ -1680,6 +1761,9 @@
                         "flow": {
                           "type": "string"
                         },
+                        "icon": {
+                          "type": "string"
+                        },
                         "icons": {
                           "type": "array",
                           "items": {
@@ -1708,6 +1792,9 @@
                           "type": "string"
                         },
                         "operationId": {
+                          "type": "string"
+                        },
+                        "partOf": {
                           "type": "string"
                         }
                       }

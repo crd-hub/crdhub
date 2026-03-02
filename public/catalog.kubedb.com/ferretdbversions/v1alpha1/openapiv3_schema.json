@@ -59,6 +59,9 @@
         "deprecated": {
           "type": "boolean"
         },
+        "endOfLife": {
+          "type": "boolean"
+        },
         "postgres": {
           "type": "object",
           "required": [

@@ -2,8 +2,7 @@
   "kind": "CustomResourceDefinition",
   "apiVersion": "apiextensions.k8s.io/v1",
   "metadata": {
-    "name": "orders.releases.x-helm.dev",
-    "creationTimestamp": null
+    "name": "orders.releases.x-helm.dev"
   },
   "spec": {
     "group": "releases.x-helm.dev",
@@ -69,7 +68,7 @@
                                   "type": "string"
                                 },
                                 "sourceRef": {
-                                  "description": "TypedObjectReference represents an typed namespaced object.",
+                                  "description": "TypedObjectReference represents a typed namespaced object.",
                                   "type": "object",
                                   "required": [
                                     "name"
@@ -161,7 +160,7 @@
                               }
                             },
                             "sourceRef": {
-                              "description": "TypedObjectReference represents an typed namespaced object.",
+                              "description": "TypedObjectReference represents a typed namespaced object.",
                               "type": "object",
                               "required": [
                                 "name"
@@ -240,10 +239,12 @@
                                               "type": "array",
                                               "items": {
                                                 "type": "string"
-                                              }
+                                              },
+                                              "x-kubernetes-list-type": "atomic"
                                             }
                                           }
-                                        }
+                                        },
+                                        "x-kubernetes-list-type": "atomic"
                                       },
                                       "matchLabels": {
                                         "description": "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is \"key\", the operator is \"In\", and the values array contains only \"value\". The requirements are ANDed.",

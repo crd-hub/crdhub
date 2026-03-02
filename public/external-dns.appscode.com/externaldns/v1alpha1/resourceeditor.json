@@ -3,7 +3,6 @@
   "apiVersion": "ui.k8s.appscode.com/v1alpha1",
   "metadata": {
     "name": "external-dns.appscode.com-v1alpha1-externaldns",
-    "creationTimestamp": null,
     "labels": {
       "k8s.io/group": "external-dns.appscode.com",
       "k8s.io/kind": "ExternalDNS",
@@ -22,7 +21,7 @@
     "ui": {
       "editor": {
         "name": "externaldnsappscodecom-externaldns-editor",
-        "version": "v0.24.0",
+        "version": "v0.30.0",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",

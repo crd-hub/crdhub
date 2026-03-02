@@ -144,6 +144,30 @@
                         },
                         "x-kubernetes-map-type": "atomic"
                       },
+                      "fileKeyRef": {
+                        "type": "object",
+                        "required": [
+                          "key",
+                          "path",
+                          "volumeName"
+                        ],
+                        "properties": {
+                          "key": {
+                            "type": "string"
+                          },
+                          "optional": {
+                            "type": "boolean",
+                            "default": false
+                          },
+                          "path": {
+                            "type": "string"
+                          },
+                          "volumeName": {
+                            "type": "string"
+                          }
+                        },
+                        "x-kubernetes-map-type": "atomic"
+                      },
                       "resourceFieldRef": {
                         "type": "object",
                         "required": [
@@ -443,6 +467,9 @@
                       }
                     }
                   }
+                },
+                "stopSignal": {
+                  "type": "string"
                 }
               }
             },

@@ -36,6 +36,15 @@ properties:
             type: string
         type: object
         x-kubernetes-map-type: atomic
+      configuration:
+        properties:
+          inline:
+            additionalProperties:
+              type: string
+            type: object
+          secretName:
+            type: string
+        type: object
       connectClusterRef:
         properties:
           name:
@@ -53,7 +62,7 @@ properties:
         - DoNotTerminate
         type: string
     required:
-    - configSecret
+    - configuration
     - connectClusterRef
     type: object
 type: object

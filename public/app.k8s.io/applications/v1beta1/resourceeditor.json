@@ -3,7 +3,6 @@
   "apiVersion": "ui.k8s.appscode.com/v1alpha1",
   "metadata": {
     "name": "app.k8s.io-v1beta1-applications",
-    "creationTimestamp": null,
     "labels": {
       "k8s.io/group": "app.k8s.io",
       "k8s.io/kind": "Application",
@@ -22,7 +21,7 @@
     "ui": {
       "editor": {
         "name": "appk8sio-application-editor",
-        "version": "v0.24.0",
+        "version": "v0.30.0",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",

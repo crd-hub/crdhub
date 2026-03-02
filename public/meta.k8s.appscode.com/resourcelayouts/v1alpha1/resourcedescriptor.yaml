@@ -1,7 +1,6 @@
 apiVersion: meta.k8s.appscode.com/v1alpha1
 kind: ResourceDescriptor
 metadata:
-  creationTimestamp: null
   labels:
     k8s.io/group: meta.k8s.appscode.com
     k8s.io/kind: ResourceLayout
@@ -274,6 +273,16 @@ spec:
                         - type
                         type: object
                       type: array
+                    sort:
+                      properties:
+                        fieldName:
+                          type: string
+                        order:
+                          enum:
+                          - Ascending
+                          - Descending
+                          type: string
+                      type: object
                   type: object
                 width:
                   type: integer
@@ -285,6 +294,8 @@ spec:
             pages:
               items:
                 properties:
+                  icon:
+                    type: string
                   name:
                     type: string
                   requiredFeatureSets:
@@ -518,6 +529,16 @@ spec:
                                       - type
                                       type: object
                                     type: array
+                                  sort:
+                                    properties:
+                                      fieldName:
+                                        type: string
+                                      order:
+                                        enum:
+                                        - Ascending
+                                        - Descending
+                                        type: string
+                                    type: object
                                 type: object
                               width:
                                 type: integer
@@ -767,6 +788,16 @@ spec:
                                     - type
                                     type: object
                                   type: array
+                                sort:
+                                  properties:
+                                    fieldName:
+                                      type: string
+                                    order:
+                                      enum:
+                                      - Ascending
+                                      - Descending
+                                      type: string
+                                  type: object
                               type: object
                             width:
                               type: integer
@@ -996,6 +1027,16 @@ spec:
                                     - type
                                     type: object
                                   type: array
+                                sort:
+                                  properties:
+                                    fieldName:
+                                      type: string
+                                    order:
+                                      enum:
+                                      - Ascending
+                                      - Descending
+                                      type: string
+                                  type: object
                               type: object
                             width:
                               type: integer
@@ -1260,6 +1301,16 @@ spec:
                         - type
                         type: object
                       type: array
+                    sort:
+                      properties:
+                        fieldName:
+                          type: string
+                        order:
+                          enum:
+                          - Ascending
+                          - Descending
+                          type: string
+                      type: object
                   type: object
                 width:
                   type: integer
@@ -1274,6 +1325,8 @@ spec:
                   items:
                     properties:
                       description:
+                        type: string
+                      icon:
                         type: string
                       items:
                         items:
@@ -1318,6 +1371,8 @@ spec:
                               type: boolean
                             flow:
                               type: string
+                            icon:
+                              type: string
                             icons:
                               items:
                                 description: ImageSpec contains information about an image used as an icon.
@@ -1340,6 +1395,8 @@ spec:
                             name:
                               type: string
                             operationId:
+                              type: string
+                            partOf:
                               type: string
                           required:
                           - enforceQuota

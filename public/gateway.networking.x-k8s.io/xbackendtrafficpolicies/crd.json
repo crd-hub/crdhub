@@ -3,13 +3,12 @@
   "apiVersion": "apiextensions.k8s.io/v1",
   "metadata": {
     "name": "xbackendtrafficpolicies.gateway.networking.x-k8s.io",
-    "creationTimestamp": null,
     "labels": {
       "gateway.networking.k8s.io/policy": "Direct"
     },
     "annotations": {
       "api-approved.kubernetes.io": "https://github.com/kubernetes-sigs/gateway-api/pull/3328",
-      "gateway.networking.k8s.io/bundle-version": "v1.3.0",
+      "gateway.networking.k8s.io/bundle-version": "v1.4.1",
       "gateway.networking.k8s.io/channel": "experimental"
     }
   },
@@ -232,6 +231,7 @@
                       "type": "object",
                       "required": [
                         "ancestorRef",
+                        "conditions",
                         "controllerName"
                       ],
                       "properties": {
@@ -355,7 +355,8 @@
                           "pattern": "^[a-z0-9]([-a-z0-9]*[a-z0-9])?(\\.[a-z0-9]([-a-z0-9]*[a-z0-9])?)*\\/[A-Za-z0-9\\/\\-._~%!$\u0026'()*+,;=:]+$"
                         }
                       }
-                    }
+                    },
+                    "x-kubernetes-list-type": "atomic"
                   }
                 }
               }

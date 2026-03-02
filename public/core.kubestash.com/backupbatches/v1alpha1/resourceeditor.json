@@ -3,7 +3,6 @@
   "apiVersion": "ui.k8s.appscode.com/v1alpha1",
   "metadata": {
     "name": "core.kubestash.com-v1alpha1-backupbatches",
-    "creationTimestamp": null,
     "labels": {
       "k8s.io/group": "core.kubestash.com",
       "k8s.io/kind": "BackupBatch",
@@ -22,7 +21,7 @@
     "ui": {
       "editor": {
         "name": "corekubestashcom-backupbatch-editor",
-        "version": "v0.24.0",
+        "version": "v0.30.0",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",

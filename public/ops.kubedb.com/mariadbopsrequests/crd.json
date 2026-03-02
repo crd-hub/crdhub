@@ -3,7 +3,6 @@
   "apiVersion": "apiextensions.k8s.io/v1",
   "metadata": {
     "name": "mariadbopsrequests.ops.kubedb.com",
-    "creationTimestamp": null,
     "labels": {
       "app.kubernetes.io/name": "kubedb"
     }
@@ -63,10 +62,21 @@
                     "properties": {
                       "secretRef": {
                         "type": "object",
+                        "required": [
+                          "kind",
+                          "name"
+                        ],
                         "properties": {
-                          "name": {
+                          "apiGroup": {
                             "type": "string",
                             "default": ""
+                          },
+                          "kind": {
+                            "type": "string",
+                            "default": "Secret"
+                          },
+                          "name": {
+                            "type": "string"
                           }
                         },
                         "x-kubernetes-map-type": "atomic"
@@ -94,6 +104,15 @@
                       },
                       "removeCustomConfig": {
                         "type": "boolean"
+                      },
+                      "restart": {
+                        "type": "string",
+                        "default": "auto",
+                        "enum": [
+                          "auto",
+                          "true",
+                          "false"
+                        ]
                       }
                     }
                   },
@@ -122,6 +141,11 @@
                         "format": "int32"
                       }
                     }
+                  },
+                  "maxRetries": {
+                    "type": "integer",
+                    "format": "int32",
+                    "default": 1
                   },
                   "restart": {
                     "type": "object"

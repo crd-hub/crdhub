@@ -3,7 +3,6 @@
   "apiVersion": "ui.k8s.appscode.com/v1alpha1",
   "metadata": {
     "name": "products.x-helm.dev-v1alpha1-plans",
-    "creationTimestamp": null,
     "labels": {
       "k8s.io/group": "products.x-helm.dev",
       "k8s.io/kind": "Plan",
@@ -22,7 +21,7 @@
     "ui": {
       "editor": {
         "name": "productsxhelmdev-plan-editor",
-        "version": "v0.24.0",
+        "version": "v0.30.0",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",

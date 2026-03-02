@@ -2,8 +2,7 @@
   "kind": "CustomResourceDefinition",
   "apiVersion": "apiextensions.k8s.io/v1",
   "metadata": {
-    "name": "genericresources.core.k8s.appscode.com",
-    "creationTimestamp": null
+    "name": "genericresources.core.k8s.appscode.com"
   },
   "spec": {
     "group": "core.k8s.appscode.com",
@@ -74,7 +73,7 @@
                     "type": "object",
                     "properties": {
                       "claims": {
-                        "description": "Claims lists the names of resources, defined in spec.resourceClaims,\nthat are used by this container.\n\nThis is an alpha field and requires enabling the\nDynamicResourceAllocation feature gate.\n\nThis field is immutable. It can only be set for containers.",
+                        "description": "Claims lists the names of resources, defined in spec.resourceClaims,\nthat are used by this container.\n\nThis field depends on the\nDynamicResourceAllocation feature gate.\n\nThis field is immutable. It can only be set for containers.",
                         "type": "array",
                         "items": {
                           "description": "ResourceClaim references one entry in PodSpec.ResourceClaims.",
@@ -257,7 +256,7 @@
                                 "type": "object",
                                 "properties": {
                                   "claims": {
-                                    "description": "Claims lists the names of resources, defined in spec.resourceClaims,\nthat are used by this container.\n\nThis is an alpha field and requires enabling the\nDynamicResourceAllocation feature gate.\n\nThis field is immutable. It can only be set for containers.",
+                                    "description": "Claims lists the names of resources, defined in spec.resourceClaims,\nthat are used by this container.\n\nThis field depends on the\nDynamicResourceAllocation feature gate.\n\nThis field is immutable. It can only be set for containers.",
                                     "type": "array",
                                     "items": {
                                       "description": "ResourceClaim references one entry in PodSpec.ResourceClaims.",
@@ -316,7 +315,7 @@
                                 }
                               },
                               "restartPolicy": {
-                                "description": "ContainerRestartPolicy is the restart policy for a single container.\nThis may only be set for init containers and only allowed value is \"Always\".",
+                                "description": "ContainerRestartPolicy is the restart policy for a single container.\nThe only allowed values are \"Always\", \"Never\", and \"OnFailure\".",
                                 "type": "string"
                               }
                             }
@@ -342,7 +341,7 @@
                                 "type": "object",
                                 "properties": {
                                   "claims": {
-                                    "description": "Claims lists the names of resources, defined in spec.resourceClaims,\nthat are used by this container.\n\nThis is an alpha field and requires enabling the\nDynamicResourceAllocation feature gate.\n\nThis field is immutable. It can only be set for containers.",
+                                    "description": "Claims lists the names of resources, defined in spec.resourceClaims,\nthat are used by this container.\n\nThis field depends on the\nDynamicResourceAllocation feature gate.\n\nThis field is immutable. It can only be set for containers.",
                                     "type": "array",
                                     "items": {
                                       "description": "ResourceClaim references one entry in PodSpec.ResourceClaims.",
@@ -401,7 +400,7 @@
                                 }
                               },
                               "restartPolicy": {
-                                "description": "ContainerRestartPolicy is the restart policy for a single container.\nThis may only be set for init containers and only allowed value is \"Always\".",
+                                "description": "ContainerRestartPolicy is the restart policy for a single container.\nThe only allowed values are \"Always\", \"Never\", and \"OnFailure\".",
                                 "type": "string"
                               }
                             }
@@ -544,7 +543,7 @@
                     "type": "object",
                     "properties": {
                       "claims": {
-                        "description": "Claims lists the names of resources, defined in spec.resourceClaims,\nthat are used by this container.\n\nThis is an alpha field and requires enabling the\nDynamicResourceAllocation feature gate.\n\nThis field is immutable. It can only be set for containers.",
+                        "description": "Claims lists the names of resources, defined in spec.resourceClaims,\nthat are used by this container.\n\nThis field depends on the\nDynamicResourceAllocation feature gate.\n\nThis field is immutable. It can only be set for containers.",
                         "type": "array",
                         "items": {
                           "description": "ResourceClaim references one entry in PodSpec.ResourceClaims.",

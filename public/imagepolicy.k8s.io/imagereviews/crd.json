@@ -2,8 +2,7 @@
   "kind": "CustomResourceDefinition",
   "apiVersion": "apiextensions.k8s.io/v1",
   "metadata": {
-    "name": "imagereviews.imagepolicy.k8s.io",
-    "creationTimestamp": null
+    "name": "imagereviews.imagepolicy.k8s.io"
   },
   "spec": {
     "group": "imagepolicy.k8s.io",

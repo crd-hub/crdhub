@@ -72,7 +72,7 @@
             "type": "object",
             "properties": {
               "fieldSelector": {
-                "description": "fieldSelector describes the limitation on access based on field.  It can only limit access, not broaden it.\n\nThis field  is alpha-level. To use this field, you must enable the\n`AuthorizeWithSelectors` feature gate (disabled by default).",
+                "description": "fieldSelector describes the limitation on access based on field.  It can only limit access, not broaden it.",
                 "type": "object",
                 "properties": {
                   "rawSelector": {
@@ -117,7 +117,7 @@
                 "type": "string"
               },
               "labelSelector": {
-                "description": "labelSelector describes the limitation on access based on labels.  It can only limit access, not broaden it.\n\nThis field  is alpha-level. To use this field, you must enable the\n`AuthorizeWithSelectors` feature gate (disabled by default).",
+                "description": "labelSelector describes the limitation on access based on labels.  It can only limit access, not broaden it.",
                 "type": "object",
                 "properties": {
                   "rawSelector": {

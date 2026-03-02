@@ -162,6 +162,9 @@
             "MongoDB"
           ]
         },
+        "endOfLife": {
+          "type": "boolean"
+        },
         "exporter": {
           "type": "object",
           "required": [

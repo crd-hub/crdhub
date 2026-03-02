@@ -40,6 +40,93 @@
     "spec": {
       "type": "object",
       "properties": {
+        "aws": {
+          "type": "object",
+          "properties": {
+            "region": {
+              "type": "string"
+            },
+            "secretRef": {
+              "type": "object",
+              "required": [
+                "name"
+              ],
+              "properties": {
+                "name": {
+                  "type": "string"
+                },
+                "namespace": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        },
+        "azure": {
+          "type": "object",
+          "properties": {
+            "accessMode": {
+              "type": "string",
+              "enum": [
+                "WorkloadIdentity",
+                "ServicePrincipal"
+              ]
+            },
+            "keyVaultName": {
+              "type": "string"
+            },
+            "secretRef": {
+              "type": "object",
+              "required": [
+                "name"
+              ],
+              "properties": {
+                "name": {
+                  "type": "string"
+                },
+                "namespace": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        },
+        "gcp": {
+          "type": "object",
+          "properties": {
+            "region": {
+              "type": "string"
+            },
+            "secretRef": {
+              "type": "object",
+              "required": [
+                "name"
+              ],
+              "properties": {
+                "name": {
+                  "type": "string"
+                },
+                "namespace": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        },
+        "secret": {
+          "type": "object",
+          "required": [
+            "name"
+          ],
+          "properties": {
+            "name": {
+              "type": "string"
+            },
+            "namespace": {
+              "type": "string"
+            }
+          }
+        },
         "vault": {
           "type": "object",
           "required": [

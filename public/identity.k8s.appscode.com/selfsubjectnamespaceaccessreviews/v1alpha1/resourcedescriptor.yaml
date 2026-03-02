@@ -1,7 +1,6 @@
 apiVersion: meta.k8s.appscode.com/v1alpha1
 kind: ResourceDescriptor
 metadata:
-  creationTimestamp: null
   labels:
     k8s.io/group: identity.k8s.appscode.com
     k8s.io/kind: SelfSubjectNamespaceAccessReview
@@ -71,11 +70,7 @@ spec:
                 description: ResourceAttributes includes the authorization attributes available for resource requests to the Authorizer interface
                 properties:
                   fieldSelector:
-                    description: |-
-                      fieldSelector describes the limitation on access based on field.  It can only limit access, not broaden it.
-
-                      This field  is alpha-level. To use this field, you must enable the
-                      `AuthorizeWithSelectors` feature gate (disabled by default).
+                    description: fieldSelector describes the limitation on access based on field.  It can only limit access, not broaden it.
                     properties:
                       rawSelector:
                         description: |-
@@ -124,11 +119,7 @@ spec:
                     description: Group is the API Group of the Resource.  "*" means all.
                     type: string
                   labelSelector:
-                    description: |-
-                      labelSelector describes the limitation on access based on labels.  It can only limit access, not broaden it.
-
-                      This field  is alpha-level. To use this field, you must enable the
-                      `AuthorizeWithSelectors` feature gate (disabled by default).
+                    description: labelSelector describes the limitation on access based on labels.  It can only limit access, not broaden it.
                     properties:
                       rawSelector:
                         description: |-

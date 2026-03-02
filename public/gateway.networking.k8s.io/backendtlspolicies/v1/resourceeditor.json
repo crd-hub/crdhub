@@ -1,0 +1,22 @@
+{
+  "kind": "ResourceEditor",
+  "apiVersion": "ui.k8s.appscode.com/v1alpha1",
+  "metadata": {
+    "name": "gateway.networking.k8s.io-v1-backendtlspolicies",
+    "labels": {
+      "k8s.io/group": "gateway.networking.k8s.io",
+      "k8s.io/kind": "BackendTLSPolicy",
+      "k8s.io/resource": "backendtlspolicies",
+      "k8s.io/version": "v1"
+    }
+  },
+  "spec": {
+    "resource": {
+      "group": "gateway.networking.k8s.io",
+      "version": "v1",
+      "name": "backendtlspolicies",
+      "kind": "BackendTLSPolicy",
+      "scope": "Namespaced"
+    }
+  }
+}

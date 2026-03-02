@@ -3,7 +3,6 @@
   "apiVersion": "ui.k8s.appscode.com/v1alpha1",
   "metadata": {
     "name": "source.toolkit.fluxcd.io-v1beta1-helmrepositories",
-    "creationTimestamp": null,
     "labels": {
       "k8s.io/group": "source.toolkit.fluxcd.io",
       "k8s.io/kind": "HelmRepository",

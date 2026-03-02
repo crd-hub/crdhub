@@ -1,0 +1,22 @@
+{
+  "kind": "ResourceEditor",
+  "apiVersion": "ui.k8s.appscode.com/v1alpha1",
+  "metadata": {
+    "name": "operator.k8s.appscode.com-v1alpha1-shardconfigurations",
+    "labels": {
+      "k8s.io/group": "operator.k8s.appscode.com",
+      "k8s.io/kind": "ShardConfiguration",
+      "k8s.io/resource": "shardconfigurations",
+      "k8s.io/version": "v1alpha1"
+    }
+  },
+  "spec": {
+    "resource": {
+      "group": "operator.k8s.appscode.com",
+      "version": "v1alpha1",
+      "name": "shardconfigurations",
+      "kind": "ShardConfiguration",
+      "scope": "Cluster"
+    }
+  }
+}

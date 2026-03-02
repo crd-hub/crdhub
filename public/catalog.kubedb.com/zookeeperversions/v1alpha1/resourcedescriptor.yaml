@@ -1,7 +1,6 @@
 apiVersion: meta.k8s.appscode.com/v1alpha1
 kind: ResourceDescriptor
 metadata:
-  creationTimestamp: null
   labels:
     k8s.io/group: catalog.kubedb.com
     k8s.io/kind: ZooKeeperVersion
@@ -40,13 +39,6 @@ spec:
           type: object
         spec:
           properties:
-            coordinator:
-              properties:
-                image:
-                  type: string
-              required:
-              - image
-              type: object
             db:
               properties:
                 image:
@@ -56,20 +48,8 @@ spec:
               type: object
             deprecated:
               type: boolean
-            exporter:
-              properties:
-                image:
-                  type: string
-              required:
-              - image
-              type: object
-            gitSyncer:
-              properties:
-                image:
-                  type: string
-              required:
-              - image
-              type: object
+            endOfLife:
+              type: boolean
             initContainer:
               properties:
                 image:
@@ -90,53 +70,6 @@ spec:
                   format: int64
                   type: integer
               type: object
-            stash:
-              properties:
-                addon:
-                  properties:
-                    backupTask:
-                      properties:
-                        name:
-                          type: string
-                        params:
-                          items:
-                            properties:
-                              name:
-                                type: string
-                              value:
-                                type: string
-                            required:
-                            - name
-                            - value
-                            type: object
-                          type: array
-                      required:
-                      - name
-                      type: object
-                    restoreTask:
-                      properties:
-                        name:
-                          type: string
-                        params:
-                          items:
-                            properties:
-                              name:
-                                type: string
-                              value:
-                                type: string
-                            required:
-                            - name
-                            - value
-                            type: object
-                          type: array
-                      required:
-                      - name
-                      type: object
-                  required:
-                  - backupTask
-                  - restoreTask
-                  type: object
-              type: object
             updateConstraints:
               properties:
                 allowlist:
@@ -152,6 +85,7 @@ spec:
               type: string
           required:
           - db
+          - initContainer
           - version
           type: object
       type: object

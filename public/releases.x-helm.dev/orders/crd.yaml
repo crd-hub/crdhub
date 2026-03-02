@@ -1,7 +1,6 @@
 apiVersion: apiextensions.k8s.io/v1
 kind: CustomResourceDefinition
 metadata:
-  creationTimestamp: null
   name: orders.releases.x-helm.dev
 spec:
   group: releases.x-helm.dev
@@ -38,7 +37,7 @@ spec:
                             name:
                               type: string
                             sourceRef:
-                              description: TypedObjectReference represents an typed namespaced object.
+                              description: TypedObjectReference represents a typed namespaced object.
                               properties:
                                 apiGroup:
                                   type: string
@@ -105,7 +104,7 @@ spec:
                           - required
                           type: object
                         sourceRef:
-                          description: TypedObjectReference represents an typed namespaced object.
+                          description: TypedObjectReference represents a typed namespaced object.
                           properties:
                             apiGroup:
                               type: string
@@ -154,11 +153,13 @@ spec:
                                           items:
                                             type: string
                                           type: array
+                                          x-kubernetes-list-type: atomic
                                       required:
                                       - key
                                       - operator
                                       type: object
                                     type: array
+                                    x-kubernetes-list-type: atomic
                                   matchLabels:
                                     additionalProperties:
                                       type: string

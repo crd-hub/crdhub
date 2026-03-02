@@ -47,6 +47,12 @@
         "secretStoreName"
       ],
       "properties": {
+        "dataHash": {
+          "type": "string"
+        },
+        "dataLength": {
+          "type": "integer"
+        },
         "immutable": {
           "type": "boolean"
         },

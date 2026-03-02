@@ -3,7 +3,6 @@
   "apiVersion": "meta.k8s.appscode.com/v1alpha3",
   "metadata": {
     "name": "cluster.x-k8s.io-v1alpha3-machinesets",
-    "creationTimestamp": null,
     "labels": {
       "k8s.io/group": "cluster.x-k8s.io",
       "k8s.io/kind": "MachineSet",
@@ -22,7 +21,7 @@
     "ui": {
       "editor": {
         "name": "clusterxk8sio-machineset-editor",
-        "version": "v0.24.0",
+        "version": "v0.30.0",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",

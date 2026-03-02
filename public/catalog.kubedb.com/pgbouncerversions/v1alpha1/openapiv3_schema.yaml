@@ -28,6 +28,8 @@ properties:
     properties:
       deprecated:
         type: boolean
+      endOfLife:
+        type: boolean
       exporter:
         properties:
           image:

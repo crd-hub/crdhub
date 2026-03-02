@@ -3,7 +3,6 @@
   "apiVersion": "ui.k8s.appscode.com/v1alpha1",
   "metadata": {
     "name": "elasticache.aws.kubedb.com-v1alpha1-replicationgroups",
-    "creationTimestamp": null,
     "labels": {
       "k8s.io/group": "elasticache.aws.kubedb.com",
       "k8s.io/kind": "ReplicationGroup",
@@ -22,7 +21,7 @@
     "ui": {
       "editor": {
         "name": "elasticacheawskubedbcom-replicationgroup-editor",
-        "version": "v0.24.0",
+        "version": "v0.30.0",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",

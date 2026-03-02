@@ -1,7 +1,6 @@
 {
   "metadata": {
-    "name": "clusterclaims.cluster.open-cluster-management.io",
-    "creationTimestamp": null
+    "name": "clusterclaims.cluster.open-cluster-management.io"
   },
   "spec": {
     "group": "cluster.open-cluster-management.io",

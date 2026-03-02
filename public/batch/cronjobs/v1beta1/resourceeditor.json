@@ -3,7 +3,6 @@
   "apiVersion": "ui.k8s.appscode.com/v1alpha1",
   "metadata": {
     "name": "batch-v1beta1-cronjobs",
-    "creationTimestamp": null,
     "labels": {
       "k8s.io/group": "batch",
       "k8s.io/kind": "CronJob",
@@ -22,7 +21,7 @@
     "ui": {
       "editor": {
         "name": "batch-cronjob-editor",
-        "version": "v0.24.0",
+        "version": "v0.30.0",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",

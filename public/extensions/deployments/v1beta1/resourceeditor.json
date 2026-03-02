@@ -3,7 +3,6 @@
   "apiVersion": "ui.k8s.appscode.com/v1alpha1",
   "metadata": {
     "name": "extensions-v1beta1-deployments",
-    "creationTimestamp": null,
     "labels": {
       "k8s.io/group": "extensions",
       "k8s.io/kind": "Deployment",
@@ -22,7 +21,7 @@
     "ui": {
       "editor": {
         "name": "extensions-deployment-editor",
-        "version": "v0.24.0",
+        "version": "v0.30.0",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",

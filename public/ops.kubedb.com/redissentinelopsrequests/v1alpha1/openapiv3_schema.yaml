@@ -39,9 +39,17 @@ properties:
         properties:
           secretRef:
             properties:
-              name:
+              apiGroup:
                 default: ""
                 type: string
+              kind:
+                default: Secret
+                type: string
+              name:
+                type: string
+            required:
+            - kind
+            - name
             type: object
             x-kubernetes-map-type: atomic
         type: object
@@ -74,6 +82,10 @@ properties:
             format: int32
             type: integer
         type: object
+      maxRetries:
+        default: 1
+        format: int32
+        type: integer
       restart:
         type: object
       timeout:

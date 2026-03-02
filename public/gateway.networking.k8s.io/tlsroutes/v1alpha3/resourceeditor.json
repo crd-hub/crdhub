@@ -1,0 +1,22 @@
+{
+  "kind": "ResourceEditor",
+  "apiVersion": "ui.k8s.appscode.com/v1alpha1",
+  "metadata": {
+    "name": "gateway.networking.k8s.io-v1alpha3-tlsroutes",
+    "labels": {
+      "k8s.io/group": "gateway.networking.k8s.io",
+      "k8s.io/kind": "TLSRoute",
+      "k8s.io/resource": "tlsroutes",
+      "k8s.io/version": "v1alpha3"
+    }
+  },
+  "spec": {
+    "resource": {
+      "group": "gateway.networking.k8s.io",
+      "version": "v1alpha3",
+      "name": "tlsroutes",
+      "kind": "TLSRoute",
+      "scope": "Namespaced"
+    }
+  }
+}

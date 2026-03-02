@@ -136,6 +136,35 @@
             }
           }
         },
+        "distributions": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "features": {
+          "type": "object",
+          "properties": {
+            "disabledFeatures": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "enabledFeatures": {
+              "type": "object",
+              "additionalProperties": {
+                "type": "string"
+              }
+            },
+            "externallyManagedFeatures": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          }
+        },
         "nodeStats": {
           "type": "object",
           "properties": {
@@ -256,6 +285,12 @@
             }
           }
         },
+        "storageProvisioners": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
         "version": {
           "description": "Info contains versioning information.\nhow we'll want to distribute that information.",
           "type": "object",
@@ -277,6 +312,14 @@
             "compiler": {
               "type": "string"
             },
+            "emulationMajor": {
+              "description": "EmulationMajor is the major version of the emulation version",
+              "type": "string"
+            },
+            "emulationMinor": {
+              "description": "EmulationMinor is the minor version of the emulation version",
+              "type": "string"
+            },
             "gitCommit": {
               "type": "string"
             },
@@ -290,9 +333,19 @@
               "type": "string"
             },
             "major": {
+              "description": "Major is the major version of the binary version",
+              "type": "string"
+            },
+            "minCompatibilityMajor": {
+              "description": "MinCompatibilityMajor is the major version of the minimum compatibility version",
+              "type": "string"
+            },
+            "minCompatibilityMinor": {
+              "description": "MinCompatibilityMinor is the minor version of the minimum compatibility version",
               "type": "string"
             },
             "minor": {
+              "description": "Minor is the minor version of the binary version",
               "type": "string"
             },
             "platform": {

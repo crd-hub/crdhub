@@ -3,7 +3,6 @@
   "apiVersion": "ui.k8s.appscode.com/v1alpha1",
   "metadata": {
     "name": "acme.cert-manager.io-v1-challenges",
-    "creationTimestamp": null,
     "labels": {
       "k8s.io/group": "acme.cert-manager.io",
       "k8s.io/kind": "Challenge",
@@ -22,7 +21,7 @@
     "ui": {
       "editor": {
         "name": "acmecertmanagerio-challenge-editor",
-        "version": "v0.24.0",
+        "version": "v0.30.0",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",

@@ -3,7 +3,6 @@
   "apiVersion": "ui.k8s.appscode.com/v1alpha1",
   "metadata": {
     "name": "repositories.stash.appscode.com-v1alpha1-snapshots",
-    "creationTimestamp": null,
     "labels": {
       "k8s.io/group": "repositories.stash.appscode.com",
       "k8s.io/kind": "Snapshot",
@@ -22,7 +21,7 @@
     "ui": {
       "editor": {
         "name": "repositoriesstashappscodecom-snapshot-editor",
-        "version": "v0.24.0",
+        "version": "v0.30.0",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",

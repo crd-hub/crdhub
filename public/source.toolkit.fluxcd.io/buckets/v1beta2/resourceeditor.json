@@ -3,7 +3,6 @@
   "apiVersion": "ui.k8s.appscode.com/v1alpha1",
   "metadata": {
     "name": "source.toolkit.fluxcd.io-v1beta2-buckets",
-    "creationTimestamp": null,
     "labels": {
       "k8s.io/group": "source.toolkit.fluxcd.io",
       "k8s.io/kind": "Bucket",
@@ -22,7 +21,7 @@
     "ui": {
       "editor": {
         "name": "sourcetoolkitfluxcdio-bucket-editor",
-        "version": "v0.24.0",
+        "version": "v0.30.0",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",

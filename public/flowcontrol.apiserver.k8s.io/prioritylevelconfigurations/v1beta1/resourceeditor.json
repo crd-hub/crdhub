@@ -3,7 +3,6 @@
   "apiVersion": "ui.k8s.appscode.com/v1alpha1",
   "metadata": {
     "name": "flowcontrol.apiserver.k8s.io-v1beta1-prioritylevelconfigurations",
-    "creationTimestamp": null,
     "labels": {
       "k8s.io/group": "flowcontrol.apiserver.k8s.io",
       "k8s.io/kind": "PriorityLevelConfiguration",
@@ -22,7 +21,7 @@
     "ui": {
       "editor": {
         "name": "flowcontrolapiserverk8sio-prioritylevelconfiguration-editor",
-        "version": "v0.24.0",
+        "version": "v0.30.0",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",

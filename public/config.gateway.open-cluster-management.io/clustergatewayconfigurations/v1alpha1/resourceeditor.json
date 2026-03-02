@@ -3,7 +3,6 @@
   "apiVersion": "ui.k8s.appscode.com/v1alpha1",
   "metadata": {
     "name": "config.gateway.open-cluster-management.io-v1alpha1-clustergatewayconfigurations",
-    "creationTimestamp": null,
     "labels": {
       "k8s.io/group": "config.gateway.open-cluster-management.io",
       "k8s.io/kind": "ClusterGatewayConfiguration",
@@ -22,7 +21,7 @@
     "ui": {
       "editor": {
         "name": "configgatewayopenclustermanagementio-clustergatewayconfiguration-editor",
-        "version": "v0.24.0",
+        "version": "v0.30.0",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",

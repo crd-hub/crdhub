@@ -3,7 +3,6 @@
   "apiVersion": "ui.k8s.appscode.com/v1alpha1",
   "metadata": {
     "name": "addon.open-cluster-management.io-v1alpha1-addontemplates",
-    "creationTimestamp": null,
     "labels": {
       "k8s.io/group": "addon.open-cluster-management.io",
       "k8s.io/kind": "AddOnTemplate",
@@ -22,7 +21,7 @@
     "ui": {
       "editor": {
         "name": "addonopenclustermanagementio-addontemplate-editor",
-        "version": "v0.24.0",
+        "version": "v0.30.0",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",

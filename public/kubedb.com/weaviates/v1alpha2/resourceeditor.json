@@ -1,0 +1,70 @@
+{
+  "kind": "ResourceEditor",
+  "apiVersion": "ui.k8s.appscode.com/v1alpha1",
+  "metadata": {
+    "name": "kubedb.com-v1alpha2-weaviates",
+    "labels": {
+      "k8s.io/group": "kubedb.com",
+      "k8s.io/kind": "Weaviate",
+      "k8s.io/resource": "weaviates",
+      "k8s.io/version": "v1alpha2"
+    }
+  },
+  "spec": {
+    "resource": {
+      "group": "kubedb.com",
+      "version": "v1alpha2",
+      "name": "weaviates",
+      "kind": "Weaviate",
+      "scope": "Namespaced"
+    },
+    "ui": {
+      "options": {
+        "name": "kubedbcom-weaviate-editor-options",
+        "version": "v0.30.0",
+        "sourceRef": {
+          "apiGroup": "source.toolkit.fluxcd.io",
+          "kind": "HelmRepository",
+          "name": "appscode-charts-oci"
+        }
+      },
+      "editor": {
+        "name": "kubedbcom-weaviate-editor",
+        "version": "v0.30.0",
+        "sourceRef": {
+          "apiGroup": "source.toolkit.fluxcd.io",
+          "kind": "HelmRepository",
+          "name": "appscode-charts-oci"
+        }
+      },
+      "enforceQuota": true
+    },
+    "icons": [
+      {
+        "src": "https://cdn.appscode.com/k8s/icons/kubedb.com/weaviates.svg",
+        "type": "image/svg+xml"
+      },
+      {
+        "src": "https://cdn.appscode.com/k8s/icons/kubedb.com/weaviates.png",
+        "type": "image/png"
+      }
+    ],
+    "variants": [
+      {
+        "name": "default",
+        "selector": {
+          "matchExpressions": [
+            {
+              "key": "charts.x-helm.dev/is-default-preset",
+              "operator": "In",
+              "values": [
+                "true",
+                "kubedb"
+              ]
+            }
+          ]
+        }
+      }
+    ]
+  }
+}

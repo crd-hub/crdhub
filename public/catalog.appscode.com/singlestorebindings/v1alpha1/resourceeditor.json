@@ -3,7 +3,6 @@
   "apiVersion": "ui.k8s.appscode.com/v1alpha1",
   "metadata": {
     "name": "catalog.appscode.com-v1alpha1-singlestorebindings",
-    "creationTimestamp": null,
     "labels": {
       "k8s.io/group": "catalog.appscode.com",
       "k8s.io/kind": "SinglestoreBinding",
@@ -22,7 +21,7 @@
     "ui": {
       "editor": {
         "name": "catalogappscodecom-singlestorebinding-editor",
-        "version": "v0.24.0",
+        "version": "v0.30.0",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",
@@ -30,6 +29,16 @@
         }
       },
       "enforceQuota": false
-    }
+    },
+    "icons": [
+      {
+        "src": "https://cdn.appscode.com/k8s/icons/catalog.appscode.com/singlestorebindings.svg",
+        "type": "image/svg+xml"
+      },
+      {
+        "src": "https://cdn.appscode.com/k8s/icons/catalog.appscode.com/singlestorebindings.png",
+        "type": "image/png"
+      }
+    ]
   }
 }

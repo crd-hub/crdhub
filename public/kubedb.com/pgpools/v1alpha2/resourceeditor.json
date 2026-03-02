@@ -3,7 +3,6 @@
   "apiVersion": "ui.k8s.appscode.com/v1alpha1",
   "metadata": {
     "name": "kubedb.com-v1alpha2-pgpools",
-    "creationTimestamp": null,
     "labels": {
       "k8s.io/group": "kubedb.com",
       "k8s.io/kind": "Pgpool",
@@ -22,7 +21,7 @@
     "ui": {
       "options": {
         "name": "kubedbcom-pgpool-editor-options",
-        "version": "v0.24.0",
+        "version": "v0.30.0",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",
@@ -31,7 +30,7 @@
       },
       "editor": {
         "name": "kubedbcom-pgpool-editor",
-        "version": "v0.24.0",
+        "version": "v0.30.0",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",
@@ -45,6 +44,7 @@
           "items": [
             {
               "name": "Restart",
+              "icon": "hugeicons:redo",
               "icons": [
                 {
                   "src": "https://cdn.appscode.com/k8s/icons/action-icons/restart.svg",
@@ -55,7 +55,7 @@
               "flow": "standalone-create",
               "editor": {
                 "name": "opskubedbcom-pgpoolopsrequest-editor",
-                "version": "v0.24.0",
+                "version": "v0.30.0",
                 "sourceRef": {
                   "apiGroup": "source.toolkit.fluxcd.io",
                   "kind": "HelmRepository",
@@ -66,6 +66,7 @@
             },
             {
               "name": "Reconfigure",
+              "icon": "hugeicons:settings-05",
               "icons": [
                 {
                   "src": "https://cdn.appscode.com/k8s/icons/action-icons/reconfigure.svg",
@@ -76,7 +77,7 @@
               "flow": "standalone-create",
               "editor": {
                 "name": "opskubedbcom-pgpoolopsrequest-editor",
-                "version": "v0.24.0",
+                "version": "v0.30.0",
                 "sourceRef": {
                   "apiGroup": "source.toolkit.fluxcd.io",
                   "kind": "HelmRepository",
@@ -91,7 +92,15 @@
           "name": "Scaling",
           "items": [
             {
+              "name": "Scale Vertically",
+              "icon": "hugeicons:vertical-resize",
+              "operationId": "scale-vertically",
+              "flow": "",
+              "enforceQuota": false
+            },
+            {
               "name": "Horizontal Scale",
+              "icon": "hugeicons:horizontal-resize",
               "icons": [
                 {
                   "src": "https://cdn.appscode.com/k8s/icons/action-icons/horizontal_scale.svg",
@@ -103,7 +112,7 @@
               "disabledTemplate": "{{ not (gt .spec.replicas 1) }}\n",
               "editor": {
                 "name": "opskubedbcom-pgpoolopsrequest-editor",
-                "version": "v0.24.0",
+                "version": "v0.30.0",
                 "sourceRef": {
                   "apiGroup": "source.toolkit.fluxcd.io",
                   "kind": "HelmRepository",
@@ -124,14 +133,15 @@
               "flow": "standalone-create",
               "editor": {
                 "name": "opskubedbcom-pgpoolopsrequest-editor",
-                "version": "v0.24.0",
+                "version": "v0.30.0",
                 "sourceRef": {
                   "apiGroup": "source.toolkit.fluxcd.io",
                   "kind": "HelmRepository",
                   "name": "appscode-charts-oci"
                 }
               },
-              "enforceQuota": true
+              "enforceQuota": true,
+              "partOf": "Scale Vertically"
             }
           ]
         },
@@ -150,14 +160,15 @@
               "flow": "standalone-edit",
               "editor": {
                 "name": "kubedbcom-pgpool-editor",
-                "version": "v0.24.0",
+                "version": "v0.30.0",
                 "sourceRef": {
                   "apiGroup": "source.toolkit.fluxcd.io",
                   "kind": "HelmRepository",
                   "name": "appscode-charts-oci"
                 }
               },
-              "enforceQuota": true
+              "enforceQuota": true,
+              "partOf": "Scale Vertically"
             }
           ]
         },
@@ -166,6 +177,7 @@
           "items": [
             {
               "name": "TLS Configure",
+              "icon": "hugeicons:security-check",
               "icons": [
                 {
                   "src": "https://cdn.appscode.com/k8s/icons/action-icons/configure.svg",
@@ -176,7 +188,7 @@
               "flow": "standalone-create",
               "editor": {
                 "name": "opskubedbcom-pgpoolopsrequest-editor",
-                "version": "v0.24.0",
+                "version": "v0.30.0",
                 "sourceRef": {
                   "apiGroup": "source.toolkit.fluxcd.io",
                   "kind": "HelmRepository",
@@ -187,6 +199,7 @@
             },
             {
               "name": "Monitoring",
+              "icon": "hugeicons:presentation-line-chart-01",
               "icons": [
                 {
                   "src": "https://cdn.appscode.com/k8s/icons/action-icons/monitor.svg",
@@ -197,7 +210,7 @@
               "flow": "standalone-edit",
               "editor": {
                 "name": "kubedbcom-pgpool-editor",
-                "version": "v0.24.0",
+                "version": "v0.30.0",
                 "sourceRef": {
                   "apiGroup": "source.toolkit.fluxcd.io",
                   "kind": "HelmRepository",

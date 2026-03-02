@@ -103,18 +103,10 @@
             "KubeDB"
           ]
         },
-        "exporter": {
-          "type": "object",
-          "required": [
-            "image"
-          ],
-          "properties": {
-            "image": {
-              "type": "string"
-            }
-          }
+        "endOfLife": {
+          "type": "boolean"
         },
-        "gitSyncer": {
+        "exporter": {
           "type": "object",
           "required": [
             "image"

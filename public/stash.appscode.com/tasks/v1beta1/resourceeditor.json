@@ -3,7 +3,6 @@
   "apiVersion": "ui.k8s.appscode.com/v1alpha1",
   "metadata": {
     "name": "stash.appscode.com-v1beta1-tasks",
-    "creationTimestamp": null,
     "labels": {
       "k8s.io/group": "stash.appscode.com",
       "k8s.io/kind": "Task",
@@ -22,7 +21,7 @@
     "ui": {
       "editor": {
         "name": "stashappscodecom-task-editor",
-        "version": "v0.24.0",
+        "version": "v0.30.0",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",

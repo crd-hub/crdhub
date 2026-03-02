@@ -3,7 +3,6 @@
   "apiVersion": "ui.k8s.appscode.com/v1alpha1",
   "metadata": {
     "name": "authorization.k8s.appscode.com-v1alpha1-managedclusterroles",
-    "creationTimestamp": null,
     "labels": {
       "k8s.io/group": "authorization.k8s.appscode.com",
       "k8s.io/kind": "ManagedClusterRole",
@@ -22,7 +21,7 @@
     "ui": {
       "editor": {
         "name": "authorizationk8sappscodecom-managedclusterrole-editor",
-        "version": "v0.24.0",
+        "version": "v0.30.0",
         "sourceRef": {
           "apiGroup": "source.toolkit.fluxcd.io",
           "kind": "HelmRepository",

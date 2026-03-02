@@ -1,0 +1,22 @@
+{
+  "kind": "ResourceEditor",
+  "apiVersion": "ui.k8s.appscode.com/v1alpha1",
+  "metadata": {
+    "name": "catalog.kubedb.com-v1alpha1-neo4jversions",
+    "labels": {
+      "k8s.io/group": "catalog.kubedb.com",
+      "k8s.io/kind": "Neo4jVersion",
+      "k8s.io/resource": "neo4jversions",
+      "k8s.io/version": "v1alpha1"
+    }
+  },
+  "spec": {
+    "resource": {
+      "group": "catalog.kubedb.com",
+      "version": "v1alpha1",
+      "name": "neo4jversions",
+      "kind": "Neo4jVersion",
+      "scope": "Cluster"
+    }
+  }
+}
